@@ -12,6 +12,21 @@ It's best played at 1440p resolution!
 - 3 themes to choose from
 - Easily customisable gradient colors
 
+## Development workflow
+### Use the `development` branch
+The `stable` branch should be updated only every big (non-beta) release, so that we have a reference.
+
+### Pull requests only
+Please do not push code to the `stable` or `development` branches and only use Pull Requests.
+
+### Commit messages
+We use a VSCode extension called **Emoji Log** for commit messages.
+This is so that #git-feed is readable and easy to understand.
+
+Commits including `TEST:` will be exluded from the changelog in #build-releases
+
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ahmadawais.emoji-log-vscode  
+
 ## Chat Commands:
 
 ### General (user facing)
