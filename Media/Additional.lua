@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
-local LSM = E.Libs.LSM
+-- Uncomment this line if you're adding media
+-- local LSM = E.Libs.LSM
 
 -- This file is for additional stuff, mainly used by devs, but you can also add stuff here,
 -- but we would recommend to create your own SharedMedia_MyMedia addon yourself, since this file

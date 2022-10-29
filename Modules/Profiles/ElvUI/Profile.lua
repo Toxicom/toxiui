@@ -116,7 +116,7 @@ function PF:BuildProfile()
       ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvAB_6", "BOTTOMLEFT", -defaultPadding, 0), -- Far Left
       ElvAB_4 = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", defaultPadding, 0), -- Far Right
 
-      ElvAB_6 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -37, -401), -- Unused
+      ElvAB_2 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -37, -401), -- Unused
       ElvAB_7 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -73, -401), -- Unused
       ElvAB_8 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -109, -401), -- Unused
       ElvAB_9 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -144, -401), -- Unused
