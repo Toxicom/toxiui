@@ -1,0 +1,15 @@
+package-as: ElvUI_ToxiUI
+
+ignore:
+  - .github/*
+  - .gitignore
+  - .lua-format
+  - .luacheckrc
+  - .pkgmeta
+  - .pkgmeta-dev
+  - .vscode/*
+  - Assets/*
+  - README.md
+  - Core/Changelog/_template.lua
+  - Modules/WunderBar/SubModules/_template.lua
+  - Modules/Options/Settings/WunderBar/SubModules/_template.lua

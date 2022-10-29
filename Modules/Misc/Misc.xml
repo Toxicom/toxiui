@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='Core.lua' />
+
+  <Script file='ChatIcon.lua' />
+  <Script file='GameMenuButton.lua' />
+  <Script file='SplashScreen.lua' />
+  <Script file='StatusReport.lua' />
+  <Script file='Tags.lua' />
+  <Script file='WeakAuraAnchor.lua' />
+</Ui>

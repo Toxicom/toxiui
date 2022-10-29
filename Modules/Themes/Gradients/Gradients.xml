@@ -1,0 +1,8 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='Core.lua' />
+
+  <Script file='Update.lua' />
+  <Script file='Castbar.lua' />
+  <Script file='Health.lua' />
+  <Script file='Power.lua' />
+</Ui>

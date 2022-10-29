@@ -1,0 +1,23 @@
+## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff00e4f5UI|r
+## Notes: Minimalistic ElvUI Edit by |cff00e4f5Toxi|r
+## Author: Toxi (Toxicom#2957)
+## Version: 6.1.0
+## RequiredDeps: ElvUI
+## OptionalDeps: ElvUI_WindTools, Details, Plater
+## DefaultState: Enabled
+## Interface: 10000
+## X-Interface: 10000
+## X-Flavor: Mainline
+## X-WoWI-ID: 25770
+## X-Curse-Project-ID: 676447
+## X-Tukui-ProjectID: 199
+## X-Tukui-ProjectFolders: ElvUI_ToxiUI
+## X-ElvUIVersion: 12.97
+## X-Wago-ID: XrNk5lKa
+## X-GitHash: @project-version@
+
+Libraries\Libraries.xml
+Initialize.lua
+Core\Core.xml
+Media\Media.xml
+Modules\Modules.xml
