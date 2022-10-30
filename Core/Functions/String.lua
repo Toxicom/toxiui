@@ -107,8 +107,8 @@ end
 function F.String.Abbreviate(text)
   if type(text) ~= "string" or text == "" then return text end
 
-  if (text:gsub(" of (.*)", "")):gsub("^.*?( the )", "") == "Rune" then
-    text = text:match(" of (.*)", 1):match("the (.*)", 1)
+  if (text:gsub(" of (.*)", "")):gsub(" the (.*)", "") == "Rune" then
+    text = text:gsub(".* the ", ""):gsub(".* of ", "")
   else
     text = text:gsub(" of (.*)", ""):gsub(" the (.*)", "")
   end
