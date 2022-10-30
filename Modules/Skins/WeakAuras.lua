@@ -192,7 +192,6 @@ local function skinIcon(region, data)
   -- This call can be repeated, elvui checks if its hooked
   E:RegisterCooldown(region.cooldown)
 
-
   -- Now force update
   region:ToxiUIApplyMaskSettings()
   region:UpdateSize()
@@ -248,7 +247,7 @@ function S:WeakAuras()
 
     local function OnPrototypeModifyFinish(_, region, data)
       skinWeakAuras(region, region.regionType, data)
-  end
+    end
 
     S:SecureHook(WeakAuras.regionPrototype, "create", OnPrototypeCreate)
     S:SecureHook(WeakAuras.regionPrototype, "modifyFinish", OnPrototypeModifyFinish)

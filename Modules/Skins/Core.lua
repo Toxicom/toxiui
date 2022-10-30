@@ -35,9 +35,7 @@ function S:AddCallbackForAddon(addonName, func)
     addon = self.addonsToLoad[addonName]
   end
 
-  if type(func) == "string" then
-    func = self[func]
-  end
+  if type(func) == "string" then func = self[func] end
 
   tinsert(addon, func or self[addonName])
 end
@@ -63,9 +61,7 @@ function S:Initialize()
 
   for addonName, object in pairs(self.addonsToLoad) do
     local isLoaded, isFinished = IsAddOnLoaded(addonName)
-    if isLoaded and isFinished then
-      self:CallLoadedAddon(addonName, object)
-    end
+    if isLoaded and isFinished then self:CallLoadedAddon(addonName, object) end
   end
 
   -- We are done, hooray!
