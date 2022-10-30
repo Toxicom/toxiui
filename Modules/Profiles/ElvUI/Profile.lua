@@ -1520,23 +1520,38 @@ function PF:BuildProfile()
     enabled = true,
   }
 
-  -- ActionBar Bar7
+  -- ActionBar Bar7 (Stance Bar)
   pf.actionbar.bar7 = createMainActionBar {
     enabled = false,
   }
 
-  -- ActionBar Bar8
+  -- ActionBar Bar8 (Stance Bar)
   pf.actionbar.bar8 = createMainActionBar {
     enabled = false,
   }
 
-  -- ActionBar Bar9
+  -- ActionBar Bar9 (Stance Bar)
   pf.actionbar.bar9 = createMainActionBar {
     enabled = false,
   }
 
-  -- ActionBar Bar10
+  -- ActionBar Bar10 (Stance Bar)
   pf.actionbar.bar10 = createMainActionBar {
+    enabled = false,
+  }
+
+  -- ActionBar Bar13
+  pf.actionbar.bar13 = createMainActionBar {
+    enabled = false,
+  }
+
+  -- ActionBar Bar14
+  pf.actionbar.bar14 = createMainActionBar {
+    enabled = false,
+  }
+
+  -- ActionBar Bar15
+  pf.actionbar.bar15 = createMainActionBar {
     enabled = false,
   }
 
