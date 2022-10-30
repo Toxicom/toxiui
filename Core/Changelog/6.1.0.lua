@@ -20,7 +20,7 @@ TXUI.Changelog["6.1.0"] = {
     "Gradient Mode rewritten, better performance",
 
     "* Details",
-    F.String.Good("New: ") .. "Skin with icons, inspired by Redtuzk" .. F.String.Error("UI"),
+    F.String.Good("New: ") .. "Skin with icons, in collaboration with Redtuzk" .. F.String.Error("UI"),
 
     "* Boss Mods",
     "BigWigs: Update to match Details",
