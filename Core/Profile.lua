@@ -258,31 +258,31 @@ P.blizzardFonts = {
   zoneFont = I.Fonts.Primary,
   zoneFontSize = 33,
   zoneFontShadow = true,
-  zoneFontOutline = "NONE",
+  zoneFontOutline = "",
 
   -- Sub-Zone
   subZoneFont = I.Fonts.Primary,
   subZoneFontSize = 32,
   subZoneFontShadow = true,
-  subZoneFontOutline = "NONE",
+  subZoneFontOutline = "",
 
   -- PvP-Zone
   pvpZoneFont = I.Fonts.Primary,
   pvpZoneFontSize = 22,
   pvpZoneFontShadow = true,
-  pvpZoneFontOutline = "NONE",
+  pvpZoneFontOutline = "",
 
   -- Mail Text
   mailFont = I.Fonts.Primary,
   mailFontSize = 14,
   mailFontShadow = false, -- dosen't support shadows
-  mailFontOutline = "NONE",
+  mailFontOutline = "",
 
   -- Gossip/Quest Text
   gossipFont = I.Fonts.Primary,
   gossipFontSize = 14,
   gossipFontShadow = false, -- dosen't support shadows
-  gossipFontOutline = "NONE",
+  gossipFontOutline = "",
 }
 
 -- VehicleBar
@@ -331,28 +331,28 @@ P.armory = {
     itemLevelFont = I.Fonts.Title,
     itemLevelFontSize = 30,
     itemLevelFontShadow = true,
-    itemLevelFontOutline = "NONE",
+    itemLevelFontOutline = "",
     itemLevelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     itemLevelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     headerFont = I.Fonts.Title,
     headerFontSize = 22,
     headerFontShadow = true,
-    headerFontOutline = "NONE",
+    headerFontOutline = "",
     headerFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
     headerFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     labelFont = I.Fonts.Primary,
     labelFontSize = 12,
     labelFontShadow = true,
-    labelFontOutline = "NONE",
+    labelFontOutline = "",
     labelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     labelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     valueFont = I.Fonts.Primary,
     valueFontSize = 15,
     valueFontShadow = true,
-    valueFontOutline = "NONE",
+    valueFontOutline = "",
     valueFontColor = "CUSTOM", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
     valueFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
@@ -466,12 +466,12 @@ P.armory = {
     iLvLFont = I.Fonts.Primary,
     iLvLFontSize = 14,
     iLvLFontShadow = true,
-    iLvLFontOutline = "NONE",
+    iLvLFontOutline = "",
 
     enchantFont = I.Fonts.Primary,
     enchantFontSize = 12,
     enchantFontShadow = true,
-    enchantFontOutline = "NONE",
+    enchantFontOutline = "",
   },
 
   nameTextOffsetX = 0,
@@ -479,7 +479,7 @@ P.armory = {
   nameTextFont = I.Fonts.Title,
   nameTextFontSize = 22,
   nameTextFontShadow = true,
-  nameTextFontOutline = "NONE",
+  nameTextFontOutline = "",
   nameTextFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
   nameTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
@@ -488,7 +488,7 @@ P.armory = {
   titleTextFont = I.Fonts.Title,
   titleTextFontSize = 16,
   titleTextFontShadow = true,
-  titleTextFontOutline = "NONE",
+  titleTextFontOutline = "",
   titleTextFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
   titleTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
@@ -497,7 +497,7 @@ P.armory = {
   levelTitleTextFont = I.Fonts.Title,
   levelTitleTextFontSize = 20,
   levelTitleTextFontShadow = true,
-  levelTitleTextFontOutline = "NONE",
+  levelTitleTextFontOutline = "",
   levelTitleTextFontColor = "CUSTOM", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
   levelTitleTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
@@ -506,14 +506,14 @@ P.armory = {
   levelTextFont = I.Fonts.Title,
   levelTextFontSize = 24,
   levelTextFontShadow = true,
-  levelTextFontOutline = "NONE",
+  levelTextFontOutline = "",
   levelTextFontColor = "CUSTOM", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
   levelTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
   specIconFont = I.Fonts.Icons,
   specIconFontSize = 18,
   specIconFontShadow = true,
-  specIconFontOutline = "NONE",
+  specIconFontOutline = "",
   specIconFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
   specIconFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
@@ -522,7 +522,7 @@ P.armory = {
   classTextFont = I.Fonts.Title,
   classTextFontSize = 20,
   classTextFontShadow = true,
-  classTextFontOutline = "NONE",
+  classTextFontOutline = "",
   classTextFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
   classTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 }
@@ -565,7 +565,7 @@ P.wunderbar = {
     normalFont = I.Fonts.Primary,
     normalFontSize = 14,
     normalFontShadow = true,
-    normalFontOutline = "NONE",
+    normalFontOutline = "",
     normalFontColor = "NONE", -- NONE, CLASS, TXUI, VALUE (ElvUI), CUSTOM
     normalFontCustomColor = F.Table.HexToRGB("#ffffffff"),
   },

@@ -369,6 +369,10 @@ function CR:CreateElvUIDB()
   _G.ElvDB.serverID[E.serverID][E.myrealm] = true
 end
 
+local function UpdateMarketPrice()
+  return C_WowTokenPublic_UpdateMarketPrice
+end
+
 function CR:OnInit()
   -- Get our settings DB
   self.db = WB:GetSubModuleDB(self:GetName())
@@ -387,7 +391,7 @@ function CR:OnInit()
   self:CreateElvUIDB()
 
   -- Create Token Ticker
-  self.tokenTicker = C_Timer_NewTicker(60, C_WowTokenPublic_UpdateMarketPrice)
+  self.tokenTicker = C_Timer_NewTicker(60, UpdateMarketPrice)
 
   self:CreateText()
   self:OnWunderBarUpdate()

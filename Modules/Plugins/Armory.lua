@@ -1081,7 +1081,7 @@ function A:CreateElements()
   if self.frame then return end
 
   self.frame = _G.CharacterFrame
-  self.frameModel = _G.CharacterModelFrame
+  self.frameModel = _G.CharacterModelScene
   self.frameName = self.frame:GetName()
   self.frameHolder = CreateFrame("FRAME", nil, self.frameModel)
 

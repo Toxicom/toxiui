@@ -6,11 +6,13 @@ local _G = _G
 local abs = math.abs
 local CreateFrame = CreateFrame
 local ipairs = ipairs
-local pairs = pairs
 local unpack = unpack
+local WeakAuras = _G.WeakAuras
 
 -- Vars
 local pIconMult
+local iconEnabled
+local aurabarEnabled
 
 local function skinIcon(region, data)
   -- Fake WAs, like previews etc
@@ -189,13 +191,6 @@ local function skinIcon(region, data)
   -- This call can be repeated, elvui checks if its hooked
   E:RegisterCooldown(region.cooldown)
 
-  -- Set flags for ElvUI to hide text if requested from WA
-  local shouldHide = data.cooldownTextDisabled
-  region.cooldown.hideText = shouldHide
-  region.cooldown.forceDisabled = shouldHide
-  region.cooldown.noCooldownCount = not shouldHide
-  region.cooldown:SetHideCountdownNumbers(shouldHide or E:Cooldown_IsEnabled(region.cooldown))
-
   -- Now force update
   region:ToxiUIApplyMaskSettings()
   region:UpdateSize()
@@ -224,62 +219,35 @@ local function skinAuraBar(region)
   region.iconFrame.backdrop.Center:Kill()
 end
 
-function S:WeakAuras()
-  -- Get region types
-  local regionTypes = _G.WeakAuras.regionTypes
+local function skinWeakAuras(region, regionType, data)
+  if regionType == "icon" and iconEnabled then
+    skinIcon(region, data)
+  elseif region.regionType == "aurabar" and aurabarEnabled then
+    skinAuraBar(region)
+  end
+end
 
+function S:WeakAuras()
   -- Get db
   local db = F.GetDBFromPath("TXUI.addons.weakAurasIcons")
   local isEnabled = db and db.enabled
+  iconEnabled = TXUI:HasRequirements(I.Requirements.WeakAurasIcons)
+  aurabarEnabled = TXUI:HasRequirements(I.Requirements.WeakAurasBars)
 
-  -- ICONS
-  if isEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasIcons) then
-    -- Get Shape setting
+  if isEnabled and (iconEnabled or aurabarEnabled) then
     pIconMult = (db.iconShape == I.Enum.IconShape.RECTANGLE) and 0.75 or 1
 
-    -- Copy WA Icon functions
-    local createIcon, modifyIcon = regionTypes.icon.create, regionTypes.icon.modify
-
-    -- On WeakAura Icon creation
-    regionTypes.icon.create = function(parent, data)
-      local region = createIcon(parent, data)
-      skinIcon(region, data)
-      return region
+    local function OnPrototypeCreate(region)
+      skinWeakAuras(region, region.regionType)
     end
 
-    -- On WeakAura Icon Change (size, etc)
-    regionTypes.icon.modify = function(parent, region, data)
-      modifyIcon(parent, region, data)
-      skinIcon(region, data)
+    local function OnPrototypeModifyFinish(_, region, data)
+      skinWeakAuras(region, region.regionType, data)
     end
 
-    -- Skinn all already loaded/created weakauras icons
-    for _, regions in pairs(_G.WeakAuras.regions) do
-      if regions.regionType == "icon" then skinIcon(regions.region, _G.WeakAuras.GetData(regions.region.id)) end
-    end
-  end
-
-  -- BARS
-  if isEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasBars) then
-    -- Copy WA Bar functions
-    local createAuraBar, modifyAuraBar = regionTypes.aurabar.create, regionTypes.aurabar.modify
-
-    -- On WeakAura Bar creation
-    regionTypes.aurabar.create = function(parent)
-      local region = createAuraBar(parent)
-      skinAuraBar(region)
-      return region
-    end
-
-    -- On WeakAura Bar Change (size, etc)
-    regionTypes.aurabar.modify = function(parent, region, data)
-      modifyAuraBar(parent, region, data)
-      skinAuraBar(region)
-    end
-
-    -- Skinn all already loaded/created weakauras bars
-    for _, regions in pairs(_G.WeakAuras.regions) do
-      if regions.regionType == "aurabar" then skinAuraBar(regions.region) end
-    end
+    S:SecureHook(WeakAuras.regionPrototype, "create", OnPrototypeCreate)
+    S:SecureHook(WeakAuras.regionPrototype, "modifyFinish", OnPrototypeModifyFinish)
   end
 end
+
+S:AddCallbackForAddon("WeakAuras")

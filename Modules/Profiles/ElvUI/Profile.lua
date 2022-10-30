@@ -189,7 +189,7 @@ function PF:BuildProfile()
       AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 351, -324),
       ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -280, 317),
       HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -573, -422),
-      RaidMarkerBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -325, -4),
+      WTRaidMarkerBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -325, -4),
 
       -- Movers: Action Bars Retail Only
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -300, 200),

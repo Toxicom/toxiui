@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
 local PF = TXUI:GetModule("Profiles")
 
-local _G = _G
 local SetCVar = SetCVar
 
 -- copied from E:SetupCVars
@@ -25,9 +24,6 @@ function PF:ElvUICVars()
   SetCVar("useUiScale", 1)
   SetCVar("uiScale", E.global.general.UIScale)
   SetCVar("autoClearAFK", 1)
-
-  _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue("SHIFT")
-  _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
 
   if TXUI.IsRetail then SetCVar("cameraDistanceMaxZoomFactor", 2.6) end
 end

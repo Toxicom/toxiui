@@ -6,13 +6,14 @@ local FadingFrame_Show = FadingFrame_Show
 
 function BF:UpdateFont(name, font, multi)
   local obj = _G[name]
+  if not obj then return end
   if obj == nil then return self:LogDebug("UpdateFont > obj is nil: " .. name) end
 
   F.SetFontFromDB(E.db.TXUI.blizzardFonts, font, obj, false)
 
   if multi ~= nil then
     local fontPath, fontSize, fontOutline = obj:GetFont()
-    obj:SetFont(fontPath, fontSize * multi, fontOutline or "NONE")
+    obj:SetFont(fontPath, fontSize * multi, fontOutline or "")
   end
 end
 
@@ -36,7 +37,6 @@ function BF:SettingsUpdate()
   if TXUI.IsRetail then self:UpdateFont("SendMailBodyEditBox", "mail") end
   if TXUI.IsWrath then self:UpdateFont("MailTextFontNormal", "mail") end
 
-  self:UpdateFont("OpenMailBodyText", "mail")
   self:UpdateFont("InvoiceFont_Med", "mail", medium)
   self:UpdateFont("InvoiceFont_Small", "mail", small)
   self:UpdateFont("MailFont_Large", "mail", large)

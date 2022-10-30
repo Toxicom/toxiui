@@ -122,7 +122,9 @@ function DT:UpdateStatusBarFrame(frame)
     barTexture:SetInside(nil, 0, 0)
 
     -- Anchor correctly
-    UF:SetStatusBarBackdropPoints(frame.Health, barTexture, frame.Health.bg, frame.Health:GetOrientation(), frame.db.health and frame.db.health.reverseFill)
+    if frame.db ~= nil then
+      UF:SetStatusBarBackdropPoints(frame.Health, barTexture, frame.Health.bg, frame.Health:GetOrientation(), frame.db.health and frame.db.health.reverseFill)
+    end
 
     self:RawHook(frame.Health, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdateColor, self))
     self:AddFrameToSettingsUpdate(frame.Health, F.Event.GenerateClosure(self.PostUpdateColor, self, frame.Health, frame.unit))

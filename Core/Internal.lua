@@ -9,7 +9,7 @@ I.General = {
   DefaultFont = "- M 500",
   DefaultFontSize = 18,
   DefaultFontShadow = false,
-  DefaultFontOutline = "NONE",
+  DefaultFontOutline = "",
   DefaultFontColor = "CUSTOM", -- CLASS, VALUE (ElvUI), CUSTOM
   DefaultFontCustomColor = F.Table.HexToRGB("#ff0000ff"),
 
