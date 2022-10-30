@@ -73,7 +73,7 @@ function PF:BuildProfile()
 
   -- Special Case: ToxiUIWAAnchor
   -- TODO: Update for Dragonflight
-  local WAAnchorY = { -200, -140 } -- DPS, HEALER
+  local WAAnchorY
 
   if F.HiDpi() then
     WAAnchorY = { -128, -98 }
