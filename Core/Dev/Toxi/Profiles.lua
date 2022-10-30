@@ -12,6 +12,12 @@ function T:SetupCvars()
 end
 
 function T:SetupProfile()
+  -- Font Overrides
+  E.db.TXUI.general.fontOverride[I.Fonts.Primary] = "- Personal"
+  E.db.TXUI.general.fontOverride[I.Fonts.PrimaryBold] = "- Personal"
+  E.db.TXUI.general.fontStyleOverride[I.Fonts.Primary] = "OUTLINE"
+  E.db.TXUI.general.fontStyleOverride[I.Fonts.PrimaryBold] = "OUTLINE"
+
   -- WunderBar: Modules
   E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
   E.db.TXUI.wunderbar.modules.LeftPanel[3] = "DataBar"
