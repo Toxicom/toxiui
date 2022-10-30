@@ -15,7 +15,6 @@ local ipairs = ipairs
 local lower = string.lower
 local next = next
 local securecall = securecall
-local select = select
 local tinsert = table.insert
 
 local PROFESSIONS_COOKING = PROFESSIONS_COOKING
