@@ -70,7 +70,7 @@ function SS:SpecEnter(text, icon)
   local dtModule = WB:GetElvUIDataText("Talent/Loot Specialization")
 
   if dtModule then
-    dtModule.eventFunc(WB:GetElvUIDummy(), "ELVUI_FORCE_UPDATE")
+    dtModule.eventFunc(WB:GetElvUIDummy(), "PLAYER_LOOT_SPEC_UPDATED")
     dtModule.onEnter()
   else
     local function addTexture(texture)

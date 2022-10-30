@@ -26,5 +26,8 @@ function PF:ElvUICVars()
   SetCVar("uiScale", E.global.general.UIScale)
   SetCVar("autoClearAFK", 1)
 
+  _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue("SHIFT")
+  _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
+
   if TXUI.IsRetail then SetCVar("cameraDistanceMaxZoomFactor", 2.6) end
 end
