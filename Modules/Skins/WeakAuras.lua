@@ -6,7 +6,6 @@ local _G = _G
 local abs = math.abs
 local CreateFrame = CreateFrame
 local ipairs = ipairs
-local pairs = pairs
 local unpack = unpack
 local WeakAuras = _G.WeakAuras
 
@@ -229,9 +228,6 @@ local function skinWeakAuras(region, regionType, data)
 end
 
 function S:WeakAuras()
-  -- Get region types
-  local regionTypes = _G.WeakAuras.regionTypes
-
   -- Get db
   local db = F.GetDBFromPath("TXUI.addons.weakAurasIcons")
   local isEnabled = db and db.enabled
