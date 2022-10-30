@@ -35,13 +35,13 @@ function PF:ElvUIFont()
       altPowerBar = {
         font = F.FontOverride(I.Fonts.Title),
         fontSize = F.FontSizeScaled(18),
-        fontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+        fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
       },
 
       minimap = {
         locationFont = F.FontOverride(I.Fonts.Title),
         locationFontSize = F.FontSizeScaled(22),
-        locationFontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+        locationFontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
 
         icons = {
           queueStatus = {
@@ -102,7 +102,7 @@ function PF:ElvUIFont()
 
       tabFont = F.FontOverride(I.Fonts.Title),
       tabFontSize = F.FontSizeScaled(14, 13),
-      tabFontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+      tabFontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
     },
 
     -- Auras
@@ -133,7 +133,7 @@ function PF:ElvUIFont()
     unitframe = {
       font = F.FontOverride(I.Fonts.Title),
       fontSize = F.FontSizeScaled(20),
-      fontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+      fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
 
       cooldown = {
         fonts = {
@@ -166,14 +166,14 @@ function PF:ElvUIFont()
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, ""),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
 
             customTimeFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, ""),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
           },
         },
@@ -199,14 +199,14 @@ function PF:ElvUIFont()
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, ""),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
 
             customTimeFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, ""),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
           },
         },
@@ -240,14 +240,14 @@ function PF:ElvUIFont()
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, ""),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
 
             customTimeFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, ""),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
           },
         },
@@ -272,7 +272,7 @@ function PF:ElvUIFont()
             rdebuffs = {
               font = F.FontOverride(I.Fonts.Number),
               fontSize = F.FontSizeScaled(18),
-              fontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+              fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
           },
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
@@ -286,7 +286,7 @@ function PF:ElvUIFont()
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
             fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+            fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
           },
         },
 
@@ -296,7 +296,7 @@ function PF:ElvUIFont()
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
             fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+            fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
           },
         },
 
@@ -306,7 +306,7 @@ function PF:ElvUIFont()
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
             fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, ""),
+            fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
           },
         },
 
