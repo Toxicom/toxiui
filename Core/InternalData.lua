@@ -54,6 +54,13 @@ I.Data.Contributor = {
       },
     },
 
+    [I.Enum.Developers.WOLEN] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- yes
+        ["Wolen-SomeRealm"] = true,
+      },
+    },
+
     [I.Enum.Developers.RHAP] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Illidan
