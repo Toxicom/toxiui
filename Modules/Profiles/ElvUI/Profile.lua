@@ -75,12 +75,10 @@ function PF:BuildProfile()
   -- TODO: Update for Dragonflight
   local WAAnchorY = { -200, -140 } -- DPS, HEALER
 
-  if TXUI.IsWrath then
-    if F.HiDpi() then
-      WAAnchorY = { -128, -98 }
-    else
-      WAAnchorY = { -114, -114 }
-    end
+  if F.HiDpi() then
+    WAAnchorY = { -128, -98 }
+  else
+    WAAnchorY = { -114, -114 }
   end
 
   local defaultPadding = 5
