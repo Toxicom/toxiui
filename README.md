@@ -27,6 +27,11 @@ Commits including `TEST:` will be exluded from the changelog in #build-releases
 
 VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ahmadawais.emoji-log-vscode  
 
+### Code formatting
+Please install the stylua extension and setup to format on save
+
+https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.stylua
+
 ## Chat Commands:
 
 ### General (user facing)
