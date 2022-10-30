@@ -5,7 +5,7 @@ local CreateFrame = CreateFrame
 
 function M:WeakAuraAnchorLoad()
   local frame = CreateFrame("Frame", "ToxiUIWAAnchor", E.UIParent, "BackdropTemplate")
-  frame:SetParent(ElvUF_Player)
+  frame:SetParent(_G.ElvUF_Player)
   frame:SetPoint("CENTER", E.UIParent, "CENTER", F.Dpi(0), F.Dpi(-200))
   frame:SetFrameStrata("BACKGROUND")
   frame:SetSize(F.Dpi(300), F.Dpi(100))
