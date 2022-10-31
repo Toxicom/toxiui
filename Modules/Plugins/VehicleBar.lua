@@ -110,33 +110,6 @@ function VB:UpdateBar()
   self.bar = bar
   self.bar.id = 1
 
-  -- Page Handling
-  bar:SetAttribute(
-    "_onstate-page",
-    [[
-        newstate = ((HasTempShapeshiftActionBar() and self:GetAttribute("hasTempBar")) and GetTempShapeshiftBarIndex())
-        or (UnitHasVehicleUI("player") and GetVehicleBarIndex())
-        or (HasOverrideActionBar() and GetOverrideBarIndex())
-        or newstate
-
-        if not newstate then
-            return
-        end
-
-        if newstate ~= 0 then
-            self:SetAttribute("state", newstate)
-            control:ChildUpdate("state", newstate)
-        else
-            local newCondition = self:GetAttribute("newCondition")
-            if newCondition then
-                newstate = SecureCmdOptionParse(newCondition)
-                self:SetAttribute("state", newstate)
-                control:ChildUpdate("state", newstate)
-            end
-        end
-    ]]
-  )
-
   -- Create Buttons
   if not bar.buttons then
     bar.buttons = {}
