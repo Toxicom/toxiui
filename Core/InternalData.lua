@@ -183,30 +183,6 @@ I.Data.Contributor = {
         ["Ryada-Ashbringer"] = true,
       },
     },
-
-    ["Fafnyir"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Illidan
-        ["Fafnyir-Illidan"] = true,
-        ["Tanithya-Illidan"] = true,
-
-        -- Whisperwind
-        ["Fafnyir-Whisperwind"] = true,
-        ["Tanithya-Whisperwind"] = true,
-
-        -- Stormrage
-        ["Tanithya-Stormrage"] = true,
-      },
-
-      [I.Enum.Flavor.WRATH] = {
-        -- Maladath
-        ["Fafnyir-Maladath"] = true,
-
-        -- Windseeker
-        ["Fafnyir-Windseeker"] = true,
-        ["Gulgamel-Windseeker"] = true,
-      },
-    },
   },
 
   -- RARE => Green Badge (rare supporter)
