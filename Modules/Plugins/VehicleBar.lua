@@ -100,7 +100,7 @@ function VB:UpdateBar()
 
   -- Create or get bar
   local init = self.bar == nil
-  local bar = self.bar or CreateFrame("Frame", "TXUIVehicleBar", E.UIParent, "SecureHandlerStateTemplate, BackdropTemplate")
+  local bar = self.bar or CreateFrame("Frame", "TXUIVehicleBar", E.UIParent, "SecureHandlerStateTemplate")
 
   -- Default position
   local point, anchor, attachTo, x, y = strsplit(",", F.Position(strsplit(",", self.db.position)))
@@ -109,33 +109,6 @@ function VB:UpdateBar()
   -- Set bar vars
   self.bar = bar
   self.bar.id = 1
-
-  -- Page Handling
-  bar:SetAttribute(
-    "_onstate-page",
-    [[
-        newstate = ((HasTempShapeshiftActionBar() and self:GetAttribute("hasTempBar")) and GetTempShapeshiftBarIndex())
-        or (UnitHasVehicleUI("player") and GetVehicleBarIndex())
-        or (HasOverrideActionBar() and GetOverrideBarIndex())
-        or newstate
-
-        if not newstate then
-            return
-        end
-
-        if newstate ~= 0 then
-            self:SetAttribute("state", newstate)
-            control:ChildUpdate("state", newstate)
-        else
-            local newCondition = self:GetAttribute("newCondition")
-            if newCondition then
-                newstate = SecureCmdOptionParse(newCondition)
-                self:SetAttribute("state", newstate)
-                control:ChildUpdate("state", newstate)
-            end
-        end
-    ]]
-  )
 
   -- Create Buttons
   if not bar.buttons then
@@ -148,7 +121,7 @@ function VB:UpdateBar()
       local button = LAB:CreateButton(buttonIndex, "TXUIVehicleBarButton" .. buttonIndex, bar, nil)
 
       -- Set state aka actions
-      button:SetState(0, "action", buttonIndex)
+      button:SetState(0, "action", buttonIndex + 180)
       for k = 1, 14 do
         button:SetState(k, "action", (k - 1) * 12 + buttonIndex)
       end
