@@ -12,6 +12,19 @@ It's best played at 1440p resolution!
 - 3 themes to choose from
 - Easily customisable gradient colors
 
+## How to keep up to date with repo
+1. Clone the repository
+2. `git checkout development`
+3. Create a [symlink directory junction](https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/)
+    1. Open up Command Prompt **as administator**
+    2. `mklink /J <new path> <old path>`
+
+### Example:
+```
+mklink /J "D:\Games\World of Warcraft\_retail_\Interface\AddOns\ElvUI_ToxiUI\" C:\Users\Toxi\Documents\GitHub\toxiui
+```
+
+
 ## Development workflow
 ### Use the `development` branch
 The `stable` branch should be updated only every big (non-beta) release, so that we have a reference.
