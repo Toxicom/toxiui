@@ -72,10 +72,10 @@ function DB:OnEvent(event)
       self.noData = false
 
       if TXUI.IsRetail then
-        local friendshipID, _, _, _, _, _, _, _, nextThreshold = GetFriendshipReputation(factionID)
+        local friendshipID = GetFriendshipReputation(factionID)
 
-        if friendshipID then
-          if not nextThreshold then
+        if friendshipID.friendshipFactionID > 0 then
+          if not friendshipID.nextThreshold then
             minValue, maxValue, curValue = 0, 1, 1
           end
         elseif C_Reputation_IsFactionParagon(factionID) then
