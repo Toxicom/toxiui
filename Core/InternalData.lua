@@ -56,8 +56,14 @@ I.Data.Contributor = {
 
     [I.Enum.Developers.WOLEN] = {
       [I.Enum.Flavor.RETAIL] = {
-        -- yes
-        ["Wolen-SomeRealm"] = true,
+        -- Mal'Ganis
+        ["Wolen-Mal'Ganis"] = true,
+        ["Giotao-Mal'Ganis"] = true,
+        ["Yanako-Mal'Ganis"] = true,
+        ["Nelow-Mal'Ganis"] = true,
+        ["Jaalyk-Mal'Ganis"] = true,
+        ["Welon-Mal'Ganis"] = true,
+        ["Drittus-Mal'Ganis"] = true,
       },
     },
 
