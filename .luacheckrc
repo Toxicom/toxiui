@@ -664,6 +664,7 @@ globals = {
   "C_Garrison.UpgradeBuilding",
   "C_Garrison.UpgradeGarrison",
   "C_Garrison",
+  "C_GossipInfo",
   "C_Heirloom.CanHeirloomUpgradeFromPending",
   "C_Heirloom.CreateHeirloom",
   "C_Heirloom.GetClassAndSpecFilters",
