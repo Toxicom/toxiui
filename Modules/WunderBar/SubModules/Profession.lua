@@ -468,8 +468,10 @@ function PR:CreateProfessions()
   local prof1Bar = CreateFrame("STATUSBAR", nil, prof1Frame)
   local prof2Bar = CreateFrame("STATUSBAR", nil, prof2Frame)
 
-  prof1Bar:SetStatusBarTexture(1, 1, 1)
-  prof2Bar:SetStatusBarTexture(1, 1, 1)
+  prof1Bar:SetStatusBarTexture(E.media.blankTex)
+  prof1Bar:SetStatusBarColor(1, 1, 1, 1)
+  prof2Bar:SetStatusBarTexture(E.media.blankTex)
+  prof2Bar:SetStatusBarColor(1, 1, 1, 1)
 
   prof1Bar.background = prof1Bar:CreateTexture(nil, "BACKGROUND")
   prof2Bar.background = prof2Bar:CreateTexture(nil, "BACKGROUND")
