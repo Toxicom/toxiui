@@ -653,7 +653,7 @@ end
 function F.CreateInnerNoise(frame)
   local edgeSize = E.twoPixelsPlease and 2 or 1
 
-  local innerNoise = frame.txInnerNoise or frame:CreateTexture(nil, "BACKGROUND")
+  local innerNoise = frame.txInnerNoise or frame:CreateTexture(nil, "BACKGROUND", nil, 2)
   innerNoise:SetInside(frame, edgeSize, edgeSize)
   innerNoise:SetTexture(I.Media.Themes.NoiseInner, "REPEAT", "REPEAT")
   innerNoise:SetHorizTile(true)
@@ -668,7 +668,7 @@ end
 function F.CreateInnerShadow(frame, smallVersion)
   local edgeSize = E.twoPixelsPlease and 2 or 1
 
-  local innerShadow = frame.txInnerShadow or frame:CreateTexture(nil, "BACKGROUND")
+  local innerShadow = frame.txInnerShadow or frame:CreateTexture(nil, "BACKGROUND", nil, 1)
   innerShadow:SetInside(frame, edgeSize, edgeSize)
   innerShadow:SetTexture(smallVersion and I.Media.Themes.ShadowInnerSmall or I.Media.Themes.ShadowInner)
   innerShadow:SetVertexColor(1, 1, 1, 0.5)
