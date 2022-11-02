@@ -8,7 +8,7 @@ local CreateFrame = CreateFrame
 local EnumerateFrames = EnumerateFrames
 local getmetatable = getmetatable
 local pairs = pairs
-local tinsert = table.insert
+-- local tinsert = table.insert
 local unpack = unpack
 
 T.onEnabledCallbacks = {}
@@ -75,75 +75,73 @@ function T:SetTemplateAS(_, frame, template, _)
   self:SetTemplate(frame, template)
 end
 
-function T:SetHoverHandlers(obj, onEnter, onLeave)
-  self:SecureHookScript(obj, "OnEnter", onEnter)
-  self:SecureHookScript(obj, "OnLeave", onLeave)
+-- function T:HandleButton(_, button)
+--   if not button or not (button.template or button.backdrop) then return end
 
-  self:SecureHook(obj, "SetScript", function(frame, scriptType)
-    if scriptType == "OnEnter" then
-      self:Unhook(frame, "OnEnter")
-      self:SecureHookScript(frame, "OnEnter", onEnter)
-    elseif scriptType == "OnLeave" then
-      self:Unhook(frame, "OnLeave")
-      self:SecureHookScript(frame, "OnLeave", onLeave)
-    end
-  end)
-end
+--   local parent = button.backdrop or button
+--   if parent.txBackground then return end
 
-function T:HandleButtonHover(obj)
-  local gr = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]) -- TODO: needs to be cached
-  F.Color.SetGradientRGB(obj.txBackground, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0.4, gr.r, gr.g, gr.b, 0)
-end
+--   parent.SetBackdropColor = E.noop -- TODO: needs to be reversed on disable
+--   parent.SetBackdropBorderColor = E.noop -- TODO: needs to be reversed on disable
 
-function T:HandleButtonLeave(obj)
-  local gr = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]) -- TODO: needs to be cached
-  F.Color.SetGradientRGB(obj.txBackground, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0, gr.r, gr.g, gr.b, 0)
-end
+--   -- TODO: this needs to be smarter
+--   -- local text = button.Text or button.GetName and button:GetName() and _G[button:GetName() .. "Text"]
+--   -- if text and text.GetTextColor then F.SetFontColorFromDB(nil, nil, text) end
 
-function T:HandleButton(_, button)
-  if not button or not (button.template or button.backdrop) then return end
+--   local bg = parent:CreateTexture()
+--   bg:SetInside(parent, 1, 1)
+--   bg:SetTexture(E.Libs.LSM:Fetch("statusbar", "TX WorldState Score")) -- TODO: needs to be cached
+--   bg:SetVertexColor(1, 1, 1, 1)
 
-  local parent = button.backdrop or button
-  if parent.txBackground then return end
+--   parent.txBackground = bg
 
-  parent.SetBackdropColor = E.noop -- TODO: needs to be reversed on disable
-  parent.SetBackdropBorderColor = E.noop -- TODO: needs to be reversed on disable
+--   local gr = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]) -- TODO: this needs to be cached
+--   F.Color.SetGradientRGB(bg, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0, gr.r, gr.g, gr.b, 0)
 
-  -- TODO: this needs to be smarter
-  -- local text = button.Text or button.GetName and button:GetName() and _G[button:GetName() .. "Text"]
-  -- if text and text.GetTextColor then F.SetFontColorFromDB(nil, nil, text) end
+--   if parent.Center then
+--     local layer, subLayer = parent.Center:GetDrawLayer()
+--     subLayer = subLayer and subLayer + 1 or 0
+--     bg:SetDrawLayer(layer, subLayer)
+--   end
 
-  local bg = parent:CreateTexture()
-  bg:SetInside(parent, 1, 1)
-  bg:SetTexture(E.Libs.LSM:Fetch("statusbar", "TX WorldState Score"))
-  bg:SetVertexColor(1, 1, 1, 1)
+--   local function onEnter() -- TODO: don't use local func
+--     F.Color.SetGradientRGB(bg, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0.4, gr.r, gr.g, gr.b, 0)
+--   end
 
-  parent.txBackground = bg
+--   local function onLeave() -- TODO: don't use local func
+--     F.Color.SetGradientRGB(bg, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0, gr.r, gr.g, gr.b, 0)
+--   end
 
-  if parent.Center then
-    local layer, subLayer = parent.Center:GetDrawLayer()
-    subLayer = subLayer and subLayer + 1 or 0
-    bg:SetDrawLayer(layer, subLayer)
-  end
+--   -- TODO: vv see above, needs a closure outside
+--   self:SecureHookScript(button, "OnEnter", onEnter)
+--   self:SecureHookScript(button, "OnLeave", onLeave)
 
-  self:HandleButtonLeave(parent)
-  self:SetHoverHandlers(button, F.Event.GenerateClosure(T.HandleButtonHover, self, parent), F.Event.GenerateClosure(T.HandleButtonLeave, self, parent))
-end
+--   -- TODO: vv this needs to be handled by a function cause will be used for other stuff
+--   self:SecureHook(button, "SetScript", function(frame, scriptType)
+--     if scriptType == "OnEnter" then
+--       self:Unhook(frame, "OnEnter")
+--       self:SecureHookScript(frame, "OnEnter", button.windAnimation and button.windAnimation.onEnter or nil)
+--     elseif scriptType == "OnLeave" then
+--       self:Unhook(frame, "OnLeave")
+--       self:SecureHookScript(frame, "OnLeave", button.windAnimation and button.windAnimation.onLeave or nil)
+--     end
+--   end)
+-- end
 
-function T:HandleButtonColor(_, button)
-  if not button or not button.SetBackdropColor then return end
-  local parent = button.backdrop or button
-  if not parent.txBackground then return end
+-- function T:HandleButtonColor(_, button)
+--   if not button or not button.SetBackdropColor then return end
+--   local parent = button.backdrop or button
+--   if not parent.txBackground then return end
 
-  local gr = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]) -- TODO: cache this
+--   local gr = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]) -- TODO: cache this
 
-  -- TODO: should use animations
-  if button:IsEnabled() then
-    F.Color.SetGradientRGB(parent.txBackground, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0, gr.r, gr.g, gr.b, 0)
-  else
-    F.Color.SetGradientRGB(parent.txBackground, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0.8, gr.r, gr.g, gr.b, 0)
-  end
-end
+--   -- TODO: should use animations
+--   if button:IsEnabled() then
+--     F.Color.SetGradientRGB(parent.txBackground, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0, gr.r, gr.g, gr.b, 0)
+--   else
+--     F.Color.SetGradientRGB(parent.txBackground, I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.VERTICAL], gr.r, gr.g, gr.b, 0.8, gr.r, gr.g, gr.b, 0)
+--   end
+-- end
 
 function T:HandleWidget(_, widget)
   local widgetType = widget.type
@@ -234,10 +232,10 @@ function T:Disable()
   -- Unhook all
   self:UnhookAll()
 
-  -- Re-Hook "watchers" if the skin gets enabled again we need those
-  self:SecureHook(E.Skins, "HandleButton", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButton))
-  self:SecureHook(E.Skins, "Ace3_RegisterAsWidget", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleWidget))
-  self:SecureHook(E, "Config_SetButtonColor", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButtonColor))
+  -- -- Re-Hook "watchers" if the skin gets enabled again we need those
+  -- self:SecureHook(E.Skins, "HandleButton", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButton))
+  -- self:SecureHook(E.Skins, "Ace3_RegisterAsWidget", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleWidget))
+  -- self:SecureHook(E, "Config_SetButtonColor", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButtonColor))
 end
 
 function T:Enable()
@@ -276,11 +274,11 @@ function T:Enable()
   -- Scan all MetaTables
   self:MetatableScan()
 
-  -- Handle buttons created before we Initialized
-  for _, funs in pairs(self.onEnabledCallbacks) do
-    local func, args = unpack(funs)
-    func(self, unpack(args))
-  end
+  -- -- Handle buttons created before we Initialized
+  -- for _, funs in pairs(self.onEnabledCallbacks) do
+  --   local func, args = unpack(funs)
+  --   func(self, unpack(args))
+  -- end
 
   -- Force Refresh
   self:ForceRefresh()
@@ -318,17 +316,17 @@ function T:DatabaseUpdate()
   end)
 end
 
-function T:OnEnabledProxy(func, ...)
-  if not self.Initialized or not self.isEnabled then
-    tinsert(self.onEnabledCallbacks, { func, { ... } })
-  else
-    func(T, ...)
-  end
-end
+-- function T:OnEnabledProxy(func, ...)
+--   if not self.Initialized or not self.isEnabled then
+--     tinsert(self.onEnabledCallbacks, { func, { ... } })
+--   else
+--     func(T, ...)
+--   end
+-- end
 
-T:SecureHook(E.Skins, "HandleButton", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButton))
-T:SecureHook(E.Skins, "Ace3_RegisterAsWidget", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleWidget))
-T:SecureHook(E, "Config_SetButtonColor", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButtonColor))
+-- T:SecureHook(E.Skins, "HandleButton", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButton))
+-- T:SecureHook(E.Skins, "Ace3_RegisterAsWidget", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleWidget))
+-- T:SecureHook(E, "Config_SetButtonColor", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButtonColor))
 
 function T:Initialize()
   -- Don't init second time
@@ -345,7 +343,7 @@ function T:Initialize()
 
   -- Keep track of frames for fast updates
   self.shadowCache = {}
-  self.buttonCache = {}
+  -- self.buttonCache = {}
 
   -- We are done, hooray!
   self.Initialized = true
