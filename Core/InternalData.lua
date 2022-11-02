@@ -183,6 +183,20 @@ I.Data.Contributor = {
         ["Ryada-Ashbringer"] = true,
       },
     },
+
+    ["Ande"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Illidan
+        ["Mojoheal-Illidan"] = true,
+        ["Mojosneak-Illidan"] = true,
+        ["Nohwei-Illidan"] = true,
+        ["Adolluh-Illidan"] = true,
+        ["Mojobegone-Illidan"] = true,
+        ["Totembegone-Illidan"] = true,
+        ["Andelul-Illidan"] = true,
+        ["Mojoshooter-Illidan"] = true,
+      },
+    },
   },
 
   -- RARE => Green Badge (rare supporter)
