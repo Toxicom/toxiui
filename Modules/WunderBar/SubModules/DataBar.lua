@@ -426,7 +426,7 @@ function DB:CreateBar()
   barFrame:SetScript("OnEnter", onEnter)
   barFrame:SetScript("OnLeave", onLeave)
 
-  barFrame:RegisterForClicks("AnyUp")
+  barFrame:RegisterForClicks("AnyDown")
   barFrame:SetScript("OnClick", onClick)
 
   self.barFrame = barFrame

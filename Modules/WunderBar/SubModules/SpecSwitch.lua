@@ -395,8 +395,8 @@ function SS:CreateSwitch()
   spec1Frame:SetScript("OnLeave", onLeave)
   spec2Frame:SetScript("OnLeave", onLeave)
 
-  spec1Frame:RegisterForClicks("AnyUp")
-  spec2Frame:RegisterForClicks("AnyUp")
+  spec1Frame:RegisterForClicks("AnyDown")
+  spec2Frame:RegisterForClicks("AnyDown")
 
   spec1Frame:SetScript("OnClick", onClick)
   spec2Frame:SetScript("OnClick", onClick)

@@ -637,7 +637,7 @@ end
 
 function DC:CreateElements()
   local hoverButton = self.hoverButton or CreateFrame("Button", "TXDeconstructHoverButton", E.UIParent, "SecureActionButtonTemplate")
-  hoverButton:RegisterForClicks("AnyUp")
+  hoverButton:RegisterForClicks("AnyDown")
   hoverButton:SetFrameStrata("TOOLTIP")
 
   hoverButton.TipLines = {}

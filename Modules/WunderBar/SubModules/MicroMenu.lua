@@ -558,7 +558,7 @@ end
 function MM:CreateButtons()
   local function createMicroMenuButton(name, info)
     local frame = CreateFrame("BUTTON", nil, self.frame, "SecureActionButtonTemplate")
-    frame:RegisterForClicks("AnyUp")
+    frame:RegisterForClicks("AnyDown")
 
     frame.id = name
     frame.info = info

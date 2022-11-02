@@ -331,7 +331,7 @@ end
 
 function WB:ConstructModule(panel, moduleIndex, parentIndex)
   local module = CreateFrame("Button", "TXUIWunderBar" .. panel.panelName .. "Module" .. parentIndex, panel)
-  module:RegisterForClicks("AnyUp")
+  module:RegisterForClicks("AnyDown")
   module.subModule = nil
   module.extendedModule = false
   module.extendModuleRequest = false
