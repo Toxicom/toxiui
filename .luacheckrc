@@ -761,6 +761,7 @@ globals = {
   "C_LossOfControl.GetEventInfo",
   "C_LossOfControl.GetNumEvents",
   "C_LossOfControl",
+  "C_MajorFactions",
   "C_MapBar.BarIsShown",
   "C_MapBar.GetCurrentValue",
   "C_MapBar.GetMaxValue",
