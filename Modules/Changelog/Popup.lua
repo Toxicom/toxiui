@@ -26,7 +26,7 @@ function CL:LoadPopups()
     button2 = CANCEL,
     OnAccept = function()
       E.db.TXUI.changelog.seenVersion = TXUI.ReleaseVersion
-      E:ToggleOptionsUI("TXUI,changelog")
+      E:ToggleOptions("TXUI,changelog")
     end,
     OnCancel = function()
       E.db.TXUI.changelog.seenVersion = TXUI.ReleaseVersion

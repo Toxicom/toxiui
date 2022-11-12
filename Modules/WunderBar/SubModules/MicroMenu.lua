@@ -309,9 +309,9 @@ MM.microMenu = {
         if not CL:HasSeenChangelog() then
           E.db.TXUI.changelog.seenVersion = TXUI.ReleaseVersion
           E:StaticPopup_Hide("TXUI_OPEN_CHANGELOG")
-          E:ToggleOptionsUI("TXUI,changelog")
+          E:ToggleOptions("TXUI,changelog")
         else
-          E:ToggleOptionsUI("TXUI")
+          E:ToggleOptions("TXUI")
         end
       end,
     },

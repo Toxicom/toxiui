@@ -57,7 +57,7 @@ function O:General()
         desc = "Run the installation/update process.",
         func = function()
           E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
-          E:ToggleOptionsUI()
+          E:ToggleOptions()
         end,
       },
     },

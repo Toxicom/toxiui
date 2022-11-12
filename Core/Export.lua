@@ -83,12 +83,11 @@ local function exportNames()
   exportTable["__META_FLAVOR__"] = TXUI.Flavor
 
   local distributor = E:GetModule("Distributor")
-  local libCompress = E.Libs.Compress
-  local libBase64 = E.Libs.Base64
+  local libDeflate = E.Libs.Deflate
 
   local serialData = distributor:Serialize(exportTable)
-  local compressedData = libCompress:Compress(serialData)
-  local encodedData = libBase64:Encode(compressedData)
+  local compressedData = libDeflate:CompressDeflate(serialData, libDeflate.compressLevel)
+  local encodedData = libDeflate:EncodeForPrint(compressedData)
 
   -- Set export to window
   createExportFrame(encodedData)
@@ -204,8 +203,7 @@ end
 
 local function exportImportNames()
   local distributor = E:GetModule("Distributor")
-  local libCompress = E.Libs.Compress
-  local libBase64 = E.Libs.Base64
+  local libDeflate = E.Libs.Deflate
 
   local frame
   frame = createExportFrame("", false, function()
@@ -216,10 +214,9 @@ local function exportImportNames()
       frame:SetTitle(F.String.Error(msg))
     end
 
-    if not libBase64:IsBase64(dataString) then return showError("Invalid import string provided") end
+    local decodedData = libDeflate:DecodeForPrint(dataString)
+    local decompressedData, decompressedMessage = libDeflate:DecompressDeflate(decodedData)
 
-    local decodedData = libBase64:Decode(dataString)
-    local decompressedData, decompressedMessage = libCompress:Decompress(decodedData)
     if not decompressedData then return showError("Error decompressing data", decompressedMessage) end
 
     local deserializedData = E:SplitString(decompressedData, "^^::")

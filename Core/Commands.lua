@@ -140,11 +140,11 @@ function TXUI:HandleChatCommand(msg)
   local category = self:GetArgs(msg)
 
   if not category then
-    E:ToggleOptionsUI("TXUI")
+    E:ToggleOptions("TXUI")
   elseif category == "changelog" or category == "cl" then
-    E:ToggleOptionsUI("TXUI,changelog")
+    E:ToggleOptions("TXUI,changelog")
   elseif category == "settings" then
-    E:ToggleOptionsUI("TXUI")
+    E:ToggleOptions("TXUI")
   elseif category == "badge" then
     self:HandleBadgeCommand()
   elseif (category == "export") and TXUI.DevRelease then
@@ -154,7 +154,7 @@ function TXUI:HandleChatCommand(msg)
       TXUI:ExportProfile("names")
     end
   elseif category == "wb" or category == "wunderbar" then
-    E:ToggleOptionsUI("TXUI,wunderbar")
+    E:ToggleOptions("TXUI,wunderbar")
   elseif (category == "dev") and TXUI.DevRelease then
     self:HandleDevCommand(self:GetArgs(msg, 3, 4))
   elseif (category == "reset") and F.IsTXUIProfile() then
@@ -162,7 +162,7 @@ function TXUI:HandleChatCommand(msg)
   elseif (category == "status" or category == "info") and F.IsTXUIProfile() then
     self:ShowStatusReport()
   elseif category == "install" then
-    E:ToggleOptionsUI("TXUI,general")
+    E:ToggleOptions("TXUI,general")
   elseif F.IsTXUIProfile() then
     self:LogInfo("Usage: /tx cl||changelog||install||settings||status||wb")
   else
