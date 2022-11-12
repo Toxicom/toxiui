@@ -46,7 +46,7 @@ function O:Reset()
         name = F.String.Error("All Settings"),
         desc = "Reset all " .. TXUI.Title .. " Settings.",
         func = function()
-          E:ToggleOptionsUI()
+          E:ToggleOptions()
           E:StaticPopup_Show("TXUI_RESET_TXUI_PROFILE")
         end,
       },

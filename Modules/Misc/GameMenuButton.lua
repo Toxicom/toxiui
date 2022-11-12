@@ -20,7 +20,7 @@ function M:GameMenuButton_ADDON_LOADED(addonName)
     ["name"] = "TXUI_GAME_BUTTON",
     ["text"] = TXUI.Title,
     ["func"] = function()
-      E:ToggleOptionsUI("TXUI")
+      E:ToggleOptions("TXUI")
       if not InCombatLockdown() then HideUIPanel(GameMenuFrame) end
     end,
   }
@@ -62,7 +62,7 @@ function M:GameMenuButton()
   button:SetSize(buttonWidth, buttonHeight)
   button:SetText(TXUI.Title)
   button:SetScript("OnClick", function()
-    E:ToggleOptionsUI("TXUI")
+    E:ToggleOptions("TXUI")
     if not InCombatLockdown() then HideUIPanel(GameMenuFrame) end
   end)
 

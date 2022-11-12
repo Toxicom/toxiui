@@ -732,7 +732,7 @@ function DC:Enable()
   self:SecureHookScript(B.BagFrame, "OnHide", "OnHideHandler")
   self:SecureHookScript(GameTooltip, "OnTooltipSetItem", "OnHoverHandler")
   self:SecureHook(B, "UpdateBagSlots", "OnRefreshHandler")
-  self:SecureHook(B, "SetSearch", "OnRefreshHandler")
+  self:SecureHook(B, "SearchUpdate", "OnRefreshHandler")
 
   F.Event.RegisterFrameEventAndCallback("SKILL_LINES_CHANGED", self.UpdateAllowedStates, self)
 
