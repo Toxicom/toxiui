@@ -18,9 +18,9 @@ local tostring = tostring
 local type = type
 
 local function createExportFrame(profileExport, needsReload, btnFunc)
-  if not IsAddOnLoaded("ElvUI_OptionsUI") then
-    EnableAddOn("ElvUI_OptionsUI")
-    LoadAddOn("ElvUI_OptionsUI")
+  if not IsAddOnLoaded("ElvUI_Options") then
+    EnableAddOn("ElvUI_Options")
+    LoadAddOn("ElvUI_Options")
   end
 
   if not E.Libs.AceGUI then E:AddLib("AceGUI", "AceGUI-3.0") end

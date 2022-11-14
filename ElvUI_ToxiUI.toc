@@ -5,8 +5,8 @@
 ## RequiredDeps: ElvUI
 ## OptionalDeps: ElvUI_WindTools, Details, Plater
 ## DefaultState: Enabled
-## Interface: 100000
-## X-Interface: 100000
+## Interface: 100002
+## X-Interface: 100002
 ## X-Flavor: Mainline
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447

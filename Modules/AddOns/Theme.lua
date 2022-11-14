@@ -153,7 +153,7 @@ function T:API(object)
   local mt = getmetatable(object).__index
 
   -- No api attached?
-  if not mt.SetTemplate then return end
+  if not mt or not mt.SetTemplate then return end
 
   -- Create TX functions
   if not mt.TXCreateInnerShadow then mt.TXCreateInnerShadow = F.CreateInnerShadow end

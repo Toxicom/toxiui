@@ -359,6 +359,8 @@ function F.SetFontFromDB(db, prefix, fs, color, fontOverwrite, useScaling)
   shadow = F.GetFontShadowOverride(font, shadow)
   outline = F.FontStyleOverride(font, outline)
 
+  if outline == "NONE" then outline = "" end
+
   F.RemoveFontTemplate(fs)
   fs:SetFont(lsmFont, useScaling and F.FontSizeScaled(size) or size, (not shadow and outline) or "")
 
