@@ -181,7 +181,8 @@ function VB:UpdateBar()
   end
 
   -- Update Paging
-  local pageState = format("[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13;", GetOverrideBarIndex(), GetVehicleBarIndex(), GetVehicleBarIndex())
+  local pageState =
+    format("[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; [bonusbar:5] 11;", GetOverrideBarIndex(), GetVehicleBarIndex(), GetVehicleBarIndex())
   local pageAttribute = self.ab:GetPage("bar1", 1, pageState)
   RegisterStateDriver(bar, "page", pageAttribute)
   self.bar:SetAttribute("page", pageAttribute)
@@ -248,7 +249,7 @@ function VB:Enable()
   UnregisterStateDriver(self.bar, "visibility")
   UnregisterStateDriver(self.ab["handledBars"]["bar1"], "visibility")
 
-  RegisterStateDriver(self.bar, "visibility", "[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar] show; hide")
+  RegisterStateDriver(self.bar, "visibility", "[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar][bonusbar:5] show; hide")
   RegisterStateDriver(self.ab["handledBars"]["bar1"], "visibility", visibility .. E.db.actionbar["bar1"].visibility)
 
   -- Register Events

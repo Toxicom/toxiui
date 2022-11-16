@@ -57,13 +57,27 @@ I.Data.Contributor = {
     [I.Enum.Developers.WOLEN] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Mal'Ganis
-        ["Wolen-Mal'Ganis"] = true,
-        ["Giotao-Mal'Ganis"] = true,
-        ["Yanako-Mal'Ganis"] = true,
-        ["Nelow-Mal'Ganis"] = true,
-        ["Jaalyk-Mal'Ganis"] = true,
-        ["Welon-Mal'Ganis"] = true,
+        ["Keelle-Mal'Ganis"] = true,
         ["Drittus-Mal'Ganis"] = true,
+        ["Chilvang-Mal'Ganis"] = true,
+        ["Cezo-Mal'Ganis"] = true,
+        ["Vitier-Mal'Ganis"] = true,
+        ["Giotao-Mal'Ganis"] = true,
+        ["Wolen-Mal'Ganis"] = true,
+        ["Welon-Mal'Ganis"] = true,
+        ["Jaalyk-Mal'Ganis"] = true,
+        ["Giotaociot-Mal'Ganis"] = true,
+        ["Seraga-Mal'Ganis"] = true,
+        ["Nelow-Mal'Ganis"] = true,
+        ["Yanako-Mal'Ganis"] = true,
+
+        -- Zul'jin
+        ["Nelow-Zul'jin"] = true,
+        ["Wolen-Zul'jin"] = true,
+        ["Jukks-Zul'jin"] = true,
+        ["Mozzles-Zul'jin"] = true,
+        ["Welon-Zul'jin"] = true,
+        ["Nolew-Zul'jin"] = true,
       },
     },
 

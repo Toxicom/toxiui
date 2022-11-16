@@ -12,7 +12,7 @@ local C_WowTokenPublic_UpdateMarketPrice = C_WowTokenPublic and C_WowTokenPublic
 local EasyMenu = EasyMenu
 local floor = math.floor
 local format = string.format
-local GetContainerNumFreeSlots = GetContainerNumFreeSlots
+local GetContainerNumFreeSlots = C_Container.GetContainerNumFreeSlots
 local GetMoney = GetMoney
 local ipairs = ipairs
 local IsControlKeyDown = IsControlKeyDown
@@ -22,7 +22,6 @@ local mod = mod
 local pairs = pairs
 local sort = table.sort
 local tinsert = table.insert
-local ToggleAllBags = ToggleAllBags
 local ToggleCharacter = ToggleCharacter
 local tonumber = tonumber
 local unpack = unpack
@@ -117,8 +116,8 @@ function CR:OnClick(_, button)
         end
       end
 
-      DT:SetEasyMenuAnchor(DT.EasyMenu, self.frame)
-      EasyMenu(menuList, DT.EasyMenu, nil, nil, nil, "MENU")
+      E:SetEasyMenuAnchor(E.EasyMenu, self.frame)
+      EasyMenu(menuList, E.EasyMenu, nil, nil, nil, "MENU")
     elseif IsControlKeyDown() then
       self.goldProfit = 0
       self.goldSpent = 0

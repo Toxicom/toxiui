@@ -30,8 +30,10 @@ function M:_TagsUpdate()
         end
       end
     else
-      UF:Configure_CustomTexts(UF[unit])
-      UF[unit]:UpdateTags()
+      if E.db.unitframe.units[unit]["enable"] then
+        UF:Configure_CustomTexts(UF[unit])
+        UF[unit]:UpdateTags()
+      end
     end
   end
 end

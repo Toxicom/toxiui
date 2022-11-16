@@ -8,22 +8,17 @@ local CreateFrame = CreateFrame
 local format = string.format
 local GameTooltip = GameTooltip
 local GameTooltip_Hide = GameTooltip_Hide
-local GetContainerItemInfo = GetContainerItemInfo
-local GetContainerNumSlots = GetContainerNumSlots
+local GetContainerItemInfo = C_Container.GetContainerItemInfo
+local GetContainerNumSlots = C_Container.GetContainerNumSlots
 local GetItemInfo = GetItemInfo
 local GetProfessionInfo = GetProfessionInfo
 local GetProfessions = GetProfessions
 local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
 local IsEquippableItem = IsEquippableItem
-local LE_ITEM_ARMOR_COSMETIC = LE_ITEM_ARMOR_COSMETIC
-local LE_ITEM_CLASS_ARMOR = LE_ITEM_CLASS_ARMOR
-local LE_ITEM_CLASS_GEM = LE_ITEM_CLASS_GEM
-local LE_ITEM_CLASS_WEAPON = LE_ITEM_CLASS_WEAPON
 local LE_ITEM_EQUIPLOC_SHIRT = _G.Enum.InventoryType and _G.Enum.InventoryType.IndexBodyType or 4
 local LE_ITEM_QUALITY_EPIC = _G.Enum.ItemQuality.Epic
 local LE_ITEM_QUALITY_UNCOMMON = _G.Enum.ItemQuality.Uncommon
-local LE_ITEM_SUBCLASS_ARTIFACT = 11 -- TODO: Check for enum
 local match = string.match
 local pairs = pairs
 local select = select
@@ -31,6 +26,8 @@ local SetItemButtonDesaturated = SetItemButtonDesaturated
 local strsplit = strsplit
 local tonumber = tonumber
 local wipe = wipe
+local TooltipDataProcessor_AddTooltipPostCall = TooltipDataProcessor.AddTooltipPostCall
+local Enum_TooltipDataType_Item = Enum.TooltipDataType.Item
 
 -- Vars
 local B
@@ -432,15 +429,7 @@ function DC:IsUsable(itemID, proffessionState)
       if not (itemQuality >= LE_ITEM_QUALITY_UNCOMMON and itemQuality <= LE_ITEM_QUALITY_EPIC) then return false end
 
       -- Needs to categoriesd as equipment (check comes from blizzard)
-      if
-        not (
-          classID == LE_ITEM_CLASS_WEAPON
-          or (classID == LE_ITEM_CLASS_ARMOR and subclassID ~= LE_ITEM_ARMOR_COSMETIC)
-          or (classID == LE_ITEM_CLASS_GEM and subclassID == LE_ITEM_SUBCLASS_ARTIFACT)
-        )
-      then
-        return false
-      end
+      if not (classID == 2 or (classID == 4 and subclassID ~= 5) or (classID == 3 and subclassID == 11)) then return false end
 
       -- Don't allow shirts to be dischanted
       if C_Item_GetItemInventoryTypeByID(itemID) == LE_ITEM_EQUIPLOC_SHIRT then return false end
@@ -480,10 +469,13 @@ function DC:IsEligibleItemFrame(itemFrame)
   local slotID = itemFrame:GetID()
   if slotID == nil then return professionState end
 
-  local itemLink = select(7, GetContainerItemInfo(bagID, slotID))
+  local itemInfo = GetContainerItemInfo(bagID, slotID)
+  if not itemInfo then return professionState end
+
+  local itemLink = itemInfo.hyperlink
   if not itemLink then return professionState end
 
-  local itemId = self:GetItemIdFromLink(itemLink)
+  local itemId = itemInfo.itemID
   if not itemId then return professionState end
 
   if (professionState == I.Enum.DeconstructState.NONE) and (self:IsUsable(itemId, I.Enum.DeconstructState.DISENCHANT)) then professionState = I.Enum.DeconstructState.DISENCHANT end
@@ -502,7 +494,6 @@ function DC:ShowEligableOverlay(enabled)
           SetItemButtonDesaturated(itemFrame, itemFrame.locked or itemFrame.junkDesaturate)
           local r, g, b = itemFrame:GetBackdropBorderColor()
           itemFrame:SetBackdropBorderColor(r, g, b, 1)
-          itemFrame:SetAlpha(1)
           itemFrame.searchOverlay:SetAlpha(1)
           itemFrame.searchOverlay:Hide()
         else
@@ -510,12 +501,10 @@ function DC:ShowEligableOverlay(enabled)
             SetItemButtonDesaturated(itemFrame, nil)
             local r, g, b = itemFrame:GetBackdropBorderColor()
             if GetContainerItemInfo(bagID, slotID) then
-              itemFrame:SetAlpha(0.5)
               itemFrame:SetBackdropBorderColor(r, g, b, 0.5)
               itemFrame.searchOverlay:SetAlpha(0.5)
               itemFrame.searchOverlay:Show()
             else
-              itemFrame:SetAlpha(1)
               itemFrame:SetBackdropBorderColor(r, g, b, 1)
               itemFrame.searchOverlay:SetAlpha(1)
               itemFrame.searchOverlay:SetAlpha(1)
@@ -523,7 +512,6 @@ function DC:ShowEligableOverlay(enabled)
             end
           elseif self.db.highlightMode == "DARK" then
             SetItemButtonDesaturated(itemFrame, 1)
-            itemFrame:SetAlpha(1)
             itemFrame.searchOverlay:SetAlpha(1)
             itemFrame.searchOverlay:Show()
           end
@@ -596,13 +584,13 @@ function DC:CalculateHoverButtonState(itemFrame)
   return false
 end
 
-function DC:OnHoverHandler(frame)
-  if not frame then return end
+function DC:OnHoverHandler(tooltip)
+  if not tooltip then return end
   if not self.db or not self.db.enabled then return end
   if not self.active or InCombatLockdown() then return end
-  if self.hoverButton == frame then return end
+  if self.hoverButton == tooltip then return end
 
-  local itemFrame = frame.GetOwner and frame:GetOwner()
+  local itemFrame = tooltip.GetOwner and tooltip:GetOwner()
   if not itemFrame then return end
   if not self:IsItemFrame(itemFrame) then return end
 
@@ -730,7 +718,9 @@ function DC:Enable()
   self:CreateElements()
 
   self:SecureHookScript(B.BagFrame, "OnHide", "OnHideHandler")
-  self:SecureHookScript(GameTooltip, "OnTooltipSetItem", "OnHoverHandler")
+  TooltipDataProcessor_AddTooltipPostCall(Enum_TooltipDataType_Item, function(tooltip)
+    DC:OnHoverHandler(tooltip)
+  end)
   self:SecureHook(B, "UpdateBagSlots", "OnRefreshHandler")
   self:SecureHook(B, "SearchUpdate", "OnRefreshHandler")
 
