@@ -26,6 +26,8 @@ local SetItemButtonDesaturated = SetItemButtonDesaturated
 local strsplit = strsplit
 local tonumber = tonumber
 local wipe = wipe
+local TooltipDataProcessor_AddTooltipPostCall = TooltipDataProcessor.AddTooltipPostCall
+local Enum_TooltipDataType_Item = Enum.TooltipDataType.Item
 
 -- Vars
 local B
@@ -716,7 +718,7 @@ function DC:Enable()
   self:CreateElements()
 
   self:SecureHookScript(B.BagFrame, "OnHide", "OnHideHandler")
-  TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tooltip)
+  TooltipDataProcessor_AddTooltipPostCall(Enum_TooltipDataType_Item, function(tooltip)
     DC:OnHoverHandler(tooltip)
   end)
   self:SecureHook(B, "UpdateBagSlots", "OnRefreshHandler")
