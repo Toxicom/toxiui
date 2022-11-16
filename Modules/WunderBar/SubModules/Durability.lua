@@ -67,14 +67,14 @@ function DB:OnEvent(event)
         if perc < totalDurability then totalDurability = perc end
 
         -- Add repair costs for tooltip
-        if TXUI.IsRetail then
+        if TXUI.IsRetail and E.ScanTooltip:GetTooltipData() then
           E.ScanTooltip:SetInventoryItem("player", index)
           E.ScanTooltip:Show()
 
           local tooltipData = E.ScanTooltip:GetTooltipData()
           repairCost = tooltipData and tooltipData.repairCost
         else
-          totalRepairCost = totalRepairCost + select(3, E.ScanTooltip:SetInventoryItem("player", index))
+          repairCost = select(3, E.ScanTooltip:SetInventoryItem("player", index))
         end
 
         totalRepairCost = totalRepairCost + (repairCost or 0)
