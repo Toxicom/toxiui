@@ -23,6 +23,7 @@ local LE_ITEM_CLASS_WEAPON = LE_ITEM_CLASS_WEAPON
 local LE_ITEM_EQUIPLOC_SHIRT = _G.Enum.InventoryType and _G.Enum.InventoryType.IndexBodyType or 4
 local LE_ITEM_QUALITY_EPIC = _G.Enum.ItemQuality.Epic
 local LE_ITEM_QUALITY_UNCOMMON = _G.Enum.ItemQuality.Uncommon
+local LE_ITEM_SUBCLASS_ARTIFACT = 11 -- TODO: Check for enum
 local match = string.match
 local pairs = pairs
 local select = select
