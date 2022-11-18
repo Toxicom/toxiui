@@ -32,6 +32,12 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.MicroMenu.icons.spell.enabled = false
   E.db.TXUI.wunderbar.subModules.MicroMenu.icons.talent.enabled = false
   E.db.TXUI.wunderbar.subModules.MicroMenu.icons.pvp.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.ach.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.char.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.lfg.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.pet.enabled = false
+
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.journal.enabled = true
 
   -- WunderBar: DataBar
   E.db.TXUI.wunderbar.subModules.DataBar.infoEnabled = true
