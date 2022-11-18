@@ -18,6 +18,7 @@ I.Data.Contributor = {
         ["Tøxicom-Ravencrest"] = true,
         ["Tøxii-Ravencrest"] = true,
         ["Toxilich-Ravencrest"] = true,
+        ["Toxivoker-Ravencrest"] = true,
 
         -- TarrenMill
         ["Toxiholy-TarrenMill"] = true,
