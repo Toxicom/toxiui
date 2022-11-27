@@ -221,12 +221,20 @@ function S:WeakAuras_HandlePrototype(_, region, data)
 end
 
 function S:WeakAuras()
-  -- Get db
-  local db = F.GetDBFromPath("TXUI.addons.weakAurasIcons")
-  local isEnabled = db and db.enabled
-  self.waIconEnabled, self.waBarEnabled = isEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasIcons), isEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasBars)
-  self.waIconMult = (isEnabled and (db.iconShape == I.Enum.IconShape.RECTANGLE)) and 0.75 or 1
+  -- Get dbs
+  local iconDB = F.GetDBFromPath("TXUI.addons.weakAurasIcons")
+  local barDB = F.GetDBFromPath("TXUI.addons.weakAurasBars")
 
+  -- Get Enable State
+  local isIconEnabled = iconDB and iconDB.enabled
+  local isBarEnabled = barDB and barDB.enabled
+
+  -- Check state and requirements
+  self.waIconEnabled = isIconEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasIcons)
+  self.waBarEnabled = isBarEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasBars)
+  self.waIconMult = (isIconEnabled and (iconDB.iconShape == I.Enum.IconShape.RECTANGLE)) and 0.75 or 1
+
+  -- Hook prototypes
   self:SecureHook(_G.WeakAuras.regionPrototype, "create", F.Event.GenerateClosure(S.WeakAuras_HandlePrototype, self, nil))
   self:SecureHook(_G.WeakAuras.regionPrototype, "modifyFinish", F.Event.GenerateClosure(S.WeakAuras_HandlePrototype, self))
 end
