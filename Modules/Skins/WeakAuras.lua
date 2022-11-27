@@ -7,14 +7,8 @@ local abs = math.abs
 local CreateFrame = CreateFrame
 local ipairs = ipairs
 local unpack = unpack
-local WeakAuras = _G.WeakAuras
 
--- Vars
-local pIconMult
-local iconEnabled
-local aurabarEnabled
-
-local function skinIcon(region, data)
+function S:WeakAuras_SkinIcon(region, data)
   -- Fake WAs, like previews etc
   if not region or not region.id then return end
 
@@ -45,13 +39,13 @@ local function skinIcon(region, data)
     local texWidth = 1 - 0.5 * region.zoom
     local aspectRatio
     if not region.keepAspectRatio then
-      aspectRatio = 1 / pIconMult
+      aspectRatio = 1 / self.waIconMult
     else
       local width = region.width * abs(region.scalex)
-      local height = region.height * abs(region.scaley) * pIconMult
+      local height = region.height * abs(region.scaley) * self.waIconMult
 
       if width == 0 or height == 0 then
-        aspectRatio = 1 / pIconMult
+        aspectRatio = 1 / self.waIconMult
       else
         aspectRatio = width / height
       end
@@ -116,7 +110,7 @@ local function skinIcon(region, data)
     region.styledMask:ClearAllPoints()
     region.styledMask:SetPoint("CENTER", region, "CENTER", 0, 0)
     region.styledMask:SetWidth(width)
-    region.styledMask:SetHeight(height * pIconMult)
+    region.styledMask:SetHeight(height * self.waIconMult)
     region:UpdateTexCoords()
   end
 
@@ -188,16 +182,13 @@ local function skinIcon(region, data)
   region.icon:SetAllPoints(region.styledMask)
   region.styledMask:SetScript("OnSizeChanged", region.UpdateInnerOuterSize)
 
-  -- This call can be repeated, elvui checks if its hooked
-  E:RegisterCooldown(region.cooldown)
-
   -- Now force update
   region:ToxiUIApplyMaskSettings()
   region:UpdateSize()
   region:Color(data.color[1], data.color[2], data.color[3], data.color[4])
 end
 
-local function skinAuraBar(region)
+function S:WeakAuras_SkinAuraBar(region)
   -- Fake WAs, like previews etc
   if not region or not region.id then return end
 
@@ -219,11 +210,13 @@ local function skinAuraBar(region)
   region.iconFrame.backdrop.Center:Kill()
 end
 
-local function skinWeakAuras(region, regionType, data)
-  if regionType == "icon" and iconEnabled then
-    skinIcon(region, data)
-  elseif region.regionType == "aurabar" and aurabarEnabled then
-    skinAuraBar(region)
+function S:WeakAuras_HandlePrototype(_, region, data)
+  if not region then return end
+  local regionType = region.regionType
+  if self.waIconEnabled and regionType == "icon" then
+    self:WeakAuras_SkinIcon(region, data)
+  elseif self.waBarEnabled and regionType == "aurabar" then
+    self:WeakAuras_SkinAuraBar(region)
   end
 end
 
@@ -231,23 +224,9 @@ function S:WeakAuras()
   -- Get db
   local db = F.GetDBFromPath("TXUI.addons.weakAurasIcons")
   local isEnabled = db and db.enabled
-  iconEnabled = TXUI:HasRequirements(I.Requirements.WeakAurasIcons)
-  aurabarEnabled = TXUI:HasRequirements(I.Requirements.WeakAurasBars)
+  self.waIconEnabled, self.waBarEnabled = isEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasIcons), isEnabled and TXUI:HasRequirements(I.Requirements.WeakAurasBars)
+  self.waIconMult = (isEnabled and (db.iconShape == I.Enum.IconShape.RECTANGLE)) and 0.75 or 1
 
-  if isEnabled and (iconEnabled or aurabarEnabled) then
-    pIconMult = (db.iconShape == I.Enum.IconShape.RECTANGLE) and 0.75 or 1
-
-    local function OnPrototypeCreate(region)
-      skinWeakAuras(region, region.regionType)
-    end
-
-    local function OnPrototypeModifyFinish(_, region, data)
-      skinWeakAuras(region, region.regionType, data)
-    end
-
-    S:SecureHook(WeakAuras.regionPrototype, "create", OnPrototypeCreate)
-    S:SecureHook(WeakAuras.regionPrototype, "modifyFinish", OnPrototypeModifyFinish)
-  end
+  self:SecureHook(_G.WeakAuras.regionPrototype, "create", F.Event.GenerateClosure(S.WeakAuras_HandlePrototype, self, nil))
+  self:SecureHook(_G.WeakAuras.regionPrototype, "modifyFinish", F.Event.GenerateClosure(S.WeakAuras_HandlePrototype, self))
 end
-
-S:AddCallbackForAddon("WeakAuras")
