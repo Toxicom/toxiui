@@ -51,6 +51,7 @@ I.Data.Contributor = {
         ["Toxisorc-PyrewoodVillage"] = true,
         ["Toxisin-PyrewoodVillage"] = true,
         ["Toxilich-PyrewoodVillage"] = true,
+        ["Toxivoid-PyrewoodVillage"] = true,
         ["Melissandei-PyrewoodVillage"] = true,
       },
     },
@@ -165,6 +166,7 @@ I.Data.Contributor = {
         ["Elikot-BurningLegion"] = true,
         ["Ililaeth-BurningLegion"] = true,
         ["Nekroirek-BurningLegion"] = true,
+        ["Gothy-BurningLegion"] = true,
       },
 
       [I.Enum.Flavor.WRATH] = {
