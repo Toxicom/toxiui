@@ -979,6 +979,7 @@ function PF:BuildProfile()
       -- UnitFrame Party Heal Layout Buffs
       buffs = {
         enable = true,
+        anchorPoint = "BOTTOM",
       },
 
       -- UnitFrame Party Heal Layout Debuffs
