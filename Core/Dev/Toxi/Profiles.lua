@@ -18,6 +18,9 @@ function T:SetupProfile()
   E.db.TXUI.general.fontStyleOverride[I.Fonts.Primary] = "OUTLINE"
   E.db.TXUI.general.fontStyleOverride[I.Fonts.PrimaryBold] = "OUTLINE"
 
+  -- WunderBar: General
+  E.db.TXUI.wunderbar.general.backgroundTexture = "TX WorldState Score"
+
   -- WunderBar: Modules
   E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
   E.db.TXUI.wunderbar.modules.LeftPanel[3] = "DataBar"
