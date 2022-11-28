@@ -1,7 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
 
 TXUI.Changelog["6.1.0"] = {
-  HOTFIX = true,
+  HOTFIX = false,
   DYNAMIC = function()
     if F.IsContributor() then
       return {
@@ -18,6 +18,7 @@ TXUI.Changelog["6.1.0"] = {
     "Move tooltip to accomodate space for new Details",
     "Change tooltip's health bar",
     "Gradient Mode rewritten, better performance",
+    "Lots of fixes for Dragonflight " .. F.String.Error("[Please report bugs on GitHub or Discord!]"),
 
     "* Details",
     F.String.Good("New: ") .. "Skin with icons, in collaboration with Redtuzk" .. F.String.Error("UI"),
