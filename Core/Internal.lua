@@ -332,8 +332,8 @@ I.HearthstoneData = {
   [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone (Necrolord Soulbind)
 
   -- Dragonflight not yet verified
-  [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["load"] = TXUI.IsDragonflight }, -- Wyrmhole Generator
-  [200630] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsDragonflight }, -- Ohn'ir Windsage's Hearthstone
+  [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["load"] = TXUI.IsRetail }, -- Wyrmhole Generator
+  [200630] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Ohn'ir Windsage's Hearthstone
 
   -- Mage specific
   [193759] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Hall of the Guardian

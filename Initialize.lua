@@ -40,10 +40,6 @@ TXUI.IsTBC = TXUI.MetaFlavor == "TBC"
 TXUI.IsWrath = TXUI.MetaFlavor == "Wrath"
 TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
 
-TXUI.IsDragonflight = TXUI.IsRetail and TXUI.ClientBuildVersion >= 100000
-TXUI.IsShadowlands = TXUI.IsRetail and not TXUI.IsDragonflight
-TXUI.IsWrathOrRetail = TXUI.IsRetail or TXUI.IsWrathClassic
-
 TXUI.Modules = {}
 TXUI.Modules.Changelog = TXUI:NewModule("Changelog", "AceEvent-3.0", "AceTimer-3.0")
 TXUI.Modules.Options = TXUI:NewModule("Options")
@@ -99,9 +95,6 @@ function TXUI:Initialize()
 
   -- Check for non Wrath, non Retail
   if not self.IsRetail and not self.IsWrath then return end
-
-  -- Check for DF if not Dev version
-  if self.IsDragonflight and not self.DevRelease then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
