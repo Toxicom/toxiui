@@ -87,6 +87,7 @@ I.Strings.Branding = {
     Website = "https://toxiui.com",
     Discord = "https://discord.gg/r85TGUU7zA",
     Youtube = "https://www.youtube.com/channel/UCHJmprM_gp9RnpFloB5HICg",
+    Github = "https://github.com/toxicom/toxiui",
   },
 }
 
