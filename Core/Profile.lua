@@ -137,6 +137,7 @@ P.themes = {
         DEATHKNIGHT = F.Table.HexToRGB("#f52652"),
         DEMONHUNTER = F.Table.HexToRGB("#ba00f5"),
         DRUID = F.Table.HexToRGB("#ff7d0a"),
+        EVOKER = F.Table.HexToRGB("#44c5aa"),
         HUNTER = F.Table.HexToRGB("#abed4f"),
         MAGE = F.Table.HexToRGB("#33c7fc"),
         MONK = F.Table.HexToRGB("#00ff96"),
@@ -151,6 +152,7 @@ P.themes = {
         DEATHKNIGHT = F.Table.HexToRGB("#ba1c2b"),
         DEMONHUNTER = F.Table.HexToRGB("#b3008a"),
         DRUID = F.Table.HexToRGB("#ff5e0a"),
+        EVOKER = F.Table.HexToRGB("#2c7e6c"),
         HUNTER = F.Table.HexToRGB("#99cc54"),
         MAGE = F.Table.HexToRGB("#0599cf"),
         MONK = F.Table.HexToRGB("#05bf73"),
@@ -787,6 +789,8 @@ P.wunderbar = {
         [270] = "", -- monk mist
         [577] = "", -- dh havoc
         [581] = "", -- dh veng
+        [1467] = "", -- evo dev (fire mage icon)
+        [1468] = "", -- evo pres (resto druid icon)
 
         -- Wrath
         -- TODO: convert to spec ids

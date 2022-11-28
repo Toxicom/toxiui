@@ -44,6 +44,42 @@ function O:Contacts()
   self:AddTinySpacer(options)
 
   do
+    -- ToxiUI GitHub Group
+    local contactsGithub = self:AddInlineDesc(options, {
+      name = "Github",
+    }, {
+      name = "Visit the " .. TXUI.Title .. " GitHub repository to report bugs or get the latest changes!\n\n",
+    }).args
+
+    -- ToxiUI Website URL
+    contactsGithub.githubUrl = {
+      order = self:GetOrder(),
+      type = "input",
+      width = "full",
+      name = "",
+      get = function()
+        return I.Strings.Branding.Links.Github
+      end,
+    }
+
+    -- Spacer
+    self:AddSpacer(contactsGithub)
+
+    -- ToxiUI Logo
+    contactsGithub.githubIcon = {
+      order = self:GetOrder(),
+      type = "description",
+      name = "",
+      image = function()
+        return I.Media.Logos.Logo, F.Dpi(128), F.Dpi(64)
+      end,
+    }
+  end
+
+  -- Spacer
+  self:AddTinySpacer(options)
+
+  do
     -- ToxiUI Discord Group
     local contactsDiscord = self:AddInlineDesc(options, {
       name = "Discord",

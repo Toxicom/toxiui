@@ -44,7 +44,7 @@ I.Strings.ChangelogText = {
 
 I.Strings.WALinks = {
   ["DEFAULT"] = "https://www.luxthos.com/",
-  ["FORMAT"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-shadowlands/",
+  ["FORMAT"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-dragonflight/",
   ["FORMAT_WRATH"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-wrath-of-the-lich-king/",
   ["WARRIOR"] = "warrior",
   ["HUNTER"] = "hunter",
@@ -58,6 +58,7 @@ I.Strings.WALinks = {
   ["MONK"] = "monk",
   ["DEMONHUNTER"] = "demon-hunter",
   ["DEATHKNIGHT"] = "death-knight",
+  ["EVOKER"] = "evoker",
 }
 
 I.Strings.Colors = {
@@ -86,6 +87,7 @@ I.Strings.Branding = {
     Website = "https://toxiui.com",
     Discord = "https://discord.gg/r85TGUU7zA",
     Youtube = "https://www.youtube.com/channel/UCHJmprM_gp9RnpFloB5HICg",
+    Github = "https://github.com/toxicom/toxiui",
   },
 }
 

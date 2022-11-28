@@ -5,15 +5,17 @@ local DT = E:GetModule("DataTexts")
 
 -- Globals
 local abs = math.abs
+local C_GossipInfo_GetFriendshipReputation = C_GossipInfo and C_GossipInfo.GetFriendshipReputation
+local C_MajorFactions_GetMajorFactionData = C_MajorFactions and C_MajorFactions.GetMajorFactionData
 local C_QuestLog_GetInfo = C_QuestLog.GetInfo
 local C_QuestLog_GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local C_QuestLog_GetQuestWatchType = C_QuestLog.GetQuestWatchType
 local C_QuestLog_ReadyForTurnIn = C_QuestLog.ReadyForTurnIn
 local C_Reputation_GetFactionParagonInfo = C_Reputation.GetFactionParagonInfo
 local C_Reputation_IsFactionParagon = C_Reputation.IsFactionParagon
+local C_Reputation_IsMajorFaction = C_Reputation.IsMajorFaction
 local CreateFrame = CreateFrame
 local format = string.format
-local GetFriendshipReputation = GetFriendshipReputation
 local GetNumQuestLogEntries = GetNumQuestLogEntries
 local GetQuestLogRewardXP = GetQuestLogRewardXP
 local GetQuestLogTitle = GetQuestLogTitle
@@ -25,6 +27,8 @@ local min = math.min
 local SelectQuestLogEntry = SelectQuestLogEntry
 local UnitXP = UnitXP
 local UnitXPMax = UnitXPMax
+
+local MAX_REPUTATION_REACTION = _G.MAX_REPUTATION_REACTION
 
 -- Vars
 DB.const = {
@@ -61,7 +65,8 @@ function DB:OnEvent(event)
 
     F.Event.ContinueOutOfCombat(function()
       self.updateRepNextOutOfCombat = false
-      local name, _, minValue, maxValue, curValue, factionID = GetWatchedFactionInfo()
+      local name, reaction, minValue, maxValue, curValue, factionID = GetWatchedFactionInfo()
+      local isCapped = false
 
       if not name then
         self.noData = true
@@ -72,21 +77,41 @@ function DB:OnEvent(event)
       self.noData = false
 
       if TXUI.IsRetail then
-        local friendshipID, _, _, _, _, _, _, _, nextThreshold = GetFriendshipReputation(factionID)
+        if C_Reputation_IsFactionParagon(factionID) then
+          local currentValue, threshold, _, hasRewardPending = C_Reputation_GetFactionParagonInfo(factionID)
+          minValue, maxValue = 0, threshold
+          curValue = currentValue % threshold
+          if hasRewardPending then curValue = curValue + threshold end
+        elseif C_Reputation_IsMajorFaction(factionID) then
+          local majorFactionData = C_MajorFactions_GetMajorFactionData(factionID)
+          minValue, maxValue = 0, majorFactionData.renownLevelThreshold
+        else
+          local reputationInfo = C_GossipInfo_GetFriendshipReputation(factionID)
+          local friendshipID = reputationInfo.friendshipFactionID
 
-        if friendshipID then
-          if not nextThreshold then
-            minValue, maxValue, curValue = 0, 1, 1
-          end
-        elseif C_Reputation_IsFactionParagon(factionID) then
-          local current, threshold
-          current, threshold, _, _ = C_Reputation_GetFactionParagonInfo(factionID)
-
-          if current and threshold then
-            minValue, maxValue, curValue = 0, threshold, current % threshold
+          if friendshipID > 0 then
+            if reputationInfo.nextThreshold then
+              minValue, maxValue, curValue = reputationInfo.reactionThreshold, reputationInfo.nextThreshold, reputationInfo.standing
+            else
+              minValue, maxValue, curValue = 0, 1, 1
+              isCapped = true
+            end
+          elseif reaction == MAX_REPUTATION_REACTION then
+            isCapped = true
           end
         end
       end
+
+      -- Normalize values
+      maxValue = maxValue - minValue
+      curValue = curValue - minValue
+
+      if isCapped and maxValue == 0 then
+        maxValue = 1
+        curValue = 1
+      end
+
+      minValue = 0
 
       local _, _, percent, _ = self:GetValues(curValue, minValue, maxValue)
       self.data.repPercentage = percent
@@ -401,14 +426,15 @@ function DB:CreateBar()
   barFrame:SetScript("OnEnter", onEnter)
   barFrame:SetScript("OnLeave", onLeave)
 
-  barFrame:RegisterForClicks("AnyUp")
+  barFrame:RegisterForClicks("AnyDown")
   barFrame:SetScript("OnClick", onClick)
 
   self.barFrame = barFrame
 
   -- Bar
   local bar = CreateFrame("STATUSBAR", nil, barFrame)
-  bar:SetStatusBarTexture(1, 1, 1)
+  bar:SetStatusBarTexture(E.media.blankTex)
+  bar:SetStatusBarColor(1, 1, 1, 1)
   bar:SetMinMaxValues(0, 100)
   bar.barTexture = bar:GetStatusBarTexture()
   bar.barTexture:SetDrawLayer("ARTWORK", 3)
@@ -422,7 +448,8 @@ function DB:CreateBar()
   bar.spark:SetAlpha(0)
 
   bar.completedOverlay = CreateFrame("STATUSBAR", nil, barFrame)
-  bar.completedOverlay:SetStatusBarTexture(1, 1, 1)
+  bar.completedOverlay:SetStatusBarTexture(E.media.blankTex)
+  bar.completedOverlay:SetStatusBarColor(1, 1, 1, 1)
   bar.completedOverlay:SetMinMaxValues(0, 100)
   bar.completedOverlay:EnableMouse(false)
   bar.completedOverlay.barTexture = bar.completedOverlay:GetStatusBarTexture()

@@ -33,13 +33,16 @@ function BF:SettingsUpdate()
   self:UpdateFont("PVPInfoTextString", "pvpZone")
 
   -- Mail Text
-  if TXUI.IsRetail then self:UpdateFont("SendMailBodyEditBox", "mail") end
-  if TXUI.IsWrath then self:UpdateFont("MailTextFontNormal", "mail") end
+  self:UpdateFont("MailTextFontNormal", "mail")
 
-  self:UpdateFont("OpenMailBodyText", "mail")
-  self:UpdateFont("InvoiceFont_Med", "mail", medium)
-  self:UpdateFont("InvoiceFont_Small", "mail", small)
-  self:UpdateFont("MailFont_Large", "mail", large)
+  if TXUI.IsRetail then
+    self:UpdateFont("InvoiceTextFontNormal", "mail")
+  else
+    self:UpdateFont("OpenMailBodyText", "mail")
+    self:UpdateFont("InvoiceFont_Med", "mail", medium)
+    self:UpdateFont("InvoiceFont_Small", "mail", small)
+    self:UpdateFont("MailFont_Large", "mail", large)
+  end
 
   -- Gossip Text
   self:UpdateFont("QuestFont", "gossip")

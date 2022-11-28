@@ -18,6 +18,7 @@ I.Data.Contributor = {
         ["Tøxicom-Ravencrest"] = true,
         ["Tøxii-Ravencrest"] = true,
         ["Toxilich-Ravencrest"] = true,
+        ["Toxivoker-Ravencrest"] = true,
 
         -- TarrenMill
         ["Toxiholy-TarrenMill"] = true,
@@ -50,7 +51,35 @@ I.Data.Contributor = {
         ["Toxisorc-PyrewoodVillage"] = true,
         ["Toxisin-PyrewoodVillage"] = true,
         ["Toxilich-PyrewoodVillage"] = true,
+        ["Toxivoid-PyrewoodVillage"] = true,
         ["Melissandei-PyrewoodVillage"] = true,
+      },
+    },
+
+    [I.Enum.Developers.WOLEN] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Mal'Ganis
+        ["Keelle-Mal'Ganis"] = true,
+        ["Drittus-Mal'Ganis"] = true,
+        ["Chilvang-Mal'Ganis"] = true,
+        ["Cezo-Mal'Ganis"] = true,
+        ["Vitier-Mal'Ganis"] = true,
+        ["Giotao-Mal'Ganis"] = true,
+        ["Wolen-Mal'Ganis"] = true,
+        ["Welon-Mal'Ganis"] = true,
+        ["Jaalyk-Mal'Ganis"] = true,
+        ["Giotaociot-Mal'Ganis"] = true,
+        ["Seraga-Mal'Ganis"] = true,
+        ["Nelow-Mal'Ganis"] = true,
+        ["Yanako-Mal'Ganis"] = true,
+
+        -- Zul'jin
+        ["Nelow-Zul'jin"] = true,
+        ["Wolen-Zul'jin"] = true,
+        ["Jukks-Zul'jin"] = true,
+        ["Mozzles-Zul'jin"] = true,
+        ["Welon-Zul'jin"] = true,
+        ["Nolew-Zul'jin"] = true,
       },
     },
 
@@ -137,6 +166,7 @@ I.Data.Contributor = {
         ["Elikot-BurningLegion"] = true,
         ["Ililaeth-BurningLegion"] = true,
         ["Nekroirek-BurningLegion"] = true,
+        ["Gothy-BurningLegion"] = true,
       },
 
       [I.Enum.Flavor.WRATH] = {
@@ -171,27 +201,17 @@ I.Data.Contributor = {
       },
     },
 
-    ["Fafnyir"] = {
+    ["Ande"] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Illidan
-        ["Fafnyir-Illidan"] = true,
-        ["Tanithya-Illidan"] = true,
-
-        -- Whisperwind
-        ["Fafnyir-Whisperwind"] = true,
-        ["Tanithya-Whisperwind"] = true,
-
-        -- Stormrage
-        ["Tanithya-Stormrage"] = true,
-      },
-
-      [I.Enum.Flavor.WRATH] = {
-        -- Maladath
-        ["Fafnyir-Maladath"] = true,
-
-        -- Windseeker
-        ["Fafnyir-Windseeker"] = true,
-        ["Gulgamel-Windseeker"] = true,
+        ["Mojoheal-Illidan"] = true,
+        ["Mojosneak-Illidan"] = true,
+        ["Nohwei-Illidan"] = true,
+        ["Adolluh-Illidan"] = true,
+        ["Mojobegone-Illidan"] = true,
+        ["Totembegone-Illidan"] = true,
+        ["Andelul-Illidan"] = true,
+        ["Mojoshooter-Illidan"] = true,
       },
     },
   },

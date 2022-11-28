@@ -70,7 +70,7 @@ function SS:SpecEnter(text, icon)
   local dtModule = WB:GetElvUIDataText("Talent/Loot Specialization")
 
   if dtModule then
-    dtModule.eventFunc(WB:GetElvUIDummy(), "PLAYER_LOOT_SPEC_UPDATED")
+    dtModule.eventFunc(WB:GetElvUIDummy(), "ELVUI_FORCE_UPDATE")
     dtModule.onEnter()
   else
     local function addTexture(texture)
@@ -395,8 +395,8 @@ function SS:CreateSwitch()
   spec1Frame:SetScript("OnLeave", onLeave)
   spec2Frame:SetScript("OnLeave", onLeave)
 
-  spec1Frame:RegisterForClicks("AnyUp")
-  spec2Frame:RegisterForClicks("AnyUp")
+  spec1Frame:RegisterForClicks("AnyDown")
+  spec2Frame:RegisterForClicks("AnyDown")
 
   spec1Frame:SetScript("OnClick", onClick)
   spec2Frame:SetScript("OnClick", onClick)

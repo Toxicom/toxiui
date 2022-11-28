@@ -73,14 +73,12 @@ function PF:BuildProfile()
 
   -- Special Case: ToxiUIWAAnchor
   -- TODO: Update for Dragonflight
-  local WAAnchorY = { -200, -140 } -- DPS, HEALER
+  local WAAnchorY
 
-  if TXUI.IsWrath then
-    if F.HiDpi() then
-      WAAnchorY = { -128, -98 }
-    else
-      WAAnchorY = { -114, -114 }
-    end
+  if F.HiDpi() then
+    WAAnchorY = { -128, -98 }
+  else
+    WAAnchorY = { -114, -114 }
   end
 
   local defaultPadding = 5
@@ -111,19 +109,19 @@ function PF:BuildProfile()
 
       -- Movers: Action Bars
       ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 45),
-      ElvAB_2 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding, 0), -- Close Left
-      ElvAB_3 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding, 0), -- Close Right
-      ElvAB_4 = F.Position("BOTTOMRIGHT", "ElvAB_2", "BOTTOMLEFT", -defaultPadding, 0), -- Far Left
-      ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_3", "BOTTOMRIGHT", defaultPadding, 0), -- Far Right
+      ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding, 0), -- Close Left
+      ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding, 0), -- Close Right
+      ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvAB_6", "BOTTOMLEFT", -defaultPadding, 0), -- Far Left
+      ElvAB_4 = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", defaultPadding, 0), -- Far Right
 
-      ElvAB_6 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -37, -401), -- Unused
+      ElvAB_2 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -37, -401), -- Unused
       ElvAB_7 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -73, -401), -- Unused
       ElvAB_8 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -109, -401), -- Unused
       ElvAB_9 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -144, -401), -- Unused
       ElvAB_10 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -180, -401), -- Unused
 
-      VehicleLeaveButton = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", defaultPadding, 0),
-      DurabilityFrameMover = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", 34, 0),
+      VehicleLeaveButton = F.Position("BOTTOMLEFT", "ElvAB_4", "BOTTOMRIGHT", defaultPadding, 0),
+      DurabilityFrameMover = F.Position("BOTTOMLEFT", "ElvAB_4", "BOTTOMRIGHT", 34, 0),
       ShiftAB = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
 
       -- Movers: UnitFrames
@@ -189,9 +187,9 @@ function PF:BuildProfile()
       AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 351, -324),
       ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -280, 317),
       HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -573, -422),
-      RaidMarkerBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -325, -4),
+      WTRaidMarkerBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -325, -4),
 
-      -- Movers: ActionBars Retail Only
+      -- Movers: Action Bars Retail Only
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -300, 200),
       PetBattleABMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 76, 313),
       ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 630, 200),
@@ -981,6 +979,7 @@ function PF:BuildProfile()
       -- UnitFrame Party Heal Layout Buffs
       buffs = {
         enable = true,
+        anchorPoint = "BOTTOM",
       },
 
       -- UnitFrame Party Heal Layout Debuffs
@@ -1412,26 +1411,26 @@ function PF:BuildProfile()
     name = { text_format = "" },
   })
 
-  -- ActionBars
+  -- Action Bars
   F.Table.Crush(pf.actionbar, {
     transparent = true,
     globalFadeAlpha = 1,
     flyoutSize = F.Dpi(33),
     countTextYOffset = F.Dpi(0),
 
-    -- ActionBars Cooldowns
+    -- Action Bars Cooldowns
     cooldown = {
       checkSeconds = true,
       hhmmThreshold = 11,
       mmssThreshold = 300,
     },
 
-    -- ActionBars Extra Action Button
+    -- Action Bars Extra Action Button
     extraActionButton = {
       scale = F.DpiRaw(1.25),
     },
 
-    -- ActionBars Zone Button
+    -- Action Bars Zone Button
     zoneActionButton = {
       scale = F.DpiRaw(1.25),
     },
@@ -1495,12 +1494,13 @@ function PF:BuildProfile()
 
   -- ActionBar Bar2
   pf.actionbar.bar2 = createMainActionBar {
-    enabled = true,
+    enabled = false,
   }
 
   -- ActionBar Bar3
   pf.actionbar.bar3 = createMainActionBar {
     enabled = true,
+    buttonsPerRow = 4,
   }
 
   -- ActionBar Bar4
@@ -1512,31 +1512,45 @@ function PF:BuildProfile()
   -- ActionBar Bar5
   pf.actionbar.bar5 = createMainActionBar {
     enabled = true,
-    buttonsPerRow = 4,
   }
 
   -- ActionBar Bar6
   pf.actionbar.bar6 = createMainActionBar {
-    enabled = false,
+    enabled = true,
   }
 
-  -- ActionBar Bar7
+  -- ActionBar Bar7 (Stance Bar)
   pf.actionbar.bar7 = createMainActionBar {
     enabled = false,
   }
 
-  -- ActionBar Bar8
+  -- ActionBar Bar8 (Stance Bar)
   pf.actionbar.bar8 = createMainActionBar {
     enabled = false,
   }
 
-  -- ActionBar Bar9
+  -- ActionBar Bar9 (Stance Bar)
   pf.actionbar.bar9 = createMainActionBar {
     enabled = false,
   }
 
-  -- ActionBar Bar10
+  -- ActionBar Bar10 (Stance Bar)
   pf.actionbar.bar10 = createMainActionBar {
+    enabled = false,
+  }
+
+  -- ActionBar Bar13
+  pf.actionbar.bar13 = createMainActionBar {
+    enabled = false,
+  }
+
+  -- ActionBar Bar14
+  pf.actionbar.bar14 = createMainActionBar {
+    enabled = false,
+  }
+
+  -- ActionBar Bar15
+  pf.actionbar.bar15 = createMainActionBar {
     enabled = false,
   }
 

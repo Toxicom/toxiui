@@ -309,9 +309,9 @@ MM.microMenu = {
         if not CL:HasSeenChangelog() then
           E.db.TXUI.changelog.seenVersion = TXUI.ReleaseVersion
           E:StaticPopup_Hide("TXUI_OPEN_CHANGELOG")
-          E:ToggleOptionsUI("TXUI,changelog")
+          E:ToggleOptions("TXUI,changelog")
         else
-          E:ToggleOptionsUI("TXUI")
+          E:ToggleOptions("TXUI")
         end
       end,
     },
@@ -558,7 +558,7 @@ end
 function MM:CreateButtons()
   local function createMicroMenuButton(name, info)
     local frame = CreateFrame("BUTTON", nil, self.frame, "SecureActionButtonTemplate")
-    frame:RegisterForClicks("AnyUp")
+    frame:RegisterForClicks("AnyDown")
 
     frame.id = name
     frame.info = info

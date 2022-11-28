@@ -379,7 +379,7 @@ function HS:CreateText()
   secureFrameHolder:ClearAllPoints()
   secureFrameHolder:SetAllPoints()
   secureFrameHolder:EnableMouse(true)
-  secureFrameHolder:RegisterForClicks("AnyUp")
+  secureFrameHolder:RegisterForClicks("AnyDown")
 
   self:HookScript(secureFrameHolder, "OnEnter", function(...)
     WB:ModuleOnEnter(self, ...)

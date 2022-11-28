@@ -47,7 +47,7 @@ local Set = {
   ["text"] = FontString.SetTextColor,
   ["texture"] = Texture.SetTexture,
   ["vertex"] = Texture.SetVertexColor,
-  ["gradientAlpha"] = Texture.SetGradientAlpha,
+  ["gradientAlpha"] = Texture.SetGradient,
 }
 TXUI.AnimationSetFunc = Set
 
@@ -1148,7 +1148,7 @@ Update["colorcycle"] = function(self, elapsed, i)
 
   if self.Timer >= self.Duration then
     tremove(Updater, i)
-    Set[self.ColorType](self.Parent, "VERTICAL", 1, 0, 0, self.StartA, 1, 0, 0, self.EndA)
+    Set[self.ColorType](self.Parent, "VERTICAL", CreateColor(1, 0, 0, self.StartA), CreateColor(1, 0, 0, self.EndA))
     self.Playing = false
     self:Callback("OnFinished")
     self.Group:CheckOrder()
@@ -1181,7 +1181,7 @@ Update["colorcycle"] = function(self, elapsed, i)
 
     if runUpdate then
       local r, g, b = self.CurrentR / 255, self.CurrentG / 255, self.CurrentB / 255
-      Set[self.ColorType](self.Parent, "VERTICAL", r, g, b, self.StartA, r, g, b, self.EndA)
+      Set[self.ColorType](self.Parent, "VERTICAL", CreateColor(r, g, b, self.StartA), CreateColor(r, g, b, self.EndA))
     end
   end
 end

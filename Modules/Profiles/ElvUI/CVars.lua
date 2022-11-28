@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
 local PF = TXUI:GetModule("Profiles")
 
-local _G = _G
 local SetCVar = SetCVar
 
 -- copied from E:SetupCVars
@@ -18,6 +17,7 @@ function PF:ElvUICVars()
   SetCVar("threatWarning", 3)
   SetCVar("alwaysShowActionBars", 1)
   SetCVar("lockActionBars", 1)
+  SetCVar("ActionButtonUseKeyDown", 1)
   SetCVar("spamFilter", 0)
   SetCVar("cameraDistanceMaxZoomFactor", 2.6)
   SetCVar("showQuestTrackingTooltips", 1)
@@ -25,9 +25,6 @@ function PF:ElvUICVars()
   SetCVar("useUiScale", 1)
   SetCVar("uiScale", E.global.general.UIScale)
   SetCVar("autoClearAFK", 1)
-
-  _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:SetValue("SHIFT")
-  _G.InterfaceOptionsActionBarsPanelPickupActionKeyDropDown:RefreshValue()
 
   if TXUI.IsRetail then SetCVar("cameraDistanceMaxZoomFactor", 2.6) end
 end

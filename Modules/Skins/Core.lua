@@ -5,7 +5,6 @@ function S:Enable()
   if self.isEnabled or not self.Initialized then return end
   self.isEnabled = true
 
-  F.Event.ContinueOnAddOnLoaded("WeakAuras", F.Event.GenerateClosure(self.WeakAuras, self))
   F.Event.ContinueOnAddOnLoaded("AddOnSkins", F.Event.GenerateClosure(self.AddOnSkins, self))
   F.Event.ContinueOnAddOnLoaded("ElvUI_WindTools", F.Event.GenerateClosure(self.ElvUI_WindTools, self))
 end
@@ -27,6 +26,7 @@ function S:Initialize()
   self.isEnabled = false
 
   -- Register for updates
+  F.Event.ContinueOnAddOnLoaded("WeakAuras", F.Event.GenerateClosure(self.WeakAuras, self))
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
   F.Event.RegisterCallback("TXUI.DatabaseUpdate", self.DatabaseUpdate, self)
 

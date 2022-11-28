@@ -15,7 +15,6 @@ local ipairs = ipairs
 local lower = string.lower
 local next = next
 local securecall = securecall
-local select = select
 local tinsert = table.insert
 
 local PROFESSIONS_COOKING = PROFESSIONS_COOKING
@@ -99,14 +98,25 @@ function PR:ProfessionClick(prof, frame, button)
   end
 end
 
+function PR:OpenProfessionUIToSkillLine(skillLineID)
+  _G["ProfessionsFrame_LoadUI"]()
+  local currBaseProfessionInfo = C_TradeSkillUI.GetBaseProfessionInfo()
+  if currBaseProfessionInfo == nil or currBaseProfessionInfo.professionID ~= skillLineID then C_TradeSkillUI.OpenTradeSkill(skillLineID) end
+  _G["ProfessionsFrame"]:SetTab(_G["ProfessionsFrame"].recipesTabID)
+  _G["ShowUIPanel"](ProfessionsFrame)
+end
+
 function PR:ProfessionOpen(prof)
   local skillLine, name = self:GetProfessionInfo(prof)
 
   if TXUI.IsRetail then
-    if select(6, C_TradeSkillUI.GetTradeSkillLine()) == skillLine then
-      C_TradeSkillUI.CloseTradeSkill()
+    local currBaseProfessionInfo = C_TradeSkillUI.GetBaseProfessionInfo()
+    local isShown = _G["ProfessionsFrame"] and _G["ProfessionsFrame"]:IsShown()
+
+    if isShown and currBaseProfessionInfo ~= nil and currBaseProfessionInfo.professionID == skillLine then
+      _G["ProfessionsFrame"]:CheckConfirmClose()
     else
-      C_TradeSkillUI.OpenTradeSkill(skillLine)
+      self:OpenProfessionUIToSkillLine(skillLine) -- TODO: REPLACE with global when blizz pushes beta branch to retail
     end
   else
     securecall("CastSpellByName", name)
@@ -440,8 +450,8 @@ function PR:CreateProfessions()
   prof1Frame:SetScript("OnLeave", onLeave)
   prof2Frame:SetScript("OnLeave", onLeave)
 
-  prof1Frame:RegisterForClicks("AnyUp")
-  prof2Frame:RegisterForClicks("AnyUp")
+  prof1Frame:RegisterForClicks("AnyDown")
+  prof2Frame:RegisterForClicks("AnyDown")
 
   prof1Frame:SetScript("OnClick", onClick)
   prof2Frame:SetScript("OnClick", onClick)
@@ -469,8 +479,10 @@ function PR:CreateProfessions()
   local prof1Bar = CreateFrame("STATUSBAR", nil, prof1Frame)
   local prof2Bar = CreateFrame("STATUSBAR", nil, prof2Frame)
 
-  prof1Bar:SetStatusBarTexture(1, 1, 1)
-  prof2Bar:SetStatusBarTexture(1, 1, 1)
+  prof1Bar:SetStatusBarTexture(E.media.blankTex)
+  prof1Bar:SetStatusBarColor(1, 1, 1, 1)
+  prof2Bar:SetStatusBarTexture(E.media.blankTex)
+  prof2Bar:SetStatusBarColor(1, 1, 1, 1)
 
   prof1Bar.background = prof1Bar:CreateTexture(nil, "BACKGROUND")
   prof2Bar.background = prof2Bar:CreateTexture(nil, "BACKGROUND")

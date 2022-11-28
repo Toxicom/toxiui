@@ -463,19 +463,20 @@ I.InterruptSpellMap = {
   { id = 1766, conditions = { class = "ROGUE", level = 6 } }, -- Rogue, Kick
   { id = 2139, conditions = { class = "MAGE", level = 7 } }, -- Mage, Counterspell
   { id = 6552, conditions = { class = "WARRIOR", level = 7 } }, -- Warr, Pummel
-  { id = 15487, conditions = { specIds = { 258 }, level = 41 } }, -- Shadow Priest, Silence i kill u
+  { id = 15487, conditions = { specIds = { 258 } } }, -- Shadow Priest, Silence i kill u
   { id = 19647, conditions = { specIds = { 265, 267 }, level = 29 } }, -- Aff&Destro Lock, Spell Lock
-  { id = 31935, conditions = { specIds = { 66 }, level = 10 } }, -- Prot Paladin, Avenger's Shield
-  { id = 47528, conditions = { class = "DEATHKNIGHT", level = 7 } }, -- DK, Mind Freeze
-  { id = 57994, conditions = { class = "SHAMAN", level = 12 } }, -- Sha, Wind Shear
-  { id = 78675, conditions = { specIds = { 102 }, level = 26 } }, -- Balance Druid, Solar Beeeeeam
+  { id = 31935, conditions = { specIds = { 66 } } }, -- Prot Paladin, Avenger's Shield
+  { id = 47528, conditions = { class = "DEATHKNIGHT" } }, -- DK, Mind Freeze
+  { id = 57994, conditions = { class = "SHAMAN" } }, -- Sha, Wind Shear
+  { id = 78675, conditions = { specIds = { 102 } } }, -- Balance Druid, Solar Beeeeeam
   { id = 89766, conditions = { specIds = { 266 }, level = 29 } }, -- Demo Lock, Axe Toss
-  { id = 96231, conditions = { specIds = { 66, 70 }, level = 23 } }, -- Prot/Ret Paladin, Rebuke
-  { id = 106839, conditions = { specIds = { 103, 104 }, level = 26 } }, -- Skull Bash, Feral + Guardian
-  { id = 116705, conditions = { specIds = { 268, 269 }, level = 18 } }, -- BM&WW Monk, Spear Hand Strike
-  { id = 147362, conditions = { specIds = { 253, 254 }, level = 18 } }, -- BM/MM Hunter-Counter Shot
-  { id = 183752, conditions = { class = "DEMONHUNTER" } }, -- DH, Disrupt
-  { id = 187707, conditions = { specIds = { 255 }, level = 18 } }, -- SV-lol Hunter Muzzle
+  { id = 96231, conditions = { class = "PALADIN" } }, -- Paladin, Rebuke
+  { id = 106839, conditions = { class = "DRUID" } }, -- Druid, Skull Bash
+  { id = 116705, conditions = { class = "MONK" } }, -- Monk, Spear Hand Strike
+  { id = 147362, conditions = { specIds = { 253, 254 } } }, -- BM/MM Hunter-Counter Shot
+  { id = 183752, conditions = { class = "DEMONHUNTER", level = 20 } }, -- DH, Disrupt
+  { id = 187707, conditions = { specIds = { 255 } } }, -- SV-lol Hunter Muzzle
+  { id = 351338, conditions = { class = "EVOKER" } }, -- Evoker Quell
 }
 
 -- Data for which class or spec has which interrupt spell

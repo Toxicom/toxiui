@@ -12,6 +12,12 @@ function T:SetupCvars()
 end
 
 function T:SetupProfile()
+  -- Font Overrides
+  E.db.TXUI.general.fontOverride[I.Fonts.Primary] = "- Personal"
+  E.db.TXUI.general.fontOverride[I.Fonts.PrimaryBold] = "- Personal"
+  E.db.TXUI.general.fontStyleOverride[I.Fonts.Primary] = "OUTLINE"
+  E.db.TXUI.general.fontStyleOverride[I.Fonts.PrimaryBold] = "OUTLINE"
+
   -- WunderBar: Modules
   E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
   E.db.TXUI.wunderbar.modules.LeftPanel[3] = "DataBar"
@@ -26,6 +32,12 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.MicroMenu.icons.spell.enabled = false
   E.db.TXUI.wunderbar.subModules.MicroMenu.icons.talent.enabled = false
   E.db.TXUI.wunderbar.subModules.MicroMenu.icons.pvp.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.ach.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.char.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.lfg.enabled = false
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.pet.enabled = false
+
+  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.journal.enabled = true
 
   -- WunderBar: DataBar
   E.db.TXUI.wunderbar.subModules.DataBar.infoEnabled = true
@@ -48,9 +60,6 @@ function T:SetupProfile()
   E.db.TXUI.addons.elvUITheme.shadowEnabled = true
   E.db.TXUI.addons.elvUITheme.shadowAlpha = 0.75
   E.db.TXUI.addons.elvUITheme.shadowSize = 6
-
-  -- Skins: WeakAuras
-  E.db.TXUI.addons.weakAurasIcons.iconShape = TXUI.IsRetail and 2 or 1
 
   -- ElvUI
   E.db.general.taintLog = false

@@ -10,4 +10,7 @@ local LSM = E.Libs.LSM
 -- Everything below will be removed from all builds, including Beta & Alpha Builds!
 --@do-not-package@
 
+local westAndRUBits = LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western
+F.AddMedia("font", "Personal.ttf", "- Personal", nil, westAndRUBits)
+
 --@end-do-not-package@

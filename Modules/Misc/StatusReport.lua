@@ -19,6 +19,7 @@ local englishClassName = {
   DEATHKNIGHT = "Death Knight",
   DEMONHUNTER = "Demon Hunter",
   DRUID = "Druid",
+  EVOKER = "Evoker",
   HUNTER = "Hunter",
   MAGE = "Mage",
   MONK = "Monk",
@@ -67,6 +68,8 @@ local englishSpecName = {
   [73] = "Protection",
   [577] = "Havoc",
   [581] = "Vengeance",
+  [1467] = "Devastation",
+  [1468] = "Preservation",
 }
 
 local function getSpecName()

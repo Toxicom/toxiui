@@ -354,18 +354,15 @@ function F.SetFontFromDB(db, prefix, fs, color, fontOverwrite, useScaling)
   if shadow == nil then shadow = I.General.DefaultFontShadow end
 
   if fontOverwrite then font = fontOverwrite end
-  local lsmFont = LSM:Fetch("font", F.FontOverride(font))
-
-  if not lsmFont then lsmFont = LSM:Fetch("font", font) end -- backup to non-override font
-  if not lsmFont then lsmFont = LSM:Fetch("font", I.General.DefaultFont) end -- backup to normal font if not found
-  if not lsmFont then lsmFont = E.media.normFont end -- backup to elvui font if not found
+  local lsmFont = F.GetFontPath(font)
 
   shadow = F.GetFontShadowOverride(font, shadow)
   outline = F.FontStyleOverride(font, outline)
 
+  if outline == "NONE" then outline = "" end
+
   F.RemoveFontTemplate(fs)
-  fs:SetFontObject(nil)
-  fs:SetFont(lsmFont, useScaling and F.FontSizeScaled(size) or size, (not shadow and outline) or "NONE")
+  fs:SetFont(lsmFont, useScaling and F.FontSizeScaled(size) or size, (not shadow and outline) or "")
 
   if shadow then
     fs:SetShadowOffset(1, -0.5)
@@ -658,7 +655,7 @@ end
 function F.CreateInnerNoise(frame)
   local edgeSize = E.twoPixelsPlease and 2 or 1
 
-  local innerNoise = frame.txInnerNoise or frame:CreateTexture(nil, "BACKGROUND", frame, 2)
+  local innerNoise = frame.txInnerNoise or frame:CreateTexture(nil, "BACKGROUND", nil, 2)
   innerNoise:SetInside(frame, edgeSize, edgeSize)
   innerNoise:SetTexture(I.Media.Themes.NoiseInner, "REPEAT", "REPEAT")
   innerNoise:SetHorizTile(true)
@@ -673,7 +670,7 @@ end
 function F.CreateInnerShadow(frame, smallVersion)
   local edgeSize = E.twoPixelsPlease and 2 or 1
 
-  local innerShadow = frame.txInnerShadow or frame:CreateTexture(nil, "BACKGROUND", frame, 1)
+  local innerShadow = frame.txInnerShadow or frame:CreateTexture(nil, "BACKGROUND", nil, 1)
   innerShadow:SetInside(frame, edgeSize, edgeSize)
   innerShadow:SetTexture(smallVersion and I.Media.Themes.ShadowInnerSmall or I.Media.Themes.ShadowInner)
   innerShadow:SetVertexColor(1, 1, 1, 0.5)

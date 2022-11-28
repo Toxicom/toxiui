@@ -107,7 +107,11 @@ end
 function F.String.Abbreviate(text)
   if type(text) ~= "string" or text == "" then return text end
 
-  text = text:gsub(" of (.*)", ""):gsub(" the (.*)", "")
+  if (text:gsub(" of (.*)", "")):gsub(" the (.*)", "") == "Rune" then
+    text = text:gsub(".* the ", ""):gsub(".* of ", "")
+  else
+    text = text:gsub(" of (.*)", ""):gsub(" the (.*)", "")
+  end
 
   local letters, lastWord = "", strmatch(text, ".+%s(.+)$")
   if lastWord then

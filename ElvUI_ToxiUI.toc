@@ -2,17 +2,17 @@
 ## Notes: Minimalistic ElvUI Edit by |cff00e4f5Toxi|r
 ## Author: Toxi (Toxicom#2957)
 ## Version: 6.1.0
-## RequiredDeps: ElvUI
-## OptionalDeps: ElvUI_WindTools, Details, Plater
+## RequiredDeps: ElvUI, ElvUI_WindTools
+## OptionalDeps: Details, Plater
 ## DefaultState: Enabled
-## Interface: 10000
-## X-Interface: 10000
+## Interface: 100002
+## X-Interface: 100002
 ## X-Flavor: Mainline
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
 ## X-Tukui-ProjectID: 199
 ## X-Tukui-ProjectFolders: ElvUI_ToxiUI
-## X-ElvUIVersion: 12.97
+## X-ElvUIVersion: 13.06
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 

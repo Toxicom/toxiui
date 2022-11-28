@@ -44,7 +44,7 @@ function TXUI:SetupDevRelease()
   SetCVar("scriptErrors", 1)
 
   -- Set taint errors to be enabled
-  E.db.general.taintLog = true
+  E.db.general.taintLog = false
 end
 
 function TXUI:InitializeModules()

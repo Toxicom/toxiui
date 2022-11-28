@@ -8,8 +8,8 @@ local CreateFrame = CreateFrame
 local format = string.format
 local GameTooltip = GameTooltip
 local GameTooltip_Hide = GameTooltip_Hide
-local GetContainerItemInfo = GetContainerItemInfo
-local GetContainerNumSlots = GetContainerNumSlots
+local GetContainerItemInfo = GetContainerItemInfo or (C_Container and C_Container.GetContainerItemInfo)
+local GetContainerNumSlots = GetContainerNumSlots or (C_Container and C_Container.GetContainerNumSlots)
 local GetItemInfo = GetItemInfo
 local GetProfessionInfo = GetProfessionInfo
 local GetProfessions = GetProfessions
@@ -31,6 +31,8 @@ local SetItemButtonDesaturated = SetItemButtonDesaturated
 local strsplit = strsplit
 local tonumber = tonumber
 local wipe = wipe
+local TooltipDataProcessor_AddTooltipPostCall = TooltipDataProcessor and TooltipDataProcessor.AddTooltipPostCall
+local Enum_TooltipDataType = Enum.TooltipDataType
 
 -- Vars
 local B
@@ -432,14 +434,18 @@ function DC:IsUsable(itemID, proffessionState)
       if not (itemQuality >= LE_ITEM_QUALITY_UNCOMMON and itemQuality <= LE_ITEM_QUALITY_EPIC) then return false end
 
       -- Needs to categoriesd as equipment (check comes from blizzard)
-      if
-        not (
-          classID == LE_ITEM_CLASS_WEAPON
-          or (classID == LE_ITEM_CLASS_ARMOR and subclassID ~= LE_ITEM_ARMOR_COSMETIC)
-          or (classID == LE_ITEM_CLASS_GEM and subclassID == LE_ITEM_SUBCLASS_ARTIFACT)
-        )
-      then
-        return false
+      if TXUI.IsRetail then
+        if not (classID == 2 or (classID == 4 and subclassID ~= 5) or (classID == 3 and subclassID == 11)) then return false end
+      else
+        if
+          not (
+            classID == LE_ITEM_CLASS_WEAPON
+            or (classID == LE_ITEM_CLASS_ARMOR and subclassID ~= LE_ITEM_ARMOR_COSMETIC)
+            or (classID == LE_ITEM_CLASS_GEM and subclassID == LE_ITEM_SUBCLASS_ARTIFACT)
+          )
+        then
+          return false
+        end
       end
 
       -- Don't allow shirts to be dischanted
@@ -472,6 +478,7 @@ function DC:IsUsable(itemID, proffessionState)
 end
 
 function DC:IsEligibleItemFrame(itemFrame)
+  local itemInfo, itemLink, itemId
   local professionState = I.Enum.DeconstructState.NONE
 
   local bagID = itemFrame:GetParent():GetID()
@@ -480,10 +487,21 @@ function DC:IsEligibleItemFrame(itemFrame)
   local slotID = itemFrame:GetID()
   if slotID == nil then return professionState end
 
-  local itemLink = select(7, GetContainerItemInfo(bagID, slotID))
-  if not itemLink then return professionState end
+  if TXUI.IsRetail then
+    itemInfo = GetContainerItemInfo(bagID, slotID)
+    if not itemInfo then return professionState end
 
-  local itemId = self:GetItemIdFromLink(itemLink)
+    itemLink = itemInfo.hyperlink
+    if not itemLink then return professionState end
+
+    itemId = itemInfo.itemID
+  else
+    itemLink = select(7, GetContainerItemInfo(bagID, slotID))
+    if not itemLink then return professionState end
+
+    itemId = self:GetItemIdFromLink(itemLink)
+  end
+
   if not itemId then return professionState end
 
   if (professionState == I.Enum.DeconstructState.NONE) and (self:IsUsable(itemId, I.Enum.DeconstructState.DISENCHANT)) then professionState = I.Enum.DeconstructState.DISENCHANT end
@@ -502,7 +520,6 @@ function DC:ShowEligableOverlay(enabled)
           SetItemButtonDesaturated(itemFrame, itemFrame.locked or itemFrame.junkDesaturate)
           local r, g, b = itemFrame:GetBackdropBorderColor()
           itemFrame:SetBackdropBorderColor(r, g, b, 1)
-          itemFrame:SetAlpha(1)
           itemFrame.searchOverlay:SetAlpha(1)
           itemFrame.searchOverlay:Hide()
         else
@@ -510,12 +527,10 @@ function DC:ShowEligableOverlay(enabled)
             SetItemButtonDesaturated(itemFrame, nil)
             local r, g, b = itemFrame:GetBackdropBorderColor()
             if GetContainerItemInfo(bagID, slotID) then
-              itemFrame:SetAlpha(0.5)
               itemFrame:SetBackdropBorderColor(r, g, b, 0.5)
               itemFrame.searchOverlay:SetAlpha(0.5)
               itemFrame.searchOverlay:Show()
             else
-              itemFrame:SetAlpha(1)
               itemFrame:SetBackdropBorderColor(r, g, b, 1)
               itemFrame.searchOverlay:SetAlpha(1)
               itemFrame.searchOverlay:SetAlpha(1)
@@ -523,7 +538,6 @@ function DC:ShowEligableOverlay(enabled)
             end
           elseif self.db.highlightMode == "DARK" then
             SetItemButtonDesaturated(itemFrame, 1)
-            itemFrame:SetAlpha(1)
             itemFrame.searchOverlay:SetAlpha(1)
             itemFrame.searchOverlay:Show()
           end
@@ -596,7 +610,20 @@ function DC:CalculateHoverButtonState(itemFrame)
   return false
 end
 
-function DC:OnHoverHandler(frame)
+function DC:OnHoverHandler(tooltip)
+  if not tooltip then return end
+  if not self.db or not self.db.enabled then return end
+  if not self.active or InCombatLockdown() then return end
+  if self.hoverButton == tooltip then return end
+
+  local itemFrame = tooltip.GetOwner and tooltip:GetOwner()
+  if not itemFrame then return end
+  if not self:IsItemFrame(itemFrame) then return end
+
+  self:CalculateHoverButtonState(itemFrame)
+end
+
+function DC:OnClassicHoverHandler(frame)
   if not frame then return end
   if not self.db or not self.db.enabled then return end
   if not self.active or InCombatLockdown() then return end
@@ -637,7 +664,7 @@ end
 
 function DC:CreateElements()
   local hoverButton = self.hoverButton or CreateFrame("Button", "TXDeconstructHoverButton", E.UIParent, "SecureActionButtonTemplate")
-  hoverButton:RegisterForClicks("AnyUp")
+  hoverButton:RegisterForClicks("AnyDown")
   hoverButton:SetFrameStrata("TOOLTIP")
 
   hoverButton.TipLines = {}
@@ -730,9 +757,15 @@ function DC:Enable()
   self:CreateElements()
 
   self:SecureHookScript(B.BagFrame, "OnHide", "OnHideHandler")
-  self:SecureHookScript(GameTooltip, "OnTooltipSetItem", "OnHoverHandler")
+  if TXUI.IsRetail then
+    TooltipDataProcessor_AddTooltipPostCall(Enum_TooltipDataType.Item, function(tooltip)
+      DC:OnHoverHandler(tooltip)
+    end)
+  else
+    self:SecureHookScript(GameTooltip, "OnTooltipSetItem", "OnClassicHoverHandler")
+  end
   self:SecureHook(B, "UpdateBagSlots", "OnRefreshHandler")
-  self:SecureHook(B, "SetSearch", "OnRefreshHandler")
+  self:SecureHook(B, "SearchUpdate", "OnRefreshHandler")
 
   F.Event.RegisterFrameEventAndCallback("SKILL_LINES_CHANGED", self.UpdateAllowedStates, self)
 
