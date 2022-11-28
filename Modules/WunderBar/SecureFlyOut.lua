@@ -39,7 +39,7 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
     if not slot then
       slot = CreateFrame("Button", nil, secureFlyOutFrame, "SecureActionButtonTemplate")
       slot:EnableMouse(true)
-      slot:RegisterForClicks("AnyUp")
+      slot:RegisterForClicks("AnyDown")
       slot:SetSize(30 + E.Border, 30 + E.Border)
       slot:SetTemplate()
       slot:StyleButton(nil, true)
