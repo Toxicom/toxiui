@@ -11,7 +11,7 @@ function F.Color.EqualToRGB(aColor, r, g, b)
 end
 
 function F.Color.SetGradient(obj, orientation, minColor, maxColor)
-  if TXUI.IsDragonflight then
+  if TXUI.IsRetail then
     obj:SetGradient(orientation, minColor, maxColor)
   else
     obj:SetGradientAlpha(orientation, minColor.r, minColor.g, minColor.b, minColor.a, maxColor.r, maxColor.g, maxColor.b, maxColor.a)
