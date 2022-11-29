@@ -100,7 +100,6 @@ function PF:BuildProfile()
       -- Movers: Bars
       ExperienceBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 43),
       ReputationBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -3, -264),
-      TotemBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -333, 201),
       ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -554, -363),
 
       MirrorTimer1Mover = F.Position("TOP", "AlertFrameMover", "BOTTOM", 0, -defaultPadding),
@@ -283,13 +282,6 @@ function PF:BuildProfile()
     -- AltPowerBar
     altPowerBar = {
       statusBar = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
-    },
-
-    -- General Totems
-    totems = {
-      growthDirection = "HORIZONTAL",
-      size = F.Dpi(50),
-      spacing = F.Dpi(8),
     },
   })
 
