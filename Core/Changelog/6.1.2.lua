@@ -4,7 +4,8 @@ TXUI.Changelog["6.1.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* Misc",
-    "Fix gradient mode's dead unit color",
+    "Fix Gradient Mode's Dead unit color",
+    "Move the Dragon Riding Vigor bar to the bottom",
     "Plater: Update interrupt cast color mod",
   },
 }

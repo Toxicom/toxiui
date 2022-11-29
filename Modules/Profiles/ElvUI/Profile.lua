@@ -206,6 +206,7 @@ function PF:BuildProfile()
       TalkingHeadFrameMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -10),
       UIErrorsFrameMover = F.Position("TOP", "UIParent", "TOP", 0, -122),
       VehicleSeatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -305, 330),
+      PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 158),
     }),
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
 
