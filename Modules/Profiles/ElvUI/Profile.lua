@@ -203,7 +203,6 @@ function PF:BuildProfile()
       PetBattleStatusMover = F.Position("TOP", "PetBattleFrame", "TOP", 0, 0),
       RaidUtility_Mover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -550, -4),
       SocialMenuMover = F.Position("TOPLEFT", "ElvUIParent", "TOPLEFT", 4, -187),
-      TalkingHeadFrameMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -10),
       UIErrorsFrameMover = F.Position("TOP", "UIParent", "TOP", 0, -122),
       VehicleSeatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -305, 330),
       PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 158),
