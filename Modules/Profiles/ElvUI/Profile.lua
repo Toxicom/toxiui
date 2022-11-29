@@ -397,7 +397,7 @@ function PF:BuildProfile()
     disconnected = F.Table.HexToRGB("#ff9387"),
     health = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#1d1d1d")),
     health_backdrop = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#505050")),
-    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#9c0c00")),
+    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#ff0015"), F.Table.HexToRGB("#9c0c00")),
 
     -- UnitFrames Colors Options
     classbackdrop = true,

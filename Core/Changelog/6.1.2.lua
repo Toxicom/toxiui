@@ -4,6 +4,7 @@ TXUI.Changelog["6.1.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* Misc",
+    "Fix gradient mode's dead unit color",
     "Plater: Update interrupt cast color mod",
   },
 }

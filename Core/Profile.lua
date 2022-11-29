@@ -123,12 +123,12 @@ P.themes = {
       [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
         DISCONNECTED = F.Table.HexToRGB("#ff6b59"), -- disconnect
         TAPPED = F.Table.HexToRGB("#a3a6b0"), -- tapped
-        DEAD = F.Table.HexToRGB("#48000a"), -- dead
+        DEAD = F.Table.HexToRGB("#cd001c"), -- dead
       },
       [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
         DISCONNECTED = F.Table.HexToRGB("#e85747"), -- disconnect
         TAPPED = F.Table.HexToRGB("#7d828f"), -- tapped
-        DEAD = F.Table.HexToRGB("#2a0006"), -- dead
+        DEAD = F.Table.HexToRGB("#61000e"), -- dead
       },
     },
 
