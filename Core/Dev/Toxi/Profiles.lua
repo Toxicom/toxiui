@@ -53,9 +53,6 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 193588 or 6948
 
   -- Themes: Gradient Mode
-  E.db.TXUI.themes.gradientMode.classColorMap[1]["PRIEST"] = F.Table.HexToRGB("#77009f")
-  E.db.TXUI.themes.gradientMode.classColorMap[2]["PRIEST"] = F.Table.HexToRGB("#a000e9")
-
   E.db.TXUI.themes.gradientMode.classColorMap[1]["DEATHKNIGHT"] = F.Table.HexToRGB("#6e1234")
 
   -- Skins: ElvUI
