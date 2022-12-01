@@ -789,8 +789,8 @@ P.wunderbar = {
         [270] = "", -- monk mist
         [577] = "", -- dh havoc
         [581] = "", -- dh veng
-        [1467] = "", -- evo dev (fire mage icon)
-        [1468] = "", -- evo pres (resto druid icon)
+        [1467] = "", -- ev devastation
+        [1468] = "", -- ev preservation
 
         -- Wrath
         -- TODO: convert to spec ids
