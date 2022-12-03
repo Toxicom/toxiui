@@ -47,7 +47,7 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.DataBar.showCompletedXP = true
 
   -- WunderBar: Profession
-  E.db.TXUI.wunderbar.subModules.Profession.general.showIcons = false
+  E.db.TXUI.wunderbar.subModules.Profession.general.showIcons = true
 
   -- WunderBar: Hearthstone
   E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 193588 or 6948
