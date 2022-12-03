@@ -9,5 +9,6 @@ TXUI.Changelog["6.1.2"] = {
     "Plater: Update interrupt cast color mod",
     "Add evoker spec icons to WunderBar & Armory. Credits to " .. F.String.Class("Nawuko", "MONK"),
     "WunderBar: Add Valdrakken portals for mages",
+    "WunderBar: Change default background",
   },
 }

@@ -551,10 +551,10 @@ P.wunderbar = {
     noCombatHover = false,
     noHover = false,
 
-    backgroundTexture = "BuiOnePixel",
+    backgroundTexture = "TX WorldState Score",
     backgroundColor = "CLASS", -- NONE, CLASS, VALUE (ElvUI), CUSTOM
     backgroundCustomColor = F.Table.HexToRGB("#ffffff00"),
-    backgroundGradient = false,
+    backgroundGradient = true,
     backgroundGradientAlpha = 1,
 
     accentFontColor = "TXUI", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
