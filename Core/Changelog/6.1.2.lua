@@ -8,5 +8,6 @@ TXUI.Changelog["6.1.2"] = {
     "Move the Dragon Riding Vigor bar to the bottom",
     "Plater: Update interrupt cast color mod",
     "Add evoker spec icons to WunderBar & Armory. Credits to " .. F.String.Class("Nawuko", "MONK"),
+    "WunderBar: Add Valdrakken portals for mages",
   },
 }

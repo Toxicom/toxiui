@@ -403,6 +403,9 @@ I.HearthstoneData = {
 
   [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Exodar
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
+
+  [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Valdrakken
+  [395277] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Valdrakken
 }
 
 I.HearthstoneData_Wrath = {
