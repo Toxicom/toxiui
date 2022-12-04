@@ -264,6 +264,7 @@ function PF:BuildProfile()
         -- General MiniMap Icons LFG Eye
         lfgEye = {
           xOffset = F.Dpi(0),
+          scale = 0.8,
         },
 
         -- General MiniMap Icons Mail
@@ -1623,6 +1624,7 @@ function PF:ElvUIProfilePrivate()
 
       minimap = {
         hideClassHallReport = false,
+        hideTracking = true,
       },
     },
 

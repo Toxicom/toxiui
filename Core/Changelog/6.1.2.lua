@@ -10,5 +10,7 @@ TXUI.Changelog["6.1.2"] = {
     "Add evoker spec icons to WunderBar & Armory. Credits to " .. F.String.Class("Nawuko", "MONK"),
     "WunderBar: Add Valdrakken & Tol Barad portals for mages",
     "WunderBar: Change default background",
+    "Minimap: Hide tracking icon",
+    "Minimap: Increase size of LFG eye",
   },
 }
