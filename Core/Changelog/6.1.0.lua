@@ -12,13 +12,15 @@ TXUI.Changelog["6.1.0"] = {
     end
   end,
   CHANGES = {
-    "* General",
+    "* ToxiUI",
     F.String.Good("New: ") .. "Refactored whole options window",
     F.String.Good("New: ") .. "Font changing feature " .. F.String.Error("[EXPERIMENTAL]"),
-    "Move tooltip to accomodate space for new Details",
-    "Change tooltip's health bar",
     "Gradient Mode rewritten, better performance",
     "Lots of fixes for Dragonflight " .. F.String.Error("[Please report bugs on GitHub or Discord!]"),
+
+    "* ElvUI",
+    "Movers: Move tooltip to accomodate space for new Details",
+    "Tooltip: Change health bar height",
 
     "* Details",
     F.String.Good("New: ") .. "Skin with icons, in collaboration with Redtuzk" .. F.String.Error("UI"),
