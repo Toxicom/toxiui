@@ -5,7 +5,7 @@ TXUI.Changelog["6.1.2"] = {
   CHANGES = {
     "* ToxiUI",
     "Fix Gradient Mode's Dead unit color",
-    F.String.Good .. "New: " .. "Evoker spec icons. Credits to " .. F.String.Class("Nawuko", "MONK"),
+    F.String.Good("New: ") .. "Evoker spec icons. Credits to " .. F.String.Class("Nawuko", "MONK"),
     "WunderBar: Add Valdrakken & Tol Barad portals for mages",
     "WunderBar: Change default background",
 
