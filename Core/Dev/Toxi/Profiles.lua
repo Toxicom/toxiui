@@ -90,6 +90,9 @@ function T:SetupProfile()
   E.db.bags.split.bag10 = true
   E.db.bags.split.bag11 = true
   E.db.bags.split.bankSpacing = 10
+
+  -- WindTools
+  E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
 end
 
 T:AddCallback("SetupCvars")
