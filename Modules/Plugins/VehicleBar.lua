@@ -158,6 +158,7 @@ function VB:UpdateBar()
       self.ab:StyleButton(button, nil, nil)
       button:SetTemplate("Transparent")
       button:SetCheckedTexture("")
+      button.MasqueSkinned = true -- Ugly fix for smaller cooldowns, not actually using Masque
 
       -- Add to array
       bar.buttons[i] = button
@@ -181,8 +182,13 @@ function VB:UpdateBar()
   end
 
   -- Update Paging
-  local pageState =
-    format("[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; [bonusbar:5] 11;", GetOverrideBarIndex(), GetVehicleBarIndex(), GetVehicleBarIndex())
+  local pageState = format(
+    "[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; [bonusbar:5] 11;%s",
+    GetOverrideBarIndex(),
+    GetVehicleBarIndex(),
+    GetVehicleBarIndex(),
+    (self.db.dragonRiding and "[bonusbar:5] 11;") or ""
+  )
   local pageAttribute = self.ab:GetPage("bar1", 1, pageState)
   RegisterStateDriver(bar, "page", pageAttribute)
   self.bar:SetAttribute("page", pageAttribute)
@@ -235,7 +241,7 @@ function VB:Enable()
   self:UpdateBar()
 
   -- Overwrite default bar visibility
-  local visibility = "[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar] hide;"
+  local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", (self.db.dragonRiding and "[bonusbar:5]") or "")
 
   self:Hook(self.ab, "PositionAndSizeBar", function(_, barName)
     local bar = self.ab["handledBars"][barName]
@@ -249,7 +255,11 @@ function VB:Enable()
   UnregisterStateDriver(self.bar, "visibility")
   UnregisterStateDriver(self.ab["handledBars"]["bar1"], "visibility")
 
-  RegisterStateDriver(self.bar, "visibility", "[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar][bonusbar:5] show; hide")
+  RegisterStateDriver(
+    self.bar,
+    "visibility",
+    format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s show; hide", (self.db.dragonRiding and "[bonusbar:5]") or "")
+  )
   RegisterStateDriver(self.ab["handledBars"]["bar1"], "visibility", visibility .. E.db.actionbar["bar1"].visibility)
 
   -- Register Events
