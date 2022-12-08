@@ -183,7 +183,7 @@ function VB:UpdateBar()
 
   -- Update Paging
   local pageState = format(
-    "[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; [bonusbar:5] 11;%s",
+    "[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s",
     GetOverrideBarIndex(),
     GetVehicleBarIndex(),
     GetVehicleBarIndex(),
