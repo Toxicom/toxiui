@@ -21,9 +21,6 @@ function M:Initialize()
   -- Don't init second time
   if self.Initialized then return end
 
-  -- Don't init if its not a TXUI profile
-  if not F.IsTXUIProfile() then return end
-
   -- Call registered submodules
   for index, func in next, self.callOnInit do
     xpcall(func, errorhandler, self)
