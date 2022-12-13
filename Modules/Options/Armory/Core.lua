@@ -960,6 +960,15 @@ function O:Armory()
         disabled = optionsDisabled,
       }
 
+      -- Missing Socket
+      enchantGroup.missingSocketText = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Shows a red 'Missing' string when you're missing a socket.",
+        name = "Missing Sockets",
+        disabled = optionsDisabled,
+      }
+
       -- Abbreviate Enchant
       enchantGroup.abbreviateEnchantText = {
         order = self:GetOrder(),
