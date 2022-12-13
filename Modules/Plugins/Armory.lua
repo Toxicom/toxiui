@@ -59,11 +59,17 @@ A.characterSlots = {
   ["BackSlot"] = {
     id = 15,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
     direction = A.enumDirection.LEFT,
   },
   ["ChestSlot"] = {
     id = 5,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
     direction = A.enumDirection.LEFT,
   },
   ["ShirtSlot"] = {
@@ -80,18 +86,13 @@ A.characterSlots = {
     id = 9,
     needsEnchant = true,
     enchantCondition = {
-      level = 60,
-      primary = LE_UNIT_STAT_INTELLECT,
+      level = 70,
     },
     direction = A.enumDirection.LEFT,
   },
   ["HandsSlot"] = {
     id = 10,
-    needsEnchant = true,
-    enchantCondition = {
-      level = 60,
-      primary = LE_UNIT_STAT_STRENGTH,
-    },
+    needsEnchant = false,
     direction = A.enumDirection.RIGHT,
   },
   ["WaistSlot"] = {
@@ -101,26 +102,34 @@ A.characterSlots = {
   },
   ["LegsSlot"] = {
     id = 7,
-    needsEnchant = false,
+    needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
     direction = A.enumDirection.RIGHT,
   },
   ["FeetSlot"] = {
     id = 8,
     needsEnchant = true,
     enchantCondition = {
-      level = 60,
-      primary = LE_UNIT_STAT_AGILITY,
+      level = 70,
     },
     direction = A.enumDirection.RIGHT,
   },
   ["Finger0Slot"] = {
     id = 11,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
     direction = A.enumDirection.RIGHT,
   },
   ["Finger1Slot"] = {
     id = 12,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket0Slot"] = {
@@ -136,6 +145,9 @@ A.characterSlots = {
   ["MainHandSlot"] = {
     id = 16,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
     direction = A.enumDirection.RIGHT,
   },
   ["SecondaryHandSlot"] = {
