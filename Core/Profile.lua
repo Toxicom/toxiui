@@ -459,6 +459,7 @@ P.armory = {
     enchantTextEnabled = true,
     abbreviateEnchantText = true,
     missingEnchantText = true,
+    missingSocketText = false,
 
     itemQualityGradientEnabled = true,
     itemQualityGradientWidth = 65,

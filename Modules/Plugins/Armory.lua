@@ -44,98 +44,127 @@ A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
     needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["NeckSlot"] = {
     id = 2,
     needsEnchant = false,
+    needsSocket = true,
     direction = A.enumDirection.LEFT,
   },
   ["ShoulderSlot"] = {
     id = 3,
     needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["BackSlot"] = {
     id = 15,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["ChestSlot"] = {
     id = 5,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["ShirtSlot"] = {
     id = 4,
     needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["TabardSlot"] = {
     id = 18,
     needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["WristSlot"] = {
     id = 9,
     needsEnchant = true,
     enchantCondition = {
-      level = 60,
-      primary = LE_UNIT_STAT_INTELLECT,
+      level = 70,
     },
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["HandsSlot"] = {
     id = 10,
-    needsEnchant = true,
-    enchantCondition = {
-      level = 60,
-      primary = LE_UNIT_STAT_STRENGTH,
-    },
+    needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["WaistSlot"] = {
     id = 6,
     needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["LegsSlot"] = {
     id = 7,
-    needsEnchant = false,
+    needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["FeetSlot"] = {
     id = 8,
     needsEnchant = true,
     enchantCondition = {
-      level = 60,
-      primary = LE_UNIT_STAT_AGILITY,
+      level = 70,
     },
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Finger0Slot"] = {
     id = 11,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Finger1Slot"] = {
     id = 12,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket0Slot"] = {
     id = 13,
     needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket1Slot"] = {
     id = 14,
     needsEnchant = false,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["MainHandSlot"] = {
     id = 16,
     needsEnchant = true,
+    enchantCondition = {
+      level = 70,
+    },
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["SecondaryHandSlot"] = {
@@ -144,6 +173,7 @@ A.characterSlots = {
     enchantCondition = {
       itemType = LE_ITEM_CLASS_WEAPON,
     },
+    needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
 }
@@ -464,7 +494,7 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
   local slotOptions = self.characterSlots[slotName]
   if not slotOptions then return end
 
-  -- Enchant Text Handling
+  -- Enchant/Socket Text Handling
   if self.db.pageInfo.enchantTextEnabled and slotInfo.itemLevelColors and next(slotInfo.itemLevelColors) then
     if slotInfo.enchantColors and next(slotInfo.enchantColors) then
       if slotInfo.enchantText and (slotInfo.enchantText ~= "") then
@@ -479,6 +509,14 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
     elseif self.db.pageInfo.missingEnchantText and slotOptions.needsEnchant then
       if not slotOptions.enchantCondition or (self:CheckEnchantCondition(slotOptions)) then
         slotItem.enchantText:SetText(F.String.Error("Missing"))
+      else
+        slotItem.enchantText:SetText("")
+      end
+    elseif self.db.pageInfo.missingSocketText and slotOptions.needsSocket then
+      local gemStep = 1
+      local gem = slotInfo.gems and slotInfo.gems[gemStep]
+      if not gem then
+        slotItem.enchantText:SetText(F.String.Error("No Socket"))
       else
         slotItem.enchantText:SetText("")
       end
