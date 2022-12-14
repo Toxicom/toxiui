@@ -242,7 +242,8 @@ I.Data.Contributor = {
   [I.Enum.ContributorType.BETA] = {
     ["v0dKa"] = {
       [I.Enum.Flavor.RETAIL] = {
-        ["Bakul-Antonidas"] = true, -- Yes, only 1 Char, 1 Main, He is insane!
+        ["Bakul-Antonidas"] = true,
+        ["Mythelor-Antonidas"] = true,
       },
     },
 
