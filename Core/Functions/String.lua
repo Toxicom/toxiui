@@ -81,8 +81,21 @@ function F.String.Warning(msg)
   return F.String.Color(msg, I.Enum.Colors.WARNING)
 end
 
+-- Supporter colors
 function F.String.Legendary(msg)
   return F.String.Color(msg, I.Enum.Colors.LEGENDARY)
+end
+
+function F.String.Epic(msg)
+  return F.String.Color(msg, I.Enum.Colors.EPIC)
+end
+
+function F.String.Rare(msg)
+  return F.String.Color(msg, I.Enum.Colors.RARE)
+end
+
+function F.String.Beta(msg)
+  return F.String.Color(msg, I.Enum.Colors.BETA)
 end
 
 function F.String.Covenant(msg)

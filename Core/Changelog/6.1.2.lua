@@ -8,6 +8,8 @@ TXUI.Changelog["6.1.2"] = {
     F.String.Good("New: ") .. "Evoker spec icons. Credits to " .. F.String.Class("Nawuko", "MONK"),
     "WunderBar: Add Valdrakken & Tol Barad portals for mages",
     "WunderBar: Change default background",
+    "Armory: Update enchant slots for Dragonflight",
+    "Armory: Socket warning for neck slot. Credits to " .. F.String.Epic("Ryada"),
 
     "* ElvUI",
     "Movers: Move the Dragon Riding Vigor bar to the bottom",

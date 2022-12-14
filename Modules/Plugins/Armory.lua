@@ -172,6 +172,7 @@ A.characterSlots = {
     needsEnchant = true,
     enchantCondition = {
       itemType = LE_ITEM_CLASS_WEAPON,
+      level = 70,
     },
     needsSocket = false,
     direction = A.enumDirection.LEFT,
