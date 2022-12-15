@@ -40,6 +40,11 @@ local wipe = wipe
 
 -- Vars
 A.enumDirection = F.Enum { "LEFT", "RIGHT", "BOTTOM" }
+A.colors = {
+  LIGHT_GREEN = "12E626",
+  DARK_GREEN = "00B01C",
+  RED = "F0544F",
+}
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
@@ -51,6 +56,9 @@ A.characterSlots = {
     id = 2,
     needsEnchant = false,
     needsSocket = true,
+    messageCondition = {
+      level = 70,
+    },
     direction = A.enumDirection.LEFT,
   },
   ["ShoulderSlot"] = {
@@ -62,7 +70,7 @@ A.characterSlots = {
   ["BackSlot"] = {
     id = 15,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -71,7 +79,7 @@ A.characterSlots = {
   ["ChestSlot"] = {
     id = 5,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -92,7 +100,7 @@ A.characterSlots = {
   ["WristSlot"] = {
     id = 9,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -113,7 +121,7 @@ A.characterSlots = {
   ["LegsSlot"] = {
     id = 7,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -122,7 +130,7 @@ A.characterSlots = {
   ["FeetSlot"] = {
     id = 8,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -131,7 +139,7 @@ A.characterSlots = {
   ["Finger0Slot"] = {
     id = 11,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -140,7 +148,7 @@ A.characterSlots = {
   ["Finger1Slot"] = {
     id = 12,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -161,7 +169,7 @@ A.characterSlots = {
   ["MainHandSlot"] = {
     id = 16,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -170,7 +178,7 @@ A.characterSlots = {
   ["SecondaryHandSlot"] = {
     id = 17,
     needsEnchant = true,
-    enchantCondition = {
+    messageCondition = {
       itemType = LE_ITEM_CLASS_WEAPON,
       level = 70,
     },
@@ -190,8 +198,8 @@ function A:GetSlotNameByID(slotId)
   end
 end
 
-function A:CheckEnchantCondition(slotOptions)
-  local conditions = slotOptions.enchantCondition
+function A:CheckMessageCondition(slotOptions)
+  local conditions = slotOptions.messageCondition
   local enchantNeeded = true
 
   -- Level Condition
@@ -470,11 +478,16 @@ end
 
 function A:EnchantAbbreviate(str)
   local abbrevs = {
-    [_G["STAT_VERSATILITY"]] = "Vers.",
+    -- Primary
     [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_STRENGTH .. "_NAME"]] = "Str.",
     [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_AGILITY .. "_NAME"]] = "Agi.",
     [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_INTELLECT .. "_NAME"]] = "Int.",
     [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_STAMINA .. "_NAME"]] = "Stam.",
+    -- Secondary
+    [_G["STAT_VERSATILITY"]] = "Vers.",
+    [_G["STAT_CRITICAL_STRIKE"]] = "Crit.",
+    -- Tertiary
+    [_G["STAT_AVOIDANCE"]] = "Avoid.",
   }
 
   local short = F.String.Abbreviate(str)
@@ -502,22 +515,25 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
         local text = slotInfo.enchantTextShort
         if self.db.pageInfo.abbreviateEnchantText then text = self:EnchantAbbreviate(slotInfo.enchantText) end
         if slotOptions.direction == self.enumDirection.LEFT then
-          slotItem.enchantText:SetText(F.String.FastGradient(text, 0, 0.69, 0.11, 0.07, 0.90, 0.15))
+          slotItem.enchantText:SetText(F.String.FastGradientHex(text, A.colors.DARK_GREEN, A.colors.LIGHT_GREEN))
         elseif slotOptions.direction == self.enumDirection.RIGHT then
-          slotItem.enchantText:SetText(F.String.FastGradient(text, 0.07, 0.90, 0.15, 0, 0.69, 0.11))
+          slotItem.enchantText:SetText(F.String.FastGradientHex(text, A.colors.LIGHT_GREEN, A.colors.DARK_GREEN))
         end
       end
     elseif self.db.pageInfo.missingEnchantText and slotOptions.needsEnchant then
-      if not slotOptions.enchantCondition or (self:CheckEnchantCondition(slotOptions)) then
+      if not slotOptions.messageCondition or (self:CheckMessageCondition(slotOptions)) then
         slotItem.enchantText:SetText(F.String.Error("Missing"))
       else
         slotItem.enchantText:SetText("")
       end
     elseif self.db.pageInfo.missingSocketText and slotOptions.needsSocket then
-      local gemStep = 1
-      local gem = slotInfo.gems and slotInfo.gems[gemStep]
-      if not gem then
-        slotItem.enchantText:SetText(F.String.Error("No Socket"))
+      if not slotOptions.messageCondition or (self:CheckMessageCondition(slotOptions)) then
+        local missingGemSlots = 3 - #slotInfo.gems
+        if missingGemSlots > 0 then
+          local text = format("Missing %d", missingGemSlots)
+          local missingColor = { F.String.FastColorGradientHex(missingGemSlots / 3, A.colors.LIGHT_GREEN, A.colors.RED) }
+          slotItem.enchantText:SetText(F.String.RGB(text, missingColor))
+        end
       else
         slotItem.enchantText:SetText("")
       end
