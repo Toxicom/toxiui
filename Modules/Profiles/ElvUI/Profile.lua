@@ -136,7 +136,7 @@ function PF:BuildProfile()
       ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
       ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
 
-      ElvUF_FocusMover = F.Position("TOP", "ElvUF_Player", "BOTTOM", 0, -60),
+      ElvUF_FocusMover = F.Position("TOP", "ElvUF_Target", "BOTTOM", 0, -60),
       FocusPowerBarMover = F.Position("TOP", "ElvUF_FocusMover", "BOTTOM", 0, defaultPadding),
       ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_Focus", "BOTTOMLEFT", 0, -defaultPadding),
 

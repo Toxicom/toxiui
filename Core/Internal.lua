@@ -202,7 +202,6 @@ I.GradientMode = {
         ["tanktarget"] = true,
         ["assist"] = true,
         ["assisttarget"] = true,
-        ["focus"] = true,
       },
 
       -- Right DPS Gradient
@@ -211,6 +210,7 @@ I.GradientMode = {
         ["targettarget"] = true,
         ["arena"] = true,
         ["boss"] = true,
+        ["focus"] = true,
       },
     },
   },
