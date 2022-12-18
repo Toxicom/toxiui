@@ -210,6 +210,7 @@ I.GradientMode = {
         ["targettarget"] = true,
         ["arena"] = true,
         ["boss"] = true,
+        ["focus"] = true,
       },
     },
   },
