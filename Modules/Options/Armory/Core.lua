@@ -955,7 +955,7 @@ function O:Armory()
       enchantGroup.missingEnchantText = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Shows a red 'Missing' string when you're missing an enchant.",
+        desc = "Shows a warning when you're missing an enchant.",
         name = "Missing Enchants",
         disabled = optionsDisabled,
       }
@@ -964,7 +964,7 @@ function O:Armory()
       enchantGroup.missingSocketText = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Shows a red 'Missing' string when you're missing a socket.",
+        desc = "Shows a warning when you're missing sockets on your necklace.",
         name = "Missing Sockets",
         disabled = optionsDisabled,
       }
