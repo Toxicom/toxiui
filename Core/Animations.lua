@@ -995,7 +995,10 @@ end
 Update["move"] = function(self, elapsed, i)
   self.Timer = self.Timer + elapsed
 
-  if self.Timer >= self.Duration then
+  if UnitAffectingCombat("player") then
+    tremove(Update, i)
+    self.Playing = false
+  elseif self.Timer >= self.Duration then
     tremove(Updater, i)
     self.Parent:SetPoint(self.A1, self.P, self.A2, self.EndX, self.EndY)
     self.Playing = false
