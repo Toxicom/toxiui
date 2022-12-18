@@ -5,11 +5,11 @@ TXUI.Changelog["6.1.2"] = {
   CHANGES = {
     "* ToxiUI",
     "Fix Gradient Mode's Dead unit color",
-    F.String.Good("New: ") .. "Evoker spec icons. Credits to " .. F.String.Class("Nawuko", "MONK"),
+    F.String.Good("[NEW] ") .. "Evoker spec icons. Credits to " .. F.String.Class("Nawuko", "MONK"),
     "WunderBar: Add Valdrakken & Tol Barad portals for mages",
     "WunderBar: Change default background",
     "Armory: Update enchant slots for Dragonflight",
-    "Armory: Socket warning for neck slot. Credits to " .. F.String.Epic("Ryada"),
+    F.String.Good("[NEW] ") .. "Armory: Socket warning for neck slot. Credits to " .. F.String.Epic("Ryada"),
 
     "* ElvUI",
     "Movers: Move the Dragon Riding Vigor bar to the bottom",

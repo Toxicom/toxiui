@@ -13,8 +13,8 @@ TXUI.Changelog["6.1.0"] = {
   end,
   CHANGES = {
     "* ToxiUI",
-    F.String.Good("New: ") .. "Refactored whole options window",
-    F.String.Good("New: ") .. "Font changing feature " .. F.String.Error("[EXPERIMENTAL]"),
+    F.String.Good("[NEW] ") .. "Refactored whole options window",
+    F.String.Good("[NEW] ") .. "Font changing feature " .. F.String.Error("[EXPERIMENTAL]"),
     "Gradient Mode rewritten, better performance",
     "Lots of fixes for Dragonflight " .. F.String.Error("[Please report bugs on GitHub or Discord!]"),
 
@@ -23,7 +23,7 @@ TXUI.Changelog["6.1.0"] = {
     "Tooltip: Change health bar height",
 
     "* Details",
-    F.String.Good("New: ") .. "Skin with icons, in collaboration with Redtuzk" .. F.String.Error("UI"),
+    F.String.Good("[NEW] ") .. "Skin with icons, in collaboration with Redtuzk" .. F.String.Error("UI"),
 
     "* Boss Mods",
     "BigWigs: Update to match Details",
