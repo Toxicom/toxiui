@@ -202,6 +202,7 @@ I.GradientMode = {
         ["tanktarget"] = true,
         ["assist"] = true,
         ["assisttarget"] = true,
+        ["focus"] = true,
       },
 
       -- Right DPS Gradient
