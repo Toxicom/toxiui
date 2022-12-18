@@ -216,7 +216,7 @@ function PF:BuildProfile()
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 380),
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 380),
 
-      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_PlayerMover", "TOPLEFT", 0, 160),
+      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 160),
       FocusPowerBarMover = F.Position("TOP", "ElvUF_FocusMover", "BOTTOM", 0, defaultPadding),
       ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 0, -defaultPadding),
 
@@ -743,16 +743,17 @@ function PF:BuildProfile()
     customTexts = {
       -- UnitFrame Focus Custom Texts Name
       ["!Name"] = createCustomText({}, {
+        justifyH = "RIGHT",
         text_format = "[tx:classcolor][name:medium]",
-        xOffset = F.Dpi(5),
+        xOffset = F.Dpi(-5),
         yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
       }),
 
       -- UnitFrame Focus Custom Texts Health
       ["!Health"] = createCustomText({}, {
-        justifyH = "RIGHT",
+        justifyH = "LEFT",
         text_format = "[tx:classcolor][perhp]",
-        xOffset = F.Dpi(-10),
+        xOffset = F.Dpi(10),
         yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
       }),
     },
