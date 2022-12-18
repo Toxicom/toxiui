@@ -41,9 +41,9 @@ local wipe = wipe
 -- Vars
 A.enumDirection = F.Enum { "LEFT", "RIGHT", "BOTTOM" }
 A.colors = {
-  LIGHT_GREEN = "12E626",
-  DARK_GREEN = "00B01C",
-  RED = "F0544F",
+  LIGHT_GREEN = "#12E626",
+  DARK_GREEN = "#00B01C",
+  RED = "#F0544F",
 }
 A.characterSlots = {
   ["HeadSlot"] = {

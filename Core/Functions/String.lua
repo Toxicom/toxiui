@@ -241,8 +241,8 @@ function F.String.FastGradientHex(text, h1, h2)
 end
 
 function F.String.FastColorGradientHex(percentage, h1, h2)
-  local r2, g2, b2 = F.String.HexToRGB(h2)
   local r1, g1, b1 = F.String.HexToRGB(h1)
+  local r2, g2, b2 = F.String.HexToRGB(h2)
 
   return F.FastColorGradient(percentage, r1, g1, b1, r2, g2, b2)
 end
