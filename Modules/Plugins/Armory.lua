@@ -56,7 +56,7 @@ A.characterSlots = {
     id = 2,
     needsEnchant = false,
     needsSocket = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     direction = A.enumDirection.LEFT,
@@ -70,7 +70,7 @@ A.characterSlots = {
   ["BackSlot"] = {
     id = 15,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -79,7 +79,7 @@ A.characterSlots = {
   ["ChestSlot"] = {
     id = 5,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -100,7 +100,7 @@ A.characterSlots = {
   ["WristSlot"] = {
     id = 9,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -121,7 +121,7 @@ A.characterSlots = {
   ["LegsSlot"] = {
     id = 7,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -130,7 +130,7 @@ A.characterSlots = {
   ["FeetSlot"] = {
     id = 8,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -139,7 +139,7 @@ A.characterSlots = {
   ["Finger0Slot"] = {
     id = 11,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -148,7 +148,7 @@ A.characterSlots = {
   ["Finger1Slot"] = {
     id = 12,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -169,7 +169,7 @@ A.characterSlots = {
   ["MainHandSlot"] = {
     id = 16,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       level = 70,
     },
     needsSocket = false,
@@ -178,7 +178,7 @@ A.characterSlots = {
   ["SecondaryHandSlot"] = {
     id = 17,
     needsEnchant = true,
-    messageCondition = {
+    warningCondition = {
       itemType = LE_ITEM_CLASS_WEAPON,
       level = 70,
     },
@@ -199,7 +199,7 @@ function A:GetSlotNameByID(slotId)
 end
 
 function A:CheckMessageCondition(slotOptions)
-  local conditions = slotOptions.messageCondition
+  local conditions = slotOptions.warningCondition
   local enchantNeeded = true
 
   -- Level Condition
@@ -521,13 +521,13 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
         end
       end
     elseif self.db.pageInfo.missingEnchantText and slotOptions.needsEnchant then
-      if not slotOptions.messageCondition or (self:CheckMessageCondition(slotOptions)) then
+      if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
         slotItem.enchantText:SetText(F.String.Error("Missing"))
       else
         slotItem.enchantText:SetText("")
       end
     elseif self.db.pageInfo.missingSocketText and slotOptions.needsSocket then
-      if not slotOptions.messageCondition or (self:CheckMessageCondition(slotOptions)) then
+      if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
         local missingGemSlots = 3 - #slotInfo.gems
         if missingGemSlots > 0 then
           local text = format("Missing %d", missingGemSlots)
