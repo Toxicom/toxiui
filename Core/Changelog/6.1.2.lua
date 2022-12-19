@@ -10,13 +10,16 @@ TXUI.Changelog["6.1.2"] = {
     "WunderBar: Change default background",
     "Armory: Update enchant slots for Dragonflight",
     F.String.Good("[NEW] ") .. "Armory: Socket warning for neck slot. Credits to " .. F.String.Epic("Ryada"),
+    "VehicleBar: Fix taint that would happen during combat while mounting. Credits to " .. F.String.Epic("Ryada"),
 
     "* ElvUI",
     "Movers: Move the Dragon Riding Vigor bar to the bottom",
     "Minimap: Hide tracking icon",
     "Minimap: Increase size of LFG eye",
+    "Reposition and update the Focus frame",
 
     "* Plater",
     "Update interrupt cast color mod",
+    "Update M+ colored mobs mod",
   },
 }
