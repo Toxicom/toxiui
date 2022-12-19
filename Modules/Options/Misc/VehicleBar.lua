@@ -12,7 +12,11 @@ function O:Plugins_VehicleBar()
     end,
     set = function(info, value)
       E.db.TXUI.vehicleBar[info[#info]] = value
-      F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      if info[5] == "dragonRiding" then
+        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+      else
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end
     end,
     args = {},
   }
@@ -95,6 +99,29 @@ function O:Plugins_VehicleBar()
         E.db.TXUI.vehicleBar.animationsMult = 1 / value
       end,
       disabled = animationsDisabled,
+    }
+  end
+
+  self:AddSpacer(options)
+
+  -- Dragon Riding
+  do
+    -- Dragon Riding Group
+    local dragonRidingGroup = self:AddInlineDesc(options, {
+      name = "Dragonriding",
+      hidden = optionsHidden,
+    }, {
+      name = "Enables the vehicle bar while dragonriding.\n\n",
+    }).args
+
+    -- Enable
+    dragonRidingGroup.dragonRiding = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " Vehicle Bar for dragonriding.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.vehicleBar.dragonRiding)
+      end,
     }
   end
 end

@@ -62,7 +62,7 @@ function PF:BuildBigWigsProfile()
             ["spacing"] = 5,
             ["texture"] = "- Tx Left",
             ["visibleBarLimit"] = 8,
-            ["visibleBarLimitEmph"] = 8,
+            ["visibleBarLimitEmph"] = 4,
           },
         },
       },

@@ -21,6 +21,7 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
     if colorChanged then
       frame.colorMap = colorMap
       frame.colorEntry = colorEntry
+      frame.currentColor:SetRGBA(eR, eG, eB, 1)
     end
   end
 

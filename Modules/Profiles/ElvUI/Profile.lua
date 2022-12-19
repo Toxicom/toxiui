@@ -100,7 +100,6 @@ function PF:BuildProfile()
       -- Movers: Bars
       ExperienceBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 43),
       ReputationBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -3, -264),
-      TotemBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -333, 201),
       ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -554, -363),
 
       MirrorTimer1Mover = F.Position("TOP", "AlertFrameMover", "BOTTOM", 0, -defaultPadding),
@@ -137,7 +136,7 @@ function PF:BuildProfile()
       ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
       ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
 
-      ElvUF_FocusMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, 60),
+      ElvUF_FocusMover = F.Position("TOP", "ElvUF_Target", "BOTTOM", 0, -60),
       FocusPowerBarMover = F.Position("TOP", "ElvUF_FocusMover", "BOTTOM", 0, defaultPadding),
       ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_Focus", "BOTTOMLEFT", 0, -defaultPadding),
 
@@ -203,9 +202,9 @@ function PF:BuildProfile()
       PetBattleStatusMover = F.Position("TOP", "PetBattleFrame", "TOP", 0, 0),
       RaidUtility_Mover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -550, -4),
       SocialMenuMover = F.Position("TOPLEFT", "ElvUIParent", "TOPLEFT", 4, -187),
-      TalkingHeadFrameMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -10),
       UIErrorsFrameMover = F.Position("TOP", "UIParent", "TOP", 0, -122),
       VehicleSeatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -305, 330),
+      PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 158),
     }),
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
 
@@ -217,7 +216,7 @@ function PF:BuildProfile()
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 380),
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 380),
 
-      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_PlayerMover", "TOPLEFT", 0, 160),
+      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 160),
       FocusPowerBarMover = F.Position("TOP", "ElvUF_FocusMover", "BOTTOM", 0, defaultPadding),
       ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 0, -defaultPadding),
 
@@ -265,6 +264,7 @@ function PF:BuildProfile()
         -- General MiniMap Icons LFG Eye
         lfgEye = {
           xOffset = F.Dpi(0),
+          scale = 0.8,
         },
 
         -- General MiniMap Icons Mail
@@ -283,13 +283,6 @@ function PF:BuildProfile()
     -- AltPowerBar
     altPowerBar = {
       statusBar = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
-    },
-
-    -- General Totems
-    totems = {
-      growthDirection = "HORIZONTAL",
-      size = F.Dpi(50),
-      spacing = F.Dpi(8),
     },
   })
 
@@ -397,7 +390,7 @@ function PF:BuildProfile()
     disconnected = F.Table.HexToRGB("#ff9387"),
     health = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#1d1d1d")),
     health_backdrop = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#505050")),
-    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#9c0c00")),
+    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#ff0015"), F.Table.HexToRGB("#9c0c00")),
 
     -- UnitFrames Colors Options
     classbackdrop = true,
@@ -750,23 +743,24 @@ function PF:BuildProfile()
     customTexts = {
       -- UnitFrame Focus Custom Texts Name
       ["!Name"] = createCustomText({}, {
+        justifyH = "RIGHT",
         text_format = "[tx:classcolor][name:medium]",
-        xOffset = F.Dpi(5),
+        xOffset = F.Dpi(-5),
         yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
       }),
 
       -- UnitFrame Focus Custom Texts Health
       ["!Health"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        text_format = "[tx:classcolor][health:current:shortvalue] || [perhp]",
-        xOffset = F.Dpi(-10),
+        justifyH = "LEFT",
+        text_format = "[tx:classcolor][perhp]",
+        xOffset = F.Dpi(10),
         yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
       }),
     },
 
     -- UnitFrame Focus Buffs
     buffs = {
-      enable = true,
+      enable = false,
       anchorPoint = "TOPLEFT",
       maxDuration = 0,
       perrow = 5,
@@ -1631,6 +1625,7 @@ function PF:ElvUIProfilePrivate()
 
       minimap = {
         hideClassHallReport = false,
+        hideTracking = true,
       },
     },
 

@@ -7,18 +7,18 @@ I.Data.Contributor = {
     [I.Enum.Developers.TOXI] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Ravencrest
-        ["Calistrø-Ravencrest"] = true,
-        ["Calìstro-Ravencrest"] = true,
-        ["Melissandei-Ravencrest"] = true,
-        ["Toxí-Ravencrest"] = true,
-        ["Toxicom-Ravencrest"] = true,
-        ["Toxicòm-Ravencrest"] = true,
-        ["Toxicøm-Ravencrest"] = true,
-        ["Tòxicom-Ravencrest"] = true,
-        ["Tøxicom-Ravencrest"] = true,
-        ["Tøxii-Ravencrest"] = true,
-        ["Toxilich-Ravencrest"] = true,
-        ["Toxivoker-Ravencrest"] = true,
+        ["Calistrø-Ravencrest"] = true, -- Paladin
+        ["Calìstro-Ravencrest"] = true, -- Mage
+        ["Melissandei-Ravencrest"] = true, -- Druid
+        ["Toxí-Ravencrest"] = true, -- Warrior
+        ["Toxicom-Ravencrest"] = true, -- Warlock
+        ["Toxisin-Ravencrest"] = true, -- Rogue
+        ["Toxicøm-Ravencrest"] = true, -- Priest
+        ["Tòxicom-Ravencrest"] = true, -- Demon Hunter
+        ["Tøxicom-Ravencrest"] = true, -- Shaman
+        ["Tøxii-Ravencrest"] = true, -- Hunter
+        ["Toxilich-Ravencrest"] = true, -- Death Knight
+        ["Toxivoker-Ravencrest"] = true, -- Evoker
 
         -- TarrenMill
         ["Toxiholy-TarrenMill"] = true,
@@ -242,7 +242,8 @@ I.Data.Contributor = {
   [I.Enum.ContributorType.BETA] = {
     ["v0dKa"] = {
       [I.Enum.Flavor.RETAIL] = {
-        ["Bakul-Antonidas"] = true, -- Yes, only 1 Char, 1 Main, He is insane!
+        ["Bakul-Antonidas"] = true,
+        ["Mythelor-Antonidas"] = true,
       },
     },
 

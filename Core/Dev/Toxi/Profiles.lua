@@ -5,6 +5,8 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 --@do-not-package@
 
 local SetCVar = SetCVar
+local unitframeTypes = { "player", "party", "focus", "target", "arena", "boss" }
+local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "lfg", "pet" }
 
 function T:SetupCvars()
   -- CVars
@@ -18,6 +20,9 @@ function T:SetupProfile()
   E.db.TXUI.general.fontStyleOverride[I.Fonts.Primary] = "OUTLINE"
   E.db.TXUI.general.fontStyleOverride[I.Fonts.PrimaryBold] = "OUTLINE"
 
+  -- WunderBar: General
+  E.db.TXUI.wunderbar.general.backgroundTexture = "WorldState Score"
+
   -- WunderBar: Modules
   E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
   E.db.TXUI.wunderbar.modules.LeftPanel[3] = "DataBar"
@@ -25,34 +30,21 @@ function T:SetupProfile()
 
   -- WunderBar: Submodules
   -- WunderBar: MicroMenu
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.chat.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.journal.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.quest.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.shop.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.spell.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.talent.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.pvp.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.ach.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.char.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.lfg.enabled = false
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.pet.enabled = false
-
-  E.db.TXUI.wunderbar.subModules.MicroMenu.icons.journal.enabled = true
+  for _, icon in ipairs(disabledMenuIcons) do
+    E.db.TXUI.wunderbar.subModules.MicroMenu.icons[icon].enabled = false
+  end
 
   -- WunderBar: DataBar
   E.db.TXUI.wunderbar.subModules.DataBar.infoEnabled = true
   E.db.TXUI.wunderbar.subModules.DataBar.showCompletedXP = true
 
   -- WunderBar: Profession
-  E.db.TXUI.wunderbar.subModules.Profession.general.showIcons = false
+  E.db.TXUI.wunderbar.subModules.Profession.general.showIcons = true
 
   -- WunderBar: Hearthstone
   E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 193588 or 6948
 
   -- Themes: Gradient Mode
-  E.db.TXUI.themes.gradientMode.classColorMap[1]["PRIEST"] = F.Table.HexToRGB("#77009f")
-  E.db.TXUI.themes.gradientMode.classColorMap[2]["PRIEST"] = F.Table.HexToRGB("#a000e9")
-
   E.db.TXUI.themes.gradientMode.classColorMap[1]["DEATHKNIGHT"] = F.Table.HexToRGB("#6e1234")
 
   -- Skins: ElvUI
@@ -73,23 +65,29 @@ function T:SetupProfile()
   E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bagButtonSpacing = 2
   E.db.bags.split.player = true
-  E.db.bags.split.bag1 = true
-  E.db.bags.split.bag2 = true
-  E.db.bags.split.bag3 = true
-  E.db.bags.split.bag4 = true
-  E.db.bags.split.bagSpacing = 10
 
+  -- Enable split for bags 1 - 11
+  for i = 1, 11 do
+    E.db.bags.split["bag" .. i] = true
+  end
+
+  E.db.bags.split.bagSpacing = 10
+  E.db.bags.split.bankSpacing = 10
+  E.db.bags.bank = true
   E.db.bags.bankSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bankButtonSpacing = 2
-  E.db.bags.bank = true
-  E.db.bags.split.bag5 = true
-  E.db.bags.split.bag6 = true
-  E.db.bags.split.bag7 = true
-  E.db.bags.split.bag8 = true
-  E.db.bags.split.bag9 = true
-  E.db.bags.split.bag10 = true
-  E.db.bags.split.bag11 = true
-  E.db.bags.split.bankSpacing = 10
+
+  -- ElvUI: UnitFrames
+  for _, ufType in ipairs(unitframeTypes) do
+    E.db.unitframe.units[ufType].customTexts["!Health"].font = "- Personal"
+    E.db.unitframe.units[ufType].customTexts["!Health"].fontOutline = "OUTLINE"
+    E.db.unitframe.units[ufType].customTexts["!Health"].size = 36
+    E.db.unitframe.units[ufType].customTexts["!Health"].text_format = "[tx:classcolor][perhp]"
+    E.db.unitframe.units[ufType].customTexts["!Health"].yOffset = 15
+  end
+
+  -- WindTools
+  E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
 end
 
 T:AddCallback("SetupCvars")

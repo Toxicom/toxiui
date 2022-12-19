@@ -932,9 +932,9 @@ function O:Armory()
     do
       -- Enchant Group
       local enchantGroup = self:AddInlineDesc(tab, {
-        name = "Enchant Strings",
+        name = "Enchant & Socket Strings",
       }, {
-        name = "Settings for strings displaying enchant info about your item.\n\n",
+        name = "Settings for strings displaying enchant and socket info about your item.\n\n",
       }).args
 
       -- Enable
@@ -955,8 +955,17 @@ function O:Armory()
       enchantGroup.missingEnchantText = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Shows a red 'Missing' string when you're missing an enchant.",
+        desc = "Shows a warning when you're missing an enchant.",
         name = "Missing Enchants",
+        disabled = optionsDisabled,
+      }
+
+      -- Missing Socket
+      enchantGroup.missingSocketText = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Shows a warning when you're missing sockets on your necklace.",
+        name = "Missing Sockets",
         disabled = optionsDisabled,
       }
 

@@ -123,12 +123,12 @@ P.themes = {
       [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
         DISCONNECTED = F.Table.HexToRGB("#ff6b59"), -- disconnect
         TAPPED = F.Table.HexToRGB("#a3a6b0"), -- tapped
-        DEAD = F.Table.HexToRGB("#48000a"), -- dead
+        DEAD = F.Table.HexToRGB("#cd001c"), -- dead
       },
       [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
         DISCONNECTED = F.Table.HexToRGB("#e85747"), -- disconnect
         TAPPED = F.Table.HexToRGB("#7d828f"), -- tapped
-        DEAD = F.Table.HexToRGB("#2a0006"), -- dead
+        DEAD = F.Table.HexToRGB("#61000e"), -- dead
       },
     },
 
@@ -143,7 +143,7 @@ P.themes = {
         MONK = F.Table.HexToRGB("#00ff96"),
         PALADIN = F.Table.HexToRGB("#f58cba"),
         PRIEST = F.Table.HexToRGB("#ffffff"),
-        ROGUE = F.Table.HexToRGB("#ffeb40"),
+        ROGUE = F.Table.HexToRGB("#fff368"),
         SHAMAN = F.Table.HexToRGB("#0a7ded"),
         WARLOCK = F.Table.HexToRGB("#8561ed"),
         WARRIOR = F.Table.HexToRGB("#e0a361"),
@@ -158,7 +158,7 @@ P.themes = {
         MONK = F.Table.HexToRGB("#05bf73"),
         PALADIN = F.Table.HexToRGB("#d9548f"),
         PRIEST = F.Table.HexToRGB("#d1d1d1"),
-        ROGUE = F.Table.HexToRGB("#ffd142"),
+        ROGUE = F.Table.HexToRGB("#ffb759"),
         SHAMAN = F.Table.HexToRGB("#0061bf"),
         WARLOCK = F.Table.HexToRGB("#634aad"),
         WARRIOR = F.Table.HexToRGB("#c78c4a"),
@@ -293,6 +293,7 @@ P.vehicleBar = {
   animations = true,
   animationsMult = 1, -- Animation speed, higher than 1 => slower, lower than 1 => faster
   -- This applies to bar combat fadeIn/fadeOut and "normal" font color changes (not clock/txui button etc)
+  dragonRiding = true,
 
   position = "BOTTOM,ElvUIParent,BOTTOM,0,210",
 }
@@ -458,6 +459,7 @@ P.armory = {
     enchantTextEnabled = true,
     abbreviateEnchantText = true,
     missingEnchantText = true,
+    missingSocketText = true,
 
     itemQualityGradientEnabled = true,
     itemQualityGradientWidth = 65,
@@ -551,10 +553,10 @@ P.wunderbar = {
     noCombatHover = false,
     noHover = false,
 
-    backgroundTexture = "BuiOnePixel",
+    backgroundTexture = "TX WorldState Score",
     backgroundColor = "CLASS", -- NONE, CLASS, VALUE (ElvUI), CUSTOM
     backgroundCustomColor = F.Table.HexToRGB("#ffffff00"),
-    backgroundGradient = false,
+    backgroundGradient = true,
     backgroundGradientAlpha = 1,
 
     accentFontColor = "TXUI", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
@@ -789,8 +791,8 @@ P.wunderbar = {
         [270] = "", -- monk mist
         [577] = "", -- dh havoc
         [581] = "", -- dh veng
-        [1467] = "", -- evo dev (fire mage icon)
-        [1468] = "", -- evo pres (resto druid icon)
+        [1467] = "", -- ev devastation
+        [1468] = "", -- ev preservation
 
         -- Wrath
         -- TODO: convert to spec ids
