@@ -5,5 +5,7 @@ TXUI.Changelog["6.1.3"] = {
   CHANGES = {
     "* ToxiUI",
     "...",
+    "* Plater",
+    "Disable Target color on the M+ Colored Mobs mod",
   },
 }
