@@ -91,6 +91,7 @@ end
 
 function VB:OnCombatEvent(toggle)
   self.combatLock = toggle
+  if self.combatLock then self:StopAllAnimations() end
 end
 
 function VB:UpdateBar()
