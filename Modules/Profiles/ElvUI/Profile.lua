@@ -1646,6 +1646,15 @@ function PF:ElvUIProfilePrivate()
   })
 end
 
+function PF:ElvUIProfileGlobal()
+  F.Table.Crush(E.global, {
+    -- General
+    general = {
+      ultrawide = false,
+    },
+  })
+end
+
 function PF:UpdateProfileForTheme()
   local pf = self:BuildProfile()
 

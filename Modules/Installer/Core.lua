@@ -94,6 +94,7 @@ function IS:ElvUI(callback)
   -- ElvUI: Profile
   PF:MergeElvUIProfile()
   PF:ElvUIProfilePrivate()
+  PF:ElvUIProfileGlobal()
 
   -- ElvUI: Fonts
   PF:ElvUIFont()
