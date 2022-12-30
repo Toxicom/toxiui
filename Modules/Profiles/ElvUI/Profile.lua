@@ -1651,6 +1651,15 @@ function PF:ElvUIProfileGlobal()
     -- General
     general = {
       ultrawide = false,
+
+      WorldMapCoordinates = {
+        position = "BOTTOMRIGHT",
+      },
+
+      AceGUI = {
+        width = 1440,
+        height = 810,
+      },
     },
   })
 end
