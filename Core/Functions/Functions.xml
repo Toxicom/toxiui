@@ -8,4 +8,5 @@
   <Script file='Log.lua' />
   <Script file='String.lua' />
   <Script file='Table.lua' />
+  <Script file='Keys.lua' />
 </Ui>

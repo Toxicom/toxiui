@@ -246,3 +246,7 @@ function F.String.FastColorGradientHex(percentage, h1, h2)
 
   return F.FastColorGradient(percentage, r1, g1, b1, r2, g2, b2)
 end
+
+function F.String.StartsWith(str, prefix)
+  return string.sub(str, 1, string.len(prefix)) == prefix
+end
