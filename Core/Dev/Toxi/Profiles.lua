@@ -5,6 +5,7 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 --@do-not-package@
 
 local SetCVar = SetCVar
+local bagFonts = { "countFont", "itemInfoFont", "itemLevelFont" }
 local unitframeTypes = { "player", "party", "focus", "target", "arena", "boss" }
 local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "lfg", "pet" }
 
@@ -61,6 +62,13 @@ function T:SetupProfile()
 
   -- ElvUI: Bags
   E.db.bags.useBlizzardCleanup = true
+
+  -- ElvUI: Bags Fonts
+  for _, bagFont in ipairs(bagFonts) do
+    E.db.bags[bagFont] = "- Personal"
+    E.db.bags[bagFont .. "Outline"] = "OUTLINE"
+    E.db.bags[bagFont .. "Size"] = 20
+  end
 
   E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bagButtonSpacing = 2
