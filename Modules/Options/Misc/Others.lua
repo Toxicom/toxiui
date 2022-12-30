@@ -25,6 +25,25 @@ function O:Plugins_Others()
   -- Spacer
   self:AddSpacer(options)
 
+  -- Keys Command
+  do
+    local keysCommandGroup = self:AddInlineRequirementsDesc(options, {
+      name = TXUI.Title .. " M+ Keys Chat Command",
+    }, {
+      name = "This feature scans your chat and will respond to the " .. F.String.ToxiUI("!keys") .. " command by linking your current Mythic Keystone.\n\n",
+    }).args
+
+    keysCommandGroup.keysCommandButton = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "This feature scans your chat and will respond to the " .. F.String.ToxiUI("!keys") .. " command by linking your current Mythic Keystone.",
+      name = "@TODO: Make this actually functional",
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
   -- ElvUI AFK Mode
   do
     -- ElvUI AFK Mode Group
