@@ -50,6 +50,8 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       if F.IsAddOnEnabled("ElvUI_SLE") and E.private.sle and (E.private.sle.professions.deconButton.enable or E.private.sle.professions.enchant.enchScroll) then
         return requirement
       end
+    elseif requirement == I.Enum.Requirements.ASTRAL_KEYS_ENABLED then
+      if F.IsAddOnEnabled("AstralKeys") then return requirement end
     elseif requirement == I.Enum.Requirements.ARMORY_DISABLED then
       if
         F.GetDBFromPath("sle.armory.character.enable")

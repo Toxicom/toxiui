@@ -15,6 +15,7 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.SL_VEHICLE_BAR_DISABLED] = "You can't enable this option because Shadow & Light's Vehicle Bar module is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.SL_MINIMAP_COORDS_DISABLED] = "You can't enable this option because Shadow & Light's Minimap Coordinates module is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.SL_DECONSTRUCT_DISABLED] = "You can't enable this option because Shadow & Light's Deconstruct module is currently turned on. Please disable it to unlock this option.",
+  [I.Enum.Requirements.ASTRAL_KEYS_ENABLED] = "You can't enable this option because AstralKeys is currently loaded. Please disable it to unlock this option.",
   [I.Enum.Requirements.ARMORY_DISABLED] = "You can't enable this option because Shadow & Light's Character Armory module is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.OTHER_BLIZZARD_FONTS_DISABLED] = "You can't enable this option because Shadow & Light's Media module is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.WT_ENABLED] = "NO_STRING_NEEDED",

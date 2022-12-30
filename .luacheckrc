@@ -1554,6 +1554,7 @@ globals = {
   "ConfirmTalentWipe",
   "ConsoleAddMessage",
   "ConsoleExec",
+  "Constants",
   "ContainerIDToInventoryID",
   "ContainerRefundItemPurchase",
   "ConvertToParty",

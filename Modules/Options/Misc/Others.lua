@@ -31,7 +31,7 @@ function O:Plugins_Others()
       name = TXUI.Title .. " M+ Keys Chat Command",
     }, {
       name = "This feature scans your chat and will respond to the " .. F.String.ToxiUI("!keys") .. " command by linking your current Mythic Keystone.\n\n",
-    }).args
+    }, I.Requirements.Keys).args
 
     keysCommandGroup.keysCommandButton = {
       order = self:GetOrder(),

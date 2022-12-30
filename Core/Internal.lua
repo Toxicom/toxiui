@@ -146,6 +146,9 @@ I.Requirements = {
     I.Enum.Requirements.SL_DECONSTRUCT_DISABLED,
     I.Enum.Requirements.ELVUI_BAGS_ENABLED,
   },
+  ["Keys"] = {
+    I.Enum.Requirements.ASTRAL_KEYS_ENABLED,
+  },
   ["ElvUITheme"] = {
     I.Enum.Requirements.OTHER_THEMES_DISABLED,
   },
