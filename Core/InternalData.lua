@@ -177,6 +177,14 @@ I.Data.Contributor = {
         ["Ikrekot-MirageRaceway"] = true,
       },
     },
+
+    ["Hoffi"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Eredar
+        ["Currybart-Eredar"] = true,
+        ["Leahnari-Eredar"] = true,
+      },
+    },
   },
 
   -- EPIC => Purple Badge (epic supporter)
