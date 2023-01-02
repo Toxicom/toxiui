@@ -1015,7 +1015,7 @@ function PF:BuildProfile()
       raidWideSorting = false,
       startFromCenter = false,
       verticalSpacing = F.Dpi(1),
-      visibility = TXUI.Retail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
+      visibility = TXUI.IsRetail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
 
       -- UnitFrame Raid1 Custom Texts
       customTexts = {
@@ -1098,7 +1098,7 @@ function PF:BuildProfile()
       raidWideSorting = false,
       startFromCenter = false,
       verticalSpacing = F.Dpi(1),
-      visibility = TXUI.Retail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
+      visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
 
       -- UnitFrame Raid2 Custom Texts
       customTexts = {
@@ -1180,7 +1180,7 @@ function PF:BuildProfile()
       raidWideSorting = false,
       startFromCenter = false,
       verticalSpacing = F.Dpi(1),
-      visibility = TXUI.Retail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
+      visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
 
       -- UnitFrame Raid3 Custom Texts
       customTexts = {
