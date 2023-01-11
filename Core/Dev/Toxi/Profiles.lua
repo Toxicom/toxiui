@@ -95,7 +95,9 @@ function T:SetupProfile()
   end
 
   -- WindTools
-  E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
+  if TXUI.IsRetail then
+    E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
+  end
 end
 
 T:AddCallback("SetupCvars")
