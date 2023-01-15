@@ -40,7 +40,7 @@ I.FontDescription = {
   [I.Fonts.PrimaryBold] = "The bold version of the Primary font, used only in a couple of places.",
   [I.Fonts.Title] = "Used mostly for names.",
   [I.Fonts.TitleSecondary] = "Used for names in Raid Frames.",
-  [I.Fonts.Number] = "Main number font, mostly used for cooldown text.",
+  [I.Fonts.Number] = "Main number font, mostly used for cooldown text and UnitFrame health.",
   [I.Fonts.BigNumber] = "Mostly used for combat text.",
 }
 
