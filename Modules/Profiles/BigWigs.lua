@@ -52,7 +52,7 @@ function PF:BuildBigWigsProfile()
             ["emphasizeGrowup"] = true,
             ["emphasizeTime"] = 10,
             ["fill"] = true,
-            ["fontName"] = "- M 700",
+            ["fontName"] = F.FontOverride(I.Fonts.TitleSecondary),
             ["fontSize"] = 16,
             ["fontSizeEmph"] = 16,
             ["fontSizeNameplate"] = 12,
@@ -137,7 +137,7 @@ function PF:BuildBigWigsProfile()
               [4] = -215,
             },
             ["emphUppercase"] = false,
-            ["fontName"] = "- M 700",
+            ["fontName"] = F.FontOverride(I.Fonts.TitleSecondary),
             ["fontSize"] = 30,
             ["normalPosition"] = {
               [1] = "CENTER",

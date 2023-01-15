@@ -1022,7 +1022,7 @@ function PF:BuildProfile()
         -- UnitFrame Raid1 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:classcolor][name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1105,7 +1105,7 @@ function PF:BuildProfile()
         -- UnitFrame Raid2 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:classcolor][name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1187,7 +1187,7 @@ function PF:BuildProfile()
         -- UnitFrame Raid3 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:classcolor][name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),

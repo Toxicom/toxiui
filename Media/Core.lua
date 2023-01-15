@@ -19,7 +19,7 @@ F.AddMedia("font", "Montserrat-Light.ttf", "- M 300", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Regular.ttf", "- M 400", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Medium.ttf", I.Fonts.Primary, nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-SemiBold.ttf", I.Fonts.PrimaryBold, nil, westAndRUBits)
-F.AddMedia("font", "Montserrat-Bold.ttf", "- M 700", nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleSecondary, nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-ExtraBold.ttf", "- M 800", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.BigNumber, nil, westAndRUBits)
 
