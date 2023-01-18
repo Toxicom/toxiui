@@ -16,4 +16,8 @@ TXUI.Changelog["6.1.3"] = {
     "* Plater",
     "Disable Target color on the M+ Colored Mobs mod.",
   },
+
+  CHANGES_WRATH = {
+    "Fixes for Wrath Ulduar patch API changes",
+  },
 }
