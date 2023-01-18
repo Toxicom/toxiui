@@ -5,6 +5,7 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 --@do-not-package@
 
 local SetCVar = SetCVar
+local bagFonts = { "countFont", "itemInfoFont", "itemLevelFont" }
 local unitframeTypes = { "player", "party", "focus", "target", "arena", "boss" }
 local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "lfg", "pet" }
 
@@ -45,7 +46,7 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 193588 or 6948
 
   -- Themes: Gradient Mode
-  E.db.TXUI.themes.gradientMode.classColorMap[1]["DEATHKNIGHT"] = F.Table.HexToRGB("#6e1234")
+  -- E.db.TXUI.themes.gradientMode.classColorMap[1]["DEATHKNIGHT"] = F.Table.HexToRGB("#6e1234")
 
   -- Skins: ElvUI
   E.db.TXUI.addons.elvUITheme.enabled = true
@@ -61,6 +62,13 @@ function T:SetupProfile()
 
   -- ElvUI: Bags
   E.db.bags.useBlizzardCleanup = true
+
+  -- ElvUI: Bags Fonts
+  for _, bagFont in ipairs(bagFonts) do
+    E.db.bags[bagFont] = "- Personal"
+    E.db.bags[bagFont .. "Outline"] = "OUTLINE"
+    E.db.bags[bagFont .. "Size"] = 20
+  end
 
   E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bagButtonSpacing = 2
@@ -87,7 +95,9 @@ function T:SetupProfile()
   end
 
   -- WindTools
-  E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
+  if TXUI.IsRetail then
+    E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
+  end
 end
 
 T:AddCallback("SetupCvars")

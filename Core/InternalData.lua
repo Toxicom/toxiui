@@ -10,7 +10,7 @@ I.Data.Contributor = {
         ["Calistrø-Ravencrest"] = true, -- Paladin
         ["Calìstro-Ravencrest"] = true, -- Mage
         ["Melissandei-Ravencrest"] = true, -- Druid
-        ["Toxí-Ravencrest"] = true, -- Warrior
+        ["Toxirage-Ravencrest"] = true, -- Warrior
         ["Toxicom-Ravencrest"] = true, -- Warlock
         ["Toxisin-Ravencrest"] = true, -- Rogue
         ["Toxicøm-Ravencrest"] = true, -- Priest
@@ -53,6 +53,7 @@ I.Data.Contributor = {
         ["Toxilich-PyrewoodVillage"] = true,
         ["Toxivoid-PyrewoodVillage"] = true,
         ["Melissandei-PyrewoodVillage"] = true,
+        ["Toxirage-PyrewoodVillage"] = true,
       },
     },
 
@@ -175,6 +176,14 @@ I.Data.Contributor = {
         ["Krekot-MirageRaceway"] = true,
         ["Prekot-MirageRaceway"] = true,
         ["Ikrekot-MirageRaceway"] = true,
+      },
+    },
+
+    ["Hoffi"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Eredar
+        ["Currybart-Eredar"] = true,
+        ["Leahnari-Eredar"] = true,
       },
     },
   },

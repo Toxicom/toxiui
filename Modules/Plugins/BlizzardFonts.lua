@@ -38,7 +38,6 @@ function BF:SettingsUpdate()
   if TXUI.IsRetail then
     self:UpdateFont("InvoiceTextFontNormal", "mail")
   else
-    self:UpdateFont("OpenMailBodyText", "mail")
     self:UpdateFont("InvoiceFont_Med", "mail", medium)
     self:UpdateFont("InvoiceFont_Small", "mail", small)
     self:UpdateFont("MailFont_Large", "mail", large)

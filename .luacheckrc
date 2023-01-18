@@ -465,6 +465,7 @@ globals = {
   "C_Commentator.ZoomIn",
   "C_Commentator.ZoomOut",
   "C_Commentator",
+  "C_Container.GetItemCooldown",
   "C_Container.GetContainerFreeSlots",
   "C_Container.GetContainerItemCooldown",
   "C_Container.GetContainerItemDurability",

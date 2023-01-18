@@ -1015,14 +1015,14 @@ function PF:BuildProfile()
       raidWideSorting = false,
       startFromCenter = false,
       verticalSpacing = F.Dpi(1),
-      visibility = TXUI.Retail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
+      visibility = TXUI.IsRetail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
 
       -- UnitFrame Raid1 Custom Texts
       customTexts = {
         -- UnitFrame Raid1 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:classcolor][name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1098,14 +1098,14 @@ function PF:BuildProfile()
       raidWideSorting = false,
       startFromCenter = false,
       verticalSpacing = F.Dpi(1),
-      visibility = TXUI.Retail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
+      visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
 
       -- UnitFrame Raid2 Custom Texts
       customTexts = {
         -- UnitFrame Raid2 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:classcolor][name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1180,14 +1180,14 @@ function PF:BuildProfile()
       raidWideSorting = false,
       startFromCenter = false,
       verticalSpacing = F.Dpi(1),
-      visibility = TXUI.Retail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
+      visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
 
       -- UnitFrame Raid3 Custom Texts
       customTexts = {
         -- UnitFrame Raid3 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:classcolor][name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1642,6 +1642,24 @@ function PF:ElvUIProfilePrivate()
     -- Skins
     skins = {
       parchmentRemoverEnable = true,
+    },
+  })
+end
+
+function PF:ElvUIProfileGlobal()
+  F.Table.Crush(E.global, {
+    -- General
+    general = {
+      ultrawide = false,
+
+      WorldMapCoordinates = {
+        position = "BOTTOMRIGHT",
+      },
+
+      AceGUI = {
+        width = 1440,
+        height = 810,
+      },
     },
   })
 end

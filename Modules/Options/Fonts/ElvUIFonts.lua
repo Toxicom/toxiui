@@ -76,8 +76,10 @@ function O:Fonts_ElvUIFonts()
 
   local function generateFontOption(fontKey, fontName)
     -- Font Group
-    local fontGroup = self:AddInlineGroup(options, {
+    local fontGroup = self:AddInlineDesc(options, {
       name = fontName .. " Font",
+    }, {
+      name = F.String.Good(I.FontDescription[fontKey]) .. "\n\n" .. "Default font: " .. F.String.ToxiUI(fontKey),
     }).args
 
     -- Fonts Font
