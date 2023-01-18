@@ -11,11 +11,7 @@ function F.Color.EqualToRGB(aColor, r, g, b)
 end
 
 function F.Color.SetGradient(obj, orientation, minColor, maxColor)
-  if TXUI.IsRetail then
-    obj:SetGradient(orientation, minColor, maxColor)
-  else
-    obj:SetGradientAlpha(orientation, minColor.r, minColor.g, minColor.b, minColor.a, maxColor.r, maxColor.g, maxColor.b, maxColor.a)
-  end
+  obj:SetGradient(orientation, minColor, maxColor)
 end
 
 function F.Color.SetGradientRGB(obj, orientation, r1, g1, b1, a1, r2, g2, b2, a2)
