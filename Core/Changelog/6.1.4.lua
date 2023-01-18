@@ -1,8 +1,9 @@
 local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
 
 TXUI.Changelog["6.1.4"] = {
-  HOTFIX = true,
+  HOTFIX = false,
   CHANGES = {
-    "hello",
+    "* ToxiUI",
+    "Fix UI scale for 2160p resolution",
   },
 }
