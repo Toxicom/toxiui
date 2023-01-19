@@ -78,7 +78,7 @@ function TXUI:Initialize()
   end
 
   -- Set correct log level
-  self.LogLevel = self.DevRelease and 5 or 3
+  self.LogLevel = self.DevRelease and 4 or 3
 
   -- Check required ElvUI Version
   local ElvUIVersion = tonumber(E.version)
