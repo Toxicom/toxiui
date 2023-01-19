@@ -121,6 +121,7 @@ end
 
 function F.PixelPerfect()
   local perfectScale = 768 / E.physicalHeight
+  if E.physicalHeight == 2160 then perfectScale = perfectScale * 2 end
   return perfectScale
 end
 
