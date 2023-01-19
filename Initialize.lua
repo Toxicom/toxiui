@@ -60,9 +60,6 @@ function TXUI:Initialize()
 
   self.Flavor = flavorMap[self.MetaFlavor] or I.Enum.Flavor.RETAIL
 
-  -- Set Log level
-  self.LogLevel = 3
-
   -- Call pre init for ourselfs
   self:ModulePreInitialize(self)
 
@@ -78,8 +75,10 @@ function TXUI:Initialize()
     end
 
     self.DevRelease = (self.DevTag ~= "")
-    self.LogLevel = 4
   end
+
+  -- Set correct log level
+  self.LogLevel = self.DevRelease and 5 or 3
 
   -- Check required ElvUI Version
   local ElvUIVersion = tonumber(E.version)

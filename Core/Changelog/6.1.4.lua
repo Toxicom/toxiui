@@ -5,5 +5,6 @@ TXUI.Changelog["6.1.4"] = {
   CHANGES = {
     "* ToxiUI",
     "Fix UI scale for 2160p resolution",
+    "Potentially fix DEBUG messages in Stable releases",
   },
 }
