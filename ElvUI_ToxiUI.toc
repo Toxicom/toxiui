@@ -1,7 +1,7 @@
 ## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff00e4f5UI|r
 ## Notes: Minimalistic ElvUI Edit by |cff00e4f5Toxi|r
 ## Author: Toxi (Toxicom#2957)
-## Version: 6.1.5
+## Version: 6.1.6
 ## RequiredDeps: ElvUI, ElvUI_WindTools
 ## OptionalDeps: Details, Plater
 ## DefaultState: Enabled
