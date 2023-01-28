@@ -192,14 +192,14 @@ MM.microMenu = {
         end
       end,
 
-      RightButton = function(frame)
-        local dtModule = WB:GetElvUIDataText("Guild")
+      -- RightButton = function(frame)
+      --   local dtModule = WB:GetElvUIDataText("Guild")
 
-        if dtModule then
-          dtModule.eventFunc(WB:GetElvUIDummy(), "GUILD_ROSTER_UPDATE")
-          dtModule.onClick(frame, "RightButton")
-        end
-      end,
+      --   if dtModule then
+      --     dtModule.eventFunc(WB:GetElvUIDummy(), "GUILD_ROSTER_UPDATE")
+      --     dtModule.onClick(frame, "RightButton")
+      --   end
+      -- end,
     },
   },
   ["social"] = {
@@ -470,15 +470,7 @@ function MM:ButtonEnter(button)
       skipTitle = true
     end
   elseif button.id == "guild" then
-    DT.tooltip:SetOwner(button, "ANCHOR_TOP", 0, 20)
-
-    local dtModule = WB:GetElvUIDataText("Guild")
-
-    if dtModule then
-      dtModule.eventFunc(WB:GetElvUIDummy(), "GUILD_ROSTER_UPDATE")
-      dtModule.onEnter()
-      skipTitle = true
-    end
+    return
   elseif button.id == "txui" then
     self:ToxiUITooltip(button)
     return
