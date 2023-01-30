@@ -8,6 +8,16 @@ function PF:BuildBigWigsProfile()
   local pf = {}
   local profileName = I.ProfileNames[E.db.TXUI.installer.layout]
 
+  local BigWigsAnchor_x = 1190
+  local BigWigsEmphasizeAnchor_x = 810
+  local BigWigsProximity_x = 845
+
+  if E.physicalWidth == 3440 then
+    BigWigsAnchor_x = 1659
+    BigWigsEmphasizeAnchor_x = 1046
+    BigWigsProximity_x = 1087
+  end
+
   F.Table.Crush(pf, {
     ["namespaces"] = {
       ["BigWigs_Plugins_AltPower"] = {
@@ -40,11 +50,11 @@ function PF:BuildBigWigsProfile()
           [profileName] = {
             ["BigWigsAnchor_height"] = 26,
             ["BigWigsAnchor_width"] = 285,
-            ["BigWigsAnchor_x"] = 1190,
+            ["BigWigsAnchor_x"] = BigWigsAnchor_x,
             ["BigWigsAnchor_y"] = 230,
             ["BigWigsEmphasizeAnchor_height"] = 26,
             ["BigWigsEmphasizeAnchor_width"] = 274,
-            ["BigWigsEmphasizeAnchor_x"] = 810,
+            ["BigWigsEmphasizeAnchor_x"] = BigWigsEmphasizeAnchor_x,
             ["BigWigsEmphasizeAnchor_y"] = 300,
             ["alignText"] = "RIGHT",
             ["alignTime"] = "LEFT",
@@ -159,7 +169,7 @@ function PF:BuildBigWigsProfile()
               ["close"] = false,
               ["sound"] = false,
             },
-            ["posx"] = 845,
+            ["posx"] = BigWigsProximity_x,
             ["posy"] = 155,
           },
         },
