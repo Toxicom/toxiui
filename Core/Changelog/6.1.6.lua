@@ -4,6 +4,6 @@ TXUI.Changelog["6.1.6"] = {
   HOTFIX = true,
   CHANGES = {
     "* ToxiUI",
-    "hello",
+    "Details: Fix 'Deaths' window LUA error (still needs a fix for class icons). Credits to " .. F.String.Class("shrift", "DEATHKNIGHT"),
   },
 }
