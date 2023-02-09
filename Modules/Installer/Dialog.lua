@@ -64,6 +64,11 @@ function IS:Dialog()
           installFrame.Option1:SetScript("OnClick", function()
             installFrame.Next:Click()
           end)
+          installFrame.Option2:Show()
+          installFrame.Option2:SetText("Skip Process")
+          installFrame.Option2:SetScript("OnClick", function()
+            installFrame:Hide()
+          end)
         end
       end,
 
