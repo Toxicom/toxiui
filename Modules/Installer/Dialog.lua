@@ -25,6 +25,15 @@ function IS:HideAnnoyances()
   end
 end
 
+local function InstallComplete()
+  E.private.install_complete = E.version
+
+  -- TOXIUI DB KEY THAT ITS INSTALLED:
+  -- INSERT HERE
+
+  C_UI.Reload()
+end
+
 -- Installer Dialog Table
 function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
@@ -35,20 +44,6 @@ function IS:Dialog()
 
   -- Hide some of the first install popups
   self:HideAnnoyances()
-
-  -- if an another addon (lol the fuck?) is open, close it
-  installer:CloseInstall()
-
-  -- Custom close frame handler
-  installFrame:SetScript("OnHide", function()
-    if self.reloadRequired or F.IsTXUIProfile() then
-      IS:Complete(not self.reloadRequired)
-    else
-      installer:CloseInstall()
-    end
-
-    self.installerOpen = false
-  end)
 
   -- return our Installer
   return {
@@ -80,6 +75,11 @@ function IS:Dialog()
           installFrame.Option1:SetText("Install")
           installFrame.Option1:SetScript("OnClick", function()
             installFrame.Next:Click()
+          end)
+          installFrame.Option2:Show()
+          installFrame.Option2:SetText("Skip Process")
+          installFrame.Option2:SetScript("OnClick", function()
+            InstallComplete()
           end)
         end
       end,
@@ -266,6 +266,7 @@ function IS:Dialog()
         installFrame.Option1:SetText("Finish")
         installFrame.Option1:SetScript("OnClick", function()
           installFrame:Hide()
+          InstallComplete()
         end)
 
         installFrame.Option2:Show()
