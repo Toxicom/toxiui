@@ -13,6 +13,7 @@ function IS:HideAnnoyances()
   E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
   E:StaticPopup_Hide("DISABLE_INCOMPATIBLE_ADDON")
   E:StaticPopup_Hide("SCRIPT_PROFILE")
+end
 
 -- Installer Dialog Table
 function IS:Dialog()
@@ -33,16 +34,16 @@ function IS:Dialog()
         self.installerOpen = true
         self:HideAnnoyances()
 
-          -- Custom close frame handler
-          installFrame:SetScript("OnHide", function()
-            if self.reloadRequired or F.IsTXUIProfile() then
-              IS:Complete(not self.reloadRequired)
-            else
-              installer:CloseInstall()
-            end
+        -- Custom close frame handler
+        installFrame:SetScript("OnHide", function()
+          if self.reloadRequired or F.IsTXUIProfile() then
+            IS:Complete(not self.reloadRequired)
+          else
+            installer:CloseInstall()
+          end
 
-            self.installerOpen = false
-          end)
+          self.installerOpen = false
+        end)
 
         if F.IsAddOnEnabled("SharedMedia_ToxiUI") then
           installFrame.SubTitle:SetText(F.String.Warning("WARNING!"))
