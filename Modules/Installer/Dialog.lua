@@ -14,17 +14,6 @@ function IS:HideAnnoyances()
   E:StaticPopup_Hide("DISABLE_INCOMPATIBLE_ADDON")
   E:StaticPopup_Hide("SCRIPT_PROFILE")
 
-  -- Disable milion details popups
-  if _G["Details"] then
-    if _G["_detalhes"] then _G["_detalhes"].is_first_run = false end
-
-    _G["Details"]:SetTutorialCVar("STREAMER_PLUGIN_FIRSTRUN", true)
-    _G["Details"]:SetTutorialCVar("version_announce", 1)
-    _G["Details"].auto_open_news_window = false
-    _G["Details"].character_first_run = false
-  end
-end
-
 -- Installer Dialog Table
 function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
@@ -32,23 +21,6 @@ function IS:Dialog()
 
   -- force complete otherwise setup dosen't show
   E.private.install_complete = E.version
-
-  -- Hide some of the first install popups
-  self:HideAnnoyances()
-
-  -- if an another addon (lol the fuck?) is open, close it
-  installer:CloseInstall()
-
-  -- Custom close frame handler
-  installFrame:SetScript("OnHide", function()
-    if self.reloadRequired or F.IsTXUIProfile() then
-      IS:Complete(not self.reloadRequired)
-    else
-      installer:CloseInstall()
-    end
-
-    self.installerOpen = false
-  end)
 
   -- return our Installer
   return {
@@ -60,6 +32,17 @@ function IS:Dialog()
       [1] = function()
         self.installerOpen = true
         self:HideAnnoyances()
+
+          -- Custom close frame handler
+          installFrame:SetScript("OnHide", function()
+            if self.reloadRequired or F.IsTXUIProfile() then
+              IS:Complete(not self.reloadRequired)
+            else
+              installer:CloseInstall()
+            end
+
+            self.installerOpen = false
+          end)
 
         if F.IsAddOnEnabled("SharedMedia_ToxiUI") then
           installFrame.SubTitle:SetText(F.String.Warning("WARNING!"))
