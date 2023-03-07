@@ -29,7 +29,14 @@ end
 function SD:GetRowColor(frame)
   local actor = frame.minha_tabela
   if actor then
-    local classId = actor:class()
+    local classId
+    if actor.class then
+      classId = actor:class()
+    elseif actor[4] then
+      -- Index 4 is the element that holds the classId
+      -- If this breaks in the future it is likely this element has moved
+      classId = actor[4]
+    end
     if classId and classId ~= "UNKNOW" then return "classColorMap", classId end
   end
 end
