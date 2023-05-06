@@ -31,7 +31,14 @@ end
 function WB:GetElvUIDataText(name)
   local dt = DT.RegisteredDataTexts[name]
 
-  if dt and (dt.category == nil or dt.category ~= "Data Broker") then return dt end
+  if dt and dt.category ~= "Data Broker" then return dt end
+end
+
+function WB:ConnectVirtualFrameToDataText(dataTextName, virtualFrame)
+  local dt = self:GetElvUIDataText(dataTextName)
+  if dt.applySettings then
+    dt.applySettings(virtualFrame, E.media.hexvaluecolor)
+  end
 end
 
 function WB:FlashFontOnEvent(fs, icon)

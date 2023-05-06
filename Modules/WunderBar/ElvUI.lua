@@ -155,6 +155,15 @@ function WB:RegisterElvUIDatatexts()
         local constructed = WB:NewModule(name)
         self:ConstructElvUIDataText(constructed, dt)
         self:RegisterSubModule(constructed, dt.events)
+
+        -- Create virtual frame and connect it to datatext
+        constructed.virtualFrame = {
+          name = dataTextName,
+          text = {
+            SetFormattedText = E.noop
+          }
+        }
+        WB:ConnectVirtualFrameToDataText(dataTextName, constructed.virtualFrame)
       end
     end
   end

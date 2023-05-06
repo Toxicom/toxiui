@@ -192,14 +192,14 @@ MM.microMenu = {
         end
       end,
 
-      -- RightButton = function(frame)
-      --   local dtModule = WB:GetElvUIDataText("Guild")
+      RightButton = function(frame)
+        local dtModule = WB:GetElvUIDataText("Guild")
 
-      --   if dtModule then
-      --     dtModule.eventFunc(WB:GetElvUIDummy(), "GUILD_ROSTER_UPDATE")
-      --     dtModule.onClick(frame, "RightButton")
-      --   end
-      -- end,
+        if dtModule then
+          dtModule.eventFunc(MM.guildVirtualFrame, "GUILD_ROSTER_UPDATE")
+          dtModule.onClick(frame, "RightButton")
+        end
+      end,
     },
   },
   ["social"] = {
@@ -219,7 +219,7 @@ MM.microMenu = {
         local dtModule = WB:GetElvUIDataText("Friends")
 
         if dtModule then
-          dtModule.eventFunc(WB:GetElvUIDummy(), nil)
+          dtModule.eventFunc(MM.friendsVirtualFrame, nil)
           dtModule.onClick(frame, "RightButton")
         end
       end,
@@ -465,12 +465,20 @@ function MM:ButtonEnter(button)
     local dtModule = WB:GetElvUIDataText("Friends")
 
     if dtModule then
-      dtModule.eventFunc(WB:GetElvUIDummy(), nil)
+      dtModule.eventFunc(MM.friendsVirtualFrame, nil)
       dtModule.onEnter()
       skipTitle = true
     end
   elseif button.id == "guild" then
-    return
+    DT.tooltip:SetOwner(button, "ANCHOR_TOP", 0, 20)
+
+    local dtModule = WB:GetElvUIDataText("Guild")
+
+    if dtModule then
+      dtModule.eventFunc(MM.guildVirtualFrame, "GUILD_ROSTER_UPDATE")
+      dtModule.onEnter()
+      skipTitle = true
+    end
   elseif button.id == "txui" then
     self:ToxiUITooltip(button)
     return
@@ -732,6 +740,30 @@ function MM:OnInit()
   self.info = {}
   self.info.friends = -1
   self.info.guildies = -1
+
+  -- Create virtual frames and connect them to datatexts
+  self.guildVirtualFrame = {
+    name = "Guild",
+    text = {
+      SetFormattedText = E.noop,
+      SetText = E.noop
+    },
+    GetScript = function()
+      return E.noop
+    end,
+    IsMouseOver = function()
+      return false
+    end
+  }
+  WB:ConnectVirtualFrameToDataText("Guild", self.guildVirtualFrame)
+
+  self.friendsVirtualFrame = {
+    name = "Friends",
+    text = {
+      SetFormattedText = E.noop
+    }
+  }
+  WB:ConnectVirtualFrameToDataText("Friends", self.friendsVirtualFrame)
 
   -- Of we go
   self:CreateButtons()
