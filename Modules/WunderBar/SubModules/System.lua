@@ -203,12 +203,21 @@ function ST:OnInit()
   self.framerate = 0
   self.latency = 0
 
+  -- Create virtual frame and connect it to datatext
+  self.systemVirtualFrame = {
+    name = "System",
+    text = {
+      SetFormattedText = E.noop
+    }
+  }
+  WB:ConnectVirtualFrameToDataText("System", self.systemVirtualFrame)
+
   self:CreateText()
   self:OnWunderBarUpdate()
 
   -- Update data text for accurate tooltips
   local dtModule = WB:GetElvUIDataText("System")
-  if dtModule then dtModule.eventFunc(WB:GetElvUIDummy()) end
+  if dtModule then dtModule.eventFunc(self.systemVirtualFrame) end
 
   -- We are done, hooray!
   self.Initialized = true
