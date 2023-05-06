@@ -4,6 +4,7 @@
 ## Version: 6.2.0
 ## RequiredDeps: ElvUI, ElvUI_WindTools
 ## OptionalDeps: Details, Plater
+## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
 ## Interface: 100100
 ## X-Interface: 100100
