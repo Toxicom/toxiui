@@ -1,6 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
 
-TXUI.Changelog["6.1.7"] = {
+TXUI.Changelog["6.2.0"] = {
   HOTFIX = true,
   CHANGES = {
     "* ToxiUI",
