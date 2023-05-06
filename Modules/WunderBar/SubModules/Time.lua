@@ -334,8 +334,8 @@ function TI:OnInit()
   self.timeVirtualFrame = {
     name = "Time",
     text = {
-      SetFormattedText = E.noop
-    }
+      SetFormattedText = E.noop,
+    },
   }
   WB:ConnectVirtualFrameToDataText("Time", self.timeVirtualFrame)
 

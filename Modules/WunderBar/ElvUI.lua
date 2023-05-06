@@ -160,8 +160,8 @@ function WB:RegisterElvUIDatatexts()
         constructed.virtualFrame = {
           name = dataTextName,
           text = {
-            SetFormattedText = E.noop
-          }
+            SetFormattedText = E.noop,
+          },
         }
         WB:ConnectVirtualFrameToDataText(dataTextName, constructed.virtualFrame)
       end

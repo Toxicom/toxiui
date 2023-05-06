@@ -746,22 +746,22 @@ function MM:OnInit()
     name = "Guild",
     text = {
       SetFormattedText = E.noop,
-      SetText = E.noop
+      SetText = E.noop,
     },
     GetScript = function()
       return E.noop
     end,
     IsMouseOver = function()
       return false
-    end
+    end,
   }
   WB:ConnectVirtualFrameToDataText("Guild", self.guildVirtualFrame)
 
   self.friendsVirtualFrame = {
     name = "Friends",
     text = {
-      SetFormattedText = E.noop
-    }
+      SetFormattedText = E.noop,
+    },
   }
   WB:ConnectVirtualFrameToDataText("Friends", self.friendsVirtualFrame)
 

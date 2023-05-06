@@ -207,8 +207,8 @@ function ST:OnInit()
   self.systemVirtualFrame = {
     name = "System",
     text = {
-      SetFormattedText = E.noop
-    }
+      SetFormattedText = E.noop,
+    },
   }
   WB:ConnectVirtualFrameToDataText("System", self.systemVirtualFrame)
 

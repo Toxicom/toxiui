@@ -36,9 +36,7 @@ end
 
 function WB:ConnectVirtualFrameToDataText(dataTextName, virtualFrame)
   local dt = self:GetElvUIDataText(dataTextName)
-  if dt.applySettings then
-    dt.applySettings(virtualFrame, E.media.hexvaluecolor)
-  end
+  if dt.applySettings then dt.applySettings(virtualFrame, E.media.hexvaluecolor) end
 end
 
 function WB:FlashFontOnEvent(fs, icon)
