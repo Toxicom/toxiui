@@ -1,7 +1,7 @@
 ## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff00e4f5UI|r
 ## Notes: Minimalistic ElvUI Edit by |cff00e4f5Toxi|r
 ## Author: Toxi (Toxicom#2957)
-## Version: 6.1.6
+## Version: 6.1.7
 ## RequiredDeps: ElvUI
 ## OptionalDeps: Details, Plater
 ## DefaultState: Enabled
@@ -12,7 +12,7 @@
 ## X-Curse-Project-ID: 676447
 ## X-Tukui-ProjectID: 199
 ## X-Tukui-ProjectFolders: ElvUI_ToxiUI
-## X-ElvUIVersion: 13.23
+## X-ElvUIVersion: 13.31
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 
