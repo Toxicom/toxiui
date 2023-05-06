@@ -20,7 +20,7 @@ local GetSpecializationRole = GetSpecializationRole
 local GetTitleName = GetTitleName
 local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
-local LE_ITEM_CLASS_WEAPON = _G.LE_ITEM_CLASS_WEAPON
+local ENUM_ITEM_CLASS_WEAPON = _G.Enum.ItemClass.Weapon
 local LE_UNIT_STAT_AGILITY = _G.LE_UNIT_STAT_AGILITY
 local LE_UNIT_STAT_INTELLECT = _G.LE_UNIT_STAT_INTELLECT
 local LE_UNIT_STAT_STRENGTH = _G.LE_UNIT_STAT_STRENGTH
@@ -179,7 +179,7 @@ A.characterSlots = {
     id = 17,
     needsEnchant = true,
     warningCondition = {
-      itemType = LE_ITEM_CLASS_WEAPON,
+      itemType = ENUM_ITEM_CLASS_WEAPON,
       level = 70,
     },
     needsSocket = false,
