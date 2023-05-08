@@ -255,7 +255,7 @@ end
 
 function TI:UpdateTooltip(dataText)
   local dtModule = dataText or WB:GetElvUIDataText("Time")
-  if dtModule then dtModule.eventFunc(WB:GetElvUIDummy(), "UPDATE_INSTANCE_INFO") end
+  if dtModule then dtModule.eventFunc(self.timeVirtualFrame, "UPDATE_INSTANCE_INFO") end
 end
 
 function TI:UpdateClock()
@@ -329,6 +329,15 @@ function TI:OnInit()
   self.hasMail = false
   self.showRestingAnimation = false
   self.activeInfoText = {}
+
+  -- Create virtual frame and connect it to datatext
+  self.timeVirtualFrame = {
+    name = "Time",
+    text = {
+      SetFormattedText = E.noop,
+    },
+  }
+  WB:ConnectVirtualFrameToDataText("Time", self.timeVirtualFrame)
 
   self:CreateClock()
   self:OnWunderBarUpdate()

@@ -63,6 +63,12 @@ function PF:ElvUIFont()
         fontSize = F.FontSizeScaled(14),
         fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
       },
+
+      addonCompartment = {
+        font = F.FontOverride(I.Fonts.Primary),
+        fontSize = F.FontSizeScaled(16),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
+      },
     },
 
     -- Bags
