@@ -8,14 +8,23 @@ function PF:BuildBigWigsProfile()
   local pf = {}
   local profileName = I.ProfileNames[E.db.TXUI.installer.layout]
 
-  local BigWigsAnchor_x = 1190
-  local BigWigsEmphasizeAnchor_x = 810
-  local BigWigsProximity_x = 845
+  local width = E.physicalWidth
+  local height = E.physicalHeight
 
-  if E.physicalWidth == 3440 then
-    BigWigsAnchor_x = 1659
-    BigWigsEmphasizeAnchor_x = 1046
-    BigWigsProximity_x = 1087
+  -- Default (2560)
+  local Anchor_x = 1190
+  local EmphasizeAnchor_x = 810
+  local Proximity_x = 845
+
+  -- Default (1440)
+  local Anchor_y = 230
+  local EmphasizeAnchor_y = 300
+  local Proximity_y = 155
+
+  if width == 3440 then
+    Anchor_x = 1660
+    EmphasizeAnchor_x = 1045
+    Proximity_x = 1090
   end
 
   F.Table.Crush(pf, {
@@ -50,12 +59,12 @@ function PF:BuildBigWigsProfile()
           [profileName] = {
             ["BigWigsAnchor_height"] = 26,
             ["BigWigsAnchor_width"] = 285,
-            ["BigWigsAnchor_x"] = BigWigsAnchor_x,
-            ["BigWigsAnchor_y"] = 230,
+            ["BigWigsAnchor_x"] = Anchor_x,
+            ["BigWigsAnchor_y"] = Anchor_y,
             ["BigWigsEmphasizeAnchor_height"] = 26,
             ["BigWigsEmphasizeAnchor_width"] = 274,
-            ["BigWigsEmphasizeAnchor_x"] = BigWigsEmphasizeAnchor_x,
-            ["BigWigsEmphasizeAnchor_y"] = 300,
+            ["BigWigsEmphasizeAnchor_x"] = EmphasizeAnchor_x,
+            ["BigWigsEmphasizeAnchor_y"] = EmphasizeAnchor_y,
             ["alignText"] = "RIGHT",
             ["alignTime"] = "LEFT",
             ["barStyle"] = "ElvUI",
@@ -169,8 +178,8 @@ function PF:BuildBigWigsProfile()
               ["close"] = false,
               ["sound"] = false,
             },
-            ["posx"] = BigWigsProximity_x,
-            ["posy"] = 155,
+            ["posx"] = Proximity_x,
+            ["posy"] = Proximity_y,
           },
         },
       },
