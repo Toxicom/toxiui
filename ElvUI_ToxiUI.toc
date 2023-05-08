@@ -16,6 +16,8 @@
 ## X-ElvUIVersion: 13.31
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
+## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick
+
 
 Libraries\Libraries.xml
 Initialize.lua
