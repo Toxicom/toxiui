@@ -176,6 +176,7 @@ function PF:BuildProfile()
       TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -15, 100),
       TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -20),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
+      AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding),
 
       -- Movers: ToxiUI
       ToxiUIWAAnchorMover = F.Position("TOP", "ElvUIParent", "CENTER", 0, WAAnchorY[1]),
@@ -283,6 +284,11 @@ function PF:BuildProfile()
     -- AltPowerBar
     altPowerBar = {
       statusBar = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
+    },
+
+    -- AddOn Compartment
+    addonCompartment = {
+      size = 24,
     },
   })
 
