@@ -92,11 +92,11 @@ I.Media = {
 }
 
 -- Profile names to be used
--- This only affects DBM/BigWigs
+-- This only affects BigWigs
 I.ProfileNames = {
   ["Default"] = "ToxiUI", -- Plater, Details
-  [I.Enum.Layouts.DPS] = "ToxiUI-DPS", -- DBM/BigWigs
-  [I.Enum.Layouts.HEALER] = "ToxiUI-Healer", -- DBM/BigWigs
+  [I.Enum.Layouts.DPS] = "ToxiUI-DPS", -- BigWigs
+  [I.Enum.Layouts.HEALER] = "ToxiUI-Healer", -- BigWigs
   ["Dev"] = "ToxiUI-Dev",
 }
 

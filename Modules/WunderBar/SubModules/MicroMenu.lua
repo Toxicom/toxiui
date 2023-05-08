@@ -397,7 +397,7 @@ function MM:ToxiUITooltip(button)
   do
     local addOnData = {}
 
-    for _, addOn in ipairs { "ElvUI", "Details", "Plater", "BigWigs", "WeakAuras", "DBM-Core" } do
+    for _, addOn in ipairs { "ElvUI", "Details", "Plater", "BigWigs", "WeakAuras" } do
       if F.IsAddOnEnabled(addOn) then
         local data = {}
         data.name = F.String.Strip(GetAddOnMetadata(addOn, "Title")) or addOn

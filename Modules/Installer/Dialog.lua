@@ -57,7 +57,7 @@ function IS:Dialog()
           installFrame.SubTitle:SetText(F.String.ToxiUI("Welcome") .. " to the installation for " .. TXUI.Title)
 
           installFrame.Desc1:SetText("This installation process will guide you through a few steps and apply the " .. TXUI.Title .. " profile.")
-          installFrame.Desc2:SetText("Please press the 'Install' button to begin the installation process.")
+          installFrame.Desc2:SetText("Please press the " .. F.String.Class("'Install'", "ROGUE") .. " button to begin the installation process.")
           installFrame.Desc3:SetText(F.String.Warning("You will need to do this every time ToxiUI is updated."))
 
           installFrame.Option1:Show()
@@ -92,6 +92,13 @@ function IS:Dialog()
         else
           installFrame.Desc3:SetText("Your currently active profile is: " .. F.String.ToxiUI(E.data:GetCurrentProfile()))
           installFrame.Next:Enable()
+
+          -- We want to show this only when it's valid
+          installFrame.Option2:Show()
+          installFrame.Option2:SetText("Use current")
+          installFrame.Option2:SetScript("OnClick", function()
+            installFrame.Next:Click()
+          end)
         end
       end,
 
@@ -103,7 +110,7 @@ function IS:Dialog()
           "This will install " .. TXUI.Title .. " depending if you want a " .. F.String.ToxiUI("DPS/Tank") .. " or " .. F.String.Class("Healer", "MONK") .. " layout."
         )
         installFrame.Desc2:SetText("This will also enable core functions of ToxiUI.")
-        installFrame.Desc3:SetText(F.String.Warning("This part is the most important in the whole installer - not selecting a layout will result in an unfinished UI!"))
+        installFrame.Desc3:SetText(F.String.Error("Important: ") .. F.String.Warning("Skipping this will result in an unfinished and broken UI!"))
 
         local function installElvUI(layout)
           if TXUI.PreventProfileUpdates then return end
@@ -138,7 +145,7 @@ function IS:Dialog()
 
         if F.IsAddOnEnabled("Details") then
           installFrame.Desc1:SetText("This will import Details profile.")
-          installFrame.Desc2:SetText("Importance: " .. F.String.Warning("HIGH"))
+          installFrame.Desc2:SetText("Importance: " .. F.String.Error("High"))
           installFrame.Desc3:SetText("Details is an AddOn that displays information like damage & healing meters.")
 
           installFrame.Option1:Show()
@@ -161,7 +168,7 @@ function IS:Dialog()
 
         if F.IsAddOnEnabled("Plater") then
           installFrame.Desc1:SetText("This will import Plater profile.")
-          installFrame.Desc2:SetText("Importance: " .. F.String.Warning("HIGH"))
+          installFrame.Desc2:SetText("Importance: " .. F.String.Error("High"))
           installFrame.Desc3:SetText("Plater is an AddOn responsible for Nameplates - the Health bars above your enemies.")
 
           installFrame.Option1:Show()
@@ -184,7 +191,7 @@ function IS:Dialog()
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
           installFrame.Desc1:SetText("This will import BigWigs profile.")
-          installFrame.Desc2:SetText(F.String.Warning("Warning: We have BigWigs profiles only for 1440p!"))
+          installFrame.Desc2:SetText(F.String.Warning("Currently supported resolutions: 2560x1440, 3440x1440, 1920x1080. For other resolutions, open a pull request on GitHub."))
           installFrame.Desc3:SetText("Importance: " .. F.String.Good("Low"))
 
           installFrame.Option1:Show()
@@ -197,27 +204,18 @@ function IS:Dialog()
         elseif F.IsAddOnEnabled("DBM-Core") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("Deadly Boss Mods"))
 
-          installFrame.Desc1:SetText("This will import DBM profile.")
-          installFrame.Desc2:SetText(F.String.Warning("Warning: We have DBM profiles only for 1440p!"))
-          installFrame.Desc3:SetText(
-            F.String.Error("Important: ")
-              .. "We are deprecating DBM and soon going to remove it from the installer. We recommend migrating to "
-              .. F.String.ToxiUI("BigWigs")
-              .. "."
-          )
+          installFrame.Desc1:SetText(F.String.Error("Important: ") .. "Deadly Boss Mods is no longer supported. We recommend migrating to " .. F.String.ToxiUI("BigWigs") .. ".")
 
           installFrame.Option1:Show()
-          installFrame.Option1:SetText("DBM")
+          installFrame.Option1:SetText("Skip this step")
           installFrame.Option1:SetScript("OnClick", function()
-            PF:DBM()
-            self:ShowStepComplete("'DBM' profile")
             installFrame.Next:Click()
           end)
         else
-          installFrame.SubTitle:SetText(F.String.ToxiUI("Boss Mods"))
+          installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have any of the Boss Mods installed!"))
-          installFrame.Desc2:SetText("If you're a new player, we recommend installing BigWigs!")
+          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have " .. F.String.ToxiUI("BigWigs") .. " installed!"))
+          installFrame.Desc2:SetText("If you're a new player, we recommend installing " .. F.String.ToxiUI("BigWigs") .. "!")
         end
       end,
 
@@ -272,7 +270,7 @@ function IS:Dialog()
       [3] = "Core Settings",
       [4] = "Details",
       [5] = "Plater",
-      [6] = "Boss Mods",
+      [6] = "BigWigs",
       [7] = "WeakAuras",
       [8] = "Installation Complete",
     },
