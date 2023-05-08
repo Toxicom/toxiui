@@ -32,7 +32,6 @@ globals = {
 
   -- AddOns
   "BigWigs",
-  "DBM",
   "Details",
   "ElvUI",
   "LibStub",
@@ -42,8 +41,6 @@ globals = {
   "BigWigsClassicDB",
   "BigWigsIconClassicDB",
   "BigWigsIconDB",
-  "DBM_AllSavedOptions",
-  "DBM_MinimapIcon",
   "DBT_AllPersistentOptions",
   "ElvDB",
 
