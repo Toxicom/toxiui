@@ -20,11 +20,29 @@ function PF:BuildBigWigsProfile()
   local Anchor_y = 230
   local EmphasizeAnchor_y = 300
   local Proximity_y = 155
+  local Messages_y = -160
+  local Countdown_y = -150
 
+  -- Maybe we could move all of these out to a separate file and just
+  -- call a function to get the correct settings based on width/height?
   if width == 3440 then
     Anchor_x = 1660
     EmphasizeAnchor_x = 1045
     Proximity_x = 1090
+  end
+
+  if width == 1920 then
+    Anchor_x = 1135
+    EmphasizeAnchor_x = 852
+    Proximity_x = 900
+  end
+
+  if height == 1080 then
+    Anchor_y = 300
+    EmphasizeAnchor_y = 370
+    Proximity_y = 240
+    Messages_y = -20
+    Countdown_y = 100
   end
 
   F.Table.Crush(pf, {
@@ -130,7 +148,7 @@ function PF:BuildBigWigsProfile()
             ["position"] = {
               [1] = "CENTER",
               [2] = "CENTER",
-              [4] = -150,
+              [4] = Countdown_y,
             },
             ["voice"] = "enUS: Default (Male)",
           },
@@ -162,7 +180,7 @@ function PF:BuildBigWigsProfile()
               [1] = "CENTER",
               [2] = "CENTER",
               [3] = -340,
-              [4] = -163,
+              [4] = Messages_y,
             },
             ["outline"] = "OUTLINE",
           },
@@ -202,14 +220,10 @@ function PF:BuildBigWigsProfile()
 
   if F.HiDpi() then
     if E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER then -- Move Anchor for Healer layout
-      pf["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][profileName]["BigWigsEmphasizeAnchor_y"] = 315
+      pf["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][profileName]["BigWigsEmphasizeAnchor_y"] = EmphasizeAnchor_y + 15
     end
   else
-    if E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER then
-      self:LogWarning("Sorry, we don't have a 1080p profile yet for healers")
-    else
-      self:LogWarning("Sorry, we don't have a 1080p profile yet for dps")
-    end
+    if E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER then self:LogWarning("Sorry, we don't have a 1080p profile yet for healers") end
   end
 
   -- Those are not included in the export, change manually if needed
