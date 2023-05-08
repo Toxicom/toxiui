@@ -336,6 +336,24 @@ function TI:OnInit()
     text = {
       SetFormattedText = E.noop,
     },
+    CreateAnimationGroup = function()
+      return {
+        CreateAnimation = function()
+          return {
+            SetFromAlpha = E.noop,
+            SetToAlpha = E.noop,
+            SetOrder = E.noop,
+            SetDuration = E.noop,
+          }
+        end,
+        SetScript = E.noop,
+        Play = E.noop,
+        Stop = E.noop,
+        IsPlaying = function()
+          return false
+        end,
+      }
+    end,
   }
   WB:ConnectVirtualFrameToDataText("Time", self.timeVirtualFrame)
 
