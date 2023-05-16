@@ -45,6 +45,10 @@ TXUI.Modules.Changelog = TXUI:NewModule("Changelog", "AceEvent-3.0", "AceTimer-3
 TXUI.Modules.Options = TXUI:NewModule("Options")
 TXUI.Modules.Skins = TXUI:NewModule("Skins", "AceHook-3.0", "AceEvent-3.0")
 
+_G.ToxiUI_OnAddonCompartmentClick = function()
+  E:ToggleOptions("TXUI")
+end
+
 -- Initialization
 function TXUI:Initialize()
   -- Don't init second time

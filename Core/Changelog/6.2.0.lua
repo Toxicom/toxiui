@@ -8,5 +8,6 @@ TXUI.Changelog["6.2.0"] = {
     "Armory: Update API variable used for weapon item class. Credits to " .. F.String.Beta("Stiimo"),
     "WunderBar: Fix DataText's tooltips by creating virtual frames. Credits to " .. F.String.Beta("Stiimo") .. " & " .. F.String.Class("ElvUI WindTools", "SHAMAN"),
     "Misc: Add IconTexture to the AddOns window",
+    "Misc: Update for patch 10.1",
   },
 }

@@ -38,7 +38,7 @@ This is so that #git-feed is readable and easy to understand.
 
 Commits including `TEST:` will be exluded from the changelog in #build-releases
 
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ahmadawais.emoji-log-vscode  
+VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=ahmadawais.emoji-log-vscode
 
 ### Code formatting
 Please install the stylua extension and setup to format on save
@@ -76,5 +76,4 @@ _Prefix: `/tx` `/txui` `/toxui` `/toxiui`_
 ### Exports
 
 `/tx dev export bw [dps|healer]` - Exports the BigWigs profile for DPS or Healer<br>
-`/tx dev export dbm [dps|healer]` - Same as above just for DBM<br>
 `/tx dev export names` - Triggers the import of badge names (decode)

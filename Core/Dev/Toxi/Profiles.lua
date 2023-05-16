@@ -51,8 +51,8 @@ function T:SetupProfile()
   -- Skins: ElvUI
   E.db.TXUI.addons.elvUITheme.enabled = true
   E.db.TXUI.addons.elvUITheme.shadowEnabled = true
-  E.db.TXUI.addons.elvUITheme.shadowAlpha = 0.75
-  E.db.TXUI.addons.elvUITheme.shadowSize = 6
+  E.db.TXUI.addons.elvUITheme.shadowAlpha = 0.6
+  E.db.TXUI.addons.elvUITheme.shadowSize = 4
 
   -- ElvUI
   E.db.general.taintLog = false
