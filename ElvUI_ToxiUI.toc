@@ -1,13 +1,13 @@
 ## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff00e4f5UI|r
 ## Notes: Minimalistic ElvUI Edit by |cff00e4f5Toxi|r
-## Author: Toxi (Toxicom#2957)
+## Author: Toxi (Toxi#21206)
 ## Version: 6.2.2
 ## RequiredDeps: ElvUI, ElvUI_WindTools
 ## OptionalDeps: Details, Plater
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
-## Interface: 100100
-## X-Interface: 100100
+## Interface: 100105
+## X-Interface: 100105
 ## X-Flavor: Mainline
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
