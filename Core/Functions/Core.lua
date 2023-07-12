@@ -687,9 +687,7 @@ function F.GetDBFromPath(path, dbRef)
   dbRef = dbRef or E.db
 
   for _, key in pairs(paths) do
-    -- stylua: ignore-start
-    if (dbRef == nil) or (not (type(dbRef) == "table")) then break end
-    -- stylua: ignore-end
+    if (dbRef == nil) or not (type(dbRef) == "table") then break end
 
     if tonumber(key) then
       key = tonumber(key)
@@ -722,9 +720,7 @@ function F.GetDBFromPath(path, dbRef)
           dbRef = dbRef[idxKey]
           count = count + 1
 
-          -- stylua: ignore-start
-          if (dbRef == nil) or (not (type(dbRef) == "table")) then break end
-          -- stylua: ignore-end
+          if (dbRef == nil) or not (type(dbRef) == "table") then break end
         end
       end
     end
