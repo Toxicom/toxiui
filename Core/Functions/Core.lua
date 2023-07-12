@@ -687,7 +687,7 @@ function F.GetDBFromPath(path, dbRef)
   dbRef = dbRef or E.db
 
   for _, key in pairs(paths) do
-    if (dbRef == nil) or (not type(dbRef) == "table") then break end
+    if (dbRef == nil) or (type(dbRef) ~= "table") then break end
 
     if tonumber(key) then
       key = tonumber(key)
@@ -720,7 +720,7 @@ function F.GetDBFromPath(path, dbRef)
           dbRef = dbRef[idxKey]
           count = count + 1
 
-          if (dbRef == nil) or (not type(dbRef) == "table") then break end
+          if (dbRef == nil) or (type(dbRef) ~= "table") then break end
         end
       end
     end
