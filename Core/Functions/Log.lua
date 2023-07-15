@@ -107,7 +107,7 @@ end
 
 do
   local stringHolder
-  function F.Log.PrintWithArgumments(parent, color, ...)
+  function F.Log.PrintWithArguments(parent, color, ...)
     -- Add title if string holder is empty
     if not stringHolder then stringHolder = { TXUI.Title } end
 
@@ -132,22 +132,22 @@ end
 
 function F.Log.Warning(parent, ...)
   if TXUI.LogLevel < 2 then return end
-  F.Log.PrintWithArgumments(parent, I.Enum.Colors.WARNING, F.String.Error("[WARNING]"), ...)
+  F.Log.PrintWithArguments(parent, I.Enum.Colors.WARNING, F.String.Error("[WARNING]"), ...)
 end
 
 function F.Log.Info(parent, ...)
   if TXUI.LogLevel < 3 then return end
-  F.Log.PrintWithArgumments(parent, I.Enum.Colors.WHITE, ...)
+  F.Log.PrintWithArguments(parent, I.Enum.Colors.WHITE, ...)
 end
 
 function F.Log.Debug(parent, ...)
   if TXUI.LogLevel < 4 then return end
-  F.Log.PrintWithArgumments(parent, I.Enum.Colors.WARNING, F.String.Good("[DEBUG]"), ...)
+  F.Log.PrintWithArguments(parent, I.Enum.Colors.WARNING, F.String.Good("[DEBUG]"), ...)
 end
 
 function F.Log.Trace(parent, ...)
   if TXUI.LogLevel < 5 then return end
-  F.Log.PrintWithArgumments(parent, I.Enum.Colors.WARNING, F.String.Luxthos("[TRACE]"), ...)
+  F.Log.PrintWithArguments(parent, I.Enum.Colors.WARNING, F.String.Luxthos("[TRACE]"), ...)
 end
 
 function F.Log.InjectLogger(module)
