@@ -29,6 +29,8 @@ mklink /J "D:\Games\World of Warcraft\_retail_\Interface\AddOns\ElvUI_ToxiUI\" C
 ### Use the `development` branch
 The `stable` branch should be updated only every big (non-beta) release, so that we have a reference.
 
+**2023-07-15:** Moving the release CI to `development` branch. `stable` will only be used as a reference point, but even then not sure if needed with the amount of commits we have nowadays.
+
 ### Pull requests only
 Please do not push code to the `stable` or `development` branches and only use Pull Requests.
 
