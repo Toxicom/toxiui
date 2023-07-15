@@ -82,6 +82,8 @@ function TXUI:Initialize()
   end
 
   -- Set correct log level
+  -- Higher number = more in-depth logs
+  -- Log Level 5 is very spammy
   self.LogLevel = self.DevRelease and 4 or 3
 
   -- Check required ElvUI Version
