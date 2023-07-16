@@ -7,7 +7,11 @@ local CreateFrame = CreateFrame
 local floor = math.floor
 local format = string.format
 local GetBindLocation = GetBindLocation
-local GetItemCooldown = GetItemCooldown
+if TXUI.IsClassic then
+  local GetItemCooldown = GetItemCooldown
+else
+  local GetItemCooldown = C_Container.GetItemCooldown
+end
 local GetItemCount = GetItemCount
 local GetItemIcon = GetItemIcon
 local GetSpellCooldown = GetSpellCooldown
