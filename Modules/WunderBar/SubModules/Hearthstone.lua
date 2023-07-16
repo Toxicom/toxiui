@@ -7,7 +7,7 @@ local CreateFrame = CreateFrame
 local floor = math.floor
 local format = string.format
 local GetBindLocation = GetBindLocation
-local GetItemCooldownFunction = nil
+local GetItemCooldownFunction
 local GetItemCount = GetItemCount
 local GetItemIcon = GetItemIcon
 local GetSpellCooldown = GetSpellCooldown
