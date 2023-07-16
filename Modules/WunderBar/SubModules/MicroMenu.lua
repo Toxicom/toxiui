@@ -91,6 +91,7 @@ MM.rightButtonText = "|cffFFFFFFRight Click:|r "
 
 MM.microMenu = {
   ["ach"] = {
+    available = not TXUI.IsClassic,
     name = ACHIEVEMENTS,
     macro = {
       LeftButton = SLASH_ACHIEVEMENTUI1,
@@ -260,7 +261,11 @@ MM.microMenu = {
     click = {
       LeftButton = function()
         if not InCombatLockdown() then
-          TogglePVPUI()
+          if TXUI.IsClassic then
+            ToggleCharacter("HonorFrame")
+          else
+            TogglePVPUI()
+          end
         else
           UIErrorsFrame:AddMessage(E.InfoColor .. ERR_NOT_IN_COMBAT)
         end
@@ -667,7 +672,7 @@ function MM:OnEvent(event)
     local number = C_FriendList_GetNumOnlineFriends() or 0
     local _, numBNOnlineFriends = BNGetNumFriends()
 
-    if self.db.general.onlyFriendsWoW and not TXUI.IsClassic then
+    if not TXUI.IsClassic and self.db.general.onlyFriendsWoW then
       for i = 1, numBNOnlineFriends do
         local accountInfo = C_BattleNet_GetFriendAccountInfo(i)
         if accountInfo then
