@@ -480,9 +480,30 @@ I.HearthstoneData_Wrath = {
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
 }
 
--- TODO: Add additional hearthstones/teleports
 I.HearthstoneData_Classic = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
+
+  -- Hearthstone: Shaman
+  [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
+
+  -- Hearthstone: Mage
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Stormwind
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Stormwind
+
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Orgrimmar
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Orgrimmar
+
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Darnassus
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Darnassus
+
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Thunder Bluff
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Thunder Bluff
+
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Undercity
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Undercity
+
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Ironforge
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Ironforge
 }
 
 -- Data for which class or spec has which interrupt spell
