@@ -126,9 +126,7 @@ function IS:ElvUI(callback)
     TXUI:GetModule("SplashScreen"):Hide()
 
     -- Customize message
-    local msg = TXUI.Title ..
-        " " ..
-        (E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK") or F.String.ToxiUI("DPS/Tank") .. " layout")
+    local msg = TXUI.Title .. " " .. (E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK") or F.String.ToxiUI("DPS/Tank") .. " layout")
 
     -- Show success message
     self:ShowStepComplete(msg)

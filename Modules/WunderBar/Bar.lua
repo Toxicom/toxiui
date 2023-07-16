@@ -115,8 +115,7 @@ function WB:UpdateBar()
   elseif self.db.general.backgroundColor == "VALUE" then
     color = E.db.general.backdropfadecolor
   elseif self.db.general.backgroundColor == "RGB" then
-    self:StartColorCycle(self.bar.barBackground, 10, 0.6,
-      self.db.general.backgroundGradient and (0.6 * (1 - self.db.general.backgroundGradientAlpha)) or 0.6)
+    self:StartColorCycle(self.bar.barBackground, 10, 0.6, self.db.general.backgroundGradient and (0.6 * (1 - self.db.general.backgroundGradientAlpha)) or 0.6)
   end
 
   -- Set Fade
@@ -137,8 +136,7 @@ function WB:UpdateBar()
         color.a * (1 - self.db.general.backgroundGradientAlpha)
       )
     else
-      F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, color.a, color.r, color.g,
-        color.b, color.a)
+      F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, color.a, color.r, color.g, color.b, color.a)
     end
   end
 

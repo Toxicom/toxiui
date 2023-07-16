@@ -17,12 +17,12 @@ I.General = {
 }
 
 I.Fonts = {
-  Primary = "- M 500",            -- - Montserrat Medium
-  PrimaryBold = "- M 600",        -- - Montserrat SemiBold
+  Primary = "- M 500", -- - Montserrat Medium
+  PrimaryBold = "- M 600", -- - Montserrat SemiBold
   Title = "- Big Noodle Titling", -- - Big Noodle Titling
-  TitleSecondary = "- M 700",     -- - Montserrat Bold
-  Number = "- Steelfish",         -- - Steelfish
-  BigNumber = "- M 900",          -- - Montserrat Black
+  TitleSecondary = "- M 700", -- - Montserrat Bold
+  Number = "- Steelfish", -- - Steelfish
+  BigNumber = "- M 900", -- - Montserrat Black
   Icons = "- ToxiUI Icons",
 }
 
@@ -94,8 +94,8 @@ I.Media = {
 -- Profile names to be used
 -- This only affects BigWigs
 I.ProfileNames = {
-  ["Default"] = "ToxiUI",                    -- Plater, Details
-  [I.Enum.Layouts.DPS] = "ToxiUI-DPS",       -- BigWigs
+  ["Default"] = "ToxiUI", -- Plater, Details
+  [I.Enum.Layouts.DPS] = "ToxiUI-DPS", -- BigWigs
   [I.Enum.Layouts.HEALER] = "ToxiUI-Healer", -- BigWigs
   ["Dev"] = "ToxiUI-Dev",
 }
@@ -305,132 +305,132 @@ I.ElvUIIcons = {
 -- type, name, known [known is always true for items]
 I.HearthstoneDataLoaded = false
 I.HearthstoneData = {
-  [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" },         -- Astral Recall
-  [6948] = { ["type"] = "item", ["hearthstone"] = true },                               -- Hearthstone
-  [48933] = { ["type"] = "toy", ["hearthstone"] = false },                              -- Wormhole Generator: Northrend
+  [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
+  [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
+  [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
   [50977] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DEATHKNIGHT" }, -- Death Gate
-  [54452] = { ["type"] = "toy", ["hearthstone"] = true },                               -- Ethereal Portal
-  [64488] = { ["type"] = "toy", ["hearthstone"] = true },                               -- The Innkeeper's Daughter
-  [87215] = { ["type"] = "toy", ["hearthstone"] = false },                              -- Wormhole Generator: Pandaria
-  [93672] = { ["type"] = "toy", ["hearthstone"] = true },                               -- Dark Portal
-  [110560] = { ["type"] = "item", ["hearthstone"] = false },                            -- Garrison Hearthstone
-  [126892] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "MONK" },       -- Zen Pilgrimage
-  [132517] = { ["type"] = "toy", ["hearthstone"] = false },                             -- Intra-Dalaran Wormhole Generator
-  [140192] = { ["type"] = "item", ["hearthstone"] = false },                            -- Dalaran Hearthstone
-  [141605] = { ["type"] = "item", ["hearthstone"] = false },                            -- Flight Master's Whistle
-  [142542] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Tome of Town Portal
-  [151652] = { ["type"] = "toy", ["hearthstone"] = false },                             -- Wormhole Generator: Argus
-  [162973] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Greatfather Winter's Hearthstone
-  [163045] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Headless Horseman's Hearthstone
-  [165669] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Lunar Elder's Hearthstone
-  [165670] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Peddlefeet's Lovely Hearthstone
-  [165802] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Noble Gardener's Hearthstone
-  [166746] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Fire Eater's Hearthstone
-  [166747] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Brewfest Reveler's Hearthstone
-  [168807] = { ["type"] = "toy", ["hearthstone"] = false },                             -- Wormhole Generator: Kul Tiras
-  [168808] = { ["type"] = "toy", ["hearthstone"] = false },                             -- Wormhole Generator: Zandalar
-  [168907] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Holographic Digitalization Hearthstone
-  [172179] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Eternal Traveler's Hearthstone
-  [172924] = { ["type"] = "toy", ["hearthstone"] = false },                             -- Wormhole Generator: Shadowlands
-  [180290] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "NightFae" },   -- Night Fae Hearthstone
-  [180817] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Cypher of Relocation
-  [182773] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Necrolord" },  -- Necrolord Hearthstone
-  [183716] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Venthyr" },    -- Venthyr Sinstone
-  [184353] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Kyrian" },     -- Kyrian Hearthstone
-  [188952] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Dominated Hearthstone (The Jailer's Gauntlet: Layer 2)
-  [190237] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Broker Translocation Matrix
-  [193588] = { ["type"] = "toy", ["hearthstone"] = true },                              -- Timewalker's Hearthstone (Dragonflight Epic Edition)
-  [193753] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" },      -- Dreamwalk
-  [312372] = { ["type"] = "spell", ["hearthstone"] = false },                           -- Return to Camp (Vulpera Racial)
-  [324547] = { ["type"] = "spell", ["hearthstone"] = false },                           -- Hearth Kidneystone (Necrolord Soulbind)
+  [54452] = { ["type"] = "toy", ["hearthstone"] = true }, -- Ethereal Portal
+  [64488] = { ["type"] = "toy", ["hearthstone"] = true }, -- The Innkeeper's Daughter
+  [87215] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Pandaria
+  [93672] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dark Portal
+  [110560] = { ["type"] = "item", ["hearthstone"] = false }, -- Garrison Hearthstone
+  [126892] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "MONK" }, -- Zen Pilgrimage
+  [132517] = { ["type"] = "toy", ["hearthstone"] = false }, -- Intra-Dalaran Wormhole Generator
+  [140192] = { ["type"] = "item", ["hearthstone"] = false }, -- Dalaran Hearthstone
+  [141605] = { ["type"] = "item", ["hearthstone"] = false }, -- Flight Master's Whistle
+  [142542] = { ["type"] = "toy", ["hearthstone"] = true }, -- Tome of Town Portal
+  [151652] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Argus
+  [162973] = { ["type"] = "toy", ["hearthstone"] = true }, -- Greatfather Winter's Hearthstone
+  [163045] = { ["type"] = "toy", ["hearthstone"] = true }, -- Headless Horseman's Hearthstone
+  [165669] = { ["type"] = "toy", ["hearthstone"] = true }, -- Lunar Elder's Hearthstone
+  [165670] = { ["type"] = "toy", ["hearthstone"] = true }, -- Peddlefeet's Lovely Hearthstone
+  [165802] = { ["type"] = "toy", ["hearthstone"] = true }, -- Noble Gardener's Hearthstone
+  [166746] = { ["type"] = "toy", ["hearthstone"] = true }, -- Fire Eater's Hearthstone
+  [166747] = { ["type"] = "toy", ["hearthstone"] = true }, -- Brewfest Reveler's Hearthstone
+  [168807] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Kul Tiras
+  [168808] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Zandalar
+  [168907] = { ["type"] = "toy", ["hearthstone"] = true }, -- Holographic Digitalization Hearthstone
+  [172179] = { ["type"] = "toy", ["hearthstone"] = true }, -- Eternal Traveler's Hearthstone
+  [172924] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Shadowlands
+  [180290] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "NightFae" }, -- Night Fae Hearthstone
+  [180817] = { ["type"] = "toy", ["hearthstone"] = true }, -- Cypher of Relocation
+  [182773] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Necrolord" }, -- Necrolord Hearthstone
+  [183716] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Venthyr" }, -- Venthyr Sinstone
+  [184353] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Kyrian" }, -- Kyrian Hearthstone
+  [188952] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dominated Hearthstone (The Jailer's Gauntlet: Layer 2)
+  [190237] = { ["type"] = "toy", ["hearthstone"] = true }, -- Broker Translocation Matrix
+  [193588] = { ["type"] = "toy", ["hearthstone"] = true }, -- Timewalker's Hearthstone (Dragonflight Epic Edition)
+  [193753] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Dreamwalk
+  [312372] = { ["type"] = "spell", ["hearthstone"] = false }, -- Return to Camp (Vulpera Racial)
+  [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone (Necrolord Soulbind)
 
   -- Dragonflight not yet verified
   [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["load"] = TXUI.IsRetail }, -- Wyrmhole Generator
-  [200630] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail },  -- Ohn'ir Windsage's Hearthstone
+  [200630] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Ohn'ir Windsage's Hearthstone
 
   -- Mage specific
   [193759] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Hall of the Guardian
 
-  [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Oribos
+  [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Oribos
   [344587] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Oribos
 
-  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Stormwind
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },   -- Teleport: Stormwind
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
 
-  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Orgrimmar
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },   -- Teleport: Orgrimmar
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
 
-  [281402] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Dazar'alor - Horde
+  [281402] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dazar'alor - Horde
   [281404] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dazar'alor - Horde
 
-  [281400] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Boralus - Alliance
+  [281400] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Boralus - Alliance
   [281403] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Boralus - Alliance
 
-  [176246] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Stormshield - Alliance
+  [176246] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormshield - Alliance
   [176248] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormshield - Alliance
 
-  [176244] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Warspear - Horde
+  [176244] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Warspear - Horde
   [176242] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Warspear - Horde
 
-  [224871] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Dalaran (Legion)
+  [224871] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran (Legion)
   [224869] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran (Legion)
 
-  [132620] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Vale of Eternal Blossoms - Alliance
+  [132620] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms - Alliance
   [132621] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms - Alliance
 
-  [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Vale of Eternal Blossoms - Horde
+  [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms - Horde
   [132627] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms - Horde
 
-  [120146] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Ancient Dalaran
+  [120146] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ancient Dalaran
   [120145] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ancient Dalaran
 
-  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Dalaran (Northrend)
-  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Dalaran (Northrend)
+  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran (Northrend)
+  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran (Northrend)
 
-  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Shattrath - Alliance
-  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Shattrath - Alliance
+  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Alliance
+  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Alliance
 
-  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Shattrath - Horde
-  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Shattrath - Horde
+  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Horde
+  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Horde
 
-  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Theramore - Alliance
-  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Theramore - Alliance
+  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Theramore - Alliance
+  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Theramore - Alliance
 
-  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Stonard - Horde
-  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Stonard - Horde
+  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stonard - Horde
+  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stonard - Horde
 
-  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Darnassus
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },   -- Teleport: Darnassus
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
 
-  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Thunder Bluff
-  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },   -- Teleport: Thunder Bluff
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
 
-  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Undercity
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },   -- Teleport: Undercity
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
 
-  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Ironforge
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },   -- Teleport: Ironforge
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
 
-  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Silvermoon
-  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Silvermoon
+  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Silvermoon
+  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon
 
-  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Exodar
-  [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Exodar
+  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Exodar
+  [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
 
-  [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Valdrakken
+  [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Valdrakken
   [395277] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Valdrakken
 
-  [88346] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Tol Barad - Horde
-  [88344] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Tol Barad - Horde
+  [88346] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad - Horde
+  [88344] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad - Horde
 
-  [88345] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },    -- Portal: Tol Barad - Alliance
-  [88342] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Tol Barad - Alliance
+  [88345] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad - Alliance
+  [88342] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad - Alliance
 }
 
 I.HearthstoneData_Wrath = {
-  [6948] = { ["type"] = "item", ["hearthstone"] = true },   -- Hearthstone
+  [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
   [48933] = { ["type"] = "item", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
-  [54452] = { ["type"] = "item", ["hearthstone"] = true },  -- Ethereal Portal
+  [54452] = { ["type"] = "item", ["hearthstone"] = true }, -- Ethereal Portal
   [184871] = { ["type"] = "item", ["hearthstone"] = true }, -- Dark Portal (TBC Deluxe Edition)
 
   -- Hearthstone: Death Knight
@@ -440,43 +440,43 @@ I.HearthstoneData_Wrath = {
   [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
 
   -- Hearthstone: Mage
-  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Stormwind
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Stormwind
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
 
-  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Orgrimmar
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Orgrimmar
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
 
-  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Dalaran (Northrend)
+  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran (Northrend)
   [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran (Northrend)
 
-  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Shattrath - Alliance
+  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Alliance
   [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Alliance
 
-  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Shattrath - Horde
+  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Horde
   [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Horde
 
-  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Theramore - Alliance
+  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Theramore - Alliance
   [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Theramore - Alliance
 
-  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Stonard - Horde
+  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stonard - Horde
   [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stonard - Horde
 
-  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Darnassus
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Darnassus
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
 
-  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Thunder Bluff
-  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Thunder Bluff
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
 
-  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Undercity
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Undercity
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
 
-  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Ironforge
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Ironforge
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
 
-  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Silvermoon
+  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Silvermoon
   [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon
 
-  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Exodar
+  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Exodar
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
 }
 
@@ -487,44 +487,44 @@ I.HearthstoneData_Classic = {
   [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
 
   -- Hearthstone: Mage
-  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Stormwind
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Stormwind
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
 
-  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Orgrimmar
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Orgrimmar
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
 
-  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Darnassus
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Darnassus
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
 
-  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Thunder Bluff
-  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Thunder Bluff
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
 
-  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Undercity
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Undercity
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
 
-  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true },   -- Portal: Ironforge
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true },  -- Teleport: Ironforge
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
 }
 
 -- Data for which class or spec has which interrupt spell
 I.InterruptSpellMap = {
-  { id = 1766,   conditions = { class = "ROGUE", level = 6 } },         -- Rogue, Kick
-  { id = 2139,   conditions = { class = "MAGE", level = 7 } },          -- Mage, Counterspell
-  { id = 6552,   conditions = { class = "WARRIOR", level = 7 } },       -- Warr, Pummel
-  { id = 15487,  conditions = { specIds = { 258 } } },                  -- Shadow Priest, Silence i kill u
-  { id = 19647,  conditions = { specIds = { 265, 267 }, level = 29 } }, -- Aff&Destro Lock, Spell Lock
-  { id = 31935,  conditions = { specIds = { 66 } } },                   -- Prot Paladin, Avenger's Shield
-  { id = 47528,  conditions = { class = "DEATHKNIGHT" } },              -- DK, Mind Freeze
-  { id = 57994,  conditions = { class = "SHAMAN" } },                   -- Sha, Wind Shear
-  { id = 78675,  conditions = { specIds = { 102 } } },                  -- Balance Druid, Solar Beeeeeam
-  { id = 89766,  conditions = { specIds = { 266 }, level = 29 } },      -- Demo Lock, Axe Toss
-  { id = 96231,  conditions = { class = "PALADIN" } },                  -- Paladin, Rebuke
-  { id = 106839, conditions = { class = "DRUID" } },                    -- Druid, Skull Bash
-  { id = 116705, conditions = { class = "MONK" } },                     -- Monk, Spear Hand Strike
-  { id = 147362, conditions = { specIds = { 253, 254 } } },             -- BM/MM Hunter-Counter Shot
-  { id = 183752, conditions = { class = "DEMONHUNTER", level = 20 } },  -- DH, Disrupt
-  { id = 187707, conditions = { specIds = { 255 } } },                  -- SV-lol Hunter Muzzle
-  { id = 351338, conditions = { class = "EVOKER" } },                   -- Evoker Quell
+  { id = 1766, conditions = { class = "ROGUE", level = 6 } }, -- Rogue, Kick
+  { id = 2139, conditions = { class = "MAGE", level = 7 } }, -- Mage, Counterspell
+  { id = 6552, conditions = { class = "WARRIOR", level = 7 } }, -- Warr, Pummel
+  { id = 15487, conditions = { specIds = { 258 } } }, -- Shadow Priest, Silence i kill u
+  { id = 19647, conditions = { specIds = { 265, 267 }, level = 29 } }, -- Aff&Destro Lock, Spell Lock
+  { id = 31935, conditions = { specIds = { 66 } } }, -- Prot Paladin, Avenger's Shield
+  { id = 47528, conditions = { class = "DEATHKNIGHT" } }, -- DK, Mind Freeze
+  { id = 57994, conditions = { class = "SHAMAN" } }, -- Sha, Wind Shear
+  { id = 78675, conditions = { specIds = { 102 } } }, -- Balance Druid, Solar Beeeeeam
+  { id = 89766, conditions = { specIds = { 266 }, level = 29 } }, -- Demo Lock, Axe Toss
+  { id = 96231, conditions = { class = "PALADIN" } }, -- Paladin, Rebuke
+  { id = 106839, conditions = { class = "DRUID" } }, -- Druid, Skull Bash
+  { id = 116705, conditions = { class = "MONK" } }, -- Monk, Spear Hand Strike
+  { id = 147362, conditions = { specIds = { 253, 254 } } }, -- BM/MM Hunter-Counter Shot
+  { id = 183752, conditions = { class = "DEMONHUNTER", level = 20 } }, -- DH, Disrupt
+  { id = 187707, conditions = { specIds = { 255 } } }, -- SV-lol Hunter Muzzle
+  { id = 351338, conditions = { class = "EVOKER" } }, -- Evoker Quell
 }
 
 -- Data for which class or spec has which interrupt spell

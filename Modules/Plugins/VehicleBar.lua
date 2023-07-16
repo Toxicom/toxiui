@@ -52,8 +52,7 @@ function VB:SetupBarAnim()
 
   self.bar.SlideIn = self.bar.SlideIn or {}
 
-  self.bar.SlideIn.ResetOffset = self.bar.SlideIn.ResetOffset or
-  TXUI:CreateAnimationGroup(self.bar):CreateAnimation("Move")
+  self.bar.SlideIn.ResetOffset = self.bar.SlideIn.ResetOffset or TXUI:CreateAnimationGroup(self.bar):CreateAnimation("Move")
   self.bar.SlideIn.ResetOffset:SetDuration(0)
   self.bar.SlideIn.ResetOffset:SetOffset(0, -60)
   self.bar.SlideIn.ResetOffset:SetScript("OnFinished", function(anim)
@@ -245,8 +244,7 @@ function VB:Enable()
   self:UpdateBar()
 
   -- Overwrite default bar visibility
-  local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;",
-    (self.db.dragonRiding and "[bonusbar:5]") or "")
+  local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", (self.db.dragonRiding and "[bonusbar:5]") or "")
 
   self:Hook(self.ab, "PositionAndSizeBar", function(_, barName)
     local bar = self.ab["handledBars"][barName]
@@ -263,8 +261,7 @@ function VB:Enable()
   RegisterStateDriver(
     self.bar,
     "visibility",
-    format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s show; hide",
-      (self.db.dragonRiding and "[bonusbar:5]") or "")
+    format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s show; hide", (self.db.dragonRiding and "[bonusbar:5]") or "")
   )
   RegisterStateDriver(self.ab["handledBars"]["bar1"], "visibility", visibility .. E.db.actionbar["bar1"].visibility)
 

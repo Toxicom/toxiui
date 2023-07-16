@@ -55,6 +55,11 @@ I.Data.Contributor = {
         ["Melissandei-PyrewoodVillage"] = true,
         ["Toxirage-PyrewoodVillage"] = true,
       },
+
+      [I.Enum.Flavor.CLASSIC] = {
+        -- Firemaw
+        ["Toxisin-Firemaw"] = true,
+      },
     },
 
     [I.Enum.Developers.WOLEN] = {

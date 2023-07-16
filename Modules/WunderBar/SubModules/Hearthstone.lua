@@ -58,10 +58,7 @@ function HS:GetCooldownForItem(itemInfo)
     startTime, duration = GetSpellCooldown(itemInfo.id)
   end
 
-  if startTime == nil or duration == nil then
-    return self:LogDebug(
-      "HS:GetCooldownForItem > GetItemCooldown returned nil for item")
-  end
+  if startTime == nil or duration == nil then return self:LogDebug("HS:GetCooldownForItem > GetItemCooldown returned nil for item") end
 
   local cooldownTime = startTime + duration - GetTime()
   local ready = (duration - gcd <= 0) or cooldownTime <= 0
@@ -141,20 +138,15 @@ function HS:UpdateSelected()
   if not self.dataLoaded then return end
 
   -- Check if spell is in DB
-  self.hsPrimary = I.HearthstoneData[self.db.primaryHS] or
-      I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS]
+  self.hsPrimary = I.HearthstoneData[self.db.primaryHS] or I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS]
   if not self.hsPrimary then return self:LogDebug("HS:UpdateSelected > Item could not be found in DB for hsPrimary") end
 
   -- Check if spell is in DB
-  self.hsSecondary = I.HearthstoneData[self.db.secondaryHS] or
-      I.HearthstoneData[P.wunderbar.subModules.Hearthstone.secondaryHS]
+  self.hsSecondary = I.HearthstoneData[self.db.secondaryHS] or I.HearthstoneData[P.wunderbar.subModules.Hearthstone.secondaryHS]
   if not self.hsSecondary then return self:LogDebug("HS:UpdateSelected > Item could not be found in DB for hsSecondary") end
 
   -- Check if any ids could be found
-  if not self.hsPrimary.id or not self.hsSecondary.id then
-    return self:LogDebug(
-      "HS:UpdateSelected > Main IDs and Fallback could not be found")
-  end
+  if not self.hsPrimary.id or not self.hsSecondary.id then return self:LogDebug("HS:UpdateSelected > Main IDs and Fallback could not be found") end
 
   -- If covenant hearthstone is selected, be smart and replace it with current covenant
   if self.hsPrimary.covenant then self.hsPrimary = self:GetCovenantStone(self.hsPrimary) end
@@ -248,16 +240,10 @@ function HS:UpdateTooltip()
   end
 
   -- Primary
-  if self.hsPrimary and self.hsPrimary.name then
-    DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Cast " ..
-      self.hsPrimary.name)
-  end
+  if self.hsPrimary and self.hsPrimary.name then DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Cast " .. self.hsPrimary.name) end
 
   -- Secondary
-  if self.hsSecondary and self.hsSecondary.name then
-    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " ..
-      self.hsSecondary.name)
-  end
+  if self.hsSecondary and self.hsSecondary.name then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name) end
 
   -- Shift-Secondary for Class Travel other than Mages
   if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Cast " .. self.hsClass.name) end

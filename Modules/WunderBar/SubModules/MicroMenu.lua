@@ -131,8 +131,7 @@ MM.microMenu = {
     available = TXUI.IsRetail,
     macro = {
       LeftButton = "/click EJMicroButton",
-      RightButton =
-      "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end",
+      RightButton = "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end",
     },
     keyBind = "TOGGLEENCOUNTERJOURNAL",
     newbieTooltip = NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL,
@@ -535,10 +534,7 @@ function MM:PositionButtons()
   local currentWidth = 0
 
   for i, _ in ipairs(self.frames) do
-    if self.frames[i].info.special then
-      currentWidth = currentWidth + self.db.general.iconFontSize +
-          self.db.general.iconSpacing
-    end
+    if self.frames[i].info.special then currentWidth = currentWidth + self.db.general.iconFontSize + self.db.general.iconSpacing end
   end
 
   for i, _ in ipairs(self.frames) do
@@ -659,15 +655,15 @@ end
 function MM:OnEvent(event)
   -- Friend counter
   if
-      (self.db.general.infoEnabled and self.db.icons.social.enabled)
-      and (
-        event == "ELVUI_FORCE_UPDATE"
-        or event == "BN_FRIEND_INFO_CHANGED"
-        or event == "BN_FRIEND_ACCOUNT_ONLINE"
-        or event == "BN_FRIEND_ACCOUNT_OFFLINE"
-        or event == "FRIENDLIST_UPDATE"
-        or event == "CHAT_MSG_SYSTEM"
-      )
+    (self.db.general.infoEnabled and self.db.icons.social.enabled)
+    and (
+      event == "ELVUI_FORCE_UPDATE"
+      or event == "BN_FRIEND_INFO_CHANGED"
+      or event == "BN_FRIEND_ACCOUNT_ONLINE"
+      or event == "BN_FRIEND_ACCOUNT_OFFLINE"
+      or event == "FRIENDLIST_UPDATE"
+      or event == "CHAT_MSG_SYSTEM"
+    )
   then
     local number = C_FriendList_GetNumOnlineFriends() or 0
     local _, numBNOnlineFriends = BNGetNumFriends()
@@ -702,8 +698,8 @@ function MM:OnEvent(event)
   end
 
   if
-      (self.db.general.infoEnabled and self.db.icons.guild.enabled)
-      and (event == "ELVUI_FORCE_UPDATE" or event == "GUILD_ROSTER_UPDATE" or event == "PLAYER_GUILD_UPDATE" or event == "GUILD_MOTD" or event == "CHAT_MSG_SYSTEM")
+    (self.db.general.infoEnabled and self.db.icons.guild.enabled)
+    and (event == "ELVUI_FORCE_UPDATE" or event == "GUILD_ROSTER_UPDATE" or event == "PLAYER_GUILD_UPDATE" or event == "GUILD_MOTD" or event == "CHAT_MSG_SYSTEM")
   then
     local inGuild = IsInGuild()
     local guildCount = inGuild and (select(2, GetNumGuildMembers()) or 0) or 0
