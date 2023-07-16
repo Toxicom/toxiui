@@ -15,7 +15,7 @@
 ## X-Tukui-ProjectFolders: ElvUI_ToxiUI
 ## X-ElvUIVersion: 13.38
 ## X-Wago-ID: XrNk5lKa
-## X-GitHash: v6.2.3
+## X-GitHash: @project-version@
 
 Libraries\Libraries.xml
 Initialize.lua
