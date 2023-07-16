@@ -162,7 +162,10 @@ function SS:GetWrathCacheForSpec(spec)
     if name then
       local displayPointsSpent = pointsSpent + previewPointsSpent
       points[treeIndex] = displayPointsSpent
-      if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then highPointsSpentIndex = treeIndex end
+      if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then
+        highPointsSpentIndex =
+            treeIndex
+      end
     else
       points[treeIndex] = 0
     end
@@ -173,10 +176,24 @@ function SS:GetWrathCacheForSpec(spec)
 
   if highPointsSpentIndex ~= nil then
     local name, texture = GetTalentTabInfo(highPointsSpentIndex, false, false, spec)
-    if name then return { id = texture, icon = texture, name = name, role = role, points = ("%s / %s / %s"):format(unpack(points)) } end
+    if name then
+      return {
+        id = texture,
+        icon = texture,
+        name = name,
+        role = role,
+        points = ("%s / %s / %s"):format(unpack(points))
+      }
+    end
   end
 
-  return { id = 0, icon = 134942, name = spec == 2 and TALENT_SPEC_SECONDARY or TALENT_SPEC_PRIMARY, role = "DAMAGER", points = "0 / 0 / 0" }
+  return {
+    id = 0,
+    icon = 134942,
+    name = spec == 2 and TALENT_SPEC_SECONDARY or TALENT_SPEC_PRIMARY,
+    role = "DAMAGER",
+    points = "0 / 0 / 0"
+  }
 end
 
 function SS:UpdateSpecialization()
@@ -460,11 +477,14 @@ function SS:OnInit()
   self.Initialized = true
 end
 
+if TXUI.IsClassic then return end
+
 WB:RegisterSubModule(
   SS,
   F.Table.Join({
-    "CHARACTER_POINTS_CHANGED",
-    "PLAYER_TALENT_UPDATE",
-    "ACTIVE_TALENT_GROUP_CHANGED",
-  }, F.Table.If(TXUI.IsRetail, { "PLAYER_LOOT_SPEC_UPDATED" }), F.Table.If(TXUI.IsWrath, { "TALENT_GROUP_ROLE_CHANGED" }))
+      "CHARACTER_POINTS_CHANGED",
+      "PLAYER_TALENT_UPDATE",
+      "ACTIVE_TALENT_GROUP_CHANGED",
+    }, F.Table.If(TXUI.IsRetail, { "PLAYER_LOOT_SPEC_UPDATED" }),
+    F.Table.If(TXUI.IsWrath, { "TALENT_GROUP_ROLE_CHANGED" }))
 )

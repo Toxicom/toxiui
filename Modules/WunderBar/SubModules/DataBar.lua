@@ -22,7 +22,9 @@ local GetQuestLogTitle = GetQuestLogTitle
 local GetWatchedFactionInfo = GetWatchedFactionInfo
 local GetXPExhaustion = GetXPExhaustion
 local IsPlayerAtEffectiveMaxLevel = IsPlayerAtEffectiveMaxLevel
-local IsXPUserDisabled = IsXPUserDisabled
+if not TXUI.IsClassic then
+  local IsXPUserDisabled = IsXPUserDisabled
+end
 local min = math.min
 local SelectQuestLogEntry = SelectQuestLogEntry
 local UnitXP = UnitXP
@@ -57,9 +59,9 @@ function DB:OnEvent(event)
 
   -- Reputation
   if
-    (self.mode == DB.const.mode.rep)
-    and not self.updateRepNextOutOfCombat
-    and ((event == "ELVUI_FORCE_UPDATE") or (event == "UPDATE_FACTION") or (event == "COMBAT_TEXT_UPDATE"))
+      (self.mode == DB.const.mode.rep)
+      and not self.updateRepNextOutOfCombat
+      and ((event == "ELVUI_FORCE_UPDATE") or (event == "UPDATE_FACTION") or (event == "COMBAT_TEXT_UPDATE"))
   then
     self.updateRepNextOutOfCombat = true
 
@@ -91,7 +93,8 @@ function DB:OnEvent(event)
 
           if friendshipID > 0 then
             if reputationInfo.nextThreshold then
-              minValue, maxValue, curValue = reputationInfo.reactionThreshold, reputationInfo.nextThreshold, reputationInfo.standing
+              minValue, maxValue, curValue = reputationInfo.reactionThreshold, reputationInfo.nextThreshold,
+                  reputationInfo.standing
             else
               minValue, maxValue, curValue = 0, 1, 1
               isCapped = true
@@ -122,26 +125,26 @@ function DB:OnEvent(event)
 
     -- Experience
   elseif
-    (self.mode == DB.const.mode.exp)
-    and not self.updateExpNextOutOfCombat
-    and (
-      (event == "ELVUI_FORCE_UPDATE")
-      or (event == "PLAYER_XP_UPDATE")
-      or (event == "DISABLE_XP_GAIN")
-      or (event == "ENABLE_XP_GAIN")
-      or (event == "QUEST_LOG_UPDATE")
-      or (event == "SUPER_TRACKING_CHANGED")
-      or (event == "ZONE_CHANGED")
-      or (event == "ZONE_CHANGED_NEW_AREA")
-      or (event == "UPDATE_EXHAUSTION")
-    )
+      (self.mode == DB.const.mode.exp)
+      and not self.updateExpNextOutOfCombat
+      and (
+        (event == "ELVUI_FORCE_UPDATE")
+        or (event == "PLAYER_XP_UPDATE")
+        or (event == "DISABLE_XP_GAIN")
+        or (event == "ENABLE_XP_GAIN")
+        or (event == "QUEST_LOG_UPDATE")
+        or (event == "SUPER_TRACKING_CHANGED")
+        or (event == "ZONE_CHANGED")
+        or (event == "ZONE_CHANGED_NEW_AREA")
+        or (event == "UPDATE_EXHAUSTION")
+      )
   then
     self.updateExpNextOutOfCombat = true
 
     F.Event.ContinueOutOfCombat(function()
       self.updateExpNextOutOfCombat = false
 
-      if (IsXPUserDisabled()) or (IsPlayerAtEffectiveMaxLevel()) then
+      if (not TXUI.IsClassic and IsXPUserDisabled()) or (IsPlayerAtEffectiveMaxLevel()) then
         self.data.expRestPercentage = 0
         self.data.expCompletedXP = 0
         self.data.expCompletedPercentage = 0
@@ -150,7 +153,8 @@ function DB:OnEvent(event)
         self.data.xpToLevel = 0
         self.data.restedXP = 0
       else
-        self.data.currentXP, self.data.xpToLevel, self.data.restedXP = UnitXP("player"), UnitXPMax("player"), GetXPExhaustion()
+        self.data.currentXP, self.data.xpToLevel, self.data.restedXP = UnitXP("player"), UnitXPMax("player"),
+            GetXPExhaustion()
         if self.data.xpToLevel <= 0 then self.data.xpToLevel = 1 end
         if not self.data.restedXP then self.data.restedXP = 0 end
 
@@ -158,7 +162,8 @@ function DB:OnEvent(event)
           self.data.expCompletedXP, self.data.expCompletedPercentage = self:GetCompletedPercentage()
         end
 
-        self.data.expRestPercentage = (self.data.restedXP > 0) and ((min(self.data.restedXP, self.data.xpToLevel) / self.data.xpToLevel) * 100) or 0
+        self.data.expRestPercentage = (self.data.restedXP > 0) and
+            ((min(self.data.restedXP, self.data.xpToLevel) / self.data.xpToLevel) * 100) or 0
         self.data.expPercentage = (self.data.currentXP / self.data.xpToLevel) * 100
       end
 
@@ -179,7 +184,8 @@ function DB:UpdateExperienceTooltip()
 
   DT.tooltip:AddDoubleLine(
     "XP:",
-    format(" %s / %s (%.2f%%)", E:ShortValue(self.data.currentXP), E:ShortValue(self.data.xpToLevel), self.data.expPercentage),
+    format(" %s / %s (%.2f%%)", E:ShortValue(self.data.currentXP), E:ShortValue(self.data.xpToLevel),
+      self.data.expPercentage),
     1,
     1,
     1,
@@ -366,7 +372,8 @@ function DB:GetCompletedPercentage()
 end
 
 function DB:UpdateSmartMode(init)
-  local mode = ((self.db.mode == "auto") and (not IsPlayerAtEffectiveMaxLevel()) and (not IsXPUserDisabled())) and self.const.mode.exp or self.const.mode.rep
+  local mode = ((self.db.mode == "auto") and (not IsPlayerAtEffectiveMaxLevel()) and (TXUI.IsClassic or not IsXPUserDisabled())) and
+      self.const.mode.exp or self.const.mode.rep
 
   if not init and (mode ~= self.mode) then
     self.mode = mode
@@ -400,7 +407,8 @@ end
 
 function DB:UpdateInfoText()
   if self.db.infoEnabled then
-    self.infoText:SetText(E:Round((self.mode == DB.const.mode.exp) and self.data.expPercentage or self.data.repPercentage) .. "%")
+    self.infoText:SetText(E:Round((self.mode == DB.const.mode.exp) and self.data.expPercentage or self.data
+      .repPercentage) .. "%")
   else
     self.infoText:SetText("")
   end

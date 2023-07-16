@@ -99,7 +99,7 @@ function TXUI:Initialize()
   end
 
   -- Check for non Wrath, non Retail
-  if not self.IsRetail and not self.IsWrath then return end
+  if not self.IsRetail and not self.IsWrath and not self.IsClassic then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
@@ -107,6 +107,11 @@ function TXUI:Initialize()
   -- Set the correct tables for Flavor
   if self.IsWrath then
     I.HearthstoneData = I.HearthstoneData_Wrath
+    I.InterruptSpellMap = I.InterruptSpellMap_Wrath
+  end
+
+  if self.IsClassic then
+    I.HearthstoneData = I.HearthstoneData_Classic
     I.InterruptSpellMap = I.InterruptSpellMap_Wrath
   end
 
