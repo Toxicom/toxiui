@@ -7,11 +7,9 @@ local DT = E:GetModule("DataTexts")
 local abs = math.abs
 local AddonList = AddonList
 local BNGetNumFriends = BNGetNumFriends
-if not TXUI.IsClassic then
-  local C_BattleNet_GetFriendAccountInfo = C_BattleNet.GetFriendAccountInfo
-  local C_BattleNet_GetFriendGameAccountInfo = C_BattleNet.GetFriendGameAccountInfo
-  local C_BattleNet_GetFriendNumGameAccounts = C_BattleNet.GetFriendNumGameAccounts
-end
+local C_BattleNet_GetFriendAccountInfo = nil
+local C_BattleNet_GetFriendGameAccountInfo = nil
+local C_BattleNet_GetFriendNumGameAccounts = nil
 local C_FriendList_GetNumOnlineFriends = C_FriendList.GetNumOnlineFriends
 local ChatFrame_ToggleMenu = ChatFrame_ToggleMenu
 local ChatMenu = ChatMenu
@@ -85,6 +83,13 @@ local SPELLBOOK_ABILITIES_BUTTON = SPELLBOOK_ABILITIES_BUTTON
 local TALENTS_BUTTON = TALENTS_BUTTON
 local UNKNOWN = UNKNOWN
 local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
+
+-- Assign these when we are not running an instance of classic_era because this api was left out of classic_era
+if not TXUI.IsClassic then
+  C_BattleNet_GetFriendAccountInfo = C_BattleNet.GetFriendAccountInfo
+  C_BattleNet_GetFriendGameAccountInfo = C_BattleNet.GetFriendGameAccountInfo
+  C_BattleNet_GetFriendNumGameAccounts = C_BattleNet.GetFriendNumGameAccounts
+end
 
 MM.leftButtonText = "|cffFFFFFFLeft Click:|r "
 MM.rightButtonText = "|cffFFFFFFRight Click:|r "

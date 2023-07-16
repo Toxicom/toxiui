@@ -22,13 +22,15 @@ local GetQuestLogTitle = GetQuestLogTitle
 local GetWatchedFactionInfo = GetWatchedFactionInfo
 local GetXPExhaustion = GetXPExhaustion
 local IsPlayerAtEffectiveMaxLevel = IsPlayerAtEffectiveMaxLevel
-if not TXUI.IsClassic then local IsXPUserDisabled = IsXPUserDisabled end
+local IsXPUserDisabledFunction = nil
 local min = math.min
 local SelectQuestLogEntry = SelectQuestLogEntry
 local UnitXP = UnitXP
 local UnitXPMax = UnitXPMax
 
 local MAX_REPUTATION_REACTION = _G.MAX_REPUTATION_REACTION
+
+if not TXUI.IsClassic then IsXPUserDisabledFunction = IsXPUserDisabled end
 
 -- Vars
 DB.const = {
@@ -141,7 +143,7 @@ function DB:OnEvent(event)
     F.Event.ContinueOutOfCombat(function()
       self.updateExpNextOutOfCombat = false
 
-      if (not TXUI.IsClassic and IsXPUserDisabled()) or (IsPlayerAtEffectiveMaxLevel()) then
+      if (not TXUI.IsClassic and IsXPUserDisabledFunction()) or (IsPlayerAtEffectiveMaxLevel()) then
         self.data.expRestPercentage = 0
         self.data.expCompletedXP = 0
         self.data.expCompletedPercentage = 0
@@ -366,7 +368,8 @@ function DB:GetCompletedPercentage()
 end
 
 function DB:UpdateSmartMode(init)
-  local mode = ((self.db.mode == "auto") and (not IsPlayerAtEffectiveMaxLevel()) and (TXUI.IsClassic or not IsXPUserDisabled())) and self.const.mode.exp or self.const.mode.rep
+  local mode = ((self.db.mode == "auto") and (not IsPlayerAtEffectiveMaxLevel()) and (TXUI.IsClassic or not IsXPUserDisabledFunction())) and self.const.mode.exp
+    or self.const.mode.rep
 
   if not init and (mode ~= self.mode) then
     self.mode = mode
