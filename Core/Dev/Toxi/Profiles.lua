@@ -54,6 +54,9 @@ function T:SetupProfile()
   E.db.TXUI.addons.elvUITheme.shadowAlpha = 0.6
   E.db.TXUI.addons.elvUITheme.shadowSize = 4
 
+  -- Skins: WeakAuras
+  E.db.TXUI.addons.weakAurasIcons.iconShape = TXUI.IsWrath and I.Enum.IconShape.SQUARE or I.Enum.IconShape.RECTANGLE
+
   -- ElvUI
   E.db.general.taintLog = false
 
