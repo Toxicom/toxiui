@@ -527,5 +527,9 @@ I.InterruptSpellMap = {
   { id = 351338, conditions = { class = "EVOKER" } }, -- Evoker Quell
 }
 
--- Data for which class or spec has which interrupt spell
-I.InterruptSpellMap_Wrath = {}
+--[[
+  Data for which class or spec has which interrupt spell. This is currently only used in Wrath and Classic,
+  as the interrupt logic iirc doesn't work properly in Wrath and The API doesn't allow us to do it in the same way in Classic
+]]
+
+I.InterruptSpellMap_Empty = {}

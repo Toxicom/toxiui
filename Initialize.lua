@@ -98,7 +98,7 @@ function TXUI:Initialize()
     return
   end
 
-  -- Check for non Wrath, non Retail
+  -- Check for non Wrath, non Retail and non Classic Era
   if not self.IsRetail and not self.IsWrath and not self.IsClassic then return end
 
   -- Force ElvUI Setup to hide
