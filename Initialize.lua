@@ -107,12 +107,12 @@ function TXUI:Initialize()
   -- Set the correct tables for Flavor
   if self.IsWrath then
     I.HearthstoneData = I.HearthstoneData_Wrath
-    I.InterruptSpellMap = I.InterruptSpellMap_Wrath
+    I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 
   if self.IsClassic then
     I.HearthstoneData = I.HearthstoneData_Classic
-    I.InterruptSpellMap = I.InterruptSpellMap_Wrath
+    I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 
   -- Lets go!
