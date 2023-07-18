@@ -55,8 +55,10 @@ function FP:Disable()
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_DISABLED")
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_ENABLED")
     self.ab.fadeParent:RegisterEvent("PLAYER_TARGET_CHANGED")
-    self.ab.fadeParent:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
-    self.ab.fadeParent:RegisterEvent("UPDATE_POSSESS_BAR")
+    if not TXUI.IsClassic then
+      self.ab.fadeParent:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
+      self.ab.fadeParent:RegisterEvent("UPDATE_POSSESS_BAR")
+    end
     self.ab.fadeParent:RegisterEvent("VEHICLE_UPDATE")
     self.ab.fadeParent:RegisterUnitEvent("UNIT_ENTERED_VEHICLE", "player")
     self.ab.fadeParent:RegisterUnitEvent("UNIT_EXITED_VEHICLE", "player")
@@ -81,8 +83,10 @@ function FP:Enable()
   -- Don't unregister for default ElvUI mode
   if self.db.mode ~= "ELVUI" then
     self.ab.fadeParent:UnregisterEvent("PLAYER_TARGET_CHANGED")
-    self.ab.fadeParent:UnregisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
-    self.ab.fadeParent:UnregisterEvent("UPDATE_POSSESS_BAR")
+    if not TXUI.IsClassic then
+      self.ab.fadeParent:UnregisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
+      self.ab.fadeParent:UnregisterEvent("UPDATE_POSSESS_BAR")
+    end
     self.ab.fadeParent:UnregisterEvent("VEHICLE_UPDATE")
     self.ab.fadeParent:UnregisterEvent("UNIT_ENTERED_VEHICLE")
     self.ab.fadeParent:UnregisterEvent("UNIT_EXITED_VEHICLE")

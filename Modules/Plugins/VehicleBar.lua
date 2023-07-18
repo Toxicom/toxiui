@@ -183,16 +183,18 @@ function VB:UpdateBar()
   end
 
   -- Update Paging
-  local pageState = format(
-    "[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s",
-    GetOverrideBarIndex(),
-    GetVehicleBarIndex(),
-    GetVehicleBarIndex(),
-    (self.db.dragonRiding and "[bonusbar:5] 11;") or ""
-  )
-  local pageAttribute = self.ab:GetPage("bar1", 1, pageState)
-  RegisterStateDriver(bar, "page", pageAttribute)
-  self.bar:SetAttribute("page", pageAttribute)
+  if not TXUI.IsClassic then
+    local pageState = format(
+      "[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s",
+      GetOverrideBarIndex(),
+      GetVehicleBarIndex(),
+      GetVehicleBarIndex(),
+      (self.db.dragonRiding and "[bonusbar:5] 11;") or ""
+    )
+    local pageAttribute = self.ab:GetPage("bar1", 1, pageState)
+    RegisterStateDriver(bar, "page", pageAttribute)
+    self.bar:SetAttribute("page", pageAttribute)
+  end
 
   -- ElvUI Bar config
   self.ab:UpdateButtonConfig("bar1", "ACTIONBUTTON")

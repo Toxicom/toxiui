@@ -173,10 +173,22 @@ function SS:GetWrathCacheForSpec(spec)
 
   if highPointsSpentIndex ~= nil then
     local name, texture = GetTalentTabInfo(highPointsSpentIndex, false, false, spec)
-    if name then return { id = texture, icon = texture, name = name, role = role, points = ("%s / %s / %s"):format(unpack(points)) } end
+    if name then return {
+      id = texture,
+      icon = texture,
+      name = name,
+      role = role,
+      points = ("%s / %s / %s"):format(unpack(points)),
+    } end
   end
 
-  return { id = 0, icon = 134942, name = spec == 2 and TALENT_SPEC_SECONDARY or TALENT_SPEC_PRIMARY, role = "DAMAGER", points = "0 / 0 / 0" }
+  return {
+    id = 0,
+    icon = 134942,
+    name = spec == 2 and TALENT_SPEC_SECONDARY or TALENT_SPEC_PRIMARY,
+    role = "DAMAGER",
+    points = "0 / 0 / 0",
+  }
 end
 
 function SS:UpdateSpecialization()
@@ -459,6 +471,8 @@ function SS:OnInit()
   -- We are done, hooray!
   self.Initialized = true
 end
+
+if TXUI.IsClassic then return end
 
 WB:RegisterSubModule(
   SS,

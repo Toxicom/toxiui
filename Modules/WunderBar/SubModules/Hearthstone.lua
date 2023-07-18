@@ -7,7 +7,7 @@ local CreateFrame = CreateFrame
 local floor = math.floor
 local format = string.format
 local GetBindLocation = GetBindLocation
-local GetItemCooldown = C_Container.GetItemCooldown
+local GetItemCooldownFunction
 local GetItemCount = GetItemCount
 local GetItemIcon = GetItemIcon
 local GetSpellCooldown = GetSpellCooldown
@@ -16,6 +16,13 @@ local GetTime = GetTime
 local mod = mod
 local pairs = pairs
 local tinsert = table.insert
+
+-- API is different in one place it's global the other place it's a member of a global type.
+if TXUI.IsClassic then
+  GetItemCooldownFunction = GetItemCooldown
+else
+  GetItemCooldownFunction = C_Container.GetItemCooldown
+end
 
 local triggerLoadFinished = false
 function HS:OnUpdate(elapsed)
@@ -49,7 +56,7 @@ function HS:GetCooldownForItem(itemInfo)
   local startTime, duration
 
   if (itemInfo.type == "toy") or (itemInfo.type == "item") then
-    startTime, duration = GetItemCooldown(itemInfo.id)
+    startTime, duration = GetItemCooldownFunction(itemInfo.id)
   elseif itemInfo.type == "spell" then
     startTime, duration = GetSpellCooldown(itemInfo.id)
   end

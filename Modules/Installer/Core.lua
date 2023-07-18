@@ -89,7 +89,7 @@ function IS:ElvUI(callback)
   E:UpdateDB()
 
   -- Disable dual spec during installation
-  if E.data:IsDualSpecEnabled() then E.data:SetDualSpecEnabled(false) end
+  if not TXUI.IsClassic and E.data:IsDualSpecEnabled() then E.data:SetDualSpecEnabled(false) end
 
   -- ElvUI: Profile
   PF:MergeElvUIProfile()
@@ -164,7 +164,7 @@ function IS:ElvUIProfileDialog()
   local function createNewProfile(name)
     if strtrim(name) == "" then return end
 
-    if E.data:IsDualSpecEnabled() then
+    if not TXUI.IsClassic and E.data:IsDualSpecEnabled() then
       E.data:SetDualSpecProfile(name)
     else
       E.data:SetProfile(name)
