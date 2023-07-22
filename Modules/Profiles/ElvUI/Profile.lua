@@ -780,6 +780,15 @@ function PF:BuildProfile()
         xOffset = F.Dpi(10),
         yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
       }),
+
+      -- UnitFrame Focus Custom Texts Class Icon
+      ["!ClassIcon"] = createCustomText({}, {
+        justifyH = "RIGHT",
+        attachTextTo = "Health",
+        text_format = "[tx:classicon]",
+        xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(27)),
+        yOffset = 0,
+      }),
     },
 
     -- UnitFrame Focus Buffs
@@ -879,6 +888,15 @@ function PF:BuildProfile()
           text_format = "[tx:classcolor][perhp]",
           xOffset = F.Dpi(-10),
           yOffset = F.Dpi(25),
+        }),
+
+        -- UnitFrame Target Custom Texts Class Icon
+        ["!ClassIcon"] = createCustomText({}, {
+          justifyH = "LEFT",
+          attachTextTo = "Health",
+          text_format = "[tx:classicon]",
+          xOffset = F.Dpi(10),
+          yOffset = 0,
         }),
       },
 

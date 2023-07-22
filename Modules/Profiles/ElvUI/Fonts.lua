@@ -231,6 +231,7 @@ function PF:ElvUIFont()
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
             { "!Health", I.Fonts.Number, 22, "NONE" },
+            { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 
           buffs = {
@@ -265,6 +266,7 @@ function PF:ElvUIFont()
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "NONE" },
               { "!Health", I.Fonts.Number, 24, "NONE" },
+              { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
             },
 
             buffs = {
