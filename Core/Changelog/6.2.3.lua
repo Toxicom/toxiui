@@ -4,7 +4,7 @@ TXUI.Changelog["6.2.3"] = {
   HOTFIX = true,
   CHANGES = {
     "* ToxiUI",
-    "Increase minimum required ElvUI version",
+    "Increase minimum required " .. F.String.Class("ElvUI", "SHAMAN") .. " version",
   },
   CHANGES_WRATH = {
     "Update for 3.4.2",

@@ -461,6 +461,15 @@ function PF:BuildProfile()
         text_format = "[tx:classcolor][health:current:shortvalue] || [perhp]",
         yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
       }),
+
+      -- UnitFrame Player Custom Texts Class Icon
+      ["!ClassIcon"] = createCustomText({}, {
+        justifyH = "LEFT",
+        attachTextTo = "Health",
+        text_format = "[tx:classicon]",
+        xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-27)),
+        yOffset = 0,
+      }),
     },
 
     -- UnitFrame Player Debuffs
@@ -582,6 +591,15 @@ function PF:BuildProfile()
         text_format = "[tx:classcolor][name:abbrev:medium]",
         xOffset = F.Dpi(-5),
         yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+      }),
+
+      -- UnitFrame Target Custom Texts Class Icon
+      ["!ClassIcon"] = createCustomText({}, {
+        justifyH = "RIGHT",
+        attachTextTo = "Health",
+        text_format = "[tx:classicon]",
+        xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(27)),
+        yOffset = 0,
       }),
     },
 

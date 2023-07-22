@@ -1,10 +1,10 @@
 local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
 
 TXUI.Changelog["6.3.0"] = {
-  HOTFIX = true,
+  HOTFIX = false,
   CHANGES = {
     "* ToxiUI",
-    "TBD",
+    F.String.Good("NEW: ") .. "UnitFrame Class Icons",
   },
   CHANGES_CLASSIC = {
     "Release ToxiUI Classic",

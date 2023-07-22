@@ -46,6 +46,23 @@ function M:TagsUpdate()
 end
 
 function M:Tags()
+  local classIcon = [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\ToxiClasses:32:32:0:0:512:512:%s|t]]
+  local classIcons = {
+    WARRIOR = "0:64:0:64",
+    MAGE = "64:128:0:64",
+    ROGUE = "128:192:0:64",
+    DRUID = "192:256:0:64",
+    HUNTER = "0:64:64:128",
+    SHAMAN = "64:128:64:128",
+    PRIEST = "128:192:64:128",
+    WARLOCK = "192:256:64:128",
+    PALADIN = "0:64:128:192",
+    DEATHKNIGHT = "64:128:128:192",
+    MONK = "128:192:128:192",
+    DEMONHUNTER = "192:256:128:192",
+    EVOKER = "256:320:0:64",
+  }
+
   local dm = TXUI:GetModule("ThemesDarkTransparency")
 
   -- ClassColor Tag
@@ -66,6 +83,21 @@ function M:Tags()
   E.TagInfo["tx:classcolor"] = {
     category = TXUI.Title, -- Title
     description = "Colors names by player class or NPC reaction when DarkMode is enabled, white otherwise (Ex: [tx:classcolor][name])",
+  }
+
+  -- Class Icon Tag
+  E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED", function(unit)
+    if UnitIsPlayer(unit) then
+      local _, class = UnitClass(unit)
+      local icon = classIcons[class]
+      if icon then return format(classIcon, icon) end
+    end
+  end)
+
+  -- Class Icon Tag Info
+  E.TagInfo["tx:classicon"] = {
+    category = TXUI.Title, -- Title
+    description = "Displays class icon (Ex: [tx:classicon])",
   }
 
   -- Settings Callback
