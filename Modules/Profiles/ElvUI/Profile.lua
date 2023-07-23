@@ -512,7 +512,6 @@ function PF:BuildProfile()
     -- UnitFrame Player CombatIcon
     CombatIcon = {
       enable = true,
-      defaultColor = false,
 
       anchorPoint = "CENTER",
       size = F.Dpi(24),

@@ -5,7 +5,7 @@ TXUI.Changelog["6.3.0"] = {
   CHANGES = {
     "* ToxiUI",
     F.String.Good("NEW: ") .. "UnitFrame Class Icons",
-    F.String.Good("NEW: ") .. "Combat icon for Player UnitFrame",
+    F.String.Good("NEW: ") .. "Combat icon for Player UnitFrame " .. F.String.Class("(icons8.com)", "ROGUE"),
   },
   CHANGES_CLASSIC = {
     "Release ToxiUI Classic",
