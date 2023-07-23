@@ -54,6 +54,7 @@ I.Data.Contributor = {
         ["Toxivoid-PyrewoodVillage"] = true,
         ["Melissandei-PyrewoodVillage"] = true,
         ["Toxirage-PyrewoodVillage"] = true,
+        ["Toxiholy-PyrewoodVillage"] = true,
       },
 
       [I.Enum.Flavor.CLASSIC] = {
