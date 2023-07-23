@@ -1717,8 +1717,10 @@ function PF:UpdateProfileForTheme()
   F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
 
   -- UnitFrame Heights
