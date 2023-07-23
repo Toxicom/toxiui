@@ -467,8 +467,8 @@ function PF:BuildProfile()
         justifyH = "LEFT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
-        xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-27)),
-        yOffset = 0,
+        xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-32)),
+        yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
       }),
     },
 
@@ -514,14 +514,15 @@ function PF:BuildProfile()
       enable = true,
       defaultColor = false,
 
-      anchorPoint = "LEFT",
-      size = F.Dpi(30),
+      anchorPoint = "CENTER",
+      size = F.Dpi(24),
       yOffset = -20, -- Not sure if this needs DPI
 
+      defaultColor = true,
       color = F.Table.HexToRGB("#ffffff"),
 
       texture = "CUSTOM",
-      customTexture = I.General.MediaPath .. "Textures\\Combat_Material.blp",
+      customTexture = I.General.MediaPath .. "Textures\\Icons\\swords128.blp",
     },
 
     -- UnitFrame Player raidicon (Target Marker Icon)
@@ -598,8 +599,8 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
-        xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(27)),
-        yOffset = 0,
+        xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(32)),
+        yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
       }),
     },
 
@@ -1718,9 +1719,11 @@ function PF:UpdateProfileForTheme()
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
 
   -- UnitFrame Heights

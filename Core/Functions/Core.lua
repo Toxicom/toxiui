@@ -125,8 +125,8 @@ function F.PixelPerfect()
   return perfectScale
 end
 
-local baseScale = 768 / 1440
-local baseMulti = 0.64 / baseScale
+local baseScale = 768 / 1440 -- 0,5333333333333333
+local baseMulti = 0.64 / baseScale -- 1,2
 local perfectScale = baseScale / F.PixelPerfect()
 local perfectMulti = baseMulti * perfectScale
 
