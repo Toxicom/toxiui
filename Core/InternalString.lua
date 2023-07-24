@@ -127,3 +127,47 @@ I.Strings.Deconstruct = {
     },
   },
 }
+
+I.Strings.Classes = {
+  CLASSIC = {
+    "WARRIOR",
+    "PALADIN",
+    "HUNTER",
+    "ROGUE",
+    "PRIEST",
+    "SHAMAN",
+    "MAGE",
+    "WARLOCK",
+    "DRUID",
+  },
+  WRATH = {
+    "WARRIOR",
+    "PALADIN",
+    "HUNTER",
+    "ROGUE",
+    "PRIEST",
+    "SHAMAN",
+    "MAGE",
+    "WARLOCK",
+    "DRUID",
+    -- Wrath only
+    "DEATHKNIGHT",
+  },
+  RETAIL = {
+    "WARRIOR",
+    "PALADIN",
+    "HUNTER",
+    "ROGUE",
+    "PRIEST",
+    "SHAMAN",
+    "MAGE",
+    "WARLOCK",
+    "DRUID",
+    -- Wrath only
+    "DEATHKNIGHT",
+    -- Retail only
+    "MONK",
+    "DEMONHUNTER",
+    "EVOKER",
+  },
+}
