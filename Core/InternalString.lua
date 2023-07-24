@@ -24,6 +24,7 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.ELVUI_NOT_SKINNED] = "You can't enable this option because a similar module for UnitFrames is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.DETAILS_NOT_SKINNED] = "You can't enable this option because a similar module for Details is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.OTHER_THEMES_DISABLED] = "You can't enable this option because a similar module for ElvUI is currently turned on. Please disable it to unlock this option.",
+  [I.Enum.Requirements.ELVUI_ACTIONBARS_DISABLED] = "You can't use this module because ElvUI's ActionBars module is currently turned off. Please enable it to unlock this option.",
 }
 
 I.Strings.RequirementsDebug = {

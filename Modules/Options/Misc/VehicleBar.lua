@@ -11,7 +11,6 @@ function O:Plugins_VehicleBar()
     order = self:GetOrder(),
     type = "group",
     name = "VehicleBar",
-    hidden = VehicleBarDisabled,
     get = function(info)
       return E.db.TXUI.vehicleBar[info[#info]]
     end,
@@ -57,7 +56,7 @@ function O:Plugins_VehicleBar()
     }
 
     optionsHidden = function()
-      return self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
+      return VehicleBarDisabled or self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
     end
   end
 

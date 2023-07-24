@@ -195,7 +195,8 @@ function O:Plugins_Others()
   end
 
   -- ElvUI Global Fade Persist Mode
-  if E.private.actionbar.enable then
+  local actionBarsAreDisabled = E.private.actionbar.enabled ~= true
+  do
     -- ElvUI Global Fade Persist Group
     local elvuiFadePersistGroup = self:AddInlineRequirementsDesc(options, {
       name = "ActionBar Fade",
@@ -222,7 +223,7 @@ function O:Plugins_Others()
 
     -- Disabled helper
     local optionsDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES
+      return actionBarsAreDisabled or self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES
     end
 
     -- Mode
@@ -246,10 +247,10 @@ function O:Plugins_Others()
         F.Event.TriggerEvent("FadePersist.DatabaseUpdate")
       end,
     }
-
-    -- Spacer
-    self:AddSpacer(options)
   end
+
+  -- Spacer
+  self:AddSpacer(options)
 
   -- ToxiUI Game Menu Button
   do

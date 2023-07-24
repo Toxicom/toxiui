@@ -125,12 +125,14 @@ I.Requirements = {
   },
   ["VehicleBar"] = {
     I.Enum.Requirements.SL_VEHICLE_BAR_DISABLED,
+    I.Enum.Requirements.ELVUI_ACTIONBARS_DISABLED,
   },
   ["MiniMapCoords"] = {
     I.Enum.Requirements.SL_MINIMAP_COORDS_DISABLED,
   },
   ["FadePersist"] = {
     I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED,
+    I.Enum.Requirements.ELVUI_ACTIONBARS_DISABLED,
   },
   ["GameMenuButton"] = {},
   ["BlizzardFonts"] = {
