@@ -195,7 +195,7 @@ function O:Plugins_Others()
   end
 
   -- ElvUI Global Fade Persist Mode
-  do
+  if E.private.actionbar.enable then
     -- ElvUI Global Fade Persist Group
     local elvuiFadePersistGroup = self:AddInlineRequirementsDesc(options, {
       name = "ActionBar Fade",
@@ -246,10 +246,10 @@ function O:Plugins_Others()
         F.Event.TriggerEvent("FadePersist.DatabaseUpdate")
       end,
     }
-  end
 
-  -- Spacer
-  self:AddSpacer(options)
+    -- Spacer
+    self:AddSpacer(options)
+  end
 
   -- ToxiUI Game Menu Button
   do

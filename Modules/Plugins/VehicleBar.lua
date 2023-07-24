@@ -238,7 +238,7 @@ function VB:Disable()
 end
 
 function VB:Enable()
-  if not self.Initialized then return end
+  if not self.Initialized and E.private.actionbar.enable then return end
 
   -- Update or create bar
   self:UpdateBar()
@@ -279,7 +279,7 @@ function VB:DatabaseUpdate()
 
   -- Enable only out of combat
   F.Event.ContinueOutOfCombat(function()
-    if TXUI:HasRequirements(I.Requirements.VehicleBar) and (self.db and self.db.enabled) then self:Enable() end
+    if TXUI:HasRequirements(I.Requirements.VehicleBar) and (self.db and self.db.enabled) and E.private.actionbar.enable then self:Enable() end
   end)
 end
 
