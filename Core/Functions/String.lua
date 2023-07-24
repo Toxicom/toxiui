@@ -61,6 +61,21 @@ function F.String.Class(msg, class)
   return F.String.Color(msg, F.String.FastRGB(color.r, color.g, color.b))
 end
 
+function F.String.RandomClassColor(msg)
+  local classNames
+  if TXUI.IsClassic then
+    classNames = I.Strings.Classes.CLASSIC
+  elseif TXUI.IsWrath then
+    classNames = I.Strings.Classes.WRATH
+  else
+    classNames = I.Strings.Classes.RETAIL
+  end
+
+  local randomClass = classNames[math.random(1, #classNames)]
+  local color = E:ClassColor(randomClass, true)
+  return F.String.Color(msg, F.String.FastRGB(color.r, color.g, color.b))
+end
+
 function F.String.Luxthos(msg)
   return F.String.Color(msg, I.Enum.Colors.LUXTHOS)
 end

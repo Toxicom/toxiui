@@ -50,7 +50,7 @@ function FP:Disable()
 
   self:UnhookAll()
 
-  if self.ab then
+  if E.private.actionbar.enable and self.ab then
     self.ab.fadeParent:GetScript("OnEvent")(self.ab.fadeParent)
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_DISABLED")
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_ENABLED")
@@ -72,7 +72,7 @@ function FP:Disable()
 end
 
 function FP:Enable()
-  if not self.Initialized then return end
+  if not self.Initialized or not E.private.actionbar.enable then return end
 
   -- Don't unregister for combat or ElvUI mode
   if (self.db.mode ~= "IN_COMBAT") and (self.db.mode ~= "NO_COMBAT") and (self.db.mode ~= "ELVUI") then
@@ -140,7 +140,7 @@ function FP:DatabaseUpdate()
     self:Disable()
 
     -- Enable only out of combat
-    if TXUI:HasRequirements(I.Requirements.FadePersist) and (self.db and self.db.enabled) then self:Enable() end
+    if TXUI:HasRequirements(I.Requirements.FadePersist) and (self.db and self.db.enabled) and E.private.actionbar.enable then self:Enable() end
   end)
 end
 

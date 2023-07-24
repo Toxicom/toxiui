@@ -69,6 +69,8 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       if not F.IsAddOnEnabled("ElvUI_WindTools") then return requirement end
     elseif requirement == I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED then
       if F.IsAddOnEnabled("ElvUI_GlobalFadePersist") then return requirement end
+    elseif requirement == I.Enum.Requirements.ELVUI_ACTIONBARS_DISABLED then
+      if E.private.actionbar.enable ~= true then return requirement end
     elseif requirement == I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE then
       local profileName = F.IsAddOnEnabled("Details") and Details and Details.GetCurrentProfileName and Details.GetCurrentProfileName()
       if not profileName or (profileName ~= I.ProfileNames.Default and profileName ~= I.ProfileNames.Dev) then return requirement end

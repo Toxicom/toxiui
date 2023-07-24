@@ -195,6 +195,7 @@ function O:Plugins_Others()
   end
 
   -- ElvUI Global Fade Persist Mode
+  local actionBarsAreDisabled = E.private.actionbar.enabled ~= true
   do
     -- ElvUI Global Fade Persist Group
     local elvuiFadePersistGroup = self:AddInlineRequirementsDesc(options, {
@@ -222,7 +223,7 @@ function O:Plugins_Others()
 
     -- Disabled helper
     local optionsDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES
+      return actionBarsAreDisabled or self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES
     end
 
     -- Mode

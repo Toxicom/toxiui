@@ -2,6 +2,10 @@ local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
 local O = TXUI:GetModule("Options")
 
 function O:Plugins_VehicleBar()
+  local VehicleBarDisabled = function()
+    return not E.db.TXUI.vehicleBar.enabled or not E.private.actionbar.enable
+  end
+
   -- Create Tab
   self.options.misc.args.vehicleBar = {
     order = self:GetOrder(),
@@ -52,7 +56,7 @@ function O:Plugins_VehicleBar()
     }
 
     optionsHidden = function()
-      return self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
+      return VehicleBarDisabled or self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
     end
   end
 
