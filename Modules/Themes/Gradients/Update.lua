@@ -32,10 +32,17 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
       local fgMap = F.Color.GetMap(frame.colorMap)
       local bgMap = F.Color.GetBackgroundMap(frame.colorMap)
 
-      frame.normalColor = fgMap[I.Enum.GradientMode.Color.NORMAL][frame.colorEntry]
-      frame.shiftColor = fgMap[I.Enum.GradientMode.Color.SHIFT][frame.colorEntry]
-      frame.normalColorBG = bgMap[I.Enum.GradientMode.Color.NORMAL][frame.colorEntry]
-      frame.shiftColorBG = bgMap[I.Enum.GradientMode.Color.SHIFT][frame.colorEntry]
+      if fgMap ~= nil and bgMap ~= nil then
+        frame.normalColor = fgMap[I.Enum.GradientMode.Color.NORMAL][frame.colorEntry]
+        frame.shiftColor = fgMap[I.Enum.GradientMode.Color.SHIFT][frame.colorEntry]
+        frame.normalColorBG = bgMap[I.Enum.GradientMode.Color.NORMAL][frame.colorEntry]
+        frame.shiftColorBG = bgMap[I.Enum.GradientMode.Color.SHIFT][frame.colorEntry]
+      else
+        -- @TODO: This is for debugging DO NOT RELEASE WITH THIS IN THE CODE
+        print("This is for debugging an issue with Details in retail. If you are seeing this you are running a beta version.")
+        print("fgMap or bgMap was nil for: " .. frame.colorMap)
+        print("colorEntry: " .. frame.colorEntry)
+      end
 
       if frame.normalColor == nil then
         frame.colorMap = nil
