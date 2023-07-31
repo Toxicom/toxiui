@@ -125,11 +125,11 @@ function F.String.WALink(class)
   local classLink = I.Strings.WALinks[class]
 
   if classLink ~= nil then
-    local base = TXUI.IsWrath and I.Strings.WALinks.FORMAT_WRATH or I.Strings.WALinks.FORMAT
+    local base = TXUI.IsClassic and I.Strings.WALinks.FORMAT_CLASSIC or TXUI.IsWrath and I.Strings.WALinks.FORMAT_WRATH or I.Strings.WALinks.FORMAT
     return format(base, classLink)
   end
 
-  return I.Strings.WALinks.DEFAULT
+  return TXUI.IsClassic and I.Strings.WALinks.DEFAULT_CLASSIC or I.Strings.WALinks.DEFAULT
 end
 
 function F.String.Abbreviate(text)
