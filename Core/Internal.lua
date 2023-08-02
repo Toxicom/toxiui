@@ -290,12 +290,14 @@ I.ElvUIIcons = {
   ["Dead"] = {
     ["TXUI"] = "WhiteDead",
     ["TXUI_MATERIAL"] = "MaterialDead",
+    ["TXUI_STYLIZED"] = "StylizedDead",
     ["BLIZZARD"] = "Interface\\LootFrame\\LootPanel-Icon",
   },
 
   ["Offline"] = {
     ["TXUI"] = "WhiteDC",
     ["TXUI_MATERIAL"] = "MaterialDC",
+    ["TXUI_STYLIZED"] = "StylizedDC",
     ["ALERT"] = "Interface\\DialogFrame\\UI-Dialog-Icon-AlertNew",
     ["ARTHAS"] = "Interface\\LFGFRAME\\UI-LFR-PORTRAIT",
     ["PASS"] = "Interface\\PaperDollInfoFrame\\UI-GearManager-LeaveItem-Transparent",

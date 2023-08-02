@@ -240,16 +240,16 @@ P.elvUIIcons = {
 
   deadIcons = {
     enabled = true, -- Enabled by default
-    theme = "TXUI_MATERIAL",
-    size = 36,
+    theme = "TXUI_STYLIZED",
+    size = 28, -- 36 for material/original
     xOffset = 0,
     yOffset = 5,
   },
 
   offlineIcons = {
     enabled = true, -- Enabled by default
-    theme = "TXUI_MATERIAL",
-    size = 36,
+    theme = "TXUI_STYLIZED",
+    size = 28, -- 36 for material/original
     xOffset = 0,
     yOffset = 5,
   },

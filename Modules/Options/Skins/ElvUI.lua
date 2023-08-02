@@ -206,6 +206,7 @@ function O:Skins_ElvUI()
       values = {
         ["TXUI"] = TXUI.Title,
         ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
         ["BLIZZARD"] = "Blizzard",
       },
       hidden = deadIconDisabled,
@@ -296,6 +297,7 @@ function O:Skins_ElvUI()
       values = {
         ["TXUI"] = TXUI.Title,
         ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
         ["ALERT"] = "Blizzard - 'Alert'",
         ["ARTHAS"] = "Blizzard - 'Arthas'",
         ["PASS"] = "Blizzard - 'Pass'",
