@@ -546,7 +546,10 @@ function PF:BuildProfile()
       xOffsetTime = F.Dpi(-10),
 
       -- Puts castbar below Combat Icon
-      useCustomLevel = true,
+      strataAndLevel = {
+        frameLevel = 1,
+        useCustomLevel = true,
+      },
     },
 
     -- UnitFrame Player heal prediction
