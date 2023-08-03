@@ -63,30 +63,23 @@ I.Data.Contributor = {
       },
     },
 
-    [I.Enum.Developers.WOLEN] = {
+    [I.Enum.Developers.RYADA] = {
       [I.Enum.Flavor.RETAIL] = {
-        -- Mal'Ganis
-        ["Keelle-Mal'Ganis"] = true,
-        ["Drittus-Mal'Ganis"] = true,
-        ["Chilvang-Mal'Ganis"] = true,
-        ["Cezo-Mal'Ganis"] = true,
-        ["Vitier-Mal'Ganis"] = true,
-        ["Giotao-Mal'Ganis"] = true,
-        ["Wolen-Mal'Ganis"] = true,
-        ["Welon-Mal'Ganis"] = true,
-        ["Jaalyk-Mal'Ganis"] = true,
-        ["Giotaociot-Mal'Ganis"] = true,
-        ["Seraga-Mal'Ganis"] = true,
-        ["Nelow-Mal'Ganis"] = true,
-        ["Yanako-Mal'Ganis"] = true,
+        -- Draenor
+        ["Ryada-Draenor"] = true,
+        ["Ryadea-Draenor"] = true,
+        ["Ryadia-Draenor"] = true,
+      },
 
-        -- Zul'jin
-        ["Nelow-Zul'jin"] = true,
-        ["Wolen-Zul'jin"] = true,
-        ["Jukks-Zul'jin"] = true,
-        ["Mozzles-Zul'jin"] = true,
-        ["Welon-Zul'jin"] = true,
-        ["Nolew-Zul'jin"] = true,
+      [I.Enum.Flavor.WRATH] = {
+        -- Ashbringer
+        ["Cyassa-Ashbringer"] = true,
+        ["Ryashh-Ashbringer"] = true,
+        ["Ryadea-Ashbringer"] = true,
+        ["Ryasiz-Ashbringer"] = true,
+        ["Ryasham-Ashbringer"] = true,
+        ["Ryadar-Ashbringer"] = true,
+        ["Ryada-Ashbringer"] = true,
       },
     },
 
@@ -133,89 +126,10 @@ I.Data.Contributor = {
   },
 
   -- LEGENDARY => Orange Badge
-  [I.Enum.ContributorType.LEGENDARY] = {
-    ["Ikrekot"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Burning Legion
-        ["Krekotx-BurningLegion"] = true,
-        ["Breysha-BurningLegion"] = true,
-        ["Tinge-BurningLegion"] = true,
-        ["Oachmadow-BurningLegion"] = true,
-        ["Liszias-BurningLegion"] = true,
-        ["Elensa-BurningLegion"] = true,
-        ["Hekili-BurningLegion"] = true,
-        ["Amorat-BurningLegion"] = true,
-        ["Ikrekot-BurningLegion"] = true,
-        ["Mechanne-BurningLegion"] = true,
-        ["Jolante-BurningLegion"] = true,
-        ["Grekot-BurningLegion"] = true,
-        ["Achlysia-BurningLegion"] = true,
-        ["Searaa-BurningLegion"] = true,
-        ["Ynaqtenkle-BurningLegion"] = true,
-        ["Emesalia-BurningLegion"] = true,
-        ["Corette-BurningLegion"] = true,
-        ["Rongzhi-BurningLegion"] = true,
-        ["Prekot-BurningLegion"] = true,
-        ["Krekot-BurningLegion"] = true,
-        ["Mirgaram-BurningLegion"] = true,
-        ["Trungirn-BurningLegion"] = true,
-        ["Krekoti-BurningLegion"] = true,
-        ["Krekotz-BurningLegion"] = true,
-        ["Houphria-BurningLegion"] = true,
-        ["Kalthnia-BurningLegion"] = true,
-        ["Yneleyll-BurningLegion"] = true,
-        ["Krekots-BurningLegion"] = true,
-        ["Rahissar-BurningLegion"] = true,
-        ["Drekot-BurningLegion"] = true,
-        ["Saline-BurningLegion"] = true,
-        ["Denyse-BurningLegion"] = true,
-        ["Erybosa-BurningLegion"] = true,
-        ["Elikot-BurningLegion"] = true,
-        ["Ililaeth-BurningLegion"] = true,
-        ["Nekroirek-BurningLegion"] = true,
-        ["Gothy-BurningLegion"] = true,
-      },
-
-      [I.Enum.Flavor.WRATH] = {
-        -- MirageRaceway
-        ["Drekot-MirageRaceway"] = true,
-        ["Krekot-MirageRaceway"] = true,
-        ["Prekot-MirageRaceway"] = true,
-        ["Ikrekot-MirageRaceway"] = true,
-      },
-    },
-
-    ["Hoffi"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Eredar
-        ["Currybart-Eredar"] = true,
-        ["Leahnari-Eredar"] = true,
-      },
-    },
-  },
+  [I.Enum.ContributorType.LEGENDARY] = {},
 
   -- EPIC => Purple Badge (epic supporter)
   [I.Enum.ContributorType.EPIC] = {
-    ["Ryada"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Draenor
-        ["Ryada-Draenor"] = true,
-        ["Ryadea-Draenor"] = true,
-        ["Ryadia-Draenor"] = true,
-      },
-
-      [I.Enum.Flavor.WRATH] = {
-        -- Ashbringer
-        ["Cyassa-Ashbringer"] = true,
-        ["Ryashh-Ashbringer"] = true,
-        ["Ryadea-Ashbringer"] = true,
-        ["Ryasiz-Ashbringer"] = true,
-        ["Ryasham-Ashbringer"] = true,
-        ["Ryadar-Ashbringer"] = true,
-        ["Ryada-Ashbringer"] = true,
-      },
-    },
-
     ["Ande"] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Illidan
@@ -232,26 +146,7 @@ I.Data.Contributor = {
   },
 
   -- RARE => Green Badge (rare supporter)
-  [I.Enum.ContributorType.RARE] = {
-    ["Tornic"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Argent Dawn
-        ["Kyliemirogue-ArgentDawn"] = true,
-
-        -- Silvermoon
-        ["Patrón-Silvermoon"] = true,
-
-        -- Stormscale
-        ["Patrón-Stormscale"] = true,
-        ["Thornic-Stormscale"] = true,
-        ["Thorníc-Stormscale"] = true,
-        ["Thornïc-Stormscale"] = true,
-        ["Thórnic-Stormscale"] = true,
-        ["Torníc-Stormscale"] = true,
-        ["Tornïc-Stormscale"] = true,
-      },
-    },
-  },
+  [I.Enum.ContributorType.RARE] = {},
 
   -- BETA => Orange Badge (beta testers)
   [I.Enum.ContributorType.BETA] = {
