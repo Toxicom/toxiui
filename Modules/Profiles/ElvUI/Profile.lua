@@ -521,7 +521,7 @@ function PF:BuildProfile()
       color = F.Table.HexToRGB("#ffffff"),
 
       texture = "CUSTOM",
-      customTexture = I.General.MediaPath .. "Textures\\Icons\\swords128.blp",
+      customTexture = I.General.MediaPath .. "Textures\\Icons\\CombatStylized.blp",
     },
 
     -- UnitFrame Player raidicon (Target Marker Icon)
