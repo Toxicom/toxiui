@@ -88,6 +88,8 @@ jobs:
 
             ${{ steps.changelog.outputs.content }}
             :floppy_disk: Get the download down below :point_down:
+
+            :information_source: Now also available on CurseForge and Wago beta channels!
       - name: Upload release file to Discord
         uses: sinshutu/upload-to-discord@c04454f4fbfd38079cbcd6f68492bd5d427556ce
         if: success()
