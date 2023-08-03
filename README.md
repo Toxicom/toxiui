@@ -51,7 +51,7 @@ https://marketplace.visualstudio.com/items?itemName=JohnnyMorganz.stylua
 
 ### General (user facing)
 
-_Prefix: `/tx` `/txui` `/toxui` `/toxiui`_
+_Prefix: `/tx` `/txui` `/toxi` `/toxiui`_
 
 `/tx` - ElvUI TXUI Options Dialog _(alias of /tx settings)_<br>
 `/tx changelog` - ElvUI TXUI Options showing ONLY the changelog<br>

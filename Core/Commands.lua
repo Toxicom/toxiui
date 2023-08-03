@@ -173,7 +173,7 @@ end
 function TXUI:LoadCommands()
   self:RegisterChatCommand("tx", "HandleChatCommand")
   self:RegisterChatCommand("txui", "HandleChatCommand")
-  self:RegisterChatCommand("toxui", "HandleChatCommand")
+  self:RegisterChatCommand("toxi", "HandleChatCommand")
   self:RegisterChatCommand("toxiui", "HandleChatCommand")
 
   -- TROLOLOL
