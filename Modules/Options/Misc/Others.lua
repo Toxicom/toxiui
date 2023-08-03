@@ -195,7 +195,7 @@ function O:Plugins_Others()
   end
 
   -- ElvUI Global Fade Persist Mode
-  local actionBarsAreDisabled = E.private.actionbar.enabled ~= true
+  local actionBarsAreDisabled = E.private.actionbar.enable ~= true
   do
     -- ElvUI Global Fade Persist Group
     local elvuiFadePersistGroup = self:AddInlineRequirementsDesc(options, {
