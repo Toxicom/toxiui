@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local WB = TXUI:GetModule("WunderBar")
 local HS = WB:NewModule("Hearthstone", "AceHook-3.0")
 local DT = E:GetModule("DataTexts")

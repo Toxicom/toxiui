@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 local COVENANT_COLORS = COVENANT_COLORS
 local format = string.format

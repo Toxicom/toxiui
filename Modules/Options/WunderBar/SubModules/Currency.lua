@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 local DT = E:GetModule("DataTexts")
 local ACH = LibStub("LibAceConfigHelper")

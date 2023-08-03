@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local SC = TXUI:NewModule("SplashScreen", "AceTimer-3.0")
 
 -- Globals

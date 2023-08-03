@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local WB = TXUI:GetModule("WunderBar")
 local LSM = E.Libs.LSM
 

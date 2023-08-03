@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local GR = TXUI:NewModule("ThemesGradients", "AceHook-3.0")
 
 local pairs = pairs

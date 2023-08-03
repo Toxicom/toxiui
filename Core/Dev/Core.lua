@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local D = TXUI:NewModule("Dev", "AceHook-3.0", "AceEvent-3.0")
 
 local _G = _G

@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local VB = TXUI:NewModule("VehicleBar", "AceHook-3.0")
 local LAB = LibStub("LibActionButton-1.0-ElvUI")
 

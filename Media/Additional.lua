@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local LSM = E.Libs.LSM
 
 -- This file is for additional stuff, mainly used by devs, but you can also add stuff here,

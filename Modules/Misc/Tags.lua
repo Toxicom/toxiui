@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack(select(2, ...))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
