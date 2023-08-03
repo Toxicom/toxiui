@@ -544,6 +544,9 @@ function PF:BuildProfile()
       textColor = F.Table.HexToRGB("#ffffff"),
       xOffsetText = F.Dpi(5),
       xOffsetTime = F.Dpi(-10),
+
+      -- Puts castbar below Combat Icon
+      useCustomLevel = true,
     },
 
     -- UnitFrame Player heal prediction
