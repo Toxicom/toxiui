@@ -4,12 +4,15 @@
 Welcome to ToxiUI, a thoughtfully crafted plugin for the renowned ElvUI, meticulously designed by Toxi. If you're seeking a seamless and visually appealing overhaul for your World of Warcraft interface, you're in the right place. ToxiUI seamlessly combines functionality and aesthetics, ensuring that your gaming experience reaches new heights of enjoyment and efficiency.
 
 ## Why ToxiUI?
+![ToxiUI Installer](https://i.imgur.com/SmPHcOb.png)
 ### Effortless Installation
 Gone are the days of complex installation processes. ToxiUI prides itself on a straightforward installation that doesn't require a degree in rocket science. With clear instructions and user-friendly steps, you'll be up and running with ToxiUI in no time.
 
+![ToxiUI WunderBar](https://i.imgur.com/SopBA5h.png)
 ### WunderBar: Your Modern Data Panel
 Experience the future of data panels with WunderBar. ToxiUI introduces a modern and customizable data panel that serves as your one-stop hub for crucial information. Whether you're tracking your character's statistics, managing resources, or just staring at the clock while afk running around the capital city, WunderBar offers unparalleled convenience and customization.
 
+![ToxiUI Themes](https://i.imgur.com/3hhJSwN.png)
 ### A World of Themes and Customization
 ToxiUI empowers you to personalize your World of Warcraft interface. With three distinct themes to choose from, you can align your UI with your personal style or adapt it to match your character's journey. And if that's not enough, the ability to easily customize gradient colors ensures your UI remains as unique as your adventure.
 
