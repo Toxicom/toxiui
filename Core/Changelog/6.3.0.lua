@@ -10,6 +10,7 @@ TXUI.Changelog["6.3.0"] = {
     F.String.Class("ElvUI: ", "SHAMAN") .. "Change Player Castbar Strate level so it's below Combat Icon",
     F.String.RandomClassColor("FadePersist: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
     F.String.RandomClassColor("VehicleBar: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
+    F.String.RandomClassColor("Armory: ") .. "Possibly fix a bug with item level coloring based on achievement status",
   },
   CHANGES_CLASSIC = {
     "Release ToxiUI Classic",
