@@ -10,6 +10,8 @@ TXUI.Changelog["6.3.0"] = {
     F.String.RandomClassColor("FadePersist: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
     F.String.RandomClassColor("VehicleBar: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
     F.String.RandomClassColor("Armory: ") .. "Possibly fix a bug with item level coloring based on achievement status",
+    "Add missing Augmentation Evoker data & icons. Credits to " .. F.String.WunderUI(),
+    "Refactor icons to use unicode decimal instead of glyph. Credits to " .. F.String.WunderUI(),
     "* ElvUI",
     "Change Player Castbar Strata level so it's below Combat Icon",
     "* Plater",

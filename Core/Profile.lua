@@ -609,8 +609,8 @@ P.wunderbar = {
       },
     },
     System = {
-      iconLatency = "",
-      iconFramerate = "",
+      iconLatency = F.String.ConvertGlyph(59718),
+      iconFramerate = F.String.ConvertGlyph(59704),
       iconColor = true,
       iconFontSize = 18,
 
@@ -627,7 +627,7 @@ P.wunderbar = {
     DataBar = {
       mode = "auto",
 
-      icon = "",
+      icon = F.String.ConvertGlyph(59706),
       iconFontSize = 18,
 
       infoEnabled = false,
@@ -658,24 +658,24 @@ P.wunderbar = {
         barSpacing = 4,
       },
       icons = {
-        [164] = "", -- Blacksmithing
-        [165] = "", -- Leatherworking
-        [171] = "", -- Alchemy
-        [182] = "", -- Herbalism
-        [185] = "", -- Cooking
-        [186] = "", -- Mining
-        [202] = "", -- Engineering
-        [333] = "", -- Enchanting
-        [356] = "", -- Fishing
-        [755] = "", -- Jewelcrafting
-        [773] = "", -- Inscription
-        [197] = "", -- Tailoring
-        [393] = "", -- Skinning
-        [794] = "", -- Archaeology
+        [164] = F.String.ConvertGlyph(59689), -- Blacksmithing
+        [165] = F.String.ConvertGlyph(59697), -- Leatherworking
+        [171] = F.String.ConvertGlyph(59686), -- Alchemy
+        [182] = F.String.ConvertGlyph(59694), -- Herbalism
+        [185] = F.String.ConvertGlyph(59690), -- Cooking
+        [186] = F.String.ConvertGlyph(59698), -- Mining
+        [197] = F.String.ConvertGlyph(59700), -- Tailoring
+        [202] = F.String.ConvertGlyph(59692), -- Engineering
+        [333] = F.String.ConvertGlyph(59691), -- Enchanting
+        [356] = F.String.ConvertGlyph(59693), -- Fishing
+        [393] = F.String.ConvertGlyph(59699), -- Skinning
+        [755] = F.String.ConvertGlyph(59696), -- Jewelcrafting
+        [773] = F.String.ConvertGlyph(59695), -- Inscription
+        [794] = F.String.ConvertGlyph(59688), -- Archaeology
       },
     },
     Currency = {
-      icon = "",
+      icon = F.String.ConvertGlyph(59705),
       iconFontSize = 18,
 
       displayedCurrency = "GOLD", -- NEEDS to be GOLD
@@ -695,14 +695,14 @@ P.wunderbar = {
       useUppercase = true,
       textColor = "GREEN", -- NONE, GREEN, ACCENT
 
-      icon = "",
+      icon = F.String.ConvertGlyph(59724),
       iconColor = false,
       iconFontSize = 18,
     },
     Hearthstone = {
       showIcon = true,
 
-      icon = "",
+      icon = F.String.ConvertGlyph(59717),
       iconColor = false,
       iconFontSize = 18,
 
@@ -722,7 +722,7 @@ P.wunderbar = {
       additionaHS = {},
     },
     Durability = {
-      icon = "",
+      icon = F.String.ConvertGlyph(59721),
       iconColor = false,
       iconFontSize = 18,
 
@@ -750,86 +750,87 @@ P.wunderbar = {
         infoEnabled = true,
         infoShowIcon = false,
         infoFont = I.Fonts.Primary,
-        infoIcon = "",
+        infoIcon = F.String.ConvertGlyph(59722),
         infoFontSize = 12,
         infoOffset = 18,
         infoUseAccent = true,
       },
       icons = {
         -- Retail
-        [0] = "", -- unknown
-        [62] = "", -- mage arcane
-        [63] = "", -- mage fire
-        [64] = "", -- mage frost
-        [65] = "", -- pala holy
-        [66] = "", -- pala prot
-        [70] = "", -- pala ret
-        [71] = "", -- warr arms
-        [72] = "", -- warr fury
-        [73] = "", -- warr prot
-        [102] = "", -- drui balance
-        [103] = "", -- drui feral
-        [104] = "", -- drui bear
-        [105] = "", -- drui resto
-        [250] = "", -- dk blood
-        [251] = "", -- dk frost
-        [252] = "", -- dk unholy
-        [253] = "", -- hun bm
-        [254] = "", -- hun mm
-        [255] = "", -- hun sv
-        [256] = "", -- pri disc
-        [257] = "", -- pri holy
-        [258] = "", -- pri shadow
-        [259] = "", -- rog ass
-        [260] = "", -- rog outlaw
-        [261] = "", -- rog sub
-        [262] = "", -- sha ele
-        [263] = "", -- sha enha
-        [264] = "", -- sha resto
-        [265] = "", -- lock affl
-        [266] = "", -- lock demo
-        [267] = "", -- lock destro
-        [268] = "", -- monk brew
-        [269] = "", -- monk wind
-        [270] = "", -- monk mist
-        [577] = "", -- dh havoc
-        [581] = "", -- dh veng
-        [1467] = "", -- ev devastation
-        [1468] = "", -- ev preservation
+        [0] = F.String.ConvertGlyph(59712), -- Unknown
+        [62] = F.String.ConvertGlyph(59660), -- Mage Arcane
+        [63] = F.String.ConvertGlyph(59661), -- Mage Fire
+        [64] = F.String.ConvertGlyph(59662), -- Mage Frost
+        [65] = F.String.ConvertGlyph(59666), -- Paladin Holy
+        [66] = F.String.ConvertGlyph(59667), -- Paladin Protection
+        [70] = F.String.ConvertGlyph(59668), -- Paladin Retribution
+        [71] = F.String.ConvertGlyph(59681), -- Warrior Arms
+        [72] = F.String.ConvertGlyph(59682), -- Warrior Fury
+        [73] = F.String.ConvertGlyph(59683), -- Warrior Protection
+        [102] = F.String.ConvertGlyph(59653), -- Druid Balance
+        [103] = F.String.ConvertGlyph(59654), -- Druid Feral
+        [104] = F.String.ConvertGlyph(59655), -- Druid Guardian
+        [105] = F.String.ConvertGlyph(59656), -- Druid Restoration
+        [250] = F.String.ConvertGlyph(59648), -- Death Knight Blood
+        [251] = F.String.ConvertGlyph(59649), -- Death Knight Frost
+        [252] = F.String.ConvertGlyph(59650), -- Death Knight Unholy
+        [253] = F.String.ConvertGlyph(59657), -- Hunter Beast Master
+        [254] = F.String.ConvertGlyph(59658), -- Hunter Marksmanship
+        [255] = F.String.ConvertGlyph(59659), -- Hunter Survival
+        [256] = F.String.ConvertGlyph(59669), -- Priest Discipline
+        [257] = F.String.ConvertGlyph(59670), -- Priest Holy
+        [258] = F.String.ConvertGlyph(59671), -- Priest Shadow
+        [259] = F.String.ConvertGlyph(59672), -- Rogue Assassination
+        [260] = F.String.ConvertGlyph(59673), -- Rogue Outlaw
+        [261] = F.String.ConvertGlyph(59674), -- Rogue Subtlety
+        [262] = F.String.ConvertGlyph(59675), -- Shaman Elemental
+        [263] = F.String.ConvertGlyph(59676), -- Shaman Enhancement
+        [264] = F.String.ConvertGlyph(59677), -- Shaman Restoration
+        [265] = F.String.ConvertGlyph(59678), -- Warlock Affliction
+        [266] = F.String.ConvertGlyph(59679), -- Warlock Demonology
+        [267] = F.String.ConvertGlyph(59680), -- Warlock Destruction
+        [268] = F.String.ConvertGlyph(59663), -- Monk Brewmaster
+        [269] = F.String.ConvertGlyph(59665), -- Monk Windwalker
+        [270] = F.String.ConvertGlyph(59664), -- Monk Mistweaver
+        [577] = F.String.ConvertGlyph(59651), -- Demon Hunter Havoc
+        [581] = F.String.ConvertGlyph(59652), -- Demon Hunter Vengeance
+        [1467] = F.String.ConvertGlyph(59725), -- Evoker Devastation
+        [1468] = F.String.ConvertGlyph(59726), -- Evoker Preservation
+        [1473] = F.String.ConvertGlyph(59727), -- Evoker Augmentation
 
         -- Wrath
         -- TODO: convert to spec ids
-        [135932] = "", -- mage arcane
-        [135810] = "", -- mage fire
-        [135846] = "", -- mage frost
-        [135920] = "", -- pala holy
-        [135893] = "", -- pala prot
-        [135873] = "", -- pala ret
-        [132292] = "", -- warr arms
-        [132347] = "", -- warr fury
-        [134952] = "", -- warr prot
-        [136096] = "", -- drui balance
-        [132276] = "", -- drui feral
-        -- [104] = "", -- drui bear, could be both for feral
-        [136041] = "", -- drui resto
-        [135770] = "", -- dk blood
-        [135773] = "", -- dk frost
-        [135775] = "", -- dk unholy
-        [132164] = "", -- hun bm
-        [132222] = "", -- hun mm
-        [132215] = "", -- hun sv
-        [135987] = "", -- pri disc
-        -- [135920] = "", -- pri holy
-        [136207] = "", -- pri shadow
-        -- [132292] = "", -- rog ass
-        [132090] = "", -- rog outlaw
-        [132320] = "", -- rog sub
-        [136048] = "", -- sha ele
-        [136051] = "", -- sha enha
-        [136052] = "", -- sha resto
-        [136145] = "", -- lock affl
-        [136172] = "", -- lock demo
-        [136186] = "", -- lock destro
+        [135932] = F.String.ConvertGlyph(59660), -- mage arcane
+        [135810] = F.String.ConvertGlyph(59661), -- mage fire
+        [135846] = F.String.ConvertGlyph(59662), -- mage frost
+        [135920] = F.String.ConvertGlyph(59666), -- pala holy
+        [135893] = F.String.ConvertGlyph(59667), -- pala prot
+        [135873] = F.String.ConvertGlyph(59668), -- pala ret
+        [132292] = F.String.ConvertGlyph(59681), -- warr arms
+        [132347] = F.String.ConvertGlyph(59682), -- warr fury
+        [134952] = F.String.ConvertGlyph(59683), -- warr prot
+        [136096] = F.String.ConvertGlyph(59653), -- drui balance
+        [132276] = F.String.ConvertGlyph(59654), -- drui feral
+        [104] = F.String.ConvertGlyph(59655), -- drui bear, could be both for feral
+        [136041] = F.String.ConvertGlyph(59656), -- drui resto
+        [135770] = F.String.ConvertGlyph(59648), -- dk blood
+        [135773] = F.String.ConvertGlyph(59649), -- dk frost
+        [135775] = F.String.ConvertGlyph(59650), -- dk unholy
+        [132164] = F.String.ConvertGlyph(59657), -- hun bm
+        [132222] = F.String.ConvertGlyph(59658), -- hun mm
+        [132215] = F.String.ConvertGlyph(59659), -- hun sv
+        [135987] = F.String.ConvertGlyph(59669), -- pri disc
+        [135920] = F.String.ConvertGlyph(59670), -- pri holy
+        [136207] = F.String.ConvertGlyph(59671), -- pri shadow
+        [132292] = F.String.ConvertGlyph(59672), -- rog ass
+        [132090] = F.String.ConvertGlyph(59673), -- rog outlaw
+        [132320] = F.String.ConvertGlyph(59674), -- rog sub
+        [136048] = F.String.ConvertGlyph(59675), -- sha ele
+        [136051] = F.String.ConvertGlyph(59676), -- sha enha
+        [136052] = F.String.ConvertGlyph(59677), -- sha resto
+        [136145] = F.String.ConvertGlyph(59678), -- lock affl
+        [136172] = F.String.ConvertGlyph(59679), -- lock demo
+        [136186] = F.String.ConvertGlyph(59680), -- lock destro
       },
     },
     MicroMenu = {
@@ -851,69 +852,69 @@ P.wunderbar = {
       icons = {
         menu = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59714),
         },
         chat = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59703),
         },
         guild = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59720),
         },
         social = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59709),
         },
         char = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59702),
         },
         spell = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59708),
         },
         talent = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59707),
         },
         ach = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59701),
         },
         quest = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59711),
         },
         lfg = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59715),
         },
         journal = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59716),
         },
         pvp = {
           enabled = true,
-          icon = "",
-          icon_a = "",
-          icon_h = "",
+          icon = F.String.ConvertGlyph(59712),
+          icon_a = F.String.ConvertGlyph(59684),
+          icon_h = F.String.ConvertGlyph(59685),
         },
         pet = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59713),
         },
         shop = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59710),
         },
         help = {
           enabled = false,
-          icon = "",
+          icon = F.String.ConvertGlyph(59719),
         },
         txui = {
           enabled = true,
-          icon = "",
+          icon = F.String.ConvertGlyph(59687),
         },
       },
     },

@@ -70,6 +70,7 @@ local englishSpecName = {
   [581] = "Vengeance",
   [1467] = "Devastation",
   [1468] = "Preservation",
+  [1473] = "Augmentation",
 }
 
 local function getSpecName()

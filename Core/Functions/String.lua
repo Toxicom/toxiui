@@ -3,6 +3,10 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local COVENANT_COLORS = COVENANT_COLORS
 local format = string.format
 local gmatch = string.gmatch
+local char = string.char
+local floor = math.floor
+local error = error
+local tostring = tostring
 local gsub = string.gsub
 local strmatch = strmatch
 local strtrim = strtrim
@@ -111,6 +115,10 @@ end
 
 function F.String.Beta(msg)
   return F.String.Color(msg, I.Enum.Colors.BETA)
+end
+
+function F.String.WunderUI()
+  return F.String.Epic("Wunder") .. "UI"
 end
 
 function F.String.Covenant(msg)
@@ -260,4 +268,12 @@ function F.String.FastColorGradientHex(percentage, h1, h2)
   local r2, g2, b2 = F.String.HexToRGB(h2)
 
   return F.FastColorGradient(percentage, r1, g1, b1, r2, g2, b2)
+end
+
+-- Credits to WunderUI
+function F.String.ConvertGlyph(unicode)
+  if unicode <= 0x7F then return char(unicode) end
+  if unicode <= 0x7FF then return char(0xC0 + floor(unicode / 0x40), 0x80 + (unicode % 0x40)) end
+  if unicode <= 0xFFFF then return char(0xE0 + floor(unicode / 0x1000), 0x80 + (floor(unicode / 0x40) % 0x40), 0x80 + (unicode % 0x40)) end
+  error("Could not convert unicode " .. tostring(unicode))
 end
