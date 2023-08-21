@@ -175,10 +175,4 @@ function TXUI:LoadCommands()
   self:RegisterChatCommand("txui", "HandleChatCommand")
   self:RegisterChatCommand("toxi", "HandleChatCommand")
   self:RegisterChatCommand("toxiui", "HandleChatCommand")
-
-  -- TROLOLOL
-  if F.IsTXUIProfile() then
-    E:UnregisterChatCommand("estatus")
-    self:RegisterChatCommand("estatus", "ShowStatusReport")
-  end
 end
