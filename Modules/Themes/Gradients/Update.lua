@@ -9,9 +9,14 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
     colorChanged = true
   end
 
-  if not colorChanged then
+  if not colorChanged and frame.currentColor ~= nil then
     colorChanged = eB ~= nil and not F.Color.EqualToRGB(frame.currentColor, eR, eG, eB)
     if colorChanged then frame.currentColor:SetRGBA(eR, eG, eB, 1) end
+  else
+    TXUI:LogDebug("Updating Gradients failed")
+    TXUI:LogDebug("colorChanged: " .. colorChanged)
+    TXUI:LogDebug("frame: " .. frame)
+    TXUI:LogDebug("frame.currentColor: " .. frame.currentColor)
   end
 
   if colorChanged then
@@ -38,10 +43,9 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
         frame.normalColorBG = bgMap[I.Enum.GradientMode.Color.NORMAL][frame.colorEntry]
         frame.shiftColorBG = bgMap[I.Enum.GradientMode.Color.SHIFT][frame.colorEntry]
       else
-        -- @TODO: This is for debugging DO NOT RELEASE WITH THIS IN THE CODE
-        print("This is for debugging an issue with Details in retail. If you are seeing this you are running a beta version.")
-        print("fgMap or bgMap was nil for: " .. frame.colorMap)
-        print("colorEntry: " .. frame.colorEntry)
+        TXUI:LogDebug("This is for debugging an issue with Details in retail. If you are seeing this you are running a beta version.")
+        TXUI:LogDebug("fgMap or bgMap was nil for: " .. frame.colorMap)
+        TXUI:LogDebug("colorEntry: " .. frame.colorEntry)
       end
 
       if frame.normalColor == nil then
