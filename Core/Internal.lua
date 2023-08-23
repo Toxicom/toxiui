@@ -17,8 +17,7 @@ I.General = {
 }
 
 I.Fonts = {
-  Primary = "- M 500", -- - Montserrat Medium
-  PrimaryBold = "- M 600", -- - Montserrat SemiBold
+  Primary = "- ToxiUI",
   Title = "- Big Noodle Titling", -- - Big Noodle Titling
   TitleSecondary = "- M 700", -- - Montserrat Bold
   Number = "- Steelfish", -- - Steelfish
@@ -28,7 +27,6 @@ I.Fonts = {
 
 I.FontNames = {
   [I.Fonts.Primary] = "Primary",
-  [I.Fonts.PrimaryBold] = "Primary Bold",
   [I.Fonts.Title] = "Title",
   [I.Fonts.TitleSecondary] = "Title Secondary",
   [I.Fonts.Number] = "Number",
@@ -37,7 +35,6 @@ I.FontNames = {
 
 I.FontDescription = {
   [I.Fonts.Primary] = "Used in the majority of the UI.",
-  [I.Fonts.PrimaryBold] = "The bold version of the Primary font, used only in a couple of places.",
   [I.Fonts.Title] = "Used mostly for names.",
   [I.Fonts.TitleSecondary] = "Used for names in Raid Frames.",
   [I.Fonts.Number] = "Main number font, mostly used for cooldown text and UnitFrame health.",
@@ -46,7 +43,6 @@ I.FontDescription = {
 
 I.FontOrder = {
   I.Fonts.Primary,
-  I.Fonts.PrimaryBold,
   I.Fonts.Title,
   I.Fonts.TitleSecondary,
   I.Fonts.Number,

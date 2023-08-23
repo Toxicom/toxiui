@@ -19,7 +19,6 @@ P.general = {
 
   fontOverride = {
     [I.Fonts.Primary] = "DEFAULT",
-    [I.Fonts.PrimaryBold] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleSecondary] = "DEFAULT",
     [I.Fonts.Number] = "DEFAULT",
@@ -27,8 +26,7 @@ P.general = {
   },
 
   fontStyleOverride = {
-    [I.Fonts.Primary] = "DEFAULT",
-    [I.Fonts.PrimaryBold] = "DEFAULT",
+    [I.Fonts.Primary] = "OUTLINE",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleSecondary] = "DEFAULT",
     [I.Fonts.Number] = "DEFAULT",
@@ -37,7 +35,6 @@ P.general = {
 
   fontShadowOverride = {
     [I.Fonts.Primary] = "DEFAULT",
-    [I.Fonts.PrimaryBold] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleSecondary] = "DEFAULT",
     [I.Fonts.Number] = "DEFAULT",
@@ -174,11 +171,11 @@ P.themes = {
 P.addons = {
   -- ElvUI Theme
   elvUITheme = {
-    enabled = false, -- Disabled by default
+    enabled = true, -- Enabled by default
 
     shadowEnabled = true,
-    shadowAlpha = 0.65,
-    shadowSize = 3,
+    shadowAlpha = 0.6,
+    shadowSize = 4,
   },
 
   -- ElvUI Fonts
