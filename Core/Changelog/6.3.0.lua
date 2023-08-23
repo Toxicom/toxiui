@@ -11,6 +11,7 @@ TXUI.Changelog["6.3.0"] = {
     F.String.Good("NEW: ") .. "Primary font",
     F.String.Error("Warning: ") .. "Removed most cases of '- Steelfish' font and replaced them with Primary font.",
     F.String.Error("Warning: ") .. "Removed Futura and most of Montserrat font variants",
+    "Enable the ElvUI theme skin from " .. TXUI.Title .. " (was disabled by default previously)",
     F.String.RandomClassColor("FadePersist: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
     F.String.RandomClassColor("VehicleBar: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
     F.String.RandomClassColor("Armory: ") .. "Possibly fix a bug with item level coloring based on achievement status",
