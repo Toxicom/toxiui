@@ -6,7 +6,7 @@ I.General = {
   MediaPath = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\",
 
   -- Default font, this is not used inside profiles but is meant as fallback if settings are invalid
-  DefaultFont = "- M 500",
+  DefaultFont = "- ToxiUI",
   DefaultFontSize = 18,
   DefaultFontShadow = false,
   DefaultFontOutline = "NONE",
