@@ -5,6 +5,9 @@ I.Enum = {}
 -- IDs for layouts
 I.Enum.Layouts = F.Enum { "DPS", "HEALER" }
 
+-- IDs for Layout Style
+I.Enum.LayoutStyle = F.Enum { "OLD", "NEW" }
+
 -- Internal and Option Dialog reasons for modules to be disabled
 I.Enum.Requirements = F.Enum {
   "TOXIUI_PROFILE", -- Checked by default

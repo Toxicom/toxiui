@@ -82,6 +82,7 @@ function PF:BuildProfile()
   end
 
   local defaultPadding = 5
+  local IsNewLayout = E.db.TXUI.installer.layoutStyle == I.Enum.LayoutStyle.NEW
 
   -- Movers
   F.Table.Crush(
@@ -436,245 +437,267 @@ function PF:BuildProfile()
   end
 
   -- UnitFrame Player
-  F.Table.Crush(pf.unitframe.units.player, {
-    -- UnitFrame Player Size
-    width = F.Dpi(250),
-    height = F.ChooseForTheme(F.Dpi(30), F.Dpi(40)),
-    threatStyle = "NONE",
-
-    -- UnitFrame Player Options
-    disableMouseoverGlow = true,
-
-    -- UnitFrame Player Custom Texts
-    customTexts = {
-      -- UnitFrame Player Custom Texts Name
-      ["!Name"] = createCustomText({}, {
-        attachTextTo = "Health",
-        text_format = "[tx:classcolor][name:medium]",
-        xOffset = F.Dpi(5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Player Custom Texts Health
-      ["!Health"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        text_format = "[tx:classcolor][health:current:shortvalue] || [perhp]",
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Player Custom Texts Class Icon
-      ["!ClassIcon"] = createCustomText({}, {
-        justifyH = "LEFT",
-        attachTextTo = "Health",
-        text_format = "[tx:classicon]",
-        xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-32)),
-        yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
-      }),
-    },
-
-    -- UnitFrame Player Debuffs
-    debuffs = {
-      anchorPoint = "TOPRIGHT",
-      growthX = "LEFT",
-      attachTo = "FRAME",
-      durationPosition = "TOP",
-      maxDuration = 0,
-      perrow = 8,
-      priority = "Blacklist,Boss,CCDebuffs,RaidDebuffs,CastByUnit,CastByNPC,Personal",
-      sizeOverride = F.Dpi(30),
-      spacing = F.Dpi(0),
-      xOffset = F.Dpi(-3),
-      yOffset = F.Dpi(25),
-    },
-
-    -- UnitFrame Player Fader
-    fader = {
-      enable = true,
-      minAlpha = 0,
-      power = true,
-      vehicle = false,
-    },
-
-    -- UnitFrame Player RestIcon
-    RestIcon = {
-      enable = true,
-      defaultColor = false,
-
-      anchorPoint = "TOPLEFT",
-      size = F.Dpi(36),
-      xOffset = F.Dpi(25),
-      yOffset = F.ChooseForTheme(F.Dpi(40), F.Dpi(18)),
-
-      texture = "CUSTOM",
-      customTexture = I.General.MediaPath .. "Textures\\Resting.tga",
-    },
-
-    -- UnitFrame Player CombatIcon
-    CombatIcon = {
-      enable = true,
-
-      anchorPoint = "CENTER",
-      size = F.Dpi(24),
-      yOffset = -20, -- Not sure if this needs DPI
-
-      defaultColor = true,
-      color = F.Table.HexToRGB("#ffffff"),
-
-      texture = "CUSTOM",
-      customTexture = I.General.MediaPath .. "Textures\\Icons\\CombatStylized.blp",
-    },
-
-    -- UnitFrame Player raidicon (Target Marker Icon)
-    raidicon = {
-      size = F.Dpi(24),
-      yOffset = F.Dpi(0),
-      attachTo = "CENTER",
-    },
-
-    -- UnitFrame Player Castbar
-    castbar = {
+  F.Table.Crush(
+    pf.unitframe.units.player,
+    {
+      -- UnitFrame Player Size
       width = F.Dpi(250),
-      height = F.Dpi(25),
+      height = F.ChooseForTheme(F.Dpi(30), F.Dpi(40)),
+      threatStyle = "NONE",
 
-      -- UnitFrame Player Castbar Options
-      insideInfoPanel = false,
-      icon = false,
+      -- UnitFrame Player Options
+      disableMouseoverGlow = true,
 
-      -- UnitFrame Player Castbar Text
-      textColor = F.Table.HexToRGB("#ffffff"),
-      xOffsetText = F.Dpi(5),
-      xOffsetTime = F.Dpi(-10),
+      -- UnitFrame Player Custom Texts
+      customTexts = {
+        -- UnitFrame Player Custom Texts Name
+        ["!Name"] = createCustomText({}, {
+          attachTextTo = "Health",
+          text_format = "[tx:classcolor][name:medium]",
+          xOffset = F.Dpi(5),
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+        }),
 
-      -- Puts castbar below Combat Icon
-      strataAndLevel = {
-        frameLevel = 1,
-        useCustomLevel = true,
+        -- UnitFrame Player Custom Texts Health
+        ["!Health"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          text_format = "[tx:classcolor][health:current:shortvalue] || [perhp]",
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Player Custom Texts Class Icon
+        ["!ClassIcon"] = createCustomText({}, {
+          justifyH = "LEFT",
+          attachTextTo = "Health",
+          text_format = "[tx:classicon]",
+          xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-32)),
+          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+        }),
       },
-    },
 
-    -- UnitFrame Player heal prediction
-    healPrediction = {
-      absorbStyle = "REVERSED",
-    },
+      -- UnitFrame Player Debuffs
+      debuffs = {
+        anchorPoint = "TOPRIGHT",
+        growthX = "LEFT",
+        attachTo = "FRAME",
+        durationPosition = "TOP",
+        maxDuration = 0,
+        perrow = 8,
+        priority = "Blacklist,Boss,CCDebuffs,RaidDebuffs,CastByUnit,CastByNPC,Personal",
+        sizeOverride = F.Dpi(30),
+        spacing = F.Dpi(0),
+        xOffset = F.Dpi(-3),
+        yOffset = F.Dpi(25),
+      },
 
-    -- Disable UnitFrame Player aurabar
-    aurabar = { enable = false },
-    -- Disable UnitFrame Player classbar
-    classbar = { enable = false },
-    -- Disable UnitFrame Player power
-    power = { enable = false },
-    -- Disable UnitFrame Player health text
-    health = { text_format = "" },
-    -- Disable UnitFrame Target name text
-    name = { text_format = "" },
-    -- Disable UnitFrame Player Buffs
-    buffs = { enable = false },
-  })
+      -- UnitFrame Player Fader
+      fader = {
+        enable = true,
+        minAlpha = 0,
+        power = true,
+        vehicle = false,
+      },
+
+      -- UnitFrame Player RestIcon
+      RestIcon = {
+        enable = true,
+        defaultColor = false,
+
+        anchorPoint = "TOPLEFT",
+        size = F.Dpi(36),
+        xOffset = F.Dpi(25),
+        yOffset = F.ChooseForTheme(F.Dpi(40), F.Dpi(18)),
+
+        texture = "CUSTOM",
+        customTexture = I.General.MediaPath .. "Textures\\Resting.tga",
+      },
+
+      -- UnitFrame Player CombatIcon
+      CombatIcon = {
+        enable = true,
+
+        anchorPoint = "CENTER",
+        size = F.Dpi(24),
+        yOffset = -20, -- Not sure if this needs DPI
+
+        defaultColor = true,
+        color = F.Table.HexToRGB("#ffffff"),
+
+        texture = "CUSTOM",
+        customTexture = I.General.MediaPath .. "Textures\\Icons\\CombatStylized.blp",
+      },
+
+      -- UnitFrame Player raidicon (Target Marker Icon)
+      raidicon = {
+        size = F.Dpi(24),
+        yOffset = F.Dpi(0),
+        attachTo = "CENTER",
+      },
+
+      -- UnitFrame Player Castbar
+      castbar = {
+        width = F.Dpi(250),
+        height = F.Dpi(25),
+
+        -- UnitFrame Player Castbar Options
+        insideInfoPanel = false,
+        icon = false,
+
+        -- UnitFrame Player Castbar Text
+        textColor = F.Table.HexToRGB("#ffffff"),
+        xOffsetText = F.Dpi(5),
+        xOffsetTime = F.Dpi(-10),
+
+        -- Puts castbar below Combat Icon
+        strataAndLevel = {
+          frameLevel = 1,
+          useCustomLevel = true,
+        },
+      },
+
+      -- UnitFrame Player heal prediction
+      healPrediction = {
+        absorbStyle = "REVERSED",
+      },
+
+      -- Disable UnitFrame Player aurabar
+      aurabar = { enable = false },
+      -- Disable UnitFrame Player classbar
+      classbar = { enable = false },
+      -- Disable UnitFrame Player power
+      power = { enable = false },
+      -- Disable UnitFrame Player health text
+      health = { text_format = "" },
+      -- Disable UnitFrame Target name text
+      name = { text_format = "" },
+      -- Disable UnitFrame Player Buffs
+      buffs = { enable = false },
+    },
+    F.Table.If(IsNewLayout, {
+      customTexts = {
+        ["!Health"] = {
+          text_format = "[tx:classcolor][perhp]",
+          yOffset = F.Dpi(15),
+        },
+      },
+    })
+  )
 
   -- UnitFrame Target
-  F.Table.Crush(pf.unitframe.units.target, {
-    -- UnitFrame Target Size
-    width = F.Dpi(250),
-    height = F.ChooseForTheme(F.Dpi(30), F.Dpi(40)),
-    threatStyle = "NONE",
-
-    -- UnitFrame Target Options
-    disableMouseoverGlow = true,
-    orientation = "LEFT",
-
-    -- UnitFrame Target Custom Texts
-    customTexts = {
-      -- UnitFrame Target Custom Texts Health
-      ["!Health"] = createCustomText({}, {
-        text_format = "[tx:classcolor][perhp] || [health:current:shortvalue]",
-        xOffset = F.Dpi(10),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Target Custom Texts Name
-      ["!Name"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        text_format = "[tx:classcolor][name:abbrev:medium]",
-        xOffset = F.Dpi(-5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Target Custom Texts Class Icon
-      ["!ClassIcon"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        attachTextTo = "Health",
-        text_format = "[tx:classicon]",
-        xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(32)),
-        yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
-      }),
-    },
-
-    -- UnitFrame Target Debuffs
-    buffs = {
-      anchorPoint = "TOPLEFT",
-      growthX = "RIGHT",
-      perrow = 4,
-      priority = "Blacklist,Personal,Boss,nonPersonal,CastByUnit",
-      sizeOverride = F.Dpi(30),
-      spacing = F.Dpi(0),
-      xOffset = F.Dpi(3),
-      yOffset = F.Dpi(25),
-    },
-
-    -- UnitFrame Target Debuffs
-    debuffs = {
-      anchorPoint = "TOPRIGHT",
-      attachTo = "FRAME",
-      durationPosition = "TOP",
-      maxDuration = 0,
-      perrow = 4,
-      priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
-      sizeOverride = F.Dpi(30),
-      spacing = F.Dpi(0),
-      xOffset = F.Dpi(-3),
-      yOffset = F.Dpi(25),
-    },
-
-    -- UnitFrame Target raidicon (Target Marker Icon)
-    raidicon = {
-      size = F.Dpi(24),
-      yOffset = F.Dpi(0),
-      attachTo = "CENTER",
-    },
-
-    -- UnitFrame Target Castbar
-    castbar = {
+  F.Table.Crush(
+    pf.unitframe.units.target,
+    {
+      -- UnitFrame Target Size
       width = F.Dpi(250),
-      height = F.Dpi(25),
+      height = F.ChooseForTheme(F.Dpi(30), F.Dpi(40)),
+      threatStyle = "NONE",
 
-      -- UnitFrame Target Castbar Options
-      insideInfoPanel = false,
-      icon = false,
+      -- UnitFrame Target Options
+      disableMouseoverGlow = true,
+      orientation = "LEFT",
 
-      -- UnitFrame Target Castbar Text
-      textColor = F.Table.HexToRGB("#ffffff"),
-      xOffsetText = F.Dpi(5),
-      xOffsetTime = F.Dpi(-10),
+      -- UnitFrame Target Custom Texts
+      customTexts = {
+        -- UnitFrame Target Custom Texts Health
+        ["!Health"] = createCustomText({}, {
+          text_format = "[tx:classcolor][perhp] || [health:current:shortvalue]",
+          xOffset = F.Dpi(10),
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Target Custom Texts Name
+        ["!Name"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          text_format = "[tx:classcolor][name:abbrev:medium]",
+          xOffset = F.Dpi(-5),
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Target Custom Texts Class Icon
+        ["!ClassIcon"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          attachTextTo = "Health",
+          text_format = "[tx:classicon]",
+          xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(32)),
+          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+        }),
+      },
+
+      -- UnitFrame Target Debuffs
+      buffs = {
+        anchorPoint = "TOPLEFT",
+        growthX = "RIGHT",
+        perrow = 4,
+        priority = "Blacklist,Personal,Boss,nonPersonal,CastByUnit",
+        sizeOverride = F.Dpi(30),
+        spacing = F.Dpi(0),
+        xOffset = F.Dpi(3),
+        yOffset = F.Dpi(25),
+      },
+
+      -- UnitFrame Target Debuffs
+      debuffs = {
+        anchorPoint = "TOPRIGHT",
+        attachTo = "FRAME",
+        durationPosition = "TOP",
+        maxDuration = 0,
+        perrow = 4,
+        priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
+        sizeOverride = F.Dpi(30),
+        spacing = F.Dpi(0),
+        xOffset = F.Dpi(-3),
+        yOffset = F.Dpi(25),
+      },
+
+      -- UnitFrame Target raidicon (Target Marker Icon)
+      raidicon = {
+        size = F.Dpi(24),
+        yOffset = F.Dpi(0),
+        attachTo = "CENTER",
+      },
+
+      -- UnitFrame Target Castbar
+      castbar = {
+        width = F.Dpi(250),
+        height = F.Dpi(25),
+
+        -- UnitFrame Target Castbar Options
+        insideInfoPanel = false,
+        icon = false,
+
+        -- UnitFrame Target Castbar Text
+        textColor = F.Table.HexToRGB("#ffffff"),
+        xOffsetText = F.Dpi(5),
+        xOffsetTime = F.Dpi(-10),
+      },
+
+      -- UnitFrame Target heal prediction
+      healPrediction = {
+        absorbStyle = "REVERSED",
+      },
+
+      -- Disable UnitFrame Target CombatIcon
+      CombatIcon = { enable = false },
+      -- Disable UnitFrame Target aurabar
+      aurabar = { enable = false },
+      -- Disable UnitFrame Target fader
+      fader = { enable = false },
+      -- Disable UnitFrame Target power
+      power = { enable = false },
+      -- Disable UnitFrame Target health text
+      health = { text_format = "" },
+      -- Disable UnitFrame Target name text
+      name = { text_format = "" },
     },
-
-    -- UnitFrame Target heal prediction
-    healPrediction = {
-      absorbStyle = "REVERSED",
-    },
-
-    -- Disable UnitFrame Target CombatIcon
-    CombatIcon = { enable = false },
-    -- Disable UnitFrame Target aurabar
-    aurabar = { enable = false },
-    -- Disable UnitFrame Target fader
-    fader = { enable = false },
-    -- Disable UnitFrame Target power
-    power = { enable = false },
-    -- Disable UnitFrame Target health text
-    health = { text_format = "" },
-    -- Disable UnitFrame Target name text
-    name = { text_format = "" },
-  })
+    F.Table.If(IsNewLayout, {
+      customTexts = {
+        ["!Health"] = {
+          text_format = "[tx:classcolor][perhp]",
+          yOffset = F.Dpi(15),
+        },
+      },
+    })
+  )
 
   -- UnitFrame Pet
   F.Table.Crush(pf.unitframe.units.pet, {
@@ -759,109 +782,120 @@ function PF:BuildProfile()
   })
 
   -- UnitFrame Focus
-  F.Table.Crush(pf.unitframe.units.focus, {
-    width = F.Dpi(250),
-    height = F.Dpi(30),
-    threatStyle = "NONE",
-
-    -- UnitFrame Focus Options
-    orientation = "LEFT",
-    disableMouseoverGlow = true,
-    disableTargetGlow = true,
-
-    -- UnitFrame Focus Custom Texts
-    customTexts = {
-      -- UnitFrame Focus Custom Texts Name
-      ["!Name"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        text_format = "[tx:classcolor][name:medium]",
-        xOffset = F.Dpi(-5),
-        yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Focus Custom Texts Health
-      ["!Health"] = createCustomText({}, {
-        justifyH = "LEFT",
-        text_format = "[tx:classcolor][perhp]",
-        xOffset = F.Dpi(10),
-        yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Focus Custom Texts Class Icon
-      ["!ClassIcon"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        attachTextTo = "Health",
-        text_format = "[tx:classicon]",
-        xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(27)),
-        yOffset = 0,
-      }),
-    },
-
-    -- UnitFrame Focus Buffs
-    buffs = {
-      enable = false,
-      anchorPoint = "TOPLEFT",
-      maxDuration = 0,
-      perrow = 5,
-      priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal",
-      sizeOverride = F.Dpi(24),
-      spacing = F.Dpi(0),
-      xOffset = F.Dpi(3),
-      yOffset = F.Dpi(25),
-    },
-
-    -- UnitFrame Focus Debuffs
-    debuffs = {
-      durationPosition = "TOP",
-      maxDuration = 0,
-      priority = "Blacklist,Personal,nonPersonal",
-      sizeOverride = F.Dpi(24),
-      spacing = F.Dpi(0),
-      xOffset = F.Dpi(-3),
-      yOffset = F.Dpi(25),
-    },
-
-    -- UnitFrame Focus raidicon (Target Marker Icon)
-    raidicon = {
-      size = F.Dpi(24),
-      yOffset = F.Dpi(0),
-      attachTo = "CENTER",
-    },
-
-    -- UnitFrame Focus Castbar
-    castbar = {
-      height = F.Dpi(20),
+  F.Table.Crush(
+    pf.unitframe.units.focus,
+    {
       width = F.Dpi(250),
-      insideInfoPanel = false,
-      icon = false,
+      height = F.Dpi(30),
+      threatStyle = "NONE",
 
-      textColor = F.Table.HexToRGB("#ffffff"),
-      xOffsetText = F.Dpi(5),
-      xOffsetTime = F.Dpi(-10),
+      -- UnitFrame Focus Options
+      orientation = "LEFT",
+      disableMouseoverGlow = true,
+      disableTargetGlow = true,
 
-      -- UnitFrame Focus Castbar Classcolor
-      customColor = {
-        useClassColor = true,
+      -- UnitFrame Focus Custom Texts
+      customTexts = {
+        -- UnitFrame Focus Custom Texts Name
+        ["!Name"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          text_format = "[tx:classcolor][name:medium]",
+          xOffset = F.Dpi(-5),
+          yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Focus Custom Texts Health
+        ["!Health"] = createCustomText({}, {
+          justifyH = "LEFT",
+          text_format = "[tx:classcolor][perhp]",
+          xOffset = F.Dpi(10),
+          yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Focus Custom Texts Class Icon
+        ["!ClassIcon"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          attachTextTo = "Health",
+          text_format = "[tx:classicon]",
+          xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(27)),
+          yOffset = 0,
+        }),
       },
-    },
 
-    -- UnitFrame Focus Power
-    power = {
-      width = "spaced",
-      text_format = "",
-      detachedWidth = F.Dpi(120),
-      detachFromFrame = true,
-      position = "RIGHT",
-      xOffset = F.Dpi(-2),
-    },
+      -- UnitFrame Focus Buffs
+      buffs = {
+        enable = false,
+        anchorPoint = "TOPLEFT",
+        maxDuration = 0,
+        perrow = 5,
+        priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal",
+        sizeOverride = F.Dpi(24),
+        spacing = F.Dpi(0),
+        xOffset = F.Dpi(3),
+        yOffset = F.Dpi(25),
+      },
 
-    -- Disable UnitFrame Focus CombatIcon
-    CombatIcon = { enable = false },
-    -- Disable UnitFrame Focus health text
-    health = { text_format = "" },
-    -- Disable UnitFrame Focus name text
-    name = { text_format = "" },
-  })
+      -- UnitFrame Focus Debuffs
+      debuffs = {
+        durationPosition = "TOP",
+        maxDuration = 0,
+        priority = "Blacklist,Personal,nonPersonal",
+        sizeOverride = F.Dpi(24),
+        spacing = F.Dpi(0),
+        xOffset = F.Dpi(-3),
+        yOffset = F.Dpi(25),
+      },
+
+      -- UnitFrame Focus raidicon (Target Marker Icon)
+      raidicon = {
+        size = F.Dpi(24),
+        yOffset = F.Dpi(0),
+        attachTo = "CENTER",
+      },
+
+      -- UnitFrame Focus Castbar
+      castbar = {
+        height = F.Dpi(20),
+        width = F.Dpi(250),
+        insideInfoPanel = false,
+        icon = false,
+
+        textColor = F.Table.HexToRGB("#ffffff"),
+        xOffsetText = F.Dpi(5),
+        xOffsetTime = F.Dpi(-10),
+
+        -- UnitFrame Focus Castbar Classcolor
+        customColor = {
+          useClassColor = true,
+        },
+      },
+
+      -- UnitFrame Focus Power
+      power = {
+        width = "spaced",
+        text_format = "",
+        detachedWidth = F.Dpi(120),
+        detachFromFrame = true,
+        position = "RIGHT",
+        xOffset = F.Dpi(-2),
+      },
+
+      -- Disable UnitFrame Focus CombatIcon
+      CombatIcon = { enable = false },
+      -- Disable UnitFrame Focus health text
+      health = { text_format = "" },
+      -- Disable UnitFrame Focus name text
+      name = { text_format = "" },
+    },
+    F.Table.If(IsNewLayout, {
+      customTexts = {
+        ["!Health"] = {
+          text_format = "[tx:classcolor][perhp]",
+          yOffset = F.Dpi(15),
+        },
+      },
+    })
+  )
 
   -- UnitFrame Party
   F.Table.Crush(
@@ -990,59 +1024,70 @@ function PF:BuildProfile()
       -- Disable UnitFrame Party CombatIcon
       CombatIcon = { enable = false },
     },
-    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
+    F.Table.If(
+      E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER,
+      {
 
-      -- UnitFrame Party Healer Layout
-      width = F.Dpi(150),
-      height = F.Dpi(60),
-      verticalSpacing = F.Dpi(5),
-      horizontalSpacing = F.Dpi(5),
-      growthDirection = "RIGHT_DOWN",
-      showPlayer = true,
+        -- UnitFrame Party Healer Layout
+        width = F.Dpi(150),
+        height = F.Dpi(60),
+        verticalSpacing = F.Dpi(5),
+        horizontalSpacing = F.Dpi(5),
+        growthDirection = "RIGHT_DOWN",
+        showPlayer = true,
 
-      -- UnitFrame Party Healer Layout Text
-      customTexts = {
-        ["!Health"] = {
-          yOffset = F.Dpi(0),
+        -- UnitFrame Party Healer Layout Text
+        customTexts = {
+          ["!Health"] = {
+            yOffset = F.Dpi(0),
+          },
+
+          ["!Name"] = {
+            xOffset = F.Dpi(7),
+            yOffset = F.Dpi(0),
+          },
         },
 
-        ["!Name"] = {
-          xOffset = F.Dpi(7),
-          yOffset = F.Dpi(0),
+        -- UnitFrame Party Heal Layout Power
+        power = {
+          width = "filled",
+          height = F.Dpi(15),
+        },
+
+        -- UnitFrame Party Heal Layout Buffs
+        buffs = {
+          enable = true,
+          anchorPoint = "BOTTOM",
+        },
+
+        -- UnitFrame Party Heal Layout Debuffs
+        debuffs = {
+          anchorPoint = "TOPLEFT",
+        },
+
+        -- UnitFrame Party Heal Layout Raid Debuffs
+        rdebuffs = {
+          enable = true,
+        },
+
+        -- UnitFrame Party Heal Layout Role Icon
+        roleIcon = {
+          position = "TOPLEFT",
+          size = F.Dpi(22),
+          xOffset = F.Dpi(-10),
+          yOffset = F.Dpi(10),
+          damager = false,
         },
       },
-
-      -- UnitFrame Party Heal Layout Power
-      power = {
-        width = "filled",
-        height = F.Dpi(15),
-      },
-
-      -- UnitFrame Party Heal Layout Buffs
-      buffs = {
-        enable = true,
-        anchorPoint = "BOTTOM",
-      },
-
-      -- UnitFrame Party Heal Layout Debuffs
-      debuffs = {
-        anchorPoint = "TOPLEFT",
-      },
-
-      -- UnitFrame Party Heal Layout Raid Debuffs
-      rdebuffs = {
-        enable = true,
-      },
-
-      -- UnitFrame Party Heal Layout Role Icon
-      roleIcon = {
-        position = "TOPLEFT",
-        size = F.Dpi(22),
-        xOffset = F.Dpi(-10),
-        yOffset = F.Dpi(10),
-        damager = false,
-      },
-    })
+      F.Table.If(IsNewLayout, {
+        customTexts = {
+          ["!Health"] = {
+            text_format = "[tx:classcolor][perhp]",
+            yOffset = F.Dpi(15),
+          },
+        },
+      })
+    )
   )
 
   -- UnitFrame Raid1
@@ -1324,134 +1369,156 @@ function PF:BuildProfile()
   })
 
   -- UnitFrame Arena
-  F.Table.Crush(pf.unitframe.units.arena, {
-    width = F.Dpi(250),
-    height = F.Dpi(40),
-    spacing = F.Dpi(40),
-
-    -- UnitFrame Arena Custom Texts
-    customTexts = {
-      -- UnitFrame Arena Custom Texts Health
-      ["!Health"] = createCustomText({}, {
-        text_format = "[tx:classcolor][perhp] || [health:current:shortvalue]",
-        xOffset = F.Dpi(5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Arena Custom Texts Name
-      ["!Name"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        text_format = "[tx:classcolor][name:medium]",
-        xOffset = F.Dpi(-5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
-      }),
-
-      -- UnitFrame Arena Custom Texts Power
-      ["!Power"] = createCustomText({}, {
-        attachTextTo = "Power",
-        text_format = "[perpp]",
-        xOffset = F.Dpi(10),
-        yOffset = F.Dpi(0),
-      }),
-    },
-
-    -- UnitFrame Arena Buffs
-    buffs = {
-      priority = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI",
-      sizeOverride = F.Dpi(24),
-    },
-
-    -- UnitFrame Arena Debuffs
-    debuffs = {
-      desaturate = true,
-      priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist",
-      sizeOverride = F.Dpi(25),
-    },
-
-    -- UnitFrame Arena Trinket
-    pvpTrinket = {
-      size = F.Dpi(30),
-    },
-
-    -- UnitFrame Arena Castbar
-    castbar = {
+  F.Table.Crush(
+    pf.unitframe.units.arena,
+    {
       width = F.Dpi(250),
-    },
+      height = F.Dpi(40),
+      spacing = F.Dpi(40),
 
-    -- UnitFrame Arena Power
-    power = {
-      height = F.Dpi(10),
-      text_format = "",
-    },
+      -- UnitFrame Arena Custom Texts
+      customTexts = {
+        -- UnitFrame Arena Custom Texts Health
+        ["!Health"] = createCustomText({}, {
+          text_format = "[tx:classcolor][perhp] || [health:current:shortvalue]",
+          xOffset = F.Dpi(5),
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+        }),
 
-    -- Disable UnitFrame Arena health text
-    health = { text_format = "" },
-    -- Disable UnitFrame Arena name text
-    name = { text_format = "" },
-  })
+        -- UnitFrame Arena Custom Texts Name
+        ["!Name"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          text_format = "[tx:classcolor][name:medium]",
+          xOffset = F.Dpi(-5),
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Arena Custom Texts Power
+        ["!Power"] = createCustomText({}, {
+          attachTextTo = "Power",
+          text_format = "[perpp]",
+          xOffset = F.Dpi(10),
+          yOffset = F.Dpi(0),
+        }),
+      },
+
+      -- UnitFrame Arena Buffs
+      buffs = {
+        priority = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI",
+        sizeOverride = F.Dpi(24),
+      },
+
+      -- UnitFrame Arena Debuffs
+      debuffs = {
+        desaturate = true,
+        priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist",
+        sizeOverride = F.Dpi(25),
+      },
+
+      -- UnitFrame Arena Trinket
+      pvpTrinket = {
+        size = F.Dpi(30),
+      },
+
+      -- UnitFrame Arena Castbar
+      castbar = {
+        width = F.Dpi(250),
+      },
+
+      -- UnitFrame Arena Power
+      power = {
+        height = F.Dpi(10),
+        text_format = "",
+      },
+
+      -- Disable UnitFrame Arena health text
+      health = { text_format = "" },
+      -- Disable UnitFrame Arena name text
+      name = { text_format = "" },
+    },
+    F.Table.If(IsNewLayout, {
+      customTexts = {
+        ["!Health"] = {
+          text_format = "[tx:classcolor][perhp]",
+          yOffset = F.Dpi(15),
+        },
+      },
+    })
+  )
 
   -- UnitFrame Boss
-  F.Table.Crush(pf.unitframe.units.boss, {
-    width = F.Dpi(200),
-    height = F.Dpi(30),
-    spacing = F.Dpi(45),
-
-    -- UnitFrame Boss Custom Texts
-    customTexts = {
-      -- UnitFrame Boss Custom Texts Health
-      ["!Health"] = createCustomText({}, {
-        text_format = "[perhp]",
-        xOffset = F.Dpi(5),
-        yOffset = F.Dpi(25),
-      }),
-
-      -- UnitFrame Boss Custom Texts Name
-      ["!Name"] = createCustomText({}, {
-        justifyH = "RIGHT",
-        text_format = "[name:abbrev:medium]",
-        xOffset = F.Dpi(-5),
-        yOffset = F.Dpi(25),
-      }),
-
-      -- UnitFrame Boss Custom Texts Power
-      ["!Power"] = createCustomText({}, {
-        attachTextTo = "Power",
-        text_format = "[perpp]",
-        xOffset = F.Dpi(70),
-        yOffset = F.Dpi(0),
-      }),
-    },
-
-    -- UnitFrame Boss Buffs
-    buffs = {
-      maxDuration = 300,
-      sizeOverride = F.Dpi(25),
-      yOffset = F.Dpi(16),
-    },
-
-    -- UnitFrame Boss Debuffs
-    debuffs = {
-      maxDuration = 300,
-      sizeOverride = F.Dpi(25),
-      yOffset = F.Dpi(-16),
-    },
-
-    -- UnitFrame Boss Castbar
-    castbar = {
+  F.Table.Crush(
+    pf.unitframe.units.boss,
+    {
       width = F.Dpi(200),
-    },
+      height = F.Dpi(30),
+      spacing = F.Dpi(45),
 
-    -- UnitFrame Boss Power
-    power = {
-      width = "spaced",
-      text_format = "",
-    },
+      -- UnitFrame Boss Custom Texts
+      customTexts = {
+        -- UnitFrame Boss Custom Texts Health
+        ["!Health"] = createCustomText({}, {
+          text_format = "[perhp]",
+          xOffset = F.Dpi(5),
+          yOffset = F.Dpi(25),
+        }),
 
-    -- Disable UnitFrame Boss health text
-    health = { text_format = "" },
-    -- Disable UnitFrame Boss name text
-    name = { text_format = "" },
-  })
+        -- UnitFrame Boss Custom Texts Name
+        ["!Name"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          text_format = "[name:abbrev:medium]",
+          xOffset = F.Dpi(-5),
+          yOffset = F.Dpi(25),
+        }),
+
+        -- UnitFrame Boss Custom Texts Power
+        ["!Power"] = createCustomText({}, {
+          attachTextTo = "Power",
+          text_format = "[perpp]",
+          xOffset = F.Dpi(70),
+          yOffset = F.Dpi(0),
+        }),
+      },
+
+      -- UnitFrame Boss Buffs
+      buffs = {
+        maxDuration = 300,
+        sizeOverride = F.Dpi(25),
+        yOffset = F.Dpi(16),
+      },
+
+      -- UnitFrame Boss Debuffs
+      debuffs = {
+        maxDuration = 300,
+        sizeOverride = F.Dpi(25),
+        yOffset = F.Dpi(-16),
+      },
+
+      -- UnitFrame Boss Castbar
+      castbar = {
+        width = F.Dpi(200),
+      },
+
+      -- UnitFrame Boss Power
+      power = {
+        width = "spaced",
+        text_format = "",
+      },
+
+      -- Disable UnitFrame Boss health text
+      health = { text_format = "" },
+      -- Disable UnitFrame Boss name text
+      name = { text_format = "" },
+    },
+    F.Table.If(IsNewLayout, {
+      customTexts = {
+        ["!Health"] = {
+          text_format = "[tx:classcolor][perhp]",
+          yOffset = F.Dpi(15),
+        },
+      },
+    })
+  )
 
   -- Action Bars
   F.Table.Crush(pf.actionbar, {

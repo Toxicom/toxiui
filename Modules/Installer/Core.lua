@@ -121,7 +121,7 @@ function IS:ElvUI(callback)
   -- Apply chat font, dosen't needed if PF:ElvUIChat is called
   PF:ElvUIChatFont()
 
-  -- Executre full ElvUI Update
+  -- Execute full ElvUI Update
   PF:ExecuteElvUIUpdate(function()
     TXUI:GetModule("SplashScreen"):Hide()
 

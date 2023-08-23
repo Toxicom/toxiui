@@ -102,8 +102,47 @@ function IS:Dialog()
         end
       end,
 
-      -- Layout Page
+      -- Style Selection Page
       [3] = function()
+        installFrame.SubTitle:SetText(F.String.ToxiUI("Style Selection"))
+
+        installFrame.Desc1:SetText(
+          "From "
+            .. TXUI.Title
+            .. " v6.3.0, we now offer a different style for UnitFrames! We know how some of you prefer to keep the old look and feel of "
+            .. TXUI.Title
+            .. " therefore we offer you a choice!"
+        )
+        installFrame.Desc2:SetText("Below you can see an image of the differences between the styles.")
+        installFrame.Desc3:SetText(
+          F.String.ToxiUI("Information: ")
+            .. "This step is "
+            .. F.String.Good("optional")
+            .. ". If you do not select a style, the old one will be applied by default! This might change in the future."
+        )
+
+        local function applyStyle(style)
+          E.db.TXUI.installer.layoutStyle = style
+          local styleName = style == I.Enum.LayoutStyle.OLD and "Old" or "New"
+          self:ShowStepComplete(F.String.ToxiUI(styleName) .. " UnitFrame style")
+          installer:SetPage(4)
+        end
+
+        installFrame.Option1:Show()
+        installFrame.Option1:SetText("Old style")
+        installFrame.Option1:SetScript("OnClick", function()
+          applyStyle(I.Enum.LayoutStyle.OLD)
+        end)
+
+        installFrame.Option2:Show()
+        installFrame.Option2:SetText("New style")
+        installFrame.Option2:SetScript("OnClick", function()
+          applyStyle(I.Enum.LayoutStyle.NEW)
+        end)
+      end,
+
+      -- Layout Page
+      [4] = function()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Core Settings"))
 
         installFrame.Desc1:SetText(
@@ -117,11 +156,12 @@ function IS:Dialog()
           TXUI.PreventProfileUpdates = true
 
           E.db.TXUI.installer.layout = layout
+
           TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
             self.reloadRequired = true
 
             self:ElvUI(function()
-              installer:SetPage(4)
+              installer:SetPage(5)
             end)
           end, true)
         end
@@ -140,7 +180,7 @@ function IS:Dialog()
       end,
 
       -- Details Page
-      [4] = function()
+      [5] = function()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
         if F.IsAddOnEnabled("Details") then
@@ -163,7 +203,7 @@ function IS:Dialog()
       end,
 
       -- Plater Page
-      [5] = function()
+      [6] = function()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Plater"))
 
         if F.IsAddOnEnabled("Plater") then
@@ -186,7 +226,7 @@ function IS:Dialog()
       end,
 
       -- Boss Mod Page
-      [6] = function()
+      [7] = function()
         if F.IsAddOnEnabled("BigWigs") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
@@ -220,7 +260,7 @@ function IS:Dialog()
       end,
 
       -- WeakAuras recommendations
-      [7] = function()
+      [8] = function()
         installFrame.SubTitle:SetText(F.String.ToxiUI("WeakAuras"))
 
         if F.IsAddOnEnabled("WeakAuras") then
@@ -255,7 +295,7 @@ function IS:Dialog()
       end,
 
       -- Completed Page
-      [8] = function()
+      [9] = function()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
 
         installFrame.Desc1:SetText(F.String.Good("You have completed the installation process!"))
@@ -280,12 +320,13 @@ function IS:Dialog()
     StepTitles = {
       [1] = "Welcome",
       [2] = "Profile",
-      [3] = "Core Settings",
-      [4] = "Details",
-      [5] = "Plater",
-      [6] = "BigWigs",
-      [7] = "WeakAuras",
-      [8] = "Installation Complete",
+      [3] = "Style Selection",
+      [4] = "Core Settings",
+      [5] = "Details",
+      [6] = "Plater",
+      [7] = "BigWigs",
+      [8] = "WeakAuras",
+      [9] = "Installation Complete",
     },
 
     -- Customize colors

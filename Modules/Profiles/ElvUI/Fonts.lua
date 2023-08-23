@@ -19,6 +19,7 @@ local function customTextSize(args)
 end
 
 function PF:ElvUIFont()
+  local IsNewLayout = E.db.TXUI.installer.layoutStyle == I.Enum.LayoutStyle.NEW
   F.Table.Crush(E.db, {
     -- General
     general = {
@@ -27,7 +28,7 @@ function PF:ElvUIFont()
       fontStyle = F.FontStyleOverride(I.Fonts.Primary, ""),
 
       itemLevel = {
-        itemLevelFont = F.FontOverride(I.Fonts.PrimaryBold),
+        itemLevelFont = F.FontOverride(I.Fonts.Primary),
         itemLevelFontSize = F.FontSize(11),
         itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
       },
@@ -73,17 +74,17 @@ function PF:ElvUIFont()
 
     -- Bags
     bags = {
-      itemLevelFont = F.FontOverride(I.Fonts.Number),
-      itemLevelFontSize = F.FontSizeScaled(22),
-      itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+      itemLevelFont = F.FontOverride(I.Fonts.Primary),
+      itemLevelFontSize = F.FontSizeScaled(20),
+      itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
-      itemInfoFont = F.FontOverride(I.Fonts.Number),
-      itemInfoFontSize = F.FontSizeScaled(26),
-      itemInfoFontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+      itemInfoFont = F.FontOverride(I.Fonts.Primary),
+      itemInfoFontSize = F.FontSizeScaled(20),
+      itemInfoFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
-      countFont = F.FontOverride(I.Fonts.Number),
-      countFontSize = F.FontSizeScaled(26),
-      countFontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+      countFont = F.FontOverride(I.Fonts.Primary),
+      countFontSize = F.FontSizeScaled(20),
+      countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
       cooldown = {
         fonts = {
@@ -136,6 +137,7 @@ function PF:ElvUIFont()
       },
     },
 
+    -- UnitFrames
     unitframe = {
       font = F.FontOverride(I.Fonts.Title),
       fontSize = F.FontSizeScaled(20),
@@ -154,7 +156,7 @@ function PF:ElvUIFont()
         player = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
-            { "!Health", I.Fonts.Number, 22, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 22, "NONE" },
             { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 
@@ -188,7 +190,7 @@ function PF:ElvUIFont()
         target = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
-            { "!Health", I.Fonts.Number, 22, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 22, "NONE" },
             { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 
@@ -230,7 +232,7 @@ function PF:ElvUIFont()
         focus = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
-            { "!Health", I.Fonts.Number, 22, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 22, "NONE" },
             { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 
@@ -265,7 +267,7 @@ function PF:ElvUIFont()
           {
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "NONE" },
-              { "!Health", I.Fonts.Number, 24, "NONE" },
+              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 24, "NONE" },
               { "!ClassIcon", I.Fonts.Title, 10, "NONE" }, -- Font and Outline doesn't matter
             },
 
@@ -286,7 +288,10 @@ function PF:ElvUIFont()
             },
           },
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
-            customTexts = customTextSize { { "!Name", I.Fonts.Title, 26, "NONE" }, { "!Health", I.Fonts.Number, 32, "NONE" } },
+            customTexts = customTextSize {
+              { "!Name", I.Fonts.Title, 26, "NONE" },
+              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 32, "NONE" },
+            },
           })
         ),
 
@@ -322,7 +327,7 @@ function PF:ElvUIFont()
 
         arena = {
           customTexts = customTextSize {
-            { "!Health", I.Fonts.Number, 20, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 20, "NONE" },
             { "!Name", I.Fonts.Title, 24, "NONE" },
             { "!Power", I.Fonts.Number, 20, "OUTLINE" },
           },
@@ -340,7 +345,7 @@ function PF:ElvUIFont()
 
         boss = {
           customTexts = customTextSize {
-            { "!Health", I.Fonts.Number, 24, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 24, "NONE" },
             { "!Name", I.Fonts.Title, 24, "NONE" },
             { "!Power", I.Fonts.Number, 20, "OUTLINE" },
           },
