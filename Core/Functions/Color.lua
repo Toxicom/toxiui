@@ -11,21 +11,11 @@ function F.Color.EqualToRGB(aColor, r, g, b)
 end
 
 function F.Color.SetGradient(obj, orientation, minColor, maxColor)
-  if TXUI.IsClassic then
-    local r1, g1, b1, a1 = minColor:GetRGBA()
-    local r2, g2, b2, a2 = maxColor:GetRGBA()
-    obj:SetGradientAlpha(orientation, r1, g1, b1, a1, r2, g2, b2, a2)
-  else
-    obj:SetGradient(orientation, minColor, maxColor)
-  end
+  obj:SetGradient(orientation, minColor, maxColor)
 end
 
 function F.Color.SetGradientRGB(obj, orientation, r1, g1, b1, a1, r2, g2, b2, a2)
-  if TXUI.IsClassic then
-    obj:SetGradientAlpha(orientation, r1, g1, b1, a1, r2, g2, b2, a2)
-  else
-    F.Color.SetGradient(obj, orientation, CreateColor(r1, g1, b1, a1), CreateColor(r2, g2, b2, a2))
-  end
+  F.Color.SetGradient(obj, orientation, CreateColor(r1, g1, b1, a1), CreateColor(r2, g2, b2, a2))
 end
 
 function F.Color.CalculateMultiplier(multi, color)
