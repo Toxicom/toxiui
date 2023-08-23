@@ -21,24 +21,21 @@ P.general = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleSecondary] = "DEFAULT",
-    [I.Fonts.Number] = "DEFAULT",
-    [I.Fonts.BigNumber] = "DEFAULT",
+    [I.Fonts.TitleRaid] = "DEFAULT",
   },
 
   fontStyleOverride = {
     [I.Fonts.Primary] = "OUTLINE",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleSecondary] = "DEFAULT",
-    [I.Fonts.Number] = "DEFAULT",
-    [I.Fonts.BigNumber] = "DEFAULT",
+    [I.Fonts.TitleRaid] = "DEFAULT",
   },
 
   fontShadowOverride = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleSecondary] = "DEFAULT",
-    [I.Fonts.Number] = "DEFAULT",
-    [I.Fonts.BigNumber] = "DEFAULT",
+    [I.Fonts.TitleRaid] = "DEFAULT",
   },
 }
 
@@ -201,7 +198,7 @@ P.addons = {
     glowAlpha = 1,
 
     labelEnabled = true, -- Enabled by default
-    labelFont = I.Fonts.Number,
+    labelFont = I.Fonts.Primary,
     labelFontSize = 20,
     labelFontShadow = false,
     labelFontOutline = "OUTLINE",
@@ -305,7 +302,7 @@ P.miniMapCoords = {
   yOffset = -115,
   format = "%.0f",
 
-  coordFont = I.Fonts.Number,
+  coordFont = I.Fonts.TitleRaid,
   coordFontSize = 22,
   coordFontShadow = false,
   coordFontOutline = "OUTLINE",

@@ -143,7 +143,7 @@ function PF:BuildBigWigsProfile()
             ["fontColor"] = {
               ["b"] = 0.3,
             },
-            ["fontName"] = F.FontOverride(I.Fonts.BigNumber),
+            ["fontName"] = F.FontOverride(I.Fonts.TitleRaid),
             ["fontSize"] = 100,
             ["position"] = {
               [1] = "CENTER",

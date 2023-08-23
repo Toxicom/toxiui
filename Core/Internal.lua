@@ -20,8 +20,7 @@ I.Fonts = {
   Primary = "- ToxiUI",
   Title = "- Big Noodle Titling", -- - Big Noodle Titling
   TitleSecondary = "- M 700", -- - Montserrat Bold
-  Number = "- Steelfish", -- - Steelfish
-  BigNumber = "- M 900", -- - Montserrat Black
+  TitleRaid = "- M 900", -- - Montserrat Black
   Icons = "- ToxiUI Icons",
 }
 
@@ -29,24 +28,21 @@ I.FontNames = {
   [I.Fonts.Primary] = "Primary",
   [I.Fonts.Title] = "Title",
   [I.Fonts.TitleSecondary] = "Title Secondary",
-  [I.Fonts.Number] = "Number",
-  [I.Fonts.BigNumber] = "Number Big",
+  [I.Fonts.TitleRaid] = "Title Raid",
 }
 
 I.FontDescription = {
   [I.Fonts.Primary] = "Used in the majority of the UI.",
   [I.Fonts.Title] = "Used mostly for names.",
   [I.Fonts.TitleSecondary] = "Used for names in Raid Frames.",
-  [I.Fonts.Number] = "Main number font, mostly used for cooldown text and UnitFrame health.",
-  [I.Fonts.BigNumber] = "Mostly used for combat text.",
+  [I.Fonts.TitleRaid] = "Mostly used for Raid names and couple other places.",
 }
 
 I.FontOrder = {
   I.Fonts.Primary,
   I.Fonts.Title,
   I.Fonts.TitleSecondary,
-  I.Fonts.Number,
-  I.Fonts.BigNumber,
+  I.Fonts.TitleRaid,
 }
 
 I.MediaKeys = {

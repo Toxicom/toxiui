@@ -89,16 +89,16 @@ function PF:ElvUIFont()
       cooldown = {
         fonts = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Number),
+          font = F.FontOverride(I.Fonts.Primary),
           fontSize = F.FontSizeScaled(20),
-          fontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
         },
       },
 
       bagBar = {
         font = F.FontOverride(I.Fonts.Primary),
         fontSize = F.FontSizeScaled(14),
-        fontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
       },
     },
 
@@ -116,24 +116,24 @@ function PF:ElvUIFont()
     auras = {
       -- Buffs
       buffs = {
-        countFont = F.FontOverride(I.Fonts.Number),
+        countFont = F.FontOverride(I.Fonts.Primary),
         countFontSize = F.FontSizeScaled(26),
-        countFontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+        countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
         timeFont = F.FontOverride(I.Fonts.Title),
         timeFontSize = F.FontSizeScaled(22),
-        timeFontOutline = F.FontStyleOverride(I.Fonts.Number, ""),
+        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
       },
 
       -- Debuffs
       debuffs = {
-        countFont = F.FontOverride(I.Fonts.Number),
+        countFont = F.FontOverride(I.Fonts.Primary),
         countFontSize = F.FontSizeScaled(26),
-        countFontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+        countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
         timeFont = F.FontOverride(I.Fonts.Title),
         timeFontSize = F.FontSizeScaled(22),
-        timeFontOutline = F.FontStyleOverride(I.Fonts.Number, ""),
+        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
       },
     },
 
@@ -146,9 +146,9 @@ function PF:ElvUIFont()
       cooldown = {
         fonts = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Number),
+          font = F.FontOverride(I.Fonts.Primary),
           fontSize = F.FontSizeScaled(28),
-          fontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
         },
       },
 
@@ -156,7 +156,7 @@ function PF:ElvUIFont()
         player = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 22, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "NONE" },
             { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 
@@ -190,7 +190,7 @@ function PF:ElvUIFont()
         target = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 22, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "NONE" },
             { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 
@@ -232,7 +232,7 @@ function PF:ElvUIFont()
         focus = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 22, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "NONE" },
             { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 
@@ -267,22 +267,22 @@ function PF:ElvUIFont()
           {
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "NONE" },
-              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 24, "NONE" },
+              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 24, "NONE" },
               { "!ClassIcon", I.Fonts.Title, 10, "NONE" }, -- Font and Outline doesn't matter
             },
 
             buffs = {
-              countFont = F.FontOverride(I.Fonts.Number),
+              countFont = F.FontOverride(I.Fonts.Primary),
               countFontSize = F.FontSizeScaled(18),
             },
 
             debuffs = {
-              countFont = F.FontOverride(I.Fonts.Number),
+              countFont = F.FontOverride(I.Fonts.Primary),
               countFontSize = F.FontSizeScaled(18),
             },
 
             rdebuffs = {
-              font = F.FontOverride(I.Fonts.Number),
+              font = F.FontOverride(I.Fonts.Primary),
               fontSize = F.FontSizeScaled(18),
               fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
             },
@@ -290,7 +290,7 @@ function PF:ElvUIFont()
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "NONE" },
-              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 32, "NONE" },
+              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 32, "NONE" },
             },
           })
         ),
@@ -327,36 +327,36 @@ function PF:ElvUIFont()
 
         arena = {
           customTexts = customTextSize {
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 20, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 20, "NONE" },
             { "!Name", I.Fonts.Title, 24, "NONE" },
-            { "!Power", I.Fonts.Number, 20, "OUTLINE" },
+            { "!Power", I.Fonts.Primary, 20, "OUTLINE" },
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Number),
+            countFont = F.FontOverride(I.Fonts.Primary),
             countFontSize = F.FontSizeScaled(22),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Number),
+            countFont = F.FontOverride(I.Fonts.Primary),
             countFontSize = F.FontSizeScaled(22),
           },
         },
 
         boss = {
           customTexts = customTextSize {
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", I.Fonts.Number, 24, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 24, "NONE" },
             { "!Name", I.Fonts.Title, 24, "NONE" },
-            { "!Power", I.Fonts.Number, 20, "OUTLINE" },
+            { "!Power", I.Fonts.Primary, 20, "OUTLINE" },
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Number),
+            countFont = F.FontOverride(I.Fonts.Primary),
             countFontSize = F.FontSizeScaled(22),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Number),
+            countFont = F.FontOverride(I.Fonts.Primary),
             countFontSize = F.FontSizeScaled(22),
           },
         },
@@ -391,9 +391,9 @@ function PF:ElvUIFont()
       cooldown = {
         fonts = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Number),
+          font = F.FontOverride(I.Fonts.Primary),
           fontSize = F.FontSizeScaled(20),
-          fontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
         },
       },
     },
@@ -402,9 +402,9 @@ function PF:ElvUIFont()
     cooldown = {
       fonts = {
         enable = true,
-        font = F.FontOverride(I.Fonts.Number),
+        font = F.FontOverride(I.Fonts.Primary),
         fontSize = F.FontSizeScaled(22),
-        fontOutline = F.FontStyleOverride(I.Fonts.Number, "OUTLINE"),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
       },
     },
   })
@@ -475,7 +475,7 @@ function PF:ElvUIFontPrivates()
       chatBubbleFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
 
       -- Blizzard
-      dmgfont = F.FontOverride(I.Fonts.BigNumber),
+      dmgfont = F.FontOverride(I.Fonts.Primary),
       namefont = F.FontOverride(I.Fonts.Primary),
     },
   })
