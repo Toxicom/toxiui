@@ -22,7 +22,6 @@ I.Fonts = {
   TitleSecondary = "- M 700", -- - Montserrat Bold
   Number = "- Steelfish", -- - Steelfish
   BigNumber = "- M 900", -- - Montserrat Black
-  ToxiUI = "- ToxiUI",
   Icons = "- ToxiUI Icons",
 }
 
