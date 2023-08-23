@@ -13,7 +13,7 @@
 ## X-Curse-Project-ID: 676447
 ## X-Tukui-ProjectID: 199
 ## X-Tukui-ProjectFolders: ElvUI_ToxiUI
-## X-ElvUIVersion: 13.38
+## X-ElvUIVersion: 13.39
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 ## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick
