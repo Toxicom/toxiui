@@ -54,7 +54,7 @@ function PF:BuildBigWigsProfile()
             ["backgroundColor"] = {
               [4] = 0.31,
             },
-            ["fontName"] = F.FontOverride(I.Fonts.PrimaryBold),
+            ["fontName"] = F.FontOverride(I.Fonts.Primary),
             ["fontSize"] = 14,
             ["position"] = {
               [3] = -392,

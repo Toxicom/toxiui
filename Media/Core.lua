@@ -10,6 +10,7 @@ local allLocaleBits = LSM.LOCALE_BIT_koKR + LSM.LOCALE_BIT_zhCN + LSM.LOCALE_BIT
 -- -----
 
 F.AddMedia("font", "ToxiIcons.ttf", I.Fonts.Icons, nil, allLocaleBits)
+F.AddMedia("font", "ToxiUI.ttf", I.Fonts.Primary, nil, westAndRUBits)
 F.AddMedia("font", "BigNoodleToo.ttf", I.Fonts.Title, nil, westAndRUBits)
 F.AddMedia("font", "Steelfish.ttf", I.Fonts.Number, nil, westAndRUBits)
 F.AddMedia("font", "FuturaPTBook.otf", "- Futura", nil, westAndRUBits)
@@ -17,8 +18,8 @@ F.AddMedia("font", "Montserrat-Thin.ttf", "- M 100", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-ExtraLight.ttf", "- M 200", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Light.ttf", "- M 300", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Regular.ttf", "- M 400", nil, westAndRUBits)
-F.AddMedia("font", "Montserrat-Medium.ttf", I.Fonts.Primary, nil, westAndRUBits)
-F.AddMedia("font", "Montserrat-SemiBold.ttf", I.Fonts.PrimaryBold, nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-Medium.ttf", "- M 500", nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-SemiBold.ttf", "- M 600", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleSecondary, nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-ExtraBold.ttf", "- M 800", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.BigNumber, nil, westAndRUBits)
