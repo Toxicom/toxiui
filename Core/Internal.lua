@@ -17,7 +17,7 @@ I.General = {
 }
 
 I.Fonts = {
-  Primary = "- ToxiUI", -- - Montserrat Medium
+  Primary = "- ToxiUI",
   Title = "- Big Noodle Titling", -- - Big Noodle Titling
   TitleSecondary = "- M 700", -- - Montserrat Bold
   Number = "- Steelfish", -- - Steelfish
