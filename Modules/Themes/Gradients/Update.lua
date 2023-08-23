@@ -9,14 +9,9 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
     colorChanged = true
   end
 
-  if not colorChanged and frame.currentColor ~= nil then
+  if not colorChanged then
     colorChanged = eB ~= nil and not F.Color.EqualToRGB(frame.currentColor, eR, eG, eB)
     if colorChanged then frame.currentColor:SetRGBA(eR, eG, eB, 1) end
-  else
-    TXUI:LogDebug("Updating Gradients failed")
-    TXUI:LogDebug("colorChanged: " .. colorChanged)
-    TXUI:LogDebug("frame: " .. frame)
-    TXUI:LogDebug("frame.currentColor: " .. frame.currentColor)
   end
 
   if colorChanged then
