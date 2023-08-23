@@ -9,7 +9,7 @@ TXUI.Changelog["6.3.0"] = {
     F.String.Good("NEW: ") .. "Combat icon for Player UnitFrame " .. F.String.Class("(icons8.com)", "ROGUE"),
     F.String.Good("NEW: ") .. "UnitFrame style in the installer",
     F.String.Good("NEW: ") .. "Primary font",
-    F.String.Error("Warning: ") .. "Removed most cases of '- Steelfish' font and replaced them with Primary font."
+    F.String.Error("Warning: ") .. "Removed most cases of '- Steelfish' font and replaced them with Primary font.",
     F.String.Error("Warning: ") .. "Removed Futura and most of Montserrat font variants",
     F.String.RandomClassColor("FadePersist: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
     F.String.RandomClassColor("VehicleBar: ") .. "Properly disable the module when ElvUI ActionBars are disabled",
