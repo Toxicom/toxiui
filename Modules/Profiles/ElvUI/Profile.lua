@@ -496,6 +496,16 @@ function PF:BuildProfile()
         minAlpha = 0,
         power = true,
         vehicle = false,
+
+        instanceDifficulties = {
+          dungeonNormal = true,
+          dungeonHeroic = true,
+          dungeonMythic = true,
+
+          raidNormal = true,
+          raidHeroic = true,
+          raidMythic = true,
+        },
       },
 
       -- UnitFrame Player RestIcon
@@ -758,6 +768,16 @@ function PF:BuildProfile()
         playertarget = true,
         range = false,
         unittarget = true,
+
+        instanceDifficulties = {
+          dungeonNormal = true,
+          dungeonHeroic = true,
+          dungeonMythic = true,
+
+          raidNormal = true,
+          raidHeroic = true,
+          raidMythic = true,
+        },
       },
 
       -- Disable UnitFrame Pet health text
