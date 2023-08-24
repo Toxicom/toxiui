@@ -104,8 +104,8 @@ function PF:BuildProfile()
       ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -554, -363),
 
       MirrorTimer1Mover = F.Position("TOP", "AlertFrameMover", "BOTTOM", 0, -defaultPadding),
-      MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1", "BOTTOM", 0, -defaultPadding),
-      MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2", "BOTTOM", 0, -defaultPadding),
+      MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
+      MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
 
       -- Movers: Action Bars
       ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 45),
