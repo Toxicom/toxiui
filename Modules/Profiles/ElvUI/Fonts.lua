@@ -90,7 +90,7 @@ function PF:ElvUIFont()
         fonts = {
           enable = true,
           font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(20),
+          fontSize = F.FontSizeScaled(16),
           fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
         },
       },
@@ -147,7 +147,7 @@ function PF:ElvUIFont()
         fonts = {
           enable = true,
           font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(28),
+          fontSize = F.FontSizeScaled(20),
           fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
         },
       },
@@ -392,7 +392,7 @@ function PF:ElvUIFont()
         fonts = {
           enable = true,
           font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(20),
+          fontSize = F.FontSizeScaled(16),
           fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
         },
       },
@@ -403,7 +403,7 @@ function PF:ElvUIFont()
       fonts = {
         enable = true,
         font = F.FontOverride(I.Fonts.Primary),
-        fontSize = F.FontSizeScaled(22),
+        fontSize = F.FontSizeScaled(16),
         fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
       },
     },
