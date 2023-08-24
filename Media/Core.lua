@@ -134,6 +134,7 @@ F.AddMedia("installer", "Details")
 F.AddMedia("installer", "Plater")
 F.AddMedia("installer", "BigWigs")
 F.AddMedia("installer", "WeakAuras")
+F.AddMedia("installer", "WarpDeplete")
 
 -- -----
 --   ARMORY BACKGROUNDS

@@ -4,6 +4,6 @@ TXUI.Changelog["6.3.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* ToxiUI",
-    "zzz",
+    F.String.Good("NEW: ") .. "WarpDeplete profile in the installer",
   },
 }

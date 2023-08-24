@@ -40,6 +40,9 @@ function IS:Dialog()
     elseif pageNumber == 8 then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
       installFrame.tutorialImage:Size(512, 256)
+    elseif pageNumber == 9 then
+      installFrame.tutorialImage:SetTexture(I.Media.Installer.WarpDeplete)
+      installFrame.tutorialImage:Size(512, 256)
     else
       -- Reset to defaults
       installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
@@ -353,8 +356,32 @@ function IS:Dialog()
         end)
       end,
 
-      -- Completed Page
       [9] = function()
+        SetupCustomInstaller(9)
+        installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
+
+        installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.ToxiUI("WarpDeplete"))
+
+        if not F.IsAddOnEnabled("WarpDeplete") then
+          installFrame.Desc3:SetText(
+            F.String.Warning("Warning: ") .. "Looks like you don't have any of the extra AddOns installed. Don't worry, you can still fully experience " .. TXUI.Title .. "!"
+          )
+        end
+
+        if F.IsAddOnEnabled("WarpDeplete") then
+          installFrame.Option1:Show()
+          installFrame.Option1:SetText("WarpDeplete")
+          installFrame.Option1:SetScript("OnClick", function()
+            PF:ApplyWarpDepleteProfile()
+            self:ShowStepComplete("'WarpDeplete' profile")
+            self.reloadRequired = true
+          end)
+        end
+      end,
+
+      -- Completed Page
+      [10] = function()
         SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
 
@@ -392,7 +419,8 @@ function IS:Dialog()
       [6] = "Plater",
       [7] = "BigWigs",
       [8] = "WeakAuras",
-      [9] = "Installation Complete",
+      [9] = "Additional AddOns",
+      [10] = "Installation Complete",
     },
 
     -- Customize colors
