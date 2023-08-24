@@ -120,6 +120,16 @@ F.AddMedia("logo", "LogoSmall")
 F.AddMedia("logo", "Youtube")
 
 -- -----
+--   INSTALLER IMAGES
+-- -----
+
+F.AddMedia("installer", "Layouts")
+F.AddMedia("installer", "Details")
+F.AddMedia("installer", "Plater")
+F.AddMedia("installer", "BigWigs")
+F.AddMedia("installer", "WeakAuras")
+
+-- -----
 --   ARMORY BACKGROUNDS
 -- -----
 

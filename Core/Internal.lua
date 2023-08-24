@@ -55,6 +55,7 @@ I.MediaKeys = {
   theme = "Themes",
   logo = "Logos",
   armory = "Armory",
+  installer = "Installer",
 }
 
 I.MediaPaths = {
@@ -67,6 +68,7 @@ I.MediaPaths = {
   theme = [[Interface\AddOns\ElvUI_ToxiUI\Media\Textures\Themes\]],
   logo = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\]],
   armory = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Armory\]],
+  installer = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Installer\]],
 }
 
 -- Media
@@ -81,6 +83,7 @@ I.Media = {
   Themes = {},
   Logos = {},
   Armory = {},
+  Installer = {},
 }
 
 -- Profile names to be used

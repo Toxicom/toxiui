@@ -20,6 +20,41 @@ function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
   local installFrame = _G["PluginInstallFrame"]
 
+  local function SetupCustomInstaller(pageNumber)
+    -- Increase size of installer frame
+    installFrame:Size(825, 600)
+
+    -- Custom tutorial image
+    if pageNumber == 3 then
+      installFrame.tutorialImage:SetTexture(I.Media.Installer.Layouts)
+      installFrame.tutorialImage:Size(512, 256)
+    elseif pageNumber == 5 then
+      installFrame.tutorialImage:SetTexture(I.Media.Installer.Details)
+      installFrame.tutorialImage:Size(512, 256)
+    elseif pageNumber == 6 then
+      installFrame.tutorialImage:SetTexture(I.Media.Installer.Plater)
+      installFrame.tutorialImage:Size(512, 256)
+    elseif pageNumber == 7 then
+      installFrame.tutorialImage:SetTexture(I.Media.Installer.BigWigs)
+      installFrame.tutorialImage:Size(512, 256)
+    elseif pageNumber == 8 then
+      installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
+      installFrame.tutorialImage:Size(512, 256)
+    else
+      -- Reset to defaults
+      installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
+      installFrame.tutorialImage:Size(256, 128)
+    end
+
+    -- Center description
+    installFrame.Desc1:ClearAllPoints()
+    installFrame.Desc1:Point("TOP", 0, -75)
+
+    -- Reposition tutorial image
+    installFrame.tutorialImage:ClearAllPoints()
+    installFrame.tutorialImage:Point("BOTTOM", 0, 100)
+  end
+
   -- force complete otherwise setup dosen't show
   E.private.install_complete = E.version
 
@@ -33,6 +68,7 @@ function IS:Dialog()
       [1] = function()
         self.installerOpen = true
         self:HideAnnoyances()
+        SetupCustomInstaller()
 
         -- Custom close frame handler
         installFrame:SetScript("OnHide", function()
@@ -75,6 +111,7 @@ function IS:Dialog()
 
       -- Profile Page
       [2] = function()
+        SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Profile"))
 
         installFrame.Desc1:SetText("You can either create a new profile for " .. TXUI.Title .. " or you can use your current profile")
@@ -104,6 +141,7 @@ function IS:Dialog()
 
       -- Style Selection Page
       [3] = function()
+        SetupCustomInstaller(3)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Style Selection"))
 
         installFrame.Desc1:SetText(
@@ -113,8 +151,12 @@ function IS:Dialog()
             .. TXUI.Title
             .. " therefore we offer you a choice!"
         )
-        installFrame.Desc2:SetText(
-          "Below you can press the " .. F.String.Class("Comparison", "ROGUE") .. " button to get a link to an image of the differences between the styles."
+        installFrame.Desc2:SetText("Below you can see an image of the differences between the styles.")
+        installFrame.Desc3:SetText(
+          F.String.ToxiUI("Information: ")
+            .. "This step is "
+            .. F.String.Good("optional")
+            .. ". If you do not select a style, the old one will be applied by default! This might change in the future."
         )
 
         local function applyStyle(style)
@@ -135,16 +177,11 @@ function IS:Dialog()
         installFrame.Option2:SetScript("OnClick", function()
           applyStyle(I.Enum.LayoutStyle.NEW)
         end)
-
-        installFrame.Option3:Show()
-        installFrame.Option3:SetText("Comparison")
-        installFrame.Option3:SetScript("OnClick", function()
-          self:PopupComparisonLink()
-        end)
       end,
 
       -- Layout Page
       [4] = function()
+        SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Core Settings"))
 
         installFrame.Desc1:SetText(
@@ -183,6 +220,7 @@ function IS:Dialog()
 
       -- Details Page
       [5] = function()
+        SetupCustomInstaller(5)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
         if F.IsAddOnEnabled("Details") then
@@ -206,6 +244,7 @@ function IS:Dialog()
 
       -- Plater Page
       [6] = function()
+        SetupCustomInstaller(6)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Plater"))
 
         if F.IsAddOnEnabled("Plater") then
@@ -229,6 +268,7 @@ function IS:Dialog()
 
       -- Boss Mod Page
       [7] = function()
+        SetupCustomInstaller(7)
         if F.IsAddOnEnabled("BigWigs") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
@@ -263,6 +303,7 @@ function IS:Dialog()
 
       -- WeakAuras recommendations
       [8] = function()
+        SetupCustomInstaller(8)
         installFrame.SubTitle:SetText(F.String.ToxiUI("WeakAuras"))
 
         if F.IsAddOnEnabled("WeakAuras") then
@@ -294,10 +335,27 @@ function IS:Dialog()
           installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have WeakAuras installed!|r"))
           installFrame.Desc2:SetText("For full experience, we highly recommend having WeakAuras!")
         end
+
+        installFrame.Desc3:SetText(
+          F.String.Warning("Important: ")
+            .. "Please note that the "
+            .. F.String.Luxthos("Luxthos WeakAuras")
+            .. " in the image are customised! Out of the box, they will look slightly different. Visit "
+            .. F.String.ToxiUI("toxiui.com/wa")
+            .. " to find out how you can achieve a similar look."
+        )
+
+        installFrame.Option2:Show()
+        installFrame.Option2:SetText(TXUI.Title .. " Guide")
+
+        installFrame.Option2:SetScript("OnClick", function()
+          self:PopupWAGuide()
+        end)
       end,
 
       -- Completed Page
       [9] = function()
+        SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
 
         installFrame.Desc1:SetText(F.String.Good("You have completed the installation process!"))

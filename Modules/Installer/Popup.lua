@@ -14,15 +14,15 @@ function IS:PopupDiscordLink()
 end
 
 -- Discord Popup Link
-function IS:PopupComparisonLink()
+function IS:PopupWAGuide()
   -- Create popup if it dosen't exist
-  if not E.PopupDialogs.TXUI_ComparisonLinkDisplay then
-    E.PopupDialogs.TXUI_ComparisonLinkDisplay = E.PopupDialogs.ELVUI_EDITBOX
-    E.PopupDialogs.TXUI_ComparisonLinkDisplay["text"] = "Use the following link to see a comparison image of different UnitFrame styles."
+  if not E.PopupDialogs.TXUI_WAGuideDisplay then
+    E.PopupDialogs.TXUI_WAGuideDisplay = E.PopupDialogs.ELVUI_EDITBOX
+    E.PopupDialogs.TXUI_WAGuideDisplay["text"] = "Use the following link to see a guide on how to customise your WeakAuras to adapt to the " .. TXUI.Title .. " style."
   end
 
   -- Show Popup
-  E:StaticPopup_Show("TXUI_ComparisonLinkDisplay", nil, nil, I.Strings.Branding.Links.Comparison)
+  E:StaticPopup_Show("TXUI_WAGuideDisplay", nil, nil, I.Strings.Branding.Links.WAGuide)
 end
 
 -- Weakauras Popup Link
