@@ -439,7 +439,7 @@ function PF:BuildProfile()
   -- UnitFrame Player
   F.Table.Crush(
     pf.unitframe.units.player,
-    {
+    { -- Player
       -- UnitFrame Player Size
       width = F.Dpi(250),
       height = F.ChooseForTheme(F.Dpi(30), F.Dpi(40)),
@@ -573,12 +573,25 @@ function PF:BuildProfile()
       -- Disable UnitFrame Player Buffs
       buffs = { enable = false },
     },
-    F.Table.If(IsNewLayout, {
+    F.Table.If(IsNewLayout, { --Player
+      height = F.Dpi(30),
+
       customTexts = {
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+        },
         ["!Health"] = {
           text_format = "[tx:classcolor][perhp]",
-          yOffset = F.Dpi(15),
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
+        ["!ClassIcon"] = {
+          xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
+          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+        },
+      },
+
+      RestIcon = {
+        yOffset = F.ChooseForTheme(F.Dpi(40), F.Dpi(30)),
       },
     })
   )
@@ -586,7 +599,7 @@ function PF:BuildProfile()
   -- UnitFrame Target
   F.Table.Crush(
     pf.unitframe.units.target,
-    {
+    { -- Target
       -- UnitFrame Target Size
       width = F.Dpi(250),
       height = F.ChooseForTheme(F.Dpi(30), F.Dpi(40)),
@@ -689,102 +702,135 @@ function PF:BuildProfile()
       -- Disable UnitFrame Target name text
       name = { text_format = "" },
     },
-    F.Table.If(IsNewLayout, {
+    F.Table.If(IsNewLayout, { -- Target
+      height = F.Dpi(30),
+
       customTexts = {
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+        },
         ["!Health"] = {
           text_format = "[tx:classcolor][perhp]",
-          yOffset = F.Dpi(15),
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+        },
+        ["!ClassIcon"] = {
+          xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(10)),
+          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         },
       },
     })
   )
 
   -- UnitFrame Pet
-  F.Table.Crush(pf.unitframe.units.pet, {
-    width = F.Dpi(100),
-    height = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
-    disableTargetGlow = false,
-    threatStyle = "NONE",
-
-    -- UnitFrame Pet Custom Texts
-    customTexts = {
-      -- UnitFrame Pet Custom Texts Name
-      ["!Name"] = createCustomText({}, {
-        text_format = "[tx:classcolor][name:short]",
-        xOffset = F.Dpi(0),
-        yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(0)),
-        justifyH = "CENTER",
-      }),
-    },
-
-    -- UnitFrame Pet Castbar
-    castbar = {
-      height = F.Dpi(12),
-      iconSize = F.Dpi(32),
+  F.Table.Crush(
+    pf.unitframe.units.pet,
+    { -- Pet
       width = F.Dpi(100),
-    },
+      height = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
+      disableTargetGlow = false,
+      threatStyle = "NONE",
 
-    -- UnitFrame Pet Fader
-    fader = {
-      enable = true,
-      combat = true,
-      health = true,
-      hover = true,
-      minAlpha = 0,
-      playertarget = true,
-      range = false,
-      unittarget = true,
-    },
+      -- UnitFrame Pet Custom Texts
+      customTexts = {
+        -- UnitFrame Pet Custom Texts Name
+        ["!Name"] = createCustomText({}, {
+          text_format = "[tx:classcolor][name:short]",
+          xOffset = F.Dpi(0),
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(0)),
+          justifyH = "CENTER",
+        }),
+      },
 
-    -- Disable UnitFrame Pet health text
-    health = { text_format = "" },
-    -- Disable UnitFrame Pet name text
-    name = { text_format = "" },
-    -- Disable UnitFrame Pet name text
-    power = { enable = false },
-    -- Disable UnitFrame Pet Debuffs
-    debuffs = { enable = false },
-  })
+      -- UnitFrame Pet Castbar
+      castbar = {
+        height = F.Dpi(12),
+        iconSize = F.Dpi(32),
+        width = F.Dpi(100),
+      },
+
+      -- UnitFrame Pet Fader
+      fader = {
+        enable = true,
+        combat = true,
+        health = true,
+        hover = true,
+        minAlpha = 0,
+        playertarget = true,
+        range = false,
+        unittarget = true,
+      },
+
+      -- Disable UnitFrame Pet health text
+      health = { text_format = "" },
+      -- Disable UnitFrame Pet name text
+      name = { text_format = "" },
+      -- Disable UnitFrame Pet name text
+      power = { enable = false },
+      -- Disable UnitFrame Pet Debuffs
+      debuffs = { enable = false },
+    },
+    F.Table.If(IsNewLayout, { -- Pet
+      height = F.Dpi(15),
+
+      customTexts = {
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(10)),
+        },
+      },
+    })
+  )
 
   -- UnitFrame Target-Target
-  F.Table.Crush(pf.unitframe.units.targettarget, {
-    width = F.Dpi(100),
-    height = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
-    threatStyle = "NONE",
-    disableMouseoverGlow = true,
+  F.Table.Crush(
+    pf.unitframe.units.targettarget,
+    { -- ToT
+      width = F.Dpi(100),
+      height = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
+      threatStyle = "NONE",
+      disableMouseoverGlow = true,
 
-    -- UnitFrame Target-Target Custom Texts
-    customTexts = {
-      -- UnitFrame Target-Target Custom Texts Name
-      ["!Name"] = createCustomText({}, {
-        text_format = "[tx:classcolor][name:short]",
-        xOffset = F.Dpi(0),
-        yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(0)),
-        justifyH = "CENTER",
-      }),
+      -- UnitFrame Target-Target Custom Texts
+      customTexts = {
+        -- UnitFrame Target-Target Custom Texts Name
+        ["!Name"] = createCustomText({}, {
+          text_format = "[tx:classcolor][name:short]",
+          xOffset = F.Dpi(0),
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(0)),
+          justifyH = "CENTER",
+        }),
+      },
+
+      -- UnitFrame Target-Target RaidIcon (Target Maker)
+      raidicon = {
+        size = F.Dpi(16),
+        attachTo = "CENTER",
+        yOffset = F.Dpi(0),
+      },
+
+      -- Disable UnitFrame Target-Target health text
+      health = { text_format = "" },
+      -- Disable UnitFrame Target-Target name text
+      name = { text_format = "" },
+      -- Disable UnitFrame Target-Target name text
+      power = { enable = false },
+      -- Disable UnitFrame Target-Target debuffs
+      debuffs = { enable = false },
     },
+    F.Table.If(IsNewLayout, { -- ToT
+      height = F.Dpi(15),
 
-    -- UnitFrame Target-Target RaidIcon (Target Maker)
-    raidicon = {
-      size = F.Dpi(16),
-      attachTo = "CENTER",
-      yOffset = F.Dpi(0),
-    },
-
-    -- Disable UnitFrame Target-Target health text
-    health = { text_format = "" },
-    -- Disable UnitFrame Target-Target name text
-    name = { text_format = "" },
-    -- Disable UnitFrame Target-Target name text
-    power = { enable = false },
-    -- Disable UnitFrame Target-Target debuffs
-    debuffs = { enable = false },
-  })
+      customTexts = {
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(10)),
+        },
+      },
+    })
+  )
 
   -- UnitFrame Focus
   F.Table.Crush(
     pf.unitframe.units.focus,
-    {
+    { -- Focus
       width = F.Dpi(250),
       height = F.Dpi(30),
       threatStyle = "NONE",
@@ -887,11 +933,18 @@ function PF:BuildProfile()
       -- Disable UnitFrame Focus name text
       name = { text_format = "" },
     },
-    F.Table.If(IsNewLayout, {
+    F.Table.If(IsNewLayout, { -- Focus
       customTexts = {
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(20)),
+        },
         ["!Health"] = {
           text_format = "[tx:classcolor][perhp]",
-          yOffset = F.Dpi(15),
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
+        },
+        ["!ClassIcon"] = {
+          xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(10)),
+          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         },
       },
     })
@@ -900,7 +953,7 @@ function PF:BuildProfile()
   -- UnitFrame Party
   F.Table.Crush(
     pf.unitframe.units.party,
-    {
+    { -- Party
       width = F.Dpi(200),
       height = F.Dpi(30),
 
@@ -1026,7 +1079,7 @@ function PF:BuildProfile()
     },
     F.Table.If(
       E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER,
-      {
+      { -- Party
 
         -- UnitFrame Party Healer Layout
         width = F.Dpi(150),
@@ -1079,11 +1132,18 @@ function PF:BuildProfile()
           damager = false,
         },
       },
-      F.Table.If(IsNewLayout, {
+      F.Table.If(IsNewLayout, { -- Party
         customTexts = {
+          ["!Name"] = {
+            yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+          },
           ["!Health"] = {
             text_format = "[tx:classcolor][perhp]",
-            yOffset = F.Dpi(15),
+            yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+          },
+          ["!ClassIcon"] = {
+            xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
+            yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
           },
         },
       })
@@ -1785,17 +1845,28 @@ function PF:UpdateProfileForTheme()
   -- Custom Text
   F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Name", "yOffset")
+
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "yOffset")
+
   F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.!Name", "yOffset")
+
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "yOffset")
+
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "yOffset")
+
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
+
   F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
 
   -- UnitFrame Heights
