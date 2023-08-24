@@ -113,12 +113,8 @@ function IS:Dialog()
             .. TXUI.Title
             .. " therefore we offer you a choice!"
         )
-        installFrame.Desc2:SetText("Below you can see an image of the differences between the styles.")
-        installFrame.Desc3:SetText(
-          F.String.ToxiUI("Information: ")
-            .. "This step is "
-            .. F.String.Good("optional")
-            .. ". If you do not select a style, the old one will be applied by default! This might change in the future."
+        installFrame.Desc2:SetText(
+          "Below you can press the " .. F.String.Class("Comparison", "ROGUE") .. " button to get a link to an image of the differences between the styles."
         )
 
         local function applyStyle(style)
@@ -138,6 +134,12 @@ function IS:Dialog()
         installFrame.Option2:SetText("New style")
         installFrame.Option2:SetScript("OnClick", function()
           applyStyle(I.Enum.LayoutStyle.NEW)
+        end)
+
+        installFrame.Option3:Show()
+        installFrame.Option3:SetText("Comparison")
+        installFrame.Option3:SetScript("OnClick", function()
+          self:PopupComparisonLink()
         end)
       end,
 

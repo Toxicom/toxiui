@@ -13,6 +13,18 @@ function IS:PopupDiscordLink()
   E:StaticPopup_Show("TXUI_DiscordLinkDisplay", nil, nil, I.Strings.Branding.Links.Discord)
 end
 
+-- Discord Popup Link
+function IS:PopupComparisonLink()
+  -- Create popup if it dosen't exist
+  if not E.PopupDialogs.TXUI_ComparisonLinkDisplay then
+    E.PopupDialogs.TXUI_ComparisonLinkDisplay = E.PopupDialogs.ELVUI_EDITBOX
+    E.PopupDialogs.TXUI_ComparisonLinkDisplay["text"] = "Use the following link to see a comparison image of different UnitFrame styles."
+  end
+
+  -- Show Popup
+  E:StaticPopup_Show("TXUI_ComparisonLinkDisplay", nil, nil, I.Strings.Branding.Links.Comparison)
+end
+
 -- Weakauras Popup Link
 function IS:PopupWALink()
   -- Create popup if it dosen't exist
