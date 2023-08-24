@@ -80,7 +80,7 @@ jobs:
           title: ":rocket: New beta build of ToxiUI is ready! :rocket:"
           nodetail: true
           color: 0x00e4f5
-          username: ToxiBot
+          username: ToxiBot - Beta Release
           avatar_url: "https://i.imgur.com/ib1CSUx.png"
           description: |
             :tools: Release `${{ steps.vars.outputs.tag }}`
@@ -97,3 +97,5 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.WEBHOOK_URL }}
         with:
           args: .release/*.zip
+          username: ToxiBot - Beta Release
+          avatar_url: "https://i.imgur.com/ib1CSUx.png"

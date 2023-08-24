@@ -52,5 +52,5 @@ jobs:
         if: always()
         with:
           webhook: ${{ secrets.WEBHOOK_URL_GIT }}
-          username: GitHub
-          avatar_url: "https://github.com/github.png"
+          username: ToxiBot - Test
+          avatar_url: "https://i.imgur.com/ib1CSUx.png"
