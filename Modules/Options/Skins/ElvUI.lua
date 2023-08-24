@@ -151,6 +151,7 @@ function O:Skins_ElvUI()
         ["TXUI"] = TXUI.Title .. " Colored",
         ["TXUI_WHITE"] = TXUI.Title .. " White",
         ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
       },
       hidden = roleIconDisabled,
     }

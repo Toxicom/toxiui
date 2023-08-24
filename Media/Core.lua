@@ -85,6 +85,11 @@ F.AddMedia("role", "MaterialTank")
 F.AddMedia("role", "MaterialHeal")
 F.AddMedia("role", "MaterialDPS")
 
+-- Stylized Icons
+F.AddMedia("role", "StylizedTank")
+F.AddMedia("role", "StylizedHeal")
+F.AddMedia("role", "StylizedDPS")
+
 -- -----
 --   STATE ICONS
 -- -----

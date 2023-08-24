@@ -280,6 +280,29 @@ I.ElvUIIcons = {
         DAMAGER = "MaterialDPS",
       },
     },
+
+    ["TXUI_STYLIZED"] = {
+      ["default"] = {
+        TANK = "StylizedTank",
+        HEALER = "StylizedHeal",
+        DAMAGER = "StylizedDPS",
+      },
+      ["raid1"] = {
+        TANK = "StylizedTank",
+        HEALER = "StylizedHeal",
+        DAMAGER = "StylizedDPS",
+      },
+      ["raid2"] = {
+        TANK = "StylizedTank",
+        HEALER = "StylizedHeal",
+        DAMAGER = "StylizedDPS",
+      },
+      ["raid3"] = {
+        TANK = "StylizedTank",
+        HEALER = "StylizedHeal",
+        DAMAGER = "StylizedDPS",
+      },
+    },
   },
 
   ["Dead"] = {
