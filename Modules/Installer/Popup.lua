@@ -13,7 +13,19 @@ function IS:PopupDiscordLink()
   E:StaticPopup_Show("TXUI_DiscordLinkDisplay", nil, nil, I.Strings.Branding.Links.Discord)
 end
 
--- Discord Popup Link
+-- ToxiUI Website Popup Link
+function IS:PopupWebsiteLink()
+  -- Create popup if it dosen't exist
+  if not E.PopupDialogs.TXUI_WebsiteLinkDisplay then
+    E.PopupDialogs.TXUI_WebsiteLinkDisplay = E.PopupDialogs.ELVUI_EDITBOX
+    E.PopupDialogs.TXUI_WebsiteLinkDisplay["text"] = "For more information please visit the " .. TXUI.Title .. " website via this link!"
+  end
+
+  -- Show Popup
+  E:StaticPopup_Show("TXUI_WebsiteLinkDisplay", nil, nil, I.Strings.Branding.Links.Website)
+end
+
+-- ToxiUI WA Guide Popup Link
 function IS:PopupWAGuide()
   -- Create popup if it dosen't exist
   if not E.PopupDialogs.TXUI_WAGuideDisplay then

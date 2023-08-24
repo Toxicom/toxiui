@@ -373,6 +373,12 @@ function IS:Dialog()
         installFrame.Option2:SetScript("OnClick", function()
           self:PopupDiscordLink()
         end)
+
+        installFrame.Option3:Show()
+        installFrame.Option3:SetText(TXUI.Title .. " Web")
+        installFrame.Option3:SetScript("OnClick", function()
+          self:PopupWebsiteLink()
+        end)
       end,
     },
 
