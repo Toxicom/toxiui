@@ -79,12 +79,6 @@ function IS:ElvUI(callback)
   E.db.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
   E.private.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
 
-  -- Reset theme options
-  -- E.db.TXUI.themes.gradientMode.enabled = P.themes.gradientMode.enabled
-  -- E.db.TXUI.themes.gradientMode.texture = P.themes.gradientMode.texture
-  -- E.db.TXUI.themes.darkMode.enabled = P.themes.darkMode.enabled
-  -- E.db.TXUI.themes.darkMode.transparency = P.themes.darkMode.transparency
-
   -- Force DB layout update before making changes
   E:UpdateDB()
 
