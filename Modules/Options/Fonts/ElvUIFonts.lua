@@ -14,7 +14,7 @@ function O:Fonts_ElvUIFonts()
       name = "Description",
     }, {
       name = "This group allows to update all fonts used in the " .. TXUI.Title .. " Profile.\n\n" .. F.String.Error(
-        "Warning: Some font sizes will look weird, because fonts like Title & Number have a big default font size!\n"
+        "Warning: Some fonts might still not look ideal! The results will not be ideal, but it should help you customize the fonts :)\n"
       ),
     }).args
 
