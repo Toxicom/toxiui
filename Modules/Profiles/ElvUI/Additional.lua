@@ -132,30 +132,179 @@ function PF:ElvUIAdditional()
 end
 
 function PF:ElvUIAdditionalPrivate()
+  local pv = {}
+
   -- WindTools Config
   if F.IsAddOnEnabled("ElvUI_WindTools") then
-    E.private.WT.maps.instanceDifficulty.enable = true
-    E.private.WT.maps.minimapButtons.backdropSpacing = F.Dpi(2)
-    E.private.WT.maps.minimapButtons.buttonSize = F.Dpi(25)
-    E.private.WT.maps.minimapButtons.buttonsPerRow = 2
-    E.private.WT.maps.minimapButtons.mouseOver = true
-    E.private.WT.maps.minimapButtons.spacing = F.Dpi(5)
-    E.private.WT.maps.superTracker.enable = false
-    E.private.WT.maps.worldMap.enable = false
-    E.private.WT.maps.worldMap.scale.enable = false
-    E.private.WT.misc.moveBlizzardFrames = true
-    E.private.WT.quest.objectiveTracker.titleColor.customColorHighlight.b = 0.41960784313725
-    E.private.WT.quest.objectiveTracker.titleColor.customColorHighlight.g = 0.82745098039216
-    E.private.WT.quest.objectiveTracker.titleColor.customColorHighlight.r = 1
-    E.private.WT.quest.objectiveTracker.titleColor.customColorNormal.b = 0.1921568627451
-    E.private.WT.quest.objectiveTracker.titleColor.customColorNormal.g = 0.78039215686275
-    E.private.WT.quest.objectiveTracker.titleColor.customColorNormal.r = 1
-    E.private.WT.skins.elvui.enable = false
-    E.private.WT.skins.blizzard.enable = false
-    E.private.WT.skins.addons.weakAuras = false
-    E.private.WT.skins.removeParchment = false
-    E.private.WT.skins.shadow = false
-    E.private.WT.unitFrames.quickFocus.enable = false
-    E.private.WT.unitFrames.roleIcon.enable = false
+    pv.WT = {}
+
+    local widgetTexture = "- Tx Fade"
+    local widgetClassColor = true
+
+    -- WindTools Private Settings
+    F.Table.Crush(pv.WT, {
+      -- Maps
+      maps = {
+        -- Maps: Instance Difficulty
+        instanceDifficulty = {
+          enable = true,
+        },
+
+        -- Maps: Minimap Buttons
+        minimapButtons = {
+          backdropSpacing = F.Dpi(2),
+          buttonSize = F.Dpi(25),
+          buttonsPerRow = 2,
+          mouseOver = true,
+          spacing = F.Dpi(5),
+        },
+
+        -- Maps: Super Tracker
+        superTracker = {
+          enable = false,
+        },
+
+        -- Maps: World Map
+        worldMap = {
+          enable = false,
+
+          scale = {
+            enable = false,
+          },
+        },
+      },
+
+      -- Misc
+      misc = {
+        moveBlizzardFrames = true,
+      },
+
+      -- Quest
+      quest = {
+        objectiveTracker = {
+          titleColor = {
+            customColorNormal = F.Table.HexToRGB("#ffc730"),
+            customColorHighlight = F.Table.HexToRGB("#ffd36b"),
+          },
+        },
+      },
+
+      -- Skins
+      skins = {
+        -- Skins: ElvUI
+        elvui = {
+          enable = false,
+        },
+
+        -- Skins: Blizzard
+        blizzard = {
+          enable = false,
+        },
+
+        -- Skins: Addons
+        addons = {
+          weakAuras = false,
+        },
+
+        -- Skins: Widgets
+        widgets = {
+          button = {
+            backdrop = {
+              color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              texture = widgetTexture,
+              classColor = widgetClassColor,
+            },
+
+            selected = {
+              backdropClassColor = widgetClassColor,
+              backdropColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              backdropAlpha = 1,
+
+              borderClassColor = widgetClassColor,
+              borderColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              borderAlpha = 0.4,
+            },
+          },
+
+          checkbox = {
+            color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+            texture = "- ToxiUI",
+            classColor = widgetClassColor,
+          },
+
+          slider = {
+            color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+            texture = "- ToxiUI",
+            classColor = widgetClassColor,
+          },
+
+          tab = {
+            backdrop = {
+              color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              texture = widgetTexture,
+              classColor = widgetClassColor,
+            },
+
+            selected = {
+              backdropClassColor = widgetClassColor,
+              backdropColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              backdropAlpha = 0.4,
+
+              borderClassColor = widgetClassColor,
+              borderColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              borderAlpha = 0.4,
+
+              texture = widgetTexture,
+            },
+
+            text = {
+              normalClassColor = widgetClassColor,
+              normalColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+            },
+          },
+
+          treeGroupButton = {
+            backdrop = {
+              color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              texture = widgetTexture,
+              classColor = widgetClassColor,
+            },
+
+            selected = {
+              backdropClassColor = widgetClassColor,
+              backdropColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              backdropAlpha = 0.4,
+
+              borderClassColor = widgetClassColor,
+              borderColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+              borderAlpha = 0.4,
+
+              texture = widgetTexture,
+            },
+
+            text = {
+              normalClassColor = widgetClassColor,
+              normalColor = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+            },
+          },
+        },
+
+        removeParchment = false,
+        shadow = false,
+      },
+
+      -- Unit Frames
+      unitFrames = {
+        quickFocus = {
+          enable = false,
+        },
+        roleIcon = {
+          enable = false,
+        },
+      },
+    })
   end
+
+  -- Merge Tables
+  F.Table.Crush(E.private, pv)
 end

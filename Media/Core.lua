@@ -24,6 +24,7 @@ F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.TitleRaid, nil, westAndRUBits
 -- General Textures
 F.AddMedia("texture", "BuiOnePixel", "BuiOnePixel", "statusbar")
 F.AddMedia("texture", "ToxiUI-clean", "- ToxiUI", "statusbar")
+F.AddMedia("texture", "ToxiUI-fade", "- Tx Fade", "statusbar")
 
 -- Gradient Textures
 F.AddMedia("texture", "ToxiUI-grad", "- Tx Mid", "statusbar")

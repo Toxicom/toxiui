@@ -20,6 +20,8 @@ TXUI.Changelog["6.3.0"] = {
     "Refactor icons to use unicode decimal instead of glyph. Credits to " .. F.String.WunderUI(),
     "* ElvUI",
     "Change Player Castbar Strata level so it's below Combat Icon",
+    "* WindTools",
+    F.String.Good("NEW: ") .. "Customize widget skinning with a new '- Tx Fade' texture & enabled class colors",
     "* Plater",
     "Update " .. F.String.ToxiUI("Interrupt not ready Cast Color") .. " mod",
   },
