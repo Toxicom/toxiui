@@ -6,5 +6,7 @@ TXUI.Changelog["6.3.1"] = {
     "* ToxiUI",
     F.String.Good("NEW: ") .. "WarpDeplete profile in the installer",
     F.String.Good("NEW: ") .. "OmniCD profile in the installer",
+    "* ElvUI",
+    "Increase the padding between ActionBars",
   },
 }
