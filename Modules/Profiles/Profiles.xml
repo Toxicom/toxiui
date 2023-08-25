@@ -10,4 +10,5 @@
   <Script file='Details.lua' />
   <Script file='Plater.lua' />
   <Script file='WarpDeplete.lua' />
+  <Script file='OmniCD.lua' />
 </Ui>

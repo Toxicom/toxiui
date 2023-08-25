@@ -376,7 +376,7 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.ToxiUI("WarpDeplete"))
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.ToxiUI("WarpDeplete") .. ", " .. F.String.ToxiUI("OmniCD"))
 
         if not F.IsAddOnEnabled("WarpDeplete") then
           installFrame.Desc3:SetText(
@@ -390,6 +390,16 @@ function IS:Dialog()
           installFrame.Option1:SetScript("OnClick", function()
             PF:ApplyWarpDepleteProfile()
             self:ShowStepComplete("'WarpDeplete' profile")
+            self.reloadRequired = true
+          end)
+        end
+
+        if F.IsAddOnEnabled("OmniCD") then
+          installFrame.Option2:Show()
+          installFrame.Option2:SetText("OmniCD")
+          installFrame.Option2:SetScript("OnClick", function()
+            PF:ApplyOmniCDProfile()
+            self:ShowStepComplete("'OmniCD' profile")
             self.reloadRequired = true
           end)
         end
