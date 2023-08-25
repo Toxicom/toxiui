@@ -25,6 +25,9 @@ function WB:CheckVisibility(event)
 
   local isVisible = true
 
+  -- Force enable Mouseover Only if you have selected RESTING_AND_MOUSEOVER
+  if self.db.general.barVisibility == "RESTING_AND_MOUSEOVER" then self.db.general.barMouseOverOnly = true end
+
   -- Always hide for pokemon on retail
   if self.isVisible and (TXUI.IsRetail and C_PetBattles_IsInBattle()) then isVisible = false end
 
@@ -37,6 +40,8 @@ function WB:CheckVisibility(event)
       isVisible = true
     elseif self.db.general.barVisibility == "RESTING" then
       isVisible = IsResting()
+    elseif self.db.general.barVisibility == "RESTING_AND_MOUSEOVER" then
+      isVisible = IsResting() or self.isMouseOver
     elseif self.db.general.barVisibility == "NO_COMBAT" then
       if event then
         if event == "PLAYER_REGEN_DISABLED" then isVisible = false end

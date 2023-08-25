@@ -82,6 +82,7 @@ function O:WunderBar_General()
         ALWAYS = "Always",
         NO_COMBAT = "Hide in Combat",
         RESTING = "Only in rested area",
+        RESTING_AND_MOUSEOVER = "Resting & Mouseover",
       },
     }
 
@@ -91,6 +92,9 @@ function O:WunderBar_General()
       type = "toggle",
       name = "Mouseover Only",
       desc = "Show the bar only on mouseover.",
+      disabled = function()
+        return (E.db.TXUI.wunderbar.general.barVisibility == "RESTING_AND_MOUSEOVER")
+      end,
     }
 
     -- Spacer
