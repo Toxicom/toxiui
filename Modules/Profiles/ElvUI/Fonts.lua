@@ -475,7 +475,7 @@ function PF:ElvUIFontPrivates()
       chatBubbleFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
 
       -- Blizzard
-      dmgfont = F.FontOverride(I.Fonts.Primary),
+      dmgfont = F.FontOverride(I.Fonts.TitleRaid),
       namefont = F.FontOverride(I.Fonts.Primary),
     },
   })
