@@ -188,10 +188,25 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Core Settings"))
 
         installFrame.Desc1:SetText(
-          "This will install " .. TXUI.Title .. " depending if you want a " .. F.String.ToxiUI("DPS/Tank") .. " or " .. F.String.Class("Healer", "MONK") .. " layout."
+          "This will install "
+            .. TXUI.Title
+            .. " depending if you want a "
+            .. F.String.ToxiUI("DPS/Tank")
+            .. " or "
+            .. F.String.Class("Healer", "MONK")
+            .. " layout. This will also enable core functions of ToxiUI."
         )
-        installFrame.Desc2:SetText("This will also enable core functions of ToxiUI.")
-        installFrame.Desc3:SetText(F.String.Error("Important: ") .. F.String.Warning("Skipping this will result in an unfinished and broken UI!"))
+        installFrame.Desc2:SetText(F.String.Error("Important: ") .. F.String.Warning("Skipping this will result in an unfinished and broken UI!"))
+        installFrame.Desc3:SetText(
+          F.String.Error("Extremely important: ")
+            .. "Applying our "
+            .. TXUI.Title
+            .. " profiles will, like in the majority of other UI plugins, "
+            .. F.String.Error("overwrite")
+            .. " your existing profile! Any previous changes you have made will most likely "
+            .. F.String.Error("be lost!")
+            .. " Please make backups if you're afraid to lose your current profile and proceed with caution! You have been warned."
+        )
 
         local function installElvUI(layout)
           if TXUI.PreventProfileUpdates then return end
