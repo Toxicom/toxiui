@@ -117,22 +117,22 @@ function PF:ElvUIFont()
       -- Buffs
       buffs = {
         countFont = F.FontOverride(I.Fonts.Primary),
-        countFontSize = F.FontSizeScaled(26),
+        countFontSize = F.FontSizeScaled(20),
         countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
-        timeFont = F.FontOverride(I.Fonts.Title),
-        timeFontSize = F.FontSizeScaled(22),
+        timeFont = F.FontOverride(I.Fonts.Primary),
+        timeFontSize = F.FontSizeScaled(16),
         timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
       },
 
       -- Debuffs
       debuffs = {
         countFont = F.FontOverride(I.Fonts.Primary),
-        countFontSize = F.FontSizeScaled(26),
+        countFontSize = F.FontSizeScaled(20),
         countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
         timeFont = F.FontOverride(I.Fonts.Title),
-        timeFontSize = F.FontSizeScaled(22),
+        timeFontSize = F.FontSizeScaled(16),
         timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
       },
     },
