@@ -32,7 +32,7 @@ function WB:CheckVisibility(event)
   if self.isVisible and (TXUI.IsRetail and C_PetBattles_IsInBattle()) then isVisible = false end
 
   -- Only visible on mouseover
-  if isVisible and self.db.general.barMouseOverOnly and not self.isMouseOver then isVisible = false end
+  if isVisible and self.db.general.barVisibility ~= "RESTING_AND_MOUSEOVER" and self.db.general.barMouseOverOnly and not self.isMouseOver then isVisible = false end
 
   -- Check if not overwritten by mouseover
   if isVisible then
