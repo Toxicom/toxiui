@@ -556,7 +556,7 @@ P.wunderbar = {
     backgroundGradient = true,
     backgroundGradientAlpha = 1,
 
-    accentFontColor = "TXUI", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
+    accentFontColor = "CLASS", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
     accentFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     iconFont = I.Fonts.Icons,

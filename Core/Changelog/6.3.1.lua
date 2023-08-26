@@ -7,6 +7,7 @@ TXUI.Changelog["6.3.1"] = {
     F.String.Good("NEW: ") .. "WarpDeplete profile in the installer",
     F.String.Good("NEW: ") .. "OmniCD profile in the installer",
     F.String.Good("NEW: ") .. "Add an option to WunderBar's visibility - Resting & Mouseover",
+    "Change default WunderBar's accent color to class color",
     "* ElvUI",
     "Increase the padding between ActionBars",
     "Reduce buff/debuff font sizes",
