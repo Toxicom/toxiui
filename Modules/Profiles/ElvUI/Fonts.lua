@@ -131,7 +131,7 @@ function PF:ElvUIFont()
         countFontSize = F.FontSizeScaled(20),
         countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
 
-        timeFont = F.FontOverride(I.Fonts.Title),
+        timeFont = F.FontOverride(I.Fonts.Primary),
         timeFontSize = F.FontSizeScaled(16),
         timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
       },
