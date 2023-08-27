@@ -56,6 +56,7 @@ I.Data.Contributor = {
         ["Toxirage-PyrewoodVillage"] = true,
         ["Toxiholy-PyrewoodVillage"] = true,
         ["Toxilock-PyrewoodVillage"] = true,
+        ["Toxibank-PyrewoodVillage"] = true,
       },
 
       [I.Enum.Flavor.CLASSIC] = {
