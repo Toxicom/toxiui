@@ -756,6 +756,7 @@ function PF:BuildProfile()
         height = F.Dpi(12),
         iconSize = F.Dpi(32),
         width = F.Dpi(100),
+        textColor = F.Table.HexToRGB("#ffffff"),
       },
 
       -- UnitFrame Pet Fader
