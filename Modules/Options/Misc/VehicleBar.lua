@@ -35,7 +35,9 @@ function O:Plugins_VehicleBar()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = "An additional Vehicle Bar that doesn't get affected by Global Fade.\n\n",
+      name = "An additional Vehicle Bar that doesn't get affected by Global Fade.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "This feature is currently known to sometimes bug out, use it with caution.\n\n",
     }, I.Requirements.VehicleBar).args
 
     -- Enable

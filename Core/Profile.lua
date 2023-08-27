@@ -286,7 +286,7 @@ P.blizzardFonts = {
 
 -- VehicleBar
 P.vehicleBar = {
-  enabled = true,
+  enabled = false,
   animations = true,
   animationsMult = 1, -- Animation speed, higher than 1 => slower, lower than 1 => faster
   -- This applies to bar combat fadeIn/fadeOut and "normal" font color changes (not clock/txui button etc)
