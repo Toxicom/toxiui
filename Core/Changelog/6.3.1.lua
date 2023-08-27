@@ -15,5 +15,7 @@ TXUI.Changelog["6.3.1"] = {
     "Revert combat font to M900",
     "Fix debuff timer font",
     "Primary font for actionbars",
+    "* Details",
+    "Fix details missing fonts",
   },
 }
