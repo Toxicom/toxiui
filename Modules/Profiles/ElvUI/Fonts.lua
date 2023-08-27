@@ -396,8 +396,8 @@ function PF:ElvUIFont()
 
     -- ActionBar
     actionbar = {
-      font = F.FontOverride(I.Fonts.Title),
-      fontOutline = F.FontStyleOverride(I.Fonts.Title, "OUTLINE"),
+      font = F.FontOverride(I.Fonts.Primary),
+      fontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
       fontSize = F.FontSizeScaled(18),
 
       cooldown = {
@@ -424,16 +424,16 @@ function PF:ElvUIFont()
   -- ActionBars Main
   for i = 1, 10 do
     F.Table.Crush(E.db.actionbar["bar" .. i], {
-      countFont = F.FontOverride(I.Fonts.Title),
-      countFontOutline = F.FontStyleOverride(I.Fonts.Title, "OUTLINE"),
-      countFontSize = F.FontSizeScaled(19),
+      countFont = F.FontOverride(I.Fonts.Primary),
+      countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
+      countFontSize = F.FontSizeScaled(16),
 
-      hotkeyFont = F.FontOverride(I.Fonts.Title),
-      hotkeyFontOutline = F.FontStyleOverride(I.Fonts.Title, "OUTLINE"),
-      hotkeyFontSize = F.FontSizeScaled(19),
+      hotkeyFont = F.FontOverride(I.Fonts.Primary),
+      hotkeyFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
+      hotkeyFontSize = F.FontSizeScaled(16),
 
-      macroFont = F.FontOverride(I.Fonts.Title),
-      macroFontOutline = F.FontStyleOverride(I.Fonts.Title, "OUTLINE"),
+      macroFont = F.FontOverride(I.Fonts.Primary),
+      macroFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
       macroFontSize = F.FontSizeScaled(14),
     })
   end
