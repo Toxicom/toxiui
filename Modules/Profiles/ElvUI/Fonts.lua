@@ -442,13 +442,13 @@ function PF:ElvUIFont()
   for _, bar in next, { "barPet", "stanceBar", "vehicleExitButton", "extraActionButton" } do
     local ab = {}
 
-    ab.hotkeyFont = F.FontOverride(I.Fonts.Title)
-    ab.hotkeyFontOutline = F.FontStyleOverride(I.Fonts.Title, "OUTLINE")
-    ab.hotkeyFontSize = F.FontSizeScaled(18)
+    ab.hotkeyFont = F.FontOverride(I.Fonts.Primary)
+    ab.hotkeyFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE")
+    ab.hotkeyFontSize = F.FontSizeScaled(12)
 
     if bar == "barPet" then
-      ab.countFont = F.FontOverride(I.Fonts.Title)
-      ab.countFontOutline = F.FontStyleOverride(I.Fonts.Title, "OUTLINE")
+      ab.countFont = F.FontOverride(I.Fonts.Primary)
+      ab.countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE")
       ab.countFontSize = F.FontSizeScaled(38)
     end
 
