@@ -161,7 +161,7 @@ function IS:Dialog()
             .. ". If you do not select a style, the old one will be applied by default! This might change in the future."
         )
         installFrame.Desc3:SetText(
-          F.String.Error("Warning: ")
+          F.String.Error("Important: ")
             .. "The buttons below will not actually make any changes. For changes to be made, you must select a layout in the "
             .. F.String.ToxiUI("Core Settings")
             .. " page of the installer!"
