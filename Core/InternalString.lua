@@ -65,7 +65,7 @@ I.Strings.WALinks = {
 }
 
 I.Strings.Colors = {
-  [I.Enum.Colors.TXUI] = "00e4f5",
+  [I.Enum.Colors.TXUI] = "18a8ff",
   [I.Enum.Colors.ELVUI] = "1784d1",
   [I.Enum.Colors.ERROR] = "ef5350",
   [I.Enum.Colors.GOOD] = "66bb6a",

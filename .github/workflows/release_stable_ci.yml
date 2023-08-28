@@ -73,7 +73,7 @@ jobs:
           webhook: ${{ secrets.WEBHOOK_URL }}
           title: ":star: New stable build of ToxiUI is ready! :star:"
           nodetail: true
-          color: 0x00e4f5
+          color: 0x18a8ff
           username: ToxiBot - Stable Release
           avatar_url: "https://i.imgur.com/ib1CSUx.png"
           description: |

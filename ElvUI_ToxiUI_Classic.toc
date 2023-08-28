@@ -1,5 +1,5 @@
-## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff00e4f5UI|r
-## Notes: Minimalistic ElvUI Edit by |cff00e4f5Toxi|r
+## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r
+## Notes: Minimalistic ElvUI Edit by |cff18a8ffToxi|r
 ## Author: Toxi (Toxi#21206)
 ## Version: 6.3.1
 ## RequiredDeps: ElvUI
