@@ -7,6 +7,7 @@ TXUI.Changelog["6.3.1"] = {
     F.String.Good("NEW: ") .. "WarpDeplete profile in the installer",
     F.String.Good("NEW: ") .. "OmniCD profile in the installer",
     F.String.Good("NEW: ") .. "Add an option to WunderBar's visibility - Resting & Mouseover",
+    F.String.Good("NEW: ") .. F.String.WrathArmory() .. " settings will be applied on core install",
     "Change default WunderBar's accent color to class color",
     "Disable VehicleBar by default",
     "* ElvUI",

@@ -127,6 +127,25 @@ function PF:ElvUIAdditional()
     })
   end
 
+  if F.IsAddOnEnabled("ElvUI_WrathArmory") then
+    pf.wratharmory = {}
+
+    -- WrathArmory DB Settings
+    F.Table.Crush(pf.wratharmory, {
+      character = {
+        avgItemLevel = {
+          color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+        },
+      },
+
+      inspect = {
+        avgItemLevel = {
+          color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
+        },
+      },
+    })
+  end
+
   -- Merge Tables
   F.Table.Crush(E.db, pf)
 end

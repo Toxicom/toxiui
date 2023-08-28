@@ -1430,8 +1430,7 @@ function O:Armory_OnlyRetailMessage()
       .. "For "
       .. F.String.ToxiUI("Wrath of the Lich King: Classic")
       .. " we recommend using "
-      .. F.String.Class("Wrath", "MAGE")
-      .. F.String.Class("Armory", "ROGUE")
+      .. F.String.WrathArmory()
       .. " by "
       .. F.String.Class("Repooc", "MONK")
       .. ".\n\n",

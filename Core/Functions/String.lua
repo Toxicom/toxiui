@@ -121,6 +121,10 @@ function F.String.WunderUI()
   return F.String.Epic("Wunder") .. "UI"
 end
 
+function F.String.WrathArmory()
+  return F.String.Class("Wrath", "MAGE") .. F.String.Class("Armory", "ROGUE")
+end
+
 function F.String.Covenant(msg)
   if not TXUI.IsRetail then return F.String.ElvUI(msg) end
 
