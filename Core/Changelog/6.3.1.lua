@@ -12,7 +12,7 @@ TXUI.Changelog["6.3.1"] = {
     "* ElvUI",
     "Increase the padding between ActionBars",
     "Reduce buff/debuff font sizes",
-    "Fix various fonts to match rest of UI",
+    "Fix UnitFrame buff/debuff font & font size",
     "Revert combat font to M900",
     "Fix debuff timer font",
     "Primary font for actionbars",
