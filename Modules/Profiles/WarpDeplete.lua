@@ -31,7 +31,7 @@ function PF:BuildWarpDepleteProfile()
     -- Deaths
     deathsFont = "- ToxiUI",
     deathsColor = "ffbc0049",
-    deathsFontSize = F.Dpi(12),
+    deathsFontSize = F.FontSizeScaled(12),
 
     -- Forces
     forcesFont = "- ToxiUI",
@@ -54,7 +54,7 @@ function PF:BuildWarpDepleteProfile()
 
     -- Objectives
     objectivesFont = "- ToxiUI",
-    objectivesFontSize = F.Dpi(12),
+    objectivesFontSize = F.FontSizeScaled(12),
   })
 
   return pf

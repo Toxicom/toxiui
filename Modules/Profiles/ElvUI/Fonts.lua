@@ -161,13 +161,13 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Title),
-            countFontSize = F.FontSizeScaled(22),
+            countFont = F.FontOverride(I.Fonts.Primary),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Title),
-            countFontSize = F.FontSizeScaled(22),
+            countFont = F.FontOverride(I.Fonts.Primary),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           castbar = {
@@ -195,13 +195,13 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Title),
-            countFontSize = F.FontSizeScaled(22),
+            countFont = F.FontOverride(I.Fonts.Primary),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Title),
-            countFontSize = F.FontSizeScaled(22),
+            countFont = F.FontOverride(I.Fonts.Primary),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           castbar = {
@@ -249,13 +249,13 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Title),
-            countFontSize = F.FontSizeScaled(22),
+            countFont = F.FontOverride(I.Fonts.Primary),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Title),
-            countFontSize = F.FontSizeScaled(22),
+            countFont = F.FontOverride(I.Fonts.Primary),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           castbar = {
@@ -346,12 +346,12 @@ function PF:ElvUIFont()
 
           buffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
-            countFontSize = F.FontSizeScaled(22),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
-            countFontSize = F.FontSizeScaled(22),
+            countFontSize = F.FontSizeScaled(16),
           },
         },
 
@@ -364,12 +364,12 @@ function PF:ElvUIFont()
 
           buffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
-            countFontSize = F.FontSizeScaled(22),
+            countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
-            countFontSize = F.FontSizeScaled(22),
+            countFontSize = F.FontSizeScaled(16),
           },
         },
       },
@@ -485,12 +485,12 @@ function PF:ElvUIFont()
 
         enchant = {
           font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.Dpi(14),
+          fontSize = F.FontSizeScaled(14),
         },
 
         itemLevel = {
           font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.Dpi(16),
+          fontSize = F.FontSizeScaled(16),
         },
       },
 
