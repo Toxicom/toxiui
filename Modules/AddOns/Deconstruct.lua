@@ -393,15 +393,15 @@ function DC:SetState(active)
   self.bagButton.ttText2 = format(I.Strings.Deconstruct.Status.Text, self.active and I.Strings.Deconstruct.Status.Active or I.Strings.Deconstruct.Status.Inactive)
 end
 
-function DC:IsAllowedState(proffessionState)
-  return self.allowedStates[proffessionState]
+function DC:IsAllowedState(professionState)
+  return self.allowedStates[professionState]
 end
 
 function DC:UpdateStateForProfession(prof)
   if not prof then return end
   local professionID = select(7, GetProfessionInfo(prof))
-  local proffessionState = self.deconstructStateMap[professionID]
-  if proffessionState then self.allowedStates[proffessionState] = true end
+  local professionState = self.deconstructStateMap[professionID]
+  if professionState then self.allowedStates[professionState] = true end
 end
 
 function DC:UpdateAllowedStates()
@@ -414,15 +414,15 @@ function DC:UpdateAllowedStates()
   self:UpdateStateForProfession(prof2)
 end
 
-function DC:IsUsable(itemID, proffessionState)
+function DC:IsUsable(itemID, professionState)
   -- Dischanting
-  if proffessionState == I.Enum.DeconstructState.DISENCHANT then
-    if self:IsAllowedState(proffessionState) then
+  if professionState == I.Enum.DeconstructState.DISENCHANT then
+    if self:IsAllowedState(professionState) then
       -- Always true if in allowList
-      if DC.allowList[proffessionState] and DC.allowList[proffessionState][itemID] then return true end
+      if DC.allowList[professionState] and DC.allowList[professionState][itemID] then return true end
 
       -- Always false if in excludeList
-      if DC.excludeList[proffessionState] and DC.excludeList[proffessionState][itemID] then return false end
+      if DC.excludeList[professionState] and DC.excludeList[professionState][itemID] then return false end
 
       -- Get Item Info
       local itemName, _, itemQuality, _, _, _, _, _, itemEquipLoc, _, _, classID, subclassID = GetItemInfo(itemID)
@@ -463,13 +463,13 @@ function DC:IsUsable(itemID, proffessionState)
   end
 
   -- Mill & Prospect
-  if (proffessionState == I.Enum.DeconstructState.MILL) or (proffessionState == I.Enum.DeconstructState.PROSPECT) then
-    if self:IsAllowedState(proffessionState) then
+  if (professionState == I.Enum.DeconstructState.MILL) or (professionState == I.Enum.DeconstructState.PROSPECT) then
+    if self:IsAllowedState(professionState) then
       -- Always true if in allowList
-      if DC.allowList[proffessionState] and DC.allowList[proffessionState][itemID] then return true end
+      if DC.allowList[professionState] and DC.allowList[professionState][itemID] then return true end
 
       -- Always false if in excludeList
-      if DC.excludeList[proffessionState] and DC.excludeList[proffessionState][itemID] then return false end
+      if DC.excludeList[professionState] and DC.excludeList[professionState][itemID] then return false end
     end
 
     -- Return
