@@ -41,7 +41,7 @@ function IS:Dialog()
       installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
       installFrame.tutorialImage:Size(512, 256)
     elseif pageNumber == 9 then
-      installFrame.tutorialImage:SetTexture(I.Media.Installer.WarpDeplete)
+      installFrame.tutorialImage:SetTexture(I.Media.Installer.Additional)
       installFrame.tutorialImage:Size(512, 256)
     else
       -- Reset to defaults
@@ -152,14 +152,19 @@ function IS:Dialog()
             .. TXUI.Title
             .. " v6.3.0, we now offer a different style for UnitFrames! We know how some of you prefer to keep the old look and feel of "
             .. TXUI.Title
-            .. " therefore we offer you a choice!"
+            .. " therefore we offer you a choice! Below you can see an image of the differences between the styles."
         )
-        installFrame.Desc2:SetText("Below you can see an image of the differences between the styles.")
-        installFrame.Desc3:SetText(
+        installFrame.Desc2:SetText(
           F.String.ToxiUI("Information: ")
             .. "This step is "
             .. F.String.Good("optional")
             .. ". If you do not select a style, the old one will be applied by default! This might change in the future."
+        )
+        installFrame.Desc3:SetText(
+          F.String.Error("Warning: ")
+            .. "The buttons below will not actually make any changes. For changes to be made, you must select a layout in the "
+            .. F.String.ToxiUI("Core Settings")
+            .. " page of the installer!"
         )
 
         local function applyStyle(style)
