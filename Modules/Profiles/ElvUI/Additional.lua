@@ -154,7 +154,7 @@ function PF:ElvUIAdditionalPrivate()
         minimapButtons = {
           backdropSpacing = F.Dpi(2),
           buttonSize = F.Dpi(25),
-          buttonsPerRow = 2,
+          buttonsPerRow = 3,
           mouseOver = true,
           spacing = F.Dpi(5),
         },
