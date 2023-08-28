@@ -1421,7 +1421,7 @@ function O:Armory_OnlyRetailMessage()
   local options = self.options.armory.args
 
   -- General Group
-  self:AddInlineRequirementsDesc(options, {
+  local group = self:AddInlineDesc(options, {
     name = "Description",
   }, {
     name = "Unfortunately this feature is available only for the Retail version of "
@@ -1434,9 +1434,17 @@ function O:Armory_OnlyRetailMessage()
       .. " by "
       .. F.String.Class("Repooc", "MONK")
       .. ".\n\n",
-  })
-  -- @TODO: Add link to WrathArmory
-  -- https://www.curseforge.com/wow/addons/wratharmory-elvui-plugin
+  }).args
+
+  group.websiteUrl = {
+    order = self:GetOrder(),
+    type = "input",
+    width = "full",
+    name = "",
+    get = function()
+      return I.Strings.Branding.Links.WrathArmory
+    end,
+  }
 end
 
 if TXUI.IsRetail then

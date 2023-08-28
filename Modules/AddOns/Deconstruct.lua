@@ -106,7 +106,7 @@ DC.allowList = {
     [171833] = true, -- Elethium Ore
     [187700] = true, -- Progenium Ore
 
-    -- TODO: Dragonflight unverified
+    -- Dragonflight
     [188658] = true, -- Draconium Ore
     [194545] = true, -- Prismatic Ore
     [190313] = true, -- Titaniclum Ore
@@ -201,7 +201,7 @@ DC.allowList = {
     [171315] = true, -- Nightshade
     [187699] = true, -- First Flower
 
-    -- TODO: Dragonflight unverified
+    -- Dragonflight
     [191460] = true, -- Hochenblume
     [191461] = true, -- Hochenblume
     [191462] = true, -- Hochenblume

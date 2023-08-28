@@ -72,7 +72,6 @@ function PF:BuildProfile()
   end
 
   -- Special Case: ToxiUIWAAnchor
-  -- TODO: Update for Dragonflight
   local WAAnchorY
 
   if F.HiDpi() then
