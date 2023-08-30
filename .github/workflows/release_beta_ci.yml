@@ -5,7 +5,7 @@ on:
     branches:
       - development
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
+      - "v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+"
 
 jobs:
   on-development-branch-check:
@@ -62,12 +62,33 @@ jobs:
           WOWI_API_TOKEN: ${{ secrets.WOWI_API_TOKEN }}
         with:
           args: -m .pkgmeta-dev
-      - name: Read changelog.md
+      - name: Generate Changelog
         if: success()
         id: changelog
-        uses: juliangruber/read-file-action@8d3d3a78bf64d33fdc14d69ece95c792aec86bb9
-        with:
-          path: .release/ElvUI_ToxiUI/CHANGELOG.md
+        run: |
+          # Get the list of commits since the last tag
+          git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+          LAST_TAG=$(git describe --tags --abbrev=0)
+          COMMIT_MESSAGES=$(git log --oneline ${LAST_TAG}..HEAD --pretty=format:"%s")
+
+          # Initialize changelog content
+          CHANGELOG_CONTENT=""
+
+          # Loop through commit messages and categorize them
+          while IFS= read -r line; do
+            case "$line" in
+              "📦 NEW:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **New Features**\n";;
+              "👌 IMPROVE:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Improvements**\n";;
+              "🐛 FIX:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Bug Fixes**\n";;
+              "📖 DOC:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Documentation**\n";;
+              "‼️ BREAKING:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Breaking Changes**\n";;
+              "🤖 TEST:"*) ;;
+              "🚀 RELEASE:"*) ;;
+              *) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}- ${line#*:}\n";;
+            esac
+          done <<< "$COMMIT_MESSAGES"
+
+          echo "::set-output name=content::${CHANGELOG_CONTENT}"
       - name: Read release tag
         if: success()
         id: vars
