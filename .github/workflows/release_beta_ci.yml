@@ -77,18 +77,18 @@ jobs:
           # Loop through commit messages and categorize them
           while IFS= read -r line; do
             case "$line" in
-              "📦 NEW:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **New Features**\n";;
-              "👌 IMPROVE:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Improvements**\n";;
-              "🐛 FIX:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Bug Fixes**\n";;
-              "📖 DOC:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Documentation**\n";;
-              "‼️ BREAKING:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Breaking Changes**\n";;
+              "📦 NEW:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **New Features**";;
+              "👌 IMPROVE:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Improvements**";;
+              "🐛 FIX:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Bug Fixes**";;
+              "📖 DOC:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Documentation**";;
+              "‼️ BREAKING:"*) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n## **Breaking Changes**";;
               "🤖 TEST:"*) ;;
               "🚀 RELEASE:"*) ;;
-              *) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}- ${line#*:}\n";;
+              *) CHANGELOG_CONTENT="${CHANGELOG_CONTENT}\n- ${line#*:}";;
             esac
           done <<< "$COMMIT_MESSAGES"
 
-          echo "::set-output name=content::${CHANGELOG_CONTENT}"
+          echo -e "::set-output name=content::${CHANGELOG_CONTENT}"
       - name: Read release tag
         if: success()
         id: vars
