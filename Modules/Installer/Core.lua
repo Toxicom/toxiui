@@ -54,9 +54,7 @@ function IS:ShowStepCompleteHook()
   end
 end
 
-function IS:ShowStepComplete(step, clean)
-  -- Modify message if no clean attri is set
-  if not clean then step = step .. " has been set." end
+function IS:ShowStepComplete(step)
   step = "|cccffffff" .. step .. "|r"
 
   -- Hook if needed
@@ -119,8 +117,15 @@ function IS:ElvUI(callback)
   PF:ExecuteElvUIUpdate(function()
     TXUI:GetModule("SplashScreen"):Hide()
 
+    local style = E.db.TXUI.installer.layoutStyle
+    local styleName = style == I.Enum.LayoutStyle.OLD and "Old" or "New"
     -- Customize message
-    local msg = TXUI.Title .. " " .. (E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK") or F.String.ToxiUI("DPS/Tank") .. " layout")
+    local msg = TXUI.Title
+      .. " "
+      .. (
+        E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK")
+        or F.String.ToxiUI("DPS/Tank") .. " layout installed with " .. F.String.ToxiUI(styleName) .. " style."
+      )
 
     -- Show success message
     self:ShowStepComplete(msg)

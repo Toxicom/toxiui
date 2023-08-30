@@ -95,9 +95,26 @@ function IS:Dialog()
         else
           installFrame.SubTitle:SetText(F.String.ToxiUI("Welcome") .. " to the installation for " .. TXUI.Title)
 
-          installFrame.Desc1:SetText("This installation process will guide you through a few steps and apply the " .. TXUI.Title .. " profile.")
-          installFrame.Desc2:SetText("Please press the " .. F.String.Class("'Install'", "ROGUE") .. " button to begin the installation process.")
-          installFrame.Desc3:SetText(F.String.Warning("You will need to do this every time ToxiUI is updated."))
+          installFrame.Desc1:SetText(
+            "This installation process will guide you through a few steps and apply the "
+              .. TXUI.Title
+              .. " profile.\n\nPlease press the '"
+              .. F.String.Class("Install", "ROGUE")
+              .. "' button to begin the installation process."
+          )
+          installFrame.Desc2:SetText(
+            F.String.Error("Important: ")
+              .. "Most of the major "
+              .. TXUI.Title
+              .. " updates will require you to run the installation process again, meaning you will most likely lose your changes. Please make backups if necessary!"
+          )
+          installFrame.Desc3:SetText(
+            F.String.ToxiUI("Information: ")
+              .. "If you're having any issues at all, please join our "
+              .. TXUI.Title
+              .. F.String.ToxiUI(" Discord")
+              .. " server! We will be happy to help you!"
+          )
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("Install")
@@ -109,6 +126,11 @@ function IS:Dialog()
           installFrame.Option2:SetScript("OnClick", function()
             installFrame:Hide()
           end)
+          installFrame.Option3:Show()
+          installFrame.Option3:SetText("Discord")
+          installFrame.Option3:SetScript("OnClick", function()
+            self:PopupDiscordLink()
+          end)
         end
       end,
 
@@ -117,7 +139,7 @@ function IS:Dialog()
         SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Profile"))
 
-        installFrame.Desc1:SetText("You can either create a new profile for " .. TXUI.Title .. " or you can use your current profile")
+        installFrame.Desc1:SetText("You can either create a new profile for " .. TXUI.Title .. " or you can overwrite your current profile. We recommend creating a new one!")
         installFrame.Desc2:SetText("Importance: " .. F.String.ToxiUI("Medium"))
 
         installFrame.Option1:Show()
@@ -170,7 +192,7 @@ function IS:Dialog()
         local function applyStyle(style)
           E.db.TXUI.installer.layoutStyle = style
           local styleName = style == I.Enum.LayoutStyle.OLD and "Old" or "New"
-          self:ShowStepComplete(F.String.ToxiUI(styleName) .. " UnitFrame style")
+          self:ShowStepComplete(F.String.ToxiUI(styleName) .. " UnitFrame style selected")
           installer:SetPage(4)
         end
 
@@ -247,16 +269,18 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
         if F.IsAddOnEnabled("Details") then
-          installFrame.Desc1:SetText("This will import Details profile.")
-          installFrame.Desc2:SetText("Importance: " .. F.String.Error("High"))
-          installFrame.Desc3:SetText("Details is an AddOn that displays information like damage & healing meters.")
+          installFrame.Desc1:SetText(
+            "Details is a versatile AddOn that offers a wide array of data, encompassing metrics for damage, healing, and various other performance indicators."
+          )
+          installFrame.Desc2:SetText("This is an optional AddOn requirement, but we highly recommend you install it.")
+          installFrame.Desc3:SetText("Importance: " .. F.String.Error("High"))
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("Details")
           installFrame.Option1:SetScript("OnClick", function()
             PF:Details()
             self.reloadRequired = true
-            self:ShowStepComplete("'Details' profile")
+            self:ShowStepComplete(F.String.ToxiUI("Details") .. " profile installed.")
             installFrame.Next:Click()
           end)
         else
@@ -271,16 +295,18 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Plater"))
 
         if F.IsAddOnEnabled("Plater") then
-          installFrame.Desc1:SetText("This will import Plater profile.")
-          installFrame.Desc2:SetText("Importance: " .. F.String.Error("High"))
-          installFrame.Desc3:SetText("Plater is an AddOn responsible for Nameplates - the Health bars above your enemies.")
+          installFrame.Desc1:SetText(
+            "Plater is a nameplate addon with a extraordinary amount of settings, out of the box debuff tracking, threat coloring, support for scripting similar to WeakAuras and wago.io + the WeakAuras-Companion for Mod/Script/Profile updates."
+          )
+          installFrame.Desc2:SetText("This is an optional AddOn requirement, but we highly recommend you install it.")
+          installFrame.Desc3:SetText("Importance: " .. F.String.Error("High"))
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("Plater")
           installFrame.Option1:SetScript("OnClick", function()
             PF:Plater()
             self.reloadRequired = true
-            self:ShowStepComplete("'Plater' profile")
+            self:ShowStepComplete(F.String.ToxiUI("Plater") .. " profile installed.")
             installFrame.Next:Click()
           end)
         else
@@ -295,15 +321,25 @@ function IS:Dialog()
         if F.IsAddOnEnabled("BigWigs") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
-          installFrame.Desc1:SetText("This will import BigWigs profile.")
-          installFrame.Desc2:SetText(F.String.Warning("Currently supported resolutions: 2560x1440, 3440x1440, 1920x1080. For other resolutions, open a pull request on GitHub."))
+          installFrame.Desc1:SetText(
+            "BigWigs is a boss encounter AddOn. It consists of many individual encounter scripts, or boss modules; mini AddOns that are designed to trigger alert messages, timer bars, sounds, and so forth, for one specific raid encounter."
+          )
+          installFrame.Desc2:SetText(
+            "Currently supported resolutions: "
+              .. F.String.Good("2560x1440")
+              .. ", "
+              .. F.String.Good("3440x1440")
+              .. ", "
+              .. F.String.Good("1920x1080")
+              .. ". For other resolutions, open a pull request on GitHub."
+          )
           installFrame.Desc3:SetText("Importance: " .. F.String.Good("Low"))
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("BigWigs")
           installFrame.Option1:SetScript("OnClick", function()
             PF:MergeBigWigsProfile()
-            self:ShowStepComplete("'BigWigs' profile")
+            self:ShowStepComplete(F.String.ToxiUI("BigWigs") .. " profile installed.")
             installFrame.Next:Click()
           end)
         elseif F.IsAddOnEnabled("DBM-Core") then
@@ -381,7 +417,7 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.ToxiUI("WarpDeplete") .. ", " .. F.String.ToxiUI("OmniCD"))
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.Good("WarpDeplete") .. ", " .. F.String.Good("OmniCD"))
 
         if not F.IsAddOnEnabled("WarpDeplete") then
           installFrame.Desc3:SetText(
@@ -394,7 +430,7 @@ function IS:Dialog()
           installFrame.Option1:SetText("WarpDeplete")
           installFrame.Option1:SetScript("OnClick", function()
             PF:ApplyWarpDepleteProfile()
-            self:ShowStepComplete("'WarpDeplete' profile")
+            self:ShowStepComplete(F.String.ToxiUI("WarpDeplete") .. " profile installed.")
             self.reloadRequired = true
           end)
         end
@@ -404,7 +440,7 @@ function IS:Dialog()
           installFrame.Option2:SetText("OmniCD")
           installFrame.Option2:SetScript("OnClick", function()
             PF:ApplyOmniCDProfile()
-            self:ShowStepComplete("'OmniCD' profile")
+            self:ShowStepComplete(F.String.ToxiUI("OmniCD") .. " profile installed.")
             self.reloadRequired = true
           end)
         end
