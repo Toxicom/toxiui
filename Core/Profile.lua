@@ -5,6 +5,9 @@ P.installer = {
   layout = I.Enum.Layouts.DPS,
 }
 
+-- Debug table
+-- P.temp = {}
+
 P.changelog = {
   seenVersion = 0,
   releaseVersion = 0,

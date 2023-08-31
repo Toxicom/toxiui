@@ -5,6 +5,9 @@ local _G = _G
 
 function PF:BuildOmniCDProfile()
   local pf = {}
+  local db = _G.OmniCD and _G.OmniCD[1]
+
+  local profile = db.DB.profile
 
   F.Table.Crush(
     pf,
@@ -151,148 +154,7 @@ function PF:BuildOmniCDProfile()
             glow = false,
           },
 
-          spells = {
-            -- TODO: Finish comments omg
-            -- Evoker
-            ["357210"] = true, -- Evoker: Deep Breath
-            ["370665"] = true, -- Evoker: Rescue
-            ["374227"] = false, -- Evoker: Zephyr
-            ["363916"] = false, -- Evoker: Obsidian Scales
-
-            -- Warrior
-            ["118038"] = false, -- Warrior: Die by the Sword
-            ["5246"] = false, -- Warrior: Intimidating Shout
-
-            -- Paladin
-            ["216331"] = false, -- Paladin: Avenging Crusader
-            ["115750"] = false, -- Paladin: Blinding Light
-
-            -- Druid
-            ["124974"] = true, -- Druid: Nature's Vigil
-            ["740"] = false, -- Druid: Tranquility
-            ["33891"] = false, -- Druid: Tree of Life
-            ["22812"] = false, -- Druid: Barkskin
-            ["102793"] = true, -- Druid: Ursol's Vortex
-
-            -- Shaman
-            ["8143"] = false, -- Shaman: Tremor Totem
-            ["51490"] = true, -- Shaman: Thunderstorm
-            ["192077"] = true, -- Shaman: Wind Rush Totem
-
-            -- Warlock
-            ["5484"] = true, -- Warlock: Howl of Terror
-            ["205180"] = true, -- Warlock: Summon Darkglare
-            ["212295"] = false, -- Warlock: Nether Ward
-            ["48020"] = false, -- Warlock: Demonic Circle: Teleport
-            ["1122"] = true, -- Warlock: Summon Infernal
-
-            ["187650"] = false, -- Hunter: Freezing Trap
-            ["235219"] = false, -- Mage: Cold Snap
-            ["215652"] = false,
-            ["59752"] = false,
-            ["7744"] = false,
-            ["115203"] = false,
-            ["210918"] = false,
-            ["345231"] = false,
-            ["336135"] = false,
-            ["209258"] = false,
-            ["205636"] = true,
-            ["102560"] = true,
-            ["107574"] = true,
-            ["108968"] = false,
-            ["108281"] = true,
-            ["179057"] = true,
-            ["122783"] = false,
-            ["10060"] = true,
-            ["132578"] = true,
-            ["53480"] = false,
-            ["13750"] = true,
-            ["231895"] = false,
-            ["48707"] = false,
-            ["363534"] = false,
-            ["210256"] = false,
-            ["102558"] = true,
-            ["47482"] = false,
-            ["23920"] = false,
-            ["198111"] = false,
-            ["236320"] = false,
-            ["45438"] = false,
-            ["31230"] = false,
-            ["194223"] = true,
-            ["204336"] = false,
-            ["377509"] = false,
-            ["31935"] = false,
-            ["228049"] = false,
-            ["186265"] = false,
-            ["48792"] = false,
-            ["322118"] = true,
-            ["115310"] = false,
-            ["205604"] = false,
-            ["122470"] = false,
-            ["106898"] = true,
-            ["31224"] = false,
-            ["204018"] = true,
-            ["104773"] = false,
-            ["108280"] = false,
-            ["365350"] = true,
-            ["119381"] = true,
-            ["97462"] = false,
-            ["342245"] = false,
-            ["197268"] = false,
-            ["374251"] = true,
-            ["50334"] = true,
-            ["853"] = false,
-            ["108271"] = false,
-            ["30884"] = false,
-            ["42650"] = true,
-            ["6789"] = false,
-            ["99"] = true,
-            ["109304"] = false,
-            ["265202"] = false,
-            ["193530"] = true,
-            ["378441"] = false,
-            ["871"] = false,
-            ["47536"] = false,
-            ["114556"] = false,
-            ["109248"] = true,
-            ["184364"] = false,
-            ["121471"] = true,
-            ["86949"] = false,
-            ["152279"] = true,
-            ["114018"] = true,
-            ["2094"] = false,
-            ["378464"] = false,
-            ["374348"] = false,
-            ["192058"] = true,
-            ["198838"] = false,
-            ["19574"] = true,
-            ["336126"] = false,
-            ["12472"] = true,
-            ["132469"] = true,
-            ["114050"] = true,
-            ["102543"] = true,
-            ["198589"] = false,
-            ["374968"] = true,
-            ["5277"] = false,
-            ["1856"] = false,
-            ["114051"] = true,
-            ["288613"] = true,
-            ["61336"] = false,
-            ["6940"] = true,
-            ["64044"] = false,
-            ["116844"] = true,
-            ["196555"] = false,
-            ["108238"] = false,
-            ["47585"] = false,
-            ["122278"] = false,
-            ["642"] = false,
-            ["73325"] = true,
-            ["265187"] = true,
-            ["30283"] = true,
-            ["123904"] = true,
-            ["64843"] = false,
-            ["19236"] = false,
-          },
+          spells = profile.Party.party.spells or {},
 
           icons = {
             scale = 0.85,
@@ -301,45 +163,7 @@ function PF:BuildOmniCDProfile()
             markEnhanced = false,
           },
 
-          raidCDS = {
-            ["114018"] = true,
-            ["1022"] = true,
-            ["116849"] = true,
-            ["51490"] = true,
-            ["2565"] = true,
-            ["124974"] = true,
-            ["5484"] = true,
-            ["370665"] = true,
-            ["106898"] = true,
-            ["8122"] = true,
-            ["202137"] = true,
-            ["6940"] = true,
-            ["192077"] = true,
-            ["204018"] = true,
-            ["102793"] = true,
-            ["199452"] = true,
-            ["357170"] = true,
-            ["119381"] = true,
-            ["192058"] = true,
-            ["374251"] = true,
-            ["205636"] = true,
-            ["102342"] = true,
-            ["108281"] = true,
-            ["179057"] = true,
-            ["871"] = true,
-            ["47788"] = true,
-            ["1160"] = true,
-            ["372048"] = true,
-            ["374968"] = true,
-            ["12975"] = true,
-            ["116844"] = true,
-            ["33206"] = true,
-            ["99"] = true,
-            ["73325"] = true,
-            ["132469"] = true,
-            ["30283"] = true,
-            ["109248"] = true,
-          },
+          raidCDS = profile.Party.party.raidCDS or {},
 
           position = {
             paddingX = 1,
@@ -447,121 +271,7 @@ function PF:BuildOmniCDProfile()
             glowBuffs = false,
           },
 
-          spells = {
-            ["204336"] = false,
-            ["64044"] = false,
-            ["377509"] = false,
-            ["216331"] = false,
-            ["118038"] = false,
-            ["209258"] = false,
-            ["740"] = false,
-            ["8143"] = false,
-            ["186265"] = false,
-            ["15487"] = false,
-            ["48792"] = false,
-            ["51052"] = false,
-            ["6552"] = false,
-            ["115310"] = false,
-            ["57994"] = false,
-            ["115750"] = false,
-            ["22812"] = false,
-            ["184364"] = false,
-            ["187827"] = false,
-            ["212295"] = false,
-            ["212619"] = false,
-            ["5246"] = false,
-            ["187650"] = false,
-            ["48020"] = false,
-            ["183752"] = false,
-            ["8122"] = false,
-            ["235219"] = false,
-            ["106839"] = false,
-            ["6940"] = true,
-            ["104773"] = false,
-            ["204018"] = true,
-            ["198838"] = false,
-            ["336126"] = false,
-            ["236320"] = false,
-            ["196555"] = false,
-            ["62618"] = false,
-            ["108280"] = false,
-            ["215652"] = false,
-            ["23920"] = false,
-            ["59752"] = false,
-            ["47528"] = false,
-            ["388007"] = true,
-            ["119898"] = false,
-            ["97462"] = false,
-            ["7744"] = false,
-            ["109304"] = false,
-            ["342245"] = false,
-            ["228049"] = false,
-            ["197268"] = false,
-            ["30884"] = false,
-            ["15286"] = false,
-            ["210918"] = false,
-            ["363916"] = false,
-            ["345231"] = false,
-            ["853"] = false,
-            ["336135"] = false,
-            ["1856"] = false,
-            ["116705"] = false,
-            ["2139"] = false,
-            ["210256"] = false,
-            ["6789"] = false,
-            ["191427"] = false,
-            ["190319"] = false,
-            ["351338"] = false,
-            ["31224"] = false,
-            ["196718"] = false,
-            ["31935"] = false,
-            ["64843"] = false,
-            ["378441"] = false,
-            ["1766"] = false,
-            ["871"] = false,
-            ["47536"] = false,
-            ["187707"] = false,
-            ["48707"] = false,
-            ["10060"] = true,
-            ["86949"] = false,
-            ["2094"] = false,
-            ["98008"] = false,
-            ["53480"] = false,
-            ["374227"] = false,
-            ["78675"] = false,
-            ["378464"] = false,
-            ["374348"] = false,
-            ["115203"] = false,
-            ["231895"] = false,
-            ["108968"] = false,
-            ["122783"] = false,
-            ["96231"] = false,
-            ["122278"] = false,
-            ["114556"] = false,
-            ["363534"] = false,
-            ["372048"] = false,
-            ["108271"] = false,
-            ["5277"] = false,
-            ["61336"] = false,
-            ["198589"] = false,
-            ["114052"] = false,
-            ["33891"] = false,
-            ["360194"] = false,
-            ["205604"] = false,
-            ["47482"] = false,
-            ["265202"] = false,
-            ["198111"] = false,
-            ["47585"] = false,
-            ["147362"] = false,
-            ["31821"] = false,
-            ["45438"] = false,
-            ["642"] = false,
-            ["31230"] = false,
-            ["108238"] = false,
-            ["31884"] = false,
-            ["122470"] = false,
-            ["19236"] = false,
-          },
+          spells = profile.Party.raid.spells or {},
 
           icons = {
             showForbearanceCounter = false,
@@ -572,19 +282,7 @@ function PF:BuildOmniCDProfile()
             chargeScale = 0.9,
           },
 
-          raidCDS = {
-            ["102342"] = true,
-            ["1022"] = true,
-            ["116849"] = true,
-            ["388007"] = true,
-            ["47788"] = true,
-            ["6940"] = true,
-            ["10060"] = true,
-            ["204018"] = true,
-            ["199452"] = true,
-            ["357170"] = true,
-            ["33206"] = true,
-          },
+          raidCDS = profile.Party.raid.raidCDS or {},
 
           position = {
             offsetX = 2,
@@ -671,5 +369,26 @@ function PF:ApplyOmniCDProfile()
   db.DB:ResetProfile(profileName)
   F.Table.Crush(db.DB.profile, profile)
 
-  TXUI:LogInfo("OmniCD profile successfully installed and applied. Please reload your UI!")
+  -- Debug code for OmniCD spells
+  -- -- Assuming you have the table containing spell IDs and boolean values in _G.OmniCD[1].DB.profile.Party.party.spells
+  -- local spellTable = _G.OmniCD[1].DB.profile.Party.party.spells
+
+  -- -- Create a table to store the spell ID, name, and isBoolean pairs
+  -- E.db.TXUI.temp = E.db.TXUI.temp or {}
+
+  -- -- Iterate through the table
+  -- for spellId, isBoolean in pairs(spellTable) do
+  --   -- Use GetSpellInfo to retrieve spell information
+  --   local name, _, icon, _, _, _, spellID, originalIcon = GetSpellInfo(spellId)
+
+  --   if name and spellID then
+  --     -- Combine isBoolean and name, separating them with a comma
+  --     local valueString = tostring(isBoolean) .. ", " .. name
+
+  --     -- Add the data to E.db.TXUI.temp using the spellID as the key
+  --     E.db.TXUI.temp[spellID] = valueString
+  --   end
+  -- end
+
+  TXUI:LogInfo(F.String.ToxiUI("OmniCD") .. " profile successfully installed and applied. Please reload your UI!")
 end
