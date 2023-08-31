@@ -24,5 +24,6 @@ TXUI.Changelog["6.3.1"] = {
   CHANGES_WRATH = {
     F.String.Good("NEW: ") .. F.String.WrathArmory() .. " settings will be applied on core install",
     "Add link to " .. F.String.WrathArmory() .. " in " .. TXUI.Title .. " Armory settings",
+    "Fix Specialization icons for Assassination Rogue and Holy Priest",
   },
 }

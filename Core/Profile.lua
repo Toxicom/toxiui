@@ -796,30 +796,39 @@ P.wunderbar = {
         ["MageArcane"] = F.String.ConvertGlyph(59660),
         ["MageFire"] = F.String.ConvertGlyph(59661),
         ["MageFrost"] = F.String.ConvertGlyph(59662),
+
         ["PaladinHoly"] = F.String.ConvertGlyph(59666),
         ["PaladinProtection"] = F.String.ConvertGlyph(59667),
         ["PaladinCombat"] = F.String.ConvertGlyph(59668),
+
         ["WarriorArms"] = F.String.ConvertGlyph(59681),
         ["WarriorFury"] = F.String.ConvertGlyph(59682),
         ["WarriorProtection"] = F.String.ConvertGlyph(59683),
+
         ["DruidBalance"] = F.String.ConvertGlyph(59653),
         ["DruidFeralCombat"] = F.String.ConvertGlyph(59654),
         ["DruidRestoration"] = F.String.ConvertGlyph(59656),
+
         ["DeathKnightBlood"] = F.String.ConvertGlyph(59648),
         ["DeathKnightFrost"] = F.String.ConvertGlyph(59649),
         ["DeathKnightUnholy"] = F.String.ConvertGlyph(59650),
+
         ["HunterBeastMastery"] = F.String.ConvertGlyph(59657),
         ["HunterMarksmanship"] = F.String.ConvertGlyph(59658),
         ["HunterSurvival"] = F.String.ConvertGlyph(59659),
+
         ["PriestDiscipline"] = F.String.ConvertGlyph(59669),
         ["PriestHoly"] = F.String.ConvertGlyph(59670),
         ["PriestShadow"] = F.String.ConvertGlyph(59671),
+
         ["RogueAssassination"] = F.String.ConvertGlyph(59672),
         ["RogueCombat"] = F.String.ConvertGlyph(59673),
         ["RogueSubtlety"] = F.String.ConvertGlyph(59674),
+
         ["ShamanElementalCombat"] = F.String.ConvertGlyph(59675),
         ["ShamanEnhancement"] = F.String.ConvertGlyph(59676),
         ["ShamanRestoration"] = F.String.ConvertGlyph(59677),
+
         ["WarlockCurses"] = F.String.ConvertGlyph(59678),
         ["WarlockSummoning"] = F.String.ConvertGlyph(59679),
         ["WarlockDestruction"] = F.String.ConvertGlyph(59680),
