@@ -452,8 +452,24 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
 
         installFrame.Desc1:SetText(F.String.Good("You have completed the installation process!"))
-        installFrame.Desc2:SetText("Please click the button below in order to finalize the process and automatically reload your UI.")
-        installFrame.Desc3:SetText("If you have any questions/issues please join " .. F.String.ToxiUI("Discord") .. " for support!")
+        installFrame.Desc2:SetText(
+          "Please click the button below in order to finalize the process and automatically reload your UI.\n\n"
+            .. "If you have any questions/issues please join "
+            .. F.String.ToxiUI("Discord")
+            .. " for support!"
+        )
+        installFrame.Desc3:SetText(
+          F.String.Error("Important: ")
+            .. TXUI.Title
+            .. " has a lot of settings for customisations. After you're done with the installation, please open the "
+            .. TXUI.Title
+            .. " settings and explore them! We guarantee you will find things you didn't know you were looking for!\n\n"
+            .. "To open "
+            .. TXUI.Title
+            .. " settings, hit ESC and you will see the "
+            .. TXUI.Title
+            .. " button there!"
+        )
 
         installFrame.Option1:Show()
         installFrame.Option1:SetText("Finish")
