@@ -29,12 +29,12 @@ function PF:BuildWarpDepleteProfile()
     timingsImprovedTimeColor = "ff00e5f6",
 
     -- Deaths
-    deathsFont = "- ToxiUI",
-    deathsColor = "ffbc0049",
-    deathsFontSize = F.FontSizeScaled(12),
+    deathsFont = F.FontOverride(I.Fonts.Primary),
+    deathsColor = "ffff0064",
+    deathsFontSize = F.FontSizeScaled(16),
 
     -- Forces
-    forcesFont = "- ToxiUI",
+    forcesFont = F.FontOverride(I.Fonts.Primary),
     forcesTexture = "- Tx Left",
     forcesTextureColor = "ffbc9f23",
     forcesOverlayTexture = "- Tx Left",
@@ -45,16 +45,16 @@ function PF:BuildWarpDepleteProfile()
 
     -- Key
     keyFont = F.FontOverride(I.Fonts.TitleRaid),
-    keyDetailsFont = "- ToxiUI",
+    keyDetailsFont = F.FontOverride(I.Fonts.Primary),
     keyColor = "ffffb35f",
-    keyDetailsColor = "ff4487b2",
+    keyDetailsColor = "ff61c2ff",
 
     -- Timer
     timerFont = F.FontOverride(I.Fonts.TitleRaid),
 
     -- Objectives
-    objectivesFont = "- ToxiUI",
-    objectivesFontSize = F.FontSizeScaled(12),
+    objectivesFont = F.FontOverride(I.Fonts.Primary),
+    objectivesFontSize = F.FontSizeScaled(16),
   })
 
   return pf
