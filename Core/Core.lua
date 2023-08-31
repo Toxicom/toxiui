@@ -146,5 +146,13 @@ function TXUI:InitializeModules()
   local events = { "PLAYER_ENTERING_WORLD" }
   if TXUI.IsRetail then tinsert(events, "FIRST_FRAME_RENDERED") end
 
+  -- I know this is not where it's supposed to be
+  -- TODO: move this out somewhere
+  if E.db and E.db.TXUI then
+    if E.db.TXUI.addons.additionalScaling.map.scale ~= 1 then _G.WorldMapFrame:SetScale(E.db.TXUI.addons.additionalScaling.map.scale) end
+
+    if E.db.TXUI.addons.additionalScaling.characterFrame.scale ~= 1 then _G.CharacterFrame:SetScale(E.db.TXUI.addons.additionalScaling.characterFrame.scale) end
+  end
+
   F.Event.ContinueAfterAllEvents(onAllEvents, F.Table.SafeUnpack(events))
 end

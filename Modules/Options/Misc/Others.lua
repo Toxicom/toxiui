@@ -278,6 +278,53 @@ function O:Plugins_Others()
       end,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Additional Scaling
+  do
+    -- Additional Scaling Group
+    local additionalScalingGroup = self:AddInlineDesc(options, {
+      name = TXUI.Title .. " Additional Scaling",
+    }, {
+      name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n",
+    }).args
+
+    -- Additional Scaling Character Frame
+    additionalScalingGroup.characterFrame = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Character Frame",
+      get = function(_)
+        return E.db.TXUI.addons.additionalScaling.characterFrame.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.additionalScaling.characterFrame.scale = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.1,
+    }
+
+    -- Additional Scaling Map
+    additionalScalingGroup.map = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Map",
+      get = function(_)
+        return E.db.TXUI.addons.additionalScaling.map.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.additionalScaling.map.scale = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.1,
+    }
+  end
 end
 
 O:AddCallback("Plugins_Others")

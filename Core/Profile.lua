@@ -226,6 +226,16 @@ P.addons = {
     enabled = true, -- Enabled by default
     iconShape = I.Enum.IconShape.RECTANGLE,
   },
+
+  additionalScaling = {
+    characterFrame = {
+      scale = 1,
+    },
+
+    map = {
+      scale = 1,
+    },
+  },
 }
 
 -- ElvUI Icons
