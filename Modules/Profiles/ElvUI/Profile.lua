@@ -150,7 +150,7 @@ function PF:BuildProfile()
       ArenaHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, 0),
 
       -- Boss Frames
-      BossHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, 0),
+      BossHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, -150),
 
       ElvUF_AssistMover = F.Position("BOTTOMLEFT", "LeftChatMover", "BOTTOMRIGHT", defaultPadding, 0),
       ElvUF_TankMover = F.Position("BOTTOMLEFT", "ElvUF_AssistMover", "TOPLEFT", 0, defaultPadding),
@@ -1785,12 +1785,22 @@ function PF:BuildProfile()
 
   -- Cooldowns
   F.Table.Crush(pf.cooldown, {
+    useIndicatorColor = true,
     checkSeconds = true,
 
     -- Cooldowns Colors
-    minutesColor = F.Table.HexToRGB("#2afff3"),
-    mmssColor = F.Table.HexToRGB("#00ff7e"),
+    -- Text color (30)m
+    minutesColor = F.Table.HexToRGB("#ffffff"),
+    mmssColor = F.Table.HexToRGB("#ffffff"),
     secondsColor = F.Table.HexToRGB("#ffffff"),
+
+    -- Indicator color 30(m)
+    daysIndicator = F.Table.CurrentClassColor(),
+    hhmmColorIndicator = F.Table.CurrentClassColor(),
+    hoursIndicator = F.Table.CurrentClassColor(),
+    minutesIndicator = F.Table.CurrentClassColor(),
+    mmssColorIndicator = F.Table.CurrentClassColor(),
+    secondsIndicator = F.Table.CurrentClassColor(),
 
     -- Cooldowns Thresholds
     threshold = -1,

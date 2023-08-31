@@ -129,6 +129,15 @@ function F.Table.HexToRGB(hex)
   return F.Table.RGB(r, g, b, a)
 end
 
+function F.Table.CurrentClassColor()
+  local color = E:ClassColor(E.myclass, true)
+
+  -- Fuck priests
+  if E.myclass == "PRIEST" then return F.Table.RGB(0.7, 0.7, 0.7) end
+
+  return F.Table.RGB(color.r, color.g, color.b)
+end
+
 function F.Table.Sort(t, f)
   local keys = {}
 

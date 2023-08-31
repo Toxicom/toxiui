@@ -10,6 +10,7 @@ TXUI.Changelog["6.3.1"] = {
     "Change default WunderBar's accent color to class color",
     "Disable VehicleBar by default",
     "* ElvUI",
+    F.String.Good("NEW: ") .. "Class colored indicators for cooldown text. Credits to " .. F.String.Color("Nalar", "561c75"),
     "Increase the padding between ActionBars",
     "Reduce buff/debuff font sizes",
     "Fix UnitFrame buff/debuff font & font size",
