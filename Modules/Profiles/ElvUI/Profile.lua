@@ -1616,7 +1616,7 @@ function PF:BuildProfile()
     cooldown = {
       checkSeconds = true,
       hhmmThreshold = 11,
-      mmssThreshold = 300,
+      mmssThreshold = 180,
     },
 
     -- Action Bars Extra Action Button
@@ -1804,7 +1804,7 @@ function PF:BuildProfile()
 
     -- Cooldowns Thresholds
     threshold = -1,
-    mmssThreshold = 300,
+    mmssThreshold = 180,
 
     -- Disable cheap WeakAuras attempt
     targetAura = false,
