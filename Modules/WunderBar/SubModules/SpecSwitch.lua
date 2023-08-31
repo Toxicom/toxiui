@@ -172,10 +172,11 @@ function SS:GetWrathCacheForSpec(spec)
   if not role or role == "NONE" then role = "DAMAGER" end
 
   if highPointsSpentIndex ~= nil then
-    local name, texture = GetTalentTabInfo(highPointsSpentIndex, false, false, spec)
+    local name, _, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
+
     if name then return {
-      id = texture,
-      icon = texture,
+      id = stringId,
+      icon = stringId,
       name = name,
       role = role,
       points = ("%s / %s / %s"):format(unpack(points)),
@@ -324,6 +325,7 @@ function SS:UpdateInfoText()
       end
 
       local info = self.specCache[self.infoSpec]
+
       local iconTexture = (info and info.name) and self.db.icons[info.id]
       self.infoText:SetText(iconTexture or self.db.general.infoIcon)
     else
