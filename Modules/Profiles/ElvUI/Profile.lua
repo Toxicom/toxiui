@@ -1097,77 +1097,74 @@ function PF:BuildProfile()
       -- Disable UnitFrame Party CombatIcon
       CombatIcon = { enable = false },
     },
-    F.Table.If(
-      E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER,
-      { -- Party
+    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, { -- Party
 
-        -- UnitFrame Party Healer Layout
-        width = F.Dpi(150),
-        height = F.Dpi(60),
-        verticalSpacing = F.Dpi(5),
-        horizontalSpacing = F.Dpi(5),
-        growthDirection = "RIGHT_DOWN",
-        showPlayer = true,
+      -- UnitFrame Party Healer Layout
+      width = F.Dpi(150),
+      height = F.Dpi(60),
+      verticalSpacing = F.Dpi(5),
+      horizontalSpacing = F.Dpi(5),
+      growthDirection = "RIGHT_DOWN",
+      showPlayer = true,
 
-        -- UnitFrame Party Healer Layout Text
-        customTexts = {
-          ["!Health"] = {
-            yOffset = F.Dpi(0),
-          },
-
-          ["!Name"] = {
-            xOffset = F.Dpi(7),
-            yOffset = F.Dpi(0),
-          },
+      -- UnitFrame Party Healer Layout Text
+      customTexts = {
+        ["!Health"] = {
+          yOffset = F.Dpi(0),
         },
 
-        -- UnitFrame Party Heal Layout Power
-        power = {
-          width = "filled",
-          height = F.Dpi(15),
-        },
-
-        -- UnitFrame Party Heal Layout Buffs
-        buffs = {
-          enable = true,
-          anchorPoint = "BOTTOM",
-        },
-
-        -- UnitFrame Party Heal Layout Debuffs
-        debuffs = {
-          anchorPoint = "TOPLEFT",
-        },
-
-        -- UnitFrame Party Heal Layout Raid Debuffs
-        rdebuffs = {
-          enable = true,
-        },
-
-        -- UnitFrame Party Heal Layout Role Icon
-        roleIcon = {
-          position = "TOPLEFT",
-          size = F.Dpi(22),
-          xOffset = F.Dpi(-10),
-          yOffset = F.Dpi(10),
-          damager = false,
+        ["!Name"] = {
+          xOffset = F.Dpi(7),
+          yOffset = F.Dpi(0),
         },
       },
-      F.Table.If(IsNewLayout, { -- Party
-        customTexts = {
-          ["!Name"] = {
-            yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
-          },
-          ["!Health"] = {
-            text_format = "[tx:classcolor][perhp]",
-            yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
-          },
-          ["!ClassIcon"] = {
-            xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
-            yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
-          },
+
+      -- UnitFrame Party Heal Layout Power
+      power = {
+        width = "filled",
+        height = F.Dpi(15),
+      },
+
+      -- UnitFrame Party Heal Layout Buffs
+      buffs = {
+        enable = true,
+        anchorPoint = "BOTTOM",
+      },
+
+      -- UnitFrame Party Heal Layout Debuffs
+      debuffs = {
+        anchorPoint = "TOPLEFT",
+      },
+
+      -- UnitFrame Party Heal Layout Raid Debuffs
+      rdebuffs = {
+        enable = true,
+      },
+
+      -- UnitFrame Party Heal Layout Role Icon
+      roleIcon = {
+        position = "TOPLEFT",
+        size = F.Dpi(22),
+        xOffset = F.Dpi(-10),
+        yOffset = F.Dpi(10),
+        damager = false,
+      },
+    }),
+    F.Table.If(IsNewLayout, { -- Party
+      customTexts = {
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
-      })
-    )
+        ["!Health"] = {
+          text_format = "[tx:classcolor][perhp]",
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+        },
+        ["!ClassIcon"] = {
+          xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
+          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+        },
+      },
+    })
   )
 
   -- UnitFrame Raid1
@@ -1520,7 +1517,11 @@ function PF:BuildProfile()
       customTexts = {
         ["!Health"] = {
           text_format = "[tx:classcolor][perhp]",
-          yOffset = F.Dpi(15),
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+        },
+
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
       },
     })
@@ -1538,7 +1539,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Boss Custom Texts Health
         ["!Health"] = createCustomText({}, {
-          text_format = "[perhp]",
+          text_format = "[tx:classcolor][perhp]",
           xOffset = F.Dpi(5),
           yOffset = F.Dpi(25),
         }),
@@ -1546,7 +1547,7 @@ function PF:BuildProfile()
         -- UnitFrame Boss Custom Texts Name
         ["!Name"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[name:abbrev:medium]",
+          text_format = "[tx:classcolor][name:abbrev:medium]",
           xOffset = F.Dpi(-5),
           yOffset = F.Dpi(25),
         }),
@@ -1594,7 +1595,11 @@ function PF:BuildProfile()
       customTexts = {
         ["!Health"] = {
           text_format = "[tx:classcolor][perhp]",
-          yOffset = F.Dpi(15),
+          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+        },
+
+        ["!Name"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
       },
     })
@@ -1863,30 +1868,41 @@ function PF:UpdateProfileForTheme()
   local pf = self:BuildProfile()
 
   -- Custom Text
+  -- Arena
   F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Name", "yOffset")
 
+  -- Boss
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Name", "yOffset")
+
+  -- Focus
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "yOffset")
 
+  -- Pet
   F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.!Name", "yOffset")
 
+  -- Player
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "yOffset")
 
+  -- Party
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "yOffset")
 
+  -- Target
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
 
+  -- Target-Target
   F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
 
   -- UnitFrame Heights
