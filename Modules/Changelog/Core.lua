@@ -54,7 +54,7 @@ end
 
 -- Check for all our profiles
 function CL:ProfileChecks()
-  -- Check if a new release is avaible, if not in combat
+  -- Check if a new release is available, if not in combat
   self:CheckVersion()
 
   -- Check if the private profile is on the same version as ours

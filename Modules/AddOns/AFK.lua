@@ -59,36 +59,36 @@ function AFK:GetAnimationCount(remaining)
   return count
 end
 
-function AFK:GetAvaibleAnimations()
-  local avaibleAnimation = {}
+function AFK:GetAvailableAnimations()
+  local availableAnimation = {}
 
   for randomAnimation, enabled in pairs(self.randomAnimations) do
-    if enabled and (self.frame.bottom.model:HasAnimation(randomAnimation)) then tinsert(avaibleAnimation, randomAnimation) end
+    if enabled and (self.frame.bottom.model:HasAnimation(randomAnimation)) then tinsert(availableAnimation, randomAnimation) end
   end
 
-  return avaibleAnimation
+  return availableAnimation
 end
 
 function AFK:PlayRandomAnimation()
   if not self.elvUIAfk.isAFK then return end
 
   -- Get not played and animations that the model supports
-  local avaibleAnimation = self:GetAvaibleAnimations()
+  local availableAnimation = self:GetAvailableAnimations()
 
-  -- No Animations avaible, reset all used ones
-  if #avaibleAnimation == 0 then
+  -- No Animations available, reset all used ones
+  if #availableAnimation == 0 then
     self:ResetPlayedAnimations()
-    avaibleAnimation = self:GetAvaibleAnimations()
+    availableAnimation = self:GetAvailableAnimations()
   end
 
-  -- Still no Animation avaible, don't do anything, try next time
-  if #avaibleAnimation == 0 then
+  -- Still no Animation available, don't do anything, try next time
+  if #availableAnimation == 0 then
     self:StartAnimationCycle()
     return
   end
 
-  -- Get random animations from the once avaible
-  local newAnimation = avaibleAnimation[random(1, #avaibleAnimation)]
+  -- Get random animations from the once available
+  local newAnimation = availableAnimation[random(1, #availableAnimation)]
 
   -- Mark animation as played
   self.randomAnimations[newAnimation] = false
