@@ -24,6 +24,7 @@ TXUI.Changelog["6.3.1"] = {
     "Revert some changes for Classic API. Now the Classic API is more in line with Wrath's",
 
     "* Font fixes & updates",
+    "Fix pet castbar fonts",
     "Fix debuff timer font",
     "Fix buff/debuff font & font size",
     "Fix Details missing fonts",

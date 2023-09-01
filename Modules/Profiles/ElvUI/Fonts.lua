@@ -222,18 +222,22 @@ function PF:ElvUIFont()
         },
 
         pet = {
-          customTextFont = {
-            enable = true,
-            font = F.FontOverride(I.Fonts.Title),
-            fontSize = F.FontSizeScaled(16),
-            fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
-          },
+          customTexts = customTextSize { { "!Name", I.Fonts.Title, 16, "NONE" } },
 
-          customTimeFont = {
-            enable = true,
-            font = F.FontOverride(I.Fonts.Title),
-            fontSize = F.FontSizeScaled(16),
-            fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+          castbar = {
+            customTextFont = {
+              enable = true,
+              font = F.FontOverride(I.Fonts.Title),
+              fontSize = F.FontSizeScaled(16),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+            },
+
+            customTimeFont = {
+              enable = true,
+              font = F.FontOverride(I.Fonts.Title),
+              fontSize = F.FontSizeScaled(16),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+            },
           },
         },
 
