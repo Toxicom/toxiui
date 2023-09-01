@@ -3,10 +3,8 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.2.3"] = {
   HOTFIX = true,
   CHANGES = {
-    "* ToxiUI",
+    "* Documentation",
     "Increase minimum required " .. F.String.Class("ElvUI", "SHAMAN") .. " version",
-  },
-  CHANGES_WRATH = {
-    "Update for 3.4.2",
+    F.String.ToxiUI("Wrath: ") .. "Update for patch 3.4.2",
   },
 }
