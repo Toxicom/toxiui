@@ -80,5 +80,5 @@ function PF:ApplyWarpDepleteProfile()
   F.Table.Crush(db[profileName], profile)
   _G.WarpDeplete.db:SetProfile(profileName)
 
-  TXUI:LogInfo("WarpDeplete profile successfully installed and applied. Please reload your UI!")
+  TXUI:LogInfo(F.String.ToxiUI("WarpDeplete") .. " profile successfully installed and applied. Please reload your UI!")
 end
