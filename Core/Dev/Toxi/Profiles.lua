@@ -37,6 +37,10 @@ function T:SetupProfile()
   -- WunderBar: Hearthstone
   E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 193588 or 6948
 
+  -- Miscellaneous: Additional Scaling
+  E.db.TXUI.addons.additionalScaling.characterFrame.scale = 1.5
+  E.db.TXUI.addons.additionalScaling.map.scale = 1.3
+
   -- Skins: WeakAuras
   E.db.TXUI.addons.weakAurasIcons.iconShape = TXUI.IsWrath and I.Enum.IconShape.SQUARE or I.Enum.IconShape.RECTANGLE
 

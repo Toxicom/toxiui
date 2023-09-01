@@ -3,35 +3,39 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.3.1"] = {
   HOTFIX = true,
   CHANGES = {
-    "* ToxiUI",
-    F.String.Good("NEW: ") .. "WarpDeplete profile in the installer",
-    F.String.Good("NEW: ") .. "OmniCD profile in the installer",
-    F.String.Good("NEW: ") .. "Add an option to WunderBar's visibility - Resting & Mouseover",
-    F.String.Good("NEW: ")
-      .. "Additional Scaling feature! "
-      .. TXUI.Title
-      .. " Settings -> "
-      .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91")
-      .. " -> "
-      .. F.String.Class("Other"),
-    "Change default WunderBar's accent color to class color",
-    "Disable VehicleBar by default",
-    "* ElvUI",
-    F.String.Good("NEW: ") .. "Class colored indicators for cooldown text. Credits to " .. F.String.Color("Nalar", "561c75"),
-    "Increase the padding between ActionBars",
-    "Reduce buff/debuff font sizes",
-    "Fix UnitFrame buff/debuff font & font size",
-    "Revert combat font to M900",
-    "Fix debuff timer font",
-    "Primary font for actionbars",
-    "Increase buttons per row for minimap bar",
-    "* Details",
-    "Fix details missing fonts",
-  },
+    "* New features",
+    "WarpDeplete " .. TXUI.Title .. " profile",
+    "OmniCD " .. TXUI.Title .. " profile",
+    "WunderBar visibility option - " .. F.String.RandomClassColor("Resting & Mouseover"),
+    "Additional Scaling feature! " .. TXUI.Title .. " Settings -> " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91") .. " -> " .. F.String.Class("Other"),
+    F.String.Class("Class colored") .. " indicators for cooldown text. Credits to " .. F.String.Color("Nalar", "561c75"),
+    F.String.ToxiUI("Wrath: ") .. F.String.WrathArmory() .. " " .. TXUI.Title .. " profile",
 
-  CHANGES_WRATH = {
-    F.String.Good("NEW: ") .. F.String.WrathArmory() .. " settings will be applied on core install",
-    "Add link to " .. F.String.WrathArmory() .. " in " .. TXUI.Title .. " Armory settings",
-    "Fix Specialization icons for Assassination Rogue and Holy Priest",
+    "* Profile updates",
+    "Change default WunderBar's accent color to " .. F.String.Class("class color"),
+    "Disable " .. TXUI.Title .. " VehicleBar by default",
+    "Increase the padding between ActionBars",
+    "Increase buttons per row for minimap bar",
+    "Change Details tooltip bar color to match brand color",
+
+    "* Bug fixes",
+    "Fix Boss & Arena UnitFrames toggling for Dark Mode",
+    F.String.ToxiUI("Wrath: ") .. "Fix Specialization icons for Assassination Rogue and Holy Priest",
+    "Revert some changes for Classic API. Now the Classic API is more in line with Wrath's",
+
+    "* Font fixes & updates",
+    "Fix debuff timer font",
+    "Fix buff/debuff font & font size",
+    "Fix Details missing fonts",
+    "Fix Plater Buff Special font size",
+    "Fix Boss & Arena UnitFrame fonts",
+    "Revert combat font to " .. F.String.RandomClassColor("- M 900"),
+    "Primary font for actionbars",
+
+    "* Documentation",
+    "New changelog format, please provide feedback if this is easier to read",
+    "Update installer dialog texts & information",
+    "Update " .. TXUI.Title .. " brand color from " .. F.String.Color("old", "00e4f5") .. " to " .. F.String.ToxiUI("new") .. " to better match the " .. TXUI.Title .. " logo",
+    F.String.ToxiUI("Wrath: ") .. "Add link to " .. F.String.WrathArmory() .. " in " .. TXUI.Title .. " Armory settings",
   },
 }
