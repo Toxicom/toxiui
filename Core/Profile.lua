@@ -226,9 +226,19 @@ P.addons = {
     enabled = true, -- Enabled by default
     iconShape = I.Enum.IconShape.RECTANGLE,
   },
+}
 
-  additionalScaling = {
+P.misc = {
+  scaling = {
     characterFrame = {
+      scale = 1,
+    },
+
+    syncInspect = {
+      enabled = false,
+    },
+
+    inspectFrame = {
       scale = 1,
     },
 

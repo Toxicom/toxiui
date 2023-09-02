@@ -38,8 +38,13 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 193588 or 6948
 
   -- Miscellaneous: Additional Scaling
-  E.db.TXUI.addons.additionalScaling.characterFrame.scale = 1.5
-  E.db.TXUI.addons.additionalScaling.map.scale = 1.3
+  E.db.TXUI.misc.scaling.characterFrame.scale = 1.5
+  E.db.TXUI.misc.scaling.syncInspect.enabled = true
+  E.db.TXUI.misc.scaling.map.scale = 1.3
+  if TXUI.IsRetail then
+    E.db.TXUI.misc.scaling.collections.scale = 1.3
+    E.db.TXUI.misc.scaling.wardrobe.scale = 1.3
+  end
 
   -- Skins: WeakAuras
   E.db.TXUI.addons.weakAurasIcons.iconShape = TXUI.IsWrath and I.Enum.IconShape.SQUARE or I.Enum.IconShape.RECTANGLE

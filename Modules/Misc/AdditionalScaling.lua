@@ -6,7 +6,7 @@ local LoadAddOn = LoadAddOn
 
 function M:SetElementScale(dbName, blizzName, loadAddonName)
   if E.db and E.db.TXUI then
-    local option = E.db.TXUI.addons.additionalScaling[dbName]
+    local option = E.db.TXUI.misc.scaling[dbName]
 
     if not option then
       TXUI:LogDebug("AdditionalScaling > option not found, skipping scaling!")
@@ -26,8 +26,11 @@ function M:AdditionalScaling()
   -- Don't init if its not a TXUI profile or requirements are not met
   if not TXUI:HasRequirements(I.Requirements.AdditionalScaling) then return end
 
-  M:SetElementScale("characterFrame", "CharacterFrame")
   M:SetElementScale("map", "WorldMapFrame")
+  M:SetElementScale("characterFrame", "CharacterFrame")
+  -- Special case for synced character & inspect frames
+  local syncedFrameName = E.db.TXUI.misc.scaling.syncInspect.enabled and "characterFrame" or "inspectFrame"
+  M:SetElementScale(syncedFrameName, "InspectFrame", "Blizzard_InspectUI")
 
   if TXUI.IsRetail then
     M:SetElementScale("collections", "CollectionsJournal", "Blizzard_Collections")

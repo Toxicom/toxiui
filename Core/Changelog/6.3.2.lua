@@ -4,7 +4,9 @@ TXUI.Changelog["6.3.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* New features",
-    "Add " .. F.String.Class("Collections Journal") .. " and " .. F.String.Class("Wardrobe Frame") .. " scaling to " .. F.String.ToxiUI("Additional Scaling") .. " module",
+    "Add " .. F.String.Class("Collections Journal") .. ", " .. F.String.Class("Wardrobe Frame") .. " and " .. F.String.Class("Inspect Frame") .. " scaling to " .. F.String.ToxiUI(
+      "Additional Scaling"
+    ) .. " module",
 
     "* Bug fixes",
     "Force Priest class color in ElvUI",
