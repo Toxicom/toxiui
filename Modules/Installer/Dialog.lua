@@ -417,30 +417,30 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.Good("WarpDeplete") .. ", " .. F.String.Good("OmniCD"))
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.Good("OmniCD") .. ", " .. F.String.Good("WarpDeplete"))
 
-        if not F.IsAddOnEnabled("WarpDeplete") and not F.IsAddOnEnabled("OmniCD") then
+        if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") then
           installFrame.Desc3:SetText(
             F.String.Warning("Warning: ") .. "Looks like you don't have any of the extra AddOns installed. Don't worry, you can still fully experience " .. TXUI.Title .. "!"
           )
         end
 
-        if F.IsAddOnEnabled("WarpDeplete") then
+        if F.IsAddOnEnabled("OmniCD") then
           installFrame.Option1:Show()
-          installFrame.Option1:SetText("WarpDeplete")
+          installFrame.Option1:SetText("OmniCD")
           installFrame.Option1:SetScript("OnClick", function()
-            PF:ApplyWarpDepleteProfile()
-            self:ShowStepComplete(F.String.ToxiUI("WarpDeplete") .. " profile installed.")
+            PF:ApplyOmniCDProfile()
+            self:ShowStepComplete(F.String.ToxiUI("OmniCD") .. " profile installed.")
             self.reloadRequired = true
           end)
         end
 
-        if F.IsAddOnEnabled("OmniCD") then
+        if F.IsAddOnEnabled("WarpDeplete") then
           installFrame.Option2:Show()
-          installFrame.Option2:SetText("OmniCD")
+          installFrame.Option2:SetText("WarpDeplete")
           installFrame.Option2:SetScript("OnClick", function()
-            PF:ApplyOmniCDProfile()
-            self:ShowStepComplete(F.String.ToxiUI("OmniCD") .. " profile installed.")
+            PF:ApplyWarpDepleteProfile()
+            self:ShowStepComplete(F.String.ToxiUI("WarpDeplete") .. " profile installed.")
             self.reloadRequired = true
           end)
         end
