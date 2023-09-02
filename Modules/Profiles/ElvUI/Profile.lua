@@ -71,9 +71,6 @@ function PF:BuildProfile()
     }
   end
 
-  -- Make Priest darker color
-  E.PriestColors = { r = 0.7, g = 0.7, b = 0.7, colorStr = "b3b3b3" }
-
   -- Special Case: ToxiUIWAAnchor
   local WAAnchorY
 

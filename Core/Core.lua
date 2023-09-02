@@ -146,6 +146,11 @@ function TXUI:InitializeModules()
   local events = { "PLAYER_ENTERING_WORLD" }
   if TXUI.IsRetail then tinsert(events, "FIRST_FRAME_RENDERED") end
 
+  -- Make Priest darker color
+  -- TODO: I guess move out these too?
+  E.PriestColors = { r = 0.7, g = 0.7, b = 0.7, colorStr = "b3b3b3" }
+  E:UpdateCooldownSettings("all")
+
   -- I know this is not where it's supposed to be
   -- TODO: move this out somewhere
   if E.db and E.db.TXUI then
