@@ -4,6 +4,7 @@ TXUI.Changelog["6.3.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* Bug fixes",
-    "No bugs squashed yet :(",
+    "Force Priest class color in ElvUI",
+    "Add OmniCD check in installer dialog",
   },
 }
