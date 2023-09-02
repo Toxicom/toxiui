@@ -108,6 +108,11 @@ function TXUI:InitializeModules()
         -- Mark TXUI has entered world
         self.DelayedWorldEntered = true
 
+        -- Make Priest darker color
+        E.PriestColors = { r = 0.7, g = 0.7, b = 0.7, colorStr = "b3b3b3" }
+        -- Update cooldown text settings
+        E:UpdateCooldownSettings("all")
+
         -- Show Dev Mode or Tester Message
         if self.DevRelease then
           local isDev = F.IsDeveloper()
@@ -145,11 +150,6 @@ function TXUI:InitializeModules()
 
   local events = { "PLAYER_ENTERING_WORLD" }
   if TXUI.IsRetail then tinsert(events, "FIRST_FRAME_RENDERED") end
-
-  -- Make Priest darker color
-  -- TODO: I guess move out these too?
-  E.PriestColors = { r = 0.7, g = 0.7, b = 0.7, colorStr = "b3b3b3" }
-  E:UpdateCooldownSettings("all")
 
   F.Event.ContinueAfterAllEvents(onAllEvents, F.Table.SafeUnpack(events))
 end
