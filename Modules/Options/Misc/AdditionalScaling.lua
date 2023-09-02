@@ -71,7 +71,9 @@ function O:Plugins_AdditionalScaling()
       order = self:GetOrder(),
       type = "range",
       name = "Wardrobe",
-      disabled = true,
+      disabled = function()
+        return not TXUI.IsRetail
+      end,
       get = function(_)
         return E.db.TXUI.addons.additionalScaling.wardrobe.scale
       end,
@@ -89,7 +91,9 @@ function O:Plugins_AdditionalScaling()
       order = self:GetOrder(),
       type = "range",
       name = "Collections",
-      disabled = true,
+      disabled = function()
+        return not TXUI.IsRetail
+      end,
       get = function(_)
         return E.db.TXUI.addons.additionalScaling.collections.scale
       end,
