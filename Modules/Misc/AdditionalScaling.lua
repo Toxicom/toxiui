@@ -3,6 +3,7 @@ local M = TXUI:GetModule("Misc")
 
 local _G = _G
 local LoadAddOn = LoadAddOn
+local IsAddOnLoaded = IsAddOnLoaded
 
 function M:SetElementScale(dbName, blizzName, loadAddonName)
   if E.db and E.db.TXUI then
@@ -14,7 +15,7 @@ function M:SetElementScale(dbName, blizzName, loadAddonName)
     end
 
     if option.scale ~= 1 then
-      if loadAddonName then LoadAddOn(loadAddonName) end
+      if loadAddonName and not IsAddOnLoaded(loadAddonName) then LoadAddOn(loadAddonName) end
       _G[blizzName]:SetScale(option.scale)
     end
   else
