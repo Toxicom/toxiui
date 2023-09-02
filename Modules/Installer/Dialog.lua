@@ -419,7 +419,7 @@ function IS:Dialog()
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
         installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.Good("WarpDeplete") .. ", " .. F.String.Good("OmniCD"))
 
-        if not F.IsAddOnEnabled("WarpDeplete") then
+        if not F.IsAddOnEnabled("WarpDeplete") or not F.IsAddOnEnabled("OmniCD") then
           installFrame.Desc3:SetText(
             F.String.Warning("Warning: ") .. "Looks like you don't have any of the extra AddOns installed. Don't worry, you can still fully experience " .. TXUI.Title .. "!"
           )
