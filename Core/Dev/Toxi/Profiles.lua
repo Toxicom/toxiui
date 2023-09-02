@@ -40,7 +40,7 @@ function T:SetupProfile()
   -- Miscellaneous: Additional Scaling
   E.db.TXUI.misc.scaling.characterFrame.scale = 1.5
   E.db.TXUI.misc.scaling.syncInspect.enabled = true
-  E.db.TXUI.misc.scaling.map.scale = 1.3
+  E.db.TXUI.misc.scaling.map.scale = 1.5
   if TXUI.IsRetail then
     E.db.TXUI.misc.scaling.collections.scale = 1.3
     E.db.TXUI.misc.scaling.wardrobe.scale = 1.3
