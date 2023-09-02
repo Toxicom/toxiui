@@ -7,7 +7,9 @@ TXUI.Changelog["6.3.1"] = {
     "WarpDeplete " .. TXUI.Title .. " profile",
     "OmniCD " .. TXUI.Title .. " profile",
     "WunderBar visibility option - " .. F.String.RandomClassColor("Resting & Mouseover"),
-    "Additional Scaling feature! " .. TXUI.Title .. " Settings -> " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91") .. " -> " .. F.String.Class("Other"),
+    "Additional Scaling feature! " .. TXUI.Title .. " Settings -> " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91") .. " -> " .. F.String.Class(
+      "Additional Scaling"
+    ),
     F.String.Class("Class colored") .. " indicators for cooldown text. Credits to " .. F.String.Color("Nalar", "561c75"),
     F.String.ToxiUI("Wrath: ") .. F.String.WrathArmory() .. " " .. TXUI.Title .. " profile",
 

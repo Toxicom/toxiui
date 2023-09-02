@@ -130,6 +130,7 @@ I.Requirements = {
     I.Enum.Requirements.ELVUI_ACTIONBARS_DISABLED,
   },
   ["GameMenuButton"] = {},
+  ["AdditionalScaling"] = {},
   ["BlizzardFonts"] = {
     I.Enum.Requirements.OTHER_BLIZZARD_FONTS_DISABLED,
   },

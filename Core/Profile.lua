@@ -235,6 +235,14 @@ P.addons = {
     map = {
       scale = 1,
     },
+
+    wardrobe = {
+      scale = 1,
+    },
+
+    collections = {
+      scale = 1,
+    },
   },
 }
 

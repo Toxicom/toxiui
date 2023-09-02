@@ -1,6 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file='Core.lua' />
 
+  <Script file='AdditionalScaling.lua' />
   <Script file='ChatIcon.lua' />
   <Script file='GameMenuButton.lua' />
   <Script file='SplashScreen.lua' />
