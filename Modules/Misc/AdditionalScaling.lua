@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 
 local _G = _G
-local IsAddOnLoaded = IsAddOnLoaded
+-- local IsAddOnLoaded = IsAddOnLoaded
 
 function M:SetElementScale(dbName, blizzName)
   if E.db and E.db.TXUI then
