@@ -95,6 +95,11 @@ function M:GameMenuButton()
     backgroundFade.bg:SetTexture(I.Media.Textures["ToxiUI-clean"])
     backgroundFade.bg:SetVertexColor(bgColor.r, bgColor.g, bgColor.b, 0.2)
 
+    backgroundFade.logo = backgroundFade:CreateTexture(nil, "OVERLAY")
+    backgroundFade.logo:Size(256, 128)
+    backgroundFade.logo:SetTexture(I.Media.Logos.Logo)
+    backgroundFade.logo:Point("TOP", 0, -100)
+
     backgroundFade.Animation = TXUI:CreateAnimationGroup(backgroundFade):CreateAnimation("Fade")
     backgroundFade.Animation:SetEasing("out-quintic")
     backgroundFade.Animation:SetChange(1)
