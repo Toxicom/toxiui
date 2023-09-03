@@ -103,6 +103,82 @@ function O:Skins_ElvUI()
   -- Spacer
   self:AddSpacer(options)
 
+  -- ToxiUI Game Menu Button
+  do
+    -- ToxiUI Game Menu Button Group
+    local gameMenuButtonGroup = self:AddInlineRequirementsDesc(options, {
+      name = TXUI.Title .. " Game Menu Button",
+    }, {
+      name = "Enabling this option shows a " .. TXUI.Title .. " button in the Game Menu (ESC).\n\n",
+    }, I.Requirements.GameMenuButton).args
+
+    -- ToxiUI Game Menu Button Enable
+    gameMenuButtonGroup.gameMenuButton = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enabling this option shows a " .. TXUI.Title .. " button in the Game Menu (ESC).",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.gameMenuButton.enabled, gameMenuButtonGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.gameMenuButton.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuButton.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    gameMenuButtonGroup.backgroundFade = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Background Fade",
+      desc = "Toggling this on fades the background when opening the Game Menu",
+      get = function(_)
+        return E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    gameMenuButtonGroup.classColor = {
+      order = self:GetOrder(),
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+      end,
+      type = "toggle",
+      name = "Class Color",
+      desc = "Toggling this on will enable your current class' color for the background fade",
+      get = function(_)
+        return E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    gameMenuButtonGroup.bgColor = {
+      order = self:GetOrder(),
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled or E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled
+      end,
+      type = "color",
+      name = "Background Color",
+      hasAlpha = false,
+      width = 1,
+      get = self:GetFontColorGetter("TXUI.addons.gameMenuButton.backgroundFade", P.addons.gameMenuButton.backgroundFade, "color"),
+      set = self:GetFontColorSetter("TXUI.addons.gameMenuButton.backgroundFade", function()
+        E:StaticPopup_Show("CONFIG_RL")
+      end, "color"),
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
   -- Role Icons
   do
     -- Role Icon Group

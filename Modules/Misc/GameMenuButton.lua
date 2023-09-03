@@ -69,13 +69,31 @@ function M:GameMenuButton()
   -- Skin if skinning is active
   if E.private.skins.blizzard.enable and E.private.skins.blizzard.misc then E:GetModule("Skins"):HandleButton(button) end
 
-  -- ! Personal changes
-  if F.IsDeveloper() then
+  -- Background Fade
+  if E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled then
     local backgroundFade = CreateFrame("Frame", nil, buttonHolder, "BackdropTemplate")
     backgroundFade:SetAllPoints(E.UIParent)
     backgroundFade:SetParent(GameMenuFrame)
     backgroundFade:SetFrameStrata("BACKGROUND")
     backgroundFade:SetFrameLevel(0)
+
+    local bgColor
+
+    if E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled then
+      -- Custom Colors for priest
+      if E.myclass == "PRIEST" then
+        bgColor = I.PriestColors
+      else
+        bgColor = E:ClassColor(E.myclass, true)
+      end
+    else
+      bgColor = E.db.TXUI.addons.gameMenuButton.backgroundFade.color
+    end
+
+    backgroundFade.bg = backgroundFade:CreateTexture(nil, "BACKGROUND")
+    backgroundFade.bg:SetAllPoints(backgroundFade)
+    backgroundFade.bg:SetTexture(I.Media.Textures["ToxiUI-clean"])
+    backgroundFade.bg:SetVertexColor(bgColor.r, bgColor.g, bgColor.b, 0.2)
 
     backgroundFade.Animation = TXUI:CreateAnimationGroup(backgroundFade):CreateAnimation("Fade")
     backgroundFade.Animation:SetEasing("out-quintic")

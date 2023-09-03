@@ -248,36 +248,6 @@ function O:Plugins_Others()
       end,
     }
   end
-
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- ToxiUI Game Menu Button
-  do
-    -- ToxiUI Game Menu Button Group
-    local gameMenuButtonGroup = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " Game Menu Button",
-    }, {
-      name = "Enabling this option shows a " .. TXUI.Title .. " button in the Game Menu (ESC).\n\n",
-    }, I.Requirements.GameMenuButton).args
-
-    -- ToxiUI Game Menu Button Enable
-    gameMenuButtonGroup.gameMenuButton = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Enabling this option shows a " .. TXUI.Title .. " button in the Game Menu (ESC).",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.addons.gameMenuButton.enabled, gameMenuButtonGroup)
-      end,
-      get = function(_)
-        return E.db.TXUI.addons.gameMenuButton.enabled
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuButton.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }
-  end
 end
 
 O:AddCallback("Plugins_Others")

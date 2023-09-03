@@ -210,6 +210,15 @@ P.addons = {
   -- Game Menu Button
   gameMenuButton = {
     enabled = true, -- Enabled by default
+
+    backgroundFade = {
+      enabled = true,
+      color = F.Table.HexToRGB("#000000"),
+
+      classColor = {
+        enabled = false,
+      },
+    },
   },
 
   -- Fade Persist
