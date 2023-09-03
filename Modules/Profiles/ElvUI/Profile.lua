@@ -550,7 +550,8 @@ function PF:BuildProfile()
 
         -- UnitFrame Player Castbar Options
         insideInfoPanel = false,
-        icon = false,
+        icon = true,
+        iconAttached = true,
 
         -- UnitFrame Player Castbar Text
         textColor = F.Table.HexToRGB("#ffffff"),
@@ -685,7 +686,8 @@ function PF:BuildProfile()
 
         -- UnitFrame Target Castbar Options
         insideInfoPanel = false,
-        icon = false,
+        icon = true,
+        iconAttached = true,
 
         -- UnitFrame Target Castbar Text
         textColor = F.Table.HexToRGB("#ffffff"),
@@ -752,10 +754,12 @@ function PF:BuildProfile()
 
       -- UnitFrame Pet Castbar
       castbar = {
-        height = F.Dpi(12),
-        iconSize = F.Dpi(32),
-        width = F.Dpi(100),
         textColor = F.Table.HexToRGB("#ffffff"),
+        height = F.Dpi(12),
+        width = F.Dpi(100),
+
+        icon = true,
+        iconAttached = true,
       },
 
       -- UnitFrame Pet Fader
@@ -924,7 +928,9 @@ function PF:BuildProfile()
         height = F.Dpi(20),
         width = F.Dpi(250),
         insideInfoPanel = false,
-        icon = false,
+
+        icon = true,
+        iconAttached = true,
 
         textColor = F.Table.HexToRGB("#ffffff"),
         xOffsetText = F.Dpi(5),
@@ -1500,6 +1506,9 @@ function PF:BuildProfile()
       -- UnitFrame Arena Castbar
       castbar = {
         width = F.Dpi(250),
+
+        icon = true,
+        iconAttached = true,
       },
 
       -- UnitFrame Arena Power
@@ -1578,6 +1587,9 @@ function PF:BuildProfile()
       -- UnitFrame Boss Castbar
       castbar = {
         width = F.Dpi(200),
+
+        icon = true,
+        iconAttached = true,
       },
 
       -- UnitFrame Boss Power

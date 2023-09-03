@@ -16,6 +16,9 @@ TXUI.Changelog["6.3.2"] = {
 
     "* Profile updates",
     "Move TopCenterWidget down",
+    "Enable Spell Icon inside ElvUI castbars",
+    "Enable Spell Icon inside Plater castbars",
+    "Increase height of Plater nameplate's health",
 
     "* Settings refactoring",
     "Move " .. TXUI.Title .. " Game Menu Button settings to " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
