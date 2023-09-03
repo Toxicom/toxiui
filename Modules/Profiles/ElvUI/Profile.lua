@@ -174,7 +174,7 @@ function PF:BuildProfile()
       MinimapMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -defaultPadding, -defaultPadding),
       ObjectiveFrameMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -70, -270),
       TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -15, 100),
-      TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -20),
+      TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -35),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
       AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding),
 

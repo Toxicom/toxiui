@@ -14,6 +14,9 @@ TXUI.Changelog["6.3.2"] = {
     "Add OmniCD check in installer dialog",
     "Fix VehicleBar options missing",
 
+    "* Profile updates",
+    "Move TopCenterWidget down",
+
     "* Settings refactoring",
     "Move " .. TXUI.Title .. " Game Menu Button settings to " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
 
