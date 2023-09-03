@@ -8,7 +8,7 @@ I.Data.Contributor = {
       [I.Enum.Flavor.RETAIL] = {
         -- Ravencrest
         ["Calistrø-Ravencrest"] = true, -- Paladin
-        ["Calìstro-Ravencrest"] = true, -- Mage
+        ["Toxisorc-Ravencrest"] = true, -- Mage
         ["Melissandei-Ravencrest"] = true, -- Druid
         ["Toxirage-Ravencrest"] = true, -- Warrior
         ["Toxicom-Ravencrest"] = true, -- Warlock
