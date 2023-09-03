@@ -51,6 +51,22 @@ function O:Plugins_AdditionalScaling()
       step = 0.1,
     }
 
+    characterGroup.dressingRoom = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Dressing Room",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.dressingRoom.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.dressingRoom.scale = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.1,
+    }
+
     -- Inspect Frame
     characterGroup.inspectFrame = {
       order = self:GetOrder(),

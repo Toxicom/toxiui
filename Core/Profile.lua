@@ -243,6 +243,10 @@ P.misc = {
       scale = 1,
     },
 
+    dressingRoom = {
+      scale = 1,
+    },
+
     syncInspect = {
       enabled = false,
     },

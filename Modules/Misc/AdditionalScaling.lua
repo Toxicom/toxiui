@@ -29,6 +29,7 @@ function M:AdditionalScaling()
 
   M:SetElementScale("map", "WorldMapFrame")
   M:SetElementScale("characterFrame", "CharacterFrame")
+  M:SetElementScale("dressingRoom", "DressUpFrame")
   -- Special case for synced character & inspect frames
   local syncedFrameName = E.db.TXUI.misc.scaling.syncInspect.enabled and "characterFrame" or "inspectFrame"
   M:SetElementScale(syncedFrameName, "InspectFrame", "Blizzard_InspectUI")
