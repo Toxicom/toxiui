@@ -426,6 +426,15 @@ function IS:Dialog()
         end
 
         if F.IsAddOnEnabled("OmniCD") then
+          installFrame.Desc3:SetText(
+            F.String.Warning("Warning: ")
+              .. "OmniCD has only the dungeons profile set up! Raid profile is default, you might wanna tweak it before going to a raid! If you have suggestions for a profile, please contact us on the "
+              .. TXUI.Title
+              .. " Discord!"
+          )
+        end
+
+        if F.IsAddOnEnabled("OmniCD") then
           installFrame.Option1:Show()
           installFrame.Option1:SetText("OmniCD")
           installFrame.Option1:SetScript("OnClick", function()
