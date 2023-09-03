@@ -1182,8 +1182,8 @@ function PF:BuildProfile()
       height = F.Dpi(35),
 
       -- UnitFrame Raid1 Options
-      groupBy = "ROLE",
-      groupSpacing = F.Dpi(0),
+      groupBy = "GROUP",
+      groupSpacing = 10,
       groupsPerRowCol = 1,
       growthDirection = "RIGHT_UP",
       horizontalSpacing = F.Dpi(1),
@@ -1265,8 +1265,8 @@ function PF:BuildProfile()
       height = F.Dpi(35),
 
       -- UnitFrame Raid2 Options
-      groupBy = "ROLE",
-      groupSpacing = F.Dpi(0),
+      groupBy = "GROUP",
+      groupSpacing = 10,
       groupsPerRowCol = 1,
       growthDirection = "RIGHT_UP",
       horizontalSpacing = F.Dpi(1),
