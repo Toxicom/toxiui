@@ -59,7 +59,9 @@ I.Data.Contributor = {
         ["Toxibank-PyrewoodVillage"] = true,
 
         -- Gehennas
+        ["Toxigoblin-Gehennas"] = true,
         ["Toxisorc-Gehennas"] = true,
+        ["Toxivoid-Gehennas"] = true,
       },
 
       [I.Enum.Flavor.CLASSIC] = {
