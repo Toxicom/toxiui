@@ -18,7 +18,6 @@ TXUI.Changelog["6.3.2"] = {
     "Move TopCenterWidget down",
     "Enable Spell Icon inside ElvUI castbars",
     "Enable Spell Icon inside Plater castbars",
-    "Increase height of Plater nameplate's health",
     "Sort raid members by group for Raid 1 & Raid 2",
     "Increase raid group spacing for Raid 1 & Raid 2",
 
