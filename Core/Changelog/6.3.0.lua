@@ -20,8 +20,8 @@ TXUI.Changelog["6.3.0"] = {
     "Enable instance difficulty fader for Player & Pet UnitFrames",
     "Customize widget skinning with a new '" .. F.String.ToxiUI("- Tx Fade") .. "' texture & enabled class colors",
     "Enable the ElvUI theme skin from " .. TXUI.Title .. " (was disabled by default previously)",
-    "Properly disable the " .. TXUI.Title .. F.String.ToxiUI("FadePersist") .. " module when ElvUI ActionBars are disabled",
-    "Properly disable the " .. TXUI.Title .. F.String.ToxiUI("VehicleBar") .. " module when ElvUI ActionBars are disabled",
+    "Properly disable the " .. TXUI.Title .. F.String.ToxiUI(" FadePersist") .. " module when ElvUI ActionBars are disabled",
+    "Properly disable the " .. TXUI.Title .. F.String.ToxiUI(" VehicleBar") .. " module when ElvUI ActionBars are disabled",
     "Change Player Castbar Strata level so it's below Combat Icon",
     "Update " .. F.String.ToxiUI("Interrupt not ready Cast Color") .. " mod for Plater",
 
