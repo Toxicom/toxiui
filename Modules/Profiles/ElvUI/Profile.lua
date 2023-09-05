@@ -696,6 +696,14 @@ function PF:BuildProfile()
         attachTo = "CENTER",
       },
 
+      -- UnitFrame Target Raid Role Icon
+      raidRoleIcons = {
+        enable = true,
+        scale = 2,
+        xOffset = F.Dpi(53),
+        yOffset = F.Dpi(10),
+      },
+
       -- UnitFrame Target Castbar
       castbar = {
         width = F.Dpi(250),
