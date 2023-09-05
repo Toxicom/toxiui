@@ -521,6 +521,14 @@ function PF:BuildProfile()
         customTexture = I.General.MediaPath .. "Textures\\Resting.tga",
       },
 
+      -- UnitFrame Player Raid Role Icon
+      raidRoleIcons = {
+        enable = true,
+        scale = 2,
+        xOffset = F.Dpi(53),
+        yOffset = F.Dpi(10),
+      },
+
       -- UnitFrame Player CombatIcon
       CombatIcon = {
         enable = true,
@@ -1063,6 +1071,10 @@ function PF:BuildProfile()
 
       -- UnitFrame Party Role Icons
       raidRoleIcons = {
+        enable = true,
+        scale = 2,
+        xOffset = F.Dpi(-42),
+        yOffset = F.Dpi(10),
         position = "TOPRIGHT",
       },
 
@@ -1243,6 +1255,12 @@ function PF:BuildProfile()
         yOffset = 5,
       },
 
+      raidRoleIcons = {
+        enable = true,
+        scale = 2,
+        yOffset = F.Dpi(6),
+      },
+
       -- Disable UnitFrame Raid1 health text
       health = { text_format = "" },
       -- Disable UnitFrame Raid1 name text
@@ -1326,6 +1344,12 @@ function PF:BuildProfile()
         yOffset = 5,
       },
 
+      raidRoleIcons = {
+        enable = true,
+        scale = 2,
+        yOffset = F.Dpi(6),
+      },
+
       -- Disable UnitFrame Raid2 health text
       health = { text_format = "" },
       -- Disable UnitFrame Raid2 name text
@@ -1407,6 +1431,12 @@ function PF:BuildProfile()
         size = F.Dpi(20),
         xOffset = -5,
         yOffset = 5,
+      },
+
+      raidRoleIcons = {
+        enable = true,
+        scale = 2,
+        yOffset = F.Dpi(6),
       },
 
       -- Disable UnitFrame Raid3 health text

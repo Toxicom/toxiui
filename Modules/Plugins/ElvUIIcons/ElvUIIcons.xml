@@ -2,4 +2,5 @@
   <Script file='DeadIcons.lua' />
   <Script file='OfflineIcons.lua' />
   <Script file='RoleIcons.lua' />
+  <Script file='LeaderIcons.lua' />
 </Ui>

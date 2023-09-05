@@ -276,6 +276,11 @@ P.elvUIIcons = {
     theme = "TXUI_MATERIAL",
   },
 
+  leaderIcons = {
+    enabled = true, -- Enabled by default
+    theme = "TXUI_STYLIZED",
+  },
+
   deadIcons = {
     enabled = true, -- Enabled by default
     theme = "TXUI_STYLIZED",

@@ -100,9 +100,11 @@ F.AddMedia("state", "WhiteDead")
 -- Material Icons
 F.AddMedia("state", "MaterialDC")
 F.AddMedia("state", "MaterialDead")
+F.AddMedia("state", "MaterialLeader")
 
 -- Stylized Icons
 F.AddMedia("state", "StylizedDead") -- icons8.com
+F.AddMedia("state", "StylizedLeader") -- icons8.com
 F.AddMedia("state", "StylizedDC") -- icons8.com
 
 -- Resting Icon

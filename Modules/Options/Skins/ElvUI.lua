@@ -192,7 +192,15 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("RoleIcons.SettingsUpdate")
       end,
     }, {
-      name = "Change the Role icons of " .. F.String.ElvUI("ElvUI") .. " to new colorful " .. TXUI.Title .. " icons.\n\n",
+      name = "Change the Role icons of "
+        .. F.String.ElvUI("ElvUI")
+        .. " to new colorful "
+        .. TXUI.Title
+        .. " icons.\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "For size and position settings, go to the unit's "
+        .. F.String.Class("Role Icon")
+        .. " settings.\n\n",
     }, I.Requirements.RoleIcons)
 
     -- Enable
@@ -235,6 +243,61 @@ function O:Skins_ElvUI()
 
   -- Spacer
   self:AddSpacer(options)
+
+  -- Party Leader Icon
+  do
+    -- Party Leader Icon Group
+    local leaderIconGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Party Leader Icon",
+      get = function(info)
+        return E.db.TXUI.elvUIIcons.leaderIcons[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.elvUIIcons.leaderIcons[info[#info]] = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }, {
+      name = "Changes the party leader indicator icon.\n\n" .. F.String.ToxiUI("Information: ") .. "For size and position settings, go to the unit's " .. F.String.Class(
+        "Raid Role Indicator"
+      ) .. " settings.\n\n",
+    }, I.Requirements.RoleIcons)
+
+    -- Enable
+    leaderIconGroup["args"]["enabled"] = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " skin for Party Leader Indicator",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.elvUIIcons.leaderIcons.enabled, leaderIconGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.elvUIIcons.leaderIcons.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.elvUIIcons.leaderIcons.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    -- Hidden helper
+    local leaderIconDisabled = function()
+      return self:GetEnabledState(E.db.TXUI.elvUIIcons.leaderIcons.enabled, leaderIconGroup) ~= self.enabledState.YES
+    end
+
+    -- Theme
+    leaderIconGroup["args"]["theme"] = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Style",
+      desc = "Change the icon",
+      values = {
+        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
+        ["BLIZZARD"] = "Blizzard",
+      },
+      hidden = leaderIconDisabled,
+    }
+  end
 
   -- Dead Icons
   do

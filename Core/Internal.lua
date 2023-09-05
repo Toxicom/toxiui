@@ -308,6 +308,12 @@ I.ElvUIIcons = {
     },
   },
 
+  ["Leader"] = {
+    ["TXUI_MATERIAL"] = "MaterialLeader",
+    ["TXUI_STYLIZED"] = "StylizedLeader",
+    ["BLIZZARD"] = "Interface\\GroupFrame\\UI-Group-LeaderIcon",
+  },
+
   ["Dead"] = {
     ["TXUI"] = "WhiteDead",
     ["TXUI_MATERIAL"] = "MaterialDead",
