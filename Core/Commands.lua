@@ -161,12 +161,12 @@ function TXUI:HandleChatCommand(msg)
     E:StaticPopup_Show("TXUI_RESET_TXUI_PROFILE")
   elseif (category == "status" or category == "info") and F.IsTXUIProfile() then
     self:ShowStatusReport()
-  elseif category == "install" then
-    E:ToggleOptions("TXUI,general")
+  elseif category == "install" or category == "i" then
+    E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
   elseif F.IsTXUIProfile() then
-    self:LogInfo("Usage: /tx cl||changelog||install||settings||status||wb")
+    self:LogInfo("Usage: /tx cl||changelog||install||i||settings||status||wb")
   else
-    self:LogInfo("Usage: /tx cl||changelog||install||settings")
+    self:LogInfo("Usage: /tx cl||changelog||install||i||settings")
   end
 end
 

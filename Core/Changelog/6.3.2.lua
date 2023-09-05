@@ -28,5 +28,7 @@ TXUI.Changelog["6.3.2"] = {
 
     "* Development Improvements",
     "Refactor Additional Scaling feature, it now has it's own separate tab in " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91"),
+    "Make the '" .. F.String.ToxiUI("/tx install") .. "' command actually open the installer",
+    "Add alias to open " .. TXUI.Title .. " Installer - '" .. F.String.ToxiUI("/tx i") .. "'",
   },
 }
