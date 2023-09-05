@@ -6,7 +6,7 @@ local tonumber = tonumber
 function TXUI:HandleDevProfiles(arg1)
   -- Command help
   local printUsage = function()
-    self:LogInfo("Usage: /tx profile dps||healer||private||bw||dbm||plater||details")
+    self:LogInfo("Usage: /tx profile dps; healer; private; bw; dbm; plater; details")
   end
 
   -- If no parameter was given
@@ -52,7 +52,7 @@ end
 function TXUI:HandleDevExports(arg1, arg2)
   -- Command help
   local printUsage = function()
-    self:LogInfo("Usage: /tx dev export bw||names")
+    self:LogInfo("Usage: /tx dev export bw; names")
     self:LogInfo("Example: /tx dev export bw healer")
   end
 
@@ -68,7 +68,7 @@ function TXUI:HandleDevExports(arg1, arg2)
       self:LogInfo("Exporting BigWigs Healer Profile ...")
       TXUI:ExportProfile(arg1, I.ProfileNames[I.Enum.Layouts.HEALER])
     else
-      self:LogInfo("Usage: /tx dev export bw dps||healer")
+      self:LogInfo("Usage: /tx dev export bw dps; healer")
     end
   elseif arg1 == "names" then -- Names import
     TXUI:ExportProfile("import_names")
@@ -80,7 +80,7 @@ end
 function TXUI:HandleDevCommand(category, arg1, arg2)
   -- Command help
   local printUsage = function()
-    self:LogInfo("Usage: /tx dev profile||reset||cvar||chat||export||wb <arg1> <arg2>")
+    self:LogInfo("Usage: /tx dev profile; reset; cvar; chat; export; wb <arg1> <arg2>")
   end
 
   if not category then
@@ -164,9 +164,9 @@ function TXUI:HandleChatCommand(msg)
   elseif category == "install" or category == "i" then
     E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
   elseif F.IsTXUIProfile() then
-    self:LogInfo("Usage: /tx cl||changelog||install||i||settings||status||wb")
+    self:LogInfo("Usage: /tx cl; changelog; install; i; settings; status; wb")
   else
-    self:LogInfo("Usage: /tx cl||changelog||install||i||settings")
+    self:LogInfo("Usage: /tx cl; changelog; install; i; settings")
   end
 end
 
