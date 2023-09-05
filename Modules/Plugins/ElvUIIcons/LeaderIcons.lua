@@ -1,8 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local LI = TXUI:NewModule("LeaderIcons", "AceHook-3.0")
 
-local _G = _G
-
 function LI:Something()
   local db = E.db and E.db.TXUI and E.db.TXUI.elvUIIcons and E.db.TXUI.elvUIIcons.leaderIcons
   if db then
@@ -26,8 +24,7 @@ function LI:Initialize()
   -- Don't init second time
   if self.Initialized then return end
 
-  -- Get Frameworks
-  UF = E:GetModule("UnitFrames")
+  local UF = E:GetModule("UnitFrames")
   hooksecurefunc(UF, "RaidRoleUpdate", LI.Something)
 
   -- We are done, hooray!
