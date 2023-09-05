@@ -649,7 +649,7 @@ function PF:BuildProfile()
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
           text_format = "[perpp]",
-          xOffset = F.Dpi(70),
+          xOffset = F.Dpi(85),
           yOffset = F.Dpi(0),
         }),
 
