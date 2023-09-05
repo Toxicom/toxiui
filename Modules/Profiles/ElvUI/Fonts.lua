@@ -191,6 +191,7 @@ function PF:ElvUIFont()
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "NONE" },
             IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "NONE" },
+            { "!Power", I.Fonts.Primary, 20, "OUTLINE" },
             { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
           },
 

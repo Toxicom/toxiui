@@ -119,22 +119,23 @@ function PF:BuildProfile()
       ElvAB_9 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -144, -401), -- Unused
       ElvAB_10 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -180, -401), -- Unused
 
+      PetAB = F.Position("TOP", "ElvUF_Player", "BOTTOM", 0, -defaultPadding),
       VehicleLeaveButton = F.Position("BOTTOMLEFT", "ElvAB_4", "BOTTOMRIGHT", defaultPadding, 0),
       DurabilityFrameMover = F.Position("BOTTOMLEFT", "ElvAB_4", "BOTTOMRIGHT", 34, 0),
       ShiftAB = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
 
       -- Movers: UnitFrames
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 350),
-      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 350),
+      ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
 
-      PetAB = F.Position("TOP", "ElvUF_Player", "BOTTOM", 0, -defaultPadding),
-      ElvUF_PetMover = F.Position("TOPRIGHT", "ElvUF_Player", "TOPLEFT", -defaultPadding, 0),
-      ElvUF_PetCastbarMover = F.Position("TOPLEFT", "ElvUF_Pet", "BOTTOMLEFT", 0, -1),
+      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 350),
+      ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
+      TargetPowerBarMover = F.Position("LEFT", "ElvUF_Target", "BOTTOMLEFT", 10, 0),
 
       ElvUF_TargetTargetMover = F.Position("TOPLEFT", "ElvUF_Target", "TOPRIGHT", defaultPadding, 0),
 
-      ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
-      ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
+      ElvUF_PetMover = F.Position("TOPRIGHT", "ElvUF_Player", "TOPLEFT", -defaultPadding, 0),
+      ElvUF_PetCastbarMover = F.Position("TOPLEFT", "ElvUF_Pet", "BOTTOMLEFT", 0, -1),
 
       ElvUF_FocusMover = F.Position("TOP", "ElvUF_Target", "BOTTOM", 0, -60),
       FocusPowerBarMover = F.Position("TOP", "ElvUF_FocusMover", "BOTTOM", 0, defaultPadding),
@@ -644,6 +645,14 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
 
+        -- UnitFrame Target Custom Texts Power
+        ["!Power"] = createCustomText({}, {
+          attachTextTo = "Power",
+          text_format = "[perpp]",
+          xOffset = F.Dpi(70),
+          yOffset = F.Dpi(0),
+        }),
+
         -- UnitFrame Target Custom Texts Class Icon
         ["!ClassIcon"] = createCustomText({}, {
           justifyH = "RIGHT",
@@ -714,8 +723,15 @@ function PF:BuildProfile()
       aurabar = { enable = false },
       -- Disable UnitFrame Target fader
       fader = { enable = false },
-      -- Disable UnitFrame Target power
-      power = { enable = false },
+
+      -- UnitFrame Target Power
+      power = {
+        enable = true,
+        detachFromFrame = true,
+        detachedWidth = F.Dpi(120),
+        text_format = "",
+      },
+
       -- Disable UnitFrame Target health text
       health = { text_format = "" },
       -- Disable UnitFrame Target name text

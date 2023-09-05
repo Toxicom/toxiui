@@ -93,7 +93,7 @@ P.themes = {
     powerColorMap = {
       [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
         ALT_POWER = F.Table.HexToRGB("#2175d4"), -- swap alt
-        MANA = F.Table.HexToRGB("#42d9d1"), -- mana
+        MANA = F.Table.HexToRGB("#268cd9"), -- mana
         RAGE = F.Table.HexToRGB("#ed3333"), -- rage
         FOCUS = F.Table.HexToRGB("#db753b"), -- focus
         ENERGY = F.Table.HexToRGB("#d9d92b"), -- energy
@@ -106,7 +106,7 @@ P.themes = {
       },
       [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
         ALT_POWER = F.Table.HexToRGB("#264ad1"), -- swap alt
-        MANA = F.Table.HexToRGB("#0ac7de"), -- mana
+        MANA = F.Table.HexToRGB("#0061de"), -- mana
         RAGE = F.Table.HexToRGB("#cf1717"), -- rage
         FOCUS = F.Table.HexToRGB("#cf591f"), -- focus
         ENERGY = F.Table.HexToRGB("#d1b800"), -- energy

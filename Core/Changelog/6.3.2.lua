@@ -21,6 +21,7 @@ TXUI.Changelog["6.3.2"] = {
     "Enable Spell Icon inside Plater castbars",
     "Sort raid members by group for Raid 1 & Raid 2",
     "Increase raid group spacing for Raid 1 & Raid 2",
+    "Enable Power bar for Target frame",
 
     "* Settings refactoring",
     "Move " .. TXUI.Title .. " Game Menu Button settings to " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
