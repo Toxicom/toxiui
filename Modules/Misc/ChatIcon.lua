@@ -9,7 +9,7 @@ local ct
 
 local shortRealmName
 function M:ChatIcon_DevIconCallback(sender)
-  if sender == nil then return end
+  if not sender or sender == "" then return end
   -- Check if badges are active
   if E and E.db and E.db.TXUI and E.db.TXUI.general and E.db.TXUI.general.chatBadgeOverride then return end
 
