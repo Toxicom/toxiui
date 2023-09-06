@@ -9,12 +9,12 @@ local ct
 
 local shortRealmName
 function M:ChatIcon_DevIconCallback(sender)
+  if sender == nil then return end
   -- Check if badges are active
   if E and E.db and E.db.TXUI and E.db.TXUI.general and E.db.TXUI.general.chatBadgeOverride then return end
 
   -- Strip colors
-  local cleanName = F.String.StripColor(sender) or ""
-
+  local cleanName = F.String.StripColor(sender)
   -- Add realm name if the name has none
   if not find(cleanName, "-", 1, true) then
     if not shortRealmName then shortRealmName = E:ShortenRealm(E.myrealm) end
