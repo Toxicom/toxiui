@@ -13,7 +13,7 @@ function M:ChatIcon_DevIconCallback(sender)
   if E and E.db and E.db.TXUI and E.db.TXUI.general and E.db.TXUI.general.chatBadgeOverride then return end
 
   -- Strip colors
-  local cleanName = F.String.StripColor(sender)
+  local cleanName = F.String.StripColor(sender) or ""
 
   -- Add realm name if the name has none
   if not find(cleanName, "-", 1, true) then

@@ -14,6 +14,7 @@ TXUI.Changelog["6.3.2"] = {
     "Force Priest class color in ElvUI",
     "Add OmniCD check in installer dialog",
     "Fix VehicleBar options missing",
+    "Fix ChatIcon error",
 
     "* Profile updates",
     "Move TopCenterWidget down",
