@@ -2,23 +2,19 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["6.0.1"] = {
   HOTFIX = true,
-  DYNAMIC = function()
-    if F.IsContributor() then return {
-      F.String.Legendary("LEGENDARY: ") .. "Added Dragonflight's rested indicator to WunderBar's Time module",
-    } end
-  end,
   CHANGES = {
-    "* General",
-    " Font adjustments",
-    " Fixed visibility states for Pet Action Bar & Stance Bar",
+    "* New features",
+    "WunderBar Flyouts now show the tooltip of the hovered spell",
+    "Replace ElvUI experience tooltip with our own on WunderBar's DataBar module",
+    F.String.Legendary("LEGENDARY: ") .. "Added Dragonflight's rested indicator to WunderBar's Time module",
 
-    "* Plater",
-    " Enabled stacking of similar auras",
-    " Updated mods & scripts",
+    "* Bug fixes",
+    "Fixed visibility states for Pet Action Bar & Stance Bar",
+    "Fix mage portal flyouts for WunderBar's Hearthstone module",
 
-    "* WunderBar",
-    " General: Flyouts now show the tooltip of the hovered spell",
-    " Hearthstone: Fix mage portal flyouts",
-    " DataBar: Replace ElvUI experience tooltip with our own",
+    "* Profile updates",
+    "Font adjustments",
+    "Enabled stacking of similar auras for Plater",
+    "Updated mods & scripts for Plater",
   },
 }
