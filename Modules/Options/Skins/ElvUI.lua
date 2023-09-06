@@ -248,7 +248,7 @@ function O:Skins_ElvUI()
   do
     -- Party Leader Icon Group
     local leaderIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Party Leader Icon",
+      name = "Party Leader Icon" .. F.String.Error(" [EXPERIMENTAL]"),
       get = function(info)
         return E.db.TXUI.elvUIIcons.leaderIcons[info[#info]]
       end,
@@ -257,9 +257,12 @@ function O:Skins_ElvUI()
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }, {
-      name = "Changes the party leader indicator icon.\n\n" .. F.String.ToxiUI("Information: ") .. "For size and position settings, go to the unit's " .. F.String.Class(
-        "Raid Role Indicator"
-      ) .. " settings.\n\n",
+      name = F.String.Error("Warning: ")
+        .. "This feature is currently experimental! Expect it to break or have issues.\n\nChanges the party leader indicator icon.\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "For size and position settings, go to the unit's "
+        .. F.String.Class("Raid Role Indicator")
+        .. " settings.\n\n",
     }, I.Requirements.RoleIcons)
 
     -- Enable

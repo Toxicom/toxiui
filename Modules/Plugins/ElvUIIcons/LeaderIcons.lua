@@ -1,10 +1,10 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local LI = TXUI:NewModule("LeaderIcons", "AceHook-3.0")
 
-function LI:Something()
+function LI:ChangeLeaderIcon()
   local db = E.db and E.db.TXUI and E.db.TXUI.elvUIIcons and E.db.TXUI.elvUIIcons.leaderIcons
   if db then
-    if not db.enabled then return end
+    if db.enabled == false then return end
 
     self.db = F.GetDBFromPath("TXUI.elvUIIcons.leaderIcons")
 
@@ -25,7 +25,7 @@ function LI:Initialize()
   if self.Initialized then return end
 
   local UF = E:GetModule("UnitFrames")
-  hooksecurefunc(UF, "RaidRoleUpdate", LI.Something)
+  hooksecurefunc(UF, "RaidRoleUpdate", LI.ChangeLeaderIcon)
 
   -- We are done, hooray!
   self.Initialized = true
