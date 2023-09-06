@@ -13,7 +13,7 @@
 ## X-Curse-Project-ID: 676447
 ## X-Tukui-ProjectID: 199
 ## X-Tukui-ProjectFolders: ElvUI_ToxiUI
-## X-ElvUIVersion: 13.39
+## X-ElvUIVersion: 13.40
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 
