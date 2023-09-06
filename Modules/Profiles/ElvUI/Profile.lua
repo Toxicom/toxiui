@@ -526,7 +526,7 @@ function PF:BuildProfile()
       raidRoleIcons = {
         enable = true,
         scale = 2,
-        xOffset = F.Dpi(53),
+        xOffset = F.Dpi(56),
         yOffset = F.Dpi(10),
       },
 
@@ -1097,7 +1097,7 @@ function PF:BuildProfile()
       raidRoleIcons = {
         enable = true,
         scale = 2,
-        xOffset = F.Dpi(-42),
+        xOffset = F.Dpi(-35),
         yOffset = F.Dpi(10),
         position = "TOPRIGHT",
       },

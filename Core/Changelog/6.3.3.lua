@@ -8,6 +8,9 @@ TXUI.Changelog["6.3.3"] = {
       "WunderBar's RGB background"
     ) .. " and " .. F.String.Legendary("WunderBar Time module's resting animation"),
 
+    "* Profile updates",
+    "Move leader icon for party & player",
+
     "* Documentation",
     "Refactor old changelogs to follow new format",
   },
