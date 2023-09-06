@@ -158,7 +158,7 @@ function TI:OnSizeCalculation()
 end
 
 function TI:OnWunderBarUpdate()
-  self.showRestingAnimation = self.db.showRestingAnimation and F.IsContributor()
+  self.showRestingAnimation = self.db.showRestingAnimation
 
   self:UpdateClock()
   self:UpdateColor()

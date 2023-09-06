@@ -194,6 +194,10 @@ function F.ConvertToRGB(h, s, l)
 end
 
 function F.ConvertToHSL(r, g, b)
+  r = r or 0
+  g = g or 0
+  b = b or 0
+
   local minColor = min(r, g, b)
   local maxColor = max(r, g, b)
   local colorDelta = maxColor - minColor

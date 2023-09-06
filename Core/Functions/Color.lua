@@ -62,9 +62,6 @@ do
     local db = F.GetDBFromPath("TXUI.themes.gradientMode")
     if not db then return end
 
-    local saturationBoost = db.saturationBoost and F.IsContributor()
-    db.saturationBoost = saturationBoost
-
     for _, colorKey in pairs { "reactionColorMap", "castColorMap", "powerColorMap", "specialColorMap", "classColorMap", "classResourceMap" } do
       local colorMap = db[colorKey]
       if colorMap then
@@ -79,7 +76,7 @@ do
           for colorEntry, colorArray in pairs(colorMap[colorType]) do
             local r1, g1, b1
 
-            if saturationBoost then
+            if db.saturationBoost then
               local h, s, l = F.ConvertToHSL(colorArray.r, colorArray.g, colorArray.b)
               r1, g1, b1 = F.ConvertToRGB(F.ClampToHSL(h, s * modS, l * modL))
             else

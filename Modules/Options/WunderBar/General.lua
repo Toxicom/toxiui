@@ -200,7 +200,7 @@ function O:WunderBar_General()
       order = self:GetOrder(),
       type = "select",
       name = "Background Color",
-      values = F.IsContributor() and self:GetAllFontColorsFunc {
+      values = self:GetAllFontColorsFunc {
         RGB = F.String.Legendary("LEGENDARY: ") .. "|cffff0000R|r|cff00ff00G|r|cff0000ffB|r ",
       } or self:GetAllFontColorsFunc(),
     }

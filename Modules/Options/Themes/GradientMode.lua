@@ -571,35 +571,33 @@ function O:ToxiUI_Themes_GradientMode()
     self:AddSpacer(tab)
 
     -- Saturation Boost
-    if F.IsContributor() then
-      local saturationGroup = self:AddInlineDesc(tab, {
-        name = F.String.Legendary("LEGENDARY: ") .. "Saturation Boost",
-        get = function(info)
-          return E.db.TXUI.themes.gradientMode[info[#info]]
-        end,
-        set = function(info, value)
-          if E.db.TXUI.themes.gradientMode[info[#info]] == value then return end
+    local saturationGroup = self:AddInlineDesc(tab, {
+      name = F.String.Legendary("LEGENDARY: ") .. "Saturation Boost",
+      get = function(info)
+        return E.db.TXUI.themes.gradientMode[info[#info]]
+      end,
+      set = function(info, value)
+        if E.db.TXUI.themes.gradientMode[info[#info]] == value then return end
 
-          E.db.TXUI.themes.gradientMode[info[#info]] = value
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power", true)
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
-        end,
-      }, {
-        name = "Boosts the saturation and darkens " .. gradientTitle .. " Colors|r\nFor people that like it a bit more extreme\n\n",
-      }).args
+        E.db.TXUI.themes.gradientMode[info[#info]] = value
+        F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
+        F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power", true)
+        F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
+      end,
+    }, {
+      name = "Boosts the saturation and darkens " .. gradientTitle .. " Colors|r\nFor people that like it a bit more extreme\n\n",
+    }).args
 
-      saturationGroup.saturationBoost = {
-        order = self:GetOrder(),
-        type = "toggle",
-        name = function()
-          return self:GetEnableName(E.db.TXUI.themes.gradientMode.saturationBoost, saturationGroup)
-        end,
-      }
+    saturationGroup.saturationBoost = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.themes.gradientMode.saturationBoost, saturationGroup)
+      end,
+    }
 
-      -- Spacer
-      self:AddSpacer(tab)
-    end
+    -- Spacer
+    self:AddSpacer(tab)
   end
 end
 

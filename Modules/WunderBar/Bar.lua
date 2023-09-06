@@ -105,9 +105,6 @@ function WB:UpdateBar()
   if not lsmTexture then lsmTexture = E.media.blankTex end -- backup to elvui texture if not found
   self.bar.barBackground:SetTexture(lsmTexture)
 
-  -- Revert RGB mode
-  if self.db.general.backgroundColor == "RGB" and not F.IsContributor() then self.db.general.backgroundColor = "CLASS" end
-
   -- Get color from func
   local color = F.GetFontColorFromDB {
     FontColor = self.db.general.backgroundColor,

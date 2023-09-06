@@ -110,5 +110,5 @@ function O:WunderBar_SubModules_Time()
   tab.experimentalGroup.inline = true
 
   tab.experimentalGroup.args.experimentalDynamicSize = ACH:Toggle("Dynamic Width", nil, 1)
-  if F.IsContributor() then tab.experimentalGroup.args.showRestingAnimation = ACH:Toggle(F.String.Legendary("LEGENDARY:") .. " Resting Animation", nil, 2, false, false, 2) end
+  tab.experimentalGroup.args.showRestingAnimation = ACH:Toggle(F.String.Legendary("LEGENDARY:") .. " Resting Animation", nil, 2, false, false, 2)
 end
