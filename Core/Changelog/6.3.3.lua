@@ -11,6 +11,7 @@ TXUI.Changelog["6.3.3"] = {
     "* Profile updates",
     "Move leader icon for party & player",
     "Update Plater health text to match new unitframe style",
+    "Class color for currently selected chat tab",
 
     "* Documentation",
     "Refactor old changelogs to follow new format",

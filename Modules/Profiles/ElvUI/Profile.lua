@@ -340,6 +340,8 @@ function PF:BuildProfile()
     timeStampFormat = "%H:%M ",
     emotionIcons = false,
 
+    tabSelectedTextColor = F.Table.CurrentClassColor(),
+
     -- Chat Panels
     separateSizes = true,
     panelTabBackdrop = true,
