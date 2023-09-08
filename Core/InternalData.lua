@@ -62,6 +62,7 @@ I.Data.Contributor = {
         ["Toxigoblin-Gehennas"] = true,
         ["Toxisorc-Gehennas"] = true,
         ["Toxivoid-Gehennas"] = true,
+        ["Toxisin-Gehennas"] = true,
       },
 
       [I.Enum.Flavor.CLASSIC] = {
