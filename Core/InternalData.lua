@@ -63,6 +63,8 @@ I.Data.Contributor = {
         ["Toxisorc-Gehennas"] = true,
         ["Toxivoid-Gehennas"] = true,
         ["Toxisin-Gehennas"] = true,
+        ["Toxiholy-Gehennas"] = true,
+        ["Toxifer-Gehennas"] = true, -- Warlock
       },
 
       [I.Enum.Flavor.CLASSIC] = {
