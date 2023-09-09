@@ -8,13 +8,7 @@ TXUI.Changelog["6.3.2"] = {
       "Inspect Frame"
     ) .. " scaling to " .. F.String.ToxiUI("Additional Scaling") .. " module",
     "Add Background Fade for Game Menu. Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
-    F.String.Error("[EXPERIMENTAL] ")
-      .. "Add "
-      .. TXUI.Title
-      .. " group Leader icon. Customize it in "
-      .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
-      .. " -> "
-      .. F.String.Class("ElvUI"),
+    "Add " .. TXUI.Title .. " group Leader icon. Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
 
     "* Bug fixes",
     "Force Priest class color in ElvUI",

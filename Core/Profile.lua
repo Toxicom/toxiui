@@ -278,7 +278,7 @@ P.elvUIIcons = {
   },
 
   leaderIcons = {
-    enabled = false, -- Enabled by default
+    enabled = true, -- Enabled by default
     theme = "TXUI_STYLIZED",
   },
 

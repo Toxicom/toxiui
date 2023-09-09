@@ -248,7 +248,7 @@ function O:Skins_ElvUI()
   do
     -- Party Leader Icon Group
     local leaderIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Party Leader Icon" .. F.String.Error(" [EXPERIMENTAL]"),
+      name = "Party Leader Icon",
       get = function(info)
         return E.db.TXUI.elvUIIcons.leaderIcons[info[#info]]
       end,
