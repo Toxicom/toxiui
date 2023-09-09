@@ -515,10 +515,10 @@ function PF:BuildProfile()
         enable = true,
         defaultColor = false,
 
-        anchorPoint = "TOPLEFT",
+        anchorPoint = "TOPRIGHT",
         size = F.Dpi(36),
-        xOffset = F.Dpi(25),
-        yOffset = F.ChooseForTheme(F.Dpi(40), F.Dpi(18)),
+        xOffset = F.Dpi(10),
+        yOffset = F.Dpi(18),
 
         texture = "CUSTOM",
         customTexture = I.General.MediaPath .. "Textures\\Resting.tga",
@@ -609,10 +609,6 @@ function PF:BuildProfile()
           xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
           yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         },
-      },
-
-      RestIcon = {
-        yOffset = F.ChooseForTheme(F.Dpi(40), F.Dpi(30)),
       },
     })
   )
@@ -1988,9 +1984,6 @@ function PF:UpdateProfileForTheme()
   F.UpdateDBFromPath(pf, "unitframe.units.player", "height")
   F.UpdateDBFromPath(pf, "unitframe.units.target", "height")
   F.UpdateDBFromPath(pf, "unitframe.units.targettarget", "height")
-
-  -- Player Rest Icon
-  F.UpdateDBFromPath(pf, "unitframe.units.player.RestIcon", "yOffset")
 
   -- UnitFrame Color Options
   F.UpdateDBFromPath(pf, "unitframe.colors", "customhealthbackdrop")

@@ -14,6 +14,7 @@ TXUI.Changelog["6.3.3"] = {
     "Class color for currently selected chat tab",
     "Update Gradient theme's Energy colors to match Luxthos WA",
     "Update Gradient theme's Mana colors to match Luxthos WA",
+    "Move Rest Icon to accomodate space for Party Leader icon",
 
     "* Documentation",
     "Refactor old changelogs to follow new format",
