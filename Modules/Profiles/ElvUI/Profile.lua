@@ -528,8 +528,8 @@ function PF:BuildProfile()
       raidRoleIcons = {
         enable = true,
         scale = 2,
-        xOffset = F.Dpi(56),
-        yOffset = F.Dpi(10),
+        xOffset = F.Dpi(5),
+        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(10)),
       },
 
       -- UnitFrame Player CombatIcon
@@ -609,6 +609,10 @@ function PF:BuildProfile()
           xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
           yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         },
+      },
+
+      raidRoleIcons = {
+        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(15)),
       },
     })
   )
@@ -698,8 +702,9 @@ function PF:BuildProfile()
       raidRoleIcons = {
         enable = true,
         scale = 2,
-        xOffset = F.Dpi(53),
-        yOffset = F.Dpi(10),
+        position = "TOPRIGHT",
+        xOffset = F.Dpi(-5),
+        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(10)),
       },
 
       -- UnitFrame Target Castbar
@@ -758,6 +763,10 @@ function PF:BuildProfile()
           xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(10)),
           yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         },
+      },
+
+      raidRoleIcons = {
+        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(15)),
       },
     })
   )
@@ -1095,9 +1104,9 @@ function PF:BuildProfile()
       raidRoleIcons = {
         enable = true,
         scale = 2,
-        xOffset = F.Dpi(-35),
-        yOffset = F.Dpi(10),
-        position = "TOPRIGHT",
+        position = "TOPLEFT",
+        xOffset = F.Dpi(10),
+        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(21)),
       },
 
       -- UnitFrame Party Raid Debuffs
@@ -1203,6 +1212,10 @@ function PF:BuildProfile()
           xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
           yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         },
+      },
+
+      raidRoleIcons = {
+        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(15)),
       },
     })
   )
@@ -1964,17 +1977,20 @@ function PF:UpdateProfileForTheme()
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.raidRoleIcons", "yOffset")
 
   -- Party
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.raidRoleIcons", "yOffset")
 
   -- Target
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.raidRoleIcons", "yOffset")
 
   -- Target-Target
   F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
