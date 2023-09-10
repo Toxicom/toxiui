@@ -1,19 +1,20 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["9.9.9"] = {
-  HOTFIX = false,
+  HOTFIX = true,
   CHANGES = {
-    "* TITLE",
-    " TEXT",
-  },
+    "* Breaking changes",
 
-  CHANGES_RETAIL = {
-    "* TITLE",
-    " TEXT",
-  },
+    "* New features",
 
-  CHANGES_WRATH = {
-    "* TITLE",
-    " TEXT",
+    "* Bug fixes",
+
+    "* Profile updates",
+
+    "* Documentation",
+
+    "* Settings refactoring",
+
+    "* Development improvements",
   },
 }
