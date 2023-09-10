@@ -117,6 +117,8 @@ function IS:Dialog()
             installer:CloseInstall()
           end
 
+          if timer then timer:Cancel() end
+
           self.installerOpen = false
         end)
 
