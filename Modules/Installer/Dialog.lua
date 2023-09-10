@@ -413,6 +413,24 @@ function IS:Dialog()
       end,
 
       [9] = function()
+        -- Initialize the button index
+        local buttonIndex = 1
+
+        -- Helper function to set the position of the button based on availability
+        local function InstallOptionalAddOn(addonName, buttonText)
+          local button = installFrame["Option" .. buttonIndex]
+          if F.IsAddOnEnabled(addonName) then
+            button:Show()
+            button:SetText(buttonText or addonName)
+            button:SetScript("OnClick", function()
+              PF["Apply" .. addonName .. "Profile"]()
+              self:ShowStepComplete(F.String.ToxiUI(addonName) .. " profile installed.")
+              self.reloadRequired = true
+            end)
+            buttonIndex = buttonIndex + 1
+          end
+        end
+
         SetupCustomInstaller(9)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
@@ -434,35 +452,9 @@ function IS:Dialog()
           )
         end
 
-        if F.IsAddOnEnabled("OmniCD") then
-          installFrame.Option1:Show()
-          installFrame.Option1:SetText("OmniCD")
-          installFrame.Option1:SetScript("OnClick", function()
-            PF:ApplyOmniCDProfile()
-            self:ShowStepComplete(F.String.ToxiUI("OmniCD") .. " profile installed.")
-            self.reloadRequired = true
-          end)
-        end
-
-        if F.IsAddOnEnabled("WarpDeplete") then
-          installFrame.Option2:Show()
-          installFrame.Option2:SetText("WarpDeplete")
-          installFrame.Option2:SetScript("OnClick", function()
-            PF:ApplyWarpDepleteProfile()
-            self:ShowStepComplete(F.String.ToxiUI("WarpDeplete") .. " profile installed.")
-            self.reloadRequired = true
-          end)
-        end
-
-        if F.IsAddOnEnabled("NameplateSCT") then
-          installFrame.Option3:Show()
-          installFrame.Option3:SetText("NSCT")
-          installFrame.Option3:SetScript("OnClick", function()
-            PF:ApplyNameplateSCTProfile()
-            self:ShowStepComplete(F.String.ToxiUI("NameplateSCT") .. " profile installed.")
-            self.reloadRequired = true
-          end)
-        end
+        InstallOptionalAddOn("OmniCD")
+        InstallOptionalAddOn("WarpDeplete")
+        InstallOptionalAddOn("NameplateSCT", "NSCT")
       end,
 
       -- Completed Page

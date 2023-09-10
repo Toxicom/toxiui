@@ -20,5 +20,8 @@ TXUI.Changelog["6.3.3"] = {
     "* Documentation",
     "Refactor old changelogs to follow new format",
     "Update changelog template to new format",
+
+    "* Development improvements",
+    "Custom install function to position installer buttons based on availability",
   },
 }
