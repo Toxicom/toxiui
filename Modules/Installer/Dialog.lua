@@ -76,6 +76,9 @@ function IS:Dialog()
       timer = C_Timer.NewTicker(3, function()
         ChangeImage(imageList)
       end)
+
+      local DevTool = _G["DevTool"]
+      DevTool:AddData(timer, "My local var2")
     else
       -- Reset to defaults
       installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
@@ -471,7 +474,17 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.Good("OmniCD") .. ", " .. F.String.Good("WarpDeplete") .. ", " .. F.String.Good("NameplateSCT"))
+        installFrame.Desc2:SetText(
+          "Currently supported AddOns: "
+            .. F.String.Good("OmniCD")
+            .. ", "
+            .. F.String.Good("WarpDeplete")
+            .. ", "
+            .. F.String.Good("NameplateSCT")
+            .. "\n\n"
+            .. F.String.ToxiUI("Information: ")
+            .. "The image below changes every 3 seconds!"
+        )
 
         if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") and not F.IsAddOnEnabled("NameplateSCT") then
           installFrame.Desc3:SetText(
