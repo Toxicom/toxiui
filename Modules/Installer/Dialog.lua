@@ -76,9 +76,6 @@ function IS:Dialog()
       timer = C_Timer.NewTicker(3, function()
         ChangeImage(imageList)
       end)
-
-      local DevTool = _G["DevTool"]
-      DevTool:AddData(timer, "My local var2")
     else
       -- Reset to defaults
       installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
