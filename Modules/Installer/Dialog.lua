@@ -437,10 +437,13 @@ function IS:Dialog()
             .. " to find out how you can achieve a similar look."
         )
 
-        installFrame.Option2:Show()
-        installFrame.Option2:SetText(TXUI.Title .. " Guide")
+        -- If WeakAuras is disabled, show ToxiUI WA Guide as Option 1
+        local buttonIndex = F.IsAddOnEnabled("WeakAuras") and 2 or 1
 
-        installFrame.Option2:SetScript("OnClick", function()
+        installFrame["Option" .. buttonIndex]:Show()
+        installFrame["Option" .. buttonIndex]:SetText(TXUI.Title .. " Guide")
+
+        installFrame["Option" .. buttonIndex]:SetScript("OnClick", function()
           self:PopupWAGuide()
         end)
       end,
