@@ -136,7 +136,9 @@ F.AddMedia("installer", "Details")
 F.AddMedia("installer", "Plater")
 F.AddMedia("installer", "BigWigs")
 F.AddMedia("installer", "WeakAuras")
-F.AddMedia("installer", "Additional")
+F.AddMedia("installer", "NameplateSCT")
+F.AddMedia("installer", "OmniCD")
+F.AddMedia("installer", "WarpDeplete")
 
 -- -----
 --   ARMORY BACKGROUNDS

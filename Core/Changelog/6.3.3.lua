@@ -8,6 +8,7 @@ TXUI.Changelog["6.3.3"] = {
       "WunderBar's RGB background"
     ) .. " and " .. F.String.Legendary("WunderBar Time module's resting animation"),
     "NameplateSCT " .. TXUI.Title .. " profile",
+    "Changing images in installer dialog",
 
     "* Profile updates",
     "Update Plater health text to match new unitframe style",

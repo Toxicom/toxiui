@@ -20,7 +20,27 @@ function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
   local installFrame = _G["PluginInstallFrame"]
 
+  local timer
+  local currentImageIndex
+
+  -- Helper function to cycle to the next image in a list
+  local function ChangeImage(imageList)
+    -- Set the texture to the next image in the list
+    installFrame.tutorialImage:SetTexture(imageList[currentImageIndex])
+    installFrame.tutorialImage:Size(512, 256)
+
+    -- Increment the current index or loop back to the beginning
+    currentImageIndex = currentImageIndex + 1
+    if currentImageIndex > #imageList then currentImageIndex = 1 end
+  end
+
   local function SetupCustomInstaller(pageNumber)
+    -- Stop the timer on each page
+    if timer then timer:Cancel() end
+
+    -- Reset current image index to 1 so it starts from beginning each time
+    currentImageIndex = 1
+
     -- Increase size of installer frame
     installFrame:Size(825, 600)
 
@@ -41,8 +61,21 @@ function IS:Dialog()
       installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
       installFrame.tutorialImage:Size(512, 256)
     elseif pageNumber == 9 then
-      installFrame.tutorialImage:SetTexture(I.Media.Installer.Additional)
+      -- List of images to cycle through
+      local imageList = {
+        I.Media.Installer.OmniCD,
+        I.Media.Installer.WarpDeplete,
+        I.Media.Installer.NameplateSCT,
+      }
+
+      -- Set initial texture to last image of the list, since it will start from the first one
+      installFrame.tutorialImage:SetTexture(imageList[#imageList])
       installFrame.tutorialImage:Size(512, 256)
+
+      -- Start the timer
+      timer = C_Timer.NewTicker(3, function()
+        ChangeImage(imageList)
+      end)
     else
       -- Reset to defaults
       installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
