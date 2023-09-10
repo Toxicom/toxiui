@@ -69,8 +69,8 @@ function PF:BuildNameplateSCTProfile()
     },
 
     strata = {
-      offTarget = "MEDIUM",
-      target = "HIGH",
+      offTarget = "BACKGROUND", -- Custom
+      target = "BACKGROUND", -- Custom
     },
 
     truncate = true,
