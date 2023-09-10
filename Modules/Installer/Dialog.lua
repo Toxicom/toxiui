@@ -417,9 +417,9 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.Good("OmniCD") .. ", " .. F.String.Good("WarpDeplete"))
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.Good("OmniCD") .. ", " .. F.String.Good("WarpDeplete") .. ", " .. F.String.Good("NameplateSCT"))
 
-        if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") then
+        if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") and not F.IsAddOnEnabled("NameplateSCT") then
           installFrame.Desc3:SetText(
             F.String.Warning("Warning: ") .. "Looks like you don't have any of the extra AddOns installed. Don't worry, you can still fully experience " .. TXUI.Title .. "!"
           )
@@ -450,6 +450,16 @@ function IS:Dialog()
           installFrame.Option2:SetScript("OnClick", function()
             PF:ApplyWarpDepleteProfile()
             self:ShowStepComplete(F.String.ToxiUI("WarpDeplete") .. " profile installed.")
+            self.reloadRequired = true
+          end)
+        end
+
+        if F.IsAddOnEnabled("NameplateSCT") then
+          installFrame.Option3:Show()
+          installFrame.Option3:SetText("NSCT")
+          installFrame.Option3:SetScript("OnClick", function()
+            PF:ApplyNameplateSCTProfile()
+            self:ShowStepComplete(F.String.ToxiUI("NameplateSCT") .. " profile installed.")
             self.reloadRequired = true
           end)
         end

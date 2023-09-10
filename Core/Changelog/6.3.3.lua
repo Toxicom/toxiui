@@ -7,6 +7,7 @@ TXUI.Changelog["6.3.3"] = {
     "Enable features that were previously enabled only for contributors: " .. F.String.Legendary("Gradient Mode Saturation Boost") .. ", " .. F.String.Legendary(
       "WunderBar's RGB background"
     ) .. " and " .. F.String.Legendary("WunderBar Time module's resting animation"),
+    "NameplateSCT " .. TXUI.Title .. " profile",
 
     "* Profile updates",
     "Update Plater health text to match new unitframe style",
