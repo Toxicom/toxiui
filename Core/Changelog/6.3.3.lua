@@ -25,5 +25,6 @@ TXUI.Changelog["6.3.3"] = {
 
     "* Development improvements",
     "Custom install function to position installer buttons based on availability",
+    "Refactor custom tags to use ElvUI functions",
   },
 }

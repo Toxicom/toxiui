@@ -47,6 +47,13 @@ function M:TagsUpdate()
 end
 
 function M:Tags()
+  -- Helper for appending tx: prefix
+  local function GetTagName(str)
+    if not str or str == "" then return "no-string-given" end
+
+    return "tx:" .. str
+  end
+
   local classIcon = [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\ToxiClasses:32:32:0:0:512:512:%s|t]]
   local classIcons = {
     WARRIOR = "0:64:0:64",
@@ -67,7 +74,8 @@ function M:Tags()
   local dm = TXUI:GetModule("ThemesDarkTransparency")
 
   -- ClassColor Tag
-  E:AddTag("tx:classcolor", "UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+  local classColorTag = GetTagName("classcolor")
+  E:AddTag(classColorTag, "UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
     if not dm.isEnabled then return "|cffffffff" end
 
     if UnitIsPlayer(unit) then
@@ -81,13 +89,11 @@ function M:Tags()
   end)
 
   -- ClassColor Tag Info
-  E.TagInfo["tx:classcolor"] = {
-    category = TXUI.Title, -- Title
-    description = "Colors names by player class or NPC reaction when DarkMode is enabled, white otherwise (Ex: [tx:classcolor][name])",
-  }
+  E:AddTagInfo(classColorTag, TXUI.Title, "Colors names by player class or NPC reaction when DarkMode is enabled, white otherwise (Ex: [tx:classcolor][name])")
 
   -- Class Icon Tag
-  E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED", function(unit)
+  local classIconTag = GetTagName("classicon")
+  E:AddTag(classIconTag, "PLAYER_TARGET_CHANGED", function(unit)
     if UnitIsPlayer(unit) then
       local _, class = UnitClass(unit)
       local icon = classIcons[class]
@@ -96,19 +102,17 @@ function M:Tags()
   end)
 
   -- Class Icon Tag Info
-  E.TagInfo["tx:classicon"] = {
-    category = TXUI.Title, -- Title
-    description = "Displays " .. TXUI.Title .. " class icon",
-  }
+  E:AddTagInfo(classIconTag, TXUI.Title, "Displays " .. TXUI.Title .. " class icon")
 
   -- Power Tag
-  local powerTagName = "tx:power"
-  E:AddTag(powerTagName, "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+  local powerTag = GetTagName("power")
+  E:AddTag(powerTag, "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
     local max = UnitPowerMax(unit)
     if max ~= 0 then return floor(UnitPower(unit) / max * 100 + 0.5) end
   end)
 
-  E:AddTagInfo(powerTagName, TXUI.Title, "Displays the unit's percentage power without decimals and hides when power is at 0")
+  -- Power Tag Info
+  E:AddTagInfo(powerTag, TXUI.Title, "Displays the unit's percentage power without decimals and hides when power is at 0")
 
   -- Settings Callback
   F.Event.RegisterCallback("Tags.DatabaseUpdate", self.TagsUpdate, self)
