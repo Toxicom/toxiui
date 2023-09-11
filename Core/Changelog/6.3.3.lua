@@ -18,6 +18,7 @@ TXUI.Changelog["6.3.3"] = {
     "Update Gradient theme's Mana colors to match Luxthos WA",
     "Move Rest Icon to accomodate space for Party Leader icon",
     "Move Party Leader icon above unitframe name",
+    "Use new " .. TXUI.Title .. " power tag",
 
     "* Documentation",
     "Refactor old changelogs to follow new format",
