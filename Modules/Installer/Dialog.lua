@@ -463,7 +463,8 @@ function IS:Dialog()
             button:SetScript("OnClick", function()
               PF["Apply" .. addonName .. "Profile"]()
               self:ShowStepComplete(F.String.ToxiUI(addonName) .. " profile installed.")
-              self.reloadRequired = true
+              -- no need to reload for NSCT
+              if addonName ~= "NameplateSCT" then self.reloadRequired = true end
             end)
             buttonIndex = buttonIndex + 1
           end
