@@ -12,7 +12,7 @@ function PF:BuildNameplateSCTProfile()
   F.Table.Crush(pf, {
     animations = {
       ability = "rainfall", -- Custom
-      animationspeed = 1,
+      animationspeed = 1.3, -- Custom
       autoattack = "rainfall", -- Custom
       autoattackcrit = "verticalUp",
       crit = "verticalUp",
