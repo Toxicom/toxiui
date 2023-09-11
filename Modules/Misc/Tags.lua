@@ -5,6 +5,7 @@ local ElvUF = E.oUF
 
 local ipairs = ipairs
 local select = select
+local floor = math.floor
 local UnitClass = UnitClass
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
@@ -97,8 +98,17 @@ function M:Tags()
   -- Class Icon Tag Info
   E.TagInfo["tx:classicon"] = {
     category = TXUI.Title, -- Title
-    description = "Displays class icon (Ex: [tx:classicon])",
+    description = "Displays " .. TXUI.Title .. " class icon",
   }
+
+  -- Power Tag
+  local powerTagName = "tx:power"
+  E:AddTag(powerTagName, "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+    local max = UnitPowerMax(unit)
+    if max ~= 0 then return floor(UnitPower(unit) / max * 100 + 0.5) end
+  end)
+
+  E:AddTagInfo(powerTagName, TXUI.Title, "Displays the unit's percentage power without decimals and hides when power is at 0")
 
   -- Settings Callback
   F.Event.RegisterCallback("Tags.DatabaseUpdate", self.TagsUpdate, self)
