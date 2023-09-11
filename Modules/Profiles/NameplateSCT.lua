@@ -40,7 +40,7 @@ function PF:BuildNameplateSCTProfile()
 
     formatting = {
       alpha = 1,
-      size = 30, -- Custom
+      size = F.FontSizeScaled(28), -- Custom
     },
 
     iconPosition = "RIGHT",
@@ -64,7 +64,7 @@ function PF:BuildNameplateSCTProfile()
       miss = false,
       missScale = 1.5,
       smallHits = true,
-      smallHitsHide = false,
+      smallHitsHide = true, -- Custom
       smallHitsScale = 0.66,
     },
 
