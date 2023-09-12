@@ -1029,7 +1029,7 @@ function PF:BuildProfile()
       raidWideSorting = true,
       showPlayer = false,
       startFromCenter = true,
-      verticalSpacing = F.Dpi(30),
+      verticalSpacing = F.Dpi(40),
 
       -- UnitFrame Party Custom Texts
       customTexts = {
