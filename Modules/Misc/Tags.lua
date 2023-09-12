@@ -101,7 +101,7 @@ function M:Tags()
     if E.db.TXUI.themes.gradientMode.saturationBoost then
       -- mod values taken from F.Color.GenerateCache()
       -- maybe can use instead F.Color.GetMap??
-      local modS1, modL2 = 1.6, 0.6
+      local modS1, modL1 = 1.6, 0.6
       local modS2, modL2 = 0.9, 1
 
       local h1, s1, l1 = F.ConvertToHSL(left.r, left.g, left.b)
