@@ -95,11 +95,30 @@ function M:Tags()
     local left = colorMap[1][unitClass] -- Left (player UF)
     local right = colorMap[2][unitClass] -- Right (player UF)
 
+    local r1, g1, b1
+    local r2, g2, b2
+
+    if E.db.TXUI.themes.gradientMode.saturationBoost then
+      -- mod values taken from F.Color.GenerateCache()
+      -- maybe can use instead F.Color.GetMap??
+      local modS1, modL2 = 1.6, 0.6
+      local modS2, modL2 = 0.9, 1
+
+      local h1, s1, l1 = F.ConvertToHSL(left.r, left.g, left.b)
+      local h2, s2, l2 = F.ConvertToHSL(right.r, right.g, right.b)
+
+      r1, g1, b1 = F.ConvertToRGB(F.ClampToHSL(h1, s1 * modS1, l1 * modL1))
+      r2, g2, b2 = F.ConvertToRGB(F.ClampToHSL(h2, s2 * modS2, l2 * modL2))
+    else
+      r1, g1, b1 = left.r, left.g, left.b
+      r2, g2, b2 = right.r, right.g, right.b
+    end
+
     -- Reverse color for target frame etc
     if reverseGradient then
-      return E:TextGradient(name, right.r, right.g, right.b, left.r, left.g, left.b)
+      return E:TextGradient(name, r2, g2, b2, r1, g1, b1)
     else
-      return E:TextGradient(name, left.r, left.g, left.b, right.r, right.g, right.b)
+      return E:TextGradient(name, r1, g1, b1, r2, g2, b2)
     end
   end
 
