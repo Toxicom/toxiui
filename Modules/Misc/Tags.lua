@@ -84,7 +84,7 @@ function M:Tags()
     EVOKER = "256:320:0:64",
   }
 
-  function SetGradientColorMapString(name, unitClass, reverseGradient)
+  local function SetGradientColorMapString(name, unitClass, reverseGradient)
     if not name or name == "" then return end
     local classColorMap = E.db.TXUI.themes.gradientMode.classColorMap
     local reactionColorMap = E.db.TXUI.themes.gradientMode.reactionColorMap
