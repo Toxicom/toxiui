@@ -10,7 +10,7 @@ TXUI.Changelog["6.3.3"] = {
     "NameplateSCT " .. TXUI.Title .. " profile",
     "Changing images in installer dialog",
     "Custom ElvUI tag for power - same as before, but hides when power is 0",
-    "Gradient UnitFrame texts in Dark Mode",
+    "Gradient UnitFrame text tags in Dark Mode. Credits to " .. F.String.RandomClassColor("Eltreum") .. " and " .. F.String.Class("ElvUI discord", "SHAMAN"),
 
     "* Profile updates",
     "Update Plater health text to match new unitframe style",
