@@ -60,6 +60,36 @@ function O:ToxiUI_Themes_DarkMode()
   -- Spacer
   self:AddSpacer(options)
 
+  -- Gradient Name
+  do
+    -- Gradient Group
+    local gradientGroup = self:AddInlineDesc(options, {
+      name = "Gradient name",
+      hidden = optionsHidden,
+    }, {
+      name = "Changes unitframe name to have gradient colors",
+    }).args
+
+    -- Gradient Toggle
+    gradientGroup.toggle = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.themes.darkMode.gradientName)
+      end,
+      desc = "Toggling this on enables gradient names for " .. TXUI.Title .. " Dark Mode",
+      get = function()
+        return E.db.TXUI.themes.darkMode.gradientName
+      end,
+      set = function(_, value)
+        TXUI:GetModule("Themes"):Toggle("darkModeGradientName", value)
+      end,
+      disabled = function()
+        return not TXUI:HasRequirements(I.Requirements.DarkModeGradientName)
+      end,
+    }
+  end
+
   -- Transparency
   do
     -- Transparency Group

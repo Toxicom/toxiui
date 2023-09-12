@@ -28,7 +28,6 @@ function O:ToxiUI_Themes_GradientMode()
 
   -- Options
   local options = self.options.themes.args.gradientMode.args
-  local optionsHidden
 
   -- General
   do
@@ -58,11 +57,6 @@ function O:ToxiUI_Themes_GradientMode()
         TXUI:GetModule("Themes"):Toggle("gradientMode", value)
       end,
     }
-
-    -- Hidden helper
-    optionsHidden = function()
-      return self:GetEnabledState(E.db.TXUI.themes.gradientMode.enabled, generalGroup) ~= self.enabledState.YES
-    end
   end
 
   -- Colors
@@ -70,7 +64,6 @@ function O:ToxiUI_Themes_GradientMode()
     -- Tab
     local tab = self:AddGroup(options, {
       name = "Class Colors",
-      hidden = optionsHidden,
     }).args
 
     -- Colors Group
@@ -164,7 +157,6 @@ function O:ToxiUI_Themes_GradientMode()
     -- Tab
     local tab = self:AddGroup(options, {
       name = name,
-      hidden = optionsHidden,
     }).args
 
     -- Colors Group
@@ -261,7 +253,6 @@ function O:ToxiUI_Themes_GradientMode()
     -- Tab
     local tab = self:AddGroup(options, {
       name = name,
-      hidden = optionsHidden,
     }).args
 
     -- Power Color Group
@@ -355,7 +346,6 @@ function O:ToxiUI_Themes_GradientMode()
     -- Tab
     local tab = self:AddGroup(options, {
       name = "Other Colors",
-      hidden = optionsHidden,
     }).args
 
     -- State Group
@@ -523,7 +513,6 @@ function O:ToxiUI_Themes_GradientMode()
     -- Tab
     local tab = self:AddGroup(options, {
       name = name,
-      hidden = optionsHidden,
     }).args
 
     -- Settings Group

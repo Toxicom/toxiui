@@ -35,6 +35,7 @@ function TH:Toggle(theme, value)
     -- save settings
     E.db.TXUI.themes.darkMode.enabled = value
     E.db.TXUI.themes.darkMode.transparency = value
+    E.db.TXUI.themes.darkMode.gradientName = value
 
     TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
       -- apply elvui profile
@@ -69,6 +70,14 @@ function TH:Toggle(theme, value)
 
     -- apply dark mode skinning to details
     F.Event.TriggerEvent("SkinsDetailsDark.DatabaseUpdate")
+
+    -- apply custom tags
+    F.Event.TriggerEvent("Tags.DatabaseUpdate")
+  end
+
+  if theme == "darkModeGradientName" then
+    -- save settings
+    E.db.TXUI.themes.darkMode.gradientName = value
 
     -- apply custom tags
     F.Event.TriggerEvent("Tags.DatabaseUpdate")

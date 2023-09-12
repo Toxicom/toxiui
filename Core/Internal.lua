@@ -116,6 +116,11 @@ I.Requirements = {
     I.Enum.Requirements.GRADIENT_MODE_DISABLED,
     I.Enum.Requirements.ELVUI_NOT_SKINNED,
   },
+  ["DarkModeGradientName"] = {
+    I.Enum.Requirements.DARK_MODE_ENABLED,
+    I.Enum.Requirements.GRADIENT_MODE_DISABLED,
+    I.Enum.Requirements.ELVUI_NOT_SKINNED,
+  },
   ["GradientMode"] = {
     I.Enum.Requirements.DARK_MODE_DISABLED,
     I.Enum.Requirements.ELVUI_NOT_SKINNED,

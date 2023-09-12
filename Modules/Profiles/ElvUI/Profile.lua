@@ -455,7 +455,7 @@ function PF:BuildProfile()
         -- UnitFrame Player Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Health",
-          text_format = "[tx:classcolor][name:medium]",
+          text_format = "[tx:name:medium]",
           xOffset = F.Dpi(5),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
@@ -463,7 +463,7 @@ function PF:BuildProfile()
         -- UnitFrame Player Custom Texts Health
         ["!Health"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:classcolor][health:current:shortvalue] || [perhp]",
+          text_format = "[tx:health:current:shortvalue] || [tx:perhp]",
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
 
@@ -602,7 +602,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
         ["!Health"] = {
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
         ["!ClassIcon"] = {
@@ -634,7 +634,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Target Custom Texts Health
         ["!Health"] = createCustomText({}, {
-          text_format = "[tx:classcolor][perhp] || [health:current:shortvalue]",
+          text_format = "[tx:perhp] || [tx:health:current:shortvalue]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
@@ -642,7 +642,7 @@ function PF:BuildProfile()
         -- UnitFrame Target Custom Texts Name
         ["!Name"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:classcolor][name:abbrev:medium]",
+          text_format = "[tx:name:abbrev:medium]",
           xOffset = F.Dpi(-5),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
@@ -756,7 +756,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
         ["!Health"] = {
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
         ["!ClassIcon"] = {
@@ -784,7 +784,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Pet Custom Texts Name
         ["!Name"] = createCustomText({}, {
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:name:short]",
           xOffset = F.Dpi(0),
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(0)),
           justifyH = "CENTER",
@@ -856,7 +856,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Target-Target Custom Texts Name
         ["!Name"] = createCustomText({}, {
-          text_format = "[tx:classcolor][name:short]",
+          text_format = "[tx:name:short]",
           xOffset = F.Dpi(0),
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(0)),
           justifyH = "CENTER",
@@ -908,7 +908,7 @@ function PF:BuildProfile()
         -- UnitFrame Focus Custom Texts Name
         ["!Name"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:classcolor][name:medium]",
+          text_format = "[tx:name:medium]",
           xOffset = F.Dpi(-5),
           yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
         }),
@@ -916,7 +916,7 @@ function PF:BuildProfile()
         -- UnitFrame Focus Custom Texts Health
         ["!Health"] = createCustomText({}, {
           justifyH = "LEFT",
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
         }),
@@ -1004,7 +1004,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(20)),
         },
         ["!Health"] = {
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
         },
         ["!ClassIcon"] = {
@@ -1035,7 +1035,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Party Custom Texts Name
         ["!Name"] = createCustomText({}, {
-          text_format = "[tx:classcolor][name:medium]",
+          text_format = "[tx:name:medium]",
           xOffset = F.Dpi(10),
           yOffset = F.Dpi(25),
         }),
@@ -1043,7 +1043,7 @@ function PF:BuildProfile()
         -- UnitFrame Party Custom Texts Health
         ["!Health"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           xOffset = F.Dpi(-10),
           yOffset = F.Dpi(25),
         }),
@@ -1205,7 +1205,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
         ["!Health"] = {
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
         ["!ClassIcon"] = {
@@ -1245,7 +1245,7 @@ function PF:BuildProfile()
         -- UnitFrame Raid1 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:veryshort]",
+          text_format = "[tx:name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1334,7 +1334,7 @@ function PF:BuildProfile()
         -- UnitFrame Raid2 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:veryshort]",
+          text_format = "[tx:name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1422,7 +1422,7 @@ function PF:BuildProfile()
         -- UnitFrame Raid3 Custom Texts Name
         ["!Name"] = createCustomText({}, {
           attachTextTo = "Frame",
-          text_format = "[tx:classcolor][name:veryshort]",
+          text_format = "[tx:name:veryshort]",
           justifyH = "CENTER",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
@@ -1490,12 +1490,12 @@ function PF:BuildProfile()
   -- UnitFrame Tank
   F.Table.Crush(pf.unitframe.units.tank, {
     name = {
-      text_format = "[name:medium]",
+      text_format = "[tx:name:medium]",
     },
 
     targetsGroup = {
       name = {
-        text_format = "[name:medium]",
+        text_format = "[tx:name:medium]",
       },
     },
 
@@ -1506,12 +1506,12 @@ function PF:BuildProfile()
   -- UnitFrame Assist
   F.Table.Crush(pf.unitframe.units.assist, {
     name = {
-      text_format = "[name:medium]",
+      text_format = "[tx:name:medium]",
     },
 
     targetsGroup = {
       name = {
-        text_format = "[name:medium]",
+        text_format = "[tx:name:medium]",
       },
     },
   })
@@ -1528,7 +1528,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Arena Custom Texts Health
         ["!Health"] = createCustomText({}, {
-          text_format = "[tx:classcolor][perhp] || [health:current:shortvalue]",
+          text_format = "[tx:perhp] || [tx:health:current:shortvalue]",
           xOffset = F.Dpi(5),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
@@ -1536,7 +1536,7 @@ function PF:BuildProfile()
         -- UnitFrame Arena Custom Texts Name
         ["!Name"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:classcolor][name:medium]",
+          text_format = "[tx:name:medium]",
           xOffset = F.Dpi(-5),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
@@ -1590,7 +1590,7 @@ function PF:BuildProfile()
     F.Table.If(IsNewLayout, {
       customTexts = {
         ["!Health"] = {
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
 
@@ -1613,7 +1613,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Boss Custom Texts Health
         ["!Health"] = createCustomText({}, {
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           xOffset = F.Dpi(5),
           yOffset = F.Dpi(25),
         }),
@@ -1621,7 +1621,7 @@ function PF:BuildProfile()
         -- UnitFrame Boss Custom Texts Name
         ["!Name"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:classcolor][name:abbrev:medium]",
+          text_format = "[tx:name:abbrev:medium]",
           xOffset = F.Dpi(-5),
           yOffset = F.Dpi(25),
         }),
@@ -1671,7 +1671,7 @@ function PF:BuildProfile()
     F.Table.If(IsNewLayout, {
       customTexts = {
         ["!Health"] = {
-          text_format = "[tx:classcolor][perhp]",
+          text_format = "[tx:perhp]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
 
