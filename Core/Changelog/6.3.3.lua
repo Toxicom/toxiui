@@ -19,6 +19,7 @@ TXUI.Changelog["6.3.3"] = {
     "Move Rest Icon to accomodate space for Party Leader icon",
     "Move Party Leader icon above unitframe name",
     "Use new " .. TXUI.Title .. " power tag",
+    "Change ElvUI's value color to " .. F.String.Class("class color"),
 
     "* Documentation",
     "Refactor old changelogs to follow new format",

@@ -251,7 +251,7 @@ function PF:BuildProfile()
     objectiveFrameHeight = F.Dpi(500),
 
     -- General Colors
-    valuecolor = F.Table.HexToRGB("#ffffff"),
+    valuecolor = F.Table.CurrentClassColor(),
     backdropcolor = F.Table.HexToRGB("#1a1a1a"),
     backdropfadecolor = F.Table.HexToRGB("#282828cc"),
     bordercolor = F.Table.HexToRGB("#000000"),
