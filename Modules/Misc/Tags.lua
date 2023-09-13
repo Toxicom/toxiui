@@ -184,6 +184,8 @@ function M:Tags()
     end)
   end
 
+  -- TODO: a lot of these tags are very similar with just a couple changes
+  --       ideally we should refactor this with a for loop or something
   -- Health tags
   E:AddTag("tx:health:percent:nosign", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
     local max = UnitHealthMax(unit)
@@ -236,6 +238,78 @@ function M:Tags()
 
       local reverseGradient = reverseUnitsTable[unit]
       return FormatColorTag(health, unit, not reverseGradient)
+    end
+  end)
+
+  E:AddTag("tx:health:full:nosign", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+    if status then
+      return status
+    else
+      local min, max = UnitHealth(unit), UnitHealthMax(unit)
+      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+
+      local percentHealth
+
+      if max == 0 then
+        percentHealth = 0
+      else
+        percentHealth = floor(min / max * 100 + 0.5)
+      end
+
+      local percentHealthStr = tostring(percentHealth)
+
+      local finalHealth
+
+      -- combine string with pipe, revert for target etc
+      local reverseGradient = reverseUnitsTable[unit]
+      if not reverseGradient then
+        -- TODO: fix this to be an actual | sign instead of l (letter L)
+        finalHealth = health .. " l " .. percentHealthStr
+      else
+        finalHealth = percentHealthStr .. " l " .. health
+      end
+
+      if not dm.isEnabled then return finalHealth end
+
+      return FormatColorTag(finalHealth, unit, not reverseGradient)
+    end
+  end)
+
+  E:AddTag("tx:health:full", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+    if status then
+      return status
+    else
+      local min, max = UnitHealth(unit), UnitHealthMax(unit)
+      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+
+      local percentHealth
+
+      if max == 0 then
+        percentHealth = 0
+      else
+        percentHealth = floor(min / max * 100 + 0.5)
+      end
+
+      local percentHealthStr = tostring(percentHealth)
+      -- append % sign
+      percentHealthStr = percentHealthStr .. "%"
+
+      local finalHealth
+
+      -- combine string with pipe, revert for target etc
+      local reverseGradient = reverseUnitsTable[unit]
+      if not reverseGradient then
+        -- TODO: fix this to be an actual | sign instead of l (letter L)
+        finalHealth = health .. " l " .. percentHealthStr
+      else
+        finalHealth = percentHealthStr .. " l " .. health
+      end
+
+      if not dm.isEnabled then return finalHealth end
+
+      return FormatColorTag(finalHealth, unit, not reverseGradient)
     end
   end)
 
@@ -300,6 +374,9 @@ function M:Tags()
   E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
   E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
   E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
+
+  E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
+  E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")
 
   E:AddTagInfo(
     "tx:power:percent:nosign",
