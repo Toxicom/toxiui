@@ -240,7 +240,7 @@ function M:Tags()
   end)
 
   -- Power Tag
-  E:AddTag("tx:power", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+  E:AddTag("tx:power:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
     local max = UnitPowerMax(unit)
     local power = floor(UnitPower(unit) / max * 100 + 0.5)
 
@@ -249,6 +249,22 @@ function M:Tags()
     end
 
     local powerStr = tostring(power)
+
+    local reverseGradient = reverseUnitsTable[unit]
+    if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
+  end)
+
+  -- Power Tag
+  E:AddTag("tx:power:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+    local max = UnitPowerMax(unit)
+    local power = floor(UnitPower(unit) / max * 100 + 0.5)
+    local powerStr = tostring(power)
+    -- append % sign
+    powerStr = powerStr .. "%"
+
+    if not dm.isEnabled then
+      if max ~= 0 then return powerStr end
+    end
 
     local reverseGradient = reverseUnitsTable[unit]
     if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
@@ -263,25 +279,38 @@ function M:Tags()
     end
   end)
 
+  local TagNames = {
+    DEFAULT = TXUI.Title,
+    NAMES = TXUI.Title .. " Names",
+    HEALTH = TXUI.Title .. " Health",
+    POWER = TXUI.Title .. " Power",
+  }
+
   -- Tag info
-  E:AddTagInfo("tx:name:veryshort", TXUI.Title, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 5 letters)")
-  E:AddTagInfo("tx:name:short", TXUI.Title, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 10 letters)")
-  E:AddTagInfo("tx:name:medium", TXUI.Title, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 15 letters)")
-  E:AddTagInfo("tx:name:long", TXUI.Title, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 20 letters)")
+  E:AddTagInfo("tx:name:veryshort", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 5 letters)")
+  E:AddTagInfo("tx:name:short", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 10 letters)")
+  E:AddTagInfo("tx:name:medium", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 15 letters)")
+  E:AddTagInfo("tx:name:long", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 20 letters)")
 
-  E:AddTagInfo("tx:name:abbrev:veryshort", TXUI.Title, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 5 letters)")
-  E:AddTagInfo("tx:name:abbrev:short", TXUI.Title, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 10 letters)")
-  E:AddTagInfo("tx:name:abbrev:medium", TXUI.Title, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 15 letters)")
-  E:AddTagInfo("tx:name:abbrev:long", TXUI.Title, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 20 letters)")
+  E:AddTagInfo("tx:name:abbrev:veryshort", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 5 letters)")
+  E:AddTagInfo("tx:name:abbrev:short", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 10 letters)")
+  E:AddTagInfo("tx:name:abbrev:medium", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 15 letters)")
+  E:AddTagInfo("tx:name:abbrev:long", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 20 letters)")
 
-  E:AddTagInfo("tx:health:percent:nosign", TXUI.Title, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
-  E:AddTagInfo("tx:health:percent", TXUI.Title, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
-  E:AddTagInfo("tx:health:current:shortvalue", TXUI.Title, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
+  E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
+  E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
+  E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
 
   E:AddTagInfo(
-    "tx:power",
-    TXUI.Title,
+    "tx:power:percent:nosign",
+    TagNames.POWER,
     "Displays percentage Power of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
+  )
+
+  E:AddTagInfo(
+    "tx:power:percent",
+    TagNames.POWER,
+    "Displays percentage Power of unit without decimals. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
   )
 
   E:AddTagInfo("tx:classicon", TXUI.Title, "Displays " .. TXUI.Title .. " class icon.")

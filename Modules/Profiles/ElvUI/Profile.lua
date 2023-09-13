@@ -650,7 +650,7 @@ function PF:BuildProfile()
         -- UnitFrame Target Custom Texts Power
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = "[tx:power]",
+          text_format = "[tx:power:percent:nosign]",
           xOffset = F.Dpi(85),
           yOffset = F.Dpi(0),
         }),
@@ -1544,7 +1544,7 @@ function PF:BuildProfile()
         -- UnitFrame Arena Custom Texts Power
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = "[tx:power]",
+          text_format = "[tx:power:percent:nosign]",
           xOffset = F.Dpi(10),
           yOffset = F.Dpi(0),
         }),
@@ -1629,7 +1629,7 @@ function PF:BuildProfile()
         -- UnitFrame Boss Custom Texts Power
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = "[tx:power]",
+          text_format = "[tx:power:percent:nosign]",
           xOffset = F.Dpi(70),
           yOffset = F.Dpi(0),
         }),
