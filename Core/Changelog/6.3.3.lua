@@ -1,7 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["6.3.3"] = {
-  HOTFIX = true,
+  HOTFIX = false,
   CHANGES = {
     "* New features",
     "Enable features that were previously enabled only for contributors: " .. F.String.Legendary("Gradient Mode Saturation Boost") .. ", " .. F.String.Legendary(
