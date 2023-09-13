@@ -362,33 +362,12 @@ function PF:ApplyOmniCDProfile()
     return
   end
 
-  local profileName = I.ProfileNames.Default
+  local profileName = E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and I.ProfileNames[I.Enum.Layouts.HEALER] or I.ProfileNames[I.Enum.Layouts.DPS]
   local profile = PF:BuildOmniCDProfile() or {}
 
   db.DB:SetProfile(profileName)
   db.DB:ResetProfile(profileName)
   F.Table.Crush(db.DB.profile, profile)
-
-  -- Debug code for OmniCD spells
-  -- -- Assuming you have the table containing spell IDs and boolean values in _G.OmniCD[1].DB.profile.Party.party.spells
-  -- local spellTable = _G.OmniCD[1].DB.profile.Party.party.spells
-
-  -- -- Create a table to store the spell ID, name, and isBoolean pairs
-  -- E.db.TXUI.temp = E.db.TXUI.temp or {}
-
-  -- -- Iterate through the table
-  -- for spellId, isBoolean in pairs(spellTable) do
-  --   -- Use GetSpellInfo to retrieve spell information
-  --   local name, _, icon, _, _, _, spellID, originalIcon = GetSpellInfo(spellId)
-
-  --   if name and spellID then
-  --     -- Combine isBoolean and name, separating them with a comma
-  --     local valueString = tostring(isBoolean) .. ", " .. name
-
-  --     -- Add the data to E.db.TXUI.temp using the spellID as the key
-  --     E.db.TXUI.temp[spellID] = valueString
-  --   end
-  -- end
 
   TXUI:LogInfo(F.String.ToxiUI("OmniCD") .. " profile successfully installed and applied. Please reload your UI!")
 end

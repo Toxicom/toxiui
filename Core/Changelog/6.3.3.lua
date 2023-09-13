@@ -11,6 +11,7 @@ TXUI.Changelog["6.3.3"] = {
     "Changing images in installer dialog",
     "Custom ElvUI tag for power - same as before, but hides when power is 0",
     "Gradient UnitFrame text tags in Dark Mode. Credits to " .. F.String.RandomClassColor("Eltreum") .. " and " .. F.String.Class("ElvUI discord", "SHAMAN"),
+    "Create separate profiles for OmniCD depending on " .. F.String.ToxiUI("DPS/Tank") .. " or  " .. F.String.Class("Healer", "MONK") .. " layout selected",
 
     "* Profile updates",
     "Update Plater health text to match new unitframe style",

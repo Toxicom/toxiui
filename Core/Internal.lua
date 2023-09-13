@@ -90,8 +90,8 @@ I.Media = {
 -- This only affects BigWigs
 I.ProfileNames = {
   ["Default"] = "ToxiUI", -- Plater, Details
-  [I.Enum.Layouts.DPS] = "ToxiUI-DPS", -- BigWigs
-  [I.Enum.Layouts.HEALER] = "ToxiUI-Healer", -- BigWigs
+  [I.Enum.Layouts.DPS] = "ToxiUI-DPS", -- BigWigs and OmniCD
+  [I.Enum.Layouts.HEALER] = "ToxiUI-Healer", -- BigWigs and OmniCD
   ["Dev"] = "ToxiUI-Dev",
 }
 
