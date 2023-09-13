@@ -463,7 +463,7 @@ function PF:BuildProfile()
         -- UnitFrame Player Custom Texts Health
         ["!Health"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:health:current:shortvalue] || [tx:perhp]",
+          text_format = "[tx:health:current:shortvalue] || [tx:health:percent:nosign]",
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
 
@@ -602,7 +602,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
         ["!Health"] = {
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
         ["!ClassIcon"] = {
@@ -634,7 +634,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Target Custom Texts Health
         ["!Health"] = createCustomText({}, {
-          text_format = "[tx:perhp] || [tx:health:current:shortvalue]",
+          text_format = "[tx:health:percent:nosign] || [tx:health:current:shortvalue]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
@@ -756,7 +756,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
         ["!Health"] = {
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
         ["!ClassIcon"] = {
@@ -916,7 +916,7 @@ function PF:BuildProfile()
         -- UnitFrame Focus Custom Texts Health
         ["!Health"] = createCustomText({}, {
           justifyH = "LEFT",
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
         }),
@@ -1004,7 +1004,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(20)),
         },
         ["!Health"] = {
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
         },
         ["!ClassIcon"] = {
@@ -1043,7 +1043,7 @@ function PF:BuildProfile()
         -- UnitFrame Party Custom Texts Health
         ["!Health"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(-10),
           yOffset = F.Dpi(25),
         }),
@@ -1205,7 +1205,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         },
         ["!Health"] = {
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
         ["!ClassIcon"] = {
@@ -1528,7 +1528,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Arena Custom Texts Health
         ["!Health"] = createCustomText({}, {
-          text_format = "[tx:perhp] || [tx:health:current:shortvalue]",
+          text_format = "[tx:health:percent:nosign] || [tx:health:current:shortvalue]",
           xOffset = F.Dpi(5),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
@@ -1590,7 +1590,7 @@ function PF:BuildProfile()
     F.Table.If(IsNewLayout, {
       customTexts = {
         ["!Health"] = {
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
 
@@ -1613,7 +1613,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Boss Custom Texts Health
         ["!Health"] = createCustomText({}, {
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(5),
           yOffset = F.Dpi(25),
         }),
@@ -1671,7 +1671,7 @@ function PF:BuildProfile()
     F.Table.If(IsNewLayout, {
       customTexts = {
         ["!Health"] = {
-          text_format = "[tx:perhp]",
+          text_format = "[tx:health:percent:nosign]",
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         },
 

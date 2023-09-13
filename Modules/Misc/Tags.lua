@@ -185,7 +185,7 @@ function M:Tags()
   end
 
   -- Health tags
-  E:AddTag("tx:perhp", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
+  E:AddTag("tx:health:percent:nosign", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
     local max = UnitHealthMax(unit)
     local health
 
@@ -199,6 +199,26 @@ function M:Tags()
 
     -- convert health to string
     local healthStr = tostring(health)
+
+    local reverseGradient = reverseUnitsTable[unit]
+    return FormatColorTag(healthStr, unit, not reverseGradient)
+  end)
+
+  E:AddTag("tx:health:percent", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
+    local max = UnitHealthMax(unit)
+    local health
+
+    if max == 0 then
+      health = 0
+    else
+      health = floor(UnitHealth(unit) / max * 100 + 0.5)
+    end
+
+    local healthStr = tostring(health)
+    -- append percentage sign
+    healthStr = healthStr .. "%"
+
+    if not dm.isEnabled then return healthStr end
 
     local reverseGradient = reverseUnitsTable[unit]
     return FormatColorTag(healthStr, unit, not reverseGradient)
@@ -254,7 +274,8 @@ function M:Tags()
   E:AddTagInfo("tx:name:abbrev:medium", TXUI.Title, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 15 letters)")
   E:AddTagInfo("tx:name:abbrev:long", TXUI.Title, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 20 letters)")
 
-  E:AddTagInfo("tx:perhp", TXUI.Title, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
+  E:AddTagInfo("tx:health:percent:nosign", TXUI.Title, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
+  E:AddTagInfo("tx:health:percent", TXUI.Title, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
   E:AddTagInfo("tx:health:current:shortvalue", TXUI.Title, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
 
   E:AddTagInfo(
