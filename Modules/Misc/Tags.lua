@@ -50,6 +50,7 @@ end
 -- Table for referencing which gradients should be reversed
 local reverseUnitsTable = {
   ["target"] = true,
+  ["targettarget"] = true,
   ["focus"] = true,
   ["arena1"] = true,
   ["arena2"] = true,
