@@ -405,7 +405,6 @@ function A:UpdateTitle()
   if not currentClass or not playerLevel then return end
 
   local classColorNormal = E.db.TXUI.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.NORMAL][currentClass]
-  local classColorShift = E.db.TXUI.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT][currentClass]
 
   if self:UseFontGradient(self.db, "nameText") then
     self.nameText:SetText(F.String.FastGradient(E.myname, 0, 0.6, 1, 0, 0.9, 1))
