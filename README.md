@@ -13,7 +13,8 @@ Gone are the days of complex installation processes. ToxiUI prides itself on a s
 Experience the future of data panels with WunderBar. ToxiUI introduces a modern and customizable data panel that serves as your one-stop hub for crucial information. Whether you're tracking your character's statistics, managing resources, or just staring at the clock while afk running around the capital city, WunderBar offers unparalleled convenience and customization.
 
 ### A World of Themes and Customization
-![ToxiUI Themes](https://i.imgur.com/3hhJSwN.png)
+![ToxiUI Themes](https://github.com/Toxicom/toxiui/assets/69549795/c07fb1ee-d988-4a06-9654-dfe033a2646c)
+
 ToxiUI empowers you to personalize your World of Warcraft interface. With three distinct themes to choose from, you can align your UI with your personal style or adapt it to match your character's journey. And if that's not enough, the ability to easily customize gradient colors ensures your UI remains as unique as your adventure.
 
 ### Community-Driven Evolution
