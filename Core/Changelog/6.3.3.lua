@@ -22,6 +22,7 @@ TXUI.Changelog["6.3.3"] = {
     "Use new " .. TXUI.Title .. " power tag",
     "Change ElvUI's value color to " .. F.String.Class("class color"),
     "Increase party frames vertical spacing",
+    "Reduce unitframe buff/debuff font size",
 
     "* Documentation",
     "Refactor old changelogs to follow new format",
