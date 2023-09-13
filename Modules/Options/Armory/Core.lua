@@ -23,6 +23,11 @@ function O:Armory()
   local options = self.options.armory.args
   local optionsHidden
 
+  local unitClass = E.myclass
+  local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
+  local left = colorMap[1][unitClass] -- Left (player UF)
+  local right = colorMap[2][unitClass] -- Right (player UF)
+
   -- General
   do
     -- General Group
@@ -161,6 +166,7 @@ function O:Armory()
         name = "Font Color",
         values = self:GetAllFontColorsFunc {
           ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -349,6 +355,7 @@ function O:Armory()
         name = "Font Color",
         values = self:GetAllFontColorsFunc {
           ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -446,6 +453,7 @@ function O:Armory()
         name = "Font Color",
         values = self:GetAllFontColorsFunc {
           ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -1214,6 +1222,7 @@ function O:Armory()
         name = "Font Color",
         values = self:GetAllFontColorsFunc {
           ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -1288,6 +1297,7 @@ function O:Armory()
         name = "Font Color",
         values = self:GetAllFontColorsFunc {
           ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 

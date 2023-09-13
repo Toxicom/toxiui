@@ -192,6 +192,11 @@ function A:UseFontGradient(db, prefix)
   return (dbEntry == "GRADIENT")
 end
 
+function A:UseFontClassGradient(db, prefix)
+  local dbEntry = db[prefix .. "FontColor"]
+  return (dbEntry == "CLASS_GRADIENT")
+end
+
 function A:GetSlotNameByID(slotId)
   for slot, options in pairs(self.characterSlots) do
     if options.id == slotId then return slot end
@@ -365,6 +370,8 @@ function A:UpdateItemLevel()
         self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.07, 0.90, 0.15, 0, 0.69, 0.11))
       end
     end
+  elseif self:UseFontClassGradient(self.db.stats, "itemLevel") then
+    self.frame.ItemLevelText:SetText(F.String.GradientClass(itemLevelText, nil, true))
   else
     self.frame.ItemLevelText:SetText(itemLevelText)
     F.SetFontColorFromDB(self.db.stats, "itemLevel", self.frame.ItemLevelText)
@@ -402,6 +409,8 @@ function A:UpdateTitle()
 
   if self:UseFontGradient(self.db, "nameText") then
     self.nameText:SetText(F.String.FastGradient(E.myname, 0, 0.6, 1, 0, 0.9, 1))
+  elseif self:UseFontClassGradient(self.db, "nameText") then
+    self.nameText:SetText(F.String.GradientClass(E.myname))
   else
     self.nameText:SetText(E.myname)
     F.SetFontColorFromDB(self.db, "nameText", self.nameText)
@@ -409,6 +418,8 @@ function A:UpdateTitle()
 
   if self:UseFontGradient(self.db, "titleText") then
     self.titleText:SetText(F.String.FastGradient(titleName, 0, 0.9, 1, 0, 0.6, 1))
+  elseif self:UseFontClassGradient(self.db, "titleText") then
+    self.titleText:SetText(F.String.GradientClass(titleName))
   else
     self.titleText:SetText(titleName)
     F.SetFontColorFromDB(self.db, "titleText", self.titleText)
@@ -427,9 +438,7 @@ function A:UpdateTitle()
   end
 
   if self:UseFontGradient(self.db, "classText") then
-    self.classText:SetText(
-      F.String.FastGradient(classNames[currentClass], classColorNormal.r, classColorNormal.g, classColorNormal.b, classColorShift.r, classColorShift.g, classColorShift.b)
-    )
+    self.classText:SetText(F.String.GradientClass(classNames[currentClass], nil, true))
   else
     self.classText:SetText(classNames[currentClass])
     F.SetFontColorFromDB(self.db, "classText", self.classText)
@@ -644,16 +653,24 @@ function A:UpdateCategoryHeader(frame, animationSlot)
   if frame.backdrop then frame.backdrop:Kill() end
   if frame.Background then frame.Background:Kill() end
 
-  -- Set cutom font
+  local currentClass = E.myclass
+  local classColorNormal = E.db.TXUI.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.NORMAL][currentClass]
+  local classColorShift = E.db.TXUI.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT][currentClass]
+
+  -- Set custom font
   F.SetFontFromDB(self.db.stats, "header", frame.Title, false)
 
   local useHeaderGradient = self:UseFontGradient(self.db.stats, "header")
+  local useHeaderClassGradient = self:UseFontClassGradient(self.db.stats, "header")
+  local categoryHeader = F.String.StripColor(frame.Title:GetText())
 
   -- Set color gradient
   if useHeaderGradient then
-    frame.Title:SetText(F.String.FastGradient(F.String.StripColor(frame.Title:GetText()), 0, 0.9, 1, 0, 0.6, 1))
+    frame.Title:SetText(F.String.FastGradient(categoryHeader, 0, 0.9, 1, 0, 0.6, 1))
+  elseif useHeaderClassGradient then
+    frame.Title:SetText(F.String.GradientClass(categoryHeader))
   else
-    frame.Title:SetText(F.String.StripColor(frame.Title:GetText()))
+    frame.Title:SetText(categoryHeader)
     F.SetFontColorFromDB(self.db.stats, "header", frame.Title)
   end
 
@@ -665,6 +682,8 @@ function A:UpdateCategoryHeader(frame, animationSlot)
 
   if useHeaderGradient then
     F.Color.SetGradientRGB(leftDivider, "HORIZONTAL", 0, 0.6, 1, 0, 0, 0.9, 1, 1)
+  elseif useHeaderClassGradient then
+    F.Color.SetGradientRGB(leftDivider, "HORIZONTAL", classColorNormal.r, classColorNormal.g, classColorNormal.b, 0, classColorShift.r, classColorShift.g, classColorShift.b, 1)
   else
     local fontColor = F.GetFontColorFromDB(self.db.stats, "header")
     F.Color.SetGradientRGB(leftDivider, "HORIZONTAL", fontColor.r, fontColor.g, fontColor.b, 0, fontColor.r, fontColor.g, fontColor.b, fontColor.a)
@@ -678,6 +697,8 @@ function A:UpdateCategoryHeader(frame, animationSlot)
   F.Color.SetGradientRGB(rightDivider, "HORIZONTAL", 0, 0.9, 1, 1, 0, 0.6, 1, 0)
   if useHeaderGradient then
     F.Color.SetGradientRGB(rightDivider, "HORIZONTAL", 0, 0.9, 1, 1, 0, 0.6, 1, 0)
+  elseif useHeaderClassGradient then
+    F.Color.SetGradientRGB(rightDivider, "HORIZONTAL", classColorShift.r, classColorShift.g, classColorShift.b, 1, classColorNormal.r, classColorNormal.g, classColorNormal.b, 0)
   else
     local fontColor = F.GetFontColorFromDB(self.db.stats, "header")
     F.Color.SetGradientRGB(rightDivider, "HORIZONTAL", fontColor.r, fontColor.g, fontColor.b, fontColor.a, fontColor.r, fontColor.g, fontColor.b, 0)
@@ -730,13 +751,21 @@ function A:UpdateCharacterStat(frame, showGradient)
   if frame.Label then
     F.SetFontFromDB(self.db.stats, "label", frame.Label, false)
 
+    local labelString = F.String.StripColor(frame.Label:GetText())
+
     if self:UseFontGradient(self.db.stats, "label") then
       frame.Label:SetText(F.String.FastGradient(F.String.StripColor(frame.Label:GetText()), 0, 0.6, 1, 0, 0.9, 1))
+    elseif self:UseFontClassGradient(self.db.stats, "label") then
+      frame.Label:SetText(F.String.GradientClass(labelString))
     else
-      frame.Label:SetText(F.String.StripColor(frame.Label:GetText()))
+      frame.Label:SetText(labelString)
       F.SetFontColorFromDB(self.db.stats, "label", frame.Label)
     end
   end
+
+  local currentClass = E.myclass
+  local classColorNormal = E.db.TXUI.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.NORMAL][currentClass]
+  local classColorShift = E.db.TXUI.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT][currentClass]
 
   -- Set custom for value
   if frame.Value then F.SetFontFromDB(self.db.stats, "value", frame.Value) end
@@ -751,6 +780,19 @@ function A:UpdateCharacterStat(frame, showGradient)
 
     if self:UseFontGradient(self.db.stats, "label") then
       F.Color.SetGradientRGB(frame.TXGradient, "HORIZONTAL", 0, 0.6, 1, 0, 0, 0.9, 1, self.db.stats.alternatingBackgroundAlpha)
+    elseif self:UseFontClassGradient(self.db.stats, "label") then
+      F.Color.SetGradientRGB(
+        frame.TXGradient,
+        "HORIZONTAL",
+        classColorNormal.r,
+        classColorNormal.g,
+        classColorNormal.b,
+        0,
+        classColorShift.r,
+        classColorShift.g,
+        classColorShift.b,
+        self.db.stats.alternatingBackgroundAlpha
+      )
     else
       local fontColor = F.GetFontColorFromDB(self.db.stats, "label")
       F.Color.SetGradientRGB(

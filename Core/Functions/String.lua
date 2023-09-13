@@ -277,6 +277,20 @@ function F.String.FastColorGradientHex(percentage, h1, h2)
   return F.FastColorGradient(percentage, r1, g1, b1, r2, g2, b2)
 end
 
+function F.String.GradientClass(text, class, reverse)
+  if not text or text == "" then return end
+  local unitClass = class or E.myclass
+  local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
+  local left = colorMap[1][unitClass] -- Left (player UF)
+  local right = colorMap[2][unitClass] -- Right (player UF)
+
+  if not reverse then
+    return F.String.FastGradient(text, left.r, left.g, left.b, right.r, right.g, right.b)
+  else
+    return F.String.FastGradient(text, right.r, right.g, right.b, left.r, left.g, left.b)
+  end
+end
+
 -- Credits to WunderUI
 function F.String.ConvertGlyph(unicode)
   if unicode <= 0x7F then return char(unicode) end
