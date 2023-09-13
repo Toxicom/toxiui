@@ -35,7 +35,6 @@ function TH:Toggle(theme, value)
     -- save settings
     E.db.TXUI.themes.darkMode.enabled = value
     E.db.TXUI.themes.darkMode.transparency = value
-    E.db.TXUI.themes.darkMode.gradientName = value
 
     TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
       -- apply elvui profile
