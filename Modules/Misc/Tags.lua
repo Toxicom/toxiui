@@ -87,6 +87,7 @@ function M:Tags()
 
   local function SetGradientColorMapString(name, unitClass, reverseGradient)
     if not name or name == "" then return end
+    if not unitClass then return name end
     local classColorMap = E.db.TXUI.themes.gradientMode.classColorMap
     local reactionColorMap = E.db.TXUI.themes.gradientMode.reactionColorMap
 
