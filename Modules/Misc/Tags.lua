@@ -164,9 +164,9 @@ function M:Tags()
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
-      if not dm.isEnabled then
-        if name then return E:ShortenString(name, length) end
-      end
+      name = E:ShortenString(name, length)
+
+      if not dm.isEnabled then return name end
 
       local reverseGradient = reverseUnitsTable[unit]
       return FormatColorTag(name, unit, reverseGradient)
@@ -174,11 +174,12 @@ function M:Tags()
 
     E:AddTag(format("tx:name:abbrev:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
       local name = UnitName(unit)
-      if name and strfind(name, "%s") then name = Abbrev(name) end
+      if not name then return "missing name wtf" end
 
-      if not dm.isEnabled then
-        if name then return E:ShortenString(name, length) end
-      end
+      if strfind(name, "%s") then name = Abbrev(name) end
+      name = E:ShortenString(name, length)
+
+      if not dm.isEnabled then return name end
 
       local reverseGradient = reverseUnitsTable[unit]
       return FormatColorTag(name, unit, reverseGradient)
