@@ -532,6 +532,10 @@ function PF:BuildProfile()
         yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(10)),
       },
 
+      partyIndicator = {
+        enable = false,
+      },
+
       -- UnitFrame Player CombatIcon
       CombatIcon = {
         enable = true,
