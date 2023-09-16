@@ -90,7 +90,7 @@ function PF:BuildOmniCDProfile()
               manualPos = {
                 raidBar1 = {
                   x = F.Dpi(165),
-                  y = F.Dpi(265),
+                  y = F.Dpi(250),
                 },
               },
               paddingX = 1,
