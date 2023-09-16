@@ -33,6 +33,7 @@ TXUI.Changelog["6.3.3"] = {
     "Increase party frames vertical spacing",
     "Reduce unitframe buff/debuff font size",
     "Disable party indicator for player unitframe",
+    "Reduce BigWigs messages font size",
 
     "* Documentation",
     "Refactor old changelogs to follow new format",

@@ -166,8 +166,8 @@ function PF:BuildBigWigsProfile()
         ["profiles"] = {
           [profileName] = {
             ["align"] = "RIGHT",
-            ["emphFontName"] = F.FontOverride(I.Fonts.Title),
-            ["emphFontSize"] = 40,
+            ["emphFontName"] = F.FontOverride(I.Fonts.TitleSecondary),
+            ["emphFontSize"] = F.FontSizeScaled(24),
             ["emphPosition"] = {
               [1] = "TOP",
               [2] = "TOP",
@@ -175,7 +175,7 @@ function PF:BuildBigWigsProfile()
             },
             ["emphUppercase"] = false,
             ["fontName"] = F.FontOverride(I.Fonts.TitleSecondary),
-            ["fontSize"] = 30,
+            ["fontSize"] = F.FontSizeScaled(20),
             ["normalPosition"] = {
               [1] = "CENTER",
               [2] = "CENTER",
