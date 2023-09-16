@@ -103,6 +103,18 @@ function F.String.Warning(msg)
   return F.String.Color(msg, I.Enum.Colors.WARNING)
 end
 
+function F.String.WunderUI()
+  return F.String.Epic("Wunder") .. "UI"
+end
+
+function F.String.WrathArmory()
+  return F.String.Class("Wrath", "MAGE") .. F.String.Class("Armory", "ROGUE")
+end
+
+function F.String.GradientString()
+  return F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1)
+end
+
 -- Supporter colors
 function F.String.Legendary(msg)
   return F.String.Color(msg, I.Enum.Colors.LEGENDARY)
@@ -118,14 +130,6 @@ end
 
 function F.String.Beta(msg)
   return F.String.Color(msg, I.Enum.Colors.BETA)
-end
-
-function F.String.WunderUI()
-  return F.String.Epic("Wunder") .. "UI"
-end
-
-function F.String.WrathArmory()
-  return F.String.Class("Wrath", "MAGE") .. F.String.Class("Armory", "ROGUE")
 end
 
 function F.String.Covenant(msg)
