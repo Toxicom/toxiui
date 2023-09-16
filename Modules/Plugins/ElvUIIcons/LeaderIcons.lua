@@ -13,10 +13,37 @@ function LI:ChangeLeaderIcon()
     if not frame then return end
 
     local leader = frame.LeaderIndicator
+    -- local assistant = frame.AssistantIndicator
+    -- local master = frame.MasterLooterIndicator
+    -- local raid = frame.RaidRoleIndicator
 
     if frame.LeaderIndicator then
-      if db.theme then leader:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.theme])) end
+      if db.theme then
+        leader:SetTexCoord(0, 1, 0, 1)
+        leader:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.theme]))
+      end
     end
+
+    -- if frame.AssistantIndicator then
+    --   if db.theme then
+    --     assistant:SetTexCoord(0, 1, 0, 1)
+    --     assistant:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.theme]))
+    --   end
+    -- end
+
+    -- if frame.MasterLooterIndicator then
+    --   if db.theme then
+    --     master:SetTexCoord(0, 1, 0, 1)
+    --     master:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.theme]))
+    --   end
+    -- end
+
+    -- if frame.RaidRoleIndicator then
+    --   if db.theme then
+    --     raid:SetTexCoord(0, 1, 0, 1)
+    --     raid:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.theme]))
+    --   end
+    -- end
   end
 end
 
