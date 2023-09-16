@@ -61,6 +61,24 @@ function SD:RefreshRow(row, r, g, b, bgR, bgG, bgB)
     row.background:SetVertexColor(bgR, bgG, bgB, 1)
   end
 
+  -- Gradient names
+  if E.db.TXUI.themes.darkMode.enabled and E.db.TXUI.themes.darkMode.gradientName and E.db.TXUI.themes.darkMode.detailsGradientText then
+    for i = 1, 4 do
+      local textTable = row["lineText" .. i]
+      if textTable then
+        local text = textTable:GetText()
+        if text and text ~= "" and text ~= "waiting for refresh..." then
+          local unit = row:GetActor()
+          local class = unit and unit.classe or nil
+
+          local reverse = i ~= 1
+          local gradientText = F.String.GradientClass(F.String.StripColor(text), class, reverse)
+          textTable:SetText(gradientText or "BUG")
+        end
+      end
+    end
+  end
+
   self.updateCache[row] = true
 end
 

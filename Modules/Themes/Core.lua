@@ -81,6 +81,14 @@ function TH:Toggle(theme, value)
     -- apply custom tags
     F.Event.TriggerEvent("Tags.DatabaseUpdate")
   end
+
+  if theme == "darkModeDetailsGradientText" then
+    -- Save settings
+    E.db.TXUI.themes.darkMode.detailsGradientText = value
+
+    -- Fire details update
+    F.Event.TriggerEvent("SkinsDetailsDark.DatabaseUpdate")
+  end
 end
 
 function TH:Initialize()

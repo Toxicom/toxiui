@@ -88,6 +88,24 @@ function O:ToxiUI_Themes_DarkMode()
         return not TXUI:HasRequirements(I.Requirements.DarkModeGradientName)
       end,
     }
+
+    -- Gradient Toggle
+    gradientGroup.detailsToggle = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Details Gradient Text",
+      desc = "Toggling this on enables gradient text for Details",
+      get = function()
+        return E.db.TXUI.themes.darkMode.detailsGradientText
+      end,
+      set = function(_, value)
+        TXUI:GetModule("Themes"):Toggle("darkModeDetailsGradientText", value)
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      disabled = function()
+        return not TXUI:HasRequirements(I.Requirements.DarkModeGradientName) or not E.db.TXUI.themes.darkMode.gradientName
+      end,
+    }
   end
 
   -- Transparency

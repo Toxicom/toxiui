@@ -49,6 +49,7 @@ P.themes = {
     transparency = false, -- Disabled by default
     transparencyAlpha = 0.7, -- Alpha of Background
     gradientName = true,
+    detailsGradientText = false,
   },
   gradientMode = {
     enabled = true, -- Enabled by default
