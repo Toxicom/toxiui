@@ -319,6 +319,9 @@ MM.microMenu = {
           E:ToggleOptions("TXUI")
         end
       end,
+      RightButton = function()
+        E:ToggleOptions("TXUI,changelog")
+      end,
     },
   },
 }
@@ -450,10 +453,11 @@ function MM:ToxiUITooltip(button)
   if not CL:HasSeenChangelog() then
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine(F.String.ToxiUI("New Update Installed!"))
-    DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Click to open the Changelog")
+    DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Click to open " .. TXUI.Title .. " Changelog")
   else
     DT.tooltip:AddLine(" ")
-    DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Toggle ToxiUI Configuration")
+    DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Toggle " .. TXUI.Title .. " Configuration")
+    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open " .. TXUI.Title .. " Changelog")
   end
 
   DT.tooltip:Show()
