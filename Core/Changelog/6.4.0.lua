@@ -4,7 +4,12 @@ TXUI.Changelog["6.4.0"] = {
   HOTFIX = false,
   CHANGES = {
     "* Breaking changes",
-    "Refactor " .. TXUI.Title .. " tags, so previous profiles will most likely be broken",
+    "Refactor "
+      .. TXUI.Title
+      .. " tags, so previous profiles will most likely be broken. See new tags in "
+      .. F.String.Class("Available Tags")
+      .. " - they are prefixed with "
+      .. TXUI.Title,
 
     "* New features",
     "Enable features that were previously enabled only for contributors: " .. F.String.Legendary("Gradient Mode Saturation Boost") .. ", " .. F.String.Legendary(
