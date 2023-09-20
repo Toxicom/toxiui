@@ -39,6 +39,9 @@ TXUI.Changelog["6.4.0"] = {
     "Reduce unitframe buff/debuff font size",
     "Disable party indicator for player unitframe",
     "Reduce BigWigs messages font size",
+    "Enable " .. F.String.Class("Dynamic Overall Damage") .. " for Details",
+    "Enable " .. F.String.Class("Show 'Real Time' DPS") .. " for Details",
+    "Enable Augmentation Evoker predictions and calculations for Details",
 
     "* Documentation",
     "Refactor old changelogs to follow new format",
