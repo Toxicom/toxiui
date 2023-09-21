@@ -11,6 +11,7 @@ TXUI.Changelog["6.4.1"] = {
 
     "* Profile updates",
     "Add Path of the Naaru hearthstone toy to WunderBar",
+    "Disable Real Time DPS for Details",
 
     "* Documentation",
 
