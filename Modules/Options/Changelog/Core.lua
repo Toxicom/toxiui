@@ -4,7 +4,6 @@ local CL = TXUI:GetModule("Changelog")
 
 local ipairs = ipairs
 local sub = string.sub
-local format = string.format
 local type = type
 
 function O:FormatChangelog(options, version, changelogIndex, changelog)
