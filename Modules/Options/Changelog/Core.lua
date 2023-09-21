@@ -39,7 +39,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog)
         text = text .. "\n" .. F.String.Trim(F.String.GradientClass(formattedLine, specialCase.class)) .. "\n\n"
       elseif sub(line, 1, 2) == "* " then
         if title then
-          text = text .. format("%02d", index) .. ". " .. F.String.Trim(line:sub(3)) .. "\n"
+          text = text .. "• " .. F.String.Trim(line:sub(3)) .. "\n"
         else
           line = "• " .. line:sub(3)
           text = text .. "\n" .. F.String.Trim(F.String.ToxiUI(line)) .. "\n\n"
