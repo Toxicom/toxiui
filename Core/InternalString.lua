@@ -65,18 +65,21 @@ I.Strings.WALinks = {
 }
 
 I.Strings.Colors = {
-  [I.Enum.Colors.TXUI] = "18a8ff",
-  [I.Enum.Colors.ELVUI] = "1784d1",
-  [I.Enum.Colors.ERROR] = "ef5350",
-  [I.Enum.Colors.GOOD] = "66bb6a",
-  [I.Enum.Colors.WARNING] = "f5b041",
-  [I.Enum.Colors.WHITE] = "ffffff",
-  [I.Enum.Colors.LUXTHOS] = "03fc9c",
+  [I.Enum.Colors.TXUI] = "18a8ff", -- #18a8ff
+  [I.Enum.Colors.PLATER] = "ff66a1", -- #ff66a1
+  [I.Enum.Colors.DETAILS] = "ebe7cb", -- #ebe7cb
+  [I.Enum.Colors.BIGWIGS] = "c94b28", -- #c94b28
+  [I.Enum.Colors.ELVUI] = "1784d1", -- #1784d1
+  [I.Enum.Colors.ERROR] = "ef5350", -- #ef5350
+  [I.Enum.Colors.GOOD] = "66bb6a", -- #66bb6a
+  [I.Enum.Colors.WARNING] = "f5b041", -- #f5b041
+  [I.Enum.Colors.WHITE] = "ffffff", -- #ffffff
+  [I.Enum.Colors.LUXTHOS] = "03fc9c", -- #03fc9c
 
-  [I.Enum.Colors.LEGENDARY] = "ff8000",
-  [I.Enum.Colors.EPIC] = "a335ee",
-  [I.Enum.Colors.RARE] = "0070dd",
-  [I.Enum.Colors.BETA] = "1eff00",
+  [I.Enum.Colors.LEGENDARY] = "ff8000", -- #ff8000
+  [I.Enum.Colors.EPIC] = "a335ee", -- #a335ee
+  [I.Enum.Colors.RARE] = "0070dd", -- #0070dd
+  [I.Enum.Colors.BETA] = "1eff00", -- #1eff00
 }
 
 I.Strings.Branding = {

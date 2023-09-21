@@ -26,6 +26,10 @@ function F.String.Color(msg, color)
   end
 end
 
+function F.String.Sublist(msg)
+  return "\n  - |cffbdbdbd" .. msg .. "|r"
+end
+
 function F.String.HexToRGB(hex)
   local r, g, b, a = strmatch(hex, "^#?(%x%x)(%x%x)(%x%x)(%x?%x?)$")
   if not r then return 0, 0, 0, nil end
@@ -52,7 +56,27 @@ function F.String.ToxiUI(msg)
   return F.String.Color(msg, I.Enum.Colors.TXUI)
 end
 
+function F.String.Plater(msg)
+  if not msg or msg == "" then return F.String.Color("Plater", I.Enum.Colors.PLATER) end
+
+  return F.String.Color(msg, I.Enum.Colors.PLATER)
+end
+
+function F.String.Details(msg)
+  if not msg or msg == "" then return F.String.Color("Details", I.Enum.Colors.DETAILS) end
+
+  return F.String.Color(msg, I.Enum.Colors.DETAILS)
+end
+
+function F.String.BigWigs(msg)
+  if not msg or msg == "" then return F.String.Color("BigWigs", I.Enum.Colors.BIGWIGS) end
+
+  return F.String.Color(msg, I.Enum.Colors.BIGWIGS)
+end
+
 function F.String.ElvUI(msg)
+  if not msg or msg == "" then return F.String.Color("ElvUI", I.Enum.Colors.ELVUI) end
+
   return F.String.Color(msg, I.Enum.Colors.ELVUI)
 end
 

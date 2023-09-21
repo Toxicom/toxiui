@@ -10,13 +10,14 @@ TXUI.Changelog["6.4.1"] = {
     "* Bug fixes",
 
     "* Profile updates",
-    "Add Path of the Naaru hearthstone toy to WunderBar",
-    "Disable Real Time DPS for Details",
-    "Fix castbar strata level for all unitframes",
-    "Reduce default Dark Mode's transparency alpha",
+    TXUI.Title .. ": Add Path of the Naaru hearthstone toy to WunderBar",
+    TXUI.Title .. ": Reduce default Dark Mode's transparency alpha",
+    F.String.Details() .. ": Disable " .. F.String.Class("Show 'Real Time' DPS"),
+    F.String.ElvUI() .. ": Fix castbar strata level for all unitframes",
 
     "* Documentation",
     "Format changelog section headings with icons and gradient text",
+    "Change changelog's format" .. F.String.Sublist("No more numbers") .. F.String.Sublist("Allows us to indent lists like this ;)"),
 
     "* Settings refactoring",
 

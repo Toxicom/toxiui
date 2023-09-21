@@ -38,6 +38,9 @@ I.Enum.Requirements = F.Enum {
 -- Used for F.String.Color functions
 I.Enum.Colors = F.Enum {
   "TXUI", -- AddOnColor
+  "PLATER",
+  "DETAILS",
+  "BIGWIGS",
   "ELVUI", -- ElvUI Default Blue color
   "ELVUI_VALUE", -- Dynamic ElvUI Value Color
   "CLASS", -- Dynamic Class Color

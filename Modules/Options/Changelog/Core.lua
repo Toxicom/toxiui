@@ -20,7 +20,6 @@ function O:FormatChangelog(options, version, changelogIndex, changelog)
     if (type(section) ~= "table") or (#section == 0) then return "" end
 
     local text = ""
-    local index = 1
 
     local specialCases = {
       ["* Breaking changes"] = { glyph = 59711, class = "DEATHKNIGHT" },
@@ -36,21 +35,17 @@ function O:FormatChangelog(options, version, changelogIndex, changelog)
       local specialCase = specialCases[line]
 
       if specialCase then
-        index = 1
         local formattedLine = F.String.ConvertGlyph(specialCase.glyph) .. " " .. line:sub(3)
         text = text .. "\n" .. F.String.Trim(F.String.GradientClass(formattedLine, specialCase.class)) .. "\n\n"
       elseif sub(line, 1, 2) == "* " then
         if title then
           text = text .. format("%02d", index) .. ". " .. F.String.Trim(line:sub(3)) .. "\n"
-          index = index + 1
         else
-          line = "•" .. line:sub(3)
-          index = 1
+          line = "• " .. line:sub(3)
           text = text .. "\n" .. F.String.Trim(F.String.ToxiUI(line)) .. "\n\n"
         end
       else
-        text = text .. format("%02d", index) .. ". " .. F.String.Trim(line) .. "\n"
-        index = index + 1
+        text = text .. "- " .. F.String.Trim(line) .. "\n"
       end
     end
 
