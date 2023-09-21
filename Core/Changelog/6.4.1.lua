@@ -16,6 +16,7 @@ TXUI.Changelog["6.4.1"] = {
     "Reduce default Dark Mode's transparency alpha",
 
     "* Documentation",
+    "Format changelog section headings with icons and gradient text",
 
     "* Settings refactoring",
 

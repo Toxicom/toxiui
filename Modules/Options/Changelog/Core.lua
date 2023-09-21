@@ -22,10 +22,24 @@ function O:FormatChangelog(options, version, changelogIndex, changelog)
     local text = ""
     local index = 1
 
-    if title then text = text .. F.String.ToxiUI("•" .. title) .. "\n\n" end
+    local specialCases = {
+      ["* Breaking changes"] = { glyph = 59711, class = "DEATHKNIGHT" },
+      ["* New features"] = { glyph = 59691, class = "MONK" },
+      ["* Bug fixes"] = { glyph = 59715, class = "WARLOCK" },
+      ["* Profile updates"] = { glyph = 59702, class = "ROGUE" },
+      ["* Documentation"] = { glyph = 59708, class = "MAGE" },
+      ["* Settings refactoring"] = { glyph = 59692, class = "DRUID" },
+      ["* Development improvements"] = { glyph = 59689, class = "HUNTER" },
+    }
 
     for _, line in ipairs(section) do
-      if sub(line, 1, 2) == "* " then
+      local specialCase = specialCases[line]
+
+      if specialCase then
+        index = 1
+        local formattedLine = F.String.ConvertGlyph(specialCase.glyph) .. " " .. line:sub(3)
+        text = text .. "\n" .. F.String.Trim(F.String.GradientClass(formattedLine, specialCase.class)) .. "\n\n"
+      elseif sub(line, 1, 2) == "* " then
         if title then
           text = text .. format("%02d", index) .. ". " .. F.String.Trim(line:sub(3)) .. "\n"
           index = index + 1
