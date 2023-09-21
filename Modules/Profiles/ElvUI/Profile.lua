@@ -573,7 +573,7 @@ function PF:BuildProfile()
         xOffsetText = F.Dpi(5),
         xOffsetTime = F.Dpi(-10),
 
-        -- Puts castbar below Combat Icon
+        -- Puts castbar below Combat Icon and Class Icon
         strataAndLevel = {
           frameLevel = 1,
           useCustomLevel = true,
@@ -725,6 +725,12 @@ function PF:BuildProfile()
         textColor = F.Table.HexToRGB("#ffffff"),
         xOffsetText = F.Dpi(5),
         xOffsetTime = F.Dpi(-10),
+
+        -- Puts castbar below Combat Icon and Class Icon
+        strataAndLevel = {
+          frameLevel = 1,
+          useCustomLevel = true,
+        },
       },
 
       -- UnitFrame Target heal prediction
@@ -982,6 +988,12 @@ function PF:BuildProfile()
         -- UnitFrame Focus Castbar Classcolor
         customColor = {
           useClassColor = true,
+        },
+
+        -- Puts castbar below Combat Icon and Class Icon
+        strataAndLevel = {
+          frameLevel = 1,
+          useCustomLevel = true,
         },
       },
 
@@ -1578,6 +1590,12 @@ function PF:BuildProfile()
 
         icon = true,
         iconAttached = true,
+
+        -- Puts castbar below Combat Icon and Class Icon
+        strataAndLevel = {
+          frameLevel = 1,
+          useCustomLevel = true,
+        },
       },
 
       -- UnitFrame Arena Power
@@ -1659,6 +1677,12 @@ function PF:BuildProfile()
 
         icon = true,
         iconAttached = true,
+
+        -- Puts castbar below Combat Icon and Class Icon
+        strataAndLevel = {
+          frameLevel = 1,
+          useCustomLevel = true,
+        },
       },
 
       -- UnitFrame Boss Power
