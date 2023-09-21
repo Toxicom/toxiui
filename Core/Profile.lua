@@ -47,7 +47,7 @@ P.themes = {
   darkMode = {
     enabled = false, -- Disabled by default
     transparency = false, -- Disabled by default
-    transparencyAlpha = 0.7, -- Alpha of Background
+    transparencyAlpha = 0.25, -- Alpha of Background
     gradientName = true,
     detailsGradientText = false,
   },

@@ -13,6 +13,7 @@ TXUI.Changelog["6.4.1"] = {
     "Add Path of the Naaru hearthstone toy to WunderBar",
     "Disable Real Time DPS for Details",
     "Fix castbar strata level for all unitframes",
+    "Reduce default Dark Mode's transparency alpha",
 
     "* Documentation",
 
