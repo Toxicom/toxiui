@@ -8,6 +8,7 @@ TXUI.Changelog["6.4.1"] = {
     "* New features",
 
     "* Bug fixes",
+    TXUI.Title .. ": Fix gathering professions not showing on WunderBar in Wrath & Classic" .. F.String.Sublist("Icons will show only on enUS client locales"),
 
     "* Profile updates",
     TXUI.Title .. ": Add Path of the Naaru hearthstone toy to WunderBar",

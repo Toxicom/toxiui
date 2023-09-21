@@ -130,10 +130,10 @@ function PR:ProfessionTooltip()
   for index, _ in next, self.others do
     local skillLine, name, rank, maxRank, icon = self:GetProfessionInfo(self.others[index])
 
-    if skillLine then
-      local texture = format("|T%s:16:18:0:0:64:64:4:60:7:57:255:255:255|t ", icon)
+    if skillLine or (name and rank and maxRank) then
+      local texture = icon and format("|T%s:16:18:0:0:64:64:4:60:7:57:255:255:255|t ", icon) or nil
       local r, g, b = F.SlowColorGradient(rank / maxRank, 1, 0.1, 0.1, 1, 1, 0.1, 0.1, 1, 0.1)
-      DT.tooltip:AddDoubleLine(texture .. name, rank .. "/" .. maxRank, 1, 1, 1, r, g, b)
+      DT.tooltip:AddDoubleLine((texture or "") .. name, rank .. "/" .. maxRank, 1, 1, 1, r, g, b)
     end
   end
 
@@ -228,6 +228,10 @@ do
       if not spellName then
         self:LogDebug("Could not get spell info for profession", prof.texture)
       else
+        -- Dirty nasty fix for wrath
+        -- will work only on enUS clients
+        if spellName == "Smelting" then spellName = "Mining" end
+        if spellName == "Herb Gathering" then spellName = "Herbalism" end
         professionInfoTable[spellName] = prof
       end
     end
@@ -379,11 +383,11 @@ end
 function PR:UpdateElement(prof, frame, icon, text, bar)
   local skillLine, name, rank, maxRank = self:GetProfessionInfo(prof)
 
-  if skillLine then
+  if skillLine or (name and rank and maxRank) then
     frame:Show()
     text:SetText(self.db.general.useUppercase and F.String.Uppercase(name) or name)
 
-    if self.db.general.showIcons then
+    if self.db.general.showIcons and skillLine then
       icon:Show()
       icon:SetText(self.db.icons[skillLine])
     else
