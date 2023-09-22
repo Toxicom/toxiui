@@ -107,7 +107,7 @@ function PR:OpenProfessionUIToSkillLine(skillLineID)
 end
 
 function PR:ProfessionOpen(prof)
-  local skillLine, name = self:GetProfessionInfo(prof)
+  local skillLine, name, _, _, _, extraSpellId = self:GetProfessionInfo(prof)
 
   if TXUI.IsRetail then
     local currBaseProfessionInfo = C_TradeSkillUI.GetBaseProfessionInfo()
@@ -119,6 +119,10 @@ function PR:ProfessionOpen(prof)
       self:OpenProfessionUIToSkillLine(skillLine) -- TODO: REPLACE with global when blizz pushes beta branch to retail
     end
   else
+    if extraSpellId then
+      local spellName = GetSpellInfo(extraSpellId)
+      name = spellName
+    end
     securecall("CastSpellByName", name)
   end
 end
@@ -203,8 +207,8 @@ do
       { spellIds = { 2018, 3100, 3538, 9785, 29844, 51300, 76666, 110396, 158737, 195097 }, skillLine = 164, texture = 136241 },
       { spellIds = { 2108, 3104, 3811, 10662, 32549, 51302, 81199, 110423, 158752, 195119 }, skillLine = 165, texture = 133611 },
       { spellIds = { 2259, 3101, 3464, 11611, 28596, 51304, 80731, 105206 }, skillLine = 171, texture = 136240 },
-      { spellIds = { 2366 }, skillLine = 182, texture = 136065 },
-      { spellIds = { 2656 }, skillLine = 186, texture = 135811 }, -- 136248
+      { spellIds = { 9134 }, skillLine = 182, texture = 136246 }, -- Herbalism
+      { spellIds = { 32606 }, extraSpellId = 2656, skillLine = 186, texture = 136248 }, -- Mining
       { spellIds = { 4036, 4037, 4038, 12656, 30350, 51306, 82774, 110403, 158739, 195112 }, skillLine = 202, texture = 136243 },
       { spellIds = { 7411, 7412, 7413, 13920, 28029, 51313, 74258, 110400, 158716, 195096 }, skillLine = 333, texture = 136244 },
       { spellIds = { 7620 }, skillLine = 356, texture = 136245 },
@@ -228,10 +232,6 @@ do
       if not spellName then
         self:LogDebug("Could not get spell info for profession", prof.texture)
       else
-        -- Dirty nasty fix for wrath
-        -- will work only on enUS clients
-        if spellName == "Smelting" then spellName = "Mining" end
-        if spellName == "Herb Gathering" then spellName = "Herbalism" end
         professionInfoTable[spellName] = prof
       end
     end
@@ -249,7 +249,7 @@ function PR:GetProfessionInfo(prof)
   else
     local skillName, _, _, skillRank, _, _, skillMaxRank = GetSkillLineInfo(prof)
     local info = self:GetWrathProfessionInfo()[skillName] or {}
-    return info.skillLine, skillName, skillRank, skillMaxRank, info.texture
+    return info.skillLine, skillName, skillRank, skillMaxRank, info.texture, info.extraSpellId
   end
 end
 
