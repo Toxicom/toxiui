@@ -5,7 +5,7 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 --@do-not-package@
 
 local SetCVar = SetCVar
-local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "lfg", "pet" }
+local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet" }
 
 function T:SetupCvars()
   -- CVars

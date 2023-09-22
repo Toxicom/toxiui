@@ -4,6 +4,7 @@ local CL = TXUI:GetModule("Changelog")
 local MM = WB:NewModule("MicroMenu", "AceHook-3.0")
 local DT = E:GetModule("DataTexts")
 
+local _G = _G
 local abs = math.abs
 local AddonList = AddonList
 local BNGetNumFriends = BNGetNumFriends
@@ -35,8 +36,6 @@ local tinsert = table.insert
 local ToggleCharacter = ToggleCharacter
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
-local ToggleLFDParentFrame = ToggleLFDParentFrame
-local ToggleLFGParentFrame = ToggleLFGParentFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
 local UIErrorsFrame = UIErrorsFrame
 
@@ -88,6 +87,14 @@ local WOW_PROJECT_MAINLINE = WOW_PROJECT_MAINLINE
 
 MM.leftButtonText = "|cffFFFFFFLeft Click:|r "
 MM.rightButtonText = "|cffFFFFFFRight Click:|r "
+
+local function ToggleGroupFinder()
+  if TXUI.IsRetail then
+    _G.ToggleLFDParentFrame()
+  else
+    _G.ToggleLFGParentFrame()
+  end
+end
 
 MM.microMenu = {
   ["ach"] = {
@@ -177,11 +184,7 @@ MM.microMenu = {
     click = {
       LeftButton = function()
         if not InCombatLockdown() then
-          if TXUI.IsRetail then
-            ToggleLFDParentFrame()
-          else
-            ToggleLFGParentFrame()
-          end
+          ToggleGroupFinder()
         else
           UIErrorsFrame:AddMessage(E.InfoColor .. ERR_NOT_IN_COMBAT)
         end

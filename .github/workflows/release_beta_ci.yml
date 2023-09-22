@@ -36,13 +36,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest
           args: --check .
-      - name: Check if code output is valid (BigWigsMods)
-        uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
-        if: success()
-        with:
-          args: -q
       - name: Check if code output is valid (lunarmodules)
         uses: lunarmodules/luacheck@v1
+      - name: Check if code output is valid (BigWigsMods)
+        uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
+        with:
+          args: -q
 
   publish-development-release:
     runs-on: ubuntu-latest
