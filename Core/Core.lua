@@ -130,20 +130,6 @@ function TXUI:InitializeModules()
       F.Event.ContinueOutOfCombat(function()
         self.initializedSafe = true
         F.Event.TriggerEvent("TXUI.InitializedSafe")
-
-        -- Register ourself for debug purposes
-        F.Event.ContinueOnAddOnLoaded("ElvUI_CPU", function()
-          local elvuiCPU = _G["ElvUI_CPU"]
-          F.Event.RunNextFrame(function()
-            elvuiCPU:RegisterPlugin(self)
-            for _, moduleName in pairs(self.RegisteredModules) do
-              elvuiCPU:RegisterPluginModule(self:GetName(), moduleName, self:GetModule(moduleName))
-            end
-            for moduleName, _ in pairs(self:GetModule("WunderBar").registeredModules) do
-              elvuiCPU:RegisterPluginModule(self:GetName(), "WunderBar_" .. moduleName, self:GetModule("WunderBar"):GetModule(moduleName))
-            end
-          end)
-        end)
       end)
     end)
   end
