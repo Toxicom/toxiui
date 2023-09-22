@@ -35,6 +35,8 @@ local tinsert = table.insert
 local ToggleCharacter = ToggleCharacter
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
+local ToggleLFDParentFrame = ToggleLFDParentFrame
+local ToggleLFGParentFrame = ToggleLFGParentFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
 local UIErrorsFrame = UIErrorsFrame
 
@@ -170,10 +172,20 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGAMEMENU, MM.rightButtonText .. ADDONS },
   },
   ["lfg"] = {
-    available = TXUI.IsRetail,
+    available = not TXUI.IsClassic,
     name = DUNGEONS_BUTTON,
-    macro = {
-      LeftButton = "/click LFDMicroButton",
+    click = {
+      LeftButton = function()
+        if not InCombatLockdown() then
+          if TXUI.IsRetail then
+            ToggleLFDParentFrame()
+          else
+            ToggleLFGParentFrame()
+          end
+        else
+          UIErrorsFrame:AddMessage(E.InfoColor .. ERR_NOT_IN_COMBAT)
+        end
+      end,
     },
     keyBind = "TOGGLEGROUPFINDER",
     newbieTooltip = NEWBIE_TOOLTIP_LFGPARENT,
