@@ -38,6 +38,7 @@ local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
 local UIErrorsFrame = UIErrorsFrame
+local UnitLevel = UnitLevel
 
 local ACHIEVEMENTS = ACHIEVEMENTS
 local ADDONS = ADDONS
@@ -179,7 +180,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGAMEMENU, MM.rightButtonText .. ADDONS },
   },
   ["lfg"] = {
-    available = not TXUI.IsClassic,
+    available = not TXUI.IsClassic and UnitLevel("player") >= 10,
     name = DUNGEONS_BUTTON,
     click = {
       LeftButton = function()
