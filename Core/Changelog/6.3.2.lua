@@ -20,7 +20,7 @@ TXUI.Changelog["6.3.2"] = {
     F.String.ElvUI() .. ": Force Priest class color",
     TXUI.Title .. ": Add OmniCD check in installer dialog",
     TXUI.Title .. ": Fix VehicleBar options missing",
-    TXUI.Title .. ": Fix ClassIcon error",
+    TXUI.Title .. ": Fix ChatIcon error",
 
     "* Profile updates",
     F.String.Plater() .. ": Enable Spell Icon inside castbars",
