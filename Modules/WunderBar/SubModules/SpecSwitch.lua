@@ -104,7 +104,7 @@ function SS:SpecEnter(text, icon)
 
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Show Talent UI")
-    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization")
+    if TXUI.IsRetail or (TXUI.IsWrath and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
     DT.tooltip:Show()
   end
 end
@@ -117,12 +117,23 @@ end
 function SS:SpecClick(frame, button, ...)
   local dtModule = WB:GetElvUIDataText("Talent/Loot Specialization")
 
+  local hasDualSpec
+  local activeGroup
+
+  if TXUI.IsWrath then
+    hasDualSpec = GetNumTalentGroups() == 2
+    activeGroup = GetActiveTalentGroup()
+  end
+
   if dtModule then
     dtModule.eventFunc(WB:GetElvUIDummy(), "PLAYER_LOOT_SPEC_UPDATED")
     dtModule.onClick(frame, button, ...)
   else
     if button == "LeftButton" then
       ToggleTalentFrame()
+    elseif TXUI.IsWrath then
+      if not hasDualSpec then return end
+      SetActiveTalentGroup(activeGroup == 1 and 2 or 1)
     else
       local menuList = {}
 
