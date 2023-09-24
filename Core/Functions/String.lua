@@ -74,6 +74,12 @@ function F.String.BigWigs(msg)
   return F.String.Color(msg, I.Enum.Colors.BIGWIGS)
 end
 
+function F.String.OmniCD(msg)
+  if not msg or msg == "" then return F.String.Color("OmniCD", I.Enum.Colors.OMNICD) end
+
+  return F.String.Color(msg, I.Enum.Colors.OMNICD)
+end
+
 function F.String.ElvUI(msg)
   if not msg or msg == "" then return F.String.Color("ElvUI", I.Enum.Colors.ELVUI) end
 

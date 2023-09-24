@@ -17,6 +17,7 @@ TXUI.Changelog["6.4.1"] = {
     TXUI.Title .. ": Reduce default Dark Mode's transparency alpha",
     F.String.Details() .. ": Disable " .. F.String.Class("Show 'Real Time' DPS"),
     F.String.ElvUI() .. ": Fix castbar strata level for all unitframes",
+    F.String.OmniCD() .. ": Change status bar font",
 
     "* Documentation",
     "Format changelog section headings with icons and gradient text",
