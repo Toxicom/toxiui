@@ -11,6 +11,7 @@ TXUI.Changelog["6.4.1"] = {
     TXUI.Title .. ": Fix gathering professions not showing on WunderBar in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.Class("Classic", "ROGUE"),
     TXUI.Title .. ": Fix missing Group Finder button of WunderBar's MicroMenu in " .. F.String.ToxiUI("Wrath"),
     TXUI.Title .. ": Fix WunderBar's SpecSwitch in " .. F.String.ToxiUI("Wrath"),
+    F.String.Details() .. ": Fix Deaths window gradient name in dark mode",
 
     "* Profile updates",
     TXUI.Title .. ": Add Path of the Naaru hearthstone toy to WunderBar",

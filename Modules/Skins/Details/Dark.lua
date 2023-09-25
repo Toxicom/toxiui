@@ -69,7 +69,9 @@ function SD:RefreshRow(row, r, g, b, bgR, bgG, bgB)
         local text = textTable:GetText()
         if text and text ~= "" and text ~= "waiting for refresh..." then
           local unit = row:GetActor()
-          local class = unit and unit.classe or nil
+          -- for some fucking reason on deaths window, unit table is different than usual
+          -- unit[4] is unit's CLASS
+          local class = unit and (unit.classe or unit[4]) or nil
 
           local reverse = i ~= 1
           local gradientText = F.String.GradientClass(F.String.StripColor(text), class, reverse)
