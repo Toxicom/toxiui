@@ -20,5 +20,6 @@ TXUI.Changelog["6.4.1"] = {
     "* Documentation",
     "Format changelog section headings with icons and gradient text",
     "Change changelog's format" .. F.String.Sublist("No more numbers") .. F.String.Sublist("Allows us to indent lists like this ;)"),
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.41",
   },
 }
