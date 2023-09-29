@@ -1253,7 +1253,7 @@ function A:Enable()
 
   -- Hook ElvUI Overrides
   local m = E:GetModule("Misc")
-  self:SecureHook(m, "UpdateCharacterItemLevel", F.Event.GenerateClosure(self.UpdateItemLevel, self))
+  self:SecureHook(m, "UpdateCharacterInfo", F.Event.GenerateClosure(self.UpdateItemLevel, self))
   self:SecureHook(m, "UpdateAverageString", F.Event.GenerateClosure(self.UpdateItemLevel, self))
   self:SecureHook(m, "UpdatePageStrings", F.Event.GenerateClosure(self.UpdatePageStrings, self))
   self:SecureHook(m, "CreateSlotStrings", F.Event.GenerateClosure(self.UpdatePageInfo, self))

@@ -3,14 +3,11 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.4.1"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
     "* Bug fixes",
     TXUI.Title .. ": Fix gathering professions not showing on WunderBar in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.Class("Classic", "ROGUE"),
     TXUI.Title .. ": Fix missing Group Finder button of WunderBar's MicroMenu in " .. F.String.ToxiUI("Wrath"),
     TXUI.Title .. ": Fix WunderBar's SpecSwitch in " .. F.String.ToxiUI("Wrath"),
+    TXUI.Title .. ": Fix Armory error due to " .. F.String.ElvUI() .. " 13.41",
     F.String.Details() .. ": Fix Deaths window gradient name in dark mode",
 
     "* Profile updates",
@@ -23,9 +20,5 @@ TXUI.Changelog["6.4.1"] = {
     "* Documentation",
     "Format changelog section headings with icons and gradient text",
     "Change changelog's format" .. F.String.Sublist("No more numbers") .. F.String.Sublist("Allows us to indent lists like this ;)"),
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
