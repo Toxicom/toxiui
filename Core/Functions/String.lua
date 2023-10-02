@@ -181,33 +181,89 @@ function F.String.WALink(class)
   return TXUI.IsClassic and I.Strings.WALinks.DEFAULT_CLASSIC or I.Strings.WALinks.DEFAULT
 end
 
+function F.String.RemoveRuneOfThePrefix(text)
+  return text:gsub(".* the ", ""):gsub(".* of ", "")
+end
+
+function F.String.RemoveEveryOfTheAndEverythingAfter(text)
+  return text:gsub(" of (.*)", ""):gsub(" the (.*)", "")
+end
+
+-- Capture the following strings
+-- .+%s(.+)$
+-- . represents all characters
+-- + makes us capture 1 or more repetitions of the previous character/symbol will always match the longest possible part
+-- %s represents all space characters
+-- $ at the end makes the pattern match to the end of the string
+-- Example: "Lightweave Embroidery" captures "Embroidery"
+function F.String.GetTheLastWordOfAString(text)
+  return strmatch(text, ".+%s(.+)$")
+end
+
+-- Capture the following string
+-- ^[%s%p]*
+-- ^ forces us to start capturing at the start of the string
+-- %s represents all space characters
+-- %p represents all punctuation characters
+-- * matches 0 or more repetitions of the previous character/symbol/pattern
+-- [] is a capture group
+-- This would capture the start of the string and replace all spaces with nothing (but most likely isn't working)
+function F.String.RemoveAllWhitespaceCharacters(text)
+  return text:gsub("^[%s%p]*", "")
+end
+
+-- Capture the following string
+-- %d+
+-- %d represents all digits
+-- this would capture the longest number chain in a string
+function F.String.ContainsNumericalCharacters(text)
+  return strmatch(text, "%d+")
+end
+
+-- Capture the following string
+-- %d+
+-- %d represents all digits
+-- this would capture the longest number chain in a string
+function F.String.RemoveTheLongestNumericalChain(text)
+  return text:gsub("%D+", "")
+end
+
 function F.String.Abbreviate(text)
   if type(text) ~= "string" or text == "" then return text end
 
-  if (text:gsub(" of (.*)", "")):gsub(" the (.*)", "") == "Rune" then
-    text = text:gsub(".* the ", ""):gsub(".* of ", "")
+  -- if string has Rune at the start it is almost 100% a DK Rune and needs some different initial logic.
+  if strmatch(text, "^Rune") then
+    text = F.String.RemoveRuneOfThePrefix(text)
   else
-    text = text:gsub(" of (.*)", ""):gsub(" the (.*)", "")
+    text = F.String.RemoveEveryOfTheAndEverythingAfter(text)
   end
 
-  local letters, lastWord = "", strmatch(text, ".+%s(.+)$")
-  if lastWord then
-    for word in gmatch(text, ".-%s") do
-      local firstLetter = gsub(word, "^[%s%p]*", "")
+  local letters = ""
+  local lastWord = F.String.GetTheLastWordOfAString(text)
+  if not lastWord then return text end
 
-      if not strmatch(firstLetter, "%d+") then
-        firstLetter = utf8sub(firstLetter, 1, 1)
-        if firstLetter ~= utf8lower(firstLetter) then letters = format("%s%s. ", letters, firstLetter) end
-      else
-        firstLetter = gsub(firstLetter, "%D+", "")
-        letters = format("%s%s ", letters, firstLetter)
+  -- split the string on each space and loop through them
+  -- If we have a string that contains numbers we will add them differently to the stringbuilder
+  -- If we have an alphabetical word we check if the first letter is Uppercase, if this is the case add it to the resulting string with a . after it
+  -- Else we ignore the word
+  for word in gmatch(text, ".-%s") do
+    local firstLetter = F.String.RemoveAllWhitespaceCharacters(word)
+
+    if not F.String.ContainsNumericalCharacters(firstLetter) then
+      firstLetter = utf8sub(firstLetter, 1, 1)
+      if firstLetter ~= utf8lower(firstLetter) then
+        -- combine letters value with firstletter value, and then add a . and space
+        letters = format("%s%s. ", letters, firstLetter)
       end
+    else
+      firstLetter = F.String.RemoveTheLongestNumericalChain(firstLetter)
+      -- combine letters value with firstLetter value and then add a space
+      letters = format("%s%s ", letters, firstLetter)
     end
-
-    return format("%s%s", letters, lastWord)
   end
 
-  return text
+  -- Combine the build string in the loop and the complete last word
+  return format("%s%s", letters, lastWord)
 end
 
 E.TagFunctions.Abbrev = F.String.Abbreviate
