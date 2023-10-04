@@ -229,15 +229,6 @@ P.addons = {
     enabled = true, -- Enabled by default
     mode = "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
   },
-
-  -- WeakAuras
-  weakAurasBars = {
-    enabled = true, -- Enabled by default
-  },
-  weakAurasIcons = {
-    enabled = true, -- Enabled by default
-    iconShape = I.Enum.IconShape.RECTANGLE,
-  },
 }
 
 P.misc = {

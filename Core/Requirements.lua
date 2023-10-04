@@ -26,13 +26,7 @@ function TXUI:CheckRequirements(requirements, skipProfile)
   if type(requirements) ~= "table" then requirements = { requirements } end
 
   for _, requirement in ipairs(requirements) do
-    if requirement == I.Enum.Requirements.WEAK_AURAS_ENABLED then
-      if not F.IsAddOnEnabled("WeakAuras") then return requirement end
-    elseif requirement == I.Enum.Requirements.MASQUE_DISABLED then
-      if F.IsAddOnEnabled("Masque") then return requirement end
-    elseif requirement == I.Enum.Requirements.WT_WA_SKIN_DISABLED then
-      if F.IsAddOnEnabled("ElvUI_WindTools") and E.private.WT and E.private.WT.skins.addons.weakAuras then return requirement end
-    elseif requirement == I.Enum.Requirements.SL_DISABLED then
+    if requirement == I.Enum.Requirements.SL_DISABLED then
       if F.IsAddOnEnabled("ElvUI_SLE") then return requirement end
     elseif requirement == I.Enum.Requirements.DARK_MODE_ENABLED then
       if E.db.TXUI.themes.darkMode.enabled ~= true then return requirement end

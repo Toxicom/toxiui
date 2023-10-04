@@ -3,7 +3,6 @@
 
   <Script file='AddOnSkins.lua' />
   <Script file='WindTools.lua' />
-  <Script file='WeakAuras.lua' />
 
   <Include file='Details\Details.xml' />
 </Ui>

@@ -98,15 +98,6 @@ I.ProfileNames = {
 I.PriestColors = { r = 0.7, g = 0.7, b = 0.7, colorStr = "b3b3b3" }
 
 I.Requirements = {
-  ["WeakAurasIcons"] = {
-    I.Enum.Requirements.WEAK_AURAS_ENABLED,
-    I.Enum.Requirements.WT_WA_SKIN_DISABLED,
-    I.Enum.Requirements.MASQUE_DISABLED,
-  },
-  ["WeakAurasBars"] = {
-    I.Enum.Requirements.WEAK_AURAS_ENABLED,
-    I.Enum.Requirements.WT_WA_SKIN_DISABLED,
-  },
   ["DarkMode"] = {
     I.Enum.Requirements.GRADIENT_MODE_DISABLED,
     I.Enum.Requirements.ELVUI_NOT_SKINNED,

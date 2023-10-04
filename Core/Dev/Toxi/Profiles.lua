@@ -46,9 +46,6 @@ function T:SetupProfile()
     E.db.TXUI.misc.scaling.wardrobe.scale = 1.3
   end
 
-  -- Skins: WeakAuras
-  E.db.TXUI.addons.weakAurasIcons.iconShape = TXUI.IsWrath and I.Enum.IconShape.SQUARE or I.Enum.IconShape.RECTANGLE
-
   -- ElvUI
   E.db.general.taintLog = false
 

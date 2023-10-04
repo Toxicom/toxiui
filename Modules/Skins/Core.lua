@@ -26,7 +26,6 @@ function S:Initialize()
   self.isEnabled = false
 
   -- Register for updates
-  F.Event.ContinueOnAddOnLoaded("WeakAuras", F.Event.GenerateClosure(self.WeakAuras, self))
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
   F.Event.RegisterCallback("TXUI.DatabaseUpdate", self.DatabaseUpdate, self)
 

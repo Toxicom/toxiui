@@ -4,9 +4,6 @@ I.Strings = {}
 
 I.Strings.Requirements = {
   [I.Enum.Requirements.TOXIUI_PROFILE] = "NO_STRING_NEEDED",
-  [I.Enum.Requirements.WEAK_AURAS_ENABLED] = "WeakAuras couldn't be detected. This could mean that the addon isn't installed or isn't enabled. Please ensure WeakAuras is installed and enabled in your AddOns menu.",
-  [I.Enum.Requirements.MASQUE_DISABLED] = "Masque is currently installed and enabled. To use this option, please disable Masque, as it interferes with ToxiUI's WeakAuras skinning.",
-  [I.Enum.Requirements.WT_WA_SKIN_DISABLED] = "WeakAuras skinning is currently enabled in WindTools. To use this option, please disable WeakAuras skinning in WindTools, as it interferes with ToxiUI's WeakAuras skinning.",
   [I.Enum.Requirements.SL_DISABLED] = "You can't enable this option because a similar module in Shadow & Light is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.DARK_MODE_ENABLED] = "NO_STRING_NEEDED",
   [I.Enum.Requirements.DARK_MODE_DISABLED] = "Only one theme can be activated at the same time. Please disable dark mode",
@@ -29,9 +26,6 @@ I.Strings.Requirements = {
 
 I.Strings.RequirementsDebug = {
   [I.Enum.Requirements.TOXIUI_PROFILE] = "No ToxiUI Profile",
-  [I.Enum.Requirements.WEAK_AURAS_ENABLED] = "WA Disabled",
-  [I.Enum.Requirements.MASQUE_DISABLED] = "MQ Enabled",
-  [I.Enum.Requirements.WT_WA_SKIN_DISABLED] = "WT Skin Enabled",
   [I.Enum.Requirements.SL_DISABLED] = "SL Enabled",
   [I.Enum.Requirements.DARK_MODE_ENABLED] = "DM Disabled",
   [I.Enum.Requirements.DARK_MODE_DISABLED] = "DM Enabled",

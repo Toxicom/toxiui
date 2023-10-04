@@ -11,9 +11,6 @@ I.Enum.LayoutStyle = F.Enum { "OLD", "NEW" }
 -- Internal and Option Dialog reasons for modules to be disabled
 I.Enum.Requirements = F.Enum {
   "TOXIUI_PROFILE", -- Checked by default
-  "WEAK_AURAS_ENABLED",
-  "MASQUE_DISABLED",
-  "WT_WA_SKIN_DISABLED",
   "SL_DISABLED",
   "DARK_MODE_ENABLED",
   "DARK_MODE_DISABLED",

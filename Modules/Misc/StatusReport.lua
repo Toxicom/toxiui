@@ -330,32 +330,6 @@ function M:StatusReportUpdate()
 
       Section2.Content.Line4.Text:SetFormattedText("WunderBar: %s", text)
     end
-
-    -- WA Icon Skin
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.WeakAurasIcons)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.addons.weakAurasIcons.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line5.Text:SetFormattedText("WA Icon Skin: %s", text)
-    end
-
-    -- WA Bar Skin
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.WeakAurasBars)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.addons.weakAurasBars.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line6.Text:SetFormattedText("WA Bar Skin: %s", text)
-    end
   end
 
   -- Section #3

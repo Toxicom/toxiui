@@ -38,25 +38,6 @@ function TXUI:DBConvert()
       db.skins = nil
     end
 
-    -- Private Skin section convert
-    if private and private.skins ~= nil then
-      -- WeakAura Bar moved into addons section
-      if private.skins.weakAurasBars ~= nil then
-        db.addons.weakAurasBars.enabled = private.skins.weakAurasBars
-        private.skins.weakAurasBars = nil
-      end
-
-      -- WeakAura Icons moved into addons section
-      if private.skins.weakAurasIcons ~= nil then
-        db.addons.weakAurasIcons.enabled = private.skins.weakAurasIcons
-        private.skins.weakAurasIcons = nil
-      end
-
-      self:LogDebug("DBConvert > Converted 'Skins'-Profile to new format")
-
-      private.skins = nil
-    end
-
     -- Private Misc section convert
     if private and private.misc then
       -- Fade Persist moved into addons section
