@@ -9,6 +9,7 @@ TXUI.Changelog["6.4.2"] = {
 
     "* Bug fixes",
     "ToxiUI: Potentially fix Details dark theme gradient name error for Neltharus Weapons etc.",
+    "ToxiUI: Fix Mining profession for WunderBar in Classic Era",
 
     "* Profile updates",
 
