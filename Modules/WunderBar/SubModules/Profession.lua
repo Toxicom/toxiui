@@ -203,21 +203,26 @@ do
 
     professionInfoTable = {}
     local professionMap = {
-      { spellIds = { 3273, 3274, 7924, 10846, 27028, 45542, 74559, 110406, 158741, 195113 }, skillLine = 129, texture = 135966 },
-      { spellIds = { 2018, 3100, 3538, 9785, 29844, 51300, 76666, 110396, 158737, 195097 }, skillLine = 164, texture = 136241 },
-      { spellIds = { 2108, 3104, 3811, 10662, 32549, 51302, 81199, 110423, 158752, 195119 }, skillLine = 165, texture = 133611 },
-      { spellIds = { 2259, 3101, 3464, 11611, 28596, 51304, 80731, 105206 }, skillLine = 171, texture = 136240 },
+      { spellIds = { 3273, 3274, 7924, 10846, 27028, 45542, 74559, 110406, 158741, 195113 }, skillLine = 129, texture = 135966 }, -- First Aid
+      { spellIds = { 2018, 3100, 3538, 9785, 29844, 51300, 76666, 110396, 158737, 195097 }, skillLine = 164, texture = 136241 }, -- Blacksmithing
+      { spellIds = { 2108, 3104, 3811, 10662, 32549, 51302, 81199, 110423, 158752, 195119 }, skillLine = 165, texture = 133611 }, -- Leatherworking
+      { spellIds = { 2259, 3101, 3464, 11611, 28596, 51304, 80731, 105206 }, skillLine = 171, texture = 136240 }, -- Alchemy
       { spellIds = { 9134 }, skillLine = 182, texture = 136246 }, -- Herbalism
-      { spellIds = { 32606 }, extraSpellId = 2656, skillLine = 186, texture = 136248 }, -- Mining
-      { spellIds = { 4036, 4037, 4038, 12656, 30350, 51306, 82774, 110403, 158739, 195112 }, skillLine = 202, texture = 136243 },
-      { spellIds = { 7411, 7412, 7413, 13920, 28029, 51313, 74258, 110400, 158716, 195096 }, skillLine = 333, texture = 136244 },
-      { spellIds = { 7620 }, skillLine = 356, texture = 136245 },
-      { spellIds = { 2550, 3102, 3413, 18260, 33359, 51296, 88053, 104381, 158765, 195128 }, skillLine = 185, texture = 133971 },
-      { spellIds = { 3908, 3909, 3910, 12180, 26790, 51309, 75156, 110426, 158758, 195126 }, skillLine = 197, texture = 136249 },
-      { spellIds = { 8613 }, skillLine = 393, texture = 134366 },
-      { spellIds = { 25229, 25230, 28894, 28895, 28897, 51311, 73318, 110420, 158750, 195116 }, skillLine = 755, texture = 134071 },
-      { spellIds = { 45357, 45358, 45359, 45360, 45361, 45363, 86008, 110417, 158748, 195115 }, skillLine = 773, texture = 237171 },
+      { spellIds = { 32606, 2575, 2576, 3564, 10248 }, extraSpellId = 2656, skillLine = 186, texture = 136248 }, -- Mining
+      { spellIds = { 4036, 4037, 4038, 12656, 30350, 51306, 82774, 110403, 158739, 195112 }, skillLine = 202, texture = 136243 }, -- Engineering
+      { spellIds = { 7411, 7412, 7413, 13920, 28029, 51313, 74258, 110400, 158716, 195096 }, skillLine = 333, texture = 136244 }, -- Enchanting
+      { spellIds = { 7620 }, skillLine = 356, texture = 136245 }, -- Fishing
+      { spellIds = { 2550, 3102, 3413, 18260, 33359, 51296, 88053, 104381, 158765, 195128 }, skillLine = 185, texture = 133971 }, -- Cooking
+      { spellIds = { 3908, 3909, 3910, 12180, 26790, 51309, 75156, 110426, 158758, 195126 }, skillLine = 197, texture = 136249 }, -- Tailoring
+      { spellIds = { 8613 }, skillLine = 393, texture = 134366 }, -- Skinning
     }
+
+    if TXUI.IsClassic then
+      -- Jewelcrafting
+      tinsert(professionMap, { spellIds = { 25229, 25230, 28894, 28895, 28897, 51311, 73318, 110420, 158750, 195116 }, skillLine = 755, texture = 134071 })
+      -- Inscription
+      tinsert(professionMap, { spellIds = { 45357, 45358, 45359, 45360, 45361, 45363, 86008, 110417, 158748, 195115 }, skillLine = 773, texture = 237171 })
+    end
 
     local function searchLocaleSpellName(ids, texture)
       for _, spellId in ipairs(ids) do
@@ -230,7 +235,7 @@ do
       local spellName = searchLocaleSpellName(prof.spellIds, prof.texture)
 
       if not spellName then
-        self:LogDebug("Could not get spell info for profession", prof.texture)
+        self:LogDebug("Could not get spell info for profession with textureId", prof.texture)
       else
         professionInfoTable[spellName] = prof
       end
