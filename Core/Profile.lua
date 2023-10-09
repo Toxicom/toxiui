@@ -233,6 +233,8 @@ P.addons = {
 
 P.misc = {
   scaling = {
+    enabled = true,
+
     characterFrame = {
       scale = 1,
     },
