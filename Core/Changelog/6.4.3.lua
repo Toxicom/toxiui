@@ -19,6 +19,11 @@ TXUI.Changelog["6.4.3"] = {
     "* Profile updates",
     TXUI.Title .. ": Enable WunderBar's DataBar (Experience and Reputation bar) by default",
     TXUI.Title .. ": Enable WunderBar DataBar's Info Text by default",
+    TXUI.Title
+      .. ": Reduce the step range for "
+      .. F.String.ToxiUI("Additional Scaling")
+      .. " module's option sliders" --
+      .. F.String.Sublist("Now you can set the scaling to 0.05 precision"), --
 
     "* Documentation",
 

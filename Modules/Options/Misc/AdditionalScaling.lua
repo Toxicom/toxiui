@@ -74,7 +74,7 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
-      step = 0.1,
+      step = 0.05,
     }
 
     -- Character Group: Dressing Room
@@ -91,7 +91,7 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
-      step = 0.1,
+      step = 0.05,
     }
 
     -- Character Group: Inspect Frame
@@ -111,7 +111,7 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
-      step = 0.1,
+      step = 0.05,
     }
 
     -- Character Group: Sync Inspect
@@ -157,7 +157,7 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
-      step = 0.1,
+      step = 0.05,
     }
 
     -- Other Group: Talents
@@ -174,7 +174,7 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
-      step = 0.1,
+      step = 0.05,
     }
   end
 
@@ -208,7 +208,7 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
-      step = 0.1,
+      step = 0.05,
     }
 
     -- Retail Group: Collections
@@ -228,7 +228,7 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
-      step = 0.1,
+      step = 0.05,
     }
   end
 end
