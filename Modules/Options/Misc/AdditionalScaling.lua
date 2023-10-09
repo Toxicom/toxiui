@@ -18,9 +18,7 @@ function O:Plugins_AdditionalScaling()
   self:AddInlineDesc(options, {
     name = "Description",
   }, {
-    name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n"
-      .. F.String.ToxiUI("Information: ")
-      .. " Scaling will apply only after a reload.\n\n",
+    name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n",
   })
 
   -- Spacer
