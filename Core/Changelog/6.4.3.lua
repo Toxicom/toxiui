@@ -16,6 +16,7 @@ TXUI.Changelog["6.4.3"] = {
     TXUI.Title .. ": Removed the need to reload when adjusting scale through " .. F.String.ToxiUI("Additional Scaling"),
 
     "* Profile updates",
+    TXUI.Title .. ": " .. F.String.ToxiUI("WunderBar") .. " > Add the DataBar (EXP and Rep bar) to be enabled in the base profile",
 
     "* Documentation",
 
