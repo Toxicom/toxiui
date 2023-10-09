@@ -37,7 +37,7 @@ end
 function M:SetElementScale(dbName, blizzName)
   local option
 
-  if not E.db.TXUI.mix.scaling.enabled then
+  if not E.db.TXUI.misc.scaling.enabled then
     option = { scale = 1 }
   else
     option = E.db.TXUI.misc.scaling[dbName]
@@ -57,11 +57,6 @@ function M:AdditionalScaling()
 
   -- check if database is present
   if E.db and E.db.TXUI then
-    local db = E.db.TXUI.misc.scaling
-
-    -- return if module is disabled
-    if not db.enabled then return end
-
     M:SetElementScale("map", "WorldMapFrame")
     M:SetElementScale("characterFrame", "CharacterFrame")
     M:SetElementScale("dressingRoom", "DressUpFrame")
@@ -74,16 +69,22 @@ function M:AdditionalScaling()
       M:ScaleInspectUI()
     end
 
-    if TXUI.IsRetail and not IsAddOnLoaded("Blizzard_Collections") then
-      M:AddCallbackForAddon("Blizzard_Collections", "ScaleCollections")
-    else
-      M:ScaleCollections()
+    -- Retail scaling
+    if TXUI.IsRetail then
+      if not IsAddOnLoaded("Blizzard_Collections") then
+        M:AddCallbackForAddon("Blizzard_Collections", "ScaleCollections")
+      else
+        M:ScaleCollections()
+      end
     end
 
-    if not TXUI.IsRetail and not IsAddOnLoaded("Blizzard_TalentUI") then
-      M:AddCallbackForAddon("Blizzard_TalentUI", "ScaleTalents")
-    else
-      M:ScaleTalents()
+    -- Wrath & Classic scaling
+    if not TXUI.IsRetail then
+      if not IsAddOnLoaded("Blizzard_TalentUI") then
+        M:AddCallbackForAddon("Blizzard_TalentUI", "ScaleTalents")
+      else
+        M:ScaleTalents()
+      end
     end
   else
     TXUI:LogDebug("AdditionalScaling > E.db or E.db.TXUI not found, skipping scaling!")
