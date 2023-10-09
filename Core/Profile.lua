@@ -260,6 +260,10 @@ P.misc = {
     collections = {
       scale = 1,
     },
+
+    talents = {
+      scale = 1,
+    },
   },
 }
 

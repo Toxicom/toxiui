@@ -10,7 +10,7 @@ function M:SetElementScale(dbName, blizzName, loadAddonName)
     local option = E.db.TXUI.misc.scaling[dbName]
 
     if not option then
-      TXUI:LogDebug("AdditionalScaling > option not found, skipping scaling!")
+      TXUI:LogDebug("AdditionalScaling > option " .. dbName .. " not found, skipping scaling!")
       return
     end
 
@@ -38,6 +38,7 @@ function M:AdditionalScaling()
     M:SetElementScale("collections", "CollectionsJournal", "Blizzard_Collections")
     M:SetElementScale("wardrobe", "WardrobeFrame", "Blizzard_Collections")
   end
+  if not TXUI.IsRetail then M:SetElementScale("talents", "PlayerTalentFrame", "Blizzard_TalentUI") end
 end
 
 M:AddCallback("AdditionalScaling")

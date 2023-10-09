@@ -6,6 +6,7 @@ TXUI.Changelog["6.4.3"] = {
     "* Breaking changes",
 
     "* New features",
+    TXUI.Title .. "Scaling added for the talentwindow and " .. F.String.ToxiUI("Wrath"),
 
     "* Bug fixes",
 
