@@ -3,6 +3,7 @@ local M = TXUI:GetModule("Misc")
 
 local _G = _G
 local xpcall = xpcall
+local IsAddOnLoaded = IsAddOnLoaded
 
 M.addonsToLoad = {}
 
@@ -55,11 +56,26 @@ function M:AdditionalScaling()
   M:SetElementScale("map", "WorldMapFrame")
   M:SetElementScale("characterFrame", "CharacterFrame")
   M:SetElementScale("dressingRoom", "DressUpFrame")
-  M:AddCallbackForAddon("Blizzard_InspectUI", "ScaleInspectUI")
 
-  if TXUI.IsRetail then M:AddCallbackForAddon("Blizzard_Collections", "ScaleCollections") end
+  -- In the next parts, if the AddOn isn't loaded by the game yet we add it to a list to be loaded as soon as the AddOn has been loaded
+  -- Otherwise we can scale the UI element directly.
+  if not IsAddOnLoaded("Blizzard_InspectUI") then
+    M:AddCallbackForAddon("Blizzard_InspectUI", "ScaleInspectUI")
+  else
+    M:ScaleInspectUI()
+  end
 
-  if not TXUI.IsRetail then M:AddCallbackForAddon("Blizzard_TalentUI", "ScaleTalents") end
+  if TXUI.IsRetail and not IsAddOnLoaded("Blizzard_Collections") then
+    M:AddCallbackForAddon("Blizzard_Collections", "ScaleCollections")
+  else
+    M:ScaleCollections()
+  end
+
+  if not TXUI.IsRetail and not IsAddOnLoaded("Blizzard_TalentUI") then
+    M:AddCallbackForAddon("Blizzard_TalentUI", "ScaleTalents")
+  else
+    M:ScaleTalents()
+  end
 end
 
 function M:ScaleCollections()

@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local Misc = TXUI:GetModule("Misc")
 
 function O:Plugins_AdditionalScaling()
   -- Create Tab
@@ -44,7 +45,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.characterFrame.scale = value
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
@@ -60,7 +61,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.dressingRoom.scale = value
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
@@ -80,7 +81,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.inspectFrame.scale = value
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
@@ -98,8 +99,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.syncInspect.enabled = value
-
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
     }
   end
@@ -125,7 +125,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.map.scale = value
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
@@ -157,7 +157,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.wardrobe.scale = value
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
@@ -177,7 +177,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.collections.scale = value
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
@@ -206,7 +206,7 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.talents.scale = value
-        E:StaticPopup_Show("CONFIG_RL")
+        Misc:AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
