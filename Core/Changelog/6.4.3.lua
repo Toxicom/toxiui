@@ -12,6 +12,7 @@ TXUI.Changelog["6.4.3"] = {
       .. F.String.Sublist(F.String.Class("Talents Window") .. " (Wrath & Classic only)"),
 
     "* Bug fixes",
+    TXUI.Title .. ": Removed the need to forceload addons when adjusting scale through " .. F.String.ToxiUI("Additional Scaling"),
 
     "* Profile updates",
 
