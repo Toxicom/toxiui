@@ -69,8 +69,9 @@ end
 
 function M:ScaleInspectUI()
   -- Special case for synced character & inspect frames
-  local syncedFrameName = E.db.TXUI.misc.scaling.syncInspect.enabled and "characterFrame" or "inspectFrame"
-  M:SetElementScale(syncedFrameName, "InspectFrame")
+  -- If sync is enabled, we take the value of the characterFrame in the database
+  local dbName = E.db.TXUI.misc.scaling.syncInspect.enabled and "characterFrame" or "inspectFrame"
+  M:SetElementScale(dbName, "InspectFrame")
 end
 
 function M:ScaleTalents()
