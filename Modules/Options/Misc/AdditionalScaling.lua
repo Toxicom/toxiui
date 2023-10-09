@@ -142,7 +142,7 @@ function O:Plugins_AdditionalScaling()
     local retailGroup = self:AddInlineDesc(options, {
       name = "Retail Only",
     }, {
-      name = "Scale retail only frames.\n\n",
+      name = "Scale Retail only frames.\n\n",
     }).args
     -- Retail Group
     retailGroup.wardrobe = {
@@ -177,6 +177,35 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.collections.scale = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.1,
+    }
+  end
+
+  -- Wrath & Classic
+  do
+    -- Wrath & Classic Group
+    local retailGroup = self:AddInlineDesc(options, {
+      name = "Wrath & Classic Only",
+    }, {
+      name = "Scale Wrath & Classic only frames.\n\n",
+    }).args
+    -- additional scaling talents
+    retailGroup.talents = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Talents",
+      disabled = function()
+        return TXUI.IsRetail
+      end,
+      get = function(_)
+        return E.db.TXUI.misc.scaling.talents.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.talents.scale = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
       min = 0.5,
