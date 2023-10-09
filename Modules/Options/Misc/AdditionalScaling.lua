@@ -13,13 +13,39 @@ function O:Plugins_AdditionalScaling()
 
   -- Options
   local options = self.options.misc.args["additionalScaling"]["args"]
+  local optionsHidden
 
-  -- General Group
-  self:AddInlineDesc(options, {
-    name = "Description",
-  }, {
-    name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n",
-  })
+  -- General
+  do
+    -- General Group
+    local generalGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Description",
+    }, {
+      name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n",
+    }, I.Requirements.AdditionalScaling)
+
+    -- Enable
+    generalGroup.enabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " MiniMapCoords.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.misc.scaling.enabled, generalGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.misc.scaling.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.enabled = value
+        Misc:AdditionalScaling()
+      end,
+    }
+
+    -- Hidden helper
+    optionsHidden = function()
+      return self:GetEnabledState(E.db.TXUI.misc.scaling.enabled, generalGroup) ~= self.enabledState.YES
+    end
+  end
 
   -- Spacer
   self:AddSpacer(options)
@@ -29,6 +55,7 @@ function O:Plugins_AdditionalScaling()
     -- Character Group
     local characterGroup = self:AddInlineDesc(options, {
       name = "Character",
+      hidden = optionsHidden,
     }, {
       name = "Scale character specific frames.\n\n",
     }).args
@@ -110,6 +137,7 @@ function O:Plugins_AdditionalScaling()
     -- Other Group
     local otherGroup = self:AddInlineDesc(options, {
       name = "Other",
+      hidden = optionsHidden,
     }, {
       name = "Scale other frames.\n\n",
     }).args
@@ -139,6 +167,7 @@ function O:Plugins_AdditionalScaling()
     -- Retail Group
     local retailGroup = self:AddInlineDesc(options, {
       name = "Retail Only",
+      hidden = optionsHidden,
     }, {
       name = "Scale Retail only frames.\n\n",
     }).args
@@ -186,13 +215,14 @@ function O:Plugins_AdditionalScaling()
   -- Wrath & Classic
   do
     -- Wrath & Classic Group
-    local retailGroup = self:AddInlineDesc(options, {
+    local classicGroup = self:AddInlineDesc(options, {
       name = "Wrath & Classic Only",
+      hidden = optionsHidden,
     }, {
       name = "Scale Wrath & Classic only frames.\n\n",
     }).args
     -- additional scaling talents
-    retailGroup.talents = {
+    classicGroup.talents = {
       order = self:GetOrder(),
       type = "range",
       name = "Talents",
