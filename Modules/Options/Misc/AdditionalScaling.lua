@@ -142,7 +142,7 @@ function O:Plugins_AdditionalScaling()
     local retailGroup = self:AddInlineDesc(options, {
       name = "Retail Only",
     }, {
-      name = "Scale retail only frames.\n\n",
+      name = "Scale Retail only frames.\n\n",
     }).args
     -- Retail Group
     retailGroup.wardrobe = {
@@ -185,13 +185,13 @@ function O:Plugins_AdditionalScaling()
     }
   end
 
-  -- Wrath|Classic
+  -- Wrath & Classic
   do
-    -- Wrath|Classic Group
+    -- Wrath & Classic Group
     local retailGroup = self:AddInlineDesc(options, {
-      name = "Wrath|Classic Only",
+      name = "Wrath & Classic Only",
     }, {
-      name = "Scale Wrath|Classic only frames.\n\n",
+      name = "Scale Wrath & Classic only frames.\n\n",
     }).args
     -- additional scaling talents
     retailGroup.talents = {
