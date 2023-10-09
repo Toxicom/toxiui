@@ -620,7 +620,7 @@ P.wunderbar = {
     normalFontCustomColor = F.Table.HexToRGB("#ffffffff"),
   },
   modules = {
-    LeftPanel = { "MicroMenu", "", "" },
+    LeftPanel = { "MicroMenu", "", "DataBar" },
     MiddlePanel = { "SpecSwitch", "Time", "Profession" },
     RightPanel = { "Currency", "System", "Hearthstone" },
   },
@@ -673,7 +673,7 @@ P.wunderbar = {
       icon = F.String.ConvertGlyph(59706),
       iconFontSize = 18,
 
-      infoEnabled = false,
+      infoEnabled = true,
       infoFont = I.Fonts.Primary,
       infoFontSize = 17,
       infoOffset = 13,
