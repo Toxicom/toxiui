@@ -2,8 +2,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 
 local _G = _G
-local LoadAddOn = LoadAddOn
-local IsAddOnLoaded = IsAddOnLoaded
 local xpcall = xpcall
 
 M.addonsToLoad = {}
