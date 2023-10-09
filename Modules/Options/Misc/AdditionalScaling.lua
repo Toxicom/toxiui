@@ -22,7 +22,7 @@ function O:Plugins_AdditionalScaling()
       name = "Description",
     }, {
       name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n",
-    }, I.Requirements.AdditionalScaling)
+    }, I.Requirements.AdditionalScaling).args
 
     -- Enable
     generalGroup.enabled = {
