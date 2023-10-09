@@ -51,6 +51,8 @@ function M:SetElementScale(dbName, blizzName)
   _G[blizzName]:SetScale(option.scale)
 end
 
+local IsRetailTalentsWindowHooked = false
+
 function M:AdditionalScaling()
   -- Don't init if its not a TXUI profile or requirements are not met
   if not TXUI:HasRequirements(I.Requirements.AdditionalScaling) then return end
@@ -71,15 +73,24 @@ function M:AdditionalScaling()
 
     -- Retail scaling
     if TXUI.IsRetail then
+      -- Retail: Collections
       if not IsAddOnLoaded("Blizzard_Collections") then
         M:AddCallbackForAddon("Blizzard_Collections", "ScaleCollections")
       else
         M:ScaleCollections()
       end
+
+      -- Retail: Talents
+      if not IsAddOnLoaded("Blizzard_ClassTalentUI") then
+        M:AddCallbackForAddon("Blizzard_ClassTalentUI", "HookRetailTalentsWindow")
+      else
+        M:ScaleTalents()
+      end
     end
 
     -- Wrath & Classic scaling
     if not TXUI.IsRetail then
+      -- Classic: Talents
       if not IsAddOnLoaded("Blizzard_TalentUI") then
         M:AddCallbackForAddon("Blizzard_TalentUI", "ScaleTalents")
       else
@@ -106,6 +117,18 @@ end
 function M:ScaleTalents()
   local frameName = TXUI.IsRetail and "ClassTalentFrame" or "PlayerTalentFrame"
   M:SetElementScale("talents", frameName)
+end
+
+function M:HookRetailTalentsWindow()
+  if not IsRetailTalentsWindowHooked then
+    _G.ClassTalentFrame:HookScript("OnShow", function()
+      M:ScaleTalents()
+    end)
+    _G.ClassTalentFrame:HookScript("OnEvent", function()
+      M:ScaleTalents()
+    end)
+    IsRetailTalentsWindowHooked = true
+  end
 end
 
 M:RegisterEvent("ADDON_LOADED")
