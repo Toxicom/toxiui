@@ -65,16 +65,28 @@ function M:AdditionalScaling()
     M:ScaleInspectUI()
   end
 
-  if TXUI.IsRetail and not IsAddOnLoaded("Blizzard_Collections") then
-    M:AddCallbackForAddon("Blizzard_Collections", "ScaleCollections")
-  else
-    M:ScaleCollections()
+  -- Retail scaling
+  if TXUI.IsRetail then
+    if not IsAddOnLoaded("Blizzard_Collections") then
+      M:AddCallbackForAddon("Blizzard_Collections", "ScaleCollections")
+    else
+      M:ScaleCollections()
+    end
+
+    if not IsAddOnLoaded("Blizzard_ClassTalentUI") then
+      M:AddCallbackForAddon("Blizzard_ClassTalentUI", "ScaleTalents")
+    else
+      M:ScaleTalents()
+    end
   end
 
-  if not TXUI.IsRetail and not IsAddOnLoaded("Blizzard_TalentUI") then
-    M:AddCallbackForAddon("Blizzard_TalentUI", "ScaleTalents")
-  else
-    M:ScaleTalents()
+  -- Wrath & Classic scaling
+  if not TXUI.IsRetail then
+    if not IsAddOnLoaded("Blizzard_TalentUI") then
+      M:AddCallbackForAddon("Blizzard_TalentUI", "ScaleTalents")
+    else
+      M:ScaleTalents()
+    end
   end
 end
 
@@ -91,7 +103,8 @@ function M:ScaleInspectUI()
 end
 
 function M:ScaleTalents()
-  M:SetElementScale("talents", "PlayerTalentFrame")
+  local frameName = TXUI.IsRetail and "ClassTalentFrame" or "PlayerTalentFrame"
+  M:SetElementScale("talents", frameName)
 end
 
 M:RegisterEvent("ADDON_LOADED")
