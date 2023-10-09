@@ -671,7 +671,7 @@ P.wunderbar = {
       icon = F.String.ConvertGlyph(59706),
       iconFontSize = 18,
 
-      infoEnabled = false,
+      infoEnabled = true,
       infoFont = I.Fonts.Primary,
       infoFontSize = 17,
       infoOffset = 13,
