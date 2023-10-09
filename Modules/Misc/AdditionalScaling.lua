@@ -42,7 +42,7 @@ function M:SetElementScale(dbName, blizzName)
     return
   end
 
-  if option.scale ~= 1 then _G[blizzName]:SetScale(option.scale) end
+  _G[blizzName]:SetScale(option.scale)
 end
 
 function M:AdditionalScaling()
