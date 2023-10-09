@@ -35,7 +35,13 @@ function M:CallLoadedAddon(addonName, object)
 end
 
 function M:SetElementScale(dbName, blizzName)
-  local option = E.db.TXUI.misc.scaling[dbName]
+  local option
+
+  if not E.db.TXUI.mix.scaling.enabled then
+    option = { scale = 1 }
+  else
+    option = E.db.TXUI.misc.scaling[dbName]
+  end
 
   if not option then
     TXUI:LogDebug("AdditionalScaling > option " .. dbName .. " not found, skipping scaling!")
