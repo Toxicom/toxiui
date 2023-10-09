@@ -6,7 +6,10 @@ TXUI.Changelog["6.4.3"] = {
     "* Breaking changes",
 
     "* New features",
-    TXUI.Title .. "Scaling added for the talentwindow and " .. F.String.ToxiUI("Wrath"),
+    "Add new option to "
+      .. F.String.ToxiUI("Additional Scaling")
+      .. " module" -- comment to stop auto-formatting
+      .. F.String.Sublist(F.String.Class("Talents Window") .. " (Wrath & Classic only)"),
 
     "* Bug fixes",
 
