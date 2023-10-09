@@ -28,7 +28,7 @@ function O:Plugins_AdditionalScaling()
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " MiniMapCoords.",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " Additional Scaling.",
       name = function()
         return self:GetEnableName(E.db.TXUI.misc.scaling.enabled, generalGroup)
       end,
