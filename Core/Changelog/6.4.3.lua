@@ -34,6 +34,7 @@ TXUI.Changelog["6.4.3"] = {
     F.String.ElvUI() .. ": Update fonts to use the new 'Shadow' font outline",
     F.String.ElvUI() .. ": Add settings for new " .. F.String.ElvUI() .. " bag spinner animation when sorting bags",
     F.String.ElvUI() .. ": Add raid group number for raid frames",
+    F.String.ElvUI() .. ": Move Addon Compartment down to avoid blocking the mail icon",
 
     "* Documentation",
 
