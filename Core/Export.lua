@@ -249,7 +249,7 @@ local function convertFonts(str)
   local replaceTable = {
     [I.Fonts.Primary] = "I.Fonts.Primary",
     [I.Fonts.Title] = "I.Fonts.Title",
-    [I.Fonts.TitleRaid] = "I.Fonts.TitleRaid",
+    [I.Fonts.TitleBlack] = "I.Fonts.TitleBlack",
     [I.Fonts.Icons] = "I.Fonts.Icons",
   }
 

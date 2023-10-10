@@ -34,7 +34,7 @@ function PF:BuildNameplateSCTProfile()
     enabled = true,
     filter = "",
     filterEnabled = false,
-    font = F.FontOverride(I.Fonts.TitleRaid), -- Custom
+    font = F.FontOverride(I.Fonts.TitleBlack), -- Custom
     fontFlag = "OUTLINE",
     fontShadow = false,
 

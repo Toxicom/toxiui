@@ -19,30 +19,30 @@ I.General = {
 I.Fonts = {
   Primary = "- ToxiUI",
   Title = "- Big Noodle Titling", -- - Big Noodle Titling
-  TitleSecondary = "- M 700", -- - Montserrat Bold
-  TitleRaid = "- M 900", -- - Montserrat Black
+  TitleRaid = "- M 700", -- - Montserrat Bold
+  TitleBlack = "- M 900", -- - Montserrat Black
   Icons = "- ToxiUI Icons",
 }
 
 I.FontNames = {
   [I.Fonts.Primary] = "Primary",
   [I.Fonts.Title] = "Title",
-  [I.Fonts.TitleSecondary] = "Title Secondary",
   [I.Fonts.TitleRaid] = "Title Raid",
+  [I.Fonts.TitleBlack] = "Title Black",
 }
 
 I.FontDescription = {
   [I.Fonts.Primary] = "Used in the majority of the UI.",
   [I.Fonts.Title] = "Used mostly for names.",
-  [I.Fonts.TitleSecondary] = "Used for names in Raid Frames.",
-  [I.Fonts.TitleRaid] = "Mostly used for Raid names and couple other places.",
+  [I.Fonts.TitleRaid] = "Used for names in Raid Frames.",
+  [I.Fonts.TitleBlack] = "Very bold font used in a couple places, like map coordinates.",
 }
 
 I.FontOrder = {
   I.Fonts.Primary,
   I.Fonts.Title,
-  I.Fonts.TitleSecondary,
   I.Fonts.TitleRaid,
+  I.Fonts.TitleBlack,
 }
 
 I.MediaKeys = {

@@ -23,21 +23,21 @@ P.general = {
   fontOverride = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
-    [I.Fonts.TitleSecondary] = "DEFAULT",
+    [I.Fonts.TitleBlack] = "DEFAULT",
     [I.Fonts.TitleRaid] = "DEFAULT",
   },
 
   fontStyleOverride = {
     [I.Fonts.Primary] = "OUTLINE",
     [I.Fonts.Title] = "DEFAULT",
-    [I.Fonts.TitleSecondary] = "DEFAULT",
+    [I.Fonts.TitleBlack] = "DEFAULT",
     [I.Fonts.TitleRaid] = "DEFAULT",
   },
 
   fontShadowOverride = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
-    [I.Fonts.TitleSecondary] = "DEFAULT",
+    [I.Fonts.TitleBlack] = "DEFAULT",
     [I.Fonts.TitleRaid] = "DEFAULT",
   },
 }
@@ -358,7 +358,7 @@ P.miniMapCoords = {
   yOffset = -115,
   format = "%.0f",
 
-  coordFont = I.Fonts.TitleRaid,
+  coordFont = I.Fonts.TitleBlack,
   coordFontSize = 22,
   coordFontShadow = false,
   coordFontOutline = "OUTLINE",

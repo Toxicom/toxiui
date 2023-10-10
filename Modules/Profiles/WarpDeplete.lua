@@ -44,13 +44,13 @@ function PF:BuildWarpDepleteProfile()
     frameY = F.Dpi(120),
 
     -- Key
-    keyFont = F.FontOverride(I.Fonts.TitleRaid),
+    keyFont = F.FontOverride(I.Fonts.TitleBlack),
     keyDetailsFont = F.FontOverride(I.Fonts.Primary),
     keyColor = "ffffb35f",
     keyDetailsColor = "ff61c2ff",
 
     -- Timer
-    timerFont = F.FontOverride(I.Fonts.TitleRaid),
+    timerFont = F.FontOverride(I.Fonts.TitleBlack),
 
     -- Objectives
     objectivesFont = F.FontOverride(I.Fonts.Primary),

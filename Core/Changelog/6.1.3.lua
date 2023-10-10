@@ -7,7 +7,7 @@ TXUI.Changelog["6.1.3"] = {
     "Perhaps better handling for those very big UW screens.",
     "Move World Map coordinates to bottom right.",
     "Increase default options window size.",
-    "Change Raid frame's name font to '" .. F.String.ToxiUI("Title Secondary") .. "'.",
+    "Change Raid frame's name font to '" .. F.String.ToxiUI("Title Raid") .. "'.",
     "Reduce the max length of Raid frame's name string.",
     "Disable Target color on Plater's " .. F.String.ToxiUI("M+ Colored Mobs") .. " mod.",
 
@@ -15,7 +15,7 @@ TXUI.Changelog["6.1.3"] = {
     "Fix raid frames visibility.",
 
     "* Documentation",
-    "Add '" .. F.String.ToxiUI("Title Secondary") .. "' to Fonts module.",
+    "Add '" .. F.String.ToxiUI("Title Raid") .. "' to Fonts module.",
     "Add descriptions to each font in the Fonts module.",
   },
 

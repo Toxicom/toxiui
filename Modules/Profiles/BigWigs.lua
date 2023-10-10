@@ -89,7 +89,7 @@ function PF:BuildBigWigsProfile()
             ["emphasizeGrowup"] = true,
             ["emphasizeTime"] = 10,
             ["fill"] = true,
-            ["fontName"] = F.FontOverride(I.Fonts.TitleSecondary),
+            ["fontName"] = F.FontOverride(I.Fonts.TitleRaid),
             ["fontSize"] = 16,
             ["fontSizeEmph"] = 16,
             ["fontSizeNameplate"] = 12,
@@ -143,7 +143,7 @@ function PF:BuildBigWigsProfile()
             ["fontColor"] = {
               ["b"] = 0.3,
             },
-            ["fontName"] = F.FontOverride(I.Fonts.TitleRaid),
+            ["fontName"] = F.FontOverride(I.Fonts.TitleBlack),
             ["fontSize"] = 100,
             ["position"] = {
               [1] = "CENTER",
@@ -166,7 +166,7 @@ function PF:BuildBigWigsProfile()
         ["profiles"] = {
           [profileName] = {
             ["align"] = "RIGHT",
-            ["emphFontName"] = F.FontOverride(I.Fonts.TitleSecondary),
+            ["emphFontName"] = F.FontOverride(I.Fonts.TitleRaid),
             ["emphFontSize"] = F.FontSizeScaled(24),
             ["emphPosition"] = {
               [1] = "TOP",
@@ -174,7 +174,7 @@ function PF:BuildBigWigsProfile()
               [4] = -215,
             },
             ["emphUppercase"] = false,
-            ["fontName"] = F.FontOverride(I.Fonts.TitleSecondary),
+            ["fontName"] = F.FontOverride(I.Fonts.TitleRaid),
             ["fontSize"] = F.FontSizeScaled(20),
             ["normalPosition"] = {
               [1] = "CENTER",

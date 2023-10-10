@@ -314,8 +314,8 @@ function PF:ElvUIFont()
 
         raid1 = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleSecondary), 16, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
-            { "!Group", F.FontOverride(I.Fonts.TitleSecondary), 12, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "OUTLINE") },
+            { "!Group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "OUTLINE") },
           },
 
           rdebuffs = {
@@ -327,8 +327,8 @@ function PF:ElvUIFont()
 
         raid2 = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleSecondary), 16, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
-            { "!Group", F.FontOverride(I.Fonts.TitleSecondary), 12, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "OUTLINE") },
+            { "!Group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "OUTLINE") },
           },
 
           rdebuffs = {
@@ -340,8 +340,8 @@ function PF:ElvUIFont()
 
         raid3 = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleSecondary), 16, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
-            { "!Group", F.FontOverride(I.Fonts.TitleSecondary), 12, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "OUTLINE") },
+            { "!Group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "OUTLINE") },
           },
 
           rdebuffs = {
@@ -494,7 +494,7 @@ function PF:ElvUIFont()
     F.Table.Crush(E.db.wratharmory, {
       character = {
         avgItemLevel = {
-          font = F.FontOverride(I.Fonts.TitleRaid),
+          font = F.FontOverride(I.Fonts.TitleBlack),
         },
 
         enchant = {
@@ -510,7 +510,7 @@ function PF:ElvUIFont()
 
       inspect = {
         avgItemLevel = {
-          font = F.FontOverride(I.Fonts.TitleRaid),
+          font = F.FontOverride(I.Fonts.TitleBlack),
         },
 
         enchant = {
@@ -535,7 +535,7 @@ function PF:ElvUIFontPrivates()
       chatBubbleFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
 
       -- Blizzard
-      dmgfont = F.FontOverride(I.Fonts.TitleRaid),
+      dmgfont = F.FontOverride(I.Fonts.TitleBlack),
       namefont = F.FontOverride(I.Fonts.Primary),
     },
   })

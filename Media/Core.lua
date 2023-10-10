@@ -14,8 +14,8 @@ F.AddMedia("font", "ToxiUI.ttf", I.Fonts.Primary, nil, westAndRUBits)
 F.AddMedia("font", "BigNoodleToo.ttf", I.Fonts.Title, nil, westAndRUBits)
 F.AddMedia("font", "Steelfish.ttf", "- Steelfish", nil, westAndRUBits)
 F.AddMedia("font", "Montserrat-Medium.ttf", "- M 500", nil, westAndRUBits)
-F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleSecondary, nil, westAndRUBits)
-F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.TitleRaid, nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleRaid, nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.TitleBlack, nil, westAndRUBits)
 
 -- -----
 --   STATUSBAR - LSM
