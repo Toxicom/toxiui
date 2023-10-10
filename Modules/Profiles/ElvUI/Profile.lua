@@ -354,7 +354,7 @@ function PF:BuildProfile()
 
     -- Chat Time Color
     useCustomTimeColor = true,
-    customTimeColor = F.Table.HexToRGB("#00c1e2"),
+    customTimeColor = I.Strings.Branding.ColorRGB,
   })
 
   -- Auras Buffs
