@@ -355,6 +355,38 @@ function M:Tags()
     end
   end)
 
+  -- Group Tag
+  local validGroups = {
+    [1] = true,
+    [6] = true,
+    [11] = true,
+    [16] = true,
+    [21] = true,
+    [26] = true,
+    [31] = true,
+    [36] = true,
+  }
+
+  E:AddTag("tx:group:raid", "GROUP_ROSTER_UPDATE", function(unit)
+    if IsInRaid() then
+      local name, realm = UnitName(unit)
+      if name then
+        local nameRealm = (realm and realm ~= "" and format("%s-%s", name, realm)) or name
+        for i = 1, GetNumGroupMembers() do
+          local raidName, _, group = GetRaidRosterInfo(i)
+          if raidName == nameRealm then
+            -- This will work only with full groups
+            if validGroups[i] then
+              return "Group " .. group
+            else
+              return nil -- Group has already been encountered, return nil
+            end
+          end
+        end
+      end
+    end
+  end)
+
   local TagNames = {
     DEFAULT = TXUI.Title,
     NAMES = TXUI.Title .. " Names",
@@ -393,6 +425,13 @@ function M:Tags()
   )
 
   E:AddTagInfo("tx:classicon", TXUI.Title, "Displays " .. TXUI.Title .. " class icon.")
+  E:AddTagInfo(
+    "tx:group:raid",
+    TXUI.Title,
+    "Displays raid group number with a 'Group' prefix for the first unit in a group. (e.g. Group 1) "
+      .. F.String.Error("Warning: ")
+      .. "This will work only for full proper groups!"
+  )
 
   -- Settings Callback
   F.Event.RegisterCallback("Tags.DatabaseUpdate", self.TagsUpdate, self)

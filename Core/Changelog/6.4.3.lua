@@ -12,6 +12,7 @@ TXUI.Changelog["6.4.3"] = {
       .. F.String.Sublist(F.String.Class("Talents Frame")),
     "Add option to disable whole " .. F.String.ToxiUI("Additional Scaling") .. " module",
     "Add " .. TXUI.Title .. " Raid Assist icons",
+    F.String.Error("Experimental: ") .. "Add custom raid group number tag that shows group number only for first unit in a group",
 
     "* Bug fixes",
     TXUI.Title .. ": Remove the need to force-load AddOns when adjusting scale through " .. F.String.ToxiUI("Additional Scaling"),
