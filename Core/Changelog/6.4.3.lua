@@ -11,6 +11,7 @@ TXUI.Changelog["6.4.3"] = {
       .. " module" -- comment to stop auto-formatting
       .. F.String.Sublist(F.String.Class("Talents Frame")),
     "Add option to disable whole " .. F.String.ToxiUI("Additional Scaling") .. " module",
+    "Add " .. TXUI.Title .. " Raid Assist icons",
 
     "* Bug fixes",
     TXUI.Title .. ": Remove the need to force-load AddOns when adjusting scale through " .. F.String.ToxiUI("Additional Scaling"),
