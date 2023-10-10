@@ -100,6 +100,7 @@ F.AddMedia("state", "WhiteDead")
 -- Material Icons
 F.AddMedia("state", "MaterialDC")
 F.AddMedia("state", "MaterialDead")
+F.AddMedia("state", "MaterialAssist")
 F.AddMedia("state", "MaterialLeader")
 
 -- Stylized Icons

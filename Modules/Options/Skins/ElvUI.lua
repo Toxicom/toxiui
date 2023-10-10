@@ -349,7 +349,7 @@ function O:Skins_ElvUI()
       name = "Style",
       desc = "Change the icon",
       values = {
-        -- ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
+        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
         ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
         ["BLIZZARD"] = "Blizzard",
       },
