@@ -1274,6 +1274,14 @@ function PF:BuildProfile()
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
         }),
+
+        ["!Group"] = createCustomText({}, {
+          attachTextTo = "Frame",
+          text_format = "[group:raid]",
+          justifyH = "RIGHT",
+          xOffset = -2,
+          yOffset = -10,
+        }),
       },
 
       -- UnitFrame Raid1 Heal Prediction
@@ -1308,10 +1316,10 @@ function PF:BuildProfile()
       roleIcon = {
         enable = true,
         damager = false,
-        position = "TOPLEFT",
+        position = "BOTTOMLEFT",
         size = F.Dpi(20),
-        xOffset = -5,
-        yOffset = 5,
+        xOffset = 0,
+        yOffset = 2,
       },
 
       raidRoleIcons = {
@@ -1363,6 +1371,14 @@ function PF:BuildProfile()
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
         }),
+
+        ["!Group"] = createCustomText({}, {
+          attachTextTo = "Frame",
+          text_format = "[group:raid]",
+          justifyH = "RIGHT",
+          xOffset = -2,
+          yOffset = -10,
+        }),
       },
 
       -- UnitFrame Raid2 Heal Prediction
@@ -1397,10 +1413,10 @@ function PF:BuildProfile()
       roleIcon = {
         enable = true,
         damager = false,
-        position = "TOPLEFT",
+        position = "BOTTOMLEFT",
         size = F.Dpi(20),
-        xOffset = -5,
-        yOffset = 5,
+        xOffset = 0,
+        yOffset = 2,
       },
 
       raidRoleIcons = {
@@ -1451,6 +1467,14 @@ function PF:BuildProfile()
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(0),
         }),
+
+        ["!Group"] = createCustomText({}, {
+          attachTextTo = "Frame",
+          text_format = "[group:raid]",
+          justifyH = "RIGHT",
+          xOffset = -2,
+          yOffset = -6,
+        }),
       },
 
       -- UnitFrame Raid3 Heal Prediction
@@ -1486,10 +1510,10 @@ function PF:BuildProfile()
       roleIcon = {
         enable = true,
         damager = false,
-        position = "TOPLEFT",
+        position = "BOTTOMLEFT",
         size = F.Dpi(20),
-        xOffset = -5,
-        yOffset = 5,
+        xOffset = 0,
+        yOffset = 2,
       },
 
       raidRoleIcons = {

@@ -313,7 +313,10 @@ function PF:ElvUIFont()
         ),
 
         raid1 = {
-          customTexts = customTextSize { { "!Name", I.Fonts.TitleSecondary, 16, "OUTLINE" } },
+          customTexts = customTextSize {
+            { "!Name", F.FontOverride(I.Fonts.TitleSecondary), 16, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+            { "!Group", F.FontOverride(I.Fonts.TitleSecondary), 12, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+          },
 
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
@@ -323,7 +326,10 @@ function PF:ElvUIFont()
         },
 
         raid2 = {
-          customTexts = customTextSize { { "!Name", I.Fonts.TitleSecondary, 16, "OUTLINE" } },
+          customTexts = customTextSize {
+            { "!Name", F.FontOverride(I.Fonts.TitleSecondary), 16, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+            { "!Group", F.FontOverride(I.Fonts.TitleSecondary), 12, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+          },
 
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
@@ -333,7 +339,10 @@ function PF:ElvUIFont()
         },
 
         raid3 = {
-          customTexts = customTextSize { { "!Name", I.Fonts.TitleSecondary, 16, "OUTLINE" } },
+          customTexts = customTextSize {
+            { "!Name", F.FontOverride(I.Fonts.TitleSecondary), 16, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+            { "!Group", F.FontOverride(I.Fonts.TitleSecondary), 12, F.FontStyleOverride(I.Fonts.TitleSecondary, "OUTLINE") },
+          },
 
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
