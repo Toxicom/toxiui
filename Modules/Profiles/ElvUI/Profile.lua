@@ -320,6 +320,7 @@ function PF:BuildProfile()
     bankWidth = F.Dpi(700),
 
     -- Bags Options
+    useBlizzardCleanup = false,
     clearSearchOnClose = true,
     junkIcon = true,
     moneyCoins = false,
@@ -327,6 +328,13 @@ function PF:BuildProfile()
     showBindType = true,
     vendorGrays = {
       enable = true,
+    },
+
+    -- Sort Spinner
+    spinner = {
+      enable = true,
+      size = 80,
+      color = I.Strings.Branding.ColorRGB,
     },
   })
 

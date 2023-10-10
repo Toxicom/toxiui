@@ -52,9 +52,6 @@ function T:SetupProfile()
   -- ElvUI: Movers
   E.db.movers.ToxiUIWAAnchorMover = "BOTTOM,ElvUIParent,BOTTOM,0,395"
 
-  -- ElvUI: Bags
-  E.db.bags.useBlizzardCleanup = true
-
   E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bagButtonSpacing = 2
   E.db.bags.split.player = true
