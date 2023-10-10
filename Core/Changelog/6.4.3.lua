@@ -9,7 +9,7 @@ TXUI.Changelog["6.4.3"] = {
     "Add new option to "
       .. F.String.ToxiUI("Additional Scaling")
       .. " module" -- comment to stop auto-formatting
-      .. F.String.Sublist(F.String.Class("Talents Frame") .. " (Wrath & Classic only)"),
+      .. F.String.Sublist(F.String.Class("Talents Frame")),
     "Add option to disable whole " .. F.String.ToxiUI("Additional Scaling") .. " module",
 
     "* Bug fixes",
@@ -19,6 +19,12 @@ TXUI.Changelog["6.4.3"] = {
     "* Profile updates",
     TXUI.Title .. ": Enable WunderBar's DataBar (Experience and Reputation bar) by default",
     TXUI.Title .. ": Enable WunderBar DataBar's Info Text by default",
+    TXUI.Title .. ": Disable " .. F.String.ToxiUI("Additional Scaling") .. " module by default",
+    TXUI.Title
+      .. ": Reduce the step range for "
+      .. F.String.ToxiUI("Additional Scaling")
+      .. " module's option sliders" --
+      .. F.String.Sublist("Now you can set the scaling to 0.05 precision"), --
 
     "* Documentation",
 
