@@ -26,6 +26,7 @@ TXUI.Changelog["6.4.3"] = {
       .. " module's option sliders" --
       .. F.String.Sublist("Now you can set the scaling to 0.05 precision"), --
     F.String.ElvUI() .. ": Update chat timestamp color to use " .. TXUI.Title .. " brand color",
+    F.String.ElvUI() .. ": Update fonts to use the new 'Shadow' font outline",
 
     "* Documentation",
 

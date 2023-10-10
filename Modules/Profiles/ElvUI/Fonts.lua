@@ -30,19 +30,19 @@ function PF:ElvUIFont()
       itemLevel = {
         itemLevelFont = F.FontOverride(I.Fonts.Primary),
         itemLevelFontSize = F.FontSize(11),
-        itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
+        itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
       },
 
       altPowerBar = {
         font = F.FontOverride(I.Fonts.Title),
         fontSize = F.FontSizeScaled(18),
-        fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+        fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
       },
 
       minimap = {
         locationFont = F.FontOverride(I.Fonts.Title),
         locationFontSize = F.FontSizeScaled(22),
-        locationFontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+        locationFontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
 
         icons = {
           queueStatus = {
@@ -105,11 +105,11 @@ function PF:ElvUIFont()
     -- Chat
     chat = {
       font = F.FontOverride(I.Fonts.Primary),
-      fontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
+      fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
 
       tabFont = F.FontOverride(I.Fonts.Title),
       tabFontSize = F.FontSizeScaled(14, 13),
-      tabFontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+      tabFontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
     },
 
     -- Auras
@@ -122,7 +122,7 @@ function PF:ElvUIFont()
 
         timeFont = F.FontOverride(I.Fonts.Primary),
         timeFontSize = F.FontSizeScaled(16),
-        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
+        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
       },
 
       -- Debuffs
@@ -133,7 +133,7 @@ function PF:ElvUIFont()
 
         timeFont = F.FontOverride(I.Fonts.Primary),
         timeFontSize = F.FontSizeScaled(16),
-        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
+        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
       },
     },
 
@@ -141,7 +141,7 @@ function PF:ElvUIFont()
     unitframe = {
       font = F.FontOverride(I.Fonts.Title),
       fontSize = F.FontSizeScaled(20),
-      fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+      fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
 
       cooldown = {
         fonts = {
@@ -155,9 +155,9 @@ function PF:ElvUIFont()
       units = {
         player = {
           customTexts = customTextSize {
-            { "!Name", I.Fonts.Title, 26, "NONE" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "NONE" },
-            { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
+            { "!Name", I.Fonts.Title, 26, "SHADOW" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "SHADOW" },
+            { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
           },
 
           buffs = {
@@ -175,24 +175,24 @@ function PF:ElvUIFont()
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
 
             customTimeFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
           },
         },
 
         target = {
           customTexts = customTextSize {
-            { "!Name", I.Fonts.Title, 26, "NONE" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "NONE" },
+            { "!Name", I.Fonts.Title, 26, "SHADOW" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "SHADOW" },
             { "!Power", I.Fonts.Primary, 20, "OUTLINE" },
-            { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
+            { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
           },
 
           buffs = {
@@ -210,47 +210,47 @@ function PF:ElvUIFont()
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
 
             customTimeFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
           },
         },
 
         pet = {
-          customTexts = customTextSize { { "!Name", I.Fonts.Title, 16, "NONE" } },
+          customTexts = customTextSize { { "!Name", I.Fonts.Title, 16, "SHADOW" } },
 
           castbar = {
             customTextFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
 
             customTimeFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
           },
         },
 
         targettarget = {
-          customTexts = customTextSize { { "!Name", I.Fonts.Title, 16, "NONE" } },
+          customTexts = customTextSize { { "!Name", I.Fonts.Title, 16, "SHADOW" } },
         },
 
         focus = {
           customTexts = customTextSize {
-            { "!Name", I.Fonts.Title, 26, "NONE" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "NONE" },
-            { "!ClassIcon", I.Fonts.Title, 12, "NONE" }, -- Font and Outline doesn't matter
+            { "!Name", I.Fonts.Title, 26, "SHADOW" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 22, "SHADOW" },
+            { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
           },
 
           buffs = {
@@ -268,14 +268,14 @@ function PF:ElvUIFont()
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
 
             customTimeFont = {
               enable = true,
               font = F.FontOverride(I.Fonts.Title),
               fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
           },
         },
@@ -283,9 +283,9 @@ function PF:ElvUIFont()
         party = F.Table.Join(
           {
             customTexts = customTextSize {
-              { "!Name", I.Fonts.Title, 26, "NONE" },
-              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 24, "NONE" },
-              { "!ClassIcon", I.Fonts.Title, 10, "NONE" }, -- Font and Outline doesn't matter
+              { "!Name", I.Fonts.Title, 26, "SHADOW" },
+              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 24, "SHADOW" },
+              { "!ClassIcon", I.Fonts.Title, 10, "SHADOW" }, -- Font and Outline doesn't matter
             },
 
             buffs = {
@@ -301,13 +301,13 @@ function PF:ElvUIFont()
             rdebuffs = {
               font = F.FontOverride(I.Fonts.Primary),
               fontSize = F.FontSizeScaled(18),
-              fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+              fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
             },
           },
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
             customTexts = customTextSize {
-              { "!Name", I.Fonts.Title, 26, "NONE" },
-              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 32, "NONE" },
+              { "!Name", I.Fonts.Title, 26, "SHADOW" },
+              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 32, "SHADOW" },
             },
           })
         ),
@@ -318,7 +318,7 @@ function PF:ElvUIFont()
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
             fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+            fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
           },
         },
 
@@ -328,7 +328,7 @@ function PF:ElvUIFont()
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
             fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+            fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
           },
         },
 
@@ -338,14 +338,14 @@ function PF:ElvUIFont()
           rdebuffs = {
             font = F.FontOverride(I.Fonts.Title),
             fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, "NONE"),
+            fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
           },
         },
 
         arena = {
           customTexts = customTextSize {
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 20, "NONE" },
-            { "!Name", I.Fonts.Title, 24, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 20, "SHADOW" },
+            { "!Name", I.Fonts.Title, 24, "SHADOW" },
             { "!Power", I.Fonts.Primary, 20, "OUTLINE" },
           },
 
@@ -362,8 +362,8 @@ function PF:ElvUIFont()
 
         boss = {
           customTexts = customTextSize {
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 24, "NONE" },
-            { "!Name", I.Fonts.Title, 24, "NONE" },
+            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "OUTLINE" } or { "!Health", "- Steelfish", 24, "SHADOW" },
+            { "!Name", I.Fonts.Title, 24, "SHADOW" },
             { "!Power", I.Fonts.Primary, 20, "OUTLINE" },
           },
 
@@ -383,12 +383,12 @@ function PF:ElvUIFont()
     -- Tooltip
     tooltip = {
       font = F.FontOverride(I.Fonts.Primary),
-      fontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
+      fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
       textFontSize = F.FontSizeScaled(14), -- is fontSize (has old name)
 
       headerFont = F.FontOverride(I.Fonts.Primary),
       headerFontSize = F.FontSizeScaled(16),
-      headerFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
+      headerFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
 
       smallTextFontSize = F.FontSizeScaled(14),
 
@@ -523,7 +523,7 @@ function PF:ElvUIFontPrivates()
       -- General
       chatBubbleFont = F.FontOverride(I.Fonts.Primary),
       chatBubbleFontSize = F.FontSizeScaled(14),
-      chatBubbleFontOutline = F.FontStyleOverride(I.Fonts.Primary, ""),
+      chatBubbleFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
 
       -- Blizzard
       dmgfont = F.FontOverride(I.Fonts.TitleRaid),
