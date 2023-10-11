@@ -45,7 +45,7 @@ end
 
 function M:ScaleTalents()
   local frameName = TXUI.IsRetail and "ClassTalentFrame" or "PlayerTalentFrame"
-  if not IsRetailTalentsWindowHooked then
+  if TXUI.IsRetail and not IsRetailTalentsWindowHooked then
     M:HookRetailTalentsWindow()
   else
     M:SetElementScale("talents", frameName)
