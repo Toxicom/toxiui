@@ -39,6 +39,7 @@ TXUI.Changelog["6.4.3"] = {
 
     "* Documentation",
     "Update .toc for Wrath 3.4.3",
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.44",
 
     "* Settings refactoring",
 
