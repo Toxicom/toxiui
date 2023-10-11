@@ -807,6 +807,13 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(0)),
           justifyH = "CENTER",
         }),
+
+        ["!Happiness"] = createCustomText({}, {
+          text_format = TXUI.IsRetail and "" or "[happiness:discord]",
+          xOffset = -25,
+          yOffset = 0,
+          justifyH = "LEFT",
+        }),
       },
 
       -- UnitFrame Pet Castbar

@@ -37,6 +37,7 @@ TXUI.Changelog["6.4.3"] = {
     F.String.ElvUI() .. ": Add settings for new " .. F.String.ElvUI() .. " bag spinner animation when sorting bags",
     F.String.ElvUI() .. ": Add raid group number for raid frames",
     F.String.ElvUI() .. ": Move Addon Compartment down to avoid blocking the mail icon",
+    F.String.ElvUI() .. ": Display happiness emoji on Pet UnitFrame in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Classic"),
 
     "* Documentation",
     "Update .toc for Wrath 3.4.3",

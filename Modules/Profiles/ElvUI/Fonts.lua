@@ -8,6 +8,7 @@ local unpack = unpack
 local function customTextSize(args)
   local ret = {}
   for _, v in ipairs(args) do
+    if not v then return end
     local name, font, size, outline = unpack(v)
     ret[name] = {
       font = F.FontOverride(font),
@@ -223,7 +224,10 @@ function PF:ElvUIFont()
         },
 
         pet = {
-          customTexts = customTextSize { { "!Name", I.Fonts.Title, 16, "SHADOW" } },
+          customTexts = customTextSize {
+            { "!Name", I.Fonts.Title, 16, "SHADOW" },
+            { "!Happiness", I.Fonts.Title, 16, "SHADOW" },
+          },
 
           castbar = {
             customTextFont = {
