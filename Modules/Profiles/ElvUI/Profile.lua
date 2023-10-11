@@ -865,6 +865,11 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(10)),
         },
       },
+    }),
+    F.Table.If(not TXUI.IsRetail, { -- Pet
+      health = {
+        colorHappiness = false,
+      },
     })
   )
 
