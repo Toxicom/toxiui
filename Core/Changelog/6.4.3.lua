@@ -38,6 +38,7 @@ TXUI.Changelog["6.4.3"] = {
     F.String.ElvUI() .. ": Move Addon Compartment down to avoid blocking the mail icon",
 
     "* Documentation",
+    "Update .toc for Wrath 3.4.3",
 
     "* Settings refactoring",
 
