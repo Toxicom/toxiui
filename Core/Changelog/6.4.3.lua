@@ -31,6 +31,7 @@ TXUI.Changelog["6.4.3"] = {
       .. ": Update inconsistency in internal font names" --
       .. F.String.Sublist("Title Raid -> Title Black") --
       .. F.String.Sublist("Title Secondary -> Title Raid"), --
+    TXUI.Title .. ": Enable Collections Journal for WunderBar MicroMenu in " .. F.String.ToxiUI("Wrath"),
     F.String.ElvUI() .. ": Update chat timestamp color to use " .. TXUI.Title .. " brand color",
     F.String.ElvUI() .. ": Update fonts to use the new 'Shadow' font outline",
     F.String.ElvUI() .. ": Add settings for new " .. F.String.ElvUI() .. " bag spinner animation when sorting bags",

@@ -34,6 +34,7 @@ local ShowUIPanel = ShowUIPanel
 local sort = sort
 local tinsert = table.insert
 local ToggleCharacter = ToggleCharacter
+local ToggleCollectionsJournal = ToggleCollectionsJournal
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
@@ -124,15 +125,19 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHARACTER0 },
   },
   ["pet"] = {
-    available = TXUI.IsRetail,
+    available = not TXUI.IsClassic,
     name = COLLECTIONS,
+    click = {
+      LeftButton = function()
+        ToggleCollectionsJournal()
+      end,
+    },
     macro = {
-      LeftButton = "/click CollectionsMicroButton\n/click CollectionsJournalTab1",
       RightButton = "/run CollectionsJournal_LoadUI()\n/click MountJournalSummonRandomFavoriteButton",
     },
     keyBind = "TOGGLECOLLECTIONS",
     newbieTooltip = NEWBIE_TOOLTIP_MOUNTS_AND_PETS,
-    tooltips = { MM.leftButtonText .. "Toggle Collections", MM.rightButtonText .. "Random Favorite Mount" },
+    tooltips = { MM.leftButtonText .. "Toggle Collections", TXUI.IsRetail and MM.rightButtonText .. "Random Favorite Mount" or "" },
   },
   ["journal"] = {
     name = ADVENTURE_JOURNAL,
