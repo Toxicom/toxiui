@@ -5,13 +5,7 @@ local _G = _G
 local IsRetailTalentsWindowHooked = false
 
 function M:SetElementScale(dbName, blizzName)
-  local option
-
-  if not E.db.TXUI.misc.scaling.enabled then
-    option = { scale = 1 }
-  else
-    option = E.db.TXUI.misc.scaling[dbName]
-  end
+  local option = E.db.TXUI.misc.scaling[dbName]
 
   if not option then
     TXUI:LogDebug("AdditionalScaling > option " .. dbName .. " not found, skipping scaling!")

@@ -21,14 +21,16 @@ function O:Plugins_AdditionalScaling()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n",
+      name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "After disabling the module you must reload the UI, otherwise the scaling will not reset!\n\n",
     }, I.Requirements.AdditionalScaling).args
 
     -- Enable
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Additional Scaling.",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " Additional Scaling.\n\n",
       name = function()
         return self:GetEnableName(E.db.TXUI.misc.scaling.enabled, generalGroup)
       end,
@@ -37,7 +39,11 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.enabled = value
-        Misc:AdditionalScaling()
+        if value then
+          Misc:AdditionalScaling()
+        else
+          E:StaticPopup_Show("CONFIG_RL")
+        end
       end,
     }
 

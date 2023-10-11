@@ -7,6 +7,7 @@ function M:AdditionalScaling()
 
   -- check if database is present
   if E.db and E.db.TXUI then
+    if not E.db.TXUI.misc.scaling.enabled then return end
     M:SetElementScale("map", "WorldMapFrame")
     M:SetElementScale("characterFrame", "CharacterFrame")
     M:SetElementScale("dressingRoom", "DressUpFrame")
