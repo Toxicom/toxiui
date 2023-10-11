@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.4.3"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add new option to " .. F.String.Scaling() .. F.String.Sublist(F.String.Class("Talents Frame")),
     "Add option to disable whole " .. F.String.Scaling(),
@@ -43,7 +41,10 @@ TXUI.Changelog["6.4.3"] = {
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.44",
 
     "* Settings refactoring",
+    F.String.Scaling() .. "'s Collection slider moved to 'Other' group, since it's no longer Retail only",
 
     "* Development improvements",
+    "Refactored " .. F.String.Scaling() .. " for easier readability and maintenance",
+    "Organised " .. F.String.Scaling() .. " to separate files for easier life",
   },
 }
