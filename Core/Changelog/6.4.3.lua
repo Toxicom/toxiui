@@ -6,26 +6,24 @@ TXUI.Changelog["6.4.3"] = {
     "* Breaking changes",
 
     "* New features",
-    "Add new option to "
-      .. F.String.ToxiUI("Additional Scaling")
-      .. " module" -- comment to stop auto-formatting
-      .. F.String.Sublist(F.String.Class("Talents Frame")),
-    "Add option to disable whole " .. F.String.ToxiUI("Additional Scaling") .. " module",
+    "Add new option to " .. F.String.Scaling() .. F.String.Sublist(F.String.Class("Talents Frame")),
+    "Add option to disable whole " .. F.String.Scaling(),
+    "Enable Collections scaling via " .. F.String.Scaling() .. " for " .. F.String.ToxiUI("Wrath"),
     "Add " .. TXUI.Title .. " Raid Assist icons",
     F.String.Error("Experimental: ") .. "Add custom raid group number tag that shows group number only for first unit in a group",
 
     "* Bug fixes",
-    TXUI.Title .. ": Remove the need to force-load AddOns when adjusting scale through " .. F.String.ToxiUI("Additional Scaling"),
-    TXUI.Title .. ": Remove the need to reload when adjusting scale through " .. F.String.ToxiUI("Additional Scaling"),
+    TXUI.Title .. ": Remove the need to force-load AddOns when adjusting scale through " .. F.String.Scaling(),
+    TXUI.Title .. ": Remove the need to reload when adjusting scale through " .. F.String.Scaling(),
 
     "* Profile updates",
     TXUI.Title .. ": Enable WunderBar's DataBar (Experience and Reputation bar) by default",
     TXUI.Title .. ": Enable WunderBar DataBar's Info Text by default",
-    TXUI.Title .. ": Disable " .. F.String.ToxiUI("Additional Scaling") .. " module by default",
+    TXUI.Title .. ": Disable " .. F.String.Scaling() .. " by default",
     TXUI.Title
       .. ": Reduce the step range for "
-      .. F.String.ToxiUI("Additional Scaling")
-      .. " module's option sliders" --
+      .. F.String.Scaling()
+      .. "'s option sliders" --
       .. F.String.Sublist("Now you can set the scaling to 0.05 precision"), --
     TXUI.Title
       .. ": Update inconsistency in internal font names" --

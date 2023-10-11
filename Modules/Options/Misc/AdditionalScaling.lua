@@ -182,6 +182,26 @@ function O:Plugins_AdditionalScaling()
       max = 2,
       step = 0.05,
     }
+
+    -- Other Group: Collections
+    otherGroup.collections = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Collections",
+      disabled = function()
+        return TXUI.IsClassic
+      end,
+      get = function(_)
+        return E.db.TXUI.misc.scaling.collections.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.collections.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
   end
 
   -- Spacer
@@ -210,26 +230,6 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.wardrobe.scale = value
-        Misc:AdditionalScaling()
-      end,
-      min = 0.5,
-      max = 2,
-      step = 0.05,
-    }
-
-    -- Retail Group: Collections
-    retailGroup.collections = {
-      order = self:GetOrder(),
-      type = "range",
-      name = "Collections",
-      disabled = function()
-        return not TXUI.IsRetail
-      end,
-      get = function(_)
-        return E.db.TXUI.misc.scaling.collections.scale
-      end,
-      set = function(_, value)
-        E.db.TXUI.misc.scaling.collections.scale = value
         Misc:AdditionalScaling()
       end,
       min = 0.5,

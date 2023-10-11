@@ -18,10 +18,10 @@ function M:AdditionalScaling()
     M:AddCallbackOrScale("Blizzard_InspectUI", self.ScaleInspectUI)
 
     -- Retail scaling
-    if TXUI.IsRetail then
-      M:AddCallbackOrScale("Blizzard_Collections", self.ScaleCollections)
-      M:AddCallbackOrScale("Blizzard_ClassTalentUI", self.ScaleTalents)
-    end
+    if TXUI.IsRetail then M:AddCallbackOrScale("Blizzard_ClassTalentUI", self.ScaleTalents) end
+
+    -- Retail & Wrath scaling
+    if not TXUI.IsClassic then M:AddCallbackOrScale("Blizzard_Collections", self.ScaleCollections) end
 
     -- Wrath & Classic scaling
     if not TXUI.IsRetail then

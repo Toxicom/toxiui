@@ -17,7 +17,7 @@ end
 
 function M:ScaleCollections()
   M:SetElementScale("collections", "CollectionsJournal")
-  M:SetElementScale("wardrobe", "WardrobeFrame")
+  if TXUI.IsRetail then M:SetElementScale("wardrobe", "WardrobeFrame") end
 end
 
 function M:ScaleInspectUI()

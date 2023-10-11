@@ -5,8 +5,7 @@ TXUI.Changelog["6.3.2"] = {
   CHANGES = {
     "* New features",
     "Add new options to "
-      .. F.String.ToxiUI("Additional Scaling")
-      .. " module"
+      .. F.String.Scaling()
       .. F.String.Sublist(F.String.Class("Collections Journal")) -- comment to stop auto-formatting
       .. F.String.Sublist(F.String.Class("Wardrobe Frame")) -- comment to stop auto-formatting
       .. F.String.Sublist(F.String.Class("Dressing Room")) -- comment to stop auto-formatting

@@ -137,6 +137,10 @@ function F.String.WunderUI()
   return F.String.Epic("Wunder") .. "UI"
 end
 
+function F.String.Scaling()
+  return F.String.ToxiUI("Additional Scaling") .. " module"
+end
+
 function F.String.WrathArmory()
   return F.String.Class("Wrath", "MAGE") .. F.String.Class("Armory", "ROGUE")
 end
