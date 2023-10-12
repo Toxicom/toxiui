@@ -119,9 +119,15 @@ function F.PerfectScale(n)
   return (m == 1 or n == 0) and n or (n * m)
 end
 
+local doubleScaleResolutions = {
+  [2054] = true,
+  [2160] = true,
+  [2880] = true,
+}
+
 function F.PixelPerfect()
   local perfectScale = 768 / E.physicalHeight
-  if E.physicalHeight == 2160 or E.physicalHeight == 2880 then perfectScale = perfectScale * 2 end
+  if doubleScaleResolutions[E.physicalHeight] then perfectScale = perfectScale * 2 end
   return perfectScale
 end
 
