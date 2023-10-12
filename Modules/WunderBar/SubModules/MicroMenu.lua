@@ -94,9 +94,11 @@ local function ToggleGroupFinder()
   if TXUI.IsRetail then
     _G.ToggleLFDParentFrame()
   else
-    _G.ToggleLFGParentFrame()
+    _G.PVEFrame_ToggleFrame()
   end
 end
+
+local lfgLevelRequirement = TXUI.IsWrath and 15 or 10
 
 MM.microMenu = {
   ["ach"] = {
@@ -185,7 +187,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGAMEMENU, MM.rightButtonText .. ADDONS },
   },
   ["lfg"] = {
-    available = not TXUI.IsClassic and UnitLevel("player") >= 10,
+    available = not TXUI.IsClassic and UnitLevel("player") >= lfgLevelRequirement,
     name = DUNGEONS_BUTTON,
     click = {
       LeftButton = function()
