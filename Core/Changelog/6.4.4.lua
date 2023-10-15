@@ -12,6 +12,7 @@ TXUI.Changelog["6.4.4"] = {
 
     "* Profile updates",
     "Double UI scale for 2054 height screens",
+    "Use 'Shadow Outline' for ElvUI fonts instead of 'Outline'",
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.45",
