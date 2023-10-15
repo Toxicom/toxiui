@@ -11,8 +11,9 @@ TXUI.Changelog["6.4.4"] = {
     TXUI.Title .. ": WunderBar LFG fix in " .. F.String.ToxiUI("Wrath"),
 
     "* Profile updates",
-    "Double UI scale for 2054 height screens",
-    "Use 'Shadow Outline' for ElvUI fonts instead of 'Outline'",
+    TXUI.Title .. ": Double UI scale for 2054 height screens",
+    F.String.ElvUI() .. ": Use 'Shadow Outline' for fonts instead of 'Outline'",
+    F.String.ElvUI() .. ": Use 4:3 aspect ratio for Action Bars",
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.45",

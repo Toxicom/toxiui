@@ -1785,9 +1785,11 @@ function PF:BuildProfile()
     inheritGlobalFade = true,
 
     backdrop = false,
+    keepSizeRatio = false,
 
     buttons = 12,
-    buttonSize = F.Dpi(30),
+    buttonSize = F.Dpi(32), -- Width
+    buttonHeight = F.Dpi(24),
     buttonsPerRow = 6,
 
     hotkeytext = true,
