@@ -1442,7 +1442,7 @@ function O:Armory_OnlyRetailMessage()
       .. " we recommend using "
       .. F.String.WrathArmory()
       .. " by "
-      .. F.String.Class("Repooc", "MONK")
+      .. F.String.Class("Repooc", "DRUID")
       .. ".\n\n",
   }).args
 

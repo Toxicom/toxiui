@@ -368,7 +368,7 @@ function PF:BuildProfile()
   -- Auras Buffs
   F.Table.Crush(pf.auras.buffs, {
     -- Auras Buffs Size - Rounded to the next 2
-    size = F.Dpi(34, 2),
+    size = F.Dpi(32),
 
     -- Auras Buffs Options
     fadeThreshold = 3,
@@ -376,15 +376,23 @@ function PF:BuildProfile()
     wrapAfter = 18,
     seperateOwn = -1,
     growthDirection = "RIGHT_DOWN",
+
+    -- ElvUI_RatioMinimapAuras
+    keepSizeRatio = false,
+    height = F.Dpi(24),
   })
 
   -- Auras Debuffs
   F.Table.Crush(pf.auras.debuffs, {
     -- Auras Debuffs Size
-    size = F.Dpi(42, 2),
+    size = F.Dpi(40),
 
     -- Auras Debuffs Options
     growthDirection = "RIGHT_DOWN",
+
+    -- ElvUI_RatioMinimapAuras
+    keepSizeRatio = false,
+    height = F.Dpi(30),
   })
 
   -- UnitFrames General
