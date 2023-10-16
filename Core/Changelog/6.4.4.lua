@@ -8,7 +8,8 @@ TXUI.Changelog["6.4.4"] = {
     "* New features",
 
     "* Bug fixes",
-    TXUI.Title .. ": WunderBar LFG fix in " .. F.String.ToxiUI("Wrath"),
+    TXUI.Title .. ": Fix WunderBar LFG in " .. F.String.ToxiUI("Wrath"),
+    TXUI.Title .. ": Fix WunderBar Hearthstone toys in " .. F.String.ToxiUI("Wrath"),
 
     "* Profile updates",
     TXUI.Title .. ": Double UI scale for 2054 height screens",
