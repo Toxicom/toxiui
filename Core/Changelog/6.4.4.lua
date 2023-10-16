@@ -12,6 +12,7 @@ TXUI.Changelog["6.4.4"] = {
 
     "* Profile updates",
     TXUI.Title .. ": Double UI scale for 2054 height screens",
+    TXUI.Title .. ": Enable Dark Mode's transparency by default",
     F.String.ElvUI() .. ": Use 'Shadow Outline' for fonts instead of 'Outline'",
     F.String.ElvUI() .. ": Use 4:3 aspect ratio for Action Bars",
 
