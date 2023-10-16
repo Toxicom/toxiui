@@ -498,14 +498,21 @@ function PF:BuildProfile()
         anchorPoint = "TOPRIGHT",
         growthX = "LEFT",
         attachTo = "FRAME",
-        durationPosition = "TOP",
+        durationPosition = "CENTER",
         maxDuration = 0,
-        perrow = 8,
+        perrow = 7,
         priority = "Blacklist,Boss,CCDebuffs,RaidDebuffs,CastByUnit,CastByNPC,Personal",
-        sizeOverride = F.Dpi(30),
-        spacing = F.Dpi(0),
-        xOffset = F.Dpi(-3),
+        spacing = 0,
+        xOffset = 0,
         yOffset = F.Dpi(25),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(36),
+        height = F.Dpi(27),
       },
 
       -- UnitFrame Player Fader
@@ -685,30 +692,44 @@ function PF:BuildProfile()
         }),
       },
 
-      -- UnitFrame Target Debuffs
+      -- UnitFrame Target Buffs
       buffs = {
         anchorPoint = "TOPLEFT",
         growthX = "RIGHT",
-        perrow = 4,
+        perrow = 7,
         priority = "Blacklist,Personal,Boss,nonPersonal,CastByUnit",
-        sizeOverride = F.Dpi(30),
-        spacing = F.Dpi(0),
-        xOffset = F.Dpi(3),
+        spacing = 0,
+        xOffset = 0,
         yOffset = F.Dpi(25),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(36),
+        height = F.Dpi(27),
       },
 
       -- UnitFrame Target Debuffs
       debuffs = {
         anchorPoint = "TOPRIGHT",
         attachTo = "FRAME",
-        durationPosition = "TOP",
+        durationPosition = "CENTER",
         maxDuration = 0,
-        perrow = 4,
+        perrow = 7,
         priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
-        sizeOverride = F.Dpi(30),
-        spacing = F.Dpi(0),
-        xOffset = F.Dpi(-3),
-        yOffset = F.Dpi(25),
+        spacing = 0,
+        xOffset = 0,
+        yOffset = F.Dpi(60),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(36),
+        height = F.Dpi(27),
       },
 
       -- UnitFrame Target raidicon (Target Marker Icon)
@@ -977,6 +998,11 @@ function PF:BuildProfile()
         perrow = 5,
         priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal",
         sizeOverride = F.Dpi(24),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
         spacing = F.Dpi(0),
         xOffset = F.Dpi(3),
         yOffset = F.Dpi(25),
@@ -984,13 +1010,20 @@ function PF:BuildProfile()
 
       -- UnitFrame Focus Debuffs
       debuffs = {
-        durationPosition = "TOP",
+        durationPosition = "CENTER",
         maxDuration = 0,
         priority = "Blacklist,Personal,nonPersonal",
-        sizeOverride = F.Dpi(24),
         spacing = F.Dpi(0),
         xOffset = F.Dpi(-3),
         yOffset = F.Dpi(25),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(24),
+        height = F.Dpi(18),
       },
 
       -- UnitFrame Focus raidicon (Target Marker Icon)
@@ -1112,8 +1145,15 @@ function PF:BuildProfile()
         enable = false,
         anchorPoint = "BOTTOMLEFT",
         perrow = 5,
-        sizeOverride = F.Dpi(29),
         spacing = F.Dpi(1),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(32),
+        height = F.Dpi(24),
       },
 
       -- UnitFrame Party Debuffs
@@ -1122,8 +1162,15 @@ function PF:BuildProfile()
         anchorPoint = "RIGHT",
         perrow = 5,
         priority = "Blacklist,Dispellable,Boss,RaidDebuffs,CCDebuffs,Whitelist",
-        sizeOverride = F.Dpi(29),
         spacing = F.Dpi(1),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(32),
+        height = F.Dpi(24),
       },
 
       -- UnitFrame Party Heal Prediction
@@ -1621,14 +1668,28 @@ function PF:BuildProfile()
       -- UnitFrame Arena Buffs
       buffs = {
         priority = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI",
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
         sizeOverride = F.Dpi(24),
+        height = F.Dpi(18),
       },
 
       -- UnitFrame Arena Debuffs
       debuffs = {
         desaturate = true,
         priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist",
-        sizeOverride = F.Dpi(25),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(24),
+        height = F.Dpi(18),
       },
 
       -- UnitFrame Arena Trinket
@@ -1712,15 +1773,29 @@ function PF:BuildProfile()
       -- UnitFrame Boss Buffs
       buffs = {
         maxDuration = 300,
-        sizeOverride = F.Dpi(25),
         yOffset = F.Dpi(16),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(24),
+        height = F.Dpi(18),
       },
 
       -- UnitFrame Boss Debuffs
       debuffs = {
         maxDuration = 300,
-        sizeOverride = F.Dpi(25),
         yOffset = F.Dpi(-16),
+
+        -- Stack Counter
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-6),
+
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(24),
+        height = F.Dpi(18),
       },
 
       -- UnitFrame Boss Castbar

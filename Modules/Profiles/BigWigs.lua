@@ -18,7 +18,7 @@ function PF:BuildBigWigsProfile()
 
   -- Default (1440)
   local Anchor_y = 230
-  local EmphasizeAnchor_y = 300
+  local EmphasizeAnchor_y = 330
   local Proximity_y = 155
   local Messages_y = -160
   local Countdown_y = -150
@@ -39,7 +39,7 @@ function PF:BuildBigWigsProfile()
 
   if height == 1080 then
     Anchor_y = 300
-    EmphasizeAnchor_y = 370
+    EmphasizeAnchor_y = 400
     Proximity_y = 240
     Messages_y = -20
     Countdown_y = 100
