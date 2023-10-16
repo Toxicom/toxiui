@@ -462,9 +462,9 @@ I.HearthstoneData = {
 
 I.HearthstoneData_Wrath = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
-  [48933] = { ["type"] = "item", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
+  [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
   [54452] = { ["type"] = "item", ["hearthstone"] = true }, -- Ethereal Portal
-  [184871] = { ["type"] = "item", ["hearthstone"] = true }, -- Dark Portal (TBC Deluxe Edition)
+  [184871] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dark Portal (TBC Deluxe Edition)
 
   -- Hearthstone: Death Knight
   [50977] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DEATHKNIGHT" }, -- Death Gate
