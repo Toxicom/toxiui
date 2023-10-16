@@ -64,7 +64,7 @@ function PF:BuildNameplateSCTProfile()
       miss = false,
       missScale = 1.5,
       smallHits = true,
-      smallHitsHide = true, -- Custom
+      smallHitsHide = TXUI.IsRetail and true or false, -- Custom
       smallHitsScale = 0.66,
     },
 

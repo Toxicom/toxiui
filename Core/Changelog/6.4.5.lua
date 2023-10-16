@@ -10,6 +10,7 @@ TXUI.Changelog["6.4.5"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "NameplateSCT: Enable small hits for Wrath & Classic",
 
     "* Documentation",
 
