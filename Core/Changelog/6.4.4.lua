@@ -3,10 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.4.4"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
     "* Bug fixes",
     TXUI.Title .. ": Fix WunderBar LFG in " .. F.String.ToxiUI("Wrath"),
     TXUI.Title .. ": Fix WunderBar Hearthstone toys in " .. F.String.ToxiUI("Wrath"),
@@ -30,8 +26,6 @@ TXUI.Changelog["6.4.4"] = {
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.45",
-
-    "* Settings refactoring",
 
     "* Development improvements",
     "Create a doubleResolutionScale table for easier tracking of 4k resolutions",
