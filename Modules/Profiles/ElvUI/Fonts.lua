@@ -162,12 +162,12 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
@@ -197,12 +197,12 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
@@ -258,12 +258,12 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
@@ -293,12 +293,12 @@ function PF:ElvUIFont()
             },
 
             buffs = {
-              countFont = F.FontOverride(I.Fonts.Primary),
+              countFont = F.FontOverride(I.Fonts.TitleBlack),
               countFontSize = F.FontSizeScaled(18),
             },
 
             debuffs = {
-              countFont = F.FontOverride(I.Fonts.Primary),
+              countFont = F.FontOverride(I.Fonts.TitleBlack),
               countFontSize = F.FontSizeScaled(18),
             },
 
@@ -363,12 +363,12 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
         },
@@ -381,12 +381,12 @@ function PF:ElvUIFont()
           },
 
           buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
 
           debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
+            countFont = F.FontOverride(I.Fonts.TitleBlack),
             countFontSize = F.FontSizeScaled(16),
           },
         },
