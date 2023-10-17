@@ -111,6 +111,7 @@ I.Requirements = {
     I.Enum.Requirements.DARK_MODE_ENABLED,
     I.Enum.Requirements.GRADIENT_MODE_DISABLED,
     I.Enum.Requirements.ELVUI_NOT_SKINNED,
+    I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE,
   },
   ["GradientMode"] = {
     I.Enum.Requirements.DARK_MODE_DISABLED,
