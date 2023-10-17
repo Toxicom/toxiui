@@ -177,7 +177,6 @@ function PF:BuildProfile()
       TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -15, 100),
       TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -35),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
-      AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding * 4),
 
       -- Movers: ToxiUI
       ToxiUIWAAnchorMover = F.Position("TOP", "ElvUIParent", "CENTER", 0, WAAnchorY[1]),
@@ -207,6 +206,7 @@ function PF:BuildProfile()
       UIErrorsFrameMover = F.Position("TOP", "UIParent", "TOP", 0, -122),
       VehicleSeatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -305, 330),
       PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 158),
+      AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding * 4),
     }),
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
 
