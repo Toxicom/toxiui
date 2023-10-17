@@ -9,6 +9,7 @@ TXUI.Changelog["6.4.5"] = {
 
     "* Bug fixes",
     TXUI.Title .. ": Remove empty gap in `/tx status`",
+    TXUI.Title .. ": Add fail-safety check for " .. F.String.Details() .. " in " .. F.String.GradientString() .. " mode",
 
     "* Profile updates",
     F.String.NameplateSCT() .. ": Enable small hits for Wrath & Classic",

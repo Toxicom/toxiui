@@ -51,7 +51,8 @@ function SD:RefreshRow(frame, _, dR, dG, dB)
   if valueChanged then frame.currentPercent = valuePercentage end
 
   if not self.updateCache[frame] then
-    frame.lineBorder:Kill()
+    -- https://discord.com/channels/769550106948141086/769550106948141088/1163948358331813959
+    if frame.lineBorder then frame.lineBorder:Kill() end
     frame.statusbar:CreateBackdrop("Default", nil, false, false, true)
     self:RefreshTexture(frame)
   end
