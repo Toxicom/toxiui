@@ -38,7 +38,9 @@ I.Enum.Colors = F.Enum {
   "PLATER",
   "DETAILS",
   "BIGWIGS",
+  "NSCT",
   "OMNICD",
+  "WDP",
   "ELVUI", -- ElvUI Default Blue color
   "ELVUI_VALUE", -- Dynamic ElvUI Value Color
   "CLASS", -- Dynamic Class Color

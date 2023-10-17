@@ -476,11 +476,11 @@ function IS:Dialog()
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
         installFrame.Desc2:SetText(
           "Currently supported AddOns: "
-            .. F.String.Good("OmniCD")
+            .. F.String.OmniCD()
             .. ", "
-            .. F.String.Good("WarpDeplete")
+            .. F.String.WarpDeplete()
             .. ", "
-            .. F.String.Good("NameplateSCT")
+            .. F.String.NameplateSCT()
             .. "\n\n"
             .. F.String.ToxiUI("Information: ")
             .. "The image below changes every 3 seconds!"
@@ -495,15 +495,16 @@ function IS:Dialog()
         if F.IsAddOnEnabled("OmniCD") then
           installFrame.Desc3:SetText(
             F.String.Warning("Warning: ")
-              .. "OmniCD has only the dungeons profile set up! Raid profile is default, you might wanna tweak it before going to a raid! If you have suggestions for a profile, please contact us on the "
+              .. F.String.OmniCD()
+              .. " has only the dungeons profile set up! Raid profile is default, you might wanna tweak it before going to a raid! If you have suggestions for a profile, please contact us on the "
               .. TXUI.Title
               .. " Discord!"
           )
         end
 
-        InstallOptionalAddOn("OmniCD")
-        InstallOptionalAddOn("WarpDeplete")
-        InstallOptionalAddOn("NameplateSCT", "NSCT")
+        InstallOptionalAddOn("OmniCD", F.String.OmniCD())
+        InstallOptionalAddOn("WarpDeplete", F.String.WarpDeplete())
+        InstallOptionalAddOn("NameplateSCT", F.String.NameplateSCT("NSCT"))
       end,
 
       -- Completed Page

@@ -107,5 +107,5 @@ function PF:ApplyNameplateSCTProfile()
   -- Disable Blizzard SCT
   SetCVar("floatingCombatTextCombatDamage", 0)
 
-  TXUI:LogInfo(F.String.ToxiUI("NameplateSCT") .. " profile successfully installed and applied. Enjoy!")
+  TXUI:LogInfo(F.String.NameplateSCT() .. " profile successfully installed and applied. Enjoy!")
 end

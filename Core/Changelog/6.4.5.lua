@@ -11,7 +11,7 @@ TXUI.Changelog["6.4.5"] = {
     TXUI.Title .. ": Remove empty gap in `/tx status`",
 
     "* Profile updates",
-    "NameplateSCT: Enable small hits for Wrath & Classic",
+    F.String.NameplateSCT() .. ": Enable small hits for Wrath & Classic",
 
     "* Documentation",
 

@@ -13,10 +13,10 @@ TXUI.Changelog["6.4.0"] = {
       .. F.String.Sublist(F.String.Legendary("Gradient Mode Saturation Boost")) -- comment to stop auto-formatting
       .. F.String.Sublist(F.String.Legendary("WunderBar's RGB background")) -- comment to stop auto-formatting
       .. F.String.Sublist(F.String.Legendary("WunderBar Time module's resting animation")),
-    "NameplateSCT " .. TXUI.Title .. " profile",
+    F.String.NameplateSCT() .. " " .. TXUI.Title .. " profile",
     "Changing images in installer dialog" .. F.String.Sublist("Example in Additional Addons step of installer"),
     "Custom ElvUI tag for power" .. F.String.Sublist("Same as before, but hides when power is 0"),
-    "Create separate profiles for OmniCD depending on " .. F.String.ToxiUI("DPS/Tank") .. " or " .. F.String.Class("Healer", "MONK") .. " layout selected",
+    "Create separate profiles for " .. F.String.OmniCD() .. " depending on " .. F.String.ToxiUI("DPS/Tank") .. " or " .. F.String.Class("Healer", "MONK") .. " layout selected",
     F.String.GradientString() .. F.String.Class(" class color") .. " font options for " .. TXUI.Title .. " Armory",
     F.String.GradientString() .. " UnitFrame text tags in Dark Mode" .. F.String.Sublist(
       "Credits to " .. F.String.RandomClassColor("Eltreum") .. " and " .. F.String.ElvUI("ElvUI discord")

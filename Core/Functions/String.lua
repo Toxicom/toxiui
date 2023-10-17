@@ -74,10 +74,22 @@ function F.String.BigWigs(msg)
   return F.String.Color(msg, I.Enum.Colors.BIGWIGS)
 end
 
+function F.String.NameplateSCT(msg)
+  if not msg or msg == "" then return F.String.Color("NameplateSCT", I.Enum.Colors.NSCT) end
+
+  return F.String.Color(msg, I.Enum.Colors.NSCT)
+end
+
 function F.String.OmniCD(msg)
   if not msg or msg == "" then return F.String.Color("OmniCD", I.Enum.Colors.OMNICD) end
 
   return F.String.Color(msg, I.Enum.Colors.OMNICD)
+end
+
+function F.String.WarpDeplete(msg)
+  if not msg or msg == "" then return F.String.Color("WarpDeplete", I.Enum.Colors.WDP) end
+
+  return F.String.Color(msg, I.Enum.Colors.WDP)
 end
 
 function F.String.ElvUI(msg)

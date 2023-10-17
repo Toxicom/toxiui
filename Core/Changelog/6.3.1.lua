@@ -4,8 +4,8 @@ TXUI.Changelog["6.3.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* New features",
-    "WarpDeplete " .. TXUI.Title .. " profile",
-    "OmniCD " .. TXUI.Title .. " profile",
+    F.String.WarpDeplete() .. " " .. TXUI.Title .. " profile",
+    F.String.OmniCD() .. "  " .. TXUI.Title .. " profile",
     "WunderBar visibility option - " .. F.String.RandomClassColor("Resting & Mouseover"),
     "Additional Scaling feature! Customize it in " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91") .. " -> " .. F.String.Class("Additional Scaling"),
     F.String.Class("Class colored") .. " indicators for cooldown text. Credits to " .. F.String.Color("Nalar", "561c75"),
