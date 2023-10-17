@@ -437,6 +437,23 @@ function PF:BuildProfile()
         texture = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
       },
     },
+
+    -- UnitFrame Colors Power (for Dark and Normal modes)
+    -- Should be the same as colors in Core/Profile.lua
+    -- [I.Enum.GradientMode.Color.NORMAL]
+    power = { -- RIGHT
+      ALT_POWER = F.Table.HexToRGB("#2175d4"), -- swap alt
+      MANA = F.Table.HexToRGB("#35a4ff"), -- mana
+      RAGE = F.Table.HexToRGB("#ed3333"), -- rage
+      FOCUS = F.Table.HexToRGB("#db753b"), -- focus
+      ENERGY = F.Table.HexToRGB("#ffe169"), -- energy
+      RUNIC_POWER = F.Table.HexToRGB("#1cd6ff"), -- runic
+      PAIN = F.Table.HexToRGB("#f5f5f5"), -- pain
+      FURY = F.Table.HexToRGB("#e81ff5"), -- fury
+      LUNAR_POWER = F.Table.HexToRGB("#9c54ff"), -- astral
+      INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
+      MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
+    },
   })
 
   local customTextTemplate = {

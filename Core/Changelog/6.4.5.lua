@@ -14,6 +14,9 @@ TXUI.Changelog["6.4.5"] = {
     "* Profile updates",
     TXUI.Title .. ": Disable 'Details Gradient Text' toggle in Dark Mode if " .. F.String.Details() .. " is disabled or not using " .. TXUI.Title .. " profile",
     F.String.NameplateSCT() .. ": Enable small hits for Wrath & Classic",
+    F.String.ElvUI() --
+      .. ": Match UnitFrame Class Resources colors to the ones we have in Gradient mode"
+      .. F.String.Sublist("Previously in Dark & Normal modes the resource colors were default"),
 
     "* Documentation",
 
