@@ -208,7 +208,7 @@ function M:StatusReportCreate()
 
   -- Sections
   statusFrame.Section1 = self:StatusReportCreateSection(300, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame, "TOP", -90)
-  statusFrame.Section2 = self:StatusReportCreateSection(300, (6 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
+  statusFrame.Section2 = self:StatusReportCreateSection(300, (4 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
   statusFrame.Section3 = self:StatusReportCreateSection(300, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section2, "BOTTOM", 0)
   statusFrame.Section4 = self:StatusReportCreateSection(300, ((TXUI.IsRetail and 6 or 5) * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section3, "BOTTOM", 0)
   pluginFrame.SectionA = self:StatusReportCreateSection(280, nil, nil, 30, pluginFrame, "TOP", pluginFrame, "TOP", -10)
