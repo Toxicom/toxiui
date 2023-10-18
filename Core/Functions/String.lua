@@ -384,7 +384,8 @@ function F.String.FastColorGradientHex(percentage, h1, h2)
 end
 
 function F.String.GradientClass(text, class, reverse)
-  if not text or text == "" then return end
+  if not text or text == "" then text = E.myLocalizedClass end
+
   local unitClass = class or E.myclass
   local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
 

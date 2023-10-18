@@ -104,9 +104,6 @@ function M:GameMenuButton()
     if E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo then
       local primaryFont = F.GetFontPath(I.Fonts.Primary)
       local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
-      local name = UnitName("player")
-      local class = UnitClass("player")
-      local level = UnitLevel("player")
       local guildName = GetGuildInfo("player")
 
       -- Player Name
@@ -114,7 +111,7 @@ function M:GameMenuButton()
       backgroundFade.text1:SetPoint("TOP", backgroundFade.logo, "BOTTOM", 0, -30)
       backgroundFade.text1:SetFont(titleFont, F.FontSizeScaled(28), "OUTLINE")
       backgroundFade.text1:SetTextColor(1, 1, 1, 1)
-      backgroundFade.text1:SetText(F.String.GradientClass(name))
+      backgroundFade.text1:SetText(F.String.GradientClass(E.myname))
 
       -- Player Guild
       backgroundFade.text2 = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -128,7 +125,7 @@ function M:GameMenuButton()
       backgroundFade.text3:SetPoint("TOP", guildName and backgroundFade.text2 or backgroundFade.text1, "BOTTOM", 0, -20)
       backgroundFade.text3:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
       backgroundFade.text3:SetTextColor(1, 1, 1, 1)
-      backgroundFade.text3:SetText("Lv " .. level .. " " .. F.String.GradientClass(class, nil, true))
+      backgroundFade.text3:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(nil, nil, true))
     end
 
     backgroundFade.Animation = TXUI:CreateAnimationGroup(backgroundFade):CreateAnimation("Fade")
