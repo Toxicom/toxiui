@@ -367,12 +367,10 @@ function PF:BuildProfile()
 
   -- Auras Buffs
   F.Table.Crush(pf.auras.buffs, {
-    -- Auras Buffs Size - Rounded to the next 2
     size = F.Dpi(32),
-
     -- Auras Buffs Options
     fadeThreshold = 3,
-    maxWraps = 1,
+    maxWraps = 2,
     wrapAfter = 18,
     seperateOwn = -1,
     growthDirection = "RIGHT_DOWN",

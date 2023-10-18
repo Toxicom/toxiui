@@ -17,6 +17,7 @@ TXUI.Changelog["6.4.5"] = {
     F.String.ElvUI() --
       .. ": Match UnitFrame Class Resources colors to the ones we have in Gradient mode"
       .. F.String.Sublist("Previously in Dark & Normal modes the resource colors were default"),
+    F.String.ElvUI() .. ": Increase shown Player Buffs number from 18 to 36",
 
     "* Documentation",
 
