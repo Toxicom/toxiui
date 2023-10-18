@@ -221,6 +221,8 @@ P.addons = {
       classColor = {
         enabled = false,
       },
+
+      showInfo = true,
     },
   },
 

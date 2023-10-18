@@ -10,10 +10,8 @@ TXUI.Changelog["6.3.2"] = {
       .. F.String.Sublist(F.String.Class("Wardrobe Frame")) -- comment to stop auto-formatting
       .. F.String.Sublist(F.String.Class("Dressing Room")) -- comment to stop auto-formatting
       .. F.String.Sublist(F.String.Class("Inspect Frame")), -- comment to stop auto-formatting
-    "Add Background Fade for Game Menu" .. F.String.Sublist("Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI")),
-    "Add " .. TXUI.Title .. " group Leader icon" .. F.String.Sublist(
-      "Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI")
-    ),
+    "Add Background Fade for Game Menu" .. F.String.Sublist("Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
+    "Add " .. TXUI.Title .. " group Leader icon" .. F.String.Sublist("Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
 
     "* Bug fixes",
     F.String.ElvUI() .. ": Force Priest class color",

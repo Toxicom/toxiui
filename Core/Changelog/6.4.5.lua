@@ -6,6 +6,8 @@ TXUI.Changelog["6.4.5"] = {
     "* Breaking changes",
 
     "* New features",
+    "Show player information in the Game Menu overlay"
+      .. F.String.Sublist("Can disable in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
 
     "* Bug fixes",
     TXUI.Title .. ": Remove empty gap in `/tx status`",
