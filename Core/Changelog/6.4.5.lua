@@ -20,6 +20,11 @@ TXUI.Changelog["6.4.5"] = {
       .. ": Match UnitFrame Class Resources colors to the ones we have in Gradient mode"
       .. F.String.Sublist("Previously in Dark & Normal modes the resource colors were default"),
     F.String.ElvUI() .. ": Increase shown Player Buffs number from 18 to 36",
+    F.String.ElvUI() --
+      .. ": Update chat settings"
+      .. F.String.Sublist("Remove tab selector")
+      .. F.String.Sublist("Change tab font to primary")
+      .. F.String.Sublist("Change font outlines to 'Shadow Outline'"),
 
     "* Documentation",
 

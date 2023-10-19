@@ -106,11 +106,11 @@ function PF:ElvUIFont()
     -- Chat
     chat = {
       font = F.FontOverride(I.Fonts.Primary),
-      fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+      fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
-      tabFont = F.FontOverride(I.Fonts.Title),
+      tabFont = F.FontOverride(I.Fonts.Primary),
       tabFontSize = F.FontSizeScaled(14, 13),
-      tabFontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+      tabFontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
     },
 
     -- Auras
