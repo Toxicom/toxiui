@@ -218,6 +218,9 @@ do
     }
 
     if not TXUI.IsClassic then
+      -- We can't use F.Table.Crush here, because the tables do not have unique keys and
+      -- therefore JC & Inscription override Blacksmithing & First Aid (as they're the first entries)
+
       -- Jewelcrafting
       tinsert(professionMap, { spellIds = { 25229, 25230, 28894, 28895, 28897, 51311, 73318, 110420, 158750, 195116 }, skillLine = 755, texture = 134071 })
 
