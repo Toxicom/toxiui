@@ -218,10 +218,11 @@ do
     }
 
     if not TXUI.IsClassic then
-      F.Table.Crush(professionMap, {
-        { spellIds = { 25229, 25230, 28894, 28895, 28897, 51311, 73318, 110420, 158750, 195116 }, skillLine = 755, texture = 134071 }, -- Jewelcrafting
-        { spellIds = { 45357, 45358, 45359, 45360, 45361, 45363, 86008, 110417, 158748, 195115 }, skillLine = 773, texture = 237171 }, -- Inscription
-      })
+      -- Jewelcrafting
+      tinsert(professionMap, { spellIds = { 25229, 25230, 28894, 28895, 28897, 51311, 73318, 110420, 158750, 195116 }, skillLine = 755, texture = 134071 })
+
+      -- Inscription
+      tinsert(professionMap, { spellIds = { 45357, 45358, 45359, 45360, 45361, 45363, 86008, 110417, 158748, 195115 }, skillLine = 773, texture = 237171 })
     end
 
     local function searchLocaleSpellName(ids, texture)

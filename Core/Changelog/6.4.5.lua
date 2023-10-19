@@ -12,6 +12,7 @@ TXUI.Changelog["6.4.5"] = {
     "* Bug fixes",
     TXUI.Title .. ": Remove empty gap in `/tx status`",
     TXUI.Title .. ": Add fail-safety check for " .. F.String.Details() .. " in " .. F.String.GradientString() .. " mode",
+    TXUI.Title .. ": Fix Blacksmithing icon not showing in WunderBar in " .. F.String.ToxiUI("Wrath"),
 
     "* Profile updates",
     TXUI.Title .. ": Disable 'Details Gradient Text' toggle in Dark Mode if " .. F.String.Details() .. " is disabled or not using " .. TXUI.Title .. " profile",
