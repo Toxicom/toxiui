@@ -16,7 +16,7 @@ local tinsert = table.insert
 local UIParent = UIParent
 
 -- Vars
-AFK.timerText = "AWAY FOR "
+AFK.timerText = "Away for "
 AFK.randomAnimations = {
   [60] = true, -- EmoteTalk
   [66] = true, -- EmoteBow
@@ -113,7 +113,7 @@ end
 
 function AFK:UpdateTimer()
   local time = GetTime() - self.startTime
-  self.frame.bottom.logoText:SetFormattedText("%s %02d:%02d", self.timerText, floor(time / 60), time % 60)
+  self.frame.bottom.logoText:SetFormattedText("%s %02d:%02d", F.String.GradientClass(self.timerText), floor(time / 60), time % 60)
 end
 
 function AFK:SetAFK(_, status)
@@ -209,7 +209,7 @@ function AFK:SetupFrames()
   -- Add ElvUI name
   self.frame.bottom.logoText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
   self.frame.bottom.logoText:SetPoint("LEFT", self.frame.bottom, "LEFT", F.Dpi(25), 0)
-  self.frame.bottom.logoText:SetFont(self.mainFont, F.FontSizeScaled(48), "NONE")
+  self.frame.bottom.logoText:SetFont(self.primaryFont, F.FontSizeScaled(24), "SHADOWOUTLINE")
   self.frame.bottom.logoText:SetTextColor(1, 1, 1, 1)
   self.frame.bottom.logoText:SetText(" ")
 
@@ -281,7 +281,7 @@ function AFK:Initialize()
   F.Event.RegisterCallback("AFK.DatabaseUpdate", self.DatabaseUpdate, self)
 
   -- Get font
-  self.mainFont = F.GetFontPath(I.Fonts.Title)
+  self.primaryFont = F.GetFontPath(I.Fonts.Primary)
 
   -- We are done, hooray!
   self.Initialized = true
