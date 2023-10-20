@@ -104,7 +104,6 @@ function M:GameMenuButton()
     if E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo then
       local primaryFont = F.GetFontPath(I.Fonts.Primary)
       local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
-      local guildName = GetGuildInfo("player")
 
       -- Player Name
       backgroundFade.nameText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -118,14 +117,12 @@ function M:GameMenuButton()
       backgroundFade.guildText:SetPoint("TOP", backgroundFade.nameText, "BOTTOM", 0, 0)
       backgroundFade.guildText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
       backgroundFade.guildText:SetTextColor(1, 1, 1, 1)
-      backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
 
       -- Player Level & Class
       backgroundFade.levelText = backgroundFade:CreateFontString(nil, "OVERLAY")
-      backgroundFade.levelText:SetPoint("TOP", guildName and backgroundFade.guildText or backgroundFade.nameText, "BOTTOM", 0, -20)
+      backgroundFade.levelText:SetPoint("TOP", backgroundFade.guildText, "BOTTOM", 0, -25)
       backgroundFade.levelText:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
       backgroundFade.levelText:SetTextColor(1, 1, 1, 1)
-      backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(nil, nil, true))
     end
 
     backgroundFade.Animation = TXUI:CreateAnimationGroup(backgroundFade):CreateAnimation("Fade")
@@ -144,6 +141,12 @@ function M:GameMenuButton()
     GameMenuFrame:SetHeight(GameMenuFrame:GetHeight() + GameMenuButtonLogout:GetHeight() + 4)
 
     if buttonHolder.backgroundFade and buttonHolder.backgroundFade.Animation then
+      if buttonHolder.backgroundFade.guildText and buttonHolder.backgroundFade.levelText then
+        local guildName = GetGuildInfo("player")
+
+        buttonHolder.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
+        buttonHolder.backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(nil, nil, true))
+      end
       buttonHolder.backgroundFade.Animation:Stop()
       buttonHolder.backgroundFade:SetAlpha(0)
       buttonHolder.backgroundFade.Animation:Play()
