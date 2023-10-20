@@ -107,25 +107,25 @@ function M:GameMenuButton()
       local guildName = GetGuildInfo("player")
 
       -- Player Name
-      backgroundFade.text1 = backgroundFade:CreateFontString(nil, "OVERLAY")
-      backgroundFade.text1:SetPoint("TOP", backgroundFade.logo, "BOTTOM", 0, -30)
-      backgroundFade.text1:SetFont(titleFont, F.FontSizeScaled(28), "OUTLINE")
-      backgroundFade.text1:SetTextColor(1, 1, 1, 1)
-      backgroundFade.text1:SetText(F.String.GradientClass(E.myname))
+      backgroundFade.nameText = backgroundFade:CreateFontString(nil, "OVERLAY")
+      backgroundFade.nameText:SetPoint("TOP", backgroundFade.logo, "BOTTOM", 0, -30)
+      backgroundFade.nameText:SetFont(titleFont, F.FontSizeScaled(28), "OUTLINE")
+      backgroundFade.nameText:SetTextColor(1, 1, 1, 1)
+      backgroundFade.nameText:SetText(F.String.GradientClass(E.myname))
 
       -- Player Guild
-      backgroundFade.text2 = backgroundFade:CreateFontString(nil, "OVERLAY")
-      backgroundFade.text2:SetPoint("TOP", backgroundFade.text1, "BOTTOM", 0, 0)
-      backgroundFade.text2:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-      backgroundFade.text2:SetTextColor(1, 1, 1, 1)
-      backgroundFade.text2:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
+      backgroundFade.guildText = backgroundFade:CreateFontString(nil, "OVERLAY")
+      backgroundFade.guildText:SetPoint("TOP", backgroundFade.nameText, "BOTTOM", 0, 0)
+      backgroundFade.guildText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+      backgroundFade.guildText:SetTextColor(1, 1, 1, 1)
+      backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
 
       -- Player Level & Class
-      backgroundFade.text3 = backgroundFade:CreateFontString(nil, "OVERLAY")
-      backgroundFade.text3:SetPoint("TOP", guildName and backgroundFade.text2 or backgroundFade.text1, "BOTTOM", 0, -20)
-      backgroundFade.text3:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
-      backgroundFade.text3:SetTextColor(1, 1, 1, 1)
-      backgroundFade.text3:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(nil, nil, true))
+      backgroundFade.levelText = backgroundFade:CreateFontString(nil, "OVERLAY")
+      backgroundFade.levelText:SetPoint("TOP", guildName and backgroundFade.guildText or backgroundFade.nameText, "BOTTOM", 0, -20)
+      backgroundFade.levelText:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
+      backgroundFade.levelText:SetTextColor(1, 1, 1, 1)
+      backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(nil, nil, true))
     end
 
     backgroundFade.Animation = TXUI:CreateAnimationGroup(backgroundFade):CreateAnimation("Fade")
