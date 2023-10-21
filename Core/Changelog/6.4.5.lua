@@ -31,6 +31,12 @@ TXUI.Changelog["6.4.5"] = {
       .. F.String.Sublist("Change font outlines to 'Shadow Outline'")
       .. F.String.Sublist("Reduce scroll messages to 1")
       .. F.String.Sublist("Increase Scroll Down interval to 2 minutes"),
+    F.String.ElvUI() --
+      .. ": Update Loot Roll settings"
+      .. F.String.Sublist("Move it to right-center part of the screen")
+      .. F.String.Sublist("Increase buttons size")
+      .. F.String.Sublist("Move the roll buttons to the left")
+      .. F.String.Sublist("Change texture in gradient mode"),
 
     "* Documentation",
 

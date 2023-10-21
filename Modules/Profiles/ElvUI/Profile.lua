@@ -94,15 +94,15 @@ function PF:BuildProfile()
 
       -- Movers: Pop-ups
       MicrobarMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 495, 30),
-      AlertFrameMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -50),
       LootFrameMover = F.Position("CENTER", "ElvUIParent", "CENTER", 300, 0),
+      AlertFrameMover = F.Position("LEFT", "LootFrameMover", "RIGHT", 200, -50),
 
       -- Movers: Bars
       ExperienceBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 43),
       ReputationBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -3, -264),
       ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -554, -363),
 
-      MirrorTimer1Mover = F.Position("TOP", "AlertFrameMover", "BOTTOM", 0, -defaultPadding),
+      MirrorTimer1Mover = F.Position("TOP", "ElvUIParent", "TOP", 0, -60),
       MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
       MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
 
@@ -279,7 +279,9 @@ function PF:BuildProfile()
 
     -- Loot Roll
     lootRoll = {
-      statusBarTexture = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
+      statusBarTexture = F.ChooseForGradient("- ToxiUI", "- Tx Right"),
+      buttonSize = 30,
+      leftButtons = true,
     },
 
     -- AltPowerBar
