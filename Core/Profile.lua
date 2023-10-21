@@ -28,7 +28,7 @@ P.general = {
   },
 
   fontStyleOverride = {
-    [I.Fonts.Primary] = "OUTLINE",
+    [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleBlack] = "DEFAULT",
     [I.Fonts.TitleRaid] = "DEFAULT",
