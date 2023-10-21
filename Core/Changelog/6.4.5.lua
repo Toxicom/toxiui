@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.4.5"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Show player information in the Game Menu overlay"
       .. F.String.Sublist("Can disable in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
@@ -37,11 +35,5 @@ TXUI.Changelog["6.4.5"] = {
       .. F.String.Sublist("Increase buttons size")
       .. F.String.Sublist("Move the roll buttons to the left")
       .. F.String.Sublist("Change texture in gradient mode"),
-
-    "* Documentation",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
