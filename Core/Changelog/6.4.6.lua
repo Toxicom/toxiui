@@ -8,6 +8,7 @@ TXUI.Changelog["6.4.6"] = {
     "* New features",
 
     "* Bug fixes",
+    TXUI.Title .. ": Add missing " .. F.String.Class("Teleport: Moonglade") .. " in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Classic"),
 
     "* Profile updates",
 

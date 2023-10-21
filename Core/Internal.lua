@@ -470,6 +470,9 @@ I.HearthstoneData_Wrath = {
   -- Hearthstone: Death Knight
   [50977] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DEATHKNIGHT" }, -- Death Gate
 
+  -- Hearthstone: Druid
+  [18960] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Teleport: Moonglade
+
   -- Hearthstone: Shaman
   [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
 
@@ -516,6 +519,9 @@ I.HearthstoneData_Wrath = {
 
 I.HearthstoneData_Classic = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
+
+  -- Hearthstone: Druid
+  [18960] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Teleport: Moonglade
 
   -- Hearthstone: Shaman
   [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
