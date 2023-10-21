@@ -348,6 +348,7 @@ function PF:BuildProfile()
     timeStampFormat = "%H:%M ",
     emotionIcons = false,
     numScrollMessages = 1,
+    scrollDownInterval = 120,
 
     tabSelector = "NONE",
     tabSelectedTextColor = F.Table.CurrentClassColor(),

@@ -27,7 +27,8 @@ TXUI.Changelog["6.4.5"] = {
       .. F.String.Sublist("Remove tab selector")
       .. F.String.Sublist("Change tab font to primary")
       .. F.String.Sublist("Change font outlines to 'Shadow Outline'")
-      .. F.String.Sublist("Reduce scroll messages to 1"),
+      .. F.String.Sublist("Reduce scroll messages to 1")
+      .. F.String.Sublist("Increase Scroll Down interval to 2 minutes"),
 
     "* Documentation",
 
