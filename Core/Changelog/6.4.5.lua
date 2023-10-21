@@ -26,7 +26,8 @@ TXUI.Changelog["6.4.5"] = {
       .. ": Update chat settings"
       .. F.String.Sublist("Remove tab selector")
       .. F.String.Sublist("Change tab font to primary")
-      .. F.String.Sublist("Change font outlines to 'Shadow Outline'"),
+      .. F.String.Sublist("Change font outlines to 'Shadow Outline'")
+      .. F.String.Sublist("Reduce scroll messages to 1"),
 
     "* Documentation",
 
