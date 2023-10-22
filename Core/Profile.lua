@@ -275,7 +275,7 @@ P.misc = {
 P.elvUIIcons = {
   roleIcons = {
     enabled = true, -- Enabled by default
-    theme = "TXUI_MATERIAL",
+    theme = "TXUI_STYLIZED",
   },
 
   raidIcons = {
