@@ -10,6 +10,7 @@ TXUI.Changelog["6.4.6"] = {
       .. F.String.ToxiUI("Smart Power")
       .. " tags" --
       .. F.String.Sublist("Smart Power tags change color to " .. F.String.Warning("yellow") .. " & " .. F.String.Error("red") .. " when getting low")
+      .. F.String.Sublist("Smart Power colors apply only to mana, because it doesn't make sense for others")
       .. F.String.Sublist("See new tags in " .. F.String.Class("Available Tags") .. ", they are prefixed with " .. TXUI.Title),
 
     "* Bug fixes",

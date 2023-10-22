@@ -316,7 +316,21 @@ function M:Tags()
   end)
 
   -- ToxiUI: Power Tags
-  local function ColorSmartPowerTag(power, powerStr, reverseGradient)
+  local function ColorSmartPowerTag(unit, percentSign)
+    local max = UnitPowerMax(unit)
+
+    if max == 0 then return end
+
+    local _, powerType = UnitPowerType(unit)
+
+    local power = floor(UnitPower(unit) / max * 100 + 0.5)
+    local powerStr = tostring(power)
+    local reverseGradient = reverseUnitsTable[unit]
+
+    if percentSign then powerStr = powerStr .. "%" end
+
+    if powerType ~= "MANA" then return powerStr end
+
     if power <= 50 and power > 20 then
       return F.String.GradientClass(powerStr, "ROGUE", reverseGradient)
     elseif power <= 20 then
@@ -343,12 +357,7 @@ function M:Tags()
 
   -- Smart Power Percent No Sign Tag
   E:AddTag("tx:smartpower:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    local max = UnitPowerMax(unit)
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
-    local powerStr = tostring(power)
-    local reverseGradient = reverseUnitsTable[unit]
-
-    if max ~= 0 then return ColorSmartPowerTag(power, powerStr, reverseGradient) end
+    return ColorSmartPowerTag(unit)
   end)
 
   -- Power Percent Tag
@@ -369,14 +378,7 @@ function M:Tags()
 
   -- Smart Power Percent Tag
   E:AddTag("tx:smartpower:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    local max = UnitPowerMax(unit)
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
-    local powerStr = tostring(power)
-    -- append % sign
-    powerStr = powerStr .. "%"
-    local reverseGradient = reverseUnitsTable[unit]
-
-    if max ~= 0 then return ColorSmartPowerTag(power, powerStr, reverseGradient) end
+    return ColorSmartPowerTag(unit, true)
   end)
 
   -- Class Icon Tag
@@ -454,7 +456,7 @@ function M:Tags()
   E:AddTagInfo(
     "tx:smartpower:percent:nosign",
     TagNames.POWER,
-    "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to yellow when Power <= 50, and to red when Power <= 20"
+    "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to yellow when MANA <= 50, and to red when MANA <= 20"
   )
 
   E:AddTagInfo(
@@ -466,7 +468,7 @@ function M:Tags()
   E:AddTagInfo(
     "tx:smartpower:percent",
     TagNames.POWER,
-    "Displays percentage Smart Power of unit without decimals. Smart Power changes color to yellow when Power <= 50, and to red when Power <= 20"
+    "Displays percentage Smart Power of unit without decimals. Smart Power changes color to yellow when MANA <= 50, and to red when MANA <= 20"
   )
 
   E:AddTagInfo("tx:classicon", TXUI.Title, "Displays " .. TXUI.Title .. " class icon.")
