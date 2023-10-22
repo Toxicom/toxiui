@@ -805,6 +805,7 @@ function PF:BuildProfile()
       power = {
         enable = true,
         detachFromFrame = true,
+        autoHide = true,
         detachedWidth = F.Dpi(120),
         text_format = "",
       },
@@ -1091,6 +1092,7 @@ function PF:BuildProfile()
         text_format = "",
         detachedWidth = F.Dpi(120),
         detachFromFrame = true,
+        autoHide = true,
         position = "RIGHT",
         xOffset = F.Dpi(-2),
       },

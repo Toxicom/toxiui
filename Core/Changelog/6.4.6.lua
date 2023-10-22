@@ -30,6 +30,7 @@ TXUI.Changelog["6.4.6"] = {
       .. ": Update Focus UnitFrame"
       .. F.String.Sublist("Add a !Power text tag")
       .. F.String.Sublist("Move the Focus Power Bar to match Target UnitFrame"),
+    F.String.ElvUI() .. ": Hide Target & Focus UnitFrame Power bars when the unit has no power",
 
     "* Documentation",
 
