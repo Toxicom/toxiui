@@ -697,7 +697,7 @@ function PF:BuildProfile()
         -- UnitFrame Target Custom Texts Power
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = "[tx:power:percent:nosign]",
+          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(85),
           yOffset = F.Dpi(0),
         }),
@@ -1146,7 +1146,15 @@ function PF:BuildProfile()
           yOffset = F.Dpi(25),
         }),
 
-        -- UnitFrame Target Custom Texts Class Icon
+        -- UnitFrame Party Custom Texts Power
+        ["!Power"] = createCustomText({}, {
+          attachTextTo = "Power",
+          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+          xOffset = F.Dpi(10),
+          yOffset = F.Dpi(0),
+        }),
+
+        -- UnitFrame Party Custom Texts Class Icon
         ["!ClassIcon"] = createCustomText({}, {
           justifyH = "LEFT",
           attachTextTo = "Health",
@@ -1680,7 +1688,7 @@ function PF:BuildProfile()
         -- UnitFrame Arena Custom Texts Power
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = "[tx:power:percent:nosign]",
+          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(10),
           yOffset = F.Dpi(0),
         }),
@@ -1785,7 +1793,7 @@ function PF:BuildProfile()
         -- UnitFrame Boss Custom Texts Power
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = "[tx:power:percent:nosign]",
+          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(70),
           yOffset = F.Dpi(0),
         }),

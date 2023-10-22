@@ -289,6 +289,7 @@ function PF:ElvUIFont()
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "SHADOW" },
               IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 24, "SHADOW" },
+              { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
               { "!ClassIcon", I.Fonts.Title, 10, "SHADOW" }, -- Font and Outline doesn't matter
             },
 

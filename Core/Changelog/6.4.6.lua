@@ -8,7 +8,7 @@ TXUI.Changelog["6.4.6"] = {
     "* New features",
     "Add "
       .. F.String.ToxiUI("Smart Power")
-      .. " tags." --
+      .. " tags" --
       .. F.String.Sublist("Smart Power tags change color to yellow & red when getting low")
       .. F.String.Sublist("See new tags in " .. F.String.Class("Available Tags") .. ", they are prefixed with " .. TXUI.Title),
 
@@ -17,7 +17,15 @@ TXUI.Changelog["6.4.6"] = {
 
     "* Profile updates",
     TXUI.Title .. ": Update Stylized Role icons and enable them by default",
-    F.String.ElvUI() .. ": Swap Target UnitFrame Buffs & Debuffs" .. F.String.Sublist("This change was made so that it matches the Player UnitFrame Debuffs"),
+    F.String.ElvUI() --
+      .. ": Swap Target UnitFrame Buffs & Debuffs"
+      .. F.String.Sublist("This change was made so that it matches the Player UnitFrame Debuffs"),
+    F.String.ElvUI() --
+      .. ": Use the new "
+      .. F.String.ToxiUI("Smart Power")
+      .. " tag for non-dark mode layouts"
+      .. F.String.Sublist("Old tags are still available in " .. F.String.Class("Available Tags")),
+    F.String.ElvUI() .. ": Add !Power text tag to Party UnitFrames",
 
     "* Documentation",
 
