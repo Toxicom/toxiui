@@ -456,7 +456,15 @@ function M:Tags()
   E:AddTagInfo(
     "tx:smartpower:percent:nosign",
     TagNames.POWER,
-    "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to yellow when MANA <= 50, and to red when MANA <= 20"
+    "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to "
+      .. F.String.Warning("yellow")
+      .. " when "
+      .. F.String.Class("MANA", "MAGE")
+      .. " <= 50, and to "
+      .. F.String.Error("red")
+      .. " when "
+      .. F.String.Class("MANA", "MAGE")
+      .. " <= 20"
   )
 
   E:AddTagInfo(
@@ -468,7 +476,15 @@ function M:Tags()
   E:AddTagInfo(
     "tx:smartpower:percent",
     TagNames.POWER,
-    "Displays percentage Smart Power of unit without decimals. Smart Power changes color to yellow when MANA <= 50, and to red when MANA <= 20"
+    "Displays percentage Smart Power of unit without decimals. Smart Power changes color to "
+      .. F.String.Warning("yellow")
+      .. " when "
+      .. F.String.Class("MANA", "MAGE")
+      .. " <= 50, and to "
+      .. F.String.Error("red")
+      .. " when "
+      .. F.String.Class("MANA", "MAGE")
+      .. " <= 20"
   )
 
   E:AddTagInfo("tx:classicon", TXUI.Title, "Displays " .. TXUI.Title .. " class icon.")
