@@ -348,7 +348,7 @@ function M:Tags()
     local powerStr = tostring(power)
     local reverseGradient = reverseUnitsTable[unit]
 
-    return ColorSmartPowerTag(power, powerStr, reverseGradient)
+    if max ~= 0 then return ColorSmartPowerTag(power, powerStr, reverseGradient) end
   end)
 
   -- Power Percent Tag
@@ -376,7 +376,7 @@ function M:Tags()
     powerStr = powerStr .. "%"
     local reverseGradient = reverseUnitsTable[unit]
 
-    return ColorSmartPowerTag(power, powerStr, reverseGradient)
+    if max ~= 0 then return ColorSmartPowerTag(power, powerStr, reverseGradient) end
   end)
 
   -- Class Icon Tag
