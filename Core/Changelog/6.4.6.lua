@@ -12,6 +12,7 @@ TXUI.Changelog["6.4.6"] = {
 
     "* Profile updates",
     TXUI.Title .. ": Update Stylized Role icons and enable them by default",
+    F.String.ElvUI() .. ": Swap Target UnitFrame Buffs & Debuffs" .. F.String.Sublist("This change was made so that it matches the Player UnitFrame Debuffs"),
 
     "* Documentation",
 

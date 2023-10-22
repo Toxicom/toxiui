@@ -714,13 +714,13 @@ function PF:BuildProfile()
 
       -- UnitFrame Target Buffs
       buffs = {
-        anchorPoint = "TOPLEFT",
-        growthX = "RIGHT",
+        anchorPoint = "TOPRIGHT",
+        growthX = "LEFT",
         perrow = 7,
         priority = "Blacklist,Personal,Boss,nonPersonal,CastByUnit",
         spacing = 0,
         xOffset = 0,
-        yOffset = F.Dpi(25),
+        yOffset = F.Dpi(60),
 
         -- Stack Counter
         countPosition = "BOTTOM",
@@ -733,7 +733,8 @@ function PF:BuildProfile()
 
       -- UnitFrame Target Debuffs
       debuffs = {
-        anchorPoint = "TOPRIGHT",
+        anchorPoint = "TOPLEFT",
+        growthX = "RIGHT",
         attachTo = "FRAME",
         durationPosition = "CENTER",
         maxDuration = 0,
@@ -741,7 +742,7 @@ function PF:BuildProfile()
         priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
         spacing = 0,
         xOffset = 0,
-        yOffset = F.Dpi(60),
+        yOffset = F.Dpi(25),
 
         -- Stack Counter
         countPosition = "BOTTOM",
