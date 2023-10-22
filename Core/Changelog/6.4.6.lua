@@ -9,7 +9,7 @@ TXUI.Changelog["6.4.6"] = {
     "Add "
       .. F.String.ToxiUI("Smart Power")
       .. " tags" --
-      .. F.String.Sublist("Smart Power tags change color to yellow & red when getting low")
+      .. F.String.Sublist("Smart Power tags change color to " .. F.String.Warning("yellow") .. " & " .. F.String.Error("red") .. " when getting low")
       .. F.String.Sublist("See new tags in " .. F.String.Class("Available Tags") .. ", they are prefixed with " .. TXUI.Title),
 
     "* Bug fixes",
@@ -26,6 +26,10 @@ TXUI.Changelog["6.4.6"] = {
       .. " tag for non-dark mode layouts"
       .. F.String.Sublist("Old tags are still available in " .. F.String.Class("Available Tags")),
     F.String.ElvUI() .. ": Add !Power text tag to Party UnitFrames",
+    F.String.ElvUI() --
+      .. ": Update Focus UnitFrame"
+      .. F.String.Sublist("Add a !Power text tag")
+      .. F.String.Sublist("Move the Focus Power Bar to match Target UnitFrame"),
 
     "* Documentation",
 

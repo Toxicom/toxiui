@@ -138,8 +138,8 @@ function PF:BuildProfile()
       ElvUF_PetCastbarMover = F.Position("TOPLEFT", "ElvUF_Pet", "BOTTOMLEFT", 0, -1),
 
       ElvUF_FocusMover = F.Position("TOP", "ElvUF_Target", "BOTTOM", 0, -60),
-      FocusPowerBarMover = F.Position("TOP", "ElvUF_FocusMover", "BOTTOM", 0, defaultPadding),
-      ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_Focus", "BOTTOMLEFT", 0, -defaultPadding),
+      ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 0, -defaultPadding),
+      FocusPowerBarMover = F.Position("LEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 10, 0),
 
       ElvUF_PartyMover = F.Position("LEFT", "ElvUIParent", "LEFT", 300, 0),
 
@@ -219,8 +219,6 @@ function PF:BuildProfile()
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 380),
 
       ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 160),
-      FocusPowerBarMover = F.Position("TOP", "ElvUF_FocusMover", "BOTTOM", 0, defaultPadding),
-      ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 0, -defaultPadding),
 
       ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 220),
       ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
@@ -999,6 +997,14 @@ function PF:BuildProfile()
           text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Target Custom Texts Power
+        ["!Power"] = createCustomText({}, {
+          attachTextTo = "Power",
+          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+          xOffset = F.Dpi(85),
+          yOffset = F.Dpi(0),
         }),
 
         -- UnitFrame Focus Custom Texts Class Icon
