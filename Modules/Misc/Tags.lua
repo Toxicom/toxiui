@@ -315,7 +315,18 @@ function M:Tags()
     end
   end)
 
-  -- Power Tag
+  -- ToxiUI: Power Tags
+  local function ColorSmartPowerTag(power, powerStr, reverseGradient)
+    if power <= 50 and power > 20 then
+      return F.String.GradientClass(powerStr, "ROGUE", reverseGradient)
+    elseif power <= 20 then
+      return F.String.GradientClass(powerStr, "DEATHKNIGHT", reverseGradient)
+    else
+      return powerStr
+    end
+  end
+
+  -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
     local max = UnitPowerMax(unit)
     local power = floor(UnitPower(unit) / max * 100 + 0.5)
@@ -330,7 +341,17 @@ function M:Tags()
     if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
   end)
 
-  -- Power Tag
+  -- Smart Power Percent No Sign Tag
+  E:AddTag("tx:smartpower:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+    local max = UnitPowerMax(unit)
+    local power = floor(UnitPower(unit) / max * 100 + 0.5)
+    local powerStr = tostring(power)
+    local reverseGradient = reverseUnitsTable[unit]
+
+    return ColorSmartPowerTag(power, powerStr, reverseGradient)
+  end)
+
+  -- Power Percent Tag
   E:AddTag("tx:power:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
     local max = UnitPowerMax(unit)
     local power = floor(UnitPower(unit) / max * 100 + 0.5)
@@ -344,6 +365,18 @@ function M:Tags()
 
     local reverseGradient = reverseUnitsTable[unit]
     if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
+  end)
+
+  -- Smart Power Percent Tag
+  E:AddTag("tx:smartpower:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+    local max = UnitPowerMax(unit)
+    local power = floor(UnitPower(unit) / max * 100 + 0.5)
+    local powerStr = tostring(power)
+    -- append % sign
+    powerStr = powerStr .. "%"
+    local reverseGradient = reverseUnitsTable[unit]
+
+    return ColorSmartPowerTag(power, powerStr, reverseGradient)
   end)
 
   -- Class Icon Tag
@@ -419,9 +452,21 @@ function M:Tags()
   )
 
   E:AddTagInfo(
+    "tx:smartpower:percent:nosign",
+    TagNames.POWER,
+    "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to yellow when Power <= 50, and to red when Power <= 20"
+  )
+
+  E:AddTagInfo(
     "tx:power:percent",
     TagNames.POWER,
     "Displays percentage Power of unit without decimals. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
+  )
+
+  E:AddTagInfo(
+    "tx:smartpower:percent",
+    TagNames.POWER,
+    "Displays percentage Smart Power of unit without decimals. Smart Power changes color to yellow when Power <= 50, and to red when Power <= 20"
   )
 
   E:AddTagInfo("tx:classicon", TXUI.Title, "Displays " .. TXUI.Title .. " class icon.")

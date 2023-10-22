@@ -6,6 +6,11 @@ TXUI.Changelog["6.4.6"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add "
+      .. F.String.ToxiUI("Smart Power")
+      .. " tags." --
+      .. F.String.Sublist("Smart Power tags change color to yellow & red when getting low")
+      .. F.String.Sublist("See new tags in " .. F.String.Class("Available Tags") .. ", they are prefixed with " .. TXUI.Title),
 
     "* Bug fixes",
     TXUI.Title .. ": Add missing " .. F.String.Class("Teleport: Moonglade") .. " in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Classic"),
