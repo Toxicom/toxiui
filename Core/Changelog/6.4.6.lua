@@ -38,6 +38,10 @@ TXUI.Changelog["6.4.6"] = {
       .. " and "
       .. F.String.Class("Aggro on Another Tank")
       .. F.String.Sublist("No more awkward pink nameplates"),
+    F.String.Plater() --
+      .. ": Update Plater buff icons"
+      .. F.String.Sublist("Change the size to 4:3 ratio")
+      .. F.String.Sublist("Change buff stack font and move it to the bottom"),
 
     "* Documentation",
 
