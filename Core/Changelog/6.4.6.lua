@@ -18,6 +18,7 @@ TXUI.Changelog["6.4.6"] = {
 
     "* Profile updates",
     TXUI.Title .. ": Update Stylized Role icons and enable them by default",
+
     F.String.ElvUI() --
       .. ": Swap Target UnitFrame Buffs & Debuffs"
       .. F.String.Sublist("This change was made so that it matches the Player UnitFrame Debuffs"),
@@ -32,6 +33,8 @@ TXUI.Changelog["6.4.6"] = {
       .. F.String.Sublist("Add a !Power text tag")
       .. F.String.Sublist("Move the Focus Power Bar to match Target UnitFrame"),
     F.String.ElvUI() .. ": Enable auto-hide for Target & Focus UnitFrame Power",
+    F.String.ElvUI() .. ": Change font outline of Player Buffs & Debuffs to 'Shadow Outline'",
+
     F.String.Plater() --
       .. ": Update colors for "
       .. F.String.Class("Unit Tapped")

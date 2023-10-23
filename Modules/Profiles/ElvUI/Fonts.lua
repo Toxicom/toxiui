@@ -123,7 +123,7 @@ function PF:ElvUIFont()
 
         timeFont = F.FontOverride(I.Fonts.Primary),
         timeFontSize = F.FontSizeScaled(16),
-        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       },
 
       -- Debuffs
@@ -134,7 +134,7 @@ function PF:ElvUIFont()
 
         timeFont = F.FontOverride(I.Fonts.Primary),
         timeFontSize = F.FontSizeScaled(16),
-        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        timeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       },
     },
 
