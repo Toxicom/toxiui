@@ -32,6 +32,12 @@ TXUI.Changelog["6.4.6"] = {
       .. F.String.Sublist("Add a !Power text tag")
       .. F.String.Sublist("Move the Focus Power Bar to match Target UnitFrame"),
     F.String.ElvUI() .. ": Enable auto-hide for Target & Focus UnitFrame Power",
+    F.String.Plater() --
+      .. ": Update colors for "
+      .. F.String.Class("Unit Tapped")
+      .. " and "
+      .. F.String.Class("Aggro on Another Tank")
+      .. F.String.Sublist("No more awkward pink nameplates"),
 
     "* Documentation",
 
