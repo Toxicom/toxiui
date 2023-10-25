@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.4.6"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add "
       .. F.String.ToxiUI("Smart Power")
@@ -47,11 +45,5 @@ TXUI.Changelog["6.4.6"] = {
       .. ": Update Plater buff icons"
       .. F.String.Sublist("Change the size to 4:3 ratio")
       .. F.String.Sublist("Change buff stack font and move it to the bottom"),
-
-    "* Documentation",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }

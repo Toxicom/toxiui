@@ -21,7 +21,7 @@ TXUI.Changelog["6.4.0"] = {
     F.String.GradientString() .. " UnitFrame text tags in Dark Mode" .. F.String.Sublist(
       "Credits to " .. F.String.RandomClassColor("Eltreum") .. " and " .. F.String.ElvUI("ElvUI discord")
     ),
-    F.String.GradientString() .. "Details texts in Dark Mode" .. F.String.Sublist("Disabled by default") .. F.String.Sublist(
+    F.String.GradientString() .. " Details texts in Dark Mode" .. F.String.Sublist("Disabled by default") .. F.String.Sublist(
       "Enable in " .. F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3") .. " -> Dark Mode -> " .. F.String.Class("Gradient name")
     ),
     "Add new option to open " .. TXUI.Title .. " changelog by right-clicking WunderBar MicroMenu's " .. TXUI.Title .. " icon",
