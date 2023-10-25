@@ -10,6 +10,7 @@ TXUI.Changelog["6.4.7"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Increase Background Fade alpha from 40% to 60%",
 
     "* Documentation",
 
