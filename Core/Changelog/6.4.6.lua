@@ -34,6 +34,7 @@ TXUI.Changelog["6.4.6"] = {
       .. F.String.Sublist("Move the Focus Power Bar to match Target UnitFrame"),
     F.String.ElvUI() .. ": Enable auto-hide for Target & Focus UnitFrame Power",
     F.String.ElvUI() .. ": Change font outline of Player Buffs & Debuffs to 'Shadow Outline'",
+    F.String.ElvUI() .. ": Reduce Background Fade alpha from 80% to 40%",
 
     F.String.Plater() --
       .. ": Update colors for "
