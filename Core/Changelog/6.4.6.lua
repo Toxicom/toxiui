@@ -15,6 +15,7 @@ TXUI.Changelog["6.4.6"] = {
 
     "* Bug fixes",
     TXUI.Title .. ": Add missing " .. F.String.Class("Teleport: Moonglade") .. " in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Classic"),
+    TXUI.Title .. ": Fix missing Material Assist icon",
 
     "* Profile updates",
     TXUI.Title .. ": Update Stylized Role icons and enable them by default",

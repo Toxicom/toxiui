@@ -307,6 +307,7 @@ I.ElvUIIcons = {
 
   ["Assist"] = {
     ["TXUI_STYLIZED"] = "StylizedAssist",
+    ["TXUI_MATERIAL"] = "MaterialAssist",
     ["BLIZZARD"] = "Interface\\GroupFrame\\UI-Group-AssistantIcon",
   },
 
