@@ -28,39 +28,6 @@ function M:GameMenuButton_ADDON_LOADED(addonName)
   GM:UpdateHolder()
 end
 
-local randomTips = {
-  TXUI.Title .. " has three different themes to choose from. You can swap to Normal mode or Dark Mode in " .. TXUI.Title .. " Themes settings",
-  "The bar at the bottom is called WunderBar. It is heavily customizable and you can play around with it in " .. TXUI.Title .. " settings",
-  "There is a "
-    .. TXUI.Title
-    .. " website that has a lot of useful information and also articles about what's happening in "
-    .. TXUI.Title
-    .. "! Check it out at "
-    .. F.String.ToxiUI(I.Strings.Branding.Links.Website),
-  "There is a " --
-    .. TXUI.Title
-    .. " Discord server if you ever need help or just want to chat! Check out the "
-    .. TXUI.Title
-    .. " settings "
-    .. F.String.Class("Contacts", "DRUID")
-    .. " tab for links.",
-  "The same " .. TXUI.Title .. " AddOn can be installed on all three versions: Retail, Wrath of the Lich King & Classic Era",
-  "The first version of "
-    .. TXUI.Title
-    .. " was released on "
-    .. F.String.GradientClass("October 18, 2020")
-    .. " and the Discord server was created a week later, on "
-    .. F.String.GradientClass("October 24, 2020"),
-  "If you want to support " .. TXUI.Title .. " visit the " .. TXUI.Title .. " website's FAQ page at " .. I.Strings.Branding.Links.Website .. "/faq/",
-  "You can change Gradient colors in " .. TXUI.Title .. " Theme settings",
-  TXUI.Title
-    .. " like many other AddOns is being constantly updated. Remember to update your AddOns every day! See the changelog in "
-    .. TXUI.Title
-    .. " settings to find out what's new",
-  "To easily manage your AddOns all in one client, we recommend using the CurseForge version of " .. F.String.ToxiUI("WowUp.io"),
-  "Keeping your Action Bars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
-}
-
 function M:GameMenuButton()
   -- Don't init if its not a TXUI profile or requirements are not met
   if not TXUI:HasRequirements(I.Requirements.GameMenuButton) then return end
@@ -141,7 +108,7 @@ function M:GameMenuButton()
       -- Bottom text promotion
       backgroundFade.bottomText = backgroundFade:CreateFontString(nil, "OVERLAY")
       backgroundFade.bottomText:Point("BOTTOM", 0, 100)
-      backgroundFade.bottomText:SetFont(titleFont, F.FontSizeScaled(14), "OUTLINE")
+      backgroundFade.bottomText:SetFont(primaryFont, F.FontSizeScaled(14), "OUTLINE")
       backgroundFade.bottomText:SetTextColor(1, 1, 1, 0.6)
       backgroundFade.bottomText:SetText("You can find all the relevant " .. TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
 
@@ -166,6 +133,41 @@ function M:GameMenuButton()
 
       -- Random tip
       if E.db.TXUI.addons.gameMenuButton.backgroundFade.showTips then
+        -- I have a suspicion that if it's defined outside it can cause gradient issues, not sure
+        local randomTips = {
+          TXUI.Title .. " has three different themes to choose from. You can swap to Normal mode or Dark Mode in " .. TXUI.Title .. " Themes settings",
+          "The bar at the bottom is called WunderBar. It is heavily customizable and you can play around with it in " .. TXUI.Title .. " settings",
+          "There is a "
+            .. TXUI.Title
+            .. " website that has a lot of useful information and also articles about what's happening in "
+            .. TXUI.Title
+            .. "! Check it out at "
+            .. F.String.ToxiUI(I.Strings.Branding.Links.Website),
+          "There is a " --
+            .. TXUI.Title
+            .. " Discord server if you ever need help or just want to chat! Check out the "
+            .. TXUI.Title
+            .. " settings "
+            .. F.String.Class("Contacts", "DRUID")
+            .. " tab for links.",
+          "The same " .. TXUI.Title .. " AddOn can be installed on all three versions: Retail, Wrath of the Lich King & Classic Era",
+          "The first version of "
+            .. TXUI.Title
+            .. " was released on "
+            .. F.String.GradientClass("October 18, 2020")
+            .. " and the Discord server was created a week later, on "
+            .. F.String.GradientClass("October 24, 2020"),
+          "If you want to support " .. TXUI.Title .. " visit the " .. TXUI.Title .. " website's FAQ page at " .. I.Strings.Branding.Links.Website .. "/faq/",
+          "You can change Gradient colors in " .. TXUI.Title .. " Theme settings",
+          TXUI.Title
+            .. " like many other AddOns is being constantly updated. Remember to update your AddOns every day! See the changelog in "
+            .. TXUI.Title
+            .. " settings to find out what's new",
+          "To easily manage your AddOns all in one client, we recommend using the CurseForge version of " .. F.String.ToxiUI("WowUp.io"),
+          "Keeping your Action Bars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
+          "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts. Class Icons are also Custom Texts!",
+        }
+
         local randomIndex = math.random(1, #randomTips)
         -- For debugging
         -- local randomIndex = 7
