@@ -494,6 +494,14 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
         }),
 
+        -- UnitFrame Player Custom Texts Level
+        ["!Level"] = createCustomText({}, {
+          justifyH = "LEFT",
+          text_format = "[tx:level]",
+          xOffset = F.Dpi(18),
+          yOffset = F.Dpi(-15),
+        }),
+
         -- UnitFrame Player Custom Texts Health
         ["!Health"] = createCustomText({}, {
           justifyH = "RIGHT",
@@ -690,6 +698,14 @@ function PF:BuildProfile()
           text_format = "[tx:name:abbrev:medium]",
           xOffset = F.Dpi(-5),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(0)),
+        }),
+
+        -- UnitFrame Target Custom Texts Level
+        ["!Level"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          text_format = "[tx:level]",
+          xOffset = F.Dpi(-18),
+          yOffset = F.Dpi(-15),
         }),
 
         -- UnitFrame Target Custom Texts Power
@@ -1152,6 +1168,14 @@ function PF:BuildProfile()
           text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(-10),
           yOffset = F.Dpi(25),
+        }),
+
+        -- UnitFrame Party Custom Texts Level
+        ["!Level"] = createCustomText({}, {
+          justifyH = "LEFT",
+          text_format = "[tx:level]",
+          xOffset = F.Dpi(18),
+          yOffset = F.Dpi(-12),
         }),
 
         -- UnitFrame Party Custom Texts Power

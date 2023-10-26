@@ -14,6 +14,13 @@ TXUI.Changelog["6.4.7"] = {
 
     "* Profile updates",
     F.String.ElvUI() .. ": Increase Background Fade alpha from 40% to 60%",
+    F.String.ElvUI() --
+      .. ": Add the "
+      .. TXUI.Title
+      .. " level tag to these UnitFrames:"
+      .. F.String.Sublist("Player")
+      .. F.String.Sublist("Target")
+      .. F.String.Sublist("Party"),
 
     "* Documentation",
     "Add additional info to Gradient theme description",
