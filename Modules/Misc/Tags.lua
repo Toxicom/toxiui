@@ -390,6 +390,31 @@ function M:Tags()
     end
   end)
 
+  local maxLevelTable = {
+    ["Vanilla"] = 60,
+    ["TBC"] = 70,
+    ["Wrath"] = 80,
+    ["Mainline"] = 70,
+  }
+
+  -- Level Tag
+  E:AddTag("tx:level", "UNIT_LEVEL PLAYER_LEVEL_UP", function(unit)
+    local level = UnitLevel(unit)
+
+    -- Do not show level for max level units
+    if level >= maxLevelTable[TXUI.MetaFlavor] then return end
+
+    -- Handle unknown or missing level
+    if level == -1 or not level or level == "" then level = "??" end
+
+    local levelStr = "Lv " .. tostring(level)
+
+    if not dm.isEnabled then return levelStr end
+
+    local reverseGradient = reverseUnitsTable[unit]
+    return FormatColorTag(levelStr, unit, reverseGradient)
+  end)
+
   -- Group Tag
   local validGroups = {
     [1] = true,
