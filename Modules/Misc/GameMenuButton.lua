@@ -53,6 +53,12 @@ local randomTips = {
     .. F.String.GradientClass("October 24, 2020"),
   "If you want to support " .. TXUI.Title .. " visit the " .. TXUI.Title .. " website's FAQ page at " .. I.Strings.Branding.Links.Website .. "/faq/",
   "You can change Gradient colors in " .. TXUI.Title .. " Theme settings",
+  TXUI.Title
+    .. " like many other AddOns is being constantly updated. Remember to update your AddOns every day! See the changelog in "
+    .. TXUI.Title
+    .. " settings to find out what's new",
+  "To easily manage your AddOns all in one client, we recommend using the CurseForge version of " .. F.String.ToxiUI("WowUp.io"),
+  "Keeping your Action Bars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
 }
 
 function M:GameMenuButton()
