@@ -164,6 +164,23 @@ function O:Skins_ElvUI()
       end,
     }
 
+    gameMenuButtonGroup.showTips = {
+      order = self:GetOrder(),
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled or not E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo
+      end,
+      type = "toggle",
+      name = "Show Random Tips",
+      desc = "Toggling this on displays random tips in the game menu background. Requires Show Player Info enabled.",
+      get = function(_)
+        return E.db.TXUI.addons.gameMenuButton.backgroundFade.showTips
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuButton.backgroundFade.showTips = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
     gameMenuButtonGroup.classColor = {
       order = self:GetOrder(),
       disabled = optionsDisabled,

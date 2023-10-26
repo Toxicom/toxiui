@@ -223,6 +223,7 @@ P.addons = {
       },
 
       showInfo = true,
+      showTips = true,
     },
   },
 

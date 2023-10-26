@@ -28,6 +28,33 @@ function M:GameMenuButton_ADDON_LOADED(addonName)
   GM:UpdateHolder()
 end
 
+local randomTips = {
+  TXUI.Title .. " has three different themes to choose from. You can swap to Normal mode or Dark Mode in " .. TXUI.Title .. " Themes settings",
+  "The bar at the bottom is called WunderBar. It is heavily customizable and you can play around with it in " .. TXUI.Title .. " settings",
+  "There is a "
+    .. TXUI.Title
+    .. " website that has a lot of useful information and also articles about what's happening in "
+    .. TXUI.Title
+    .. "! Check it out at "
+    .. F.String.ToxiUI(I.Strings.Branding.Links.Website),
+  "There is a " --
+    .. TXUI.Title
+    .. " Discord server if you ever need help or just want to chat! Check out the "
+    .. TXUI.Title
+    .. " settings "
+    .. F.String.Class("Contacts", "DRUID")
+    .. " tab for links.",
+  "The same " .. TXUI.Title .. " AddOn can be installed on all three versions: Retail, Wrath of the Lich King & Classic Era",
+  "The first version of "
+    .. TXUI.Title
+    .. " was released on "
+    .. F.String.GradientClass("October 18, 2020")
+    .. " and the Discord server was created a week later, on "
+    .. F.String.GradientClass("October 24, 2020"),
+  "If you want to support " .. TXUI.Title .. " visit the " .. TXUI.Title .. " website's FAQ page at " .. I.Strings.Branding.Links.Website .. "/faq/",
+  "You can change Gradient colors in " .. TXUI.Title .. " Theme settings",
+}
+
 function M:GameMenuButton()
   -- Don't init if its not a TXUI profile or requirements are not met
   if not TXUI:HasRequirements(I.Requirements.GameMenuButton) then return end
@@ -105,6 +132,13 @@ function M:GameMenuButton()
       local primaryFont = F.GetFontPath(I.Fonts.Primary)
       local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
 
+      -- Bottom text promotion
+      backgroundFade.bottomText = backgroundFade:CreateFontString(nil, "OVERLAY")
+      backgroundFade.bottomText:Point("BOTTOM", 0, 100)
+      backgroundFade.bottomText:SetFont(titleFont, F.FontSizeScaled(14), "OUTLINE")
+      backgroundFade.bottomText:SetTextColor(1, 1, 1, 0.6)
+      backgroundFade.bottomText:SetText("You can find all the relevant " .. TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
+
       -- Player Name
       backgroundFade.nameText = backgroundFade:CreateFontString(nil, "OVERLAY")
       backgroundFade.nameText:SetPoint("TOP", backgroundFade.logo, "BOTTOM", 0, -30)
@@ -123,6 +157,21 @@ function M:GameMenuButton()
       backgroundFade.levelText:SetPoint("TOP", backgroundFade.guildText, "BOTTOM", 0, -25)
       backgroundFade.levelText:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
       backgroundFade.levelText:SetTextColor(1, 1, 1, 1)
+
+      -- Random tip
+      if E.db.TXUI.addons.gameMenuButton.backgroundFade.showTips then
+        local randomIndex = math.random(1, #randomTips)
+        -- For debugging
+        -- local randomIndex = 7
+        local randomTip = randomTips[randomIndex]
+
+        backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
+        backgroundFade.tipText:SetPoint("TOP", backgroundFade.levelText, "BOTTOM", 0, -25)
+        backgroundFade.tipText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        backgroundFade.tipText:SetTextColor(1, 1, 1, 1)
+        backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip)
+        backgroundFade.tipText:SetWidth(600)
+      end
     end
 
     backgroundFade.Animation = TXUI:CreateAnimationGroup(backgroundFade):CreateAnimation("Fade")
