@@ -387,18 +387,23 @@ function F.String.GradientClass(text, class, reverse)
   if not text or text == "" then text = E.myLocalizedClass end
 
   local unitClass = class or E.myclass
-  local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
 
-  -- check if class is an actual valid class that we have gradients for, if not, fallback to player's class
-  if not colorMap[1][unitClass] then unitClass = E.myclass end
+  if E.db.TXUI.themes.gradientMode.classColorMap then
+    local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
 
-  local left = colorMap[1][unitClass] -- Left (player UF)
-  local right = colorMap[2][unitClass] -- Right (player UF)
+    -- check if class is an actual valid class that we have gradients for, if not, fallback to player's class
+    if not colorMap[1][unitClass] then unitClass = E.myclass end
 
-  if not reverse then
-    return F.String.FastGradient(text, left.r, left.g, left.b, right.r, right.g, right.b)
+    local left = colorMap[1][unitClass] -- Left (player UF)
+    local right = colorMap[2][unitClass] -- Right (player UF)
+
+    if not reverse then
+      return F.String.FastGradient(text, left.r, left.g, left.b, right.r, right.g, right.b)
+    else
+      return F.String.FastGradient(text, right.r, right.g, right.b, left.r, left.g, left.b)
+    end
   else
-    return F.String.FastGradient(text, right.r, right.g, right.b, left.r, left.g, left.b)
+    return text
   end
 end
 
