@@ -448,13 +448,25 @@ function M:Tags()
   end)
 
   local TagNames = {
-    DEFAULT = TXUI.Title,
+    GENERAL = TXUI.Title,
     NAMES = TXUI.Title .. " Names",
     HEALTH = TXUI.Title .. " Health",
     POWER = TXUI.Title .. " Power",
   }
 
   -- Tag info
+  -- Tag info: General
+  E:AddTagInfo("tx:classicon", TagNames.GENERAL, "Displays " .. TXUI.Title .. " class icon.")
+  E:AddTagInfo("tx:level", TagNames.GENERAL, "Displays unit's level with " .. TXUI.Title .. " colors (e.g. Lv 42). Hides when the unit is max level.")
+  E:AddTagInfo(
+    "tx:group:raid",
+    TagNames.GENERAL,
+    "Displays raid group number with a 'Group' prefix for the first unit in a group. (e.g. Group 1) "
+      .. F.String.Error("Warning: ")
+      .. "This will work only for full proper groups!"
+  )
+
+  -- Tag info: Names
   E:AddTagInfo("tx:name:veryshort", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 5 letters)")
   E:AddTagInfo("tx:name:short", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 10 letters)")
   E:AddTagInfo("tx:name:medium", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 15 letters)")
@@ -465,6 +477,7 @@ function M:Tags()
   E:AddTagInfo("tx:name:abbrev:medium", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 15 letters)")
   E:AddTagInfo("tx:name:abbrev:long", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 20 letters)")
 
+  -- Tag info: Health
   E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
   E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
   E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
@@ -472,6 +485,7 @@ function M:Tags()
   E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
   E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")
 
+  -- Tag info: Power
   E:AddTagInfo(
     "tx:power:percent:nosign",
     TagNames.POWER,
@@ -510,15 +524,6 @@ function M:Tags()
       .. " when "
       .. F.String.Class("MANA", "MAGE")
       .. " <= 20"
-  )
-
-  E:AddTagInfo("tx:classicon", TXUI.Title, "Displays " .. TXUI.Title .. " class icon.")
-  E:AddTagInfo(
-    "tx:group:raid",
-    TXUI.Title,
-    "Displays raid group number with a 'Group' prefix for the first unit in a group. (e.g. Group 1) "
-      .. F.String.Error("Warning: ")
-      .. "This will work only for full proper groups!"
   )
 
   -- Settings Callback
