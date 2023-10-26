@@ -35,9 +35,16 @@ function O:ToxiUI_Themes_GradientMode()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = "We provide different themes for " .. TXUI.Title .. ", you can enable or disable them below." .. "\n\n" .. F.String.Error(
-        "Warning: Enabling one of these settings may overwrite colors or textures in ElvUI and Details, they also prevent you from changing certain settings in ElvUI!"
-      ) .. "\n\n",
+      name = "We provide different themes for "
+        .. TXUI.Title
+        .. ", you can enable or disable them below."
+        .. "\n\n"
+        .. "Some colors (like Details dark mode gradient text) will update only after a reload."
+        .. "\n\n"
+        .. F.String.Error(
+          "Warning: Enabling one of these settings may overwrite colors or textures in ElvUI and Details, they also prevent you from changing certain settings in ElvUI!"
+        )
+        .. "\n\n",
     }, I.Requirements.GradientMode).args
 
     -- Enable
