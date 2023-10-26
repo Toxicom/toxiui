@@ -1000,7 +1000,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
         }),
 
-        -- UnitFrame Target Custom Texts Power
+        -- UnitFrame Focus Custom Texts Power
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
           text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
@@ -2152,14 +2152,17 @@ function PF:UpdateProfileForTheme()
   -- Arena
   F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Power", "text_format")
 
   -- Boss
   F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Power", "text_format")
 
   -- Focus
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Power", "text_format")
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "yOffset")
 
@@ -2175,6 +2178,7 @@ function PF:UpdateProfileForTheme()
 
   -- Party
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Power", "text_format")
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.party.raidRoleIcons", "yOffset")
@@ -2182,6 +2186,7 @@ function PF:UpdateProfileForTheme()
   -- Target
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Power", "text_format")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.raidRoleIcons", "yOffset")

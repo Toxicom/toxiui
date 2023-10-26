@@ -10,6 +10,7 @@ TXUI.Changelog["6.4.7"] = {
     "Level tag for UnitFrames with " .. TXUI.Title .. " colors" .. F.String.Sublist("Hides for units that are at max level"),
 
     "* Bug fixes",
+    TXUI.Title .. ": Power tag not changing when toggling Dark theme",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Increase Background Fade alpha from 40% to 60%",
