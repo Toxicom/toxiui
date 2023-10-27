@@ -79,45 +79,65 @@ function O:General()
   end
 
   -- Add Contributors to credit
-  credits = credits .. "Legendary Supporter\n\n"
+  credits = credits .. F.String.ToxiUI("Legendary Supporter\n\n")
 
-  for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.LEGENDARY]) do
-    addToCredits(I.Strings.Colors[I.Enum.Colors.LEGENDARY], name)
+  if next(I.Data.Contributor[I.Enum.ContributorType.LEGENDARY]) ~= nil then
+    -- The table has entries
+    for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.LEGENDARY]) do
+      addToCredits(I.Enum.Colors.LEGENDARY, name)
+    end
+  else
+    -- The table is empty
+    addToCredits("ffffff", "No " .. F.String.Legendary("Legendary") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. "\nEpic Supporter\n\n"
+  credits = credits .. F.String.ToxiUI("\n\nEpic Supporter\n\n")
 
-  for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.EPIC]) do
-    addToCredits(I.Enum.Colors.EPIC, name)
+  if next(I.Data.Contributor[I.Enum.ContributorType.EPIC]) ~= nil then
+    -- The table has entries
+    for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.EPIC]) do
+      addToCredits(I.Enum.Colors.EPIC, name)
+    end
+  else
+    -- The table is empty
+    addToCredits("ffffff", "No " .. F.String.Epic("Epic") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. "\nRare Supporter\n\n"
+  credits = credits .. F.String.ToxiUI("\n\nRare Supporter\n\n")
 
-  for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.RARE]) do
-    addToCredits(I.Enum.Colors.RARE, name)
+  if next(I.Data.Contributor[I.Enum.ContributorType.RARE]) ~= nil then
+    -- The table has entries
+    for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.RARE]) do
+      addToCredits(I.Enum.Colors.RARE, name)
+    end
+  else
+    -- The table is empty
+    addToCredits("ffffff", "No " .. F.String.Rare("Rare") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. "\nBeta Testers\n\n"
+  credits = credits .. F.String.ToxiUI("\n\nBeta Testers\n\n")
 
   for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.BETA]) do
     addToCredits(I.Enum.Colors.BETA, name)
   end
 
-  credits = credits .. "\nOthers\n\n"
+  credits = credits .. F.String.ToxiUI("\n\nOthers\n\n")
 
   -- Add to credit
   addToCredits("f2d705", "Hekili")
   addToCredits("a96dad", "Rhapsody")
   addToCredits("0070de", "Jake")
+  addToCredits("e6cc80", "Ryada")
   addToCredits("ff7c0a", "Releaf")
   addToCredits("e64337", "Redtuzk & his crew")
   addToCredits("5cfa4b", "Darth Predator & Repooc")
   addToCredits("cc0e00", "Gennoken")
+  addToCredits("ffffff", F.String.ElvUI() .. " discord")
 
   local creditsGroup = self:AddInlineDesc(options, {
     name = "Credits",
   }, {
-    name = "Special thanks goes to these amazing people for their help or inspiration.\n\n",
+    name = "Special thanks goes to these " .. F.String.ToxiUI("amazing people") .. " for their help or inspiration!" .. F.String.Error(" <3\n\n"),
   }).args
 
   creditsGroup.credits = {
