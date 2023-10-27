@@ -12,7 +12,7 @@ function RAI:ChangeRaidIcon()
 
     local leader = frame.LeaderIndicator
     local assistant = frame.AssistantIndicator
-    -- local master = frame.MasterLooterIndicator
+    local master = frame.MasterLooterIndicator
     -- local raid = frame.RaidRoleIndicator
 
     if frame.LeaderIndicator and db.leader.enabled then
