@@ -7,7 +7,7 @@ local next = next
 local tinsert = table.insert
 local xpcall = xpcall
 
-T.callOnInit = {}
+RY.callOnInit = {}
 
 local function errorhandler(err)
   return _G.geterrorhandler()(err)
