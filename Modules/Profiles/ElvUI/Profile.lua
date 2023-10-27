@@ -220,7 +220,7 @@ function PF:BuildProfile()
 
       ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 160),
 
-      ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 220),
+      ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 200),
       ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
       ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
       ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
@@ -1180,6 +1180,7 @@ function PF:BuildProfile()
 
         -- UnitFrame Party Custom Texts Power
         ["!Power"] = createCustomText({}, {
+          justifyH = "LEFT",
           attachTextTo = "Power",
           text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(10),
@@ -1206,7 +1207,9 @@ function PF:BuildProfile()
         enable = false,
         anchorPoint = "BOTTOMLEFT",
         perrow = 5,
-        spacing = F.Dpi(1),
+        numrows = 1,
+        spacing = 1,
+        yOffset = 0,
 
         -- Stack Counter
         countPosition = "BOTTOM",
@@ -1222,8 +1225,10 @@ function PF:BuildProfile()
         attachTo = "HEALTH",
         anchorPoint = "RIGHT",
         perrow = 5,
+        numrows = 1,
         priority = "Blacklist,Dispellable,Boss,RaidDebuffs,CCDebuffs,Whitelist",
-        spacing = F.Dpi(1),
+        spacing = 1,
+        yOffset = 0,
 
         -- Stack Counter
         countPosition = "BOTTOM",
@@ -1318,6 +1323,16 @@ function PF:BuildProfile()
           xOffset = F.Dpi(7),
           yOffset = F.Dpi(0),
         },
+
+        ["!Level"] = {
+          xOffset = F.Dpi(20),
+          yOffset = F.Dpi(-15),
+        },
+
+        ["!Power"] = {
+          justifyH = "RIGHT",
+          xOffset = F.Dpi(-10),
+        },
       },
 
       -- UnitFrame Party Heal Layout Power
@@ -1328,13 +1343,21 @@ function PF:BuildProfile()
 
       -- UnitFrame Party Heal Layout Buffs
       buffs = {
+        perrow = 4,
+        numrows = 2,
         enable = true,
         anchorPoint = "BOTTOM",
+        yOffset = F.Dpi(-5),
+        spacing = 2,
       },
 
       -- UnitFrame Party Heal Layout Debuffs
       debuffs = {
-        anchorPoint = "TOPLEFT",
+        anchorPoint = "TOP",
+        perrow = 4,
+        numrows = 2,
+        yOffset = F.Dpi(18),
+        spacing = 2,
       },
 
       -- UnitFrame Party Heal Layout Raid Debuffs

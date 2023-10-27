@@ -21,6 +21,12 @@ TXUI.Changelog["6.4.7"] = {
       .. F.String.Sublist("Player")
       .. F.String.Sublist("Target")
       .. F.String.Sublist("Party"),
+    F.String.ElvUI()
+      .. ": Updates to Party UnitFrames in Healer layout:" --
+      .. F.String.Sublist("Fix fonts for level and power")
+      .. F.String.Sublist("Give more breathing room for debuffs & buffs")
+      .. F.String.Sublist("Move Power text to the right side")
+      .. F.String.Sublist("Move the frames down"),
 
     F.String.WarpDeplete() .. ": Move frame up towards the minimap",
 
