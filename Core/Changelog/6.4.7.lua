@@ -22,6 +22,8 @@ TXUI.Changelog["6.4.7"] = {
       .. F.String.Sublist("Target")
       .. F.String.Sublist("Party"),
 
+    F.String.WarpDeplete() .. ": Move frame up towards the minimap",
+
     "* Documentation",
     "Add additional info to Gradient theme description",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.46",
