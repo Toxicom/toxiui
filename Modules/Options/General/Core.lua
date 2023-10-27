@@ -45,7 +45,7 @@ function O:General()
         type = "description",
         name = "The installation guide should pop up automatically after you login."
           .. " \nIf you wish to re-run the installation process to update some settings please click the "
-          .. F.String.ToxiUI("INSTALL/UPDATE")
+          .. F.String.ToxiUI("Open Installer")
           .. " button below.\n\n",
       },
 
@@ -53,7 +53,7 @@ function O:General()
       ["generalInstallButton"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.ToxiUI("INSTALL/UPDATE"),
+        name = F.String.ToxiUI("Open Installer"),
         desc = "Run the installation/update process.",
         func = function()
           E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
