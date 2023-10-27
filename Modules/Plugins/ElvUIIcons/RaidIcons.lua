@@ -29,12 +29,12 @@ function RAI:ChangeRaidIcon()
       end
     end
 
-    -- if frame.MasterLooterIndicator then
-    --   if db.theme then
-    --     master:SetTexCoord(0, 1, 0, 1)
-    --     master:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.theme]))
-    --   end
-    -- end
+    if frame.MasterLooterIndicator then
+      if db.theme then
+        master:SetTexCoord(0, 1, 0, 1)
+        master:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Looter[self.db.theme]))
+      end
+    end
 
     -- if frame.RaidRoleIndicator then
     --   if db.theme then

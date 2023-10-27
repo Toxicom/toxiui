@@ -8,6 +8,7 @@ TXUI.Changelog["6.4.7"] = {
     "* New features",
     "Random tips in Game Menu",
     "Level tag for UnitFrames with " .. TXUI.Title .. " colors" .. F.String.Sublist("Hides for units that are at max level"),
+    TXUI.Title .. " Master Looter icon",
 
     "* Bug fixes",
     TXUI.Title .. ": Power tag not changing when toggling Dark theme",

@@ -102,12 +102,14 @@ F.AddMedia("state", "MaterialDC")
 F.AddMedia("state", "MaterialDead")
 F.AddMedia("state", "MaterialAssist")
 F.AddMedia("state", "MaterialLeader")
+F.AddMedia("state", "MaterialLooter")
 
 -- Stylized Icons
 F.AddMedia("state", "StylizedDC") -- icons8.com
 F.AddMedia("state", "StylizedDead") -- icons8.com
 F.AddMedia("state", "StylizedAssist") -- icons8.com
 F.AddMedia("state", "StylizedLeader") -- icons8.com
+F.AddMedia("state", "StylizedLooter") -- icons8.com
 
 -- Resting Icon
 F.AddMedia("state", "Resting")

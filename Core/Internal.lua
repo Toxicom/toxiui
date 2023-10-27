@@ -317,6 +317,12 @@ I.ElvUIIcons = {
     ["BLIZZARD"] = "Interface\\GroupFrame\\UI-Group-LeaderIcon",
   },
 
+  ["Looter"] = {
+    ["TXUI_MATERIAL"] = "MaterialLooter",
+    ["TXUI_STYLIZED"] = "StylizedLooter",
+    ["BLIZZARD"] = "Interface\\GroupFrame\\UI-Group-MasterLooter",
+  },
+
   ["Dead"] = {
     ["TXUI"] = "WhiteDead",
     ["TXUI_MATERIAL"] = "MaterialDead",

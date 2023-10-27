@@ -391,6 +391,64 @@ function O:Skins_ElvUI()
     }
   end
 
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Master Looter Icon
+  do
+    -- Master Looter Icon Group
+    local looterIconGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Master Looter Icon",
+      get = function(info)
+        return E.db.TXUI.elvUIIcons.raidIcons.looter[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.elvUIIcons.raidIcons.looter[info[#info]] = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }, {
+      name = "Changes the master looter indicator icon.\n\n" .. F.String.ToxiUI("Information: ") .. "For size and position settings, go to the unit's " .. F.String.Class(
+        "Raid Role Indicator"
+      ) .. " settings.\n\n",
+    }, I.Requirements.RoleIcons)
+
+    -- Enable
+    looterIconGroup["args"]["enabled"] = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " skin for Party Leader Indicator",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.elvUIIcons.raidIcons.looter.enabled, looterIconGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.elvUIIcons.raidIcons.looter.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.elvUIIcons.raidIcons.looter.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    -- Hidden helper
+    local looterIconDisabled = function()
+      return self:GetEnabledState(E.db.TXUI.elvUIIcons.raidIcons.looter.enabled, looterIconGroup) ~= self.enabledState.YES
+    end
+
+    -- Theme
+    looterIconGroup["args"]["theme"] = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Style",
+      desc = "Change the icon",
+      values = {
+        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
+        ["BLIZZARD"] = "Blizzard",
+      },
+      hidden = looterIconDisabled,
+    }
+  end
+
   -- Dead Icons
   do
     -- Dead Icon Group

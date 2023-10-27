@@ -289,6 +289,11 @@ P.elvUIIcons = {
       enabled = true, -- Enabled by default
       theme = "TXUI_STYLIZED",
     },
+
+    looter = {
+      enabled = true, -- Enabled by default
+      theme = "TXUI_STYLIZED",
+    },
   },
 
   deadIcons = {
