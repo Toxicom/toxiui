@@ -311,9 +311,18 @@ function IS:Dialog()
           installFrame.Desc3:SetText("Importance: " .. F.String.Error("High"))
 
           installFrame.Option1:Show()
-          installFrame.Option1:SetText("Details")
+          installFrame.Option1:SetText("One Window")
           installFrame.Option1:SetScript("OnClick", function()
-            PF:Details()
+            PF:Details(false)
+            self.reloadRequired = true
+            self:ShowStepComplete(F.String.ToxiUI("Details") .. " profile installed.")
+            installFrame.Next:Click()
+          end)
+
+          installFrame.Option2:Show()
+          installFrame.Option2:SetText("Two Windows")
+          installFrame.Option2:SetScript("OnClick", function()
+            PF:Details(true)
             self.reloadRequired = true
             self:ShowStepComplete(F.String.ToxiUI("Details") .. " profile installed.")
             installFrame.Next:Click()
