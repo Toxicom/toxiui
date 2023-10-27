@@ -4,7 +4,7 @@ local RY = TXUI:GetModule("Dev"):GetModule("Ryada")
 -- Looks like this file is not important ...
 --@do-not-package@
 
-local SetCVar = SetCVar
+-- local SetCVar = SetCVar
 
 local materialElvUIIcons = { "roleIcons", "deadIcons", "offlineIcons" }
 local materialRaidIcons = { "leader", "assist", "looter" }
