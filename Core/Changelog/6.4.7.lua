@@ -14,6 +14,12 @@ TXUI.Changelog["6.4.7"] = {
     TXUI.Title .. ": Power tag not changing when toggling Dark theme",
 
     "* Profile updates",
+    TXUI.Title --
+      .. ": Reposition "
+      .. F.String.ToxiUI("ToxiUIWAAnchor")
+      .. " to align with Resources Above Icons option"
+      .. F.String.Sublist("WeakAuras Guide on the Website has been appropriately updated too"),
+
     F.String.ElvUI() .. ": Increase Background Fade alpha from 40% to 60%",
     F.String.ElvUI() --
       .. ": Add the "

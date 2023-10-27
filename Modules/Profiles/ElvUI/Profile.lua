@@ -72,13 +72,7 @@ function PF:BuildProfile()
   end
 
   -- Special Case: ToxiUIWAAnchor
-  local WAAnchorY
-
-  if F.HiDpi() then
-    WAAnchorY = { -128, -98 }
-  else
-    WAAnchorY = { -114, -114 }
-  end
+  local WAAnchorY = { 329, 359 }
 
   local defaultPadding = 5
   local IsNewLayout = E.db.TXUI.installer.layoutStyle == I.Enum.LayoutStyle.NEW
@@ -179,7 +173,7 @@ function PF:BuildProfile()
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
 
       -- Movers: ToxiUI
-      ToxiUIWAAnchorMover = F.Position("TOP", "ElvUIParent", "CENTER", 0, WAAnchorY[1]),
+      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[1]),
     },
     F.Table.If(TXUI.IsRetail, {
       -- Movers: Bars Retail Only
@@ -227,7 +221,7 @@ function PF:BuildProfile()
 
       ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 565, 235),
 
-      ToxiUIWAAnchorMover = F.Position("TOP", "ElvUIParent", "CENTER", 0, WAAnchorY[2]),
+      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     })
   )
 
