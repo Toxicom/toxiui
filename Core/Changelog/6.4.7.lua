@@ -10,6 +10,7 @@ TXUI.Changelog["6.4.7"] = {
     "Level tag for UnitFrames with " .. TXUI.Title .. " colors" .. F.String.Sublist("Hides for units that are at max level"),
     TXUI.Title .. " Master Looter icon",
     "Separate " .. F.String.Details() .. " profiles for One Window and Two Windows",
+    "Add Spellbook Frame to " .. F.String.Scaling(),
 
     "* Bug fixes",
     TXUI.Title .. ": Power tag not changing when toggling Dark theme",

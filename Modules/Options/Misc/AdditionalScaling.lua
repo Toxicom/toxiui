@@ -166,6 +166,23 @@ function O:Plugins_AdditionalScaling()
       step = 0.05,
     }
 
+    -- Other Group: Spellbook
+    otherGroup.spellbook = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Spellbook",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.spellbook.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.spellbook.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
     -- Other Group: Talents
     otherGroup.talents = {
       order = self:GetOrder(),

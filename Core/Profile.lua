@@ -269,6 +269,10 @@ P.misc = {
     talents = {
       scale = 1,
     },
+
+    spellbook = {
+      scale = 1,
+    },
   },
 }
 

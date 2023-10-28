@@ -11,6 +11,7 @@ function M:AdditionalScaling()
     M:SetElementScale("map", "WorldMapFrame")
     M:SetElementScale("characterFrame", "CharacterFrame")
     M:SetElementScale("dressingRoom", "DressUpFrame")
+    M:SetElementScale("spellbook", "SpellBookFrame")
 
     -- In the next parts, if the AddOn isn't loaded by the game yet,
     -- we add it to a list to be loaded as soon as the AddOn has been loaded.
