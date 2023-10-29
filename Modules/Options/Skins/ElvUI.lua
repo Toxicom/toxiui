@@ -276,7 +276,7 @@ function O:Skins_ElvUI()
   end
 
   -- Function to generate the Raid Icon groups
-  local function createIconGroup(self, options, iconType, iconName, description, enableDesc, iconTable)
+  local function createIconGroup(iconType, iconName, description, enableDesc)
     -- Icon Group
     local iconGroup = self:AddInlineRequirementsDesc(options, {
       name = iconName .. " Icon",
@@ -332,46 +332,11 @@ function O:Skins_ElvUI()
   end
 
   -- Call the function for each icon group
-  createIconGroup(
-    self,
-    options,
-    "leader",
-    "Raid Leader",
-    "Changes the raid leader indicator icon.",
-    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Leader Indicator"
-  )
-  createIconGroup(
-    self,
-    options,
-    "assist",
-    "Raid Assist",
-    "Changes the raid assist indicator icon.",
-    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Assistant Indicator"
-  )
-  createIconGroup(
-    self,
-    options,
-    "looter",
-    "Master Looter",
-    "Changes the master looter indicator icon.",
-    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Master Looter Indicator"
-  )
-  createIconGroup(
-    self,
-    options,
-    "mainAssist",
-    "Main Assist",
-    "Changes the main assist indicator icon.",
-    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Assist Indicator"
-  )
-  createIconGroup(
-    self,
-    options,
-    "mainTank",
-    "Main Tank",
-    "Changes the main tank indicator icon.",
-    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Tank Indicator"
-  )
+  createIconGroup("leader", "Raid Leader", "Changes the raid leader indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Leader Indicator")
+  createIconGroup("assist", "Raid Assist", "Changes the raid assist indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Assistant Indicator")
+  createIconGroup("looter", "Master Looter", "Changes the master looter indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Master Looter Indicator")
+  createIconGroup("mainAssist", "Main Assist", "Changes the main assist indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Assist Indicator")
+  createIconGroup("mainTank", "Main Tank", "Changes the main tank indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Tank Indicator")
 
   -- Dead Icons
   do
