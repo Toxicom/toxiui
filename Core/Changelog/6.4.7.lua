@@ -38,6 +38,10 @@ TXUI.Changelog["6.4.7"] = {
       .. F.String.Sublist("Give more breathing room for debuffs & buffs")
       .. F.String.Sublist("Move Power text to the right side")
       .. F.String.Sublist("Move the frames down"),
+    F.String.ElvUI() --
+      .. ": Updates to Main Tank & Main Assist UnitFrames:"
+      .. F.String.Sublist("Change fonts to match Raid UnitFrames")
+      .. F.String.Sublist("Move them up to align with chat top corner"),
 
     F.String.WarpDeplete() .. ": Move frame up towards the minimap",
 

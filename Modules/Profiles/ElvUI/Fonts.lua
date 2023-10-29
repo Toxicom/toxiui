@@ -140,9 +140,9 @@ function PF:ElvUIFont()
 
     -- UnitFrames
     unitframe = {
-      font = F.FontOverride(I.Fonts.Title),
-      fontSize = F.FontSizeScaled(20),
-      fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+      font = F.FontOverride(I.Fonts.TitleRaid),
+      fontSize = F.FontSizeScaled(16),
+      fontOutline = F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE"),
 
       cooldown = {
         fonts = {
@@ -360,6 +360,18 @@ function PF:ElvUIFont()
             font = F.FontOverride(I.Fonts.Title),
             fontSize = F.FontSizeScaled(16),
             fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+          },
+        },
+
+        tank = {
+          customTexts = customTextSize {
+            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+          },
+        },
+
+        assist = {
+          customTexts = customTextSize {
+            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
           },
         },
 

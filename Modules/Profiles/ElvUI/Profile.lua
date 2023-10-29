@@ -147,8 +147,8 @@ function PF:BuildProfile()
       -- Boss Frames
       BossHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, -150),
 
-      ElvUF_AssistMover = F.Position("BOTTOMLEFT", "LeftChatMover", "BOTTOMRIGHT", defaultPadding, 0),
-      ElvUF_TankMover = F.Position("BOTTOMLEFT", "ElvUF_AssistMover", "TOPLEFT", 0, defaultPadding),
+      ElvUF_TankMover = F.Position("TOPLEFT", "LeftChatMover", "TOPRIGHT", defaultPadding, 0),
+      ElvUF_AssistMover = F.Position("TOPLEFT", "ElvUF_TankMover", "BOTTOMLEFT", 0, -defaultPadding),
 
       -- Movers: Chat
       LeftChatMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", defaultPadding, 60),
@@ -1683,12 +1683,23 @@ function PF:BuildProfile()
   -- UnitFrame Tank
   F.Table.Crush(pf.unitframe.units.tank, {
     name = {
-      text_format = "[tx:name:medium]",
+      text_format = "",
+    },
+
+    customTexts = {
+      -- UnitFrame Tank Custom Texts Name
+      ["!Name"] = createCustomText({}, {
+        attachTextTo = "Frame",
+        text_format = "[tx:name:short]",
+        justifyH = "CENTER",
+        xOffset = F.Dpi(0),
+        yOffset = F.Dpi(0),
+      }),
     },
 
     targetsGroup = {
       name = {
-        text_format = "[tx:name:medium]",
+        text_format = "[tx:name:short]",
       },
     },
 
@@ -1699,14 +1710,28 @@ function PF:BuildProfile()
   -- UnitFrame Assist
   F.Table.Crush(pf.unitframe.units.assist, {
     name = {
-      text_format = "[tx:name:medium]",
+      text_format = "",
+    },
+
+    customTexts = {
+      -- UnitFrame Assist Custom Texts Name
+      ["!Name"] = createCustomText({}, {
+        attachTextTo = "Frame",
+        text_format = "[tx:name:short]",
+        justifyH = "CENTER",
+        xOffset = F.Dpi(0),
+        yOffset = F.Dpi(0),
+      }),
     },
 
     targetsGroup = {
       name = {
-        text_format = "[tx:name:medium]",
+        text_format = "[tx:name:short]",
       },
     },
+
+    -- Disable UnitFrame Assist health text
+    health = { text_format = "" },
   })
 
   -- UnitFrame Arena
