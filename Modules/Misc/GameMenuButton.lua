@@ -166,6 +166,7 @@ function M:GameMenuButton()
           "To easily manage your AddOns all in one client, we recommend using the CurseForge version of " .. F.String.ToxiUI("WowUp.io"),
           "Keeping your Action Bars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
           "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts. Class Icons are also Custom Texts!",
+          "Most elements are hidden until you hover over them with your mouse. One example of that is the Pet ActionBar, which is under your Player UnitFrame.",
         }
 
         local randomIndex = math.random(1, #randomTips)
