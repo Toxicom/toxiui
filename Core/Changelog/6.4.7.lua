@@ -9,6 +9,8 @@ TXUI.Changelog["6.4.7"] = {
     "Random tips in Game Menu",
     "Level tag for UnitFrames with " .. TXUI.Title .. " colors" .. F.String.Sublist("Hides for units that are at max level"),
     TXUI.Title .. " Master Looter icon",
+    TXUI.Title .. " Main Tank icon",
+    TXUI.Title .. " Main Assist icon",
     "Separate " .. F.String.Details() .. " profiles for One Window and Two Windows",
     "Add Spellbook Frame to " .. F.String.Scaling(),
 

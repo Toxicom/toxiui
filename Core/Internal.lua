@@ -323,6 +323,18 @@ I.ElvUIIcons = {
     ["BLIZZARD"] = "Interface\\GroupFrame\\UI-Group-MasterLooter",
   },
 
+  ["MainAssist"] = {
+    ["TXUI_MATERIAL"] = "MaterialMainAssist",
+    ["TXUI_STYLIZED"] = "StylizedMainAssist",
+    ["BLIZZARD"] = "Interface\\GroupFrame\\UI-Group-MainAssistIcon",
+  },
+
+  ["MainTank"] = {
+    ["TXUI_MATERIAL"] = "MaterialMainTank",
+    ["TXUI_STYLIZED"] = "StylizedMainTank",
+    ["BLIZZARD"] = "Interface\\GroupFrame\\UI-Group-MainTankIcon",
+  },
+
   ["Dead"] = {
     ["TXUI"] = "WhiteDead",
     ["TXUI_MATERIAL"] = "MaterialDead",

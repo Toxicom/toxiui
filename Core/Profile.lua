@@ -298,6 +298,16 @@ P.elvUIIcons = {
       enabled = true, -- Enabled by default
       theme = "TXUI_STYLIZED",
     },
+
+    mainAssist = {
+      enabled = true, -- Enabled by default
+      theme = "TXUI_STYLIZED",
+    },
+
+    mainTank = {
+      enabled = true, -- Enabled by default
+      theme = "TXUI_STYLIZED",
+    },
   },
 
   deadIcons = {

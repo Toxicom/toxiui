@@ -275,51 +275,46 @@ function O:Skins_ElvUI()
     }
   end
 
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Raid Leader Icon
-  do
-    -- Raid Leader Icon Group
-    local leaderIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Raid Leader Icon",
+  -- Function to generate the Raid Icon groups
+  local function createIconGroup(self, options, iconType, iconName, description, enableDesc, iconTable)
+    -- Icon Group
+    local iconGroup = self:AddInlineRequirementsDesc(options, {
+      name = iconName .. " Icon",
       get = function(info)
-        return E.db.TXUI.elvUIIcons.raidIcons.leader[info[#info]]
+        return E.db.TXUI.elvUIIcons.raidIcons[iconType][info[#info]]
       end,
       set = function(info, value)
-        E.db.TXUI.elvUIIcons.raidIcons.leader[info[#info]] = value
+        E.db.TXUI.elvUIIcons.raidIcons[iconType][info[#info]] = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }, {
-      name = "Changes the raid leader indicator icon.\n\n" .. F.String.ToxiUI("Information: ") .. "For size and position settings, go to the unit's " .. F.String.Class(
-        "Raid Role Indicator"
-      ) .. " settings.\n\n",
+      name = description,
     }, I.Requirements.RoleIcons)
 
     -- Enable
-    leaderIconGroup["args"]["enabled"] = {
+    iconGroup["args"]["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " skin for Party Leader Indicator",
+      desc = enableDesc,
       name = function()
-        return self:GetEnableName(E.db.TXUI.elvUIIcons.raidIcons.leader.enabled, leaderIconGroup)
+        return self:GetEnableName(E.db.TXUI.elvUIIcons.raidIcons[iconType].enabled, iconGroup)
       end,
       get = function(_)
-        return E.db.TXUI.elvUIIcons.raidIcons.leader.enabled
+        return E.db.TXUI.elvUIIcons.raidIcons[iconType].enabled
       end,
       set = function(_, value)
-        E.db.TXUI.elvUIIcons.raidIcons.leader.enabled = value
+        E.db.TXUI.elvUIIcons.raidIcons[iconType].enabled = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }
 
     -- Hidden helper
-    local leaderIconDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.elvUIIcons.raidIcons.leader.enabled, leaderIconGroup) ~= self.enabledState.YES
+    local iconDisabled = function()
+      return self:GetEnabledState(E.db.TXUI.elvUIIcons.raidIcons[iconType].enabled, iconGroup) ~= self.enabledState.YES
     end
 
     -- Theme
-    leaderIconGroup["args"]["theme"] = {
+    iconGroup["args"]["theme"] = {
       order = self:GetOrder(),
       type = "select",
       name = "Style",
@@ -329,125 +324,54 @@ function O:Skins_ElvUI()
         ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
         ["BLIZZARD"] = "Blizzard",
       },
-      hidden = leaderIconDisabled,
+      hidden = iconDisabled,
     }
+
+    -- Spacer
+    self:AddSpacer(options)
   end
 
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Raid Assist Icon
-  do
-    -- Raid Assist Icon Group
-    local assistIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Raid Assist Icon",
-      get = function(info)
-        return E.db.TXUI.elvUIIcons.raidIcons.assist[info[#info]]
-      end,
-      set = function(info, value)
-        E.db.TXUI.elvUIIcons.raidIcons.assist[info[#info]] = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }, {
-      name = "Changes the raid assist indicator icon.\n\n" .. F.String.ToxiUI("Information: ") .. "For size and position settings, go to the unit's " .. F.String.Class(
-        "Raid Role Indicator"
-      ) .. " settings.\n\n",
-    }, I.Requirements.RoleIcons)
-
-    -- Enable
-    assistIconGroup["args"]["enabled"] = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " skin for Party Leader Indicator",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.elvUIIcons.raidIcons.assist.enabled, assistIconGroup)
-      end,
-      get = function(_)
-        return E.db.TXUI.elvUIIcons.raidIcons.assist.enabled
-      end,
-      set = function(_, value)
-        E.db.TXUI.elvUIIcons.raidIcons.assist.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }
-
-    -- Hidden helper
-    local assistIconDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.elvUIIcons.raidIcons.assist.enabled, assistIconGroup) ~= self.enabledState.YES
-    end
-
-    -- Theme
-    assistIconGroup["args"]["theme"] = {
-      order = self:GetOrder(),
-      type = "select",
-      name = "Style",
-      desc = "Change the icon",
-      values = {
-        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
-        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
-        ["BLIZZARD"] = "Blizzard",
-      },
-      hidden = assistIconDisabled,
-    }
-  end
-
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Master Looter Icon
-  do
-    -- Master Looter Icon Group
-    local looterIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Master Looter Icon",
-      get = function(info)
-        return E.db.TXUI.elvUIIcons.raidIcons.looter[info[#info]]
-      end,
-      set = function(info, value)
-        E.db.TXUI.elvUIIcons.raidIcons.looter[info[#info]] = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }, {
-      name = "Changes the master looter indicator icon.\n\n" .. F.String.ToxiUI("Information: ") .. "For size and position settings, go to the unit's " .. F.String.Class(
-        "Raid Role Indicator"
-      ) .. " settings.\n\n",
-    }, I.Requirements.RoleIcons)
-
-    -- Enable
-    looterIconGroup["args"]["enabled"] = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " skin for Party Leader Indicator",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.elvUIIcons.raidIcons.looter.enabled, looterIconGroup)
-      end,
-      get = function(_)
-        return E.db.TXUI.elvUIIcons.raidIcons.looter.enabled
-      end,
-      set = function(_, value)
-        E.db.TXUI.elvUIIcons.raidIcons.looter.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }
-
-    -- Hidden helper
-    local looterIconDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.elvUIIcons.raidIcons.looter.enabled, looterIconGroup) ~= self.enabledState.YES
-    end
-
-    -- Theme
-    looterIconGroup["args"]["theme"] = {
-      order = self:GetOrder(),
-      type = "select",
-      name = "Style",
-      desc = "Change the icon",
-      values = {
-        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
-        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
-        ["BLIZZARD"] = "Blizzard",
-      },
-      hidden = looterIconDisabled,
-    }
-  end
+  -- Call the function for each icon group
+  createIconGroup(
+    self,
+    options,
+    "leader",
+    "Raid Leader",
+    "Changes the raid leader indicator icon.",
+    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Leader Indicator"
+  )
+  createIconGroup(
+    self,
+    options,
+    "assist",
+    "Raid Assist",
+    "Changes the raid assist indicator icon.",
+    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Assistant Indicator"
+  )
+  createIconGroup(
+    self,
+    options,
+    "looter",
+    "Master Looter",
+    "Changes the master looter indicator icon.",
+    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Master Looter Indicator"
+  )
+  createIconGroup(
+    self,
+    options,
+    "mainAssist",
+    "Main Assist",
+    "Changes the main assist indicator icon.",
+    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Assist Indicator"
+  )
+  createIconGroup(
+    self,
+    options,
+    "mainTank",
+    "Main Tank",
+    "Changes the main tank indicator icon.",
+    "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Tank Indicator"
+  )
 
   -- Dead Icons
   do

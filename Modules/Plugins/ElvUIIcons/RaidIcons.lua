@@ -1,6 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local RAI = TXUI:NewModule("RaidIcons", "AceHook-3.0")
 
+local GetPartyAssignment = _G.GetPartyAssignment
+
 function RAI:ChangeRaidIcon()
   local db = E.db and E.db.TXUI and E.db.TXUI.elvUIIcons and E.db.TXUI.elvUIIcons.raidIcons
   if db then
@@ -13,7 +15,7 @@ function RAI:ChangeRaidIcon()
     local leader = frame.LeaderIndicator
     local assistant = frame.AssistantIndicator
     local master = frame.MasterLooterIndicator
-    -- local raid = frame.RaidRoleIndicator
+    local raid = frame.RaidRoleIndicator
 
     if leader and db.leader.enabled then
       if db.leader.theme then
@@ -36,12 +38,16 @@ function RAI:ChangeRaidIcon()
       end
     end
 
-    -- if frame.RaidRoleIndicator then
-    --   if db.theme then
-    --     raid:SetTexCoord(0, 1, 0, 1)
-    --     raid:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.theme]))
-    --   end
-    -- end
+    if raid and (db.mainAssist.enabled or db.mainTank.enabled) then
+      if db.leader.theme then
+        raid:SetTexCoord(0, 1, 0, 1)
+        if GetPartyAssignment("MAINTANK", frame.unit) and db.mainTank.enabled then
+          raid:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.MainTank[self.db.mainTank.theme]))
+        elseif GetPartyAssignment("MAINASSIST", frame.unit) and db.mainAssist.enabled then
+          raid:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.MainAssist[self.db.mainAssist.theme]))
+        end
+      end
+    end
   end
 end
 
