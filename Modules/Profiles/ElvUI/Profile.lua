@@ -2112,12 +2112,15 @@ function PF:BuildProfile()
     hotkeyTextPosition = "TOP",
   }
 
-  if TXUI.IsWrath then
+  if TXUI.IsRetail then
+    pf.actionbar.barPet.visibility = "[petbattle] hide; [novehicleui,pet,nooverridebar,nopossessbar] show; hide"
+    pf.actionbar.stanceBar.visibility = "[vehicleui][petbattle] hide; show"
+  elseif TXUI.IsWrath then
     pf.actionbar.barPet.visibility = "[novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui] hide; show"
   else
-    pf.actionbar.barPet.visibility = "[petbattle] hide; [novehicleui,pet,nooverridebar,nopossessbar] show; hide"
-    pf.actionbar.stanceBar.visibility = "[vehicleui][petbattle] hide; show"
+    pf.actionbar.barPet.visibility = "[pet,nooverridebar] show; hide"
+    pf.actionbar.stanceBar.visibility = "show"
   end
 
   -- Cooldowns

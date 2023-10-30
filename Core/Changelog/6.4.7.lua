@@ -42,6 +42,7 @@ TXUI.Changelog["6.4.7"] = {
       .. ": Updates to Main Tank & Main Assist UnitFrames:"
       .. F.String.Sublist("Change fonts to match Raid UnitFrames")
       .. F.String.Sublist("Move them up to align with chat top corner"),
+    F.String.ElvUI() .. ": Update Pet & Stance bars visibility to match " .. F.String.ElvUI() .. " defaults",
 
     F.String.WarpDeplete() .. ": Move frame up towards the minimap",
 
