@@ -54,6 +54,12 @@ TXUI.Changelog["6.4.7"] = {
     "Update Open Installer button text",
 
     "* Settings refactoring",
+    "Refactor the "
+      .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+      .. " options:" --
+      .. F.String.Sublist("Update descriptions to be more accurate")
+      .. F.String.Sublist("Split existing options to a new Group Icons tab")
+      .. F.String.Sublist("Split existing options to a new Raid Role Icons tab"),
 
     "* Development improvements",
   },
