@@ -50,10 +50,10 @@ TXUI.Changelog["6.4.7"] = {
     "* Documentation",
     "Add additional info to Gradient theme description",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.46",
-    "Update Credits section",
-    "Update Open Installer button text",
 
     "* Settings refactoring",
+    "Update Credits section",
+    "Update Open Installer button text",
     "Refactor the "
       .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
       .. " options:" --
