@@ -73,8 +73,13 @@ function O:WunderBar_Modules()
   self:AddInlineDesc(options, {
     name = "Description",
   }, {
-    name = "Here you can enable and set the position of modules. There can not be duplicate modules active.\n"
-      .. "Some modules will increase their size automatically if they have no neighbouring SubModule.",
+    name = "Here you can enable and set the position of modules. There can not be duplicate modules active.\n\n"
+      .. F.String.ToxiUI("Information:")
+      .. " Module sizing is dynamically calculated, so things like bigger font sizes will show less information. Imagine the WunderBar being split into nine equal slots - modules can't exceed that width with the "
+      .. F.String.Class("Time")
+      .. " module being an exception. \n\n"
+      .. F.String.Warning("Important:")
+      .. " Some modules will increase their size automatically if they have no neighbouring Module.",
   })
 
   -- Spacer

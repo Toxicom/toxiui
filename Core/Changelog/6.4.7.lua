@@ -60,6 +60,12 @@ TXUI.Changelog["6.4.7"] = {
       .. F.String.Sublist("Update descriptions to be more accurate")
       .. F.String.Sublist("Split existing options to a new Group Icons tab")
       .. F.String.Sublist("Split existing options to a new Raid Role Icons tab"),
+    "Update " --
+      .. F.String.FastGradientHex("WunderBar", "#98ee99", "#338a3e")
+      .. " settings:"
+      .. F.String.Sublist("Update descriptions be more accurate and informative")
+      .. F.String.Sublist("Rename Modules -> Module Positions")
+      .. F.String.Sublist("Rename SubModules -> Module Settings"),
 
     "* Development improvements",
   },

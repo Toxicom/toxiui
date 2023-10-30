@@ -28,7 +28,7 @@ function O:WunderBar()
   options["modules"] = {
     order = 2,
     type = "group",
-    name = "Modules",
+    name = "Module Positions",
     desc = "Placement and Selection for Modules",
     hidden = wunderBarDisabled,
     args = {},
@@ -38,8 +38,8 @@ function O:WunderBar()
     order = 3,
     type = "group",
     childGroups = "tree",
-    name = "SubModules",
-    desc = "Placement and Selection for Modules",
+    name = "Module Settings",
+    desc = "Settings for individual " .. TXUI.Title .. " modules",
     hidden = wunderBarDisabled,
     args = {},
   }
