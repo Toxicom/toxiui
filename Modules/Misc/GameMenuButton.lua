@@ -167,11 +167,17 @@ function M:GameMenuButton()
           "Keeping your Action Bars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
           "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts. Class Icons are also Custom Texts!",
           "Most elements are hidden until you hover over them with your mouse. One example of that is the Pet ActionBar, which is under your Player UnitFrame.",
+          "If you're finding some UI elements too small, check out the "
+            .. F.String.Scaling()
+            .. " in "
+            .. TXUI.Title
+            .. " settings. If an element is missing, let us know and we might add it!",
+          "These tips change each time you reload your UI or log in. Make sure to check them out since we keep adding new ones. Never know when you might learn something new! ;)",
         }
 
         local randomIndex = math.random(1, #randomTips)
         -- For debugging
-        -- local randomIndex = 7
+        -- local randomIndex = 14
         local randomTip = randomTips[randomIndex]
 
         backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
