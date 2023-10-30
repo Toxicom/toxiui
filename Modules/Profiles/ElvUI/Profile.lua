@@ -2091,7 +2091,8 @@ function PF:BuildProfile()
     backdrop = false,
     backdropSpacing = F.Dpi(1),
 
-    buttonSize = F.Dpi(20),
+    buttonSize = F.Dpi(24),
+    buttonHeight = F.Dpi(18),
     buttonSpacing = F.Dpi(1),
     buttonsPerRow = 10,
 
