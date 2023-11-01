@@ -11,6 +11,8 @@ local HideUIPanel = HideUIPanel
 local InCombatLockdown = InCombatLockdown
 local IsAddOnLoaded = IsAddOnLoaded
 local LibStub = LibStub
+local GetSpecialization = GetSpecialization
+local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
 
 function M:GameMenuButton_ADDON_LOADED(addonName)
   if addonName ~= "ElvUI_SLE" then return end
