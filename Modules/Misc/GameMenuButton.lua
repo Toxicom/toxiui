@@ -183,9 +183,9 @@ function M:GameMenuButton()
           "These tips change each time you reload your UI or log in. Make sure to check them out since we keep adding new ones. Never know when you might learn something new! ;)",
         }
 
-        -- local randomIndex = math.random(1, #randomTips)
+        local randomIndex = math.random(1, #randomTips)
         -- For debugging
-        local randomIndex = 12
+        -- local randomIndex = 12
         local randomTip = randomTips[randomIndex]
 
         backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
