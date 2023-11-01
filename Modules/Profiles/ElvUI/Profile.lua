@@ -1950,7 +1950,7 @@ function PF:BuildProfile()
     -- Action Bars Cooldowns
     cooldown = {
       checkSeconds = true,
-      hhmmThreshold = 11,
+      hhmmThreshold = -1,
       mmssThreshold = 180,
     },
 
