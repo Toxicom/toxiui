@@ -51,6 +51,7 @@ TXUI.Changelog["6.4.7"] = {
     "* Documentation",
     "Add additional info to Gradient theme description",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.46",
+    "Update Icons font",
 
     "* Settings refactoring",
     "Update Credits section",

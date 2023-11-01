@@ -9,7 +9,7 @@ local allLocaleBits = LSM.LOCALE_BIT_koKR + LSM.LOCALE_BIT_zhCN + LSM.LOCALE_BIT
 --   FONT - LSM
 -- -----
 
-F.AddMedia("font", "ToxiIcons.ttf", I.Fonts.Icons, nil, allLocaleBits)
+F.AddMedia("font", "ToxiUIIcons.ttf", I.Fonts.Icons, nil, allLocaleBits)
 F.AddMedia("font", "ToxiUI.ttf", I.Fonts.Primary, nil, westAndRUBits)
 F.AddMedia("font", "BigNoodleToo.ttf", I.Fonts.Title, nil, westAndRUBits)
 F.AddMedia("font", "Steelfish.ttf", "- Steelfish", nil, westAndRUBits)
