@@ -58,6 +58,7 @@ I.Data.Contributor = {
         ["Toxilock-PyrewoodVillage"] = true,
         ["Toxibank-PyrewoodVillage"] = true,
         ["Toxispring-PyrewoodVillage"] = true,
+        ["Toxitotem-PyrewoodVillage"] = true,
 
         -- Gehennas
         ["Toxigoblin-Gehennas"] = true,
