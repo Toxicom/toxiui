@@ -13,6 +13,7 @@ TXUI.Changelog["6.4.7"] = {
     TXUI.Title .. " Main Assist icon",
     "Separate " .. F.String.Details() .. " profiles for One Window and Two Windows",
     "Add Spellbook Frame to " .. F.String.Scaling(),
+    "Show Spec icon in Game Menu",
 
     "* Bug fixes",
     TXUI.Title .. ": Power tag not changing when toggling Dark theme",

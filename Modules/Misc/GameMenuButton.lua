@@ -1,5 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
+local WB = TXUI:GetModule("WunderBar")
+local SS = WB:GetModule("SpecSwitch")
 
 local _G = _G
 local CreateFrame = CreateFrame
@@ -50,6 +52,8 @@ function M:GameMenuButton()
 
   -- Vars
   local buttonWidth, buttonHeight = GameMenuButtonLogout:GetSize()
+
+  local db = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
 
   -- ToxiUI Button Holder
   local buttonHolder = CreateFrame("Frame", nil, GameMenuFrame)
@@ -210,8 +214,25 @@ function M:GameMenuButton()
       if buttonHolder.backgroundFade.guildText and buttonHolder.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
 
+        local specIcon = db and db[0] or ""
+
+        if TXUI.IsRetail then
+          local _, classId = UnitClassBase("player")
+          local specIndex = GetSpecialization()
+          local id = GetSpecializationInfoForClassID(classId, specIndex)
+
+          if id and db then specIcon = db[id] end
+        else
+          local spec
+          local talents = GetActiveTalentGroup()
+
+          if talents then spec = SS:GetWrathCacheForSpec(talents) end
+
+          if spec.id and db then specIcon = db[spec.id] end
+        end
+
         buttonHolder.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
-        buttonHolder.backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(nil, nil, true))
+        buttonHolder.backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(specIcon .. " " .. E.myLocalizedClass, nil, true))
       end
       buttonHolder.backgroundFade.Animation:Stop()
       buttonHolder.backgroundFade:SetAlpha(0)
