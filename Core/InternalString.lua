@@ -73,6 +73,9 @@ I.Strings.Colors = {
   [I.Enum.Colors.WHITE] = "ffffff", -- #ffffff
   [I.Enum.Colors.LUXTHOS] = "03fc9c", -- #03fc9c
 
+  [I.Enum.Colors.SILVER] = "a3a3a3", -- #a3a3a3
+  [I.Enum.Colors.GOLD] = "cfc517", -- ##cfc517
+
   [I.Enum.Colors.LEGENDARY] = "ff8000", -- #ff8000
   [I.Enum.Colors.EPIC] = "a335ee", -- #a335ee
   [I.Enum.Colors.RARE] = "0070dd", -- #0070dd

@@ -718,6 +718,15 @@ function PF:BuildProfile()
           xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(32)),
           yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         }),
+
+        -- UnitFrame Target Custom Texts Classification
+        ["!Classification"] = createCustomText({}, {
+          justifyH = "RIGHT",
+          attachTextTo = "Health",
+          text_format = "[tx:classification]",
+          xOffset = F.Dpi(28),
+          yOffset = F.ChooseForTheme(F.Dpi(30), F.Dpi(0)),
+        }),
       },
 
       -- UnitFrame Target Buffs
@@ -839,6 +848,9 @@ function PF:BuildProfile()
         ["!ClassIcon"] = {
           xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(10)),
           yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+        },
+        ["!Classification"] = {
+          yOffset = F.ChooseForTheme(F.Dpi(30), F.Dpi(15)),
         },
       },
 
@@ -2259,6 +2271,7 @@ function PF:UpdateProfileForTheme()
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Power", "text_format")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Classification", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.raidRoleIcons", "yOffset")
 
   -- Target-Target

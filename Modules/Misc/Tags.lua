@@ -447,6 +447,17 @@ function M:Tags()
     end
   end)
 
+  -- Credits to ElvUI [classification:icon]
+  do
+    local icon = F.String.ConvertGlyph(59706) -- star (xp) icon
+    local gold, silver = F.String.Color(icon, I.Enum.Colors.GOLD), F.String.Color(icon, I.Enum.Colors.SILVER)
+    local typeIcon = { elite = gold, worldboss = gold, rareelite = silver, rare = silver }
+    E:AddTag("tx:classification", "UNIT_NAME_UPDATE", function(unit)
+      if UnitIsPlayer(unit) then return end
+      return typeIcon[UnitClassification(unit)]
+    end)
+  end
+
   local TagNames = {
     GENERAL = TXUI.Title,
     NAMES = TXUI.Title .. " Names",
@@ -525,6 +536,8 @@ function M:Tags()
       .. F.String.Class("MANA", "MAGE")
       .. " <= 20"
   )
+
+  E:AddTagInfo("tx:classification", TagNames.GENERAL, "Displays a silver or gold " .. TXUI.Title .. " star for rare & elite monsters")
 
   -- Settings Callback
   F.Event.RegisterCallback("Tags.DatabaseUpdate", self.TagsUpdate, self)

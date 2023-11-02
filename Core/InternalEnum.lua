@@ -51,6 +51,9 @@ I.Enum.Colors = F.Enum {
   "WHITE", -- White duh
   "LUXTHOS", -- Luxthos color
 
+  "SILVER",
+  "GOLD",
+
   "LEGENDARY",
   "EPIC",
   "RARE",

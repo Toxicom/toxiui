@@ -14,6 +14,9 @@ TXUI.Changelog["6.4.7"] = {
     "Separate " .. F.String.Details() .. " profiles for One Window and Two Windows",
     "Add Spellbook Frame to " .. F.String.Scaling(),
     "Show Spec icon in Game Menu",
+    TXUI.Title
+      .. " Classification tag" --
+      .. F.String.Sublist("Displays a silver or gold star for elites & rares"),
 
     "* Bug fixes",
     TXUI.Title .. ": Power tag not changing when toggling Dark theme",
