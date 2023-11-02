@@ -163,11 +163,6 @@ function T:Disable()
 
   -- Unhook all
   self:UnhookAll()
-
-  -- -- Re-Hook "watchers" if the skin gets enabled again we need those
-  -- self:SecureHook(E.Skins, "HandleButton", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButton))
-  -- self:SecureHook(E.Skins, "Ace3_RegisterAsWidget", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleWidget))
-  -- self:SecureHook(E, "Config_SetButtonColor", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButtonColor))
 end
 
 function T:Enable()
@@ -206,12 +201,6 @@ function T:Enable()
   -- Scan all MetaTables
   self:MetatableScan()
 
-  -- -- Handle buttons created before we Initialized
-  -- for _, funs in pairs(self.onEnabledCallbacks) do
-  --   local func, args = unpack(funs)
-  --   func(self, unpack(args))
-  -- end
-
   -- Force Refresh
   self:ForceRefresh()
 end
@@ -248,18 +237,6 @@ function T:DatabaseUpdate()
   end)
 end
 
--- function T:OnEnabledProxy(func, ...)
---   if not self.Initialized or not self.isEnabled then
---     tinsert(self.onEnabledCallbacks, { func, { ... } })
---   else
---     func(T, ...)
---   end
--- end
-
--- T:SecureHook(E.Skins, "HandleButton", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButton))
--- T:SecureHook(E.Skins, "Ace3_RegisterAsWidget", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleWidget))
--- T:SecureHook(E, "Config_SetButtonColor", F.Event.GenerateClosure(T.OnEnabledProxy, T, T.HandleButtonColor))
-
 function T:Initialize()
   -- Don't init second time
   if self.Initialized then return end
@@ -275,7 +252,6 @@ function T:Initialize()
 
   -- Keep track of frames for fast updates
   self.shadowCache = {}
-  -- self.buttonCache = {}
 
   -- We are done, hooray!
   self.Initialized = true
