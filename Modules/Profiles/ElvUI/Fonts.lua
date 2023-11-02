@@ -196,7 +196,7 @@ function PF:ElvUIFont()
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
-            { "!Classification", I.Fonts.Primary, 32, "SHADOWOUTLINE" },
+            { "!Classification", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
           buffs = {

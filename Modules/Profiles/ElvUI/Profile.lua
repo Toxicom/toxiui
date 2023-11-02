@@ -724,8 +724,8 @@ function PF:BuildProfile()
           justifyH = "RIGHT",
           attachTextTo = "Health",
           text_format = "[tx:classification]",
-          xOffset = F.Dpi(28),
-          yOffset = F.ChooseForTheme(F.Dpi(30), F.Dpi(0)),
+          xOffset = F.Dpi(15),
+          yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
         }),
       },
 
@@ -850,7 +850,7 @@ function PF:BuildProfile()
           yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
         },
         ["!Classification"] = {
-          yOffset = F.ChooseForTheme(F.Dpi(30), F.Dpi(15)),
+          yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(15)),
         },
       },
 
