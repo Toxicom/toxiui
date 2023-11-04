@@ -201,6 +201,10 @@ function PF:ElvUIAdditionalPrivate()
       -- Quest
       quest = {
         objectiveTracker = {
+          header = {
+            classColor = true,
+          },
+
           titleColor = {
             customColorNormal = F.Table.HexToRGB("#ffc730"),
             customColorHighlight = F.Table.HexToRGB("#ffd36b"),

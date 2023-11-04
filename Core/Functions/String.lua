@@ -92,6 +92,12 @@ function F.String.WarpDeplete(msg)
   return F.String.Color(msg, I.Enum.Colors.WDP)
 end
 
+function F.String.WindTools(msg)
+  if not msg or msg == "" then return F.String.Color("WindTools", I.Enum.Colors.WT) end
+
+  return F.String.Color(msg, I.Enum.Colors.WT)
+end
+
 function F.String.ElvUI(msg)
   if not msg or msg == "" then return F.String.Color("ElvUI", I.Enum.Colors.ELVUI) end
 

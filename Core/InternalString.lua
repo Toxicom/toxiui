@@ -66,6 +66,7 @@ I.Strings.Colors = {
   [I.Enum.Colors.NSCT] = "12e659", -- #12e659
   [I.Enum.Colors.WDP] = "e600cb", -- "#e600cb"
   [I.Enum.Colors.OMNICD] = "8634eb", -- #8634eb
+  [I.Enum.Colors.WT] = "54e5ff", -- #54e5ff
   [I.Enum.Colors.ELVUI] = "1784d1", -- #1784d1
   [I.Enum.Colors.ERROR] = "ef5350", -- #ef5350
   [I.Enum.Colors.GOOD] = "66bb6a", -- #66bb6a
