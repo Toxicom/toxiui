@@ -502,13 +502,13 @@ function PF:ElvUIFont()
           infoFont = {
             name = F.FontOverride(I.Fonts.Primary),
             size = F.FontSize(12),
-            style = F.FontStyleOverride(I.Fonts.Primary, ""),
+            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
 
           nameFont = {
             name = F.FontOverride(I.Fonts.Primary),
             size = F.FontSize(14),
-            style = F.FontStyleOverride(I.Fonts.Primary, ""),
+            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
         },
       },
@@ -587,19 +587,19 @@ function PF:ElvUIFontPrivates()
           header = {
             name = F.FontOverride(I.Fonts.Title),
             size = F.FontSizeScaled(24),
-            style = F.FontStyleOverride(I.Fonts.Primary, ""),
+            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
 
           title = {
             name = F.FontOverride(I.Fonts.Primary),
-            size = F.FontSizeScaled(17),
-            style = F.FontStyleOverride(I.Fonts.Primary, ""),
+            size = F.FontSizeScaled(16),
+            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
 
           info = {
             name = F.FontOverride(I.Fonts.Primary),
             size = F.FontSizeScaled(14),
-            style = F.FontStyleOverride(I.Fonts.Primary, ""),
+            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
         },
       },
