@@ -395,6 +395,7 @@ I.HearthstoneData = {
   [193753] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Dreamwalk
   [312372] = { ["type"] = "spell", ["hearthstone"] = false }, -- Return to Camp (Vulpera Racial)
   [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone (Necrolord Soulbind)
+  [208704] = { ["type"] = "toy", ["hearthstone"] = true }, -- Deepdweller's Earthen Hearthstone (The War Within - Epic Edition)
 
   -- Dragonflight not yet verified
   [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["load"] = TXUI.IsRetail }, -- Wyrmhole Generator
