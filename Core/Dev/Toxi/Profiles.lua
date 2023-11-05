@@ -5,7 +5,7 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 --@do-not-package@
 
 local SetCVar = SetCVar
-local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet" }
+local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet", "journal", "lfg" }
 
 function T:SetupCvars()
   -- CVars
@@ -13,6 +13,9 @@ function T:SetupCvars()
 end
 
 function T:SetupProfile()
+  -- Misc
+  E.db.TXUI.vehicleBar.enabled = true
+
   -- WunderBar: General
   E.db.TXUI.wunderbar.general.backgroundTexture = TXUI.IsClassic and "TX WorldState Score" or "WorldState Score"
 
