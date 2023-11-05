@@ -168,11 +168,11 @@ function VB:UpdateBar()
 
   -- Calculate Bar Width/Height
   bar:SetWidth((size * 7) + (spacing * (7 - 1)) + 4)
-  bar:SetHeight(size + 4)
+  bar:SetHeight((size / 4 * 3) + 4)
 
   -- Update button position and size
   for i, button in ipairs(bar.buttons) do
-    button:SetSize(size, size)
+    button:SetSize(size, size / 4 * 3)
     button:ClearAllPoints()
 
     if i == 1 then
