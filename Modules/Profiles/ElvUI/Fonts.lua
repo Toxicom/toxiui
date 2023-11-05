@@ -26,7 +26,7 @@ function PF:ElvUIFont()
     general = {
       font = F.FontOverride(I.Fonts.Primary),
       fontSize = F.FontSizeScaled(14, 13),
-      fontStyle = F.FontStyleOverride(I.Fonts.Primary, ""),
+      fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
       itemLevel = {
         itemLevelFont = F.FontOverride(I.Fonts.Primary),
@@ -572,7 +572,7 @@ function PF:ElvUIFontPrivates()
         instanceDifficulty = {
           name = F.FontOverride(I.Fonts.Primary),
           size = F.FontSizeScaled(19),
-          style = F.FontStyleOverride(I.Fonts.Primary, ""),
+          style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
         },
       },
 

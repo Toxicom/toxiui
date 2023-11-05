@@ -50,6 +50,7 @@ TXUI.Changelog["6.4.7"] = {
     F.String.ElvUI() .. ": Update Pet & Stance bars visibility to match " .. F.String.ElvUI() .. " defaults",
     F.String.ElvUI() .. ": Update Pet ActionBar size to 4:3 ratio",
     F.String.ElvUI() .. ": Disable ActionBars HH:MM threshold",
+    F.String.ElvUI() .. ": Fix missing font shadows",
 
     F.String.WindTools() .. ": Fix missing font shadows",
     F.String.WindTools() .. ": Use class color for quest header font",
