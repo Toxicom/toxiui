@@ -79,5 +79,12 @@ TXUI.Changelog["6.4.7"] = {
       .. F.String.Sublist("Rename SubModules -> Module Settings"),
 
     "* Development improvements",
+    "Update " --
+      .. TXUI.Title
+      .. " Status Report window ("
+      .. F.String.ToxiUI("/tx status")
+      .. ")"
+      .. F.String.Sublist("Add Dark Mode Gradient Names")
+      .. F.String.Sublist("Add Details Gradient Text"),
   },
 }
