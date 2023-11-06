@@ -238,6 +238,7 @@ end
 
 local addOnData = {}
 local pluginData = {}
+
 function M:StatusReportUpdate()
   local statusFrame = self.StatusReportFrame
   local addOnFrame = statusFrame.AddOnFrame

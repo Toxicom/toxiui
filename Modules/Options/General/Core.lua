@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local M = TXUI:GetModule("Misc")
 
 function O:General()
   -- Reset order for new page
@@ -58,6 +59,18 @@ function O:General()
         func = function()
           E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
           E:ToggleOptions()
+        end,
+      },
+
+      -- Status Report BUTTON
+      ["generalStatusReport"] = {
+        order = self:GetOrder(),
+        type = "execute",
+        name = F.String.Class("Status Report", "MONK"),
+        desc = "Open the " .. TXUI.Title .. " Status Report window that shows necessary information for debugging. Post this when reporting bugs!",
+        func = function()
+          E:ToggleOptions()
+          M:StatusReportShow()
         end,
       },
     },

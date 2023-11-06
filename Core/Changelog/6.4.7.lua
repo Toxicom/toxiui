@@ -65,6 +65,7 @@ TXUI.Changelog["6.4.7"] = {
     "* Settings refactoring",
     "Update Credits section",
     "Update Open Installer button text",
+    "Add " .. F.String.Class("Status Report", "MONK") .. " button to General settings",
     "Refactor the "
       .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
       .. " options:" --
