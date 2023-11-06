@@ -87,5 +87,6 @@ TXUI.Changelog["6.5.0"] = {
       .. ")"
       .. F.String.Sublist("Add Dark Mode Gradient Names")
       .. F.String.Sublist("Add Details Gradient Text"),
+    "Add extra check to " .. F.String.ToxiUI("F.AlmostEqual"),
   },
 }
