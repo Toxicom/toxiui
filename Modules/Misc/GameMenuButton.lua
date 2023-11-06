@@ -216,7 +216,8 @@ function M:GameMenuButton()
       if buttonHolder.backgroundFade.guildText and buttonHolder.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
 
-        local specIcon = db and db[0] or ""
+        local fallback = db and db[0] or ""
+        local specIcon
 
         if TXUI.IsRetail then
           local _, classId = UnitClassBase("player")
@@ -234,7 +235,9 @@ function M:GameMenuButton()
         end
 
         buttonHolder.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
-        buttonHolder.backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass(specIcon .. " " .. E.myLocalizedClass, nil, true))
+        buttonHolder.backgroundFade.levelText:SetText(
+          "Lv " .. E.mylevel .. " " .. F.String.GradientClass(specIcon and specIcon or fallback .. " " .. E.myLocalizedClass, nil, true)
+        )
       end
       buttonHolder.backgroundFade.Animation:Stop()
       buttonHolder.backgroundFade:SetAlpha(0)
