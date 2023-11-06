@@ -23,9 +23,21 @@ function O:General()
           .. F.String.ElvUI("ElvUI")
           .. " edit by "
           .. F.String.Authors()
-          .. " best suited for 1440p resolution. \nIt is designed to be used along with "
+          .. " best suited for 1440p resolution. \n\nIt is designed to be used along with "
           .. F.String.Luxthos("Luxthos")
-          .. " WeakAuras.",
+          .. " WeakAuras.\n\n",
+      },
+
+      -- Status Report BUTTON
+      ["generalStatusReport"] = {
+        order = self:GetOrder(),
+        type = "execute",
+        name = F.String.Class("Status Report", "MONK"),
+        desc = "Open the " .. TXUI.Title .. " Status Report window that shows necessary information for debugging. Post this when reporting bugs!",
+        func = function()
+          E:ToggleOptions()
+          M:StatusReportShow()
+        end,
       },
     },
   }
@@ -59,18 +71,6 @@ function O:General()
         func = function()
           E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
           E:ToggleOptions()
-        end,
-      },
-
-      -- Status Report BUTTON
-      ["generalStatusReport"] = {
-        order = self:GetOrder(),
-        type = "execute",
-        name = F.String.Class("Status Report", "MONK"),
-        desc = "Open the " .. TXUI.Title .. " Status Report window that shows necessary information for debugging. Post this when reporting bugs!",
-        func = function()
-          E:ToggleOptions()
-          M:StatusReportShow()
         end,
       },
     },
