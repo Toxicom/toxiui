@@ -285,6 +285,14 @@ function PF:BuildProfile()
     addonCompartment = {
       size = 24,
     },
+
+    customGlow = {
+      useColor = true,
+      color = I.Strings.Branding.ColorRGBA,
+      lines = 8,
+      size = 2,
+      speed = 0.3,
+    },
   })
 
   -- Tooltip
