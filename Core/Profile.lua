@@ -752,9 +752,8 @@ P.wunderbar = {
 
       displayedCurrency = "GOLD", -- NEEDS to be GOLD
       enabledCurrencies = {
-        [1767] = true, -- Stygia
-        [1828] = true, -- Soul Ash
-        [1813] = true, -- Reservoir Anima
+        [2003] = true, -- Dragon Isles Supplies
+        [2245] = true, -- Flightstones
       }, -- Format: [currencyID] = true,
 
       showIcon = true,

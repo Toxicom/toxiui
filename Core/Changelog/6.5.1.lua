@@ -10,6 +10,7 @@ TXUI.Changelog["6.5.1"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Update WunderBar's default shown currencies for Dragonflight",
 
     "* Documentation",
 
