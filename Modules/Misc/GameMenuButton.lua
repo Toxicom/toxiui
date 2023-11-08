@@ -236,7 +236,7 @@ function M:GameMenuButton()
 
         buttonHolder.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
         buttonHolder.backgroundFade.levelText:SetText(
-          "Lv " .. E.mylevel .. " " .. F.String.GradientClass(specIcon and specIcon or fallback .. " " .. E.myLocalizedClass, nil, true)
+          "Lv " .. E.mylevel .. " " .. F.String.GradientClass((specIcon and specIcon or fallback) .. " " .. E.myLocalizedClass, nil, true)
         )
       end
       buttonHolder.backgroundFade.Animation:Stop()

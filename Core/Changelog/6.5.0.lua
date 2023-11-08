@@ -1,10 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["6.5.0"] = {
-  HOTFIX = true,
+  HOTFIX = false,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Random tips in Game Menu",
     "Level tag for UnitFrames with " .. TXUI.Title .. " colors" .. F.String.Sublist("Hides for units that are at max level"),
