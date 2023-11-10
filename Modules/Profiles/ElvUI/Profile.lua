@@ -222,6 +222,9 @@ function PF:BuildProfile()
       ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 565, 235),
 
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
+    }),
+    F.Table.If(TXUI.IsWrath, {
+      TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
     })
   )
 
@@ -1961,29 +1964,48 @@ function PF:BuildProfile()
   )
 
   -- Action Bars
-  F.Table.Crush(pf.actionbar, {
-    transparent = true,
-    globalFadeAlpha = 1,
-    flyoutSize = F.Dpi(33),
-    countTextYOffset = F.Dpi(0),
+  F.Table.Crush(
+    pf.actionbar,
+    {
+      transparent = true,
+      globalFadeAlpha = 1,
+      flyoutSize = F.Dpi(33),
+      countTextYOffset = F.Dpi(0),
 
-    -- Action Bars Cooldowns
-    cooldown = {
-      checkSeconds = true,
-      hhmmThreshold = -1,
-      mmssThreshold = 180,
-    },
+      -- Action Bars Cooldowns
+      cooldown = {
+        checkSeconds = true,
+        hhmmThreshold = -1,
+        mmssThreshold = 180,
+      },
 
-    -- Action Bars Extra Action Button
-    extraActionButton = {
-      scale = F.DpiRaw(1.25),
-    },
+      -- Action Bars Extra Action Button
+      extraActionButton = {
+        scale = F.DpiRaw(1.25),
+      },
 
-    -- Action Bars Zone Button
-    zoneActionButton = {
-      scale = F.DpiRaw(1.25),
+      -- Action Bars Zone Button
+      zoneActionButton = {
+        scale = F.DpiRaw(1.25),
+      },
     },
-  })
+    F.Table.If(TXUI.IsWrath, {
+      totemBar = {
+        mouseover = true,
+        keepSizeRatio = false,
+        flyoutDirection = "UP",
+
+        buttonSize = F.Dpi(32), -- Width
+        buttonHeight = F.Dpi(24),
+
+        flyoutSize = F.Dpi(32), -- Width
+        flyoutHeight = F.Dpi(24),
+
+        spacing = F.Dpi(1),
+        flyoutSpacing = F.Dpi(1),
+      },
+    })
+  )
 
   -- ActionBar Base Template
   local actionbarTemplate = {
