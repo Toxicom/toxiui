@@ -14,6 +14,7 @@ TXUI.Changelog["6.5.1"] = {
     "Update Totem bar for Wrath:" .. F.String.Sublist("Move it above ActionBar 1") .. F.String.Sublist("Apply 4:3 ratio sizing"),
 
     "* Documentation",
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.51",
 
     "* Settings refactoring",
 
