@@ -11,7 +11,7 @@
 ## X-Flavor: Mainline
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
-## X-ElvUIVersion: 13.51
+## X-ElvUIVersion: 13.52
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 ## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick
