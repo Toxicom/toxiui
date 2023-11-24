@@ -14,7 +14,7 @@ end
 
 function T:SetupProfile()
   -- Misc
-  E.db.TXUI.vehicleBar.enabled = true
+  -- E.db.TXUI.vehicleBar.enabled = true
 
   -- WunderBar: General
   E.db.TXUI.wunderbar.general.backgroundTexture = TXUI.IsClassic and "TX WorldState Score" or "WorldState Score"

@@ -6,6 +6,9 @@ TXUI.Changelog["6.5.1"] = {
     "* Breaking changes",
 
     "* New features",
+    "Show ActionBars when Player is in Vehicle or DragonRiding" --
+      .. F.String.Sublist("Currently in testing")
+      .. F.String.Sublist("Priest Mind Control does not work yet"),
 
     "* Bug fixes",
 

@@ -21,6 +21,15 @@ function FP:OnEvent(parent, event)
     elseif self.db.mode == "NO_COMBAT" then
       fadeIn = (not UnitAffectingCombat("player")) and (event ~= "PLAYER_REGEN_DISABLED")
     end
+
+    -- If vehicle bar is disabled we want to see bars in vehicle
+    if not E.db.TXUI.vehicleBar.enabled then
+      if TXUI.IsRetail then
+        if E:IsDragonRiding() then fadeIn = true end
+      end
+
+      if UnitInVehicle("player") then fadeIn = true end
+    end
   end
 
   if fadeIn then
