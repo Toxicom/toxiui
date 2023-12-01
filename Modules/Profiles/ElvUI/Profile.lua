@@ -233,8 +233,8 @@ function PF:BuildProfile()
       ElvAB_1 = F.Position("TOP", "PlayerPowerBarMover", "BOTTOM", 0, -defaultPadding),
       ElvAB_6 = F.Position("TOPRIGHT", "ElvAB_1", "BOTTOM", -defaultPadding / 2, -defaultPadding), -- left
       ElvAB_5 = F.Position("TOPLEFT", "ElvAB_1", "BOTTOM", defaultPadding / 2, -defaultPadding), -- right
-      ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding, 45), -- left
-      ElvAB_4 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding, 45), -- right
+      ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding / 2, 45), -- left
+      ElvAB_4 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
     }),
     F.Table.If(TXUI.IsClassic and IsHealer, {
       PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
