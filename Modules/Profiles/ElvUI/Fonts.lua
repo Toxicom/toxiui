@@ -160,6 +160,7 @@ function PF:ElvUIFont()
             IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 22, "SHADOW" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
+            TXUI.IsClassic and { "!Power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
           buffs = {

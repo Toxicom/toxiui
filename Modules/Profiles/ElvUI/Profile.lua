@@ -76,6 +76,7 @@ function PF:BuildProfile()
 
   local defaultPadding = 5
   local IsNewLayout = E.db.TXUI.installer.layoutStyle == I.Enum.LayoutStyle.NEW
+  local IsHealer = E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER
 
   -- Movers
   F.Table.Crush(
@@ -202,7 +203,7 @@ function PF:BuildProfile()
       PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 158),
       AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding * 4),
     }),
-    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
+    F.Table.If(IsHealer, {
 
       -- Healer Layout
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 326, 518),
@@ -225,6 +226,28 @@ function PF:BuildProfile()
     }),
     F.Table.If(TXUI.IsWrath, {
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
+    }),
+    F.Table.If(TXUI.IsClassic, {
+      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 372),
+
+      ElvAB_1 = F.Position("TOP", "PlayerPowerBarMover", "BOTTOM", 0, -defaultPadding),
+      ElvAB_6 = F.Position("TOPRIGHT", "ElvAB_1", "BOTTOM", -defaultPadding / 2, -defaultPadding), -- left
+      ElvAB_5 = F.Position("TOPLEFT", "ElvAB_1", "BOTTOM", defaultPadding / 2, -defaultPadding), -- right
+      ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding, 45), -- left
+      ElvAB_4 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding, 45), -- right
+    }),
+    F.Table.If(TXUI.IsClassic and IsHealer, {
+      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
+
+      ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding / 2, 45), -- left
+      ElvAB_5 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
+      ElvAB_3 = F.Position("RIGHT", "ElvAB_6", "LEFT", -defaultPadding, 0), -- left
+      ElvAB_4 = F.Position("LEFT", "ElvAB_5", "RIGHT", defaultPadding, 0), -- right
+
+      ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 180),
+      ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 110),
+      ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 110),
+      ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 110),
     })
   )
 
@@ -671,6 +694,24 @@ function PF:BuildProfile()
 
       raidRoleIcons = {
         yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(15)),
+      },
+    }),
+    F.Table.If(TXUI.IsClassic, { -- Player
+      power = {
+        enable = true,
+        detachFromFrame = true,
+        text_format = "",
+        detachedWidth = F.Dpi(248),
+      },
+
+      customTexts = {
+        ["!Power"] = createCustomText({}, {
+          attachTextTo = "Power",
+          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+          xOffset = F.Dpi(0),
+          yOffset = F.Dpi(5),
+          justifyH = "CENTER",
+        }),
       },
     })
   )
@@ -2063,6 +2104,8 @@ function PF:BuildProfile()
   -- ActionBar Bar1
   pf.actionbar.bar1 = createMainActionBar {
     enabled = true,
+    buttonSize = TXUI.IsClassic and F.Dpi(40) or F.Dpi(32),
+    buttonHeight = TXUI.IsClassic and F.Dpi(30) or F.Dpi(24),
   }
 
   -- ActionBar Bar2
@@ -2073,13 +2116,13 @@ function PF:BuildProfile()
   -- ActionBar Bar3
   pf.actionbar.bar3 = createMainActionBar {
     enabled = true,
-    buttonsPerRow = 4,
+    buttonsPerRow = TXUI.IsClassic and 6 or 4,
   }
 
   -- ActionBar Bar4
   pf.actionbar.bar4 = createMainActionBar {
     enabled = true,
-    buttonsPerRow = 4,
+    buttonsPerRow = TXUI.IsClassic and 6 or 4,
   }
 
   -- ActionBar Bar5
