@@ -73,6 +73,9 @@ I.Data.Contributor = {
       [I.Enum.Flavor.CLASSIC] = {
         -- Firemaw
         ["Toxisin-Firemaw"] = true,
+
+        -- Crusader Strike (Season of Discovery)
+        ["Toxirage-CrusaderStrike"] = true,
       },
     },
 

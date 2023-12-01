@@ -18,6 +18,7 @@ TXUI.Changelog["6.5.1"] = {
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.52",
+    "Update TOC for Season of Discovery",
 
     "* Settings refactoring",
 
