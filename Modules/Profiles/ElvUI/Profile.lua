@@ -229,6 +229,7 @@ function PF:BuildProfile()
     }),
     F.Table.If(TXUI.IsClassic, {
       PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 372),
+      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
       ElvAB_1 = F.Position("TOP", "PlayerPowerBarMover", "BOTTOM", 0, -defaultPadding),
       ElvAB_6 = F.Position("TOPRIGHT", "ElvAB_1", "BOTTOM", -defaultPadding / 2, -defaultPadding), -- left
@@ -238,6 +239,7 @@ function PF:BuildProfile()
     }),
     F.Table.If(TXUI.IsClassic and IsHealer, {
       PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
+      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
       ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding / 2, 45), -- left
       ElvAB_5 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
@@ -702,6 +704,14 @@ function PF:BuildProfile()
         detachFromFrame = true,
         text_format = "",
         detachedWidth = F.Dpi(248),
+        height = 10,
+      },
+
+      classbar = {
+        enable = true,
+        detachFromFrame = true,
+        detachedWidth = F.Dpi(248),
+        height = 10,
       },
 
       customTexts = {
