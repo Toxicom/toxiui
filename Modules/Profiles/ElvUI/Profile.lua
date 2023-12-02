@@ -2127,12 +2127,14 @@ function PF:BuildProfile()
   pf.actionbar.bar3 = createMainActionBar {
     enabled = true,
     buttonsPerRow = TXUI.IsClassic and 6 or 4,
+    mouseover = TXUI.IsClassic,
   }
 
   -- ActionBar Bar4
   pf.actionbar.bar4 = createMainActionBar {
     enabled = true,
     buttonsPerRow = TXUI.IsClassic and 6 or 4,
+    mouseover = TXUI.IsClassic,
   }
 
   -- ActionBar Bar5
