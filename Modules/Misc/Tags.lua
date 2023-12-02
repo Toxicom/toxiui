@@ -316,7 +316,7 @@ function M:Tags()
   end)
 
   -- ToxiUI: Power Tags
-  local function ColorSmartPowerTag(unit, percentSign)
+  local function ColorSmartPowerTag(unit, percentSign, full)
     local max = UnitPowerMax(unit)
 
     if max == 0 then return end
@@ -330,6 +330,8 @@ function M:Tags()
     if percentSign then powerStr = powerStr .. "%" end
 
     if powerType ~= "MANA" then return powerStr end
+
+    if full then powerStr = tostring(UnitPower(unit)) end
 
     if power <= 50 and power > 20 then
       return F.String.GradientClass(powerStr, "ROGUE", reverseGradient)
@@ -358,6 +360,10 @@ function M:Tags()
   -- Smart Power Percent No Sign Tag
   E:AddTag("tx:smartpower:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
     return ColorSmartPowerTag(unit)
+  end)
+
+  E:AddTag("tx:smartpower", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+    return ColorSmartPowerTag(unit, false, true)
   end)
 
   -- Power Percent Tag
@@ -535,6 +541,12 @@ function M:Tags()
       .. " when "
       .. F.String.Class("MANA", "MAGE")
       .. " <= 20"
+  )
+
+  E:AddTagInfo(
+    "tx:smartpower",
+    TagNames.POWER,
+    "Displays raw power value for mana users, otherwise percentage. No percentage sign and no decimals. Changes color when mana gets low."
   )
 
   E:AddTagInfo("tx:classification", TagNames.GENERAL, "Displays a silver or gold " .. TXUI.Title .. " star for rare & elite monsters")

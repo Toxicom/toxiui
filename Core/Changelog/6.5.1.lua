@@ -10,6 +10,7 @@ TXUI.Changelog["6.5.1"] = {
       .. F.String.Sublist("Currently in testing")
       .. F.String.Sublist("Priest Mind Control does not work yet"),
     F.String.ToxiUI("Classic Era") .. " only Profile with visible ActionBars",
+    "Smart Power tag for Classic to display mana in full value",
 
     "* Bug fixes",
 

@@ -707,7 +707,7 @@ function PF:BuildProfile()
       customTexts = {
         ["!Power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+          text_format = F.ChooseForTheme("[tx:smartpower]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(5),
           justifyH = "CENTER",
