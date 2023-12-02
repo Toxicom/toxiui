@@ -79,6 +79,8 @@ I.Data.Contributor = {
         ["Toxisorc-CrusaderStrike"] = true,
         ["Toxivoid-CrusaderStrike"] = true,
         ["Toxibow-CrusaderStrike"] = true,
+        ["Toxilock-CrusaderStrike"] = true,
+        ["Toxisin-CrusaderStrike"] = true,
       },
     },
 
