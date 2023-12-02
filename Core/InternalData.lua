@@ -76,6 +76,9 @@ I.Data.Contributor = {
 
         -- Crusader Strike (Season of Discovery)
         ["Toxirage-CrusaderStrike"] = true,
+        ["Toxisorc-CrusaderStrike"] = true,
+        ["Toxivoid-CrusaderStrike"] = true,
+        ["Toxibow-CrusaderStrike"] = true,
       },
     },
 
