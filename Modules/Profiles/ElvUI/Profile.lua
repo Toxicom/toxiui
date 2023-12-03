@@ -101,7 +101,7 @@ function PF:BuildProfile()
       MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
       MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
 
-      -- Movers: Action Bars
+      -- Movers: ActionBars
       ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 45),
       ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Close Left
       ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Close Right
@@ -184,7 +184,7 @@ function PF:BuildProfile()
       HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -573, -422),
       WTRaidMarkerBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -325, -4),
 
-      -- Movers: Action Bars Retail Only
+      -- Movers: ActionBars Retail Only
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -300, 200),
       PetBattleABMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 76, 313),
       ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 630, 200),
@@ -1964,7 +1964,7 @@ function PF:BuildProfile()
     })
   )
 
-  -- Action Bars
+  -- ActionBars
   F.Table.Crush(
     pf.actionbar,
     {
@@ -1973,19 +1973,19 @@ function PF:BuildProfile()
       flyoutSize = F.Dpi(33),
       countTextYOffset = F.Dpi(0),
 
-      -- Action Bars Cooldowns
+      -- ActionBars Cooldowns
       cooldown = {
         checkSeconds = true,
         hhmmThreshold = -1,
         mmssThreshold = 180,
       },
 
-      -- Action Bars Extra Action Button
+      -- ActionBars Extra Action Button
       extraActionButton = {
         scale = F.DpiRaw(1.25),
       },
 
-      -- Action Bars Zone Button
+      -- ActionBars Zone Button
       zoneActionButton = {
         scale = F.DpiRaw(1.25),
       },

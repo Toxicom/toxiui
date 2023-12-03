@@ -15,7 +15,7 @@ TXUI.Changelog["5.0.0"] = {
     "* ElvUI",
     " Disable AddOnSkins embed settings",
     " Raid Frame changes across both layouts",
-    " Fixes for Action Bars fonts",
+    " Fixes for ActionBars fonts",
     " Changed Absorb color",
     " More buffs show up, prioritise others' buffs",
     " New rest icon by |cffff7c0aReleaf|r",

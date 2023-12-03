@@ -199,16 +199,16 @@ function O:Plugins_Others()
   do
     -- ElvUI Global Fade Persist Group
     local elvuiFadePersistGroup = self:AddInlineRequirementsDesc(options, {
-      name = "ActionBar Fade",
+      name = "ActionBars Fade",
     }, {
-      name = "This option controls your Action Bars visibility.\n\n",
+      name = "This option controls your ActionBars visibility.\n\n",
     }, I.Requirements.FadePersist).args
 
     -- ElvUI Global Fade Persist Enable
     elvuiFadePersistGroup.elvuiFadePersist = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "This option controls when should your Action Bars appear.",
+      desc = "This option controls when should your ActionBars appear.",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup)
       end,

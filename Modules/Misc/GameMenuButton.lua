@@ -170,7 +170,7 @@ function M:GameMenuButton()
             .. TXUI.Title
             .. " settings to find out what's new",
           "To easily manage your AddOns all in one client, we recommend using the CurseForge version of " .. F.String.ToxiUI("WowUp.io"),
-          "Keeping your Action Bars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
+          "Keeping your ActionBars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
           "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts. "
             .. F.String.GradientClass("Class Icons")
             .. " are also Custom Texts!",

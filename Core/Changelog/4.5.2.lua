@@ -4,6 +4,6 @@ TXUI.Changelog["4.5.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* ElvUI",
-    " Fixed Action Bars size",
+    " Fixed ActionBars size",
   },
 }

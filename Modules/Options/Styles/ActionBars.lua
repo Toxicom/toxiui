@@ -8,7 +8,7 @@ function O:Styles_ActionBars()
   self.options.styles.args["actionBarsGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Action Bars",
+    name = "ActionBars",
     args = {},
   }
 
@@ -42,7 +42,7 @@ function O:Styles_ActionBars()
         .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91")
         .. " tab on the left and select "
         .. F.String.Class("Other")
-        .. " to find ActionBar Fade settings.\n\n",
+        .. " to find ActionBars Fade settings.\n\n",
     })
 
     weakAurasStyle["args"]["enable"] = {

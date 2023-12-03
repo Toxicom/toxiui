@@ -12,7 +12,7 @@ TXUI.Changelog["4.6.0"] = {
     "* ElvUI",
     " Fixed Pet/ToT name inconsistency",
     " Disabled Minimap shadow backdrop",
-    " Force disable Masque for Action Bars",
+    " Force disable Masque for ActionBars",
     " Enabled range fading for Target UF",
     " |cffff97f6G|r|cfff8b0f2ra|r|cfff5c6f1di|r|cfff3d9f1en|r|cffffeafdt|r mode",
     " Raid now shows 20 people (raid40 still show everyone else)",
