@@ -76,8 +76,18 @@ O.options = {
     hidden = O.txUIDisabled,
     args = {},
   },
-  fonts = {
+  styles = {
     order = 8,
+    type = "group",
+    group = "tab",
+    name = F.String.FastGradientHex("Styles", "#ff26a8", "#a10355"),
+    desc = "Choose between different " .. TXUI.Title .. " styles",
+    icon = nil,
+    hidden = O.txUIDisabled,
+    args = {},
+  },
+  fonts = {
+    order = 9,
     type = "group",
     group = "tab",
     name = F.String.FastGradientHex("Fonts", "#df78ef", "#790e8b"),
@@ -87,7 +97,7 @@ O.options = {
     args = {},
   },
   misc = {
-    order = 9,
+    order = 10,
     type = "group",
     group = "tab",
     name = F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91"),
@@ -97,7 +107,7 @@ O.options = {
     args = {},
   },
   changelog = {
-    order = 10,
+    order = 11,
     type = "group",
     group = "select",
     name = F.String.FastGradientHex("Changelog", "#8e99f3", "#26418f"),
@@ -107,7 +117,7 @@ O.options = {
     args = {},
   },
   reset = {
-    order = 11,
+    order = 12,
     type = "group",
     group = "tab",
     name = F.String.FastGradientHex("Reset", "#ff867c", "#b61827"),

@@ -149,6 +149,13 @@ F.AddMedia("installer", "OmniCD")
 F.AddMedia("installer", "WarpDeplete")
 
 -- -----
+--   STYLE THUBMNAILS
+-- -----
+
+F.AddMedia("style", "WeakAuras.blp")
+F.AddMedia("style", "Classic.blp")
+
+-- -----
 --   ARMORY BACKGROUNDS
 -- -----
 

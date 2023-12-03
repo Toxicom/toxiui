@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local IS = TXUI:NewModule("Installer", "AceHook-3.0")
 local PF = TXUI:GetModule("Profiles")
+local ST = TXUI:GetModule("Styles")
 
 local _G = _G
 local ipairs = ipairs
@@ -126,6 +127,8 @@ function IS:ElvUI(callback)
         E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK")
         or F.String.ToxiUI("DPS/Tank") .. " layout installed with " .. F.String.ToxiUI(styleName) .. " style."
       )
+
+    if TXUI.IsClassic then ST:ApplyStyle("actionBars", "Classic", true) end
 
     -- Show success message
     self:ShowStepComplete(msg)

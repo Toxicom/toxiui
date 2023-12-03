@@ -7,6 +7,7 @@
   <Include file='WunderBar\WunderBar.xml' />
   <Include file='Armory\Armory.xml' />
   <Include file='Skins\Skins.xml' />
+  <Include file='Styles\Styles.xml' />
   <Include file='Fonts\Fonts.xml' />
   <Include file='Misc\Misc.xml' />
   <Include file='Changelog\Changelog.xml' />
