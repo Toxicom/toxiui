@@ -28,6 +28,68 @@ function PF:ElvUIFont()
       fontSize = F.FontSizeScaled(14, 13),
       fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
+      fonts = {
+        cooldown = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        },
+
+        errortext = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        },
+
+        mailbody = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "NONE"),
+        },
+
+        pvpsubzone = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        },
+
+        pvpzone = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        },
+
+        questsmall = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "NONE"),
+        },
+
+        questtext = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "NONE"),
+        },
+
+        questtitle = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "NONE"),
+        },
+
+        worldsubzone = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        },
+
+        worldzone = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        },
+      },
+
       itemLevel = {
         itemLevelFont = F.FontOverride(I.Fonts.Primary),
         itemLevelFontSize = F.FontSize(11),

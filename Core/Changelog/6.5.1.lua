@@ -4,6 +4,10 @@ TXUI.Changelog["6.5.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove "
+      .. TXUI.Title
+      .. " Blizzard Fonts feature" --
+      .. F.String.Sublist("This feature is now available in " .. F.String.ElvUI() .. " since version 13.48"),
 
     "* New features",
     "Show ActionBars when Player is in Vehicle or DragonRiding" --

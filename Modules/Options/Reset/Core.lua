@@ -106,15 +106,6 @@ function O:Reset()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "VehicleBar", nil, "vehicleBar")
         end,
       },
-      ["blizzardFonts"] = {
-        order = self:GetOrder(),
-        type = "execute",
-        name = F.String.Error("BlizzardFonts"),
-        desc = "Reset all " .. F.String.Error("BlizzardFonts") .. " Settings.",
-        func = function()
-          E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "BlizzardFonts", nil, "blizzardFonts")
-        end,
-      },
     },
   })
 end

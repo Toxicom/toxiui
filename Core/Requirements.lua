@@ -57,8 +57,6 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       then
         return requirement
       end
-    elseif requirement == I.Enum.Requirements.OTHER_BLIZZARD_FONTS_DISABLED then
-      if F.GetDBFromPath("sle.media.enable", E.private) or F.GetDBFromPath("ElvUI_EltreumUI.skins.zones") then return requirement end
     elseif requirement == I.Enum.Requirements.WT_ENABLED then
       if not F.IsAddOnEnabled("ElvUI_WindTools") then return requirement end
     elseif requirement == I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED then

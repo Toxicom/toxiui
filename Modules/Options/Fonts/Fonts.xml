@@ -2,5 +2,4 @@
   <Script file='Core.lua' />
 
   <Script file='ElvUIFonts.lua' />
-  <Script file='BlizzardFonts.lua' />
 </Ui>

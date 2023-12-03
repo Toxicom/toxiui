@@ -130,9 +130,6 @@ I.Requirements = {
   },
   ["GameMenuButton"] = {},
   ["AdditionalScaling"] = {},
-  ["BlizzardFonts"] = {
-    I.Enum.Requirements.OTHER_BLIZZARD_FONTS_DISABLED,
-  },
   ["RoleIcons"] = {
     I.Enum.Requirements.SL_DISABLED,
   },

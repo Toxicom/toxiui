@@ -13,20 +13,6 @@ function O:Fonts()
     type = "group",
     args = {},
   }
-
-  options["blizzard_fonts"] = {
-    order = self:GetOrder(),
-    type = "group",
-    name = "Blizzard Fonts",
-    get = function(info)
-      return E.db.TXUI.blizzardFonts[info[#info]]
-    end,
-    set = function(info, value)
-      E.db.TXUI.blizzardFonts[info[#info]] = value
-      F.Event.TriggerEvent("BlizzardFonts.SettingsUpdate")
-    end,
-    args = {},
-  }
 end
 
 O:AddCallback("Fonts")

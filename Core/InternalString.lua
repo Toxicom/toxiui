@@ -13,7 +13,6 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.SL_MINIMAP_COORDS_DISABLED] = "You can't enable this option because Shadow & Light's Minimap Coordinates module is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.SL_DECONSTRUCT_DISABLED] = "You can't enable this option because Shadow & Light's Deconstruct module is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.ARMORY_DISABLED] = "You can't enable this option because Shadow & Light's Character Armory module is currently turned on. Please disable it to unlock this option.",
-  [I.Enum.Requirements.OTHER_BLIZZARD_FONTS_DISABLED] = "You can't enable this option because Shadow & Light's Media module is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.WT_ENABLED] = "NO_STRING_NEEDED",
   [I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED] = "ElvUI_GlobalFadePersist is currently installed and enabled. To use this option, please disable ElvUI_GlobalFadePersist, as it interferes with ToxiUI's global fade persist.",
   [I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE] = "NO_STRING_NEEDED",
