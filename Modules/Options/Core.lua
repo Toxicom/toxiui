@@ -82,7 +82,7 @@ O.options = {
     group = "tab",
     name = F.String.FastGradientHex("Styles", "#ff26a8", "#a10355"),
     desc = "Choose between different " .. TXUI.Title .. " styles",
-    icon = nil,
+    icon = I.Media.Icons.Styles,
     hidden = O.txUIDisabled,
     args = {},
   },

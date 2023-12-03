@@ -64,6 +64,7 @@ F.AddMedia("icon", "Reset")
 F.AddMedia("icon", "Skins")
 F.AddMedia("icon", "Themes")
 F.AddMedia("icon", "WunderBar")
+F.AddMedia("icon", "Styles")
 
 -- -----
 --   ROLE ICONS
