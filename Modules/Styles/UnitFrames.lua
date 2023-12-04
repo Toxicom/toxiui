@@ -11,7 +11,6 @@ function ST:BuildUnitFramesProfile()
   end
 
   local pf = E.db
-  local IsHealer = E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER
 
   if style == "New" then
     -- UnitFrames

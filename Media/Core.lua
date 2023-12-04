@@ -155,6 +155,8 @@ F.AddMedia("installer", "WarpDeplete")
 
 F.AddMedia("style", "WeakAuras.blp")
 F.AddMedia("style", "Classic.blp")
+F.AddMedia("style", "New.blp")
+F.AddMedia("style", "Old.blp")
 
 -- -----
 --   ARMORY BACKGROUNDS

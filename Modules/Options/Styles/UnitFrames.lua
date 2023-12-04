@@ -20,7 +20,7 @@ function O:Styles_UnitFrames()
     name = "Description",
   }, {
     name = TXUI.Title --
-      .. " offers different styles for UnitFrames layouts, visibility and overall behavior."
+      .. " offers different styles for UnitFrames."
       .. "\n\nYour current active style: "
       .. F.String.Good(E.db.TXUI.styles.unitFrames),
   })
@@ -33,23 +33,16 @@ function O:Styles_UnitFrames()
     local newStyle = self:AddInlineRequirementsDesc(options, {
       name = TXUI.Title .. " New Style",
     }, {
-      name = "This style is the original style of "
+      name = "This style was introduced in "
         .. TXUI.Title
-        .. " where we prioritize New for providing information, therefore the UnitFrames remain hidden and shown only when necessary to reduce visual clutter.\n\n"
-        .. "With this style the UnitFrames are mouseover at the bottom, right above the WunderBar.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "If you'd still like to display UnitFrames while in New style, navigate to the "
-        .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91")
-        .. " tab on the left and select "
-        .. F.String.Class("Other")
-        .. " to find UnitFrames Fade settings.\n\n",
+        .. " patch 6.3.0 which went for a more artistic approach of UnitFrames prioritising a single number for unit's health percentage.\n\n",
     })
 
     newStyle["args"]["enable"] = {
       order = self:GetOrder(),
       type = "execute",
       name = F.String.Class("Apply", "MONK"),
-      desc = "Applies the original " .. TXUI.Title .. " New style that is meant to be played with New.",
+      desc = "Applies the New " .. TXUI.Title .. " UnitFrames style.",
       func = function()
         SS:Wrap("Applying New Style ..", function()
           ST:ApplyStyle("unitFrames", "New")
@@ -62,7 +55,7 @@ function O:Styles_UnitFrames()
       type = "description",
       name = "",
       image = function()
-        return I.Media.Installer.Layouts, F.Dpi(512), F.Dpi(256)
+        return I.Media.Style.New, F.Dpi(256), F.Dpi(128)
       end,
     }
   end
@@ -72,18 +65,14 @@ function O:Styles_UnitFrames()
     local oldStyle = self:AddInlineRequirementsDesc(options, {
       name = TXUI.Title .. " Old Style",
     }, {
-      name = "The Old "
-        .. TXUI.Title
-        .. " style for users who do not like New and prefer just ye' old reliable UnitFrames.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "This style is recommended for Old Era players, hence the naming of Old Style ;)\n\n",
+      name = "The Old " .. TXUI.Title .. " style for users who want more information displayed on their UnitFrames.\n\n",
     })
 
     oldStyle["args"]["enable"] = {
       order = self:GetOrder(),
       type = "execute",
       name = F.String.Class("Apply", "MONK"),
-      desc = "Applies the Old " .. TXUI.Title .. " UnitFrames style for users that prefer playing without New.",
+      desc = "Applies the Old " .. TXUI.Title .. " UnitFrames style.",
       func = function()
         SS:Wrap("Applying Old Style ..", function()
           ST:ApplyStyle("unitFrames", "Old")
@@ -96,7 +85,7 @@ function O:Styles_UnitFrames()
       type = "description",
       name = "",
       image = function()
-        return I.Media.Installer.Layouts, F.Dpi(512), F.Dpi(256)
+        return I.Media.Style.Old, F.Dpi(256), F.Dpi(128)
       end,
     }
   end
