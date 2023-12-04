@@ -20,7 +20,6 @@ local function customTextSize(args)
 end
 
 function PF:ElvUIFont()
-  local IsNewLayout = E.db.TXUI.installer.layoutStyle == I.Enum.LayoutStyle.NEW
   F.Table.Crush(E.db, {
     -- General
     general = {
@@ -219,7 +218,7 @@ function PF:ElvUIFont()
         player = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "SHADOW" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 22, "SHADOW" },
+            { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
             TXUI.IsClassic and { "!Power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
@@ -255,7 +254,7 @@ function PF:ElvUIFont()
         target = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "SHADOW" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 22, "SHADOW" },
+            { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
@@ -319,7 +318,7 @@ function PF:ElvUIFont()
         focus = {
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "SHADOW" },
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 22, "SHADOW" },
+            { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
           },
@@ -355,7 +354,7 @@ function PF:ElvUIFont()
           {
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "SHADOW" },
-              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 24, "SHADOW" },
+              { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
               { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
               { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
               { "!ClassIcon", I.Fonts.Title, 10, "SHADOW" }, -- Font and Outline doesn't matter
@@ -380,7 +379,7 @@ function PF:ElvUIFont()
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "SHADOW" },
-              IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 32, "SHADOW" },
+              { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
               { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
               { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
               { "!ClassIcon", I.Fonts.Title, 10, "SHADOW" }, -- Font and Outline doesn't matter
@@ -441,7 +440,7 @@ function PF:ElvUIFont()
 
         arena = {
           customTexts = customTextSize {
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 20, "SHADOW" },
+            { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Name", I.Fonts.Title, 24, "SHADOW" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
@@ -459,7 +458,7 @@ function PF:ElvUIFont()
 
         boss = {
           customTexts = customTextSize {
-            IsNewLayout and { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" } or { "!Health", "- Steelfish", 24, "SHADOW" },
+            { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Name", I.Fonts.Title, 24, "SHADOW" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
