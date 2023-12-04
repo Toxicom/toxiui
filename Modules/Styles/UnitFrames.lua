@@ -12,22 +12,6 @@ function ST:BuildUnitFramesProfile()
 
   local pf = E.db
   local IsHealer = E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER
-  local defaultPadding = 4
-
-  local customTextTemplate = {
-    -- Options
-    enable = true,
-    attachTextTo = "Health",
-    justifyH = "LEFT",
-
-    -- Offset
-    xOffset = F.Dpi(-10),
-    yOffset = F.Dpi(27),
-  }
-
-  local createCustomText = function(db, ...)
-    return F.Table.Join(db or {}, customTextTemplate, ...)
-  end
 
   if style == "New" then
     -- UnitFrames

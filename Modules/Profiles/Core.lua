@@ -1,14 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:NewModule("Profiles", "AceHook-3.0")
 
-local _G = _G
-local format = string.format
-local ipairs = ipairs
-local pairs = pairs
-local strsplit = strsplit
-local tinsert = table.insert
-local unpack = unpack
-
 function PF:MergeElvUIProfile()
   local pf = self:BuildProfile()
 

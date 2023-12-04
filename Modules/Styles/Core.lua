@@ -24,7 +24,7 @@ function ST:StyleMovers()
 end
 
 function ST:ApplyStyle(styleType, style, dontReload)
-  local pf = {}
+  local pf
 
   E.db.TXUI.styles[styleType] = style
   if styleType == "actionBars" then

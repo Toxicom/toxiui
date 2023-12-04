@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local LSM = E.Libs.LSM
 
+local _G = _G
 local abs = math.abs
 local C_Covenants_GetActiveCovenantID = TXUI.IsRetail and C_Covenants.GetActiveCovenantID
 local C_Covenants_GetCovenantData = TXUI.IsRetail and C_Covenants.GetCovenantData
