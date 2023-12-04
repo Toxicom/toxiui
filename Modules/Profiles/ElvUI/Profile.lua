@@ -3,6 +3,68 @@ local PF = TXUI:GetModule("Profiles")
 
 local next = next
 
+function PF:BuildColorsProfile()
+  local pf = {
+    unitframe = {
+      colors = {},
+    },
+  }
+
+  F.Table.Crush(pf, {
+    -- UnitFrames Colors CastBar
+    castColor = F.Table.HexToRGB("#ffb300"),
+    castNoInterrupt = F.Table.HexToRGB("#808080"),
+    castInterruptedColor = F.Table.HexToRGB("#ff1a1a"),
+
+    -- UnitFrames Colors
+    borderColor = F.Table.HexToRGB("#000000"),
+    disconnected = F.Table.HexToRGB("#ff9387"),
+    health = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#1d1d1d")),
+    health_backdrop = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#505050")),
+    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#ff0015"), F.Table.HexToRGB("#9c0c00")),
+
+    -- UnitFrames Colors Options
+    classbackdrop = true,
+    colorhealthbyvalue = false,
+    useDeadBackdrop = true,
+    transparentPower = false,
+    healthclass = F.ChooseForTheme(true, false),
+    customhealthbackdrop = F.ChooseForTheme(false, true),
+
+    -- UnitFrames Colors heal prediction
+    healPrediction = {
+      absorbs = F.Table.HexToRGB("#ff00f180"),
+      overabsorbs = F.Table.HexToRGB("#ff00c180"),
+    },
+
+    -- UnitFrame Colors MouseOver Glow
+    frameGlow = {
+      mouseoverGlow = {
+        texture = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
+      },
+    },
+
+    -- UnitFrame Colors Power (for Dark and Normal modes)
+    -- Should be the same as colors in Core/Profile.lua
+    -- [I.Enum.GradientMode.Color.NORMAL]
+    power = { -- RIGHT
+      ALT_POWER = F.Table.HexToRGB("#2175d4"), -- swap alt
+      MANA = F.Table.HexToRGB("#35a4ff"), -- mana
+      RAGE = F.Table.HexToRGB("#ed3333"), -- rage
+      FOCUS = F.Table.HexToRGB("#db753b"), -- focus
+      ENERGY = F.Table.HexToRGB("#ffe169"), -- energy
+      RUNIC_POWER = F.Table.HexToRGB("#1cd6ff"), -- runic
+      PAIN = F.Table.HexToRGB("#f5f5f5"), -- pain
+      FURY = F.Table.HexToRGB("#e81ff5"), -- fury
+      LUNAR_POWER = F.Table.HexToRGB("#9c54ff"), -- astral
+      INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
+      MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
+    },
+  })
+
+  return pf
+end
+
 function PF:BuildProfile()
   -- Setup Local Tables
   local pf = {
@@ -26,6 +88,8 @@ function PF:BuildProfile()
       units = {},
     },
   }
+
+  local colors = self:BuildColorsProfile()
 
   -- Setup Unit Tables & Disable Info Panel
   for _, unit in
@@ -411,57 +475,7 @@ function PF:BuildProfile()
   })
 
   -- UnitFrames Colors
-  F.Table.Crush(pf.unitframe.colors, {
-    -- UnitFrames Colors CastBar
-    castColor = F.Table.HexToRGB("#ffb300"),
-    castNoInterrupt = F.Table.HexToRGB("#808080"),
-    castInterruptedColor = F.Table.HexToRGB("#ff1a1a"),
-
-    -- UnitFrames Colors
-    borderColor = F.Table.HexToRGB("#000000"),
-    disconnected = F.Table.HexToRGB("#ff9387"),
-    health = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#1d1d1d")),
-    health_backdrop = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#505050")),
-    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#ff0015"), F.Table.HexToRGB("#9c0c00")),
-
-    -- UnitFrames Colors Options
-    classbackdrop = true,
-    colorhealthbyvalue = false,
-    useDeadBackdrop = true,
-    transparentPower = false,
-    healthclass = F.ChooseForTheme(true, false),
-    customhealthbackdrop = F.ChooseForTheme(false, true),
-
-    -- UnitFrames Colors heal prediction
-    healPrediction = {
-      absorbs = F.Table.HexToRGB("#ff00f180"),
-      overabsorbs = F.Table.HexToRGB("#ff00c180"),
-    },
-
-    -- UnitFrame Colors MouseOver Glow
-    frameGlow = {
-      mouseoverGlow = {
-        texture = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
-      },
-    },
-
-    -- UnitFrame Colors Power (for Dark and Normal modes)
-    -- Should be the same as colors in Core/Profile.lua
-    -- [I.Enum.GradientMode.Color.NORMAL]
-    power = { -- RIGHT
-      ALT_POWER = F.Table.HexToRGB("#2175d4"), -- swap alt
-      MANA = F.Table.HexToRGB("#35a4ff"), -- mana
-      RAGE = F.Table.HexToRGB("#ed3333"), -- rage
-      FOCUS = F.Table.HexToRGB("#db753b"), -- focus
-      ENERGY = F.Table.HexToRGB("#ffe169"), -- energy
-      RUNIC_POWER = F.Table.HexToRGB("#1cd6ff"), -- runic
-      PAIN = F.Table.HexToRGB("#f5f5f5"), -- pain
-      FURY = F.Table.HexToRGB("#e81ff5"), -- fury
-      LUNAR_POWER = F.Table.HexToRGB("#9c54ff"), -- astral
-      INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
-      MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
-    },
-  })
+  F.Table.Crush(pf.unitframe.colors, colors)
 
   local customTextTemplate = {
     -- Options
@@ -2258,72 +2272,6 @@ function PF:ElvUIProfileGlobal()
       },
     },
   })
-end
-
-function PF:UpdateProfileForTheme()
-  local pf = self:BuildProfile()
-
-  -- Custom Text
-  -- Arena
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Power", "text_format")
-
-  -- Boss
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Power", "text_format")
-
-  -- Focus
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "yOffset")
-
-  -- Pet
-  F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.!Name", "yOffset")
-
-  -- Player
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.raidRoleIcons", "yOffset")
-
-  -- Party
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.raidRoleIcons", "yOffset")
-
-  -- Target
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Classification", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.raidRoleIcons", "yOffset")
-
-  -- Target-Target
-  F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
-
-  -- UnitFrame Heights
-  F.UpdateDBFromPath(pf, "unitframe.units.pet", "height")
-  F.UpdateDBFromPath(pf, "unitframe.units.player", "height")
-  F.UpdateDBFromPath(pf, "unitframe.units.target", "height")
-  F.UpdateDBFromPath(pf, "unitframe.units.targettarget", "height")
-
-  -- UnitFrame Color Options
-  F.UpdateDBFromPath(pf, "unitframe.colors", "customhealthbackdrop")
-  F.UpdateDBFromPath(pf, "unitframe.colors", "healthclass")
-
-  -- UnitFrame Colors
-  F.UpdateDBFromPathRGB(pf, "unitframe.colors.health")
-  F.UpdateDBFromPathRGB(pf, "unitframe.colors.health_backdrop")
-  F.UpdateDBFromPathRGB(pf, "unitframe.colors.health_backdrop_dead")
 end
 
 function PF:UpdateProfileForGradient()

@@ -199,53 +199,8 @@ function IS:Dialog()
         end
       end,
 
-      -- Style Selection Page
-      [3] = function()
-        SetupCustomInstaller(3)
-        installFrame.SubTitle:SetText(F.String.ToxiUI("Style Selection"))
-
-        installFrame.Desc1:SetText(
-          "From "
-            .. TXUI.Title
-            .. " v6.3.0, we now offer a different style for UnitFrames! We know how some of you prefer to keep the old look and feel of "
-            .. TXUI.Title
-            .. " therefore we offer you a choice! Below you can see an image of the differences between the styles."
-        )
-        installFrame.Desc2:SetText(
-          F.String.ToxiUI("Information: ")
-            .. "This step is "
-            .. F.String.Good("optional")
-            .. ". If you do not select a style, the old one will be applied by default! This might change in the future."
-        )
-        installFrame.Desc3:SetText(
-          F.String.Error("Important: ")
-            .. "The buttons below will not actually make any changes. For changes to be made, you must select a layout in the "
-            .. F.String.ToxiUI("Core Settings")
-            .. " page of the installer!"
-        )
-
-        local function applyStyle(style)
-          E.db.TXUI.installer.layoutStyle = style
-          local styleName = style == I.Enum.LayoutStyle.OLD and "Old" or "New"
-          self:ShowStepComplete(F.String.ToxiUI(styleName) .. " UnitFrame style selected")
-          installer:SetPage(4)
-        end
-
-        installFrame.Option1:Show()
-        installFrame.Option1:SetText("Old style")
-        installFrame.Option1:SetScript("OnClick", function()
-          applyStyle(I.Enum.LayoutStyle.OLD)
-        end)
-
-        installFrame.Option2:Show()
-        installFrame.Option2:SetText("New style")
-        installFrame.Option2:SetScript("OnClick", function()
-          applyStyle(I.Enum.LayoutStyle.NEW)
-        end)
-      end,
-
       -- Layout Page
-      [4] = function()
+      [3] = function()
         SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Core Settings"))
 
@@ -299,7 +254,7 @@ function IS:Dialog()
       end,
 
       -- Details Page
-      [5] = function()
+      [4] = function()
         SetupCustomInstaller(5)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
@@ -334,7 +289,7 @@ function IS:Dialog()
       end,
 
       -- Plater Page
-      [6] = function()
+      [5] = function()
         SetupCustomInstaller(6)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Plater"))
 
@@ -360,7 +315,7 @@ function IS:Dialog()
       end,
 
       -- Boss Mod Page
-      [7] = function()
+      [6] = function()
         SetupCustomInstaller(7)
         if F.IsAddOnEnabled("BigWigs") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
@@ -405,7 +360,7 @@ function IS:Dialog()
       end,
 
       -- WeakAuras recommendations
-      [8] = function()
+      [7] = function()
         SetupCustomInstaller(8)
         installFrame.SubTitle:SetText(F.String.ToxiUI("WeakAuras"))
 
@@ -459,7 +414,7 @@ function IS:Dialog()
         end)
       end,
 
-      [9] = function()
+      [8] = function()
         -- Initialize the button index
         local buttonIndex = 1
 
@@ -517,7 +472,7 @@ function IS:Dialog()
       end,
 
       -- Completed Page
-      [10] = function()
+      [9] = function()
         SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
 
@@ -565,14 +520,13 @@ function IS:Dialog()
     StepTitles = {
       [1] = "Welcome",
       [2] = "Profile",
-      [3] = "Style Selection",
-      [4] = "Core Settings",
-      [5] = "Details",
-      [6] = "Plater",
-      [7] = "BigWigs",
-      [8] = "WeakAuras",
-      [9] = "Additional AddOns",
-      [10] = "Installation Complete",
+      [3] = "Core Settings",
+      [4] = "Details",
+      [5] = "Plater",
+      [6] = "BigWigs",
+      [7] = "WeakAuras",
+      [8] = "Additional AddOns",
+      [9] = "Installation Complete",
     },
 
     -- Customize colors

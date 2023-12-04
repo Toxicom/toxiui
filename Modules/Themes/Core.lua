@@ -7,6 +7,7 @@ function TH:Toggle(theme, value)
 
   -- get profiles
   local pf = TXUI:GetModule("Profiles")
+  local ST = TXUI:GetModule("Styles")
 
   --
   -- GradientMode
@@ -38,7 +39,7 @@ function TH:Toggle(theme, value)
 
     TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
       -- apply elvui profile
-      pf:UpdateProfileForTheme()
+      ST:UpdateProfileForTheme()
 
       -- execute elvui update, callback later
       pf:ExecuteElvUIUpdate(function()

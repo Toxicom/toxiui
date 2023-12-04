@@ -45,6 +45,7 @@ P.general = {
 -- Styles
 P.styles = {
   actionBars = TXUI.IsClassic and "Classic" or "WeakAuras",
+  unitFrames = "New",
 }
 
 -- Themes

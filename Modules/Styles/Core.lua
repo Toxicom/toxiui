@@ -1,12 +1,13 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local ST = TXUI:NewModule("Styles")
+local SS = TXUI:GetModule("SplashScreen")
 local PF = TXUI:GetModule("Profiles")
 
 function ST:StyleMovers()
   local pf = self:BuildActionBarsProfile()
 
   -- Process all movers
-  PF:ProcessMovers(pf)
+  F.ProcessMovers(pf)
 
   -- Use Debug output in development mode
   local crushFnc = TXUI.DevRelease and F.Table.CrushDebug or F.Table.Crush
@@ -17,7 +18,7 @@ function ST:StyleMovers()
   F.Event.RunNextFrame(function()
     F.Event.ContinueAfterElvUIUpdate(function()
       E:StaggeredUpdateAll()
-      TXUI:GetModule("SplashScreen"):Hide()
+      SS:Hide()
     end)
   end, 0.2)
 end
@@ -25,11 +26,11 @@ end
 function ST:ApplyStyle(styleType, style, dontReload)
   local pf = {}
 
+  E.db.TXUI.styles[styleType] = style
   if styleType == "actionBars" then
-    E.db.TXUI.styles[styleType] = style
     pf = self:BuildActionBarsProfile()
   elseif styleType == "unitFrames" then
-    print("unitframes style apply")
+    pf = self:BuildUnitFramesProfile()
   else
     TXUI:LogDebug("Styles > Invalid styleType provided")
     return
@@ -39,6 +40,14 @@ function ST:ApplyStyle(styleType, style, dontReload)
 
   -- Merge Tables
   crushFnc(E.db, pf)
+
+  if styleType == "unitFrames" then
+    self:UpdateProfileForTheme()
+    PF:UpdateProfileForGradient()
+    SS:Hide()
+    E:StaticPopup_Show("CONFIG_RL")
+    return
+  end
 
   -- Update ElvUI
   F.Event.RunNextFrame(function()

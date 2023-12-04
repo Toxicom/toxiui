@@ -5,9 +5,9 @@
   <Include file='Misc\Misc.xml' />
   <Include file='Plugins\Plugins.xml' />
   <Include file='Skins\Skins.xml' />
-  <Include file='Themes\Themes.xml' />
   <Include file='Profiles\Profiles.xml' />
   <Include file='Styles\Styles.xml' />
+  <Include file='Themes\Themes.xml' />
   <Include file='Installer\Installer.xml' />
   <Include file='Options\Options.xml' />
 </Ui>

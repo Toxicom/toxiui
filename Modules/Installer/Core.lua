@@ -118,15 +118,10 @@ function IS:ElvUI(callback)
   PF:ExecuteElvUIUpdate(function()
     TXUI:GetModule("SplashScreen"):Hide()
 
-    local style = E.db.TXUI.installer.layoutStyle
-    local styleName = style == I.Enum.LayoutStyle.OLD and "Old" or "New"
     -- Customize message
     local msg = TXUI.Title
       .. " "
-      .. (
-        E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK")
-        or F.String.ToxiUI("DPS/Tank") .. " layout installed with " .. F.String.ToxiUI(styleName) .. " style."
-      )
+      .. (E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK") or F.String.ToxiUI("DPS/Tank") .. " layout installed.")
 
     if TXUI.IsClassic then ST:ApplyStyle("actionBars", "Classic", true) end
 
