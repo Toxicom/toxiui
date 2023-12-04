@@ -181,6 +181,7 @@ function M:GameMenuButton()
             .. TXUI.Title
             .. " settings. If an element is missing, let us know and we might add it!",
           "These tips change each time you reload your UI or log in. Make sure to check them out since we keep adding new ones. Never know when you might learn something new! ;)",
+          "You can switch to different " .. F.String.FastGradientHex("Styles", "#ff26a8", "#a10355") .. " in " .. TXUI.Title .. " settings!",
         }
 
         local randomIndex = math.random(1, #randomTips)
