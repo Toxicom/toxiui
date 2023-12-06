@@ -224,10 +224,13 @@ function M:GameMenuButton()
         -- local randomIndex = 12
         local randomTip = randomTips[randomIndex]
 
-        local ToxiBirthday = date("%m/%d") == "01/06"
-        local ToxiUiBirthday = date("%m/%d") == "10/24"
+        local monthDate = date("%m/%d")
         local year = date("%Y")
+        local ToxiBirthday = monthDate == "01/06"
+        local ToxiUiBirthday = monthDate == "10/24"
         local ToxiUiAge = year - 2020
+        local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
+        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
 
         backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
         backgroundFade.tipText:SetPoint("TOP", backgroundFade.levelText, "BOTTOM", 0, -25)
@@ -248,7 +251,7 @@ function M:GameMenuButton()
         elseif ToxiUiBirthday then
           backgroundFade.tipText:SetText("Did you know that today, October 24th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!")
         else
-          backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip)
+          backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
         end
 
         backgroundFade.tipText:SetWidth(600)
