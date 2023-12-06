@@ -224,11 +224,33 @@ function M:GameMenuButton()
         -- local randomIndex = 12
         local randomTip = randomTips[randomIndex]
 
+        local ToxiBirthday = date("%m/%d") == "01/06"
+        local ToxiUiBirthday = date("%m/%d") == "10/24"
+        local year = date("%Y")
+        local ToxiUiAge = year - 2020
+
         backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
         backgroundFade.tipText:SetPoint("TOP", backgroundFade.levelText, "BOTTOM", 0, -25)
         backgroundFade.tipText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         backgroundFade.tipText:SetTextColor(1, 1, 1, 1)
-        backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip)
+
+        -- let's call it an easter egg
+        if ToxiBirthday then
+          backgroundFade.tipText:SetText(
+            "Did you know that today, January 6th, is "
+              .. F.String.ToxiUI("Toxi")
+              .. "'s birthday?\n"
+              .. F.String.ToxiUI("Fun fact:")
+              .. " First version of the "
+              .. TXUI.Title
+              .. " installer was released on this day back in 2021!"
+          )
+        elseif ToxiUiBirthday then
+          backgroundFade.tipText:SetText("Did you know that today, October 24th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!")
+        else
+          backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip)
+        end
+
         backgroundFade.tipText:SetWidth(600)
       end
     end
