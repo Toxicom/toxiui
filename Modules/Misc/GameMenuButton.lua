@@ -224,8 +224,8 @@ function M:GameMenuButton()
         -- local randomIndex = 12
         local randomTip = randomTips[randomIndex]
 
-        local monthDate = date("%m/%d")
-        local year = date("%Y")
+        local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
+        local year = date("%Y") -- yyyy eg 2023
         local ToxiBirthday = monthDate == "01/06"
         local ToxiUiBirthday = monthDate == "10/24"
         local ToxiUiAge = year - 2020
