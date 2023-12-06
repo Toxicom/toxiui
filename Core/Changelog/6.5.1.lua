@@ -39,6 +39,14 @@ TXUI.Changelog["6.5.1"] = {
     "Rename all cases of 'Action Bars' to 'ActionBars' to be more in-line with " .. F.String.ElvUI() .. " naming convention.",
 
     "* Settings refactoring",
+    "Move " --
+      .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91")
+      .. " -> "
+      .. F.String.Class("Others")
+      .. " to "
+      .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+      .. " -> "
+      .. F.String.Class("ElvUI"),
 
     "* Development improvements",
   },

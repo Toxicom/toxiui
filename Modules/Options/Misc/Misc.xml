@@ -4,5 +4,4 @@
   <Script file='AdditionalScaling.lua' />
   <Script file='MiniMapCoords.lua' />
   <Script file='VehicleBar.lua' />
-  <Script file='Others.lua' />
 </Ui>
