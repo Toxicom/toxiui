@@ -139,6 +139,71 @@ function O:Plugins_AdditionalScaling()
   -- Spacer
   self:AddSpacer(options)
 
+  -- NPC
+  do
+    -- NPC Group
+    local npcGroup = self:AddInlineDesc(options, {
+      name = "NPC",
+      hidden = optionsHidden,
+    }, {
+      name = "Scale frames related to interactions with NPCs. Yes, we know a mailbox isn't technically an NPC.\n\n",
+    }).args
+
+    -- NPC Group: Vendor
+    npcGroup.vendor = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Vendor",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.vendor.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.vendor.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
+    -- NPC Group: Gossip
+    npcGroup.gossip = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Gossip",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.gossip.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.gossip.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
+    -- NPC Group: Mailbox
+    npcGroup.mailbox = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Mailbox",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.mailbox.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.mailbox.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
   -- Other
   do
     -- Other Group

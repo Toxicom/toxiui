@@ -279,6 +279,18 @@ P.misc = {
     spellbook = {
       scale = 1,
     },
+
+    vendor = {
+      scale = 1,
+    },
+
+    gossip = {
+      scale = 1,
+    },
+
+    mailbox = {
+      scale = 1,
+    },
   },
 }
 

@@ -20,6 +20,12 @@ TXUI.Changelog["6.5.1"] = {
       .. F.String.Sublist("Currently in testing")
       .. F.String.Sublist("Priest Mind Control does not work yet"),
     "Smart Power tag for Classic to display mana in full value",
+    "Add new options to " --
+      .. F.String.Scaling()
+      .. ":"
+      .. F.String.Sublist("Vendor (Merchant) Frame")
+      .. F.String.Sublist("Gossip Frame")
+      .. F.String.Sublist("Mailbox Frame"),
 
     "* Bug fixes",
 

@@ -4,12 +4,12 @@ TXUI.Changelog["6.3.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* New features",
-    "Add new options to "
+    "Add new options to " --
       .. F.String.Scaling()
-      .. F.String.Sublist(F.String.Class("Collections Journal")) -- comment to stop auto-formatting
-      .. F.String.Sublist(F.String.Class("Wardrobe Frame")) -- comment to stop auto-formatting
-      .. F.String.Sublist(F.String.Class("Dressing Room")) -- comment to stop auto-formatting
-      .. F.String.Sublist(F.String.Class("Inspect Frame")), -- comment to stop auto-formatting
+      .. F.String.Sublist(F.String.Class("Collections Journal"))
+      .. F.String.Sublist(F.String.Class("Wardrobe Frame"))
+      .. F.String.Sublist(F.String.Class("Dressing Room"))
+      .. F.String.Sublist(F.String.Class("Inspect Frame")),
     "Add Background Fade for Game Menu" .. F.String.Sublist("Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
     "Add " .. TXUI.Title .. " group Leader icon" .. F.String.Sublist("Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
 

@@ -12,6 +12,9 @@ function M:AdditionalScaling()
     M:SetElementScale("characterFrame", "CharacterFrame")
     M:SetElementScale("dressingRoom", "DressUpFrame")
     M:SetElementScale("spellbook", "SpellBookFrame")
+    M:SetElementScale("vendor", "MerchantFrame")
+    M:SetElementScale("gossip", "GossipFrame")
+    M:SetElementScale("mailbox", "MailFrame")
 
     -- In the next parts, if the AddOn isn't loaded by the game yet,
     -- we add it to a list to be loaded as soon as the AddOn has been loaded.
