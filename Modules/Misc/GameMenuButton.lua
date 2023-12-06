@@ -155,7 +155,7 @@ function M:GameMenuButton()
             .. TXUI.Title
             .. " website that has a lot of useful information and also articles about what's happening in "
             .. TXUI.Title
-            .. "! Check it out at "
+            .. "!\nCheck it out at "
             .. F.String.ToxiUI(I.Strings.Branding.Links.Website),
           -- 4
           "There is a " --
@@ -227,7 +227,7 @@ function M:GameMenuButton()
         local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
         local year = date("%Y") -- yyyy eg 2023
         local ToxiBirthday = monthDate == "01/06"
-        local ToxiUiBirthday = monthDate == "10/24"
+        local ToxiUiBirthday = monthDate == "10/18"
         local ToxiUiAge = year - 2020
         local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
         local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
@@ -249,7 +249,7 @@ function M:GameMenuButton()
               .. " installer was released on this day back in 2021!"
           )
         elseif ToxiUiBirthday then
-          backgroundFade.tipText:SetText("Did you know that today, October 24th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!")
+          backgroundFade.tipText:SetText("Did you know that today, October 18th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!")
         else
           backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
         end
