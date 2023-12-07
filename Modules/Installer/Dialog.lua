@@ -45,22 +45,19 @@ function IS:Dialog()
     installFrame:Size(825, 600)
 
     -- Custom tutorial image
-    if pageNumber == 3 then
-      installFrame.tutorialImage:SetTexture(I.Media.Installer.Layouts)
-      installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 5 then
+    if pageNumber == 4 then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.Details)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 6 then
+    elseif pageNumber == 5 then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.Plater)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 7 then
+    elseif pageNumber == 6 then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.BigWigs)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 8 then
+    elseif pageNumber == 7 then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 9 then
+    elseif pageNumber == 8 then
       -- List of images to cycle through
       local imageList = {
         I.Media.Installer.OmniCD,
@@ -91,7 +88,7 @@ function IS:Dialog()
     installFrame.tutorialImage:Point("BOTTOM", 0, 100)
   end
 
-  -- force complete otherwise setup dosen't show
+  -- force complete otherwise setup doesn't show
   E.private.install_complete = E.version
 
   -- return our Installer
@@ -255,7 +252,7 @@ function IS:Dialog()
 
       -- Details Page
       [4] = function()
-        SetupCustomInstaller(5)
+        SetupCustomInstaller(4)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
         if F.IsAddOnEnabled("Details") then
@@ -290,7 +287,7 @@ function IS:Dialog()
 
       -- Plater Page
       [5] = function()
-        SetupCustomInstaller(6)
+        SetupCustomInstaller(5)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Plater"))
 
         if F.IsAddOnEnabled("Plater") then
@@ -316,7 +313,7 @@ function IS:Dialog()
 
       -- Boss Mod Page
       [6] = function()
-        SetupCustomInstaller(7)
+        SetupCustomInstaller(6)
         if F.IsAddOnEnabled("BigWigs") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
@@ -361,7 +358,7 @@ function IS:Dialog()
 
       -- WeakAuras recommendations
       [7] = function()
-        SetupCustomInstaller(8)
+        SetupCustomInstaller(7)
         installFrame.SubTitle:SetText(F.String.ToxiUI("WeakAuras"))
 
         if F.IsAddOnEnabled("WeakAuras") then
@@ -415,6 +412,8 @@ function IS:Dialog()
       end,
 
       [8] = function()
+        SetupCustomInstaller(8)
+
         -- Initialize the button index
         local buttonIndex = 1
 
@@ -434,7 +433,6 @@ function IS:Dialog()
           end
         end
 
-        SetupCustomInstaller(9)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
