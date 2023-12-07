@@ -235,7 +235,7 @@ function IS:Dialog()
             self.reloadRequired = true
 
             self:ElvUI(function()
-              installer:SetPage(5)
+              installer:SetPage(4)
             end)
           end, true)
         end
