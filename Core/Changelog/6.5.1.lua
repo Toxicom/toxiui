@@ -15,11 +15,13 @@ TXUI.Changelog["6.5.1"] = {
       .. " tab in "
       .. TXUI.Title
       .. " Settings"
-      .. F.String.Sublist("Classic & WeakAuras ActionBars styles"),
+      .. F.String.Sublist("Classic & WeakAuras ActionBars styles")
+      .. F.String.Sublist("New & Old UnitFrames styles"),
     "Show ActionBars when Player is in Vehicle or DragonRiding" --
       .. F.String.Sublist("Currently in testing")
       .. F.String.Sublist("Priest Mind Control does not work yet"),
-    "Smart Power tag for Classic to display mana in full value",
+    "Smart Power tag for to display mana in full value" --
+      .. F.String.Sublist("Enabled on Classic ActionBars style layout"),
     "Add new options to " --
       .. F.String.Scaling()
       .. ":"
