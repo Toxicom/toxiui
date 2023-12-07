@@ -319,6 +319,40 @@ function O:Plugins_AdditionalScaling()
       step = 0.05,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Classic
+  do
+    -- Classic Group
+    local classicGroup = self:AddInlineDesc(options, {
+      name = "Classic Only",
+      hidden = optionsHidden,
+    }, {
+      name = "Scale Classic Era & Wrath of the Lich King only frames.\n\n",
+    }).args
+
+    -- Classic Group: Profession
+    classicGroup.profession = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Profession",
+      disabled = function()
+        return TXUI.IsRetail
+      end,
+      get = function(_)
+        return E.db.TXUI.misc.scaling.profession.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.profession.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+  end
 end
 
 O:AddCallback("Plugins_AdditionalScaling")

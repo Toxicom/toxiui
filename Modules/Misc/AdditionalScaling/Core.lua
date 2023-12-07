@@ -31,6 +31,9 @@ function M:AdditionalScaling()
     if not TXUI.IsRetail then
       -- Classic: Talents
       M:AddCallbackOrScale("Blizzard_TalentUI", self.ScaleTalents)
+
+      -- Classic: Professions
+      M:AddCallbackOrScale("Blizzard_TradeSkillUI", self.ScaleProfessions)
     end
   else
     TXUI:LogDebug("AdditionalScaling > E.db or E.db.TXUI not found, skipping scaling!")

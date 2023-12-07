@@ -291,6 +291,10 @@ P.misc = {
     mailbox = {
       scale = 1,
     },
+
+    profession = {
+      scale = 1,
+    },
   },
 }
 
