@@ -53,5 +53,6 @@ TXUI.Changelog["6.5.1"] = {
       .. F.String.Class("ElvUI"),
 
     "* Development improvements",
+    "Refactor " .. TXUI.Title .. " Installer's pagination to be more future-proof and easier to change/control",
   },
 }

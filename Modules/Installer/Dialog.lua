@@ -15,6 +15,18 @@ function IS:HideAnnoyances()
   E:StaticPopup_Hide("SCRIPT_PROFILE")
 end
 
+local Pages = {
+  Welcome = 1,
+  Profile = 2,
+  Core = 3,
+  Details = 4,
+  Plater = 5,
+  BigWigs = 6,
+  WeakAuras = 7,
+  Additional = 8,
+  Complete = 9,
+}
+
 -- Installer Dialog Table
 function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
@@ -34,7 +46,7 @@ function IS:Dialog()
     if currentImageIndex > #imageList then currentImageIndex = 1 end
   end
 
-  local function SetupCustomInstaller(pageNumber)
+  local function SetupCustomInstaller(page)
     -- Stop the timer on each page
     if timer then timer:Cancel() end
 
@@ -45,19 +57,19 @@ function IS:Dialog()
     installFrame:Size(825, 600)
 
     -- Custom tutorial image
-    if pageNumber == 4 then
+    if page == Pages.Details then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.Details)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 5 then
+    elseif page == Pages.Plater then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.Plater)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 6 then
+    elseif page == Pages.BigWigs then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.BigWigs)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 7 then
+    elseif page == Pages.WeakAuras then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
       installFrame.tutorialImage:Size(512, 256)
-    elseif pageNumber == 8 then
+    elseif page == Pages.Additional then
       -- List of images to cycle through
       local imageList = {
         I.Media.Installer.OmniCD,
@@ -98,7 +110,7 @@ function IS:Dialog()
     tutorialImage = I.Media.Logos.Logo,
     Pages = {
       -- Welcome Page or Shared Media warning
-      [1] = function()
+      [Pages.Welcome] = function()
         self.installerOpen = true
         self:HideAnnoyances()
         SetupCustomInstaller()
@@ -167,7 +179,7 @@ function IS:Dialog()
       end,
 
       -- Profile Page
-      [2] = function()
+      [Pages.Profile] = function()
         SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Profile"))
 
@@ -197,7 +209,7 @@ function IS:Dialog()
       end,
 
       -- Layout Page
-      [3] = function()
+      [Pages.Core] = function()
         SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Core Settings"))
 
@@ -232,7 +244,7 @@ function IS:Dialog()
             self.reloadRequired = true
 
             self:ElvUI(function()
-              installer:SetPage(4)
+              installer:SetPage(Pages.Core + 1)
             end)
           end, true)
         end
@@ -251,8 +263,8 @@ function IS:Dialog()
       end,
 
       -- Details Page
-      [4] = function()
-        SetupCustomInstaller(4)
+      [Pages.Details] = function()
+        SetupCustomInstaller(Pages.Details)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
         if F.IsAddOnEnabled("Details") then
@@ -286,8 +298,8 @@ function IS:Dialog()
       end,
 
       -- Plater Page
-      [5] = function()
-        SetupCustomInstaller(5)
+      [Pages.Plater] = function()
+        SetupCustomInstaller(Pages.Plater)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Plater"))
 
         if F.IsAddOnEnabled("Plater") then
@@ -312,8 +324,8 @@ function IS:Dialog()
       end,
 
       -- Boss Mod Page
-      [6] = function()
-        SetupCustomInstaller(6)
+      [Pages.BigWigs] = function()
+        SetupCustomInstaller(Pages.BigWigs)
         if F.IsAddOnEnabled("BigWigs") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
@@ -357,8 +369,8 @@ function IS:Dialog()
       end,
 
       -- WeakAuras recommendations
-      [7] = function()
-        SetupCustomInstaller(7)
+      [Pages.WeakAuras] = function()
+        SetupCustomInstaller(Pages.WeakAuras)
         installFrame.SubTitle:SetText(F.String.ToxiUI("WeakAuras"))
 
         if F.IsAddOnEnabled("WeakAuras") then
@@ -411,8 +423,8 @@ function IS:Dialog()
         end)
       end,
 
-      [8] = function()
-        SetupCustomInstaller(8)
+      [Pages.Additional] = function()
+        SetupCustomInstaller(Pages.Additional)
 
         -- Initialize the button index
         local buttonIndex = 1
@@ -470,7 +482,7 @@ function IS:Dialog()
       end,
 
       -- Completed Page
-      [9] = function()
+      [Pages.Complete] = function()
         SetupCustomInstaller()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
 
@@ -516,15 +528,15 @@ function IS:Dialog()
 
     -- Installation Steps
     StepTitles = {
-      [1] = "Welcome",
-      [2] = "Profile",
-      [3] = "Core Settings",
-      [4] = "Details",
-      [5] = "Plater",
-      [6] = "BigWigs",
-      [7] = "WeakAuras",
-      [8] = "Additional AddOns",
-      [9] = "Installation Complete",
+      [Pages.Welcome] = "Welcome",
+      [Pages.Profile] = "Profile",
+      [Pages.Core] = "Core Settings",
+      [Pages.Details] = "Details",
+      [Pages.Plater] = "Plater",
+      [Pages.BigWigs] = "BigWigs",
+      [Pages.WeakAuras] = "WeakAuras",
+      [Pages.Additional] = "Additional AddOns",
+      [Pages.Complete] = "Installation Complete",
     },
 
     -- Customize colors
