@@ -1273,12 +1273,16 @@ function PF:BuildProfile()
 
         ["!Level"] = {
           xOffset = F.Dpi(20),
-          yOffset = F.Dpi(-15),
+          yOffset = F.Dpi(-20),
         },
 
         ["!Power"] = {
           justifyH = "RIGHT",
           xOffset = F.Dpi(-10),
+        },
+
+        ["!ClassIcon"] = {
+          enable = false,
         },
       },
 

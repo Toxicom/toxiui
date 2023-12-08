@@ -36,6 +36,9 @@ TXUI.Changelog["6.5.1"] = {
     "Update WunderBar's default shown currencies for Dragonflight",
     "Update Totem bar for Wrath:" .. F.String.Sublist("Move it above ActionBar 1") .. F.String.Sublist("Apply 4:3 ratio sizing"),
     "Enable Target UnitFrame Range Fader for Healer layout",
+    "Improve Healer layout's Party frames" --
+      .. F.String.Sublist("Move Level text down")
+      .. F.String.Sublist("Disable Class Icon"),
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.53",
