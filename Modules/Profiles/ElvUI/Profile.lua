@@ -1899,6 +1899,7 @@ function PF:BuildProfile()
 
     backdrop = false,
     keepSizeRatio = false,
+    mouseover = false,
 
     buttons = 12,
     buttonSize = F.Dpi(32), -- Width
