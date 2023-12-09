@@ -31,6 +31,7 @@ TXUI.Changelog["6.5.1"] = {
       .. F.String.Sublist("Profession Frame (Classic Era & Wrath only)"),
 
     "* Bug fixes",
+    "Fix bug with user having Shadow & Light installed previously",
 
     "* Profile updates",
     "Update WunderBar's default shown currencies for Dragonflight",

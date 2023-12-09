@@ -41,21 +41,31 @@ function TXUI:CheckRequirements(requirements, skipProfile)
     elseif requirement == I.Enum.Requirements.SL_MINIMAP_COORDS_DISABLED then
       if F.IsAddOnEnabled("ElvUI_SLE") and E.db.sle and E.db.sle.minimap.coords.enable then return requirement end
     elseif requirement == I.Enum.Requirements.SL_DECONSTRUCT_DISABLED then
-      if F.IsAddOnEnabled("ElvUI_SLE") and E.private.sle and (E.private.sle.professions.deconButton.enable or E.private.sle.professions.enchant.enchScroll) then
+      if
+        F.IsAddOnEnabled("ElvUI_SLE")
+        and E.private.sle
+        and E.private.sle.professions
+        and (E.private.sle.professions.deconButton.enable or E.private.sle.professions.enchant.enchScroll)
+      then
         return requirement
       end
     elseif requirement == I.Enum.Requirements.ARMORY_DISABLED then
-      if
-        F.GetDBFromPath("sle.armory.character.enable")
-        or F.GetDBFromPath("db.sle.armory.inspect.enable")
-        or F.GetDBFromPath("E.db.sle.armory.stats.enable")
-        or F.GetDBFromPath("ElvUI_EltreumUI.skins.expandarmorybg")
-        or F.GetDBFromPath("ElvUI_EltreumUI.skins.itemquality")
-        or F.GetDBFromPath("ElvUI_EltreumUI.skins.characterskingradients")
-        or F.GetDBFromPath("ElvUI_EltreumUI.skins.statcolors")
-        or F.GetDBFromPath("ElvUI_EltreumUI.skins.classicarmory ")
-      then
-        return requirement
+      if F.IsAddOnEnabled("ElvUI_SLE") then
+        if F.GetDBFromPath("sle.armory.character.enable") or F.GetDBFromPath("db.sle.armory.inspect.enable") or F.GetDBFromPath("E.db.sle.armory.stats.enable") then
+          return requirement
+        end
+      end
+
+      if F.IsAddOnEnabled("ElvUI_EltreumUI") then
+        if
+          F.GetDBFromPath("ElvUI_EltreumUI.skins.expandarmorybg")
+          or F.GetDBFromPath("ElvUI_EltreumUI.skins.itemquality")
+          or F.GetDBFromPath("ElvUI_EltreumUI.skins.characterskingradients")
+          or F.GetDBFromPath("ElvUI_EltreumUI.skins.statcolors")
+          or F.GetDBFromPath("ElvUI_EltreumUI.skins.classicarmory ")
+        then
+          return requirement
+        end
       end
     elseif requirement == I.Enum.Requirements.WT_ENABLED then
       if not F.IsAddOnEnabled("ElvUI_WindTools") then return requirement end
