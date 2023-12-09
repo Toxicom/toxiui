@@ -123,7 +123,15 @@ function IS:ElvUI(callback)
       .. " "
       .. (E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK") or F.String.ToxiUI("DPS/Tank") .. " layout installed.")
 
-    if TXUI.IsClassic then ST:ApplyStyle("actionBars", "Classic", true) end
+    -- persist selected styles when reinstalling
+    local styles = E.db.TXUI.styles
+    if styles then
+      TXUI:GetModule("SplashScreen"):Wrap("Applying styles...", function()
+        for key, value in pairs(styles) do
+          ST:ApplyStyle(key, value, true)
+        end
+      end, true)
+    end
 
     -- Show success message
     self:ShowStepComplete(msg)

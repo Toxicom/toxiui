@@ -19,6 +19,7 @@ function ST:StyleMovers()
     F.Event.ContinueAfterElvUIUpdate(function()
       E:StaggeredUpdateAll()
       SS:Hide()
+      TXUI:LogInfo("ActionBars Style applied. Please reload your UI!")
     end)
   end, 0.2)
 end
@@ -44,8 +45,11 @@ function ST:ApplyStyle(styleType, style, dontReload)
   if styleType == "unitFrames" then
     self:UpdateProfileForTheme()
     PF:UpdateProfileForGradient()
-    SS:Hide()
-    E:StaticPopup_Show("CONFIG_RL")
+    if not dontReload then
+      SS:Hide()
+      E:StaticPopup_Show("CONFIG_RL")
+    end
+    TXUI:LogInfo("UnitFrames Style applied. Please reload your UI!")
     return
   end
 
