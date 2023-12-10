@@ -436,6 +436,35 @@ function O:Skins_ElvUI()
       end,
     }
   end
+
+  -- Color Modifier Keys
+  do
+    local colorModifiersGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Color Modifier Keys",
+    }, {
+      name = "This option "
+        .. F.String.Class("colors")
+        .. " your modifier keys to "
+        .. F.String.Class("class")
+        .. " color.\n\nSupported modifiers: SHIFT, CTRL, ALT, NUMPAD, MOUSEBUTTON\n\n",
+    }, I.Requirements.ColorModifiers).args
+
+    colorModifiersGroup.enable = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enabling this colors your modifier keys.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.colorModifiers, colorModifiersGroup)
+      end,
+      get = function()
+        return E.db.TXUI.addons.colorModifiers
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.colorModifiers = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
 end
 
 O:AddCallback("Skins_ElvUI")

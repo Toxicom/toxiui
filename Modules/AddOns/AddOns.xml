@@ -1,5 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file='AFK.lua' />
+  <Script file='ColorModifiers.lua' />
   <Script file='Deconstruct.lua' />
   <Script file='FadePersist.lua' />
   <Script file='Theme.lua' />

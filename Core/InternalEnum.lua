@@ -29,6 +29,7 @@ I.Enum.Requirements = F.Enum {
   "DETAILS_NOT_SKINNED",
   "OTHER_THEMES_DISABLED",
   "ELVUI_ACTIONBARS_DISABLED",
+  "ELTRUISM_COLOR_MODIFIERS_DISABLED",
 }
 
 -- Used for F.String.Color functions

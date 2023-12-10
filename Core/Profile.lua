@@ -187,6 +187,9 @@ P.addons = {
     shadowSize = 4,
   },
 
+  -- Color Modifier Keys
+  colorModifiers = true,
+
   -- ElvUI Fonts
   fontScale = 0,
 

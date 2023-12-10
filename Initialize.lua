@@ -1,4 +1,4 @@
-local E, _, V, P, G = unpack(ElvUI)
+local E, L, V, P, G = unpack(ElvUI)
 local EP = E.Libs.EP
 local addonName, addon = ...
 
@@ -25,6 +25,7 @@ addon[4] = I
 addon[5] = V.TXUI
 addon[6] = P.TXUI
 addon[7] = G.TXUI
+addon[8] = L
 _G[addonName] = addon
 
 TXUI.AddOnName = addonName
