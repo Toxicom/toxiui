@@ -28,7 +28,8 @@ TXUI.Changelog["6.5.1"] = {
       .. F.String.Sublist("Vendor (Merchant) Frame")
       .. F.String.Sublist("Gossip Frame")
       .. F.String.Sublist("Mailbox Frame")
-      .. F.String.Sublist("Profession Frame (Classic Era & Wrath only)"),
+      .. F.String.Sublist("Profession Frame (Classic Era & Wrath only)")
+      .. F.String.Sublist("Class Trainer Frame (Classic Era & Wrath only)"),
 
     "* Bug fixes",
     "Fix bug with user having Shadow & Light installed previously",

@@ -295,6 +295,10 @@ P.misc = {
     profession = {
       scale = 1,
     },
+
+    classTrainer = {
+      scale = 1,
+    },
   },
 }
 

@@ -32,6 +32,9 @@ function M:AdditionalScaling()
       -- Classic: Talents
       M:AddCallbackOrScale("Blizzard_TalentUI", self.ScaleTalents)
 
+      -- Classic: Class Trainer
+      M:AddCallbackOrScale("Blizzard_TrainerUI", self.ScaleClassTrainer)
+
       -- Classic: Professions
       M:AddCallbackOrScale("Blizzard_TradeSkillUI", self.ScaleProfessions)
     end
