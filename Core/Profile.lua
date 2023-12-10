@@ -188,7 +188,9 @@ P.addons = {
   },
 
   -- Color Modifier Keys
-  colorModifiers = true,
+  colorModifiers = {
+    enabled = true,
+  },
 
   -- ElvUI Fonts
   fontScale = 0,

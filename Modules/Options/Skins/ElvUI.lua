@@ -457,10 +457,10 @@ function O:Skins_ElvUI()
         return self:GetEnableName(E.db.TXUI.addons.colorModifiers, colorModifiersGroup)
       end,
       get = function()
-        return E.db.TXUI.addons.colorModifiers
+        return E.db.TXUI.addons.colorModifiers.enabled
       end,
       set = function(_, value)
-        E.db.TXUI.addons.colorModifiers = value
+        E.db.TXUI.addons.colorModifiers.enabled = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }
