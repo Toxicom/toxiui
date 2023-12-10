@@ -454,7 +454,7 @@ function O:Skins_ElvUI()
       type = "toggle",
       desc = "Enabling this colors your modifier keys.",
       name = function()
-        return self:GetEnableName(E.db.TXUI.addons.colorModifiers, colorModifiersGroup)
+        return self:GetEnableName(E.db.TXUI.addons.colorModifiers.enabled, colorModifiersGroup)
       end,
       get = function()
         return E.db.TXUI.addons.colorModifiers.enabled
