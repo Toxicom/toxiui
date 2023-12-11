@@ -401,6 +401,7 @@ I.HearthstoneData = {
   [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["load"] = TXUI.IsRetail }, -- Wyrmhole Generator
   [200630] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Ohn'ir Windsage's Hearthstone
   [206195] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Path of the Naaru
+  [209035] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Hearthstone of the Flame (Amirdrassil raid)
 
   -- Mage specific
   [193759] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Hall of the Guardian

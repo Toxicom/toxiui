@@ -41,6 +41,7 @@ TXUI.Changelog["6.5.1"] = {
     "Improve Healer layout's Party frames" --
       .. F.String.Sublist("Move Level text down")
       .. F.String.Sublist("Disable Class Icon"),
+    "Add Hearthstone of the Flame to WunderBar's Hearthstone Module",
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.53",
