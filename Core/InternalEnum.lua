@@ -80,7 +80,7 @@ I.Enum.IconShape = F.Enum { "SQUARE", "RECTANGLE" }
 I.Enum.ChangelogType = F.Enum { "UPDATE", "HOTFIX" }
 
 -- Developers
-I.Enum.Developers = F.Enum { "TOXI", "RYADA", "RHAP", "JAKE" }
+I.Enum.Developers = F.Enum { "TOXI", "RYADA", "RHAP", "JAKE", "LAEV" }
 
 -- Client Flavors
 I.Enum.Flavor = F.Enum { "CLASSIC", "TBC", "WRATH", "RETAIL" }

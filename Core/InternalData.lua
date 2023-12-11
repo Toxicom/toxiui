@@ -104,6 +104,12 @@ I.Data.Contributor = {
       },
     },
 
+    [I.Enum.Developers.LAEV] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Laev goes here
+      },
+    },
+
     [I.Enum.Developers.RHAP] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Illidan
