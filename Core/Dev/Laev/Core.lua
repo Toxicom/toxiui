@@ -31,6 +31,8 @@ function LAEV:Initialize()
     self.callOnInit[index] = nil
   end
 
+  E:UpdateFontTemplates()
+
   -- Print out that dev modules ran
   self:LogInfo(F.String.FastGradient("Laev you butt lover, you are now in DEV+ mode!", 0.57, 0.92, 0.49, 0.38, 0.81, 0.43))
 
