@@ -73,7 +73,7 @@ function LAEV:SetupProfile()
   E.db["TXUI"]["wunderbar"]["subModules"]["Hearthstone"]["primaryHS"] = 208704
   E.db["TXUI"]["wunderbar"]["subModules"]["Hearthstone"]["secondaryHS"] = 140192
   E.db["TXUI"]["wunderbar"]["subModules"]["MicroMenu"]["icons"]["pvp"]["enabled"] = false
-  E.db["TXUI"]["wunderbar"]["subModules"]["Time"]["infoTextDisplayed"]["ampm"] = true
+  E.db["TXUI"]["wunderbar"]["subModules"]["Time"]["infoTextDisplayed"]["ampm"] = false
   E.db["TXUI"]["wunderbar"]["subModules"]["Time"]["infoTextDisplayed"]["date"] = false
   E.db["TXUI"]["wunderbar"]["subModules"]["Time"]["infoTextDisplayed"]["mail"] = false
 
@@ -96,11 +96,11 @@ function LAEV:SetupProfile()
   E.db["actionbar"]["bar1"]["macroTextPosition"] = "BOTTOM"
   E.db["actionbar"]["bar1"]["macroTextYOffset"] = 0
   E.db["actionbar"]["bar1"]["point"] = "TOPLEFT"
-  E.db["actionbar"]["bar1"]["buttonSpacing"] = 1
+  E.db["actionbar"]["bar1"]["buttonSpacing"] = 2
   E.db["actionbar"]["bar1"]["countFontSize"] = 13
   E.db["actionbar"]["bar1"]["hotkeyFontSize"] = 13
 
-  E.db["actionbar"]["bar3"]["buttonHeight"] = 29
+  E.db["actionbar"]["bar3"]["buttonHeight"] = 30
   E.db["actionbar"]["bar3"]["buttonSize"] = 38
   E.db["actionbar"]["bar3"]["buttons"] = 12
   E.db["actionbar"]["bar3"]["countFont"] = "Arial Narrow"
@@ -122,7 +122,7 @@ function LAEV:SetupProfile()
   E.db["actionbar"]["bar3"]["point"] = "TOPLEFT"
 
   E.db["actionbar"]["bar4"]["backdrop"] = false
-  E.db["actionbar"]["bar4"]["buttonHeight"] = 29
+  E.db["actionbar"]["bar4"]["buttonHeight"] = 30
   E.db["actionbar"]["bar4"]["buttonSize"] = 38
   E.db["actionbar"]["bar4"]["buttonsPerRow"] = 6
   E.db["actionbar"]["bar4"]["countFont"] = "Arial Narrow"
@@ -163,7 +163,7 @@ function LAEV:SetupProfile()
   E.db["actionbar"]["bar5"]["macroTextYOffset"] = 0
   E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
   E.db["actionbar"]["bar5"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar5"]["buttonsPerRow"] = 12
+  E.db["actionbar"]["bar5"]["buttonSpacing"] = 2
   E.db["actionbar"]["bar5"]["countFontSize"] = 13
   E.db["actionbar"]["bar5"]["hotkeyFontSize"] = 13
 
@@ -186,7 +186,7 @@ function LAEV:SetupProfile()
   E.db["actionbar"]["bar6"]["macroTextYOffset"] = 0
   E.db["actionbar"]["bar6"]["point"] = "TOPLEFT"
   E.db["actionbar"]["bar6"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+  E.db["actionbar"]["bar6"]["buttonSpacing"] = 2
   E.db["actionbar"]["bar6"]["countFontSize"] = 13
   E.db["actionbar"]["bar6"]["hotkeyFontSize"] = 13
 
@@ -454,10 +454,10 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["player"]["buffs"]["countFontSize"] = 16
   E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["enable"] = true
   E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["font"] = "Arial Narrow"
-  E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["fontSize"] = 22
+  E.db["unitframe"]["units"]["player"]["castbar"]["customTextFont"]["fontSize"] = 14
   E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["enable"] = true
   E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["font"] = "Arial Narrow"
-  E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontSize"] = 22
+  E.db["unitframe"]["units"]["player"]["castbar"]["customTimeFont"]["fontSize"] = 14
   E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 30
   E.db["unitframe"]["units"]["player"]["castbar"]["insideInfoPanel"] = false
   E.db["unitframe"]["units"]["player"]["castbar"]["strataAndLevel"]["useCustomLevel"] = true
@@ -465,8 +465,8 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
   E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
   E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 300
-  E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 6
-  E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -12
+  E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 2
+  E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -2
   E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] = true
   E.db["unitframe"]["units"]["player"]["classbar"]["detachedWidth"] = 298
   E.db["unitframe"]["units"]["player"]["classbar"]["enable"] = false
@@ -502,7 +502,7 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["fontOutline"] = "OUTLINE"
   E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["justifyH"] = "LEFT"
-  E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["size"] = 20
+  E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["size"] = 16
   E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["text_format"] = "[kmt-name:caps{11}]"
   E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["xOffset"] = 6
   E.db["unitframe"]["units"]["player"]["customTexts"]["!Name"]["yOffset"] = 28
@@ -691,17 +691,17 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["target"]["buffs"]["yOffset"] = 72
   E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["enable"] = true
   E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["font"] = "Arial Narrow"
-  E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["fontSize"] = 22
+  E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["fontSize"] = 14
   E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["enable"] = true
   E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["font"] = "Arial Narrow"
-  E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 22
+  E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 14
   E.db["unitframe"]["units"]["target"]["castbar"]["height"] = 30
   E.db["unitframe"]["units"]["target"]["castbar"]["insideInfoPanel"] = false
   E.db["unitframe"]["units"]["target"]["castbar"]["strataAndLevel"]["useCustomLevel"] = true
   E.db["unitframe"]["units"]["target"]["castbar"]["textColor"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["target"]["castbar"]["width"] = 300
-  E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetText"] = 6
-  E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetTime"] = -12
+  E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetText"] = 2
+  E.db["unitframe"]["units"]["target"]["castbar"]["xOffsetTime"] = -2
   E.db["unitframe"]["units"]["target"]["customTexts"]["!ClassIcon"]["attachTextTo"] = "Health"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!ClassIcon"]["enable"] = true
   E.db["unitframe"]["units"]["target"]["customTexts"]["!ClassIcon"]["font"] = "Arial Narrow"
@@ -795,7 +795,7 @@ function LAEV:SetupProfile()
   -- ElvUI: Private
   E.private["general"]["chatBubbleFont"] = "Arial Narrow"
   E.private["general"]["chatBubbleFontOutline"] = "OUTLINE"
-  E.private["general"]["chatBubbleFontSize"] = 14
+  E.private["general"]["chatBubbleFontSize"] = 12
   E.private["general"]["chatBubbles"] = "disabled"
   E.private["general"]["dmgfont"] = "Arial Narrow"
   E.private["general"]["glossTex"] = "- ToxiUI"
@@ -820,10 +820,6 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
   E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["fontSize"] = 16
   E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 16
-
-  -- ElvUI: Private
-  E.private["general"]["chatBubbleFontSize"] = 11
-  E.private["general"]["chatBubbles"] = "disabled"
 end
 
 function LAEV:SetupAdditionalAddons()
@@ -908,7 +904,7 @@ function LAEV:SetupAdditionalAddons()
       { "raid2", "[kmt-name:caps{5}]", "CENTER", 0, 0 },
       { "raid3", "[kmt-name:caps{5}]", "CENTER", 0, 0 },
       { "target", "[kmt-name:caps{11}]", "RIGHT", -6, 28 },
-      { "targettarget", "[kmt-name:caps{7}]", "CENTER", 0, 18 },
+      { "targettarget", "[kmt-name:caps{8}]", "CENTER", 0, 18 },
     }
 
     for _, config in ipairs(unitConfigurations) do
