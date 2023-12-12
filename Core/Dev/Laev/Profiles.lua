@@ -96,6 +96,9 @@ function LAEV:SetupProfile()
   E.db["actionbar"]["bar1"]["macroTextPosition"] = "BOTTOM"
   E.db["actionbar"]["bar1"]["macroTextYOffset"] = 0
   E.db["actionbar"]["bar1"]["point"] = "TOPLEFT"
+  E.db["actionbar"]["bar1"]["buttonSpacing"] = 1
+  E.db["actionbar"]["bar1"]["countFontSize"] = 13
+  E.db["actionbar"]["bar1"]["hotkeyFontSize"] = 13
 
   E.db["actionbar"]["bar3"]["buttonHeight"] = 29
   E.db["actionbar"]["bar3"]["buttonSize"] = 38
@@ -159,6 +162,10 @@ function LAEV:SetupProfile()
   E.db["actionbar"]["bar5"]["macroTextPosition"] = "BOTTOM"
   E.db["actionbar"]["bar5"]["macroTextYOffset"] = 0
   E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
+  E.db["actionbar"]["bar5"]["buttonHeight"] = 30
+  E.db["actionbar"]["bar5"]["buttonsPerRow"] = 12
+  E.db["actionbar"]["bar5"]["countFontSize"] = 13
+  E.db["actionbar"]["bar5"]["hotkeyFontSize"] = 13
 
   E.db["actionbar"]["bar6"]["buttonHeight"] = 30
   E.db["actionbar"]["bar6"]["buttonSize"] = 38
@@ -178,6 +185,10 @@ function LAEV:SetupProfile()
   E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
   E.db["actionbar"]["bar6"]["macroTextYOffset"] = 0
   E.db["actionbar"]["bar6"]["point"] = "TOPLEFT"
+  E.db["actionbar"]["bar6"]["buttonHeight"] = 30
+  E.db["actionbar"]["bar6"]["buttonSpacing"] = 1
+  E.db["actionbar"]["bar6"]["countFontSize"] = 13
+  E.db["actionbar"]["bar6"]["hotkeyFontSize"] = 13
 
   E.db["actionbar"]["stanceBar"]["enabled"] = false
 
@@ -792,6 +803,27 @@ function LAEV:SetupProfile()
   E.private["general"]["namefont"] = "Arial Narrow"
   E.private["general"]["normTex"] = "- Tx Mid"
   E.private["general"]["totemTracker"] = false
+  E.db["unitframe"]["units"]["boss"]["customTexts"]["!Power"]["enable"] = false
+  E.db["unitframe"]["units"]["boss"]["spacing"] = 42
+  E.db["unitframe"]["units"]["party"]["customTexts"]["!Name"]["size"] = 20
+  E.db["unitframe"]["units"]["party"]["customTexts"]["!Name"]["xOffset"] = 0
+  E.db["unitframe"]["units"]["party"]["customTexts"]["!Name"]["yOffset"] = 28
+  E.db["unitframe"]["units"]["party"]["customTexts"]["!Power"]["enable"] = false
+  E.db["unitframe"]["units"]["party"]["power"]["height"] = 8
+  E.db["unitframe"]["units"]["party"]["verticalSpacing"] = 34
+  E.db["unitframe"]["units"]["party"]["width"] = 210
+  E.db["unitframe"]["units"]["player"]["customTexts"]["!Power"]["enable"] = false
+  E.db["unitframe"]["units"]["player"]["customTexts"]["!Power"]["justifyH"] = "CENTER"
+  E.db["unitframe"]["units"]["player"]["customTexts"]["!Power"]["xOffset"] = 0
+  E.db["unitframe"]["units"]["player"]["customTexts"]["!Power"]["yOffset"] = 6
+  E.db["unitframe"]["units"]["player"]["power"]["text_format"] = ""
+  E.db["unitframe"]["units"]["player"]["power"]["width"] = "spaced"
+  E.db["unitframe"]["units"]["target"]["castbar"]["customTextFont"]["fontSize"] = 16
+  E.db["unitframe"]["units"]["target"]["castbar"]["customTimeFont"]["fontSize"] = 16
+
+  -- ElvUI: Private
+  E.private["general"]["chatBubbleFontSize"] = 11
+  E.private["general"]["chatBubbles"] = "disabled"
 end
 
 function LAEV:SetupAdditionalAddons()
@@ -882,6 +914,10 @@ function LAEV:SetupAdditionalAddons()
     for _, config in ipairs(unitConfigurations) do
       configureCustomText(unpack(config))
     end
+    E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["width"] = 164
+    E.private["WT"]["quest"]["objectiveTracker"]["cosmeticBar"]["widthMode"] = "DYNAMIC"
+    E.private["WT"]["quest"]["objectiveTracker"]["header"]["size"] = 20
+    E.private["WT"]["skins"]["blizzard"]["enable"] = true
   end
 end
 
