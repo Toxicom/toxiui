@@ -106,7 +106,35 @@ I.Data.Contributor = {
 
     [I.Enum.Developers.LAEV] = {
       [I.Enum.Flavor.RETAIL] = {
-        -- Laev goes here
+        -- Thrall
+        ["Laevy-Thrall"] = true,
+        ["Vancrowe-Thrall"] = true,
+        ["Maxedge-Thrall"] = true,
+        ["Worthington-Thrall"] = true,
+        ["Levas-Thrall"] = true,
+        ["Laevion-Thrall"] = true,
+        ["Laev-Thrall"] = true,
+        ["Minedge-Thrall"] = true,
+        ["Crispylaevs-Thrall"] = true,
+        ["Melreau-Thrall"] = true,
+        ["Levatine-Thrall"] = true,
+        ["Laevish-Thrall"] = true,
+        ["Terreth-Thrall"] = true,
+        ["Fritolaevs-Thrall"] = true,
+        ["Levas-Thrall"] = true,
+
+        -- Stormrage
+        ["Anseilyn-Stormrage"] = true,
+        ["Levas-Stormrage"] = true,
+        ["Laevo-Stormrage"] = true,
+        ["Sylerande-Stormrage"] = true,
+        ["Laevy-Stormrage"] = true,
+        ["Veryedgy-Stormrage"] = true,
+        ["Anvilocke-Stormrage"] = true,
+        ["Laev-Stormrage"] = true,
+        ["Banirloch-Stormrage"] = true,
+        ["Anseilon-Stormrage"] = true,
+        ["Laronsus-Stormrage"] = true,
       },
     },
 
