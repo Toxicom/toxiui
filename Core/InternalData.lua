@@ -121,7 +121,6 @@ I.Data.Contributor = {
         ["Laevish-Thrall"] = true,
         ["Terreth-Thrall"] = true,
         ["Fritolaevs-Thrall"] = true,
-        ["Levas-Thrall"] = true,
 
         -- Stormrage
         ["Anseilyn-Stormrage"] = true,
