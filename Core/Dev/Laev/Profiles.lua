@@ -479,14 +479,11 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
   E.db["unitframe"]["units"]["raid1"]["raidRoleIcons"]["scale"] = 2
   E.db["unitframe"]["units"]["raid1"]["raidRoleIcons"]["yOffset"] = 7
-  -- @TODO: can we get a proper RGB value here?
-  E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["duration"]["color"]["b"] = 0.91764705882353
-  E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["duration"]["color"]["g"] = 0.94117647058824
+  E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["duration"]["color"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["fontSize"] = 16
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["size"] = 24
-  -- @TODO: can we get a proper RGB value here?
-  E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["stack"]["color"]["g"] = 0.91372549019608
+  E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["stack"]["color"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["stack"]["yOffset"] = 0
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["yOffset"] = 6
   E.db["unitframe"]["units"]["raid1"]["readycheckIcon"]["size"] = 29
@@ -516,15 +513,12 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["raid2"]["name"]["text_format"] = ""
   E.db["unitframe"]["units"]["raid2"]["raidRoleIcons"]["scale"] = 2
   E.db["unitframe"]["units"]["raid2"]["raidRoleIcons"]["yOffset"] = 7
-  -- @TODO: can we get a proper RGB value here?
-  E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["duration"]["color"]["b"] = 0.91764705882353
-  E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["duration"]["color"]["g"] = 0.94117647058824
+  E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["duration"]["color"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["enable"] = true
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["fontSize"] = 16
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["size"] = 24
-  -- @TODO: can we get a proper RGB value here?
-  E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["color"]["g"] = 0.91372549019608
+  E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["color"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["yOffset"] = 0
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["yOffset"] = 6
   E.db["unitframe"]["units"]["raid2"]["readycheckIcon"]["size"] = 29
@@ -555,15 +549,12 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["raid3"]["name"]["text_format"] = ""
   E.db["unitframe"]["units"]["raid3"]["raidRoleIcons"]["scale"] = 2
   E.db["unitframe"]["units"]["raid3"]["raidRoleIcons"]["yOffset"] = 7
-  -- @TODO: can we get a proper RGB value here?
-  E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["duration"]["color"]["b"] = 0.91764705882353
-  E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["duration"]["color"]["g"] = 0.94117647058824
+  E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["duration"]["color"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["enable"] = true
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["fontSize"] = 16
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["size"] = 22
-  -- @TODO: can we get a proper RGB value here?
-  E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["color"]["g"] = 0.91372549019608
+  E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["color"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["yOffset"] = 0
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["yOffset"] = 5
   E.db["unitframe"]["units"]["raid3"]["readycheckIcon"]["size"] = 29
