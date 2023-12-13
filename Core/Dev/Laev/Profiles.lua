@@ -4,12 +4,6 @@ local LAEV = TXUI:GetModule("Dev"):GetModule("Laev")
 -- Looks like this file is not important ...
 --@do-not-package@
 
--- local SetCVar = SetCVar
-
--- function LAEV:SetupCvars()
---   -- CVars
--- end
-
 function LAEV:SetupProfile()
   -- ToxiUI
   -- ToxiUI: AddOns
@@ -53,12 +47,8 @@ function LAEV:SetupProfile()
   E.db["TXUI"]["styles"]["actionBars"] = "Classic"
 
   -- ToxiUI: Themes
-  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][1]["HUNTER"]["b"] = 0.17254902422428
-  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][1]["HUNTER"]["g"] = 0.42352944612503
-  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][1]["HUNTER"]["r"] = 0.31764706969261
-  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][2]["HUNTER"]["b"] = 0.33333334326744
-  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][2]["HUNTER"]["g"] = 1
-  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][2]["HUNTER"]["r"] = 0.72156864404678
+  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][1]["HUNTER"] = F.Table.HexToRGB("#516C2C")
+  E.db["TXUI"]["themes"]["gradientMode"]["classColorMap"][2]["HUNTER"] = F.Table.HexToRGB("#B8FF55")
 
   -- ToxiUI: WunderBar
   E.db["TXUI"]["wunderbar"]["general"]["backgroundColor"] = "VALUE"
@@ -79,116 +69,50 @@ function LAEV:SetupProfile()
 
   -- ElvUI
   -- ElvUI: ActionBar
-  E.db["actionbar"]["bar1"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar1"]["buttonSize"] = 38
-  E.db["actionbar"]["bar1"]["countFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar1"]["countFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar1"]["countFontSize"] = 13
-  E.db["actionbar"]["bar1"]["countTextPosition"] = "BOTTOMLEFT"
-  E.db["actionbar"]["bar1"]["hotkeyFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar1"]["hotkeyFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar1"]["hotkeyFontSize"] = 13
-  E.db["actionbar"]["bar1"]["hotkeyTextYOffset"] = 0
-  E.db["actionbar"]["bar1"]["keepSizeRatio"] = false
-  E.db["actionbar"]["bar1"]["macroFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar1"]["macroFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar1"]["macroFontSize"] = 13
-  E.db["actionbar"]["bar1"]["macroTextPosition"] = "BOTTOM"
-  E.db["actionbar"]["bar1"]["macroTextYOffset"] = 0
-  E.db["actionbar"]["bar1"]["point"] = "TOPLEFT"
-  E.db["actionbar"]["bar1"]["buttonSpacing"] = 2
-  E.db["actionbar"]["bar1"]["countFontSize"] = 13
-  E.db["actionbar"]["bar1"]["hotkeyFontSize"] = 13
+  local function configureActionBar(bar, settings)
+    for key, value in pairs(settings) do
+      E.db["actionbar"][bar][key] = value
+    end
+  end
 
-  E.db["actionbar"]["bar3"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar3"]["buttonSize"] = 38
-  E.db["actionbar"]["bar3"]["buttons"] = 12
-  E.db["actionbar"]["bar3"]["countFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar3"]["countFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar3"]["countFontSize"] = 13
-  E.db["actionbar"]["bar3"]["countTextPosition"] = "BOTTOMLEFT"
-  E.db["actionbar"]["bar3"]["hotkeyFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar3"]["hotkeyFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar3"]["hotkeyFontSize"] = 13
-  E.db["actionbar"]["bar3"]["hotkeyTextYOffset"] = 0
-  E.db["actionbar"]["bar3"]["keepSizeRatio"] = false
-  E.db["actionbar"]["bar3"]["macroFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar3"]["macroFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar3"]["macroFontSize"] = 13
-  E.db["actionbar"]["bar3"]["macroTextPosition"] = "BOTTOM"
-  E.db["actionbar"]["bar3"]["macroTextYOffset"] = 0
-  E.db["actionbar"]["bar3"]["macrotext"] = true
+  local commonSettings = {
+    enabled = true,
+    backdrop = false,
+    buttons = 12,
+    buttonHeight = 30,
+    buttonSize = 38,
+    countFont = "Arial Narrow",
+    countFontOutline = "OUTLINE",
+    countFontSize = 13,
+    countTextPosition = "BOTTOMLEFT",
+    hotkeyFont = "Arial Narrow",
+    hotkeyFontOutline = "OUTLINE",
+    hotkeyFontSize = 13,
+    hotkeyTextYOffset = 0,
+    keepSizeRatio = false,
+    macroFont = "Arial Narrow",
+    macroFontOutline = "OUTLINE",
+    macroFontSize = 13,
+    macroTextPosition = "BOTTOM",
+    macroTextYOffset = 0,
+    macrotext = true,
+    point = "TOPLEFT",
+  }
+
+  -- Setting up bars with common settings
+  configureActionBar("bar1", commonSettings)
+  configureActionBar("bar3", commonSettings)
+  configureActionBar("bar4", commonSettings)
+  configureActionBar("bar5", commonSettings)
+  configureActionBar("bar6", commonSettings)
+
+  -- Adding unique settings for specific bars
   E.db["actionbar"]["bar3"]["mouseover"] = true
-  E.db["actionbar"]["bar3"]["point"] = "TOPLEFT"
 
-  E.db["actionbar"]["bar4"]["backdrop"] = false
-  E.db["actionbar"]["bar4"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar4"]["buttonSize"] = 38
   E.db["actionbar"]["bar4"]["buttonsPerRow"] = 6
-  E.db["actionbar"]["bar4"]["countFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar4"]["countFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar4"]["countFontSize"] = 13
-  E.db["actionbar"]["bar4"]["countTextPosition"] = "BOTTOMLEFT"
-  E.db["actionbar"]["bar4"]["hotkeyFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar4"]["hotkeyFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar4"]["hotkeyFontSize"] = 13
-  E.db["actionbar"]["bar4"]["hotkeyTextYOffset"] = 0
-  E.db["actionbar"]["bar4"]["keepSizeRatio"] = false
-  E.db["actionbar"]["bar4"]["macroFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar4"]["macroFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar4"]["macroFontSize"] = 13
-  E.db["actionbar"]["bar4"]["macroTextPosition"] = "BOTTOM"
-  E.db["actionbar"]["bar4"]["macroTextYOffset"] = 0
-  E.db["actionbar"]["bar4"]["macrotext"] = true
   E.db["actionbar"]["bar4"]["mouseover"] = true
-  E.db["actionbar"]["bar4"]["point"] = "TOPLEFT"
 
-  E.db["actionbar"]["bar5"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar5"]["buttonSize"] = 38
-  E.db["actionbar"]["bar5"]["buttons"] = 12
   E.db["actionbar"]["bar5"]["buttonsPerRow"] = 12
-  E.db["actionbar"]["bar5"]["countFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar5"]["countFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar5"]["countFontSize"] = 13
-  E.db["actionbar"]["bar5"]["countTextPosition"] = "BOTTOMLEFT"
-  E.db["actionbar"]["bar5"]["hotkeyFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar5"]["hotkeyFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar5"]["hotkeyFontSize"] = 13
-  E.db["actionbar"]["bar5"]["hotkeyTextYOffset"] = 0
-  E.db["actionbar"]["bar5"]["keepSizeRatio"] = false
-  E.db["actionbar"]["bar5"]["macroFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar5"]["macroFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar5"]["macroFontSize"] = 13
-  E.db["actionbar"]["bar5"]["macroTextPosition"] = "BOTTOM"
-  E.db["actionbar"]["bar5"]["macroTextYOffset"] = 0
-  E.db["actionbar"]["bar5"]["point"] = "TOPLEFT"
-  E.db["actionbar"]["bar5"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar5"]["buttonSpacing"] = 2
-  E.db["actionbar"]["bar5"]["countFontSize"] = 13
-  E.db["actionbar"]["bar5"]["hotkeyFontSize"] = 13
-
-  E.db["actionbar"]["bar6"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar6"]["buttonSize"] = 38
-  E.db["actionbar"]["bar6"]["countFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar6"]["countFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar6"]["countFontSize"] = 13
-  E.db["actionbar"]["bar6"]["countTextPosition"] = "BOTTOMLEFT"
-  E.db["actionbar"]["bar6"]["enabled"] = true
-  E.db["actionbar"]["bar6"]["hotkeyFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar6"]["hotkeyFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar6"]["hotkeyFontSize"] = 13
-  E.db["actionbar"]["bar6"]["hotkeyTextYOffset"] = 0
-  E.db["actionbar"]["bar6"]["keepSizeRatio"] = false
-  E.db["actionbar"]["bar6"]["macroFont"] = "Arial Narrow"
-  E.db["actionbar"]["bar6"]["macroFontOutline"] = "OUTLINE"
-  E.db["actionbar"]["bar6"]["macroFontSize"] = 13
-  E.db["actionbar"]["bar6"]["macroTextPosition"] = "BOTTOM"
-  E.db["actionbar"]["bar6"]["macroTextYOffset"] = 0
-  E.db["actionbar"]["bar6"]["point"] = "TOPLEFT"
-  E.db["actionbar"]["bar6"]["buttonHeight"] = 30
-  E.db["actionbar"]["bar6"]["buttonSpacing"] = 2
-  E.db["actionbar"]["bar6"]["countFontSize"] = 13
-  E.db["actionbar"]["bar6"]["hotkeyFontSize"] = 13
 
   E.db["actionbar"]["stanceBar"]["enabled"] = false
 
@@ -203,30 +127,16 @@ function LAEV:SetupProfile()
   E.db["bags"]["itemLevelFontSize"] = 14
 
   -- ElvUI: Chat
-  E.db["chat"]["tabSelectedTextColor"]["b"] = 0.44705885648727
-  E.db["chat"]["tabSelectedTextColor"]["g"] = 0.82745105028152
-  E.db["chat"]["tabSelectedTextColor"]["r"] = 0.66666668653488
+  E.db["chat"]["tabSelectedTextColor"] = F.Table.HexToRGB("#AAD372")
   E.db["chat"]["timeStampFormat"] = "%I:%M "
 
   -- ElvUI: Cooldown
-  E.db["cooldown"]["daysIndicator"]["b"] = 0.44705885648727
-  E.db["cooldown"]["daysIndicator"]["g"] = 0.82745105028152
-  E.db["cooldown"]["daysIndicator"]["r"] = 0.66666668653488
-  E.db["cooldown"]["hhmmColorIndicator"]["b"] = 0.44705885648727
-  E.db["cooldown"]["hhmmColorIndicator"]["g"] = 0.82745105028152
-  E.db["cooldown"]["hhmmColorIndicator"]["r"] = 0.66666668653488
-  E.db["cooldown"]["hoursIndicator"]["b"] = 0.44705885648727
-  E.db["cooldown"]["hoursIndicator"]["g"] = 0.82745105028152
-  E.db["cooldown"]["hoursIndicator"]["r"] = 0.66666668653488
-  E.db["cooldown"]["minutesIndicator"]["b"] = 0.44705885648727
-  E.db["cooldown"]["minutesIndicator"]["g"] = 0.82745105028152
-  E.db["cooldown"]["minutesIndicator"]["r"] = 0.66666668653488
-  E.db["cooldown"]["mmssColorIndicator"]["b"] = 0.44705885648727
-  E.db["cooldown"]["mmssColorIndicator"]["g"] = 0.82745105028152
-  E.db["cooldown"]["mmssColorIndicator"]["r"] = 0.66666668653488
-  E.db["cooldown"]["secondsIndicator"]["b"] = 0.44705885648727
-  E.db["cooldown"]["secondsIndicator"]["g"] = 0.82745105028152
-  E.db["cooldown"]["secondsIndicator"]["r"] = 0.66666668653488
+  E.db["cooldown"]["daysIndicator"] = F.Table.HexToRGB("#AAD372")
+  E.db["cooldown"]["hhmmColorIndicator"] = F.Table.HexToRGB("#AAD372")
+  E.db["cooldown"]["hoursIndicator"] = F.Table.HexToRGB("#AAD372")
+  E.db["cooldown"]["minutesIndicator"] = F.Table.HexToRGB("#AAD372")
+  E.db["cooldown"]["mmssColorIndicator"] = F.Table.HexToRGB("#AAD372")
+  E.db["cooldown"]["secondsIndicator"] = F.Table.HexToRGB("#AAD372")
 
   -- ElvUI: General
   E.db["general"]["addonCompartment"]["hide"] = true
@@ -406,9 +316,7 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["pet"]["castbar"]["customTimeFont"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["pet"]["castbar"]["customTimeFont"]["fontSize"] = 16
   E.db["unitframe"]["units"]["pet"]["castbar"]["height"] = 14
-  E.db["unitframe"]["units"]["pet"]["castbar"]["textColor"]["b"] = 1
-  E.db["unitframe"]["units"]["pet"]["castbar"]["textColor"]["g"] = 1
-  E.db["unitframe"]["units"]["pet"]["castbar"]["textColor"]["r"] = 1
+  E.db["unitframe"]["units"]["pet"]["castbar"]["textColor"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["pet"]["castbar"]["width"] = 120
   E.db["unitframe"]["units"]["pet"]["customTexts"]["!Happiness"]["attachTextTo"] = "Health"
   E.db["unitframe"]["units"]["pet"]["customTexts"]["!Happiness"]["enable"] = true
@@ -438,8 +346,7 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["pet"]["power"]["enable"] = false
   E.db["unitframe"]["units"]["pet"]["threatStyle"] = "NONE"
   E.db["unitframe"]["units"]["pet"]["width"] = 120
-  E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["b"] = 1
-  E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"]["g"] = 1
+  E.db["unitframe"]["units"]["player"]["CombatIcon"]["color"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["player"]["CombatIcon"]["size"] = 29
   E.db["unitframe"]["units"]["player"]["CombatIcon"]["texture"] = "CUSTOM"
   E.db["unitframe"]["units"]["player"]["CombatIcon"]["yOffset"] = -20
@@ -461,9 +368,7 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["player"]["castbar"]["height"] = 30
   E.db["unitframe"]["units"]["player"]["castbar"]["insideInfoPanel"] = false
   E.db["unitframe"]["units"]["player"]["castbar"]["strataAndLevel"]["useCustomLevel"] = true
-  E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["b"] = 1
-  E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["g"] = 1
-  E.db["unitframe"]["units"]["player"]["castbar"]["textColor"]["r"] = 1
+  E.db["unitframe"]["units"]["player"]["castbar"]["textColor"] = F.Table.HexToRGB("#FFFFFF")
   E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 300
   E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 2
   E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -2
@@ -574,11 +479,13 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["raid1"]["power"]["enable"] = false
   E.db["unitframe"]["units"]["raid1"]["raidRoleIcons"]["scale"] = 2
   E.db["unitframe"]["units"]["raid1"]["raidRoleIcons"]["yOffset"] = 7
+  -- @TODO: can we get a proper RGB value here?
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["duration"]["color"]["b"] = 0.91764705882353
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["duration"]["color"]["g"] = 0.94117647058824
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["fontSize"] = 16
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["size"] = 24
+  -- @TODO: can we get a proper RGB value here?
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["stack"]["color"]["g"] = 0.91372549019608
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["stack"]["yOffset"] = 0
   E.db["unitframe"]["units"]["raid1"]["rdebuffs"]["yOffset"] = 6
@@ -609,12 +516,14 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["raid2"]["name"]["text_format"] = ""
   E.db["unitframe"]["units"]["raid2"]["raidRoleIcons"]["scale"] = 2
   E.db["unitframe"]["units"]["raid2"]["raidRoleIcons"]["yOffset"] = 7
+  -- @TODO: can we get a proper RGB value here?
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["duration"]["color"]["b"] = 0.91764705882353
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["duration"]["color"]["g"] = 0.94117647058824
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["enable"] = true
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["fontSize"] = 16
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["size"] = 24
+  -- @TODO: can we get a proper RGB value here?
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["color"]["g"] = 0.91372549019608
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["stack"]["yOffset"] = 0
   E.db["unitframe"]["units"]["raid2"]["rdebuffs"]["yOffset"] = 6
@@ -646,12 +555,14 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["raid3"]["name"]["text_format"] = ""
   E.db["unitframe"]["units"]["raid3"]["raidRoleIcons"]["scale"] = 2
   E.db["unitframe"]["units"]["raid3"]["raidRoleIcons"]["yOffset"] = 7
+  -- @TODO: can we get a proper RGB value here?
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["duration"]["color"]["b"] = 0.91764705882353
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["duration"]["color"]["g"] = 0.94117647058824
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["enable"] = true
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["fontSize"] = 16
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["size"] = 22
+  -- @TODO: can we get a proper RGB value here?
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["color"]["g"] = 0.91372549019608
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["stack"]["yOffset"] = 0
   E.db["unitframe"]["units"]["raid3"]["rdebuffs"]["yOffset"] = 5
@@ -917,7 +828,6 @@ function LAEV:SetupAdditionalAddons()
   end
 end
 
--- LAEV:AddCallback("SetupCvars")
 LAEV:AddCallback("SetupProfile")
 LAEV:AddCallback("SetupAdditionalAddons")
 
