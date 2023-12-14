@@ -615,7 +615,7 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["target"]["customTexts"]["!ClassIcon"]["yOffset"] = 0
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["attachTextTo"] = "Health"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["enable"] = true
-  E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["font"] = "Arial Narrow"
+  E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["font"] = I.Fonts.Primary
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["fontOutline"] = "OUTLINE"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["justifyH"] = "RIGHT"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["size"] = 20
