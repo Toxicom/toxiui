@@ -252,14 +252,22 @@ function PF:ElvUIFont()
         },
 
         target = {
-          customTexts = customTextSize {
-            { "!Name", I.Fonts.Title, 26, "SHADOW" },
-            { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-            { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
-            { "!Classification", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-          },
+          customTexts = F.Table.Crush(
+            customTextSize {
+              { "!Name", I.Fonts.Title, 26, "SHADOW" },
+              { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+              { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+              { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+              { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
+            },
+            {
+              ["!Classification"] = {
+                font = I.Fonts.Primary,
+                size = F.FontSizeScaled(20),
+                fontOutline = "SHADOWOUTLINE",
+              },
+            }
+          ),
 
           buffs = {
             countFont = F.FontOverride(I.Fonts.TitleBlack),
