@@ -153,7 +153,7 @@ function LAEV:SetupProfile()
   E.db["movers"]["ElvAB_5"] = "BOTTOM,ElvUIParent,BOTTOM,0,128"
   E.db["movers"]["ElvAB_6"] = "BOTTOM,ElvUIParent,BOTTOM,0,94"
   E.db["movers"]["ElvUF_PartyMover"] = "TOPLEFT,UIParent,TOPLEFT,499,-562"
-  E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,-390,380"
+  E.db["movers"]["ElvUF_PlayerCastbarMover"] = "BOTTOM,ElvUIParent,BOTTOM,0,197"
   E.db["movers"]["ElvUF_Raid1Mover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,4,315"
   E.db["movers"]["ElvUF_Raid2Mover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,4,315"
   E.db["movers"]["ElvUF_Raid3Mover"] = "BOTTOMLEFT,UIParent,BOTTOMLEFT,4,316"
@@ -369,7 +369,7 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["player"]["castbar"]["insideInfoPanel"] = false
   E.db["unitframe"]["units"]["player"]["castbar"]["strataAndLevel"]["useCustomLevel"] = true
   E.db["unitframe"]["units"]["player"]["castbar"]["textColor"] = F.Table.HexToRGB("#FFFFFF")
-  E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 300
+  E.db["unitframe"]["units"]["player"]["castbar"]["width"] = 320
   E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetText"] = 2
   E.db["unitframe"]["units"]["player"]["castbar"]["xOffsetTime"] = -2
   E.db["unitframe"]["units"]["player"]["classbar"]["detachFromFrame"] = true
@@ -615,7 +615,7 @@ function LAEV:SetupProfile()
   E.db["unitframe"]["units"]["target"]["customTexts"]["!ClassIcon"]["yOffset"] = 0
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["attachTextTo"] = "Health"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["enable"] = true
-  E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["font"] = I.Fonts.Primary
+  E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["font"] = "Arial Narrow"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["fontOutline"] = "OUTLINE"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["justifyH"] = "RIGHT"
   E.db["unitframe"]["units"]["target"]["customTexts"]["!Classification"]["size"] = 20
