@@ -95,7 +95,7 @@ function LAEV:SetupProfile()
     macroFontSize = 13,
     macroTextPosition = "BOTTOM",
     macroTextYOffset = 0,
-    macrotext = true,
+    macrotext = false,
     point = "TOPLEFT",
   }
 
