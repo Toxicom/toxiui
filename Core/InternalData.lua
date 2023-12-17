@@ -180,7 +180,20 @@ I.Data.Contributor = {
   },
 
   -- LEGENDARY => Orange Badge
-  [I.Enum.ContributorType.LEGENDARY] = {},
+  [I.Enum.ContributorType.LEGENDARY] = {
+    ["Las1K64"] = {
+      [I.Enum.Flavor.WRATH] = {
+        -- Whitemane
+        ["Dirtygirl-Whitemane"] = true,
+        ["Drubs-Whitemane"] = true,
+        ["Manbeast-Whitemane"] = true,
+        ["Dianalzrbeam-Whitemane"] = true,
+        ["Lasik-Whitemane"] = true,
+        ["Lasikz-Whitemane"] = true,
+        ["Dianafire-Whitemane"] = true,
+      },
+    },
+  },
 
   -- EPIC => Purple Badge (epic supporter)
   [I.Enum.ContributorType.EPIC] = {
