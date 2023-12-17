@@ -155,6 +155,11 @@ function F.String.WunderUI()
   return F.String.Epic("Wunder") .. "UI"
 end
 
+function F.String.Eltreum()
+  -- taken from Eltruism .toc
+  return F.String.FastGradientHex("Eltreum", "#587AAD", "#9FE3F4")
+end
+
 function F.String.Scaling()
   return F.String.ToxiUI("Additional Scaling") .. " module"
 end

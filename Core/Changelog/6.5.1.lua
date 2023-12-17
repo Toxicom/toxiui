@@ -47,7 +47,8 @@ TXUI.Changelog["6.5.1"] = {
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.53",
     "Update TOC for Season of Discovery",
-    "Rename all cases of 'Action Bars' to 'ActionBars' to be more in-line with " .. F.String.ElvUI() .. " naming convention.",
+    "Rename all cases of 'Action Bars' to 'ActionBars' to be more in-line with " .. F.String.ElvUI() .. " naming convention",
+    "Add " .. F.String.Eltreum() .. " to credits section",
 
     "* Settings refactoring",
     "Move " --

@@ -18,9 +18,7 @@ TXUI.Changelog["6.4.0"] = {
     "Custom ElvUI tag for power" .. F.String.Sublist("Same as before, but hides when power is 0"),
     "Create separate profiles for " .. F.String.OmniCD() .. " depending on " .. F.String.ToxiUI("DPS/Tank") .. " or " .. F.String.Class("Healer", "MONK") .. " layout selected",
     F.String.GradientString() .. F.String.Class(" class color") .. " font options for " .. TXUI.Title .. " Armory",
-    F.String.GradientString() .. " UnitFrame text tags in Dark Mode" .. F.String.Sublist(
-      "Credits to " .. F.String.RandomClassColor("Eltreum") .. " and " .. F.String.ElvUI("ElvUI discord")
-    ),
+    F.String.GradientString() .. " UnitFrame text tags in Dark Mode" .. F.String.Sublist("Credits to " .. F.String.Eltreum() .. " and " .. F.String.ElvUI("ElvUI discord")),
     F.String.GradientString() .. " Details texts in Dark Mode" .. F.String.Sublist("Disabled by default") .. F.String.Sublist(
       "Enable in " .. F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3") .. " -> Dark Mode -> " .. F.String.Class("Gradient name")
     ),
