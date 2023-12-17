@@ -899,13 +899,15 @@ function F.ProcessMovers(dbRef)
 
   for name, points in pairs(dbRef.movers) do
     local _, relativeTo = strsplit(",", points)
-    relativeTo = relativeTo:gsub("Mover", "")
+    if relativeTo then
+      relativeTo = relativeTo:gsub("Mover", "")
 
-    if relativeTo ~= "ElvUIParent" and relativeTo ~= "UIParent" then
-      if not relativeMovers[relativeTo] then relativeMovers[relativeTo] = {} end
-      tinsert(relativeMovers[relativeTo], { name, points })
-    else
-      tinsert(globalMovers, { name, points })
+      if relativeTo ~= "ElvUIParent" and relativeTo ~= "UIParent" then
+        if not relativeMovers[relativeTo] then relativeMovers[relativeTo] = {} end
+        tinsert(relativeMovers[relativeTo], { name, points })
+      else
+        tinsert(globalMovers, { name, points })
+      end
     end
   end
 
