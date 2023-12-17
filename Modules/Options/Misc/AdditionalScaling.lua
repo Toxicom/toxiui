@@ -200,6 +200,23 @@ function O:Plugins_AdditionalScaling()
       step = 0.05,
     }
 
+    -- NPC Group: Quest
+    npcGroup.quest = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Quest",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.quest.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.quest.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
     -- NPC Group: Mailbox
     npcGroup.mailbox = {
       order = self:GetOrder(),

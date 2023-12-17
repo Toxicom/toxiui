@@ -14,6 +14,7 @@ function M:AdditionalScaling()
     M:SetElementScale("spellbook", "SpellBookFrame")
     M:SetElementScale("vendor", "MerchantFrame")
     M:SetElementScale("gossip", "GossipFrame")
+    M:SetElementScale("quest", "QuestFrame")
     M:SetElementScale("mailbox", "MailFrame")
 
     -- In the next parts, if the AddOn isn't loaded by the game yet,

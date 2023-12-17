@@ -288,6 +288,10 @@ P.misc = {
       scale = 1,
     },
 
+    quest = {
+      scale = 1,
+    },
+
     mailbox = {
       scale = 1,
     },
