@@ -237,6 +237,7 @@ P.addons = {
   fadePersist = {
     enabled = true, -- Enabled by default
     mode = TXUI.IsClassic and "ELVUI" or "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
+    showInVehicles = true,
   },
 }
 

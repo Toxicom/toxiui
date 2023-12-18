@@ -23,7 +23,7 @@ function FP:OnEvent(parent, event)
     end
 
     -- If vehicle bar is disabled we want to see bars in vehicle
-    if not E.db.TXUI.vehicleBar.enabled then
+    if not E.db.TXUI.vehicleBar.enabled and self.db.showInVehicles then
       if TXUI.IsRetail then
         if E:IsDragonRiding() then fadeIn = true end
       end

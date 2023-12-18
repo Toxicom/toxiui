@@ -435,6 +435,29 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("FadePersist.DatabaseUpdate")
       end,
     }
+
+    -- Show in Vehicles
+    elvuiFadePersistGroup.showInVehicles = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show in Vehicles",
+      desc = "Enabling this option will show the ActionBars in Vehicles"
+        .. (TXUI.IsRetail and " and/or while DragonRiding")
+        .. " regardless of the Mode you've selected. It has no effect when ElvUI Default is selected.",
+      disabled = function()
+        return actionBarsAreDisabled
+          or self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES
+          or E.db.TXUI.addons.fadePersist.mode == "ELVUI"
+          or E.db.TXUI.vehicleBar.enabled
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.fadePersist.showInVehicles
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.fadePersist.showInVehicles = value
+        F.Event.TriggerEvent("FadePersist.DatabaseUpdate")
+      end,
+    }
   end
 end
 
