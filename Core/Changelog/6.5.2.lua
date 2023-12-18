@@ -16,6 +16,7 @@ TXUI.Changelog["6.5.2"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Update WeakAuras Style description to correctly direct users to new location of ActionBars Fade",
 
     "* Development improvements",
   },
