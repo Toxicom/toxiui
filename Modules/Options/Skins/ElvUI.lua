@@ -389,7 +389,9 @@ function O:Skins_ElvUI()
     local elvuiFadePersistGroup = self:AddInlineRequirementsDesc(options, {
       name = "ActionBars Fade",
     }, {
-      name = "This option controls your ActionBars visibility.\n\n",
+      name = "This option controls your ActionBars visibility.\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "The \"Show in Vehicles\" option is disabled and has no effect if you have VehicleBar enabled or you have set the Mode to \"ElvUI Default\"!\n\n",
     }, I.Requirements.FadePersist).args
 
     -- ElvUI Global Fade Persist Enable
@@ -441,9 +443,7 @@ function O:Skins_ElvUI()
       order = self:GetOrder(),
       type = "toggle",
       name = "Show in Vehicles",
-      desc = "Enabling this option will show the ActionBars in Vehicles"
-        .. (TXUI.IsRetail and " and/or while DragonRiding")
-        .. " regardless of the Mode you've selected. It has no effect when ElvUI Default is selected.",
+      desc = "Enabling this option will show the ActionBars in Vehicles" .. (TXUI.IsRetail and " and/or while DragonRiding" or "") .. " regardless of the Mode you've selected.",
       disabled = function()
         return actionBarsAreDisabled
           or self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES
