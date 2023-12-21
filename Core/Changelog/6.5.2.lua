@@ -14,6 +14,7 @@ TXUI.Changelog["6.5.2"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.54",
 
     "* Settings refactoring",
     "Update WeakAuras Style description to correctly direct users to new location of ActionBars Fade",
