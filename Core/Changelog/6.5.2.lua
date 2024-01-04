@@ -18,6 +18,7 @@ TXUI.Changelog["6.5.2"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Apply ToxiUI fonts to Guild Bank",
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.54",

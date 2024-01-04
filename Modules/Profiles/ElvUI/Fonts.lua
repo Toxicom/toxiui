@@ -132,6 +132,16 @@ function PF:ElvUIFont()
         fontSize = F.FontSizeScaled(16),
         fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       },
+
+      guildBank = {
+        countFont = F.FontOverride(I.Fonts.Primary),
+        countFontSize = F.FontSizeScaled(20),
+        countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+
+        itemLevelFont = F.FontOverride(I.Fonts.Primary),
+        itemLevelFontSize = F.FontSizeScaled(20),
+        itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+      },
     },
 
     -- Bags
