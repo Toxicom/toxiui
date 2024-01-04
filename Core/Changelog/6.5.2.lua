@@ -16,6 +16,7 @@ TXUI.Changelog["6.5.2"] = {
       .. F.String.Sublist("Must have the mount learned"),
 
     "* Bug fixes",
+    "Fix Target UnitFrame fonts",
 
     "* Profile updates",
     "Apply ToxiUI fonts to Guild Bank",
