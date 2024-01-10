@@ -20,6 +20,7 @@ TXUI.Changelog["6.5.2"] = {
 
     "* Profile updates",
     "Apply ToxiUI fonts to Guild Bank",
+    "Update " .. F.String.ToxiUI("M+ Colored Mobs") .. " mod for Plater",
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.54",
