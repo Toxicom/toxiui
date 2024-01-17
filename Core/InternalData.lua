@@ -213,7 +213,17 @@ I.Data.Contributor = {
   },
 
   -- RARE => Green Badge (rare supporter)
-  [I.Enum.ContributorType.RARE] = {},
+  [I.Enum.ContributorType.RARE] = {
+    ["Sesoni"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- WyrmrestAccord
+        ["Valiath-WyrmrestAccord"] = true,
+        ["Varkaden-WyrmrestAccord"] = true,
+        ["Sesoni-WyrmrestAccord"] = true,
+        ["Ashenveil-WyrmrestAccord"] = true,
+      },
+    },
+  },
 
   -- BETA => Orange Badge (beta testers)
   [I.Enum.ContributorType.BETA] = {
