@@ -147,7 +147,7 @@ function TXUI:HandleChatCommand(msg)
     E:ToggleOptions("TXUI")
   elseif category == "badge" then
     self:HandleBadgeCommand()
-  elseif (category == "export") and TXUI.DevRelease then
+  elseif category == "export" then
     local arg1 = self:GetArgs(msg, 6, 7)
     if arg1 == "names" then
       self:LogInfo("Exporting Names ...")
