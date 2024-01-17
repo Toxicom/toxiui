@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.5.2"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add option to toggle the ActionBars Fade visibility when in a Vehicle or DragonRiding"
       .. F.String.Sublist(F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI") .. " -> " .. F.String.Class("ActionBars Fade", "ROGUE")),
@@ -23,11 +21,10 @@ TXUI.Changelog["6.5.2"] = {
     "Update " .. F.String.ToxiUI("M+ Colored Mobs") .. " mod for Plater",
 
     "* Documentation",
-    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.54",
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.55",
+    "Update for 10.2.5",
 
     "* Settings refactoring",
     "Update WeakAuras Style description to correctly direct users to new location of ActionBars Fade",
-
-    "* Development improvements",
   },
 }
