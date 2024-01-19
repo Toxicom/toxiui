@@ -375,9 +375,9 @@ function SS:UpdateElement(spec, frame, icon, text, isSecondary)
   local info = self.specCache[spec]
 
   if info and info.name then
-    local loadoutName = SS:GetLoadoutName()
     frame:Show()
 
+    local loadoutName = SS:GetLoadoutName()
     if loadoutName and not isSecondary and self.db.general.showLoadout then
       text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
     else
@@ -513,9 +513,23 @@ if TXUI.IsClassic then return end
 
 WB:RegisterSubModule(
   SS,
-  F.Table.Join({
-    "CHARACTER_POINTS_CHANGED",
-    "PLAYER_TALENT_UPDATE",
-    "ACTIVE_TALENT_GROUP_CHANGED",
-  }, F.Table.If(TXUI.IsRetail, { "PLAYER_LOOT_SPEC_UPDATED" }), F.Table.If(TXUI.IsWrath, { "TALENT_GROUP_ROLE_CHANGED" }))
+  F.Table.Join(
+    {
+      "CHARACTER_POINTS_CHANGED",
+      "PLAYER_TALENT_UPDATE",
+      "ACTIVE_TALENT_GROUP_CHANGED",
+    },
+    F.Table.If(TXUI.IsRetail, {
+      "PLAYER_LOOT_SPEC_UPDATED",
+      "ACTIVE_COMBAT_CONFIG_CHANGED",
+      "CONFIG_COMMIT_FAILED",
+      "STARTER_BUILD_ACTIVATION_FAILED",
+      "TRAIT_CONFIG_CREATED",
+      "TRAIT_CONFIG_DELETED",
+      "TRAIT_CONFIG_LIST_UPDATED",
+      "TRAIT_CONFIG_UPDATED",
+      "TRAIT_TREE_CHANGED",
+    }),
+    F.Table.If(TXUI.IsWrath, { "TALENT_GROUP_ROLE_CHANGED" })
+  )
 )
