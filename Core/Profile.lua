@@ -847,6 +847,8 @@ P.wunderbar = {
         showSpec1 = true, -- active spec
         showSpec2 = false, -- loot spec
 
+        showLoadout = true, -- Retail only, show current selected talent loadout
+
         iconFontSize = 18,
 
         infoEnabled = true,

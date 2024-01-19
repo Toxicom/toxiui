@@ -378,7 +378,7 @@ function SS:UpdateElement(spec, frame, icon, text, isSecondary)
     local loadoutName = SS:GetLoadoutName()
     frame:Show()
 
-    if loadoutName and not isSecondary then
+    if loadoutName and not isSecondary and self.db.general.showLoadout then
       text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
     else
       text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
