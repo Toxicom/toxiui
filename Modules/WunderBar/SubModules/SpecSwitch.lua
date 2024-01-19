@@ -371,14 +371,14 @@ function SS:UpdateInfoText()
   end
 end
 
-function SS:UpdateElement(spec, frame, icon, text)
+function SS:UpdateElement(spec, frame, icon, text, isSecondary)
   local info = self.specCache[spec]
 
   if info and info.name then
     local loadoutName = SS:GetLoadoutName()
     frame:Show()
 
-    if loadoutName then
+    if loadoutName and not isSecondary then
       text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
     else
       text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
@@ -404,7 +404,7 @@ end
 
 function SS:UpdateElements()
   self:UpdateElement(self.spec1, self.spec1Frame, self.spec1Icon, self.spec1Text)
-  self:UpdateElement(self.spec2, self.spec2Frame, self.spec2Icon, self.spec2Text)
+  self:UpdateElement(self.spec2, self.spec2Frame, self.spec2Icon, self.spec2Text, true)
   self.forceHideSpec2 = false
 end
 
