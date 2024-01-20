@@ -28,7 +28,9 @@ TXUI.Changelog["6.5.1"] = {
       .. F.String.Sublist("Vendor (Merchant) Frame")
       .. F.String.Sublist("Gossip Frame")
       .. F.String.Sublist("Mailbox Frame")
-      .. F.String.Sublist("Profession Frame (Classic Era & Wrath only)"),
+      .. F.String.Sublist("Profession Frame (Classic Era & Wrath only)")
+      .. F.String.Sublist("Class Trainer Frame (Classic Era & Wrath only)")
+      .. F.String.Sublist("Quest Frame"),
 
     "* Bug fixes",
     "Fix bug with user having Shadow & Light installed previously",
@@ -40,11 +42,14 @@ TXUI.Changelog["6.5.1"] = {
     "Improve Healer layout's Party frames" --
       .. F.String.Sublist("Move Level text down")
       .. F.String.Sublist("Disable Class Icon"),
+    "Add Hearthstone of the Flame to WunderBar's Hearthstone Module",
+    "Update Armory's Item Level coloring for 10.2",
 
     "* Documentation",
     "Increase minimum required " .. F.String.ElvUI() .. " version to 13.53",
     "Update TOC for Season of Discovery",
-    "Rename all cases of 'Action Bars' to 'ActionBars' to be more in-line with " .. F.String.ElvUI() .. " naming convention.",
+    "Rename all cases of 'Action Bars' to 'ActionBars' to be more in-line with " .. F.String.ElvUI() .. " naming convention",
+    "Add " .. F.String.Eltreum() .. " to credits section",
 
     "* Settings refactoring",
     "Move " --

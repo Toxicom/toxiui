@@ -14,6 +14,7 @@ function M:AdditionalScaling()
     M:SetElementScale("spellbook", "SpellBookFrame")
     M:SetElementScale("vendor", "MerchantFrame")
     M:SetElementScale("gossip", "GossipFrame")
+    M:SetElementScale("quest", "QuestFrame")
     M:SetElementScale("mailbox", "MailFrame")
 
     -- In the next parts, if the AddOn isn't loaded by the game yet,
@@ -31,6 +32,9 @@ function M:AdditionalScaling()
     if not TXUI.IsRetail then
       -- Classic: Talents
       M:AddCallbackOrScale("Blizzard_TalentUI", self.ScaleTalents)
+
+      -- Classic: Class Trainer
+      M:AddCallbackOrScale("Blizzard_TrainerUI", self.ScaleClassTrainer)
 
       -- Classic: Professions
       M:AddCallbackOrScale("Blizzard_TradeSkillUI", self.ScaleProfessions)

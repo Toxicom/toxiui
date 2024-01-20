@@ -107,8 +107,17 @@ function DB:OnEvent(event)
 end
 
 function DB:OnClick(...)
-  local dtModule = WB:GetElvUIDataText("Durability")
-  if dtModule then dtModule.onClick(...) end
+  local _, key = ...
+
+  if key == "LeftButton" then
+    local dtModule = WB:GetElvUIDataText("Durability")
+    if dtModule then dtModule.onClick(...) end
+  end
+
+  if key == "RightButton" and TXUI.IsRetail then
+    local mount = C_MountJournal.GetMountInfoByID(460)
+    if mount then C_MountJournal.SummonByID(460) end
+  end
 end
 
 function DB:OnEnter()
@@ -150,6 +159,7 @@ function DB:OnEnter()
 
   DT.tooltip:AddLine(" ")
   DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Character Frame")
+  if TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Summon Grand Expedition Yak") end
   DT.tooltip:Show()
 end
 

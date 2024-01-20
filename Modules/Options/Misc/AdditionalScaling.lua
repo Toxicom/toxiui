@@ -166,6 +166,23 @@ function O:Plugins_AdditionalScaling()
       step = 0.05,
     }
 
+    -- NPC Group: Class Trainer
+    npcGroup.classTrainer = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Class Trainer",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.classTrainer.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.classTrainer.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
     -- NPC Group: Gossip
     npcGroup.gossip = {
       order = self:GetOrder(),
@@ -176,6 +193,23 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.gossip.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
+    -- NPC Group: Quest
+    npcGroup.quest = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Quest",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.quest.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.quest.scale = value
         Misc:AdditionalScaling()
       end,
       min = 0.5,

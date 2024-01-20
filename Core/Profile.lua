@@ -242,6 +242,7 @@ P.addons = {
   fadePersist = {
     enabled = true, -- Enabled by default
     mode = TXUI.IsClassic and "ELVUI" or "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
+    showInVehicles = true,
   },
 }
 
@@ -293,11 +294,19 @@ P.misc = {
       scale = 1,
     },
 
+    quest = {
+      scale = 1,
+    },
+
     mailbox = {
       scale = 1,
     },
 
     profession = {
+      scale = 1,
+    },
+
+    classTrainer = {
       scale = 1,
     },
   },
@@ -842,6 +851,8 @@ P.wunderbar = {
         showIcons = true,
         showSpec1 = true, -- active spec
         showSpec2 = false, -- loot spec
+
+        showLoadout = true, -- Retail only, show current selected talent loadout
 
         iconFontSize = 18,
 

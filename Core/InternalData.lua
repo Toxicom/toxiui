@@ -104,6 +104,39 @@ I.Data.Contributor = {
       },
     },
 
+    [I.Enum.Developers.LAEV] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Thrall
+        ["Laevy-Thrall"] = true,
+        ["Vancrowe-Thrall"] = true,
+        ["Maxedge-Thrall"] = true,
+        ["Worthington-Thrall"] = true,
+        ["Levas-Thrall"] = true,
+        ["Laevion-Thrall"] = true,
+        ["Laev-Thrall"] = true,
+        ["Minedge-Thrall"] = true,
+        ["Crispylaevs-Thrall"] = true,
+        ["Melreau-Thrall"] = true,
+        ["Levatine-Thrall"] = true,
+        ["Laevish-Thrall"] = true,
+        ["Terreth-Thrall"] = true,
+        ["Fritolaevs-Thrall"] = true,
+
+        -- Stormrage
+        ["Anseilyn-Stormrage"] = true,
+        ["Levas-Stormrage"] = true,
+        ["Laevo-Stormrage"] = true,
+        ["Sylerande-Stormrage"] = true,
+        ["Laevy-Stormrage"] = true,
+        ["Veryedgy-Stormrage"] = true,
+        ["Anvilocke-Stormrage"] = true,
+        ["Laev-Stormrage"] = true,
+        ["Banirloch-Stormrage"] = true,
+        ["Anseilon-Stormrage"] = true,
+        ["Laronsus-Stormrage"] = true,
+      },
+    },
+
     [I.Enum.Developers.RHAP] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Illidan
@@ -147,7 +180,20 @@ I.Data.Contributor = {
   },
 
   -- LEGENDARY => Orange Badge
-  [I.Enum.ContributorType.LEGENDARY] = {},
+  [I.Enum.ContributorType.LEGENDARY] = {
+    ["Las1K64"] = {
+      [I.Enum.Flavor.WRATH] = {
+        -- Whitemane
+        ["Dirtygirl-Whitemane"] = true,
+        ["Drubs-Whitemane"] = true,
+        ["Manbeast-Whitemane"] = true,
+        ["Dianalzrbeam-Whitemane"] = true,
+        ["Lasik-Whitemane"] = true,
+        ["Lasikz-Whitemane"] = true,
+        ["Dianafire-Whitemane"] = true,
+      },
+    },
+  },
 
   -- EPIC => Purple Badge (epic supporter)
   [I.Enum.ContributorType.EPIC] = {
@@ -167,7 +213,17 @@ I.Data.Contributor = {
   },
 
   -- RARE => Green Badge (rare supporter)
-  [I.Enum.ContributorType.RARE] = {},
+  [I.Enum.ContributorType.RARE] = {
+    ["Sesoni"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- WyrmrestAccord
+        ["Valiath-WyrmrestAccord"] = true,
+        ["Varkaden-WyrmrestAccord"] = true,
+        ["Sesoni-WyrmrestAccord"] = true,
+        ["Ashenveil-WyrmrestAccord"] = true,
+      },
+    },
+  },
 
   -- BETA => Orange Badge (beta testers)
   [I.Enum.ContributorType.BETA] = {

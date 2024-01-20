@@ -3,10 +3,13 @@ local WB = TXUI:GetModule("WunderBar")
 local SS = WB:NewModule("SpecSwitch")
 local DT = E:GetModule("DataTexts")
 
+local C_Traits_GetConfigInfo = C_Traits.GetConfigInfo
 local _G = _G
 local CreateFrame = CreateFrame
 local format = string.format
 local GetActiveTalentGroup = GetActiveTalentGroup
+local GetCurrentSpecID = TXUI.IsRetail and PlayerUtil.GetCurrentSpecID or nil
+local GetLastSelectedSavedConfigID = TXUI.IsRetail and C_ClassTalents.GetLastSelectedSavedConfigID or nil
 local GetLootSpecialization = GetLootSpecialization
 local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
 local GetSpecialization = GetSpecialization
@@ -28,6 +31,22 @@ local TALENTS = TALENTS
 
 local activeString = strjoin("", "|cff00FF00", ACTIVE_PETS, "|r")
 local inactiveString = strjoin("", "|cffFF0000", FACTION_INACTIVE, "|r")
+
+function SS:GetLoadoutName()
+  if TXUI.IsRetail then
+    local specId = GetCurrentSpecID()
+    if specId then
+      local configID = GetLastSelectedSavedConfigID(specId)
+      if configID then
+        local configInfo = C_Traits_GetConfigInfo(configID)
+
+        if configInfo.name then return configInfo.name end
+      end
+    end
+  end
+
+  return nil
+end
 
 function SS:OnEvent()
   self:OnWunderBarUpdate()
@@ -222,7 +241,6 @@ function SS:UpdateSpecialization()
   else
     spec1 = GetActiveTalentGroup()
     spec2 = GetNumTalentGroups() == 2 and (spec1 == 2 and 1 or 2) or nil
-
     self.specCache = {}
 
     if spec1 then self.specCache[spec1] = self:GetWrathCacheForSpec(spec1) end
@@ -353,26 +371,34 @@ function SS:UpdateInfoText()
   end
 end
 
-function SS:UpdateElement(spec, frame, icon, text)
+function SS:UpdateElement(spec, frame, icon, text, isSecondary)
   local info = self.specCache[spec]
 
   if info and info.name then
-    frame:Show()
-    text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
+    E:Delay(0.01, function()
+      frame:Show()
 
-    if self.db.general.showIcons then
-      local iconTexture = self.db.icons[info.id or spec]
-
-      if not iconTexture then
-        iconTexture = self.db.icons[0]
-        self:LogDebug("Icon could not be found", info.id, spec)
+      local loadoutName = SS:GetLoadoutName()
+      if loadoutName and not isSecondary and self.db.general.showLoadout then
+        text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
+      else
+        text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
       end
 
-      icon:Show()
-      icon:SetText(iconTexture)
-    else
-      icon:Hide()
-    end
+      if self.db.general.showIcons then
+        local iconTexture = self.db.icons[info.id or spec]
+
+        if not iconTexture then
+          iconTexture = self.db.icons[0]
+          self:LogDebug("Icon could not be found", info.id, spec)
+        end
+
+        icon:Show()
+        icon:SetText(iconTexture)
+      else
+        icon:Hide()
+      end
+    end)
   else
     frame:Hide()
   end
@@ -380,7 +406,7 @@ end
 
 function SS:UpdateElements()
   self:UpdateElement(self.spec1, self.spec1Frame, self.spec1Icon, self.spec1Text)
-  self:UpdateElement(self.spec2, self.spec2Frame, self.spec2Icon, self.spec2Text)
+  self:UpdateElement(self.spec2, self.spec2Frame, self.spec2Icon, self.spec2Text, true)
   self.forceHideSpec2 = false
 end
 
@@ -489,9 +515,23 @@ if TXUI.IsClassic then return end
 
 WB:RegisterSubModule(
   SS,
-  F.Table.Join({
-    "CHARACTER_POINTS_CHANGED",
-    "PLAYER_TALENT_UPDATE",
-    "ACTIVE_TALENT_GROUP_CHANGED",
-  }, F.Table.If(TXUI.IsRetail, { "PLAYER_LOOT_SPEC_UPDATED" }), F.Table.If(TXUI.IsWrath, { "TALENT_GROUP_ROLE_CHANGED" }))
+  F.Table.Join(
+    {
+      "CHARACTER_POINTS_CHANGED",
+      "PLAYER_TALENT_UPDATE",
+      "ACTIVE_TALENT_GROUP_CHANGED",
+    },
+    F.Table.If(TXUI.IsRetail, {
+      "PLAYER_LOOT_SPEC_UPDATED",
+      "ACTIVE_COMBAT_CONFIG_CHANGED",
+      "CONFIG_COMMIT_FAILED",
+      "STARTER_BUILD_ACTIVATION_FAILED",
+      "TRAIT_CONFIG_CREATED",
+      "TRAIT_CONFIG_DELETED",
+      "TRAIT_CONFIG_LIST_UPDATED",
+      "TRAIT_CONFIG_UPDATED",
+      "TRAIT_TREE_CHANGED",
+    }),
+    F.Table.If(TXUI.IsWrath, { "TALENT_GROUP_ROLE_CHANGED" })
+  )
 )

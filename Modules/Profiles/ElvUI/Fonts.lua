@@ -9,11 +9,11 @@ local function customTextSize(args)
   local ret = {}
   for _, v in ipairs(args) do
     if not v then return end
-    local name, font, size, outline = unpack(v)
+    local name, font, size, outline, stopOverride = unpack(v)
     ret[name] = {
-      font = F.FontOverride(font),
+      font = stopOverride and font or F.FontOverride(font),
       size = F.FontSizeScaled(size),
-      fontOutline = F.FontStyleOverride(font, outline),
+      fontOutline = stopOverride and outline or F.FontStyleOverride(font, outline),
     }
   end
   return ret
@@ -131,6 +131,16 @@ function PF:ElvUIFont()
         font = F.FontOverride(I.Fonts.Primary),
         fontSize = F.FontSizeScaled(16),
         fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+      },
+
+      guildBank = {
+        countFont = F.FontOverride(I.Fonts.Primary),
+        countFontSize = F.FontSizeScaled(20),
+        countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+
+        itemLevelFont = F.FontOverride(I.Fonts.Primary),
+        itemLevelFontSize = F.FontSizeScaled(20),
+        itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       },
     },
 
@@ -258,7 +268,7 @@ function PF:ElvUIFont()
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Title, 12, "SHADOW" }, -- Font and Outline doesn't matter
-            { "!Classification", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "!Classification", I.Fonts.Primary, 20, "SHADOWOUTLINE", true },
           },
 
           buffs = {

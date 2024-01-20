@@ -41,6 +41,7 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 208704 or 6948
 
   -- Miscellaneous: Additional Scaling
+  E.db.TXUI.misc.scaling.enabled = true
   E.db.TXUI.misc.scaling.characterFrame.scale = 1.5
   E.db.TXUI.misc.scaling.syncInspect.enabled = true
   E.db.TXUI.misc.scaling.map.scale = 1.5
