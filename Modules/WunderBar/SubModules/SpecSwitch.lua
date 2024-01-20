@@ -8,8 +8,8 @@ local _G = _G
 local CreateFrame = CreateFrame
 local format = string.format
 local GetActiveTalentGroup = GetActiveTalentGroup
-local GetCurrentSpecID = PlayerUtil.GetCurrentSpecID
-local GetLastSelectedSavedConfigID = C_ClassTalents.GetLastSelectedSavedConfigID
+local GetCurrentSpecID = TXUI.IsRetail and PlayerUtil.GetCurrentSpecID or nil
+local GetLastSelectedSavedConfigID = TXUI.IsRetail and C_ClassTalents.GetLastSelectedSavedConfigID or nil
 local GetLootSpecialization = GetLootSpecialization
 local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
 local GetSpecialization = GetSpecialization
@@ -375,28 +375,30 @@ function SS:UpdateElement(spec, frame, icon, text, isSecondary)
   local info = self.specCache[spec]
 
   if info and info.name then
-    frame:Show()
+    E:Delay(0.01, function()
+      frame:Show()
 
-    local loadoutName = SS:GetLoadoutName()
-    if loadoutName and not isSecondary and self.db.general.showLoadout then
-      text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
-    else
-      text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
-    end
-
-    if self.db.general.showIcons then
-      local iconTexture = self.db.icons[info.id or spec]
-
-      if not iconTexture then
-        iconTexture = self.db.icons[0]
-        self:LogDebug("Icon could not be found", info.id, spec)
+      local loadoutName = SS:GetLoadoutName()
+      if loadoutName and not isSecondary and self.db.general.showLoadout then
+        text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
+      else
+        text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
       end
 
-      icon:Show()
-      icon:SetText(iconTexture)
-    else
-      icon:Hide()
-    end
+      if self.db.general.showIcons then
+        local iconTexture = self.db.icons[info.id or spec]
+
+        if not iconTexture then
+          iconTexture = self.db.icons[0]
+          self:LogDebug("Icon could not be found", info.id, spec)
+        end
+
+        icon:Show()
+        icon:SetText(iconTexture)
+      else
+        icon:Hide()
+      end
+    end)
   else
     frame:Hide()
   end
