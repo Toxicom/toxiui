@@ -6,6 +6,7 @@ TXUI.Changelog["6.5.5"] = {
     "* Breaking changes",
 
     "* New features",
+    "Display Loadout name in WunderBar's " .. F.String.ToxiUI("SpecSwitch") .. " module" .. F.String.Sublist("Retail only"),
 
     "* Bug fixes",
 
