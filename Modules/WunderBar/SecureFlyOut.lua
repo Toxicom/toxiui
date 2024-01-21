@@ -10,7 +10,7 @@ local unpack = unpack
 local secureFlyOutFrame
 local secureFlyOutButtons = {}
 
-function WB:ShowSecureFlyOut(parent, direction, slots)
+function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   if secureFlyOutFrame and secureFlyOutFrame:IsShown() then
     secureFlyOutFrame:Hide()
     return
@@ -25,22 +25,57 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
     end
   end
 
+  local spacing, padding = 4, 4
+  local slotWidth = 40 + E.Border
+  local slotHeight = 30 + E.Border
+
+  -- Limit the number of slots per column
+  local maxSlotsPerColumn = 8
+  local numPrimaryColumns = math.ceil(#primarySlots / maxSlotsPerColumn)
+  local numSecondaryColumns = secondarySlots and math.ceil(#secondarySlots / maxSlotsPerColumn) or 0
+
+  local totalColumns = numPrimaryColumns + numSecondaryColumns
+  local totalSlots = #primarySlots + (secondarySlots and #secondarySlots or 0)
+
+  -- Calculate the total width of the flyout
+  local totalWidth = totalColumns * slotWidth + (totalColumns - 1) * spacing + 2 * padding
+
   if not secureFlyOutFrame then secureFlyOutFrame = CreateFrame("Frame", nil, self.bar) end
-  secureFlyOutFrame:SetSize(30 + E.Border, 30 + E.Border)
+  secureFlyOutFrame:SetSize(totalWidth, maxSlotsPerColumn * slotHeight + (maxSlotsPerColumn - 1) * spacing + 2 * padding)
 
   local numSlots = 0
-  local spacing, padding = 2, 2
 
-  local prevSlot = nil
-  for i = 1, #slots do
-    local info = slots[i]
+  local prevSlots = {} -- Table to keep track of the previous slot in each column
 
-    local slot = secureFlyOutButtons[i]
+  for i = 1, totalSlots do
+    local info, slot, columnOffset
+
+    local isPrimary = i <= #primarySlots
+    local currentColumn
+    local indexInColumn
+
+    if isPrimary then
+      info = primarySlots[i]
+      slot = secureFlyOutButtons[i]
+      currentColumn = math.ceil(i / maxSlotsPerColumn)
+      indexInColumn = (i - 1) % maxSlotsPerColumn + 1
+      -- Primary slots start from the rightmost column and grow left
+      columnOffset = totalWidth - currentColumn * (slotWidth + spacing) + padding
+    else
+      local secondaryIndex = i - #primarySlots
+      info = secondarySlots[secondaryIndex]
+      slot = secureFlyOutButtons[i]
+      currentColumn = math.ceil(secondaryIndex / maxSlotsPerColumn)
+      indexInColumn = (secondaryIndex - 1) % maxSlotsPerColumn + 1
+      -- Secondary slots start to the left of the primary slots and grow left
+      columnOffset = totalWidth - (numPrimaryColumns * (slotWidth + spacing) + currentColumn * (slotWidth + spacing)) + padding
+    end
+
     if not slot then
       slot = CreateFrame("Button", nil, secureFlyOutFrame, "SecureActionButtonTemplate")
       slot:EnableMouse(true)
       slot:RegisterForClicks("AnyDown")
-      slot:SetSize(30 + E.Border, 30 + E.Border)
+      slot:SetSize(40 + E.Border, 30 + E.Border)
       slot:SetTemplate()
       slot:StyleButton(nil, true)
       slot:SetScript("OnEnter", showTooltip)
@@ -54,7 +89,7 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
       slot.FadeIn.ResetFade:SetOrder(1)
 
       slot.FadeIn.Hold = slot.FadeIn:CreateAnimation("Sleep")
-      slot.FadeIn.Hold:SetDuration(i * (0.3 / #slots))
+      slot.FadeIn.Hold:SetDuration(i * (0.3 / totalSlots))
       slot.FadeIn.Hold:SetOrder(2)
 
       slot.FadeIn.Fade = slot.FadeIn:CreateAnimation("Fade")
@@ -73,30 +108,16 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
 
     slot:ClearAllPoints()
 
-    if direction == "UP" then
-      if prevSlot then
-        slot:SetPoint("BOTTOM", prevSlot, "TOP", 0, spacing)
-      else
-        slot:SetPoint("BOTTOM", 0, padding)
-      end
-    elseif direction == "DOWN" then
-      if prevSlot then
-        slot:SetPoint("TOP", prevSlot, "BOTTOM", 0, -spacing)
-      else
-        slot:SetPoint("TOP", 0, -padding)
-      end
-    elseif direction == "LEFT" then
-      if prevSlot then
-        slot:SetPoint("RIGHT", prevSlot, "LEFT", -spacing, 0)
-      else
-        slot:SetPoint("RIGHT", -padding, 0)
-      end
-    elseif direction == "RIGHT" then
-      if prevSlot then
-        slot:SetPoint("LEFT", prevSlot, "RIGHT", spacing, 0)
-      else
-        slot:SetPoint("LEFT", padding, 0)
-      end
+    if indexInColumn == 1 then
+      -- First slot in the column
+      -- Ensure the first slot respects the bottom padding of the flyout
+      slot:SetPoint("BOTTOMRIGHT", secureFlyOutFrame, "BOTTOMLEFT", columnOffset, padding)
+      prevSlots[currentColumn] = slot
+    else
+      -- Subsequent slots, positioned above the previous slot in the same column
+      -- Ensure the slot is positioned correctly with respect to spacing and the slot above it
+      slot:SetPoint("BOTTOM", prevSlots[currentColumn], "TOP", 0, spacing)
+      prevSlots[currentColumn] = slot
     end
 
     slot:SetAttribute("type", info.type)
@@ -109,6 +130,7 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
     end
 
     local texture = info.icon or GetSpellTexture(info.spellID)
+
     slot:SetNormalTexture(texture)
     slot:SetPushedTexture(texture)
     slot:SetDisabledTexture(texture)
@@ -126,7 +148,6 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
     slot:SetAlpha(0)
     slot:Show()
 
-    prevSlot = slot
     numSlots = numSlots + 1
   end
 
@@ -137,7 +158,7 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
     unusedButtonIndex = unusedButtonIndex + 1
   end
 
-  if numSlots == 0 then
+  if totalSlots == 0 then
     secureFlyOutFrame:Hide()
     return
   end
@@ -146,7 +167,7 @@ function WB:ShowSecureFlyOut(parent, direction, slots)
   secureFlyOutFrame:ClearAllPoints()
 
   if direction == "UP" then
-    secureFlyOutFrame:SetPoint("BOTTOM", parent, "TOP")
+    secureFlyOutFrame:SetPoint("BOTTOMRIGHT", parent, "TOPRIGHT")
   elseif direction == "DOWN" then
     secureFlyOutFrame:SetPoint("TOP", parent, "BOTTOM")
   elseif direction == "LEFT" then

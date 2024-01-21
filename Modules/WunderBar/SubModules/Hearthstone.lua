@@ -102,6 +102,22 @@ function HS:GetClassTeleport()
   return {}
 end
 
+function HS:GetMythicPortals()
+  if not TXUI.IsRetail then return nil end
+
+  local portals = {}
+
+  for _, option in pairs(I.HearthstoneData) do
+    if option.known and option.mythic then
+      option.spellID = option.id
+      option.type = "spell"
+      tinsert(portals, option)
+    end
+  end
+
+  return portals
+end
+
 function HS:GetCovenantStone(hs)
   local covenant = F.GetCachedCovenant(true)
 
@@ -117,16 +133,21 @@ function HS:GetCovenantStone(hs)
   return hs
 end
 
-function HS:ShowMageLovePortals(teleport)
-  local menuList = {}
+function HS:ShowMageLovePortals()
+  local teleportList = {}
+  local portalList = {}
 
   for _, option in F.Table.Sort(I.HearthstoneData) do
-    if option.known and ((not teleport and option.portal) or (teleport and option.teleport)) then -- Show Only Known
-      tinsert(menuList, { spellID = option.id, type = "spell" })
+    if option.known then -- Show Only Known
+      if option.teleport then
+        tinsert(teleportList, { spellID = option.id, type = "spell" })
+      elseif option.portal then
+        tinsert(portalList, { spellID = option.id, type = "spell" })
+      end
     end
   end
 
-  WB:ShowSecureFlyOut(self.frame, "UP", menuList)
+  WB:ShowSecureFlyOut(self.frame, "UP", teleportList, portalList)
 end
 
 function HS:UpdateSelected()
@@ -162,10 +183,18 @@ function HS:UpdateSelected()
 
   -- Get class teleport for non mages
   if E.myclass ~= "MAGE" then self.hsClass = self:GetClassTeleport() end
+  self.hsMythics = self:GetMythicPortals()
 
   -- Set Types
   self.secureFrame:SetAttribute("type1", self.hsPrimary.type)
   self.secureFrame:SetAttribute("type2", self.hsSecondary.type)
+
+  if not F.Table.IsEmpty(self.hsMythics) then
+    self.secureFrame:SetAttribute("shift-type1", "function")
+    self.secureFrame:SetAttribute("shift-_function1", function()
+      WB:ShowSecureFlyOut(self.frame, "UP", self.hsMythics)
+    end)
+  end
 
   -- Set Type IDs
   self.secureFrame:SetAttribute(self.hsPrimary.type .. "1", self.hsPrimary.name)
@@ -179,19 +208,12 @@ function HS:UpdateSelected()
 
   -- Mage Love <3
   if E.myclass == "MAGE" then
-    self.hasPortals = true
     self.hasTeleports = true
 
-    -- Portal
-    self.secureFrame:SetAttribute("shift-type1", "function")
-    self.secureFrame:SetAttribute("shift-_function1", function()
-      self:ShowMageLovePortals(false)
-    end)
-
-    -- Teleport
+    -- Portal & Teleport
     self.secureFrame:SetAttribute("shift-type2", "function")
     self.secureFrame:SetAttribute("shift-_function2", function()
-      self:ShowMageLovePortals(true)
+      self:ShowMageLovePortals()
     end)
   end
 end
@@ -210,7 +232,7 @@ function HS:UpdateTooltip()
   DT.tooltip:AddLine(" ")
 
   local additionalAdded = false
-  for index, enabled in pairs(self.db.additionaHS) do
+  for index, enabled in pairs(self.db.additionalHS) do
     if enabled then
       local data = I.HearthstoneData[index]
       if data and data.known and not data.hearthstone and not data.class and not data.portal and not data.teleport then
@@ -241,11 +263,11 @@ function HS:UpdateTooltip()
   -- Secondary
   if self.hsSecondary and self.hsSecondary.name then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name) end
 
+  -- Shift-Primary for Mythic+ Teleports
+  if (not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
+
   -- Shift-Secondary for Class Travel other than Mages
   if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Cast " .. self.hsClass.name) end
-
-  -- Shift-Primary for Mages
-  if self.hasPortals then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mage Portal Menu") end
 
   -- Shift-Secondary for Mages
   if self.hasTeleports then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Open Mage Teleport Menu") end
@@ -420,7 +442,6 @@ function HS:OnInit()
   self.hsSecondary = {}
   self.hsClass = {}
   self.hasTeleports = false
-  self.hasPortals = false
 
   -- Create stuff
   self:CreateText()

@@ -826,7 +826,7 @@ P.wunderbar = {
 
       primaryHS = 6948,
       secondaryHS = TXUI.IsRetail and 110560 or 6948,
-      additionaHS = {},
+      additionalHS = {},
     },
     Durability = {
       icon = F.String.ConvertGlyph(59721),

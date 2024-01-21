@@ -12,15 +12,21 @@ TXUI.Changelog["6.5.5"] = {
       .. F.String.Sublist(F.String.Eltreum() .. " from EltruismUI")
       .. F.String.Sublist(F.String.Class("Repooc", "DRUID"))
       .. F.String.Sublist(F.String.ElvUI() .. " community"),
+    "Mythic+ Portals in WunderBar's Hearthstone module!" --
+      .. F.String.Sublist("Thanks Ikrekot for carry")
+      .. F.String.Sublist("Thanks DreadMesh for carry"),
 
     "* Bug fixes",
 
     "* Profile updates",
 
     "* Documentation",
+    "Add a lot of missing Hearthstone data to WunderBar" --
+      .. F.String.Sublist("Credits to Morrivar"),
 
     "* Settings refactoring",
 
     "* Development improvements",
+    "Add check for item type portals for WunderBar's Hearthstone module",
   },
 }

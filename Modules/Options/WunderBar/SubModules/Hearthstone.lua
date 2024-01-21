@@ -23,10 +23,10 @@ function O:WunderBar_SubModules_Additional_Toggle(group)
     nil,
     nil,
     function(_, key)
-      return E.db.TXUI.wunderbar.subModules["Hearthstone"].additionaHS[key]
+      return E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key]
     end,
     function(_, key, value)
-      E.db.TXUI.wunderbar.subModules["Hearthstone"].additionaHS[key] = value
+      E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = value
     end
   )
 end

@@ -781,7 +781,6 @@ function F.CacheHearthstoneData()
     if config.load == nil or config.load == true then
       if (config.type == "toy") or (config.type == "item") then
         if TXUI.IsClassic and config.type == "toy" then TXUI:ThrowError("HearthstoneData: Type toy is not valid for: " .. id) end
-
         local success = F.ProtectedCall(function()
           local itemMixin = CreateFromMixins(ItemMixin)
           itemMixin:SetItemID(id)
@@ -789,8 +788,8 @@ function F.CacheHearthstoneData()
             config.id = id
             config.name = itemMixin:GetItemName()
 
-            if not TXUI.IsClassic then
-              config.known = (config.type == "item") and true or PlayerHasToy(id)
+            if not TXUI.IsClassic and config.type == "toy" then
+              config.known = PlayerHasToy(id)
             else
               config.known = GetItemCount(id, false, true) > 0
             end
@@ -807,14 +806,16 @@ function F.CacheHearthstoneData()
         local success = F.ProtectedCall(function()
           local spellMixin = CreateFromMixins(SpellMixin)
           spellMixin:SetSpellID(id)
-          spellMixin:ContinueOnSpellLoad(function()
-            config.id = id
-            config.name = spellMixin:GetSpellName()
-            config.known = IsSpellKnownOrOverridesKnown(id)
-            if not config.name or config.name == "" then TXUI:LogDebug("Could not fetch spell data", id) end
+          if not spellMixin:IsSpellEmpty() and spellMixin:GetSpellID() then
+            spellMixin:ContinueOnSpellLoad(function()
+              config.id = id
+              config.name = spellMixin:GetSpellName()
+              config.known = IsSpellKnownOrOverridesKnown(id)
+              if not config.name or config.name == "" then TXUI:LogDebug("Could not fetch spell data", id) end
 
-            F.CheckCacheHearthstoneData()
-          end)
+              F.CheckCacheHearthstoneData()
+            end)
+          end
           return true
         end)
 
