@@ -465,11 +465,7 @@ function O:Skins_ElvUI()
     local colorModifiersGroup = self:AddInlineRequirementsDesc(options, {
       name = "Color Modifier Keys",
     }, {
-      name = "This option "
-        .. F.String.Class("colors")
-        .. " your modifier keys to "
-        .. F.String.Class("class")
-        .. " color.\n\nSupported modifiers: SHIFT, CTRL, ALT, NUMPAD, MOUSEBUTTON\n\n",
+      name = "This option " .. F.String.Class("colors") .. " your modifier keys to " .. F.String.Class("class") .. " color.\n\n",
     }, I.Requirements.ColorModifiers).args
 
     colorModifiersGroup.enable = {
