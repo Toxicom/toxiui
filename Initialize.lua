@@ -41,6 +41,10 @@ TXUI.IsTBC = TXUI.MetaFlavor == "TBC"
 TXUI.IsWrath = TXUI.MetaFlavor == "Wrath"
 TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
 
+-- M+ season for Retail, eg.: df3
+-- see Internal.lua for M+ Hearthstones
+TXUI.RetailSeason = "df3"
+
 TXUI.Modules = {}
 TXUI.Modules.Changelog = TXUI:NewModule("Changelog", "AceEvent-3.0", "AceTimer-3.0")
 TXUI.Modules.Options = TXUI:NewModule("Options")

@@ -93,6 +93,8 @@ function O:WunderBar_SubModules_Hearthstone()
     max = 100,
     step = 1,
   }, nil, nil, nil, iconDisabled)
+  tab.generalGroup.args.seasonMythics =
+    ACH:Toggle("Seasonal M+ Teleports", "Enabling this will show only the current season's teleports in the Flyout frame", 4, nil, nil, nil, nil, nil, not TXUI.IsRetail)
 
   -- Hearthstones
   tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 2)

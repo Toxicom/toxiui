@@ -446,64 +446,64 @@ I.HearthstoneData = {
   [193000] = { ["type"] = "item", ["hearthstone"] = false }, -- Ring-Bound Hourglass
 
   -- Mythic+ Teleports --
-  [131204] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Jade Serpent
-  [131205] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Stout Brew
-  [131206] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Shado-Pan
-  [131222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Mogu King
-  [131225] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Setting Sun
-  [131228] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Black Ox
-  [131229] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scarlet Mitre
-  [131231] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scarlet Blade
-  [131232] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Necromancer
-  [159895] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Bloodmaul
-  [159896] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Iron Prow
-  [159897] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Vigilant
-  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Skies
-  [159899] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Crescent Moon
-  [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Dark Rail
-  [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Verdant
-  [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Burning Mountain
-  [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Courageous
-  [354463] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Plagued
-  [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Misty Forest
-  [354465] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Sinful Soul
-  [354466] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Ascendant
-  [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Undefeated
-  [354468] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scheming Loa
-  [354469] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Stone Warden
-  [367416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Streetwise Merchant
-  [373190] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Sire
-  [373191] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Tormented Soul
-  [373192] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the First Ones
-  [373262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Fallen Guardian
-  [373274] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scrappy Prince
-  [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Watcher's Legacy
-  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Clutch Defender
-  [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Windswept Plains
-  [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Rotting Woods
-  [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Draconic Diploma
-  [393276] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Obsidian Hoard
-  [393279] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Arcane Secrets
-  [393283] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Titanic Reservoir
-  [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Proven Worth
-  [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Grand Magistrix
-  [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Freebooter
-  [410074] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Festering Rot
-  [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Earth-Warder
-  [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Wind's Domain
-  [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Tidehunter
-  [424153] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Ancient Horrors
-  [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Nightmare Lord
-  [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Heart's Bane
-  [424187] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Golden Tomb
-  [424197] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Twisted Time
+  [131204] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1" }, -- Temple of the Jade Serpent
+  [131205] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Stormstout Brewery
+  [131206] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Shado-Pan Monastery
+  [131222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Mogu'shan Palace
+  [131225] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Gate of the Setting Sun
+  [131228] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Siege of Niuzao
+  [131229] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Scarlet Monastery
+  [131231] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Scarlet Halls
+  [131232] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Scholomance
+  [159895] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Bloodmaul Slag Mines
+  [159896] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Iron Docks
+  [159897] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Auchindoun
+  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Skyreach
+  [159899] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1" }, -- Shadowmoon Burial Grounds
+  [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl4" }, -- Grimrail Depot
+  [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- The Everbloom
+  [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Upper Blackrock Spire
+  [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Courageous
+  [354463] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Plagued
+  [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Misty Forest
+  [354465] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Sinful Soul
+  [354466] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Ascendant
+  [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Undefeated
+  [354468] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Scheming Loa
+  [354469] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Stone Warden
+  [367416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Streetwise Merchant
+  [373190] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Sire
+  [373191] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Tormented Soul
+  [373192] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the First Ones
+  [373262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Fallen Guardian
+  [373274] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Scrappy Prince
+  [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Watcher's Legacy
+  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Clutch Defender
+  [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Windswept Plains
+  [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Rotting Woods
+  [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Draconic Diploma
+  [393276] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Obsidian Hoard
+  [393279] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of Arcane Secrets
+  [393283] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Titanic Reservoir
+  [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of Proven Worth
+  [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Grand Magistrix
+  [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Freebooter
+  [410074] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of Festering Rot
+  [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Path of the Earth-Warder
+  [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df2" }, -- The Vortex Pinnacle
+  [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Throne of the Tides
+  [424153] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Black Rook Hold
+  [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Darkheart Thicket
+  [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Waycrest Manor
+  [424187] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Atal'Dazar
+  [424197] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Dawn of the Infinite
 
   -- Mage Teleports --
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Stormwind
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Orgrimmar
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Ironforge
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Undercity
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Darnassus
   [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
   [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon

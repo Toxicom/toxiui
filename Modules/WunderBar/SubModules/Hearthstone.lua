@@ -108,7 +108,13 @@ function HS:GetMythicPortals()
   local portals = {}
 
   for _, option in pairs(I.HearthstoneData) do
-    if option.known and option.mythic then
+    if self.db.seasonMythics then
+      if option.known and option.mythic and option.season == TXUI.RetailSeason then
+        option.spellID = option.id
+        option.type = "spell"
+        tinsert(portals, option)
+      end
+    elseif option.known and option.mythic then
       option.spellID = option.id
       option.type = "spell"
       tinsert(portals, option)
@@ -189,7 +195,7 @@ function HS:UpdateSelected()
   self.secureFrame:SetAttribute("type1", self.hsPrimary.type)
   self.secureFrame:SetAttribute("type2", self.hsSecondary.type)
 
-  if not F.Table.IsEmpty(self.hsMythics) then
+  if self.hsMythics and not F.Table.IsEmpty(self.hsMythics) then
     self.secureFrame:SetAttribute("shift-type1", "function")
     self.secureFrame:SetAttribute("shift-_function1", function()
       WB:ShowSecureFlyOut(self.frame, "UP", self.hsMythics)
@@ -264,7 +270,7 @@ function HS:UpdateTooltip()
   if self.hsSecondary and self.hsSecondary.name then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name) end
 
   -- Shift-Primary for Mythic+ Teleports
-  if (not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
+  if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
 
   -- Shift-Secondary for Class Travel other than Mages
   if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Cast " .. self.hsClass.name) end

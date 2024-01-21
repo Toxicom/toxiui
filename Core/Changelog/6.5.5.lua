@@ -15,6 +15,7 @@ TXUI.Changelog["6.5.5"] = {
     "Mythic+ Portals in WunderBar's Hearthstone module!" --
       .. F.String.Sublist("Thanks Ikrekot for carry")
       .. F.String.Sublist("Thanks DreadMesh for carry"),
+    "Option to show only current season's M+ portals in flyout",
 
     "* Bug fixes",
 
