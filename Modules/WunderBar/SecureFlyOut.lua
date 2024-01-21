@@ -25,33 +25,50 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     end
   end
 
-  local numPrimarySlots = #primarySlots
-  local numSecondarySlots = secondarySlots and #secondarySlots or 0
-  local maxSlotsInOneColumn = math.max(numPrimarySlots, numSecondarySlots)
-  local totalSlots = numPrimarySlots + numSecondarySlots
-  local spacing, padding = 2, 2
+  local spacing, padding = 4, 4
   local slotWidth = 40 + E.Border
   local slotHeight = 30 + E.Border
 
+  -- Limit the number of slots per column
+  local maxSlotsPerColumn = 8
+  local numPrimaryColumns = math.ceil(#primarySlots / maxSlotsPerColumn)
+  local numSecondaryColumns = secondarySlots and math.ceil(#secondarySlots / maxSlotsPerColumn) or 0
+
+  local totalColumns = numPrimaryColumns + numSecondaryColumns
+  local totalSlots = #primarySlots + (secondarySlots and #secondarySlots or 0)
+
+  -- Calculate the total width of the flyout
+  local totalWidth = totalColumns * slotWidth + (totalColumns - 1) * spacing + 2 * padding
+
   if not secureFlyOutFrame then secureFlyOutFrame = CreateFrame("Frame", nil, self.bar) end
-  -- Adjust frame size: width for two columns, height based on the taller column
-  secureFlyOutFrame:SetSize(2 * slotWidth + 3 * spacing + padding, maxSlotsInOneColumn * slotHeight + (maxSlotsInOneColumn - 1) * spacing + 2 * padding)
+  secureFlyOutFrame:SetSize(totalWidth, maxSlotsPerColumn * slotHeight + (maxSlotsPerColumn - 1) * spacing + 2 * padding)
 
   local numSlots = 0
 
-  local prevSlot
+  local prevSlots = {} -- Table to keep track of the previous slot in each column
+
   for i = 1, totalSlots do
-    local info
-    local slot
-    local columnOffset -- X offset for the column (0 for the first column, slotWidth + spacing for the second)
-    if i <= numPrimarySlots then
+    local info, slot, columnOffset
+
+    local isPrimary = i <= #primarySlots
+    local currentColumn
+    local indexInColumn
+
+    if isPrimary then
       info = primarySlots[i]
       slot = secureFlyOutButtons[i]
-      columnOffset = 0
-    elseif secondarySlots then
-      info = secondarySlots[i - numPrimarySlots]
+      currentColumn = math.ceil(i / maxSlotsPerColumn)
+      indexInColumn = (i - 1) % maxSlotsPerColumn + 1
+      -- Primary slots start from the rightmost column and grow left
+      columnOffset = totalWidth - currentColumn * (slotWidth + spacing) + padding
+    else
+      local secondaryIndex = i - #primarySlots
+      info = secondarySlots[secondaryIndex]
       slot = secureFlyOutButtons[i]
-      columnOffset = slotWidth + spacing -- Offset for the second column
+      currentColumn = math.ceil(secondaryIndex / maxSlotsPerColumn)
+      indexInColumn = (secondaryIndex - 1) % maxSlotsPerColumn + 1
+      -- Secondary slots start to the left of the primary slots and grow left
+      columnOffset = totalWidth - (numPrimaryColumns * (slotWidth + spacing) + currentColumn * (slotWidth + spacing)) + padding
     end
 
     if not slot then
@@ -91,14 +108,16 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     slot:ClearAllPoints()
 
-    if i == 1 or i == numPrimarySlots + 1 then
-      -- First slot in each column
-      slot:SetPoint("TOPLEFT", secureFlyOutFrame, "TOPLEFT", padding + columnOffset, -padding)
-      prevSlot = slot -- Set prevSlot here for the first slot in each column
+    if indexInColumn == 1 then
+      -- First slot in the column
+      -- Ensure the first slot respects the bottom padding of the flyout
+      slot:SetPoint("BOTTOMRIGHT", secureFlyOutFrame, "BOTTOMLEFT", columnOffset, padding)
+      prevSlots[currentColumn] = slot
     else
-      -- Subsequent slots, positioned below the previous slot in the same column
-      slot:SetPoint("TOP", prevSlot, "BOTTOM", 0, -spacing)
-      prevSlot = slot -- Set prevSlot here for subsequent slots
+      -- Subsequent slots, positioned above the previous slot in the same column
+      -- Ensure the slot is positioned correctly with respect to spacing and the slot above it
+      slot:SetPoint("BOTTOM", prevSlots[currentColumn], "TOP", 0, spacing)
+      prevSlots[currentColumn] = slot
     end
 
     slot:SetAttribute("type", info.type)
@@ -148,7 +167,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   secureFlyOutFrame:ClearAllPoints()
 
   if direction == "UP" then
-    secureFlyOutFrame:SetPoint("BOTTOM", parent, "TOP")
+    secureFlyOutFrame:SetPoint("BOTTOMRIGHT", parent, "TOPRIGHT")
   elseif direction == "DOWN" then
     secureFlyOutFrame:SetPoint("TOP", parent, "BOTTOM")
   elseif direction == "LEFT" then
