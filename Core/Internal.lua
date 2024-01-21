@@ -357,21 +357,29 @@ I.ElvUIIcons = {
 -- type, name, known [known is always true for items]
 I.HearthstoneDataLoaded = false
 I.HearthstoneData = {
-  [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
+  -- Standard Items --
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
-  [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
+  [110560] = { ["type"] = "toy", ["hearthstone"] = false }, -- Garrison Hearthstone
+  [140192] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dalaran Hearthstone
+  [141605] = { ["type"] = "item", ["hearthstone"] = false }, -- Flight Master's Whistle
+
+  -- Class Teleports --
+  [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
+  [18960] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Teleport: Moonglade
   [50977] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DEATHKNIGHT" }, -- Death Gate
+  [126892] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "MONK" }, -- Zen Pligrimage
+  [193753] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Dreamwalk
+
+  -- Racial Teleports/Items --
+  [168862] = { ["type"] = "item", ["hearthstone"] = false }, -- G.E.A.R. Tracking Beacon
+  [265225] = { ["type"] = "spell", ["hearthstone"] = false }, -- Mole Machine
+  [312372] = { ["type"] = "spell", ["hearthstone"] = false }, -- Return to Camp
+
+  -- Alternate Hearthstones --
   [54452] = { ["type"] = "toy", ["hearthstone"] = true }, -- Ethereal Portal
   [64488] = { ["type"] = "toy", ["hearthstone"] = true }, -- The Innkeeper's Daughter
-  [87215] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Pandaria
-  [93672] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dark Portal
-  [110560] = { ["type"] = "item", ["hearthstone"] = false }, -- Garrison Hearthstone
-  [126892] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "MONK" }, -- Zen Pilgrimage
-  [132517] = { ["type"] = "toy", ["hearthstone"] = false }, -- Intra-Dalaran Wormhole Generator
-  [140192] = { ["type"] = "item", ["hearthstone"] = false }, -- Dalaran Hearthstone
-  [141605] = { ["type"] = "item", ["hearthstone"] = false }, -- Flight Master's Whistle
+  [93672] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dark Portal (Retail)
   [142542] = { ["type"] = "toy", ["hearthstone"] = true }, -- Tome of Town Portal
-  [151652] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Argus
   [162973] = { ["type"] = "toy", ["hearthstone"] = true }, -- Greatfather Winter's Hearthstone
   [163045] = { ["type"] = "toy", ["hearthstone"] = true }, -- Headless Horseman's Hearthstone
   [165669] = { ["type"] = "toy", ["hearthstone"] = true }, -- Lunar Elder's Hearthstone
@@ -379,107 +387,188 @@ I.HearthstoneData = {
   [165802] = { ["type"] = "toy", ["hearthstone"] = true }, -- Noble Gardener's Hearthstone
   [166746] = { ["type"] = "toy", ["hearthstone"] = true }, -- Fire Eater's Hearthstone
   [166747] = { ["type"] = "toy", ["hearthstone"] = true }, -- Brewfest Reveler's Hearthstone
-  [168807] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Kul Tiras
-  [168808] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Zandalar
   [168907] = { ["type"] = "toy", ["hearthstone"] = true }, -- Holographic Digitalization Hearthstone
   [172179] = { ["type"] = "toy", ["hearthstone"] = true }, -- Eternal Traveler's Hearthstone
-  [172924] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Shadowlands
-  [180290] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "NightFae" }, -- Night Fae Hearthstone
-  [180817] = { ["type"] = "toy", ["hearthstone"] = true }, -- Cypher of Relocation
-  [182773] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Necrolord" }, -- Necrolord Hearthstone
-  [183716] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Venthyr" }, -- Venthyr Sinstone
-  [184353] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = "Kyrian" }, -- Kyrian Hearthstone
-  [188952] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dominated Hearthstone (The Jailer's Gauntlet: Layer 2)
+  [180290] = { ["type"] = "toy", ["hearthstone"] = true }, -- Night Fae Hearthstone
+  [182773] = { ["type"] = "toy", ["hearthstone"] = true }, -- Necrolord Hearthstone
+  [183716] = { ["type"] = "toy", ["hearthstone"] = true }, -- Venthyr Sinstone
+  [184353] = { ["type"] = "toy", ["hearthstone"] = true }, -- Kyrian Hearthstone
+  [188952] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dominated Hearthstone
   [190237] = { ["type"] = "toy", ["hearthstone"] = true }, -- Broker Translocation Matrix
-  [193588] = { ["type"] = "toy", ["hearthstone"] = true }, -- Timewalker's Hearthstone (Dragonflight Epic Edition)
-  [193753] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Dreamwalk
-  [312372] = { ["type"] = "spell", ["hearthstone"] = false }, -- Return to Camp (Vulpera Racial)
-  [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone (Necrolord Soulbind)
-  [208704] = { ["type"] = "toy", ["hearthstone"] = true }, -- Deepdweller's Earthen Hearthstone (The War Within - Epic Edition)
+  [193588] = { ["type"] = "toy", ["hearthstone"] = true }, -- Timewalker's Hearthstone
+  [200630] = { ["type"] = "toy", ["hearthstone"] = true }, -- Ohn'ir Windsage's Hearthstone
+  [206195] = { ["type"] = "toy", ["hearthstone"] = true }, -- Path of the Naaru
+  [208704] = { ["type"] = "toy", ["hearthstone"] = true }, -- Deepdweller's Earthen Hearthstone
+  [209035] = { ["type"] = "toy", ["hearthstone"] = true }, -- Hearthstone of the Flame
 
-  -- Dragonflight not yet verified
-  [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["load"] = TXUI.IsRetail }, -- Wyrmhole Generator
-  [200630] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Ohn'ir Windsage's Hearthstone
-  [206195] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Path of the Naaru
-  [209035] = { ["type"] = "toy", ["hearthstone"] = true, ["load"] = TXUI.IsRetail }, -- Hearthstone of the Flame (Amirdrassil raid)
+  -- Engineering Items/Toys --
+  [18984] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dimensional Ripper - Everlook
+  [18986] = { ["type"] = "toy", ["hearthstone"] = false }, -- Ultrasafe Transporter: Gadgetzan
+  [30542] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dimensional Ripper - Area 52
+  [30544] = { ["type"] = "toy", ["hearthstone"] = false }, -- Ultrasafe Transporter: Toshley's Station
+  [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
+  [87215] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Pandaria
+  [112059] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Centrifuge
+  [132517] = { ["type"] = "item", ["hearthstone"] = false }, -- Intra-Dalaran Wormhole Generator
+  [151652] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Argus
+  [168807] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Kul Tiras
+  [168808] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Zandalar
+  [172924] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Shadowlands
+  [198156] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wyrmhole Generator: Dragon Isles
 
-  -- Mage specific
-  [193759] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Hall of the Guardian
+  -- Teleportation Equipment --
+  [22589] = { ["type"] = "item", ["hearthstone"] = false }, -- Atiesh, Greatstaff of the Guardian
+  [28585] = { ["type"] = "item", ["hearthstone"] = false }, -- Ruby Slippers
+  [32757] = { ["type"] = "item", ["hearthstone"] = false }, -- Blessed Medallion of Karabor
+  [44935] = { ["type"] = "item", ["hearthstone"] = false }, -- Ring of the Kirin Tor
+  [45690] = { ["type"] = "item", ["hearthstone"] = false }, -- Inscribed Ring of the Kirin Tor
+  [46874] = { ["type"] = "item", ["hearthstone"] = false }, -- Argent Crusader's Tabard
+  [48956] = { ["type"] = "item", ["hearthstone"] = false }, -- Etched Ring of the Kirin Tor
+  [51559] = { ["type"] = "item", ["hearthstone"] = false }, -- Runed of the Kirin Tor
+  [50287] = { ["type"] = "item", ["hearthstone"] = false }, -- Boots of the Bay
+  [63206] = { ["type"] = "item", ["hearthstone"] = false }, -- Wrap of Unity (Alliance)
+  [63207] = { ["type"] = "item", ["hearthstone"] = false }, -- Wrap of Unity (Horde)
+  [63352] = { ["type"] = "item", ["hearthstone"] = false }, -- Shroud of Cooperation (Alliance)
+  [63353] = { ["type"] = "item", ["hearthstone"] = false }, -- Shroud of Cooperation (Horde)
+  [63378] = { ["type"] = "item", ["hearthstone"] = false }, -- Hellscream's Reach Tabard
+  [63379] = { ["type"] = "item", ["hearthstone"] = false }, -- Baradin's Wardens Tabard
+  [65274] = { ["type"] = "item", ["hearthstone"] = false }, -- Cloak of Coordination (Horde)
+  [65360] = { ["type"] = "item", ["hearthstone"] = false }, -- Cloak of Coordination (Alliance)
+  [139599] = { ["type"] = "item", ["hearthstone"] = false }, -- Empowered Ring of the Kirin Tor
+  [142469] = { ["type"] = "item", ["hearthstone"] = false }, -- Violet Seal of the Grand Magus
+  [144391] = { ["type"] = "item", ["hearthstone"] = false }, -- Pugilist's Powerful Punching Ring (Alliance)
+  [144392] = { ["type"] = "item", ["hearthstone"] = false }, -- Pugilist's Powerful Punching Ring (Horde)
+  [166559] = { ["type"] = "item", ["hearthstone"] = false }, -- Commander's Signet of Battle
+  [166560] = { ["type"] = "item", ["hearthstone"] = false }, -- Captain's Signet of Command
+  [193000] = { ["type"] = "item", ["hearthstone"] = false }, -- Ring-Bound Hourglass
 
-  [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Oribos
-  [344587] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Oribos
+  -- Mythic+ Teleports --
+  [131204] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Jade Serpent
+  [131205] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Stout Brew
+  [131206] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Shado-Pan
+  [131222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Mogu King
+  [131225] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Setting Sun
+  [131228] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Black Ox
+  [131229] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scarlet Mitre
+  [131231] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scarlet Blade
+  [131232] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Necromancer
+  [159895] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Bloodmaul
+  [159896] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Iron Prow
+  [159897] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Vigilant
+  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Skies
+  [159899] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Crescent Moon
+  [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Dark Rail
+  [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Verdant
+  [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Burning Mountain
+  [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Courageous
+  [354463] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Plagued
+  [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Misty Forest
+  [354465] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Sinful Soul
+  [354466] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Ascendant
+  [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Undefeated
+  [354468] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scheming Loa
+  [354469] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Stone Warden
+  [367416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Streetwise Merchant
+  [373190] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Sire
+  [373191] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Tormented Soul
+  [373192] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the First Ones
+  [373262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Fallen Guardian
+  [373274] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Scrappy Prince
+  [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Watcher's Legacy
+  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Clutch Defender
+  [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Windswept Plains
+  [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Rotting Woods
+  [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Draconic Diploma
+  [393276] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Obsidian Hoard
+  [393279] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Arcane Secrets
+  [393283] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Titanic Reservoir
+  [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Proven Worth
+  [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Grand Magistrix
+  [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Freebooter
+  [410074] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Festering Rot
+  [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Earth-Warder
+  [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Wind's Domain
+  [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Tidehunter
+  [424153] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Ancient Horrors
+  [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Nightmare Lord
+  [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Heart's Bane
+  [424187] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of the Golden Tomb
+  [424197] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true }, -- Path of Twisted Time
 
-  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
+  -- Mage Teleports --
   [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
-
-  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
   [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
-
-  [281402] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dazar'alor - Horde
-  [281404] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dazar'alor - Horde
-
-  [281400] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Boralus - Alliance
-  [281403] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Boralus - Alliance
-
-  [176246] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormshield - Alliance
-  [176248] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormshield - Alliance
-
-  [176244] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Warspear - Horde
-  [176242] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Warspear - Horde
-
-  [224871] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran (Legion)
-  [224869] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran (Legion)
-
-  [132620] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms - Alliance
-  [132621] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms - Alliance
-
-  [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms - Horde
-  [132627] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms - Horde
-
-  [120146] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ancient Dalaran
-  [120145] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ancient Dalaran
-
-  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran (Northrend)
-  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran (Northrend)
-
-  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Alliance
-  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Alliance
-
-  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Horde
-  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Horde
-
-  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Theramore - Alliance
-  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Theramore - Alliance
-
-  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stonard - Horde
-  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stonard - Horde
-
-  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
-
-  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
-  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
-
-  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
-
-  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
   [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
-
-  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Silvermoon
-  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon
-
-  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Exodar
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
-
-  [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Valdrakken
+  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon
+  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath (Alliance)
+  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath (Horde)
+  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Theramore
+  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stonard
+  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran - Northrend
+  [88342] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad (Alliance)
+  [88344] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad (Horde)
+  [120145] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Ancient Teleport: Dalaran
+  [132621] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms (Alliance)
+  [132627] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms (Horde)
+  [176242] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Warspear
+  [176248] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormshield
+  [193759] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Hall of the Guardian
+  [224869] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran - Broken Isles
+  [281403] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Boralus
+  [281404] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dazar'alor
+  [344587] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Oribos
   [395277] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Valdrakken
 
-  [88346] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad - Horde
-  [88344] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad - Horde
+  -- Mage Portals --
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
+  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Exodar
+  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Silvermoon
+  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath (Alliance)
+  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath (Horde)
+  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Theramore
+  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stonard
+  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran - Northrend
+  [88345] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad (Alliance)
+  [88346] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad (Horde)
+  [120146] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Ancient Portal: Dalaran
+  [132620] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms (Alliance)
+  [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms (Horde)
+  [176244] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Warspear
+  [176246] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormshield
+  [224871] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran - Broken Isles
+  [281400] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Boralus
+  [281402] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dazar'alor
+  [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Oribos
+  [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Valdrakken
 
-  [88345] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad - Alliance
-  [88342] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad - Alliance
+  -- Other Teleportation Items/Spells --
+  [37863] = { ["type"] = "item", ["hearthstone"] = false }, -- Direbrew's Remote
+  [43824] = { ["type"] = "toy", ["hearthstone"] = false }, -- The Schools of Arcane Magic - Mastery
+  [52251] = { ["type"] = "item", ["hearthstone"] = false }, -- Jaina's Locket
+  [58487] = { ["type"] = "item", ["hearthstone"] = false }, -- Potion of Deepholm
+  [64457] = { ["type"] = "item", ["hearthstone"] = false }, -- The Last Relic of Argus
+  [95567] = { ["type"] = "toy", ["hearthstone"] = false }, -- Kirin Tor Beacon
+  [95568] = { ["type"] = "toy", ["hearthstone"] = false }, -- Sunreaver Beacon
+  [103678] = { ["type"] = "item", ["hearthstone"] = false }, -- Time-Lost Artifact
+  [118662] = { ["type"] = "item", ["hearthstone"] = false }, -- Bladespire Relic
+  [118663] = { ["type"] = "item", ["hearthstone"] = false }, -- Relic of Karabor
+  [128353] = { ["type"] = "item", ["hearthstone"] = false }, -- Ever-Shifting Mirror
+  [129276] = { ["type"] = "item", ["hearthstone"] = false }, -- Beginner's Guide to Dimensional Rifting
+  [129929] = { ["type"] = "item", ["hearthstone"] = false }, -- Admiral's Compass
+  [140324] = { ["type"] = "toy", ["hearthstone"] = false }, -- Mobile Telemancy Beacon
+  [140493] = { ["type"] = "item", ["hearthstone"] = false }, -- Adepts's Guide to Dimensional Rifting
+  [167075] = { ["type"] = "item", ["hearthstone"] = false }, -- Ultrasafe Transporter: Mechagon
+  [211788] = { ["type"] = "toy", ["hearthstone"] = false }, -- Tess's Peacebloom
+  [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone
 }
 
 I.HearthstoneData_Wrath = {
