@@ -42,6 +42,7 @@ local keysToColorize = {
   "KEY_NEQUALS",
 }
 
+-- Heavily modified version of AB:FixKeybindText from ElvUI
 function CM:ColorKeybinds(button)
   local text = button.HotKey:GetText()
   local colorHex = I.PriestColors.colorStr
