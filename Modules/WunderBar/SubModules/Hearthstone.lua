@@ -189,7 +189,7 @@ function HS:UpdateSelected()
   self.secureFrame:SetAttribute("type1", self.hsPrimary.type)
   self.secureFrame:SetAttribute("type2", self.hsSecondary.type)
 
-  if self.hsMythics then
+  if not F.Table.IsEmpty(self.hsMythics) then
     self.secureFrame:SetAttribute("shift-type1", "function")
     self.secureFrame:SetAttribute("shift-_function1", function()
       WB:ShowSecureFlyOut(self.frame, "UP", self.hsMythics)
@@ -264,7 +264,7 @@ function HS:UpdateTooltip()
   if self.hsSecondary and self.hsSecondary.name then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name) end
 
   -- Shift-Primary for Mythic+ Teleports
-  if self.hsMythics and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
+  if (not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
 
   -- Shift-Secondary for Class Travel other than Mages
   if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Cast " .. self.hsClass.name) end
