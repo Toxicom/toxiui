@@ -114,6 +114,8 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       then
         return requirement
       end
+    elseif requirement == I.Enum.Requirements.ELTRUISM_COLOR_MODIFIERS_DISABLED then
+      if F.IsAddOnEnabled("ElvUI_EltreumUI") and F.GetDBFromPath("ElvUI_EltreumUI.skins.colormodkey") then return requirement end
     end
   end
 

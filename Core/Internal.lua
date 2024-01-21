@@ -158,6 +158,9 @@ I.Requirements = {
   ["ElvUITheme"] = {
     I.Enum.Requirements.OTHER_THEMES_DISABLED,
   },
+  ["ColorModifiers"] = {
+    I.Enum.Requirements.ELTRUISM_COLOR_MODIFIERS_DISABLED,
+  },
 }
 
 -- Controls Settings about the Fancy Gradient Theme
