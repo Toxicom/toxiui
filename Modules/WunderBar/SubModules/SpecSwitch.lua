@@ -176,11 +176,13 @@ end
 
 function SS:OnWunderBarUpdate()
   F.Event.ContinueOutOfCombat(function()
-    self:UpdateSpecialization()
-    self:UpdateSwitch()
-    self:UpdateElements()
-    self:UpdatePosition()
-    self:UpdateInfoText()
+    E:Delay(0.01, function()
+      self:UpdateSpecialization()
+      self:UpdateSwitch()
+      self:UpdateElements()
+      self:UpdatePosition()
+      self:UpdateInfoText()
+    end)
   end)
 end
 
@@ -373,32 +375,30 @@ end
 
 function SS:UpdateElement(spec, frame, icon, text, isSecondary)
   local info = self.specCache[spec]
+  local loadoutName = SS:GetLoadoutName()
 
   if info and info.name then
-    E:Delay(0.01, function()
-      frame:Show()
+    frame:Show()
 
-      local loadoutName = SS:GetLoadoutName()
-      if loadoutName and not isSecondary and self.db.general.showLoadout then
-        text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
-      else
-        text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
+    if loadoutName and not isSecondary and self.db.general.showLoadout then
+      text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
+    else
+      text:SetText(self.db.general.useUppercase and F.String.Uppercase(info.name) or info.name)
+    end
+
+    if self.db.general.showIcons then
+      local iconTexture = self.db.icons[info.id or spec]
+
+      if not iconTexture then
+        iconTexture = self.db.icons[0]
+        self:LogDebug("Icon could not be found", info.id, spec)
       end
 
-      if self.db.general.showIcons then
-        local iconTexture = self.db.icons[info.id or spec]
-
-        if not iconTexture then
-          iconTexture = self.db.icons[0]
-          self:LogDebug("Icon could not be found", info.id, spec)
-        end
-
-        icon:Show()
-        icon:SetText(iconTexture)
-      else
-        icon:Hide()
-      end
-    end)
+      icon:Show()
+      icon:SetText(iconTexture)
+    else
+      icon:Hide()
+    end
   else
     frame:Hide()
   end
