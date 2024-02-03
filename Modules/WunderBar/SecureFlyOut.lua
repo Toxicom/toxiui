@@ -21,7 +21,9 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local showTooltip = function(button)
     if button.spellID then
       GameTooltip:SetOwner(button, "ANCHOR_LEFT", 4, 4)
-      GameTooltip:SetSpellByID(button.spellID)
+      -- Necessary for professions
+      local _, _, _, _, _, _, spellID = GetSpellInfo(button.spellID)
+      GameTooltip:SetSpellByID(spellID or button.spellID)
     end
   end
 
@@ -122,12 +124,9 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     slot:SetAttribute("type", info.type)
 
-    if info.type == "function" then
-      slot:SetAttribute("_function", info.func)
-    else
-      slot:SetAttribute(info.type, info.spellID)
-      slot.spellID = info.spellID
-    end
+    if info.type == "function" then slot:SetAttribute("_function", info.func) end
+    slot:SetAttribute(info.type, info.spellID)
+    slot.spellID = info.spellID
 
     local texture = info.icon or GetSpellTexture(info.spellID)
 
