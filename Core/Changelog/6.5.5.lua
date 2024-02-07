@@ -16,6 +16,10 @@ TXUI.Changelog["6.5.5"] = {
       .. F.String.Sublist("Thanks Ikrekot for carry")
       .. F.String.Sublist("Thanks DreadMesh for carry"),
     "Option to show only current season's M+ portals in flyout",
+    "New Available Tags for "
+      .. TXUI.Title
+      .. " Names - uppercase" --
+      .. F.String.Sublist("Currently not used anywhere"),
 
     "* Bug fixes",
     "Fix missing tooltip on WunderBar's profession flyouts",

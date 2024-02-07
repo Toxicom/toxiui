@@ -6,6 +6,7 @@ local ElvUF = E.oUF
 local ipairs = ipairs
 local select = select
 local floor = math.floor
+local uppercase = string.upper
 local UnitClass = UnitClass
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
@@ -172,9 +173,37 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
+    E:AddTag(format("tx:name:%s:uppercase", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_FACTION", function(unit)
+      local name = UnitName(unit)
+      if not name then return "missing name wtf" end
+
+      name = uppercase(name)
+      name = E:ShortenString(name, length)
+
+      if not dm.isEnabled then return name end
+
+      local reverseGradient = reverseUnitsTable[unit]
+      return FormatColorTag(name, unit, reverseGradient)
+    end)
+
     E:AddTag(format("tx:name:abbrev:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
+
+      if strfind(name, "%s") then name = Abbrev(name) end
+      name = E:ShortenString(name, length)
+
+      if not dm.isEnabled then return name end
+
+      local reverseGradient = reverseUnitsTable[unit]
+      return FormatColorTag(name, unit, reverseGradient)
+    end)
+
+    E:AddTag(format("tx:name:abbrev:%s:uppercase", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+      local name = UnitName(unit)
+      if not name then return "missing name wtf" end
+
+      name = uppercase(name)
 
       if strfind(name, "%s") then name = Abbrev(name) end
       name = E:ShortenString(name, length)
@@ -484,15 +513,49 @@ function M:Tags()
   )
 
   -- Tag info: Names
-  E:AddTagInfo("tx:name:veryshort", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 5 letters)")
-  E:AddTagInfo("tx:name:short", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 10 letters)")
-  E:AddTagInfo("tx:name:medium", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 15 letters)")
-  E:AddTagInfo("tx:name:long", TagNames.NAMES, "Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to 20 letters)")
+  -- Tag categories and their descriptions
+  local tagCategories = {
+    { modifier = "", description = "Displays the name of the unit with " },
+    {
+      modifier = "abbrev:",
+      description = "Displays the name of the unit with abbreviation and ",
+      uppercaseDesc = "Displays the name of the unit in UPPERCASE with abbreviation and ",
+    },
+  }
 
-  E:AddTagInfo("tx:name:abbrev:veryshort", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 5 letters)")
-  E:AddTagInfo("tx:name:abbrev:short", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 10 letters)")
-  E:AddTagInfo("tx:name:abbrev:medium", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 15 letters)")
-  E:AddTagInfo("tx:name:abbrev:long", TagNames.NAMES, "Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to 20 letters)")
+  -- Lengths and their descriptions
+  local lengths = {
+    { name = "veryshort", limit = 5 },
+    { name = "short", limit = 10 },
+    { name = "medium", limit = 15 },
+    { name = "long", limit = 20 },
+  }
+
+  -- Uppercase modifier
+  local uppercaseModifier = ":uppercase"
+
+  -- Loop to generate tags
+  for _, category in ipairs(tagCategories) do
+    for _, length in ipairs(lengths) do
+      -- Regular tags
+      local tagName = "tx:name:" .. category.modifier .. length.name
+      local description = category.description .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
+      E:AddTagInfo(tagName, TagNames.NAMES, description)
+
+      -- Uppercase tags, if applicable
+      if category.modifier == "abbrev:" then
+        -- For abbreviated tags, include uppercase modifier after length
+        tagName = tagName .. uppercaseModifier
+        description = category.uppercaseDesc .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
+        E:AddTagInfo(tagName, TagNames.NAMES, description)
+      else
+        -- For non-abbreviated tags, add uppercase versions
+        local uppercaseTagName = "tx:name:" .. length.name .. uppercaseModifier
+        local uppercaseDescription = "Displays the name of the unit in UPPERCASE with " .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
+        E:AddTagInfo(uppercaseTagName, TagNames.NAMES, uppercaseDescription)
+      end
+    end
+  end
 
   -- Tag info: Health
   E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
