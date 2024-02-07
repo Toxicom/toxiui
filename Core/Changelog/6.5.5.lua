@@ -18,6 +18,7 @@ TXUI.Changelog["6.5.5"] = {
     "Option to show only current season's M+ portals in flyout",
 
     "* Bug fixes",
+    "Fix missing tooltip on WunderBar's profession flyouts",
 
     "* Profile updates",
 

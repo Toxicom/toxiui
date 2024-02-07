@@ -124,9 +124,13 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     slot:SetAttribute("type", info.type)
 
-    if info.type == "function" then slot:SetAttribute("_function", info.func) end
-    slot:SetAttribute(info.type, info.spellID)
-    slot.spellID = info.spellID
+    if info.type == "function" then
+      slot:SetAttribute("_function", info.func)
+      slot.spellID = info.spellID
+    else
+      slot:SetAttribute(info.type, info.spellID)
+      slot.spellID = info.spellID
+    end
 
     local texture = info.icon or GetSpellTexture(info.spellID)
 
