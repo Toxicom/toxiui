@@ -31,6 +31,7 @@ TXUI.Changelog["6.5.5"] = {
       .. F.String.Sublist("Credits to Morrivar"),
 
     "* Settings refactoring",
+    "Update " .. TXUI.Title .. " font's " .. F.String.ToxiUI("[ ]") .. " symbols so they're not confused with " .. F.String.ToxiUI("( )"),
 
     "* Development improvements",
     "Add check for item type portals for WunderBar's Hearthstone module",
