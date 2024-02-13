@@ -29,6 +29,7 @@ TXUI.Changelog["6.5.5"] = {
     "* Documentation",
     "Add a lot of missing Hearthstone data to WunderBar" --
       .. F.String.Sublist("Credits to Morrivar"),
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.58",
 
     "* Settings refactoring",
     "Update " .. TXUI.Title .. " font's " .. F.String.ToxiUI("[ ]") .. " symbols so they're not confused with " .. F.String.ToxiUI("( )"),
