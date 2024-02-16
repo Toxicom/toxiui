@@ -69,7 +69,8 @@ local reverseUnitsTable = {
 }
 
 function M:Tags()
-  local classIcon = [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\ToxiClasses:32:32:0:0:512:512:%s|t]]
+  local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
+  local classIcon = [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\]] .. iconTheme .. [[:32:32:0:0:512:512:%s|t]]
   local classIcons = {
     WARRIOR = "0:64:0:64",
     MAGE = "64:128:0:64",

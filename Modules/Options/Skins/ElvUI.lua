@@ -484,6 +484,37 @@ function O:Skins_ElvUI()
       end,
     }
   end
+
+  -- UnitFrame Class Icons Tag
+  do
+    local classIconsGroup = self:AddInlineDesc(options, {
+      name = "Class Icon Style",
+    }, {
+      name = "Change the style for the "
+        .. F.String.ToxiUI("[tx:classicon]")
+        .. " tag used in UnitFrames.\n\nThis setting will not change Details custom icons. You need to do that yourself.\nFor file names, go to "
+        .. F.String.ToxiUI("ElvUI_ToxiUI/Media/Textures/Icons\n\n"),
+    }).args
+
+    classIconsGroup.style = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Style",
+      values = {
+        ToxiClasses = TXUI.Title,
+        Laev = F.String.Laev() .. " " .. F.String.Rainbow("Colored"),
+        LaevBorder = F.String.Laev() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
+        LaevWhite = F.String.Laev() .. " White Stroke",
+      },
+      get = function()
+        return E.db.TXUI.elvUIIcons.classIcons.theme
+      end,
+      set = function(_, value)
+        E.db.TXUI.elvUIIcons.classIcons.theme = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
 end
 
 O:AddCallback("Skins_ElvUI")

@@ -160,6 +160,10 @@ function F.String.Eltreum()
   return F.String.FastGradientHex("Eltreum", "#587AAD", "#9FE3F4")
 end
 
+function F.String.Laev()
+  return F.String.Color("Laev", "9db8eb")
+end
+
 function F.String.Scaling()
   return F.String.ToxiUI("Additional Scaling") .. " module"
 end
@@ -370,6 +374,36 @@ function F.String.FastGradient(text, r1, g1, b1, r2, g2, b2)
   end
 
   return msg
+end
+
+function F.String.Rainbow(text)
+  -- Define a table of color codes for the rainbow
+  local colors = {
+    "|cFFFF0000", -- Red
+    "|cFFFF7F00", -- Orange
+    "|cFFFFFF00", -- Yellow
+    "|cFF00FF00", -- Green
+    "|cFF0000FF", -- Blue
+    "|cFF4B0082", -- Indigo
+    "|cFF8B00FF", -- Violet
+  }
+
+  -- The resulting string
+  local result = ""
+
+  -- Length of the text
+  local textLength = string.len(text)
+
+  -- Iterate through each character of the input text
+  for i = 1, textLength do
+    -- Select color based on the current character position mod the number of colors
+    local color = colors[((i - 1) % #colors) + 1]
+
+    -- Append the colored character to the result string
+    result = result .. color .. string.sub(text, i, i) .. "|r"
+  end
+
+  return result
 end
 
 function F.String.FastGradientHex(text, h1, h2)

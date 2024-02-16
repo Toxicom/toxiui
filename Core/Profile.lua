@@ -346,6 +346,10 @@ P.elvUIIcons = {
     },
   },
 
+  classIcons = {
+    theme = "ToxiClasses",
+  },
+
   deadIcons = {
     enabled = true, -- Enabled by default
     theme = "TXUI_STYLIZED",
