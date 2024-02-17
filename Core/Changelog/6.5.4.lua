@@ -4,6 +4,6 @@ TXUI.Changelog["6.5.4"] = {
   HOTFIX = true,
   CHANGES = {
     "* Documentation",
-    "Update ToxiUI contributor names",
+    "Update " .. TXUI.Title .. " contributor names",
   },
 }
