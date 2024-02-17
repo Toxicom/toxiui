@@ -503,7 +503,8 @@ function O:Skins_ElvUI()
       values = {
         ToxiClasses = TXUI.Title,
         Laev = F.String.Laev() .. " " .. F.String.Rainbow("Colored"),
-        LaevWhite = F.String.Laev() .. " White",
+        LaevBorder = F.String.Laev() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
+        LaevWhite = F.String.Laev() .. " White Stroke",
       },
       get = function()
         return E.db.TXUI.elvUIIcons.classIcons.theme
