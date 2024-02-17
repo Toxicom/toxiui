@@ -1896,6 +1896,7 @@ globals = {
   "GetCorpseMapPosition",
   "GetCorpseRecoveryDelay",
   "GetCorruptionResistance",
+  "GetCreatureDifficultyColor",
   "GetCritChance",
   "GetCritChanceProvidesParryEffect",
   "GetCriteriaSpell",
