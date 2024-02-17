@@ -22,7 +22,8 @@ TXUI.Changelog["6.5.5"] = {
       .. F.String.Sublist("Currently not used anywhere"),
     "Add new styles for the class icon tag" --
       .. F.String.Sublist(F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI())
-      .. F.String.Sublist("They're called " .. F.String.Laev() .. " because he's a rascal"),
+      .. F.String.Sublist("Taken from " .. F.String.Ugg() .. " with their consent")
+      .. F.String.Sublist("Must mention " .. F.String.Color("Laev", "9db8eb") .. " here because he caused chaos :--)"),
 
     "* Bug fixes",
     "Fix missing tooltip on WunderBar's profession flyouts",

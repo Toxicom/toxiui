@@ -160,8 +160,8 @@ function F.String.Eltreum()
   return F.String.FastGradientHex("Eltreum", "#587AAD", "#9FE3F4")
 end
 
-function F.String.Laev()
-  return F.String.Color("Laev", "9db8eb")
+function F.String.Ugg()
+  return F.String.Color("U.", "3273fa") .. F.String.Color("GG", "ffffff")
 end
 
 function F.String.Scaling()
