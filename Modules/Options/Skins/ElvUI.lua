@@ -460,6 +460,9 @@ function O:Skins_ElvUI()
     }
   end
 
+  -- Spacer
+  self:AddSpacer(options)
+
   -- Color Modifier Keys
   do
     local colorModifiersGroup = self:AddInlineRequirementsDesc(options, {
@@ -484,6 +487,9 @@ function O:Skins_ElvUI()
       end,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
 
   -- UnitFrame Class Icons Tag
   do
