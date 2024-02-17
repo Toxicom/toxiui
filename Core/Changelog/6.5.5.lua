@@ -29,6 +29,8 @@ TXUI.Changelog["6.5.5"] = {
 
     "* Bug fixes",
     "Fix missing tooltip on WunderBar's profession flyouts",
+    "Fix Mining error on WunderBar's profession flyouts",
+    "Fix Herbalism error on WunderBar's profession flyouts",
 
     "* Profile updates",
 

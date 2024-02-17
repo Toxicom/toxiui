@@ -79,10 +79,10 @@ function PR:ProfessionClick(prof, frame, button)
 
     for index, _ in next, self.others do
       local profId = self.others[index]
-      local skillLine, name, _, _, icon = self:GetProfessionInfo(profId)
+      local skillLine, name, _, _, icon, extraSpellId = self:GetProfessionInfo(profId)
       if skillLine then
         tinsert(menuList, {
-          spellID = name,
+          spellID = extraSpellId or name,
           icon = icon,
           type = "function",
           func = function()
@@ -207,7 +207,7 @@ do
       { spellIds = { 2018, 3100, 3538, 9785, 29844, 51300, 76666, 110396, 158737, 195097 }, skillLine = 164, texture = 136241 }, -- Blacksmithing
       { spellIds = { 2108, 3104, 3811, 10662, 32549, 51302, 81199, 110423, 158752, 195119 }, skillLine = 165, texture = 133611 }, -- Leatherworking
       { spellIds = { 2259, 3101, 3464, 11611, 28596, 51304, 80731, 105206 }, skillLine = 171, texture = 136240 }, -- Alchemy
-      { spellIds = { 9134 }, skillLine = 182, texture = 136246 }, -- Herbalism
+      { spellIds = { 9134 }, extraSpellId = 2383, skillLine = 182, texture = 136246 }, -- Herbalism
       { spellIds = { 32606, 2575, 2576, 3564, 10248 }, extraSpellId = 2656, skillLine = 186, texture = 136248 }, -- Mining
       { spellIds = { 4036, 4037, 4038, 12656, 30350, 51306, 82774, 110403, 158739, 195112 }, skillLine = 202, texture = 136243 }, -- Engineering
       { spellIds = { 7411, 7412, 7413, 13920, 28029, 51313, 74258, 110400, 158716, 195096 }, skillLine = 333, texture = 136244 }, -- Enchanting
