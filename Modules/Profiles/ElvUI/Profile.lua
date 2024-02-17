@@ -698,7 +698,7 @@ function PF:BuildProfile()
         -- UnitFrame Target Custom Texts Level
         ["!Level"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:level]",
+          text_format = "[tx:level:difficulty]",
           xOffset = F.Dpi(-18),
           yOffset = F.Dpi(-15),
         }),
@@ -1120,7 +1120,7 @@ function PF:BuildProfile()
         -- UnitFrame Party Custom Texts Level
         ["!Level"] = createCustomText({}, {
           justifyH = "LEFT",
-          text_format = "[tx:level]",
+          text_format = "[tx:level:difficulty]",
           xOffset = F.Dpi(18),
           yOffset = F.Dpi(-12),
         }),

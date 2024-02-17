@@ -11,6 +11,7 @@ local UnitClass = UnitClass
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
 local Abbrev = E.TagFunctions.Abbrev
+local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 
 function M:_TagsUpdate()
   if not F.IsTXUIProfile() then return end
@@ -451,6 +452,33 @@ function M:Tags()
     return FormatColorTag(levelStr, unit, reverseGradient)
   end)
 
+  -- Level Difficulty Tag
+  E:AddTag("tx:level:difficulty", "UNIT_LEVEL PLAYER_LEVEL_UP", function(unit)
+    local level = UnitLevel(unit)
+
+    -- Handle unknown or missing level
+    if level == -1 or not level or level == "" then level = "??" end
+
+    local color
+    local hex
+
+    if level == "??" then
+      hex = "6e6e6e" -- #6e6e6e
+    else
+      color = GetCreatureDifficultyColor(level)
+      hex = E:RGBToHex(color.r, color.g, color.b, "")
+    end
+
+    local levelStr = tostring(level)
+    local coloredLvl = F.String.Color(levelStr, hex)
+
+    if not dm.isEnabled then return "Lv " .. coloredLvl end
+
+    local reverseGradient = reverseUnitsTable[unit]
+    -- After reload without a target FormatColorTag returns nil so we have to fallback to "Lv"
+    return (FormatColorTag("Lv ", unit, reverseGradient) or "Lv") .. coloredLvl
+  end)
+
   -- Group Tag
   local validGroups = {
     [1] = true,
@@ -503,117 +531,153 @@ function M:Tags()
 
   -- Tag info
   -- Tag info: General
-  E:AddTagInfo("tx:classicon", TagNames.GENERAL, "Displays " .. TXUI.Title .. " class icon.")
-  E:AddTagInfo("tx:level", TagNames.GENERAL, "Displays unit's level with " .. TXUI.Title .. " colors (e.g. Lv 42). Hides when the unit is max level.")
-  E:AddTagInfo(
-    "tx:group:raid",
-    TagNames.GENERAL,
-    "Displays raid group number with a 'Group' prefix for the first unit in a group. (e.g. Group 1) "
-      .. F.String.Error("Warning: ")
-      .. "This will work only for full proper groups!"
-  )
+
+  -- Class Icon
+  do
+    E:AddTagInfo(
+      "tx:classicon",
+      TagNames.GENERAL,
+      "Displays "
+        .. TXUI.Title
+        .. " class icon. The class icon style can be customized in "
+        .. TXUI.Title
+        .. " settings -> "
+        .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+        .. " -> "
+        .. F.String.ElvUI()
+    )
+
+    -- Level
+    E:AddTagInfo("tx:level", TagNames.GENERAL, "Displays unit's level with " .. TXUI.Title .. " colors (e.g. Lv 42). Hides when the unit is max level.")
+
+    -- Level Difficulty
+    do
+      local color = GetCreatureDifficultyColor(42)
+      local hex = E:RGBToHex(color.r, color.g, color.b, "")
+      E:AddTagInfo(
+        "tx:level:difficulty",
+        TagNames.GENERAL,
+        "Displays unit's level with " .. TXUI.Title .. " and difficulty colors (e.g. Lv " .. F.String.Color("42", hex) .. "). Does not hide when the unit is max level."
+      )
+    end
+    -- Classification
+    E:AddTagInfo("tx:classification", TagNames.GENERAL, "Displays a silver or gold " .. TXUI.Title .. " star for rare & elite monsters")
+
+    -- Raid group
+    E:AddTagInfo(
+      "tx:group:raid",
+      TagNames.GENERAL,
+      "Displays raid group number with a 'Group' prefix for the first unit in a group. (e.g. Group 1) "
+        .. F.String.Error("Warning: ")
+        .. "This will work only for full proper groups!"
+    )
+  end
 
   -- Tag info: Names
-  -- Tag categories and their descriptions
-  local tagCategories = {
-    { modifier = "", description = "Displays the name of the unit with " },
-    {
-      modifier = "abbrev:",
-      description = "Displays the name of the unit with abbreviation and ",
-      uppercaseDesc = "Displays the name of the unit in UPPERCASE with abbreviation and ",
-    },
-  }
+  do
+    -- Tag categories and their descriptions
+    local tagCategories = {
+      { modifier = "", description = "Displays the name of the unit with " },
+      {
+        modifier = "abbrev:",
+        description = "Displays the name of the unit with abbreviation and ",
+        uppercaseDesc = "Displays the name of the unit in UPPERCASE with abbreviation and ",
+      },
+    }
 
-  -- Lengths and their descriptions
-  local lengths = {
-    { name = "veryshort", limit = 5 },
-    { name = "short", limit = 10 },
-    { name = "medium", limit = 15 },
-    { name = "long", limit = 20 },
-  }
+    -- Lengths and their descriptions
+    local lengths = {
+      { name = "veryshort", limit = 5 },
+      { name = "short", limit = 10 },
+      { name = "medium", limit = 15 },
+      { name = "long", limit = 20 },
+    }
 
-  -- Uppercase modifier
-  local uppercaseModifier = ":uppercase"
+    -- Uppercase modifier
+    local uppercaseModifier = ":uppercase"
 
-  -- Loop to generate tags
-  for _, category in ipairs(tagCategories) do
-    for _, length in ipairs(lengths) do
-      -- Regular tags
-      local tagName = "tx:name:" .. category.modifier .. length.name
-      local description = category.description .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
-      E:AddTagInfo(tagName, TagNames.NAMES, description)
-
-      -- Uppercase tags, if applicable
-      if category.modifier == "abbrev:" then
-        -- For abbreviated tags, include uppercase modifier after length
-        tagName = tagName .. uppercaseModifier
-        description = category.uppercaseDesc .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
+    -- Loop to generate tags
+    for _, category in ipairs(tagCategories) do
+      for _, length in ipairs(lengths) do
+        -- Regular tags
+        local tagName = "tx:name:" .. category.modifier .. length.name
+        local description = category.description .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
         E:AddTagInfo(tagName, TagNames.NAMES, description)
-      else
-        -- For non-abbreviated tags, add uppercase versions
-        local uppercaseTagName = "tx:name:" .. length.name .. uppercaseModifier
-        local uppercaseDescription = "Displays the name of the unit in UPPERCASE with " .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
-        E:AddTagInfo(uppercaseTagName, TagNames.NAMES, uppercaseDescription)
+
+        -- Uppercase tags, if applicable
+        if category.modifier == "abbrev:" then
+          -- For abbreviated tags, include uppercase modifier after length
+          tagName = tagName .. uppercaseModifier
+          description = category.uppercaseDesc .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
+          E:AddTagInfo(tagName, TagNames.NAMES, description)
+        else
+          -- For non-abbreviated tags, add uppercase versions
+          local uppercaseTagName = "tx:name:" .. length.name .. uppercaseModifier
+          local uppercaseDescription = "Displays the name of the unit in UPPERCASE with " .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
+          E:AddTagInfo(uppercaseTagName, TagNames.NAMES, uppercaseDescription)
+        end
       end
     end
   end
 
   -- Tag info: Health
-  E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
-  E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
-  E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
+  do
+    E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
+    E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
+    E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
 
-  E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
-  E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")
+    E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
+    E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")
+  end
 
   -- Tag info: Power
-  E:AddTagInfo(
-    "tx:power:percent:nosign",
-    TagNames.POWER,
-    "Displays percentage Power of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
-  )
+  do
+    E:AddTagInfo(
+      "tx:power:percent:nosign",
+      TagNames.POWER,
+      "Displays percentage Power of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
+    )
 
-  E:AddTagInfo(
-    "tx:smartpower:percent:nosign",
-    TagNames.POWER,
-    "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to "
-      .. F.String.Warning("yellow")
-      .. " when "
-      .. F.String.Class("MANA", "MAGE")
-      .. " <= 50, and to "
-      .. F.String.Error("red")
-      .. " when "
-      .. F.String.Class("MANA", "MAGE")
-      .. " <= 20"
-  )
+    E:AddTagInfo(
+      "tx:smartpower:percent:nosign",
+      TagNames.POWER,
+      "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to "
+        .. F.String.Warning("yellow")
+        .. " when "
+        .. F.String.Class("MANA", "MAGE")
+        .. " <= 50, and to "
+        .. F.String.Error("red")
+        .. " when "
+        .. F.String.Class("MANA", "MAGE")
+        .. " <= 20"
+    )
 
-  E:AddTagInfo(
-    "tx:power:percent",
-    TagNames.POWER,
-    "Displays percentage Power of unit without decimals. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
-  )
+    E:AddTagInfo(
+      "tx:power:percent",
+      TagNames.POWER,
+      "Displays percentage Power of unit without decimals. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
+    )
 
-  E:AddTagInfo(
-    "tx:smartpower:percent",
-    TagNames.POWER,
-    "Displays percentage Smart Power of unit without decimals. Smart Power changes color to "
-      .. F.String.Warning("yellow")
-      .. " when "
-      .. F.String.Class("MANA", "MAGE")
-      .. " <= 50, and to "
-      .. F.String.Error("red")
-      .. " when "
-      .. F.String.Class("MANA", "MAGE")
-      .. " <= 20"
-  )
+    E:AddTagInfo(
+      "tx:smartpower:percent",
+      TagNames.POWER,
+      "Displays percentage Smart Power of unit without decimals. Smart Power changes color to "
+        .. F.String.Warning("yellow")
+        .. " when "
+        .. F.String.Class("MANA", "MAGE")
+        .. " <= 50, and to "
+        .. F.String.Error("red")
+        .. " when "
+        .. F.String.Class("MANA", "MAGE")
+        .. " <= 20"
+    )
 
-  E:AddTagInfo(
-    "tx:smartpower",
-    TagNames.POWER,
-    "Displays raw power value for mana users, otherwise percentage. No percentage sign and no decimals. Changes color when mana gets low."
-  )
-
-  E:AddTagInfo("tx:classification", TagNames.GENERAL, "Displays a silver or gold " .. TXUI.Title .. " star for rare & elite monsters")
+    E:AddTagInfo(
+      "tx:smartpower",
+      TagNames.POWER,
+      "Displays raw power value for mana users, otherwise percentage. No percentage sign and no decimals. Changes color when mana gets low."
+    )
+  end
 
   -- Settings Callback
   F.Event.RegisterCallback("Tags.DatabaseUpdate", self.TagsUpdate, self)

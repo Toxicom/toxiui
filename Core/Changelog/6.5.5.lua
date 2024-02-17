@@ -24,6 +24,8 @@ TXUI.Changelog["6.5.5"] = {
       .. F.String.Sublist(F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI())
       .. F.String.Sublist("Taken from " .. F.String.Ugg() .. " with their consent")
       .. F.String.Sublist("Must mention " .. F.String.Color("Laev", "9db8eb") .. " here because he caused chaos :--)"),
+    "New level tag with difficulty colors. By default set for target & party frames." --
+      .. F.String.Sublist("[tx:level:difficulty]"),
 
     "* Bug fixes",
     "Fix missing tooltip on WunderBar's profession flyouts",
