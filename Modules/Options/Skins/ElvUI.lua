@@ -514,6 +514,15 @@ function O:Skins_ElvUI()
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }
+
+    classIconsGroup.image = {
+      order = self:GetOrder(),
+      type = "description",
+      name = "",
+      image = function()
+        return I.Media.Style.IconStylesPreview, F.Dpi(512), F.Dpi(128)
+      end,
+    }
   end
 end
 

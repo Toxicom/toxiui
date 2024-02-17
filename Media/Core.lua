@@ -153,10 +153,11 @@ F.AddMedia("installer", "WarpDeplete")
 --   STYLE THUBMNAILS
 -- -----
 
-F.AddMedia("style", "WeakAuras.blp")
-F.AddMedia("style", "Classic.blp")
-F.AddMedia("style", "New.blp")
-F.AddMedia("style", "Old.blp")
+F.AddMedia("style", "WeakAuras")
+F.AddMedia("style", "Classic")
+F.AddMedia("style", "New")
+F.AddMedia("style", "Old")
+F.AddMedia("style", "IconStylesPreview")
 
 -- -----
 --   ARMORY BACKGROUNDS
