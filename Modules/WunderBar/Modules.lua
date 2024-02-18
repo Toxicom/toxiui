@@ -10,6 +10,8 @@ local pairs = pairs
 local tinsert = table.insert
 
 function WB:GetGrowDirection(module, inverse)
+  if not module then return end
+
   local index = module.moduleIndex
 
   if (index == 1) or (index == 2) or (index == 3) or (index == 6) then
@@ -22,6 +24,8 @@ function WB:GetGrowDirection(module, inverse)
 end
 
 function WB:GetMaxWidth(module)
+  if not module then return end
+
   return module:GetWidth()
 end
 

@@ -32,6 +32,11 @@ function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
   local installFrame = _G["PluginInstallFrame"]
 
+  installFrame.Desc1:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
+  installFrame.Desc2:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
+  installFrame.Desc3:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
+  installFrame.Desc4:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
+
   local timer
   local currentImageIndex
 
@@ -138,7 +143,8 @@ function IS:Dialog()
           installFrame.Next:Disable()
         else
           installFrame.SubTitle:SetText(F.String.ToxiUI("Welcome") .. " to the installation for " .. TXUI.Title)
-
+          local DevTool = _G["DevTool"]
+          DevTool:AddData(installFrame.Desc1, "desc1")
           installFrame.Desc1:SetText(
             "This installation process will guide you through a few steps and apply the "
               .. TXUI.Title

@@ -271,6 +271,8 @@ end
 function SS:UpdatePosition()
   if not self.spec1 and not self.spec2 then return end
 
+  if not self.Module then return end
+
   local anchorPoint = WB:GetGrowDirection(self.Module, true)
   local maxWidth = WB:GetMaxWidth(self.Module)
   local iconSize = self.db.general.showIcons and self.db.general.iconFontSize or 0.01
