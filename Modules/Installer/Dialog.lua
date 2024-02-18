@@ -32,11 +32,6 @@ function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
   local installFrame = _G["PluginInstallFrame"]
 
-  installFrame.Desc1:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
-  installFrame.Desc2:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
-  installFrame.Desc3:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
-  installFrame.Desc4:FontTemplate(I.Fonts.Primary, 16, "OUTLINE")
-
   local timer
   local currentImageIndex
 
@@ -60,6 +55,9 @@ function IS:Dialog()
 
     -- Increase size of installer frame
     installFrame:Size(825, 600)
+
+    -- Increase installer scale for first time installations, since the fonts are small
+    if not F.IsTXUIProfile() then installFrame:SetScale(1.35) end
 
     -- Custom tutorial image
     if page == Pages.Details then
