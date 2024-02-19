@@ -9,6 +9,7 @@ TXUI.Changelog["6.5.6"] = {
 
     "* Bug fixes",
     "Prevent WunderBar erroring out on first initial load",
+    "Add additional safety check for missing config info in Loadout names",
 
     "* Profile updates",
 

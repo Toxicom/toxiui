@@ -40,7 +40,11 @@ function SS:GetLoadoutName()
       if configID then
         local configInfo = C_Traits_GetConfigInfo(configID)
 
-        if configInfo.name then return configInfo.name end
+        if configInfo and configInfo.name then
+          return configInfo.name
+        else
+          return nil
+        end
       end
     end
   end
