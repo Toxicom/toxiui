@@ -19,5 +19,6 @@ TXUI.Changelog["6.5.6"] = {
     "Increase installer frame's scale for first-time installations",
 
     "* Development improvements",
+    "New helper function for safely using DevTool",
   },
 }

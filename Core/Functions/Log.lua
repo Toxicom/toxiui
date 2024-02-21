@@ -13,6 +13,8 @@ local tconcat = table.concat
 local tinsert = table.insert
 local ipairs = ipairs
 
+local IsAddOnLoaded = IsAddOnLoaded
+
 local DEFAULT_CHAT_FRAME = DEFAULT_CHAT_FRAME
 
 function F.Log.Dump(...)
@@ -102,6 +104,13 @@ do
 
   function F.Log.AddDelayedMessage(str)
     tinsert(messages, str)
+  end
+end
+
+function F.Log.Dev(var, varName)
+  if TXUI.DevRelease and IsAddOnLoaded("DevTool") then
+    local DevTool = _G["DevTool"]
+    DevTool:AddData(var, varName)
   end
 end
 
