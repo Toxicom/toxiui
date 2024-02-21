@@ -141,8 +141,6 @@ function IS:Dialog()
           installFrame.Next:Disable()
         else
           installFrame.SubTitle:SetText(F.String.ToxiUI("Welcome") .. " to the installation for " .. TXUI.Title)
-          local DevTool = _G["DevTool"]
-          DevTool:AddData(installFrame.Desc1, "desc1")
           installFrame.Desc1:SetText(
             "This installation process will guide you through a few steps and apply the "
               .. TXUI.Title
