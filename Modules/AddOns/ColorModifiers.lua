@@ -3,7 +3,6 @@ local CM = TXUI:NewModule("ColorModifiers")
 local AB = E:GetModule("ActionBars")
 
 local sub = string.sub
-local gsub = string.gsub
 
 local function colorizeKey(text, colorHex)
   if #text > 1 then
