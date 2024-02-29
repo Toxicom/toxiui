@@ -13,6 +13,7 @@ TXUI.Changelog["6.5.7"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.59",
 
     "* Settings refactoring",
 

@@ -29,7 +29,7 @@ TXUI.Changelog["6.3.2"] = {
 
     "* Documentation",
     "Increase version number for " .. F.String.Class("10.1.7"),
-    "Increase minimum required " .. F.String.Class("ElvUI", "SHAMAN") .. " version to " .. F.String.Class("13.40"),
+    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.40",
 
     "* Settings refactoring",
     "Move " .. TXUI.Title .. " Game Menu Button settings to " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
