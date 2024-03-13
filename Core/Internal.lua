@@ -404,6 +404,7 @@ I.HearthstoneData = {
   [208704] = { ["type"] = "toy", ["hearthstone"] = true }, -- Deepdweller's Earthen Hearthstone
   [209035] = { ["type"] = "toy", ["hearthstone"] = true }, -- Hearthstone of the Flame
   [190196] = { ["type"] = "toy", ["hearthstone"] = true }, -- Enlightened Hearthstone
+  [212337] = { ["type"] = "toy", ["hearthstone"] = true }, -- Stone of the Hearth
 
   -- Engineering Items/Toys --
   [18984] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dimensional Ripper - Everlook
