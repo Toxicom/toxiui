@@ -2,26 +2,24 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["4.1.0"] = {
   CHANGES = {
-    "* General",
-    " Removed Louis George Cafe font",
-    " Added Futura font",
-    " Fixed Big Noodle Titling font",
-    " Better localisation!",
+    "* Breaking changes",
+    "Removed Louis George Cafe font",
 
-    "* Big Wigs",
-    " Fixed Big Wigs messages/emphasized messages",
+    "* New features",
+    "Added Futura font",
+    "Absolutely new style for Details",
 
-    "* DBM",
-    " Re-did the DBM profile",
+    "* Bug fixes",
+    "Fixed Big Noodle Titling font",
 
-    "* ElvUI",
-    " Reverted castbar font changes",
-    " Changed colors for Quest Tracker",
+    "* Profile updates",
+    "Better localisation!",
+    "Fixed Big Wigs messages/emphasized messages",
+    "Reverted castbar font changes",
+    "Re-did the DBM profile",
+    "Changed colors for Quest Tracker",
 
-    "* Details",
-    " Absolutely new style for Details",
-
-    "* Misc",
-    " Back-end changes for smoother sailing",
+    "* Development improvements",
+    "Back-end changes for smoother sailing",
   },
 }
