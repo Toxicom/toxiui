@@ -183,7 +183,7 @@ function HS:UpdateSelected()
 
   if self.db.randomPrimaryHs then
     local idTable = {}
-    local covenantHsIds = { [180290] = true, [184353] = true, [183716] = true, [180290] = true }
+    local covenantHsIds = { [180290] = true, [184353] = true, [183716] = true, [182773] = true }
     for _, option in pairs(I.HearthstoneData) do
       if option.known then
         if not option.class and option.hearthstone and not covenantHsIds[option.id] then tinsert(idTable, option.id) end
