@@ -176,15 +176,26 @@ function HS:UpdateSelected()
   if self.hsSecondary.covenant then self.hsSecondary = self:GetCovenantStone(self.hsSecondary) end
 
   -- Fallback to default if spell is not known
-  if not self.hsPrimary.known then
-    self:LogDebug("HS:UpdateSelected > Overwriting unlearned spell: " .. self.hsPrimary.id .. " for primaryHS")
-    self.hsPrimary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS]
-  end
+  if not self.hsPrimary.known then self.hsPrimary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS] end
 
   -- Fallback to default if spell is not known
-  if not self.hsSecondary.known then
-    self:LogDebug("HS:UpdateSelected > Overwriting unlearned spell: " .. self.hsSecondary.id .. " for secondaryHS")
-    self.hsSecondary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.secondaryHS]
+  if not self.hsSecondary.known then self.hsSecondary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.secondaryHS] end
+
+  if self.db.randomPrimaryHs then
+    local idTable = {}
+    local covenantHsIds = { [180290] = true, [184353] = true, [183716] = true, [180290] = true }
+    for _, option in pairs(I.HearthstoneData) do
+      if option.known then
+        if not option.class and option.hearthstone and not covenantHsIds[option.id] then tinsert(idTable, option.id) end
+      end
+    end
+
+    if not F.Table.IsEmpty(idTable) then
+      local rngIndex = math.random(1, #idTable)
+      local randomId = idTable[rngIndex]
+      local hs = I.HearthstoneData[randomId]
+      if not F.Table.IsEmpty(hs) then self.hsPrimary = hs end
+    end
   end
 
   -- Get class teleport for non mages

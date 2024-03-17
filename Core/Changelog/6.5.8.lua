@@ -6,6 +6,8 @@ TXUI.Changelog["6.5.8"] = {
     "* Breaking changes",
 
     "* New features",
+    "Option for random Hearthstone toy in WunderBar" --
+      .. F.String.Sublist("Enabled by default"),
 
     "* Bug fixes",
 

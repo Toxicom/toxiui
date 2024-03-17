@@ -31,7 +31,7 @@ function O:WunderBar_SubModules_Additional_Toggle(group)
   )
 end
 
-function O:WunderBar_SubModules_Hearthstone_Select(group, order, name)
+function O:WunderBar_SubModules_Hearthstone_Select(group, order, name, disabled)
   group[name] = ACH:Select(
     (name == "primaryHS" and "Primary" or "Secondary") .. " Hearthstone",
     nil,
@@ -63,7 +63,8 @@ function O:WunderBar_SubModules_Hearthstone_Select(group, order, name)
     function(_, value)
       E.db.TXUI.wunderbar.subModules["Hearthstone"][name] = value
       TXUI:GetModule("WunderBar"):UpdateBar()
-    end
+    end,
+    disabled
   )
 end
 
@@ -99,8 +100,23 @@ function O:WunderBar_SubModules_Hearthstone()
   -- Hearthstones
   tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 2)
   tab.hearthstoneGroup.inline = true
-  self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 1, "primaryHS")
-  self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 2, "secondaryHS")
+  tab.hearthstoneGroup.args.randomPrimaryHs = ACH:Toggle(
+    "Randomize Primary Hearthstone",
+    "Enabling this will randomize the selected Hearthstone toy each time you reload your UI. It will not pick Dalaran or Garrison hearthstones, class teleports, covenant stones.",
+    1,
+    nil,
+    nil,
+    nil,
+    nil,
+    nil,
+    nil,
+    not TXUI.IsRetail
+  )
+  local primaryHsDisabled = function()
+    return E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHs
+  end
+  self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 2, "primaryHS", primaryHsDisabled)
+  self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 3, "secondaryHS")
 
   -- Cooldowns
   tab.cooldownGroup = ACH:Group("Cooldown Text Group", nil, 2)
