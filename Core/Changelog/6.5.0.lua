@@ -58,7 +58,7 @@ TXUI.Changelog["6.5.0"] = {
 
     "* Documentation",
     "Add additional info to Gradient theme description",
-    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.47",
+    F.String.MinElv("13.47"),
     "Update for World of Warcraft 10.2",
     "Update Icons font",
 

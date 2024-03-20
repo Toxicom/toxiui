@@ -25,7 +25,7 @@ TXUI.Changelog["6.4.4"] = {
     F.String.ElvUI() .. ": Center duration text for UnitFrame buffs & debuffs",
 
     "* Documentation",
-    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.45",
+    F.String.MinElv("13.45"),
 
     "* Development improvements",
     "Create a doubleResolutionScale table for easier tracking of 4k resolutions",

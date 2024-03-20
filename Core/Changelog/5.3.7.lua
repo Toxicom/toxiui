@@ -4,10 +4,10 @@ TXUI.Changelog["5.3.7"] = {
   HOTFIX = true,
   CHANGES = {
     "* Bug fixes",
-    " Fix " .. F.String.ElvUI("Shadow & Light") .. " Vehicle Bar conflict error",
+    "Fix " .. F.String.ElvUI("Shadow & Light") .. " Vehicle Bar conflict error",
 
     "* Documentation",
-    " Update for Patch 9.2: Eternity's End",
-    " Update the required minimal " .. F.String.ElvUI("ElvUI") .. " version to 12.65",
+    "Update for Patch 9.2: Eternity's End",
+    F.String.MinElv("12.65"),
   },
 }

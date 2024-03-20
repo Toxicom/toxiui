@@ -12,15 +12,12 @@ TXUI.Changelog["6.5.8"] = {
     "Option for random Hearthstone toy in WunderBar" --
       .. F.String.Sublist("Enabled by default"),
 
-    "* Bug fixes",
-
-    "* Profile updates",
-
     "* Documentation",
     "Update all older changelogs to new changelog format",
-
-    "* Settings refactoring",
+    F.String.MinElv("13.60"),
+    "Update for " .. F.String.ToxiUI("10.2.6"),
 
     "* Development improvements",
+    "Helper function for minimum ElvUI version",
   },
 }

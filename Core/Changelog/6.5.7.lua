@@ -10,7 +10,7 @@ TXUI.Changelog["6.5.7"] = {
     "Update Plater mods",
 
     "* Documentation",
-    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.59",
+    F.String.MinElv("13.59"),
     "Add Stone of the Hearth to WunderBar Hearthstones",
   },
 }

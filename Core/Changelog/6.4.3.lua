@@ -38,7 +38,7 @@ TXUI.Changelog["6.4.3"] = {
 
     "* Documentation",
     "Update .toc for Wrath 3.4.3",
-    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.44",
+    F.String.MinElv("13.44"),
 
     "* Settings refactoring",
     F.String.Scaling() .. "'s Collection slider moved to 'Other' group, since it's no longer Retail only",

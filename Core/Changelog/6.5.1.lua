@@ -46,7 +46,7 @@ TXUI.Changelog["6.5.1"] = {
     "Update Armory's Item Level coloring for 10.2",
 
     "* Documentation",
-    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.53",
+    F.String.MinElv("13.53"),
     "Update TOC for Season of Discovery",
     "Rename all cases of 'Action Bars' to 'ActionBars' to be more in-line with " .. F.String.ElvUI() .. " naming convention",
     "Add " .. F.String.Eltreum() .. " to credits section",

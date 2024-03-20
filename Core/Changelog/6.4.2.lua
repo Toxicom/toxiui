@@ -11,6 +11,6 @@ TXUI.Changelog["6.4.2"] = {
     TXUI.Title .. ": Fix Mining profession for WunderBar in Classic Era",
 
     "* Documentation",
-    "Increase minimum required " .. F.String.ElvUI() .. " version to 13.42",
+    F.String.MinElv("13.42"),
   },
 }

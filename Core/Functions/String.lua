@@ -172,6 +172,10 @@ function F.String.WrathArmory()
   return F.String.Class("Wrath", "MAGE") .. F.String.Class("Armory", "ROGUE")
 end
 
+function F.String.MinElv(ver)
+  return "Increase minimum required " .. F.String.ElvUI() .. " version to " .. ver
+end
+
 function F.String.GradientString()
   return F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1)
 end
