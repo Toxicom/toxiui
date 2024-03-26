@@ -498,9 +498,34 @@ function O:Skins_ElvUI()
     }, {
       name = "Change the style for the "
         .. F.String.ToxiUI("[tx:classicon]")
-        .. " tag used in UnitFrames.\n\nThis setting will not change Details custom icons. You need to do that yourself.\nFor file names, go to "
-        .. F.String.ToxiUI("ElvUI_ToxiUI/Media/Textures/Icons\n\n"),
+        .. " tag used in UnitFrames.\n\nThis setting will not change "
+        .. F.String.Details()
+        .. " custom icons.\nYou need to do that yourself in "
+        .. F.String.ToxiUI("/details config")
+        .. " -> Bars: General -> Icons -> Texture\n\n",
     }).args
+
+    classIconsGroup.details = {
+      order = self:GetOrder(),
+      type = "execute",
+      name = F.String.Details("Open Details"),
+      desc = "Open the " .. F.String.Details() .. " configuration window",
+      disabled = function()
+        return not F.IsAddOnEnabled("Details")
+      end,
+      func = function()
+        -- instance = which details window
+        local instance = Details:GetInstance(1)
+        Details:OpenOptionsWindow(instance)
+      end,
+    }
+
+    -- Fuck if I know, don't know how to separate these other way lol
+    classIconsGroup.empty = {
+      order = self:GetOrder(),
+      type = "description",
+      name = "\n",
+    }
 
     classIconsGroup.style = {
       order = self:GetOrder(),

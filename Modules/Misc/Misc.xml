@@ -3,6 +3,7 @@
 
   <Include file='AdditionalScaling\AdditionalScaling.xml' />
   <Script file='ChatIcon.lua' />
+  <Script file='DetailsIcons.lua' />
   <Script file='GameMenuButton.lua' />
   <Script file='SplashScreen.lua' />
   <Script file='StatusReport.lua' />
