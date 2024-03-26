@@ -1,7 +1,14 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
+local pairs = pairs
+local tonumber, lower, wipe, next = tonumber, strlower, wipe, next
+
 local ReloadUI = ReloadUI
-local tonumber = tonumber
+
+local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
+local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
+local GetAddOnInfo = (C_AddOns and C_AddOns.GetAddOnInfo) or GetAddOnInfo
+local GetNumAddOns = (C_AddOns and C_AddOns.GetNumAddOns) or GetNumAddOns
 
 function TXUI:HandleDevProfiles(arg1)
   -- Command help
@@ -135,6 +142,69 @@ function TXUI:ShowStatusReport()
   self:GetModule("Misc"):StatusReportShow()
 end
 
+local AddOns = {
+  -- ElvUI
+  ElvUI = true,
+  ElvUI_Options = true,
+  ElvUI_Libraries = true,
+
+  -- ToxiUI
+  ElvUI_ToxiUI = true,
+
+  -- ElvUI Plugins
+  ElvUI_WindTools = TXUI.IsRetail and true or false,
+
+  -- Other AddOns
+  Details = true,
+  Plater = true,
+}
+
+local function LogDebugInfo()
+  TXUI:LogInfo("/tx debug on - /tx debug off")
+end
+
+-- Modified version of ElvUI's E:LuaError()
+function TXUI:DebugMode(msg)
+  if msg then
+    local switch = lower(msg)
+    local db = E.db.TXUI
+
+    if switch == "on" or switch == "1" then
+      for i = 1, GetNumAddOns() do
+        local name = GetAddOnInfo(i)
+        if not AddOns[name] and F.IsAddOnEnabled(name) then
+          DisableAddOn(name, E.myname)
+          db.disabledAddOns[name] = i
+        end
+      end
+
+      E:SetCVar("scriptErrors", 1)
+      ReloadUI()
+    elseif switch == "off" or switch == "0" then
+      if switch == "off" then
+        E:SetCVar("scriptProfile", 0)
+        E:SetCVar("scriptErrors", 0)
+        TXUI:LogInfo("Lua errors off.")
+
+        if F.IsAddOnEnabled("ElvUI_CPU") then DisableAddOn("ElvUI_CPU") end
+      end
+
+      if next(db.disabledAddOns) then
+        for name in pairs(db.disabledAddOns) do
+          EnableAddOn(name, E.myname)
+        end
+
+        wipe(db.disabledAddOns)
+        ReloadUI()
+      end
+    else
+      LogDebugInfo()
+    end
+  else
+    LogDebugInfo()
+  end
+end
+
 function TXUI:HandleChatCommand(msg)
   -- Parse category
   local category = self:GetArgs(msg)
@@ -163,8 +233,10 @@ function TXUI:HandleChatCommand(msg)
     self:ShowStatusReport()
   elseif category == "install" or category == "i" then
     E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
+  elseif category == "debug" then
+    self:DebugMode(self:GetArgs(msg, 5, 6))
   elseif F.IsTXUIProfile() then
-    self:LogInfo("Usage: /tx cl; changelog; install; i; settings; status; wb")
+    self:LogInfo("Usage: /tx cl; changelog; install; i; settings; status; wb; debug")
   else
     self:LogInfo("Usage: /tx cl; changelog; install; i; settings")
   end

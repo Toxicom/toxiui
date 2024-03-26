@@ -6,6 +6,10 @@ TXUI.Changelog["6.5.9"] = {
     "* Breaking changes",
 
     "* New features",
+    TXUI.Title
+      .. " Debug Mode" --
+      .. F.String.Sublist("Inspired by " .. F.String.ElvUI() .. "'s Debug Mode")
+      .. F.String.Sublist("Chat command: /tx debug [on/off]"),
 
     "* Bug fixes",
 

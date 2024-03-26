@@ -92,7 +92,7 @@ function M:StatusReportCreateContent(num, width, parent, anchorTo, content)
       text:SetAllPoints()
       text:SetJustifyH("LEFT")
       text:SetJustifyV("MIDDLE")
-      text:FontTemplate(font, 14, "NONE", true)
+      text:FontTemplate(font, 14, "OUTLINE", true)
       line.Text = text
 
       if i == 1 then
@@ -208,7 +208,7 @@ function M:StatusReportCreate()
 
   -- Sections
   statusFrame.Section1 = self:StatusReportCreateSection(300, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame, "TOP", -90)
-  statusFrame.Section2 = self:StatusReportCreateSection(300, (6 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
+  statusFrame.Section2 = self:StatusReportCreateSection(300, (7 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
   statusFrame.Section3 = self:StatusReportCreateSection(300, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section2, "BOTTOM", 0)
   statusFrame.Section4 = self:StatusReportCreateSection(300, ((TXUI.IsRetail and 6 or 5) * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section3, "BOTTOM", 0)
   pluginFrame.SectionA = self:StatusReportCreateSection(280, nil, nil, 30, pluginFrame, "TOP", pluginFrame, "TOP", -10)
@@ -216,7 +216,7 @@ function M:StatusReportCreate()
 
   -- Section content
   statusFrame.Section1.Content = self:StatusReportCreateContent(5, 260, statusFrame.Section1, statusFrame.Section1.Header)
-  statusFrame.Section2.Content = self:StatusReportCreateContent(6, 260, statusFrame.Section2, statusFrame.Section2.Header)
+  statusFrame.Section2.Content = self:StatusReportCreateContent(7, 260, statusFrame.Section2, statusFrame.Section2.Header)
   statusFrame.Section3.Content = self:StatusReportCreateContent(5, 260, statusFrame.Section3, statusFrame.Section3.Header)
   statusFrame.Section4.Content = self:StatusReportCreateContent(TXUI.IsRetail and 6 or 5, 260, statusFrame.Section4, statusFrame.Section4.Header)
 
@@ -280,6 +280,13 @@ function M:StatusReportUpdate()
     local Section2 = statusFrame.Section2
     local text
 
+    -- Debug Mode
+    do
+      text = (not F.Table.IsEmpty(E.db.TXUI.disabledAddOns)) and F.String.Good("On") or F.String.Error("Off")
+
+      Section2.Content.Line1.Text:SetFormattedText("Debug Mode: %s", text)
+    end
+
     -- Gradient Mode
     do
       local requirements = TXUI:CheckRequirements(I.Requirements.GradientMode)
@@ -290,7 +297,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.themes.gradientMode.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line1.Text:SetFormattedText("Gradient Mode: %s", text)
+      Section2.Content.Line2.Text:SetFormattedText("Gradient Mode: %s", text)
     end
 
     -- Dark Mode
@@ -303,7 +310,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.themes.darkMode.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line2.Text:SetFormattedText("Dark Mode: %s", text)
+      Section2.Content.Line3.Text:SetFormattedText("Dark Mode: %s", text)
     end
 
     -- Dark Mode Transparency
@@ -316,7 +323,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.themes.darkMode.transparency == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line3.Text:SetFormattedText("DM Transparency: %s", text)
+      Section2.Content.Line4.Text:SetFormattedText("DM Transparency: %s", text)
     end
 
     -- Dark Mode Gradient Names
@@ -329,7 +336,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.themes.darkMode.gradientName == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line4.Text:SetFormattedText("DM Gradients: %s", text)
+      Section2.Content.Line5.Text:SetFormattedText("DM Gradients: %s", text)
     end
 
     -- Details Gradient Text
@@ -342,7 +349,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.themes.darkMode.detailsGradientText == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line5.Text:SetFormattedText("Details Gradients: %s", text)
+      Section2.Content.Line6.Text:SetFormattedText("Details Gradients: %s", text)
     end
 
     -- WunderBar
@@ -355,7 +362,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.wunderbar.general.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line6.Text:SetFormattedText("WunderBar: %s", text)
+      Section2.Content.Line7.Text:SetFormattedText("WunderBar: %s", text)
     end
   end
 

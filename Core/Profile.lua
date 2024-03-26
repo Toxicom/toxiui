@@ -15,6 +15,8 @@ P.changelog = {
   lastDBConversion = 0,
 }
 
+P.disabledAddOns = {}
+
 -- General
 P.general = {
   overrideDevMode = true, -- force disable dev mode
