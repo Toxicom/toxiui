@@ -269,6 +269,7 @@ globals = {
   "BuyMerchantItem",
   "BuyReagentBank",
   "BuyTrainerService",
+  "C_AddOns",
   "C_AdventureJournal.ActivateEntry",
   "C_AdventureJournal.CanBeShown",
   "C_AdventureJournal.GetNumAvailableSuggestions",
