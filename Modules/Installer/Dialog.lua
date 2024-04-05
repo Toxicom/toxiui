@@ -60,7 +60,22 @@ function IS:Dialog()
     if not F.IsTXUIProfile() then installFrame:SetScale(1.35) end
 
     -- Custom tutorial image
-    if page == Pages.Details then
+    if page == Pages.Core then
+      -- List of images to cycle through
+      local imageList = {
+        I.Media.Installer.Vertical,
+        I.Media.Installer.Horizontal,
+      }
+
+      -- Set initial texture to last image of the list, since it will start from the first one
+      installFrame.tutorialImage:SetTexture(imageList[#imageList])
+      installFrame.tutorialImage:Size(512, 256)
+
+      -- Start the timer
+      timer = C_Timer.NewTicker(5, function()
+        ChangeImage(imageList)
+      end)
+    elseif page == Pages.Details then
       installFrame.tutorialImage:SetTexture(I.Media.Installer.Details)
       installFrame.tutorialImage:Size(512, 256)
     elseif page == Pages.Plater then
@@ -212,16 +227,16 @@ function IS:Dialog()
 
       -- Layout Page
       [Pages.Core] = function()
-        SetupCustomInstaller()
+        SetupCustomInstaller(Pages.Core)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Core Settings"))
 
         installFrame.Desc1:SetText(
           "This will install "
             .. TXUI.Title
             .. " depending if you want a "
-            .. F.String.ToxiUI("DPS/Tank")
+            .. F.String.ToxiUI("Vertical")
             .. " or "
-            .. F.String.Class("Healer", "MONK")
+            .. F.String.Class("Horizontal", "MONK")
             .. " layout. This will also enable core functions of ToxiUI."
         )
         installFrame.Desc2:SetText(F.String.Error("Important: ") .. F.String.Warning("Skipping this will result in an unfinished and broken UI!"))
@@ -252,13 +267,13 @@ function IS:Dialog()
         end
 
         installFrame.Option1:Show()
-        installFrame.Option1:SetText(F.String.ToxiUI("DPS/Tank"))
+        installFrame.Option1:SetText(F.String.ToxiUI("Vertical"))
         installFrame.Option1:SetScript("OnClick", function()
           installElvUI(I.Enum.Layouts.DPS)
         end)
 
         installFrame.Option2:Show()
-        installFrame.Option2:SetText(F.String.Class("Healer", "MONK"))
+        installFrame.Option2:SetText(F.String.Class("Horizontal", "MONK"))
         installFrame.Option2:SetScript("OnClick", function()
           installElvUI(I.Enum.Layouts.HEALER)
         end)

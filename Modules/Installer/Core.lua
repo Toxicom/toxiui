@@ -121,7 +121,7 @@ function IS:ElvUI(callback)
     -- Customize message
     local msg = TXUI.Title
       .. " "
-      .. (E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Healer", "MONK") or F.String.ToxiUI("DPS/Tank") .. " layout installed.")
+      .. (E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and F.String.Class("Horizontal", "MONK") or F.String.ToxiUI("Vertical") .. " layout installed.")
 
     -- persist selected styles when reinstalling
     local styles = E.db.TXUI.styles

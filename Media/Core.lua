@@ -148,6 +148,8 @@ F.AddMedia("installer", "WeakAuras")
 F.AddMedia("installer", "NameplateSCT")
 F.AddMedia("installer", "OmniCD")
 F.AddMedia("installer", "WarpDeplete")
+F.AddMedia("installer", "Vertical")
+F.AddMedia("installer", "Horizontal")
 
 -- -----
 --   STYLE THUBMNAILS

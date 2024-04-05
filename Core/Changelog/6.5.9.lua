@@ -24,6 +24,16 @@ TXUI.Changelog["6.5.9"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Rename " --
+      .. F.String.ToxiUI("DPS/Tank")
+      .. " and "
+      .. F.String.Class("Healer", "MONK")
+      .. " layouts to "
+      .. F.String.ToxiUI("Vertical")
+      .. " and "
+      .. F.String.Class("Horizontal", "MONK")
+      .. " respectively",
+    "Add images to Core Settings page of installer",
 
     "* Development improvements",
   },
