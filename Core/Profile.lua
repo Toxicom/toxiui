@@ -68,6 +68,12 @@ P.themes = {
     interruptCDEnabled = false,
     interruptSoonEnabled = false,
 
+    colorHealth = {
+      enabled = true,
+      yellowThreshold = 75,
+      redThreshold = 35,
+    },
+
     saturationBoost = false,
 
     reactionColorMap = {

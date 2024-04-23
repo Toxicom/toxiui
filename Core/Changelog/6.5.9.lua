@@ -16,6 +16,10 @@ TXUI.Changelog["6.5.9"] = {
       .. F.String.Details()
       .. " Icon select dropdown!"
       .. F.String.Sublist("/details config -> Bars: General -> Icons -> Texture"),
+    "Add Health Coloring to UnitFrames" --
+      .. F.String.Sublist("Enabled by default")
+      .. F.String.Sublist("Only works in " .. F.String.GradientString() .. " mode")
+      .. F.String.Sublist("All information and options can be found under " .. F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3") .. " -> Gradient Mode -> Settings"),
 
     "* Bug fixes",
 

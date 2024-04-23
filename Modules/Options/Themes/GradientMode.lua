@@ -566,6 +566,81 @@ function O:ToxiUI_Themes_GradientMode()
     -- Spacer
     self:AddSpacer(tab)
 
+    do
+      local healthGroup = self:AddInlineDesc(tab, {
+        name = "Health Color",
+      }, {
+        name = "Colors the health value on UnitFrames.\n\n"
+          .. F.String.Error("Important: ")
+          .. "This option only works for "
+          .. F.String.ToxiUI("tx:health:percent")
+          .. " and "
+          .. F.String.ToxiUI("tx:health:percent:nosign")
+          .. " tags!\n\n",
+      }).args
+
+      healthGroup.enable = {
+        order = self:GetOrder(),
+        type = "toggle",
+        get = function()
+          return E.db.TXUI.themes.gradientMode.colorHealth.enabled
+        end,
+        set = function(_, value)
+          if E.db.TXUI.themes.gradientMode.colorHealth.enabled == value then return end
+
+          E.db.TXUI.themes.gradientMode.colorHealth.enabled = value
+        end,
+        name = function()
+          return self:GetEnableName(E.db.TXUI.themes.gradientMode.colorHealth.enabled, healthGroup)
+        end,
+      }
+
+      local thresholdDisabled = function()
+        return self:GetEnabledState(E.db.TXUI.themes.gradientMode.colorHealth.enabled) ~= self.enabledState.YES
+      end
+
+      healthGroup.yellow = {
+        order = self:GetOrder(),
+        type = "range",
+        name = F.String.Warning("Yellow") .. " Threshold",
+        desc = "This slider determines the threshold for when the health should be colored " .. F.String.Warning("yellow"),
+        min = 35,
+        max = 75,
+        step = 1,
+        disabled = thresholdDisabled,
+        get = function()
+          return E.db.TXUI.themes.gradientMode.colorHealth.yellowThreshold
+        end,
+        set = function(_, value)
+          if E.db.TXUI.themes.gradientMode.colorHealth.yellowThreshold == value then return end
+
+          E.db.TXUI.themes.gradientMode.colorHealth.yellowThreshold = value
+        end,
+      }
+
+      healthGroup.red = {
+        order = self:GetOrder(),
+        type = "range",
+        name = F.String.Error("Red") .. " Threshold",
+        desc = "This slider determines the threshold for when the health should be colored " .. F.String.Error("red"),
+        min = 10,
+        max = 35,
+        step = 1,
+        disabled = thresholdDisabled,
+        get = function()
+          return E.db.TXUI.themes.gradientMode.colorHealth.redThreshold
+        end,
+        set = function(_, value)
+          if E.db.TXUI.themes.gradientMode.colorHealth.redThreshold == value then return end
+
+          E.db.TXUI.themes.gradientMode.colorHealth.redThreshold = value
+        end,
+      }
+    end
+
+    -- Spacer
+    self:AddSpacer(tab)
+
     -- Saturation Boost
     local saturationGroup = self:AddInlineDesc(tab, {
       name = F.String.Legendary("LEGENDARY: ") .. "Saturation Boost",

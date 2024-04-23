@@ -128,6 +128,7 @@ function M:Tags()
   end
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")
+  local gm = TXUI:GetModule("ThemesGradients")
 
   local function FormatColorTag(str, unit, reverse)
     -- i don't fucking know, i don't see this string anywhere but otherwise get Lua errors
@@ -217,46 +218,51 @@ function M:Tags()
     end)
   end
 
-  -- TODO: a lot of these tags are very similar with just a couple changes
-  --       ideally we should refactor this with a for loop or something
-  -- Health tags
-  E:AddTag("tx:health:percent:nosign", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
+  -- ToxiUI: Health Tags
+  local function GetHealthPercentage(unit)
     local max = UnitHealthMax(unit)
-    local health
-
     if max == 0 then
-      health = 0
+      return 0
     else
-      health = floor(UnitHealth(unit) / max * 100 + 0.5)
+      return floor(UnitHealth(unit) / max * 100 + 0.5)
+    end
+  end
+
+  local function ColorHealthTag(unit, percentSign)
+    local health = GetHealthPercentage(unit)
+    local healthStr = tostring(health)
+    local reverseGradient = not reverseUnitsTable[unit]
+
+    if percentSign then healthStr = healthStr .. "%" end
+
+    local colorHealth = E.db.TXUI.themes.gradientMode.colorHealth
+
+    -- Return different coloring for Dark Mode
+    if dm.isEnabled then
+      return FormatColorTag(healthStr, unit, reverseGradient)
+    -- If not gradient mode, or the option is disabled, return early an uncolored string
+    elseif not gm.isEnabled or not colorHealth or not colorHealth.enabled then
+      return healthStr
     end
 
-    if not dm.isEnabled then return health end
+    local yellow = colorHealth.yellowThreshold
+    local red = colorHealth.redThreshold
 
-    -- convert health to string
-    local healthStr = tostring(health)
+    if health <= yellow and health > red then
+      return F.String.GradientClass(healthStr, "ROGUE", reverseGradient)
+    elseif health <= red then
+      return F.String.GradientClass(healthStr, "DEATHKNIGHT", reverseGradient)
+    else
+      return healthStr
+    end
+  end
 
-    local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(healthStr, unit, not reverseGradient)
+  E:AddTag("tx:health:percent:nosign", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
+    return ColorHealthTag(unit)
   end)
 
   E:AddTag("tx:health:percent", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
-    local max = UnitHealthMax(unit)
-    local health
-
-    if max == 0 then
-      health = 0
-    else
-      health = floor(UnitHealth(unit) / max * 100 + 0.5)
-    end
-
-    local healthStr = tostring(health)
-    -- append percentage sign
-    healthStr = healthStr .. "%"
-
-    if not dm.isEnabled then return healthStr end
-
-    local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(healthStr, unit, not reverseGradient)
+    return ColorHealthTag(unit, true)
   end)
 
   E:AddTag("tx:health:current:shortvalue", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
@@ -282,14 +288,7 @@ function M:Tags()
       local min, max = UnitHealth(unit), UnitHealthMax(unit)
       local health = E:GetFormattedText("CURRENT", min, max, nil, true)
 
-      local percentHealth
-
-      if max == 0 then
-        percentHealth = 0
-      else
-        percentHealth = floor(min / max * 100 + 0.5)
-      end
-
+      local percentHealth = GetHealthPercentage(unit)
       local percentHealthStr = tostring(percentHealth)
 
       local finalHealth
@@ -317,13 +316,7 @@ function M:Tags()
       local min, max = UnitHealth(unit), UnitHealthMax(unit)
       local health = E:GetFormattedText("CURRENT", min, max, nil, true)
 
-      local percentHealth
-
-      if max == 0 then
-        percentHealth = 0
-      else
-        percentHealth = floor(min / max * 100 + 0.5)
-      end
+      local percentHealth = GetHealthPercentage(unit)
 
       local percentHealthStr = tostring(percentHealth)
       -- append % sign
