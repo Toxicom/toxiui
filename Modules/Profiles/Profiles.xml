@@ -11,5 +11,4 @@
   <Script file='Plater.lua' />
   <Script file='WarpDeplete.lua' />
   <Script file='OmniCD.lua' />
-  <Script file='NameplateSCT.lua' />
 </Ui>

@@ -4,6 +4,7 @@ TXUI.Changelog["6.5.9"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove " .. F.String.NameplateSCT() .. " profiles",
 
     "* New features",
     TXUI.Title

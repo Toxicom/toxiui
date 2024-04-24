@@ -92,7 +92,6 @@ function IS:Dialog()
       local addOns = {
         OmniCD = I.Media.Installer.OmniCD,
         WarpDeplete = I.Media.Installer.WarpDeplete,
-        NameplateSCT = I.Media.Installer.NameplateSCT,
       }
 
       for addOnName, imagePath in pairs(addOns) do
@@ -461,8 +460,6 @@ function IS:Dialog()
             button:SetScript("OnClick", function()
               PF["Apply" .. addonName .. "Profile"]()
               self:ShowStepComplete(F.String.ToxiUI(addonName) .. " profile installed.")
-              -- no need to reload for NSCT
-              if addonName ~= "NameplateSCT" then self.reloadRequired = true end
             end)
             buttonIndex = buttonIndex + 1
           end
@@ -471,9 +468,9 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.OmniCD() .. ", " .. F.String.WarpDeplete() .. ", " .. F.String.NameplateSCT())
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.OmniCD() .. ", " .. F.String.WarpDeplete())
 
-        if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") and not F.IsAddOnEnabled("NameplateSCT") then
+        if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") then
           installFrame.Desc3:SetText(
             F.String.Warning("Warning: ") .. "Looks like you don't have any of the extra AddOns installed. Don't worry, you can still fully experience " .. TXUI.Title .. "!"
           )
@@ -491,7 +488,6 @@ function IS:Dialog()
 
         InstallOptionalAddOn("OmniCD", F.String.OmniCD())
         InstallOptionalAddOn("WarpDeplete", F.String.WarpDeplete())
-        InstallOptionalAddOn("NameplateSCT", F.String.NameplateSCT("NSCT"))
       end,
 
       -- Completed Page
