@@ -11,7 +11,12 @@ function F.Color.EqualToRGB(aColor, r, g, b)
 end
 
 function F.Color.SetGradient(obj, orientation, minColor, maxColor)
-  obj:SetGradient(orientation, minColor, maxColor)
+  if not obj then return end
+
+  local min = minColor or "#000000"
+  local max = maxColor or "#FFFFFF"
+
+  obj:SetGradient(orientation, min, max)
 end
 
 function F.Color.SetGradientRGB(obj, orientation, r1, g1, b1, a1, r2, g2, b2, a2)

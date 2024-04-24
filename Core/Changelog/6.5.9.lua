@@ -23,6 +23,7 @@ TXUI.Changelog["6.5.9"] = {
       .. F.String.Sublist("All information and options can be found under " .. F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3") .. " -> Gradient Mode -> Settings"),
 
     "* Bug fixes",
+    "Add safety checks and fallbacks to F.Color.SetGradient",
 
     "* Profile updates",
 
