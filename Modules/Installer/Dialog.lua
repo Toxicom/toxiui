@@ -107,6 +107,9 @@ function IS:Dialog()
         timer = C_Timer.NewTicker(3, function()
           ChangeImage(imageList)
         end)
+      else
+        installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
+        installFrame.tutorialImage:Size(256, 128)
       end
     else
       -- Reset to defaults

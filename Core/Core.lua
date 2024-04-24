@@ -48,6 +48,12 @@ function TXUI:SetupDevRelease()
 end
 
 function TXUI:InitializeModules()
+  -- Make Priest darker color
+  E.PriestColors = I.PriestColors
+
+  -- Update cooldown text settings
+  E:UpdateCooldownSettings("all")
+
   -- Dev first, to enable easy overrides
   if self.DevRelease then
     local module = self:GetModule("Dev")
@@ -107,11 +113,6 @@ function TXUI:InitializeModules()
       F.Event.RunNextFrame(function()
         -- Mark TXUI has entered world
         self.DelayedWorldEntered = true
-
-        -- Make Priest darker color
-        E.PriestColors = I.PriestColors
-        -- Update cooldown text settings
-        E:UpdateCooldownSettings("all")
 
         -- Show Dev Mode or Tester Message
         if self.DevRelease then

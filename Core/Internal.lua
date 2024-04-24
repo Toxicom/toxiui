@@ -98,7 +98,7 @@ I.ProfileNames = {
   ["Dev"] = "ToxiUI-Dev",
 }
 
-I.PriestColors = { r = 0.7, g = 0.7, b = 0.7, colorStr = "b3b3b3" }
+I.PriestColors = { r = 0.7, g = 0.7, b = 0.7, colorStr = "ffb3b3b3" }
 
 I.Requirements = {
   ["DarkMode"] = {

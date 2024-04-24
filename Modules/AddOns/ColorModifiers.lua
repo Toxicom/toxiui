@@ -17,8 +17,7 @@ end
 
 function CM:ColorKeybinds(button)
   local text = button.HotKey:GetText()
-  local colorHex = I.PriestColors.colorStr
-  if E.myclass ~= "PRIEST" then colorHex = sub(E:ClassColor(E.myclass, true).colorStr, 3) end
+  local colorHex = sub(E:ClassColor(E.myclass, true).colorStr, 3)
 
   if text and text ~= _G.RANGE_INDICATOR and #text > 1 then
     text = colorizeKey(text, colorHex)
