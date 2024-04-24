@@ -63,8 +63,8 @@ function IS:Dialog()
     if page == Pages.Core then
       -- List of images to cycle through
       local imageList = {
-        I.Media.Installer.Vertical,
         I.Media.Installer.Horizontal,
+        I.Media.Installer.Vertical,
       }
 
       -- Set initial texture to last image of the list, since it will start from the first one
@@ -88,21 +88,27 @@ function IS:Dialog()
       installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
       installFrame.tutorialImage:Size(512, 256)
     elseif page == Pages.Additional then
-      -- List of images to cycle through
-      local imageList = {
-        I.Media.Installer.OmniCD,
-        I.Media.Installer.WarpDeplete,
-        I.Media.Installer.NameplateSCT,
+      local imageList = {}
+      local addOns = {
+        OmniCD = I.Media.Installer.OmniCD,
+        WarpDeplete = I.Media.Installer.WarpDeplete,
+        NameplateSCT = I.Media.Installer.NameplateSCT,
       }
 
-      -- Set initial texture to last image of the list, since it will start from the first one
-      installFrame.tutorialImage:SetTexture(imageList[#imageList])
-      installFrame.tutorialImage:Size(512, 256)
+      for addOnName, imagePath in pairs(addOns) do
+        if F.IsAddOnEnabled(addOnName) then tinsert(imageList, imagePath) end
+      end
 
-      -- Start the timer
-      timer = C_Timer.NewTicker(3, function()
-        ChangeImage(imageList)
-      end)
+      if not F.Table.IsEmpty(imageList) then
+        -- Set initial texture to last image of the list, since it will start from the first one
+        installFrame.tutorialImage:SetTexture(imageList[#imageList])
+        installFrame.tutorialImage:Size(512, 256)
+
+        -- Start the timer
+        timer = C_Timer.NewTicker(3, function()
+          ChangeImage(imageList)
+        end)
+      end
     else
       -- Reset to defaults
       installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
@@ -465,17 +471,7 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText(
-          "Currently supported AddOns: "
-            .. F.String.OmniCD()
-            .. ", "
-            .. F.String.WarpDeplete()
-            .. ", "
-            .. F.String.NameplateSCT()
-            .. "\n\n"
-            .. F.String.ToxiUI("Information: ")
-            .. "The image below changes every 3 seconds!"
-        )
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.OmniCD() .. ", " .. F.String.WarpDeplete() .. ", " .. F.String.NameplateSCT())
 
         if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") and not F.IsAddOnEnabled("NameplateSCT") then
           installFrame.Desc3:SetText(

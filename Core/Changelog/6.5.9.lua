@@ -39,6 +39,8 @@ TXUI.Changelog["6.5.9"] = {
       .. F.String.Class("Horizontal", "MONK")
       .. " respectively",
     "Add images to Core Settings page of installer",
+    "Refactor Additional AddOns page's images" --
+      .. F.String.Sublist("Images show only for the loaded AddOns"),
 
     "* Development improvements",
   },
