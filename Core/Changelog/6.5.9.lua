@@ -26,6 +26,7 @@ TXUI.Changelog["6.5.9"] = {
     "Add safety checks and fallbacks to F.Color.SetGradient",
 
     "* Profile updates",
+    "Update Plater colors to match UnitFrames more closely",
 
     "* Documentation",
     F.String.MinElv("13.61"),
