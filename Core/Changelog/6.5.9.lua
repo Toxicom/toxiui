@@ -27,6 +27,8 @@ TXUI.Changelog["6.5.9"] = {
 
     "* Profile updates",
     "Update Plater colors to match UnitFrames more closely",
+    "Make Details windows wider" --
+      .. F.String.Sublist("In some edge cases the name string would get too long to fit and cause all sorts of various bugs"),
 
     "* Documentation",
     F.String.MinElv("13.61"),
