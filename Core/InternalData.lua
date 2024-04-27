@@ -266,5 +266,32 @@ I.Data.Contributor = {
         ["Lethns-SilverHand"] = true,
       },
     },
+
+    ["Ikrekot"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- BurningLegion
+        ["Krekot-BurningLegion"] = true,
+        ["Ikrekot-BurningLegion"] = true,
+        ["Krekots-BurningLegion"] = true,
+        ["Wrekot-BurningLegion"] = true,
+        ["Kalthnia-BurningLegion"] = true,
+        ["Erybosa-BurningLegion"] = true,
+        ["Cannenta-BurningLegion"] = true,
+        ["Drekot-BurningLegion"] = true,
+        ["Liszias-BurningLegion"] = true,
+        ["Krekoti-BurningLegion"] = true,
+        ["Hekili-BurningLegion"] = true,
+        ["Krekotr-BurningLegion"] = true,
+        ["Amorat-BurningLegion"] = true,
+        ["Prekot-BurningLegion"] = true,
+        ["Fdsfsdffedf-BurningLegion"] = true,
+        ["Nekroirek-BurningLegion"] = true,
+        ["Gothy-BurningLegion"] = true,
+        ["Houphria-BurningLegion"] = true,
+
+        -- Седогрив
+        ["Ортетамин-Седогрив"] = true,
+      },
+    },
   },
 }
