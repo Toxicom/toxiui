@@ -5,6 +5,7 @@ TXUI.Changelog["6.5.9"] = {
   CHANGES = {
     "* Breaking changes",
     "Remove " .. F.String.NameplateSCT() .. " profiles",
+    "Remove Armory backgrounds 2 - 9",
 
     "* New features",
     TXUI.Title
@@ -22,6 +23,7 @@ TXUI.Changelog["6.5.9"] = {
       .. F.String.Sublist("Only works in " .. F.String.GradientString() .. " mode")
       .. F.String.Sublist("All information and options can be found under " .. F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3") .. " -> Gradient Mode -> Settings"),
     "Add " .. F.String.ToxiUI("Equipment Sets") .. " DataText from " .. F.String.ElvUI() .. " to WunderBar",
+    "Add 2 new Armory backgrounds featuring The War Within content",
 
     "* Bug fixes",
     "Add safety checks and fallbacks to F.Color.SetGradient",

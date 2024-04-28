@@ -277,15 +277,9 @@ function O:Armory()
         name = "Style",
         desc = "Change the Background image.",
         values = {
-          [1] = "1 (Default)",
-          [2] = "2",
-          [3] = "3",
-          [4] = "4",
-          [5] = "5",
-          [6] = "6",
-          [7] = "7",
-          [8] = "8",
-          [9] = "9",
+          [1] = "1. Priory of the Sacred Flame",
+          [2] = "2. Azj-Kahet",
+          [3] = "3. Draenor",
         },
         disabled = optionsDisabled,
       }
