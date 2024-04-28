@@ -517,7 +517,7 @@ function SS:OnInit()
   self.Initialized = true
 end
 
-if TXUI.IsClassic then return end
+if TXUI.IsVanilla then return end
 
 WB:RegisterSubModule(
   SS,

@@ -39,10 +39,10 @@ I.Strings.ChangelogText = {
 
 I.Strings.WALinks = {
   ["DEFAULT"] = "https://www.luxthos.com/",
-  ["DEFAULT_CLASSIC"] = "https://wago.io/classic-weakauras",
+  ["DEFAULT_VANILLA"] = "https://wago.io/classic-weakauras",
   ["FORMAT"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-dragonflight/",
   ["FORMAT_WRATH"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-wrath-of-the-lich-king/",
-  ["FORMAT_CLASSIC"] = "https://wago.io/classic-weakauras/classes/%s",
+  ["FORMAT_VANILLA"] = "https://wago.io/classic-weakauras/classes/%s",
   ["WARRIOR"] = "warrior",
   ["HUNTER"] = "hunter",
   ["MAGE"] = "mage",
@@ -137,7 +137,7 @@ I.Strings.Deconstruct = {
 }
 
 I.Strings.Classes = {
-  CLASSIC = {
+  VANILLA = {
     "WARRIOR",
     "PALADIN",
     "HUNTER",

@@ -70,7 +70,7 @@ I.Data.Contributor = {
         ["Toxispring-Gehennas"] = true, -- Hunter
       },
 
-      [I.Enum.Flavor.CLASSIC] = {
+      [I.Enum.Flavor.VANILLA] = {
         -- Firemaw
         ["Toxisin-Firemaw"] = true,
 

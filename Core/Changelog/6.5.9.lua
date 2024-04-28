@@ -48,5 +48,6 @@ TXUI.Changelog["6.5.9"] = {
       .. F.String.Sublist("Images show only for the loaded AddOns"),
 
     "* Development improvements",
+    "Internally rename Classic & Classic Era to Vanilla",
   },
 }

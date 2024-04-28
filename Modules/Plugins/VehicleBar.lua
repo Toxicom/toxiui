@@ -183,7 +183,7 @@ function VB:UpdateBar()
   end
 
   -- Update Paging
-  if not TXUI.IsClassic then
+  if not TXUI.IsVanilla then
     local pageState = format(
       "[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s",
       GetOverrideBarIndex(),

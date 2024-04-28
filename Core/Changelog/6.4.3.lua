@@ -33,7 +33,7 @@ TXUI.Changelog["6.4.3"] = {
     F.String.ElvUI() .. ": Add settings for new " .. F.String.ElvUI() .. " bag spinner animation when sorting bags",
     F.String.ElvUI() .. ": Add raid group number for raid frames",
     F.String.ElvUI() .. ": Move Addon Compartment down to avoid blocking the mail icon",
-    F.String.ElvUI() .. ": Display happiness emoji on Pet UnitFrame in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Classic"),
+    F.String.ElvUI() .. ": Display happiness emoji on Pet UnitFrame in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Vanilla"),
     F.String.ElvUI() .. ": Disable Pet health coloring based on happiness" .. F.String.Sublist("No longer necessary since we display happiness emoji"),
 
     "* Documentation",

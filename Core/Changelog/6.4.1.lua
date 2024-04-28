@@ -4,7 +4,7 @@ TXUI.Changelog["6.4.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* Bug fixes",
-    TXUI.Title .. ": Fix gathering professions not showing on WunderBar in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.Class("Classic", "ROGUE"),
+    TXUI.Title .. ": Fix gathering professions not showing on WunderBar in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.Class("Vanilla", "ROGUE"),
     TXUI.Title .. ": Fix missing Group Finder button of WunderBar's MicroMenu in " .. F.String.ToxiUI("Wrath"),
     TXUI.Title .. ": Fix WunderBar's SpecSwitch in " .. F.String.ToxiUI("Wrath"),
     TXUI.Title .. ": Fix Armory error due to " .. F.String.ElvUI() .. " 13.41",

@@ -632,7 +632,7 @@ I.HearthstoneData_Wrath = {
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
 }
 
-I.HearthstoneData_Classic = {
+I.HearthstoneData_Vanilla = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
 
   -- Hearthstone: Druid
@@ -683,8 +683,8 @@ I.InterruptSpellMap = {
 }
 
 --[[
-  Data for which class or spec has which interrupt spell. This is currently only used in Wrath and Classic,
-  as the interrupt logic iirc doesn't work properly in Wrath and The API doesn't allow us to do it in the same way in Classic
+  Data for which class or spec has which interrupt spell. This is currently only used in Wrath and Vanilla,
+  as the interrupt logic iirc doesn't work properly in Wrath and The API doesn't allow us to do it in the same way in Vanilla
 ]]
 
 I.InterruptSpellMap_Empty = {}

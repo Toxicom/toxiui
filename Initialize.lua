@@ -36,7 +36,7 @@ TXUI.DelayedWorldEntered = false
 TXUI.MetaFlavor = GetAddOnMetadata(addonName, "X-Flavor")
 TXUI.ClientBuildVersion = select(4, GetBuildInfo())
 
-TXUI.IsClassic = TXUI.MetaFlavor == "Vanilla"
+TXUI.IsVanilla = TXUI.MetaFlavor == "Vanilla"
 TXUI.IsTBC = TXUI.MetaFlavor == "TBC"
 TXUI.IsWrath = TXUI.MetaFlavor == "Wrath"
 TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
@@ -61,7 +61,7 @@ function TXUI:Initialize()
 
   -- Set correct flavor
   local flavorMap = {
-    ["Vanilla"] = I.Enum.Flavor.CLASSIC,
+    ["Vanilla"] = I.Enum.Flavor.VANILLA,
     ["TBC"] = I.Enum.Flavor.TBC,
     ["Wrath"] = I.Enum.Flavor.WRATH,
     ["Mainline"] = I.Enum.Flavor.RETAIL,
@@ -103,8 +103,8 @@ function TXUI:Initialize()
     return
   end
 
-  -- Check for non Wrath, non Retail and non Classic Era
-  if not self.IsRetail and not self.IsWrath and not self.IsClassic then return end
+  -- Check for non Wrath, non Retail and non Vanilla
+  if not self.IsRetail and not self.IsWrath and not self.IsVanillla then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
@@ -115,8 +115,8 @@ function TXUI:Initialize()
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 
-  if self.IsClassic then
-    I.HearthstoneData = I.HearthstoneData_Classic
+  if self.IsVanillla then
+    I.HearthstoneData = I.HearthstoneData_Vanilla
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 

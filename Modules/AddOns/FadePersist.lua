@@ -64,7 +64,7 @@ function FP:Disable()
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_DISABLED")
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_ENABLED")
     self.ab.fadeParent:RegisterEvent("PLAYER_TARGET_CHANGED")
-    if not TXUI.IsClassic then
+    if not TXUI.IsVanilla then
       self.ab.fadeParent:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
       self.ab.fadeParent:RegisterEvent("UPDATE_POSSESS_BAR")
     end
@@ -92,7 +92,7 @@ function FP:Enable()
   -- Don't unregister for default ElvUI mode
   if self.db.mode ~= "ELVUI" then
     self.ab.fadeParent:UnregisterEvent("PLAYER_TARGET_CHANGED")
-    if not TXUI.IsClassic then
+    if not TXUI.IsVanilla then
       self.ab.fadeParent:UnregisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
       self.ab.fadeParent:UnregisterEvent("UPDATE_POSSESS_BAR")
     end

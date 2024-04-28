@@ -305,7 +305,7 @@ function O:Plugins_AdditionalScaling()
       type = "range",
       name = "Collections",
       disabled = function()
-        return TXUI.IsClassic
+        return TXUI.IsVanilla
       end,
       get = function(_)
         return E.db.TXUI.misc.scaling.collections.scale
@@ -364,7 +364,7 @@ function O:Plugins_AdditionalScaling()
       name = "Classic Only",
       hidden = optionsHidden,
     }, {
-      name = "Scale Classic Era & Wrath of the Lich King only frames.\n\n",
+      name = "Scale Vanilla & Wrath of the Lich King only frames.\n\n",
     }).args
 
     -- Classic Group: Profession

@@ -102,7 +102,7 @@ local lfgLevelRequirement = TXUI.IsWrath and 15 or 10
 
 MM.microMenu = {
   ["ach"] = {
-    available = not TXUI.IsClassic,
+    available = not TXUI.IsVanilla,
     name = ACHIEVEMENTS,
     macro = {
       LeftButton = SLASH_ACHIEVEMENTUI1,
@@ -127,7 +127,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHARACTER0 },
   },
   ["pet"] = {
-    available = not TXUI.IsClassic,
+    available = not TXUI.IsVanilla,
     name = COLLECTIONS,
     click = {
       LeftButton = function()
@@ -187,7 +187,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGAMEMENU, MM.rightButtonText .. ADDONS },
   },
   ["lfg"] = {
-    available = not TXUI.IsClassic and UnitLevel("player") >= lfgLevelRequirement,
+    available = not TXUI.IsVanilla and UnitLevel("player") >= lfgLevelRequirement,
     name = DUNGEONS_BUTTON,
     click = {
       LeftButton = function()
@@ -281,7 +281,7 @@ MM.microMenu = {
     click = {
       LeftButton = function()
         if not InCombatLockdown() then
-          if TXUI.IsClassic then
+          if TXUI.IsVanilla then
             ToggleCharacter("HonorFrame")
           else
             TogglePVPUI()

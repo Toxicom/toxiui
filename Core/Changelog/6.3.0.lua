@@ -8,7 +8,7 @@ TXUI.Changelog["6.3.0"] = {
     F.String.Error("Warning: ") .. "Removed '" .. F.String.ToxiUI("Futura") .. "' and most of '" .. F.String.ToxiUI("Montserrat") .. "' font variants",
 
     "* New features",
-    "Release ToxiUI Classic",
+    "Release ToxiUI Vanilla",
     "UnitFrame Class Icons",
     "Stylized icons " .. F.String.Class("(icons8.com)", "ROGUE") .. " for Dead and Disconnected state to match UnitFrame class icons",
     "Combat icon for Player UnitFrame " .. F.String.Class("(icons8.com)", "ROGUE"),

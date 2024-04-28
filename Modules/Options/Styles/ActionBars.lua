@@ -76,7 +76,7 @@ function O:Styles_ActionBars()
         .. TXUI.Title
         .. " style for users who do not like WeakAuras and prefer just ye' old reliable ActionBars.\n\n"
         .. F.String.ToxiUI("Information: ")
-        .. "This style is recommended for Classic Era players, hence the naming of Classic Style ;)\n\n",
+        .. "This style is recommended for Vanilla players, hence the naming of Classic Style ;)\n\n",
     })
 
     classicStyle["args"]["enable"] = {

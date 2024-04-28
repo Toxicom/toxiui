@@ -21,7 +21,7 @@ TXUI.Changelog["6.3.1"] = {
     "* Bug fixes",
     "Fix Boss & Arena UnitFrames toggling for Dark Mode",
     F.String.ToxiUI("Wrath: ") .. "Fix Specialization icons for Assassination Rogue and Holy Priest",
-    "Revert some changes for Classic API. Now the Classic API is more in line with Wrath's",
+    "Revert some changes for Vanilla API. Now the Vanilla API is more in line with Wrath's",
 
     "* Font fixes & updates",
     "Fix pet castbar fonts",

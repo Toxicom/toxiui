@@ -17,7 +17,7 @@ TXUI.Changelog["6.4.5"] = {
     TXUI.Title .. ": Disable 'Details Gradient Text' toggle in Dark Mode if " .. F.String.Details() .. " is disabled or not using " .. TXUI.Title .. " profile",
     TXUI.Title .. ": Update AFK screen's timer text",
     TXUI.Title .. ": Enable Details Gradient Text by default",
-    F.String.NameplateSCT() .. ": Enable small hits for Wrath & Classic",
+    F.String.NameplateSCT() .. ": Enable small hits for Wrath & Vanilla",
     F.String.ElvUI() --
       .. ": Match UnitFrame Class Resources colors to the ones we have in Gradient mode"
       .. F.String.Sublist("Previously in Dark & Normal modes the resource colors were default"),

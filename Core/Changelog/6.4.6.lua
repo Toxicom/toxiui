@@ -12,7 +12,7 @@ TXUI.Changelog["6.4.6"] = {
       .. F.String.Sublist("See new tags in " .. F.String.Class("Available Tags") .. ", they are prefixed with " .. TXUI.Title),
 
     "* Bug fixes",
-    TXUI.Title .. ": Add missing " .. F.String.Class("Teleport: Moonglade") .. " in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Classic"),
+    TXUI.Title .. ": Add missing " .. F.String.Class("Teleport: Moonglade") .. " in " .. F.String.ToxiUI("Wrath") .. " & " .. F.String.ToxiUI("Vanilla"),
     TXUI.Title .. ": Fix missing Material Assist icon",
 
     "* Profile updates",

@@ -168,7 +168,7 @@ function M:GameMenuButton()
           -- 5
           "The same "
             .. TXUI.Title
-            .. " AddOn can be installed on all three versions: Retail, Wrath of the Lich King & Classic Era",
+            .. " AddOn can be installed on all three versions: Retail, Wrath of the Lich King & Vanilla",
           -- 6
           "The first version of "
             .. TXUI.Title

@@ -47,7 +47,7 @@ P.general = {
 -- Styles
 P.styles = {
   unitFrames = "New",
-  actionBars = TXUI.IsClassic and "Classic" or "WeakAuras",
+  actionBars = TXUI.IsVanilla and "Classic" or "WeakAuras",
 }
 
 -- Themes
@@ -249,7 +249,7 @@ P.addons = {
   -- Fade Persist
   fadePersist = {
     enabled = true, -- Enabled by default
-    mode = TXUI.IsClassic and "ELVUI" or "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
+    mode = TXUI.IsVanilla and "ELVUI" or "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
     showInVehicles = true,
   },
 }

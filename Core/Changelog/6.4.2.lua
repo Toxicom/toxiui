@@ -8,7 +8,7 @@ TXUI.Changelog["6.4.2"] = {
 
     "* Bug fixes",
     TXUI.Title .. ": Potentially fix Details dark theme gradient name error for Neltharus Weapons etc.",
-    TXUI.Title .. ": Fix Mining profession for WunderBar in Classic Era",
+    TXUI.Title .. ": Fix Mining profession for WunderBar in Vanilla",
 
     "* Documentation",
     F.String.MinElv("13.42"),

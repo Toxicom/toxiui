@@ -118,8 +118,8 @@ end
 
 function F.String.RandomClassColor(msg)
   local classNames
-  if TXUI.IsClassic then
-    classNames = I.Strings.Classes.CLASSIC
+  if TXUI.IsVanilla then
+    classNames = I.Strings.Classes.VANILLA
   elseif TXUI.IsWrath then
     classNames = I.Strings.Classes.WRATH
   else
@@ -209,11 +209,11 @@ function F.String.WALink(class)
   local classLink = I.Strings.WALinks[class]
 
   if classLink ~= nil then
-    local base = TXUI.IsClassic and I.Strings.WALinks.FORMAT_CLASSIC or TXUI.IsWrath and I.Strings.WALinks.FORMAT_WRATH or I.Strings.WALinks.FORMAT
+    local base = TXUI.IsVanilla and I.Strings.WALinks.FORMAT_VANILLA or TXUI.IsWrath and I.Strings.WALinks.FORMAT_WRATH or I.Strings.WALinks.FORMAT
     return format(base, classLink)
   end
 
-  return TXUI.IsClassic and I.Strings.WALinks.DEFAULT_CLASSIC or I.Strings.WALinks.DEFAULT
+  return TXUI.IsVanilla and I.Strings.WALinks.DEFAULT_VANILLA or I.Strings.WALinks.DEFAULT
 end
 
 function F.String.RemoveRuneOfThePrefix(text)

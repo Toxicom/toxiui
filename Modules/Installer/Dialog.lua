@@ -400,11 +400,11 @@ function IS:Dialog()
 
         if F.IsAddOnEnabled("WeakAuras") then
           installFrame.Desc1:SetText("This will give you links to install important WeakAuras")
-          if TXUI.IsClassic then
+          if TXUI.IsVanilla then
             installFrame.Desc2:SetText(
               "Unfortunately "
                 .. F.String.Luxthos("Luxthos")
-                .. " does not have Classic Era WeakAuras packages, so below is a link that will take you to the classic era Wago page. We highly recommend using a WeakAuras package with "
+                .. " does not have Vanilla WeakAuras packages, so below is a link that will take you to the classic era Wago page. We highly recommend using a WeakAuras package with "
                 .. F.String.ToxiUI("ToxiUI")
                 .. "."
             )
@@ -415,8 +415,8 @@ function IS:Dialog()
             )
           end
           installFrame.Option1:Show()
-          if TXUI.IsClassic then
-            installFrame.Option1:SetText("Wago.io Classic")
+          if TXUI.IsVanilla then
+            installFrame.Option1:SetText("Wago.io Vanilla")
           else
             installFrame.Option1:SetText(F.String.Luxthos("Luxthos") .. " WA")
           end

@@ -11,7 +11,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog)
   local changelogGeneralData = changelog.CHANGES
   local changelogRetailData = changelog.CHANGES_RETAIL
   local changelogWrathData = changelog.CHANGES_WRATH
-  local changelogClassicData = changelog.CHANGES_CLASSIC
+  local changelogVanillaData = changelog.CHANGES_VANILLA
 
   if (changelog.HOTFIX == true) and not changelogGeneralData then changelogGeneralData = { "* General", I.Strings.ChangelogText[I.Enum.ChangelogType.HOTFIX] } end
 
@@ -62,8 +62,8 @@ function O:FormatChangelog(options, version, changelogIndex, changelog)
     generatedText = generatedText .. generateSectionLog(changelogRetailData, "Retail")
   elseif TXUI.IsWrath then
     generatedText = generatedText .. generateSectionLog(changelogWrathData, "Wrath")
-  elseif TXUI.IsClassic then
-    generatedText = generatedText .. generateSectionLog(changelogClassicData, "Vanilla Classic")
+  elseif TXUI.IsVanilla then
+    generatedText = generatedText .. generateSectionLog(changelogVanillaData, "Vanilla")
   end
 
   -- Get a pretty version number

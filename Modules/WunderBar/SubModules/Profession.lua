@@ -217,7 +217,7 @@ do
       { spellIds = { 8613 }, skillLine = 393, texture = 134366 }, -- Skinning
     }
 
-    if not TXUI.IsClassic then
+    if not TXUI.IsVanilla then
       -- We can't use F.Table.Crush here, because the tables do not have unique keys and
       -- therefore JC & Inscription override Blacksmithing & First Aid (as they're the first entries)
 
