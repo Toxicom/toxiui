@@ -21,6 +21,7 @@ TXUI.Changelog["6.5.9"] = {
       .. F.String.Sublist("Enabled by default")
       .. F.String.Sublist("Only works in " .. F.String.GradientString() .. " mode")
       .. F.String.Sublist("All information and options can be found under " .. F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3") .. " -> Gradient Mode -> Settings"),
+    "Add " .. F.String.ToxiUI("Equipment Sets") .. " DataText from " .. F.String.ElvUI() .. " to WunderBar",
 
     "* Bug fixes",
     "Add safety checks and fallbacks to F.Color.SetGradient",
