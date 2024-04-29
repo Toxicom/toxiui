@@ -33,6 +33,7 @@ TXUI.Changelog["6.5.9"] = {
     "Make Details windows wider" --
       .. F.String.Sublist("In some edge cases the name string would get too long to fit and cause all sorts of various bugs"),
     "Add " .. F.String.ToxiUI("Shadow Outline") .. " to most fonts",
+    "Disable soft-interact icon in Plater",
 
     "* Documentation",
     F.String.MinElv("13.61"),
