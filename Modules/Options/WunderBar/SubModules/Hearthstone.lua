@@ -16,7 +16,7 @@ function O:WunderBar_SubModules_Additional_Toggle(group)
     function()
       local names = {}
       for _, option in pairs(I.HearthstoneData) do
-        if option.known and not option.hearthstone and not option.class and (TXUI.IsWrath or (not option.portal and not option.teleport)) then names[option.id] = option.name end
+        if option.known and not option.hearthstone and not option.class and (TXUI.IsCata or (not option.portal and not option.teleport)) then names[option.id] = option.name end
       end
       return names
     end,

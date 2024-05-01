@@ -344,7 +344,7 @@ function O:ToxiUI_Themes_GradientMode()
     }
 
     for power, _ in pairs(P.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-      if TXUI.IsRetail or (TXUI.IsWrath and wrathExcluded[power] == nil) then generatePowerColors(power) end
+      if TXUI.IsRetail or (TXUI.IsCata and wrathExcluded[power] == nil) then generatePowerColors(power) end
     end
   end
 

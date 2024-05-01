@@ -19,7 +19,7 @@ TXUI.Changelog["6.1.3"] = {
     "Add descriptions to each font in the Fonts module.",
   },
 
-  CHANGES_WRATH = {
+  CHANGES_CATA = {
     "Fixes for Wrath Ulduar patch API changes",
   },
 }

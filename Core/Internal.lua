@@ -576,7 +576,7 @@ I.HearthstoneData = {
   [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone
 }
 
-I.HearthstoneData_Wrath = {
+I.HearthstoneData_Cata = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
   [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
   [54452] = { ["type"] = "item", ["hearthstone"] = true }, -- Ethereal Portal
@@ -683,8 +683,8 @@ I.InterruptSpellMap = {
 }
 
 --[[
-  Data for which class or spec has which interrupt spell. This is currently only used in Wrath and Vanilla,
-  as the interrupt logic iirc doesn't work properly in Wrath and The API doesn't allow us to do it in the same way in Vanilla
+  Data for which class or spec has which interrupt spell. This is currently only used in Cata and Vanilla,
+  as the interrupt logic iirc doesn't work properly in Cata and The API doesn't allow us to do it in the same way in Vanilla
 ]]
 
 I.InterruptSpellMap_Empty = {}

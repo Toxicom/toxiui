@@ -364,7 +364,7 @@ function O:Plugins_AdditionalScaling()
       name = "Classic Only",
       hidden = optionsHidden,
     }, {
-      name = "Scale Vanilla & Wrath of the Lich King only frames.\n\n",
+      name = "Scale Vanilla & Cataclysm Classic only frames.\n\n",
     }).args
 
     -- Classic Group: Profession

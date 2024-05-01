@@ -35,7 +35,7 @@ local slots = {
   [17] = _G.INVTYPE_WEAPONOFFHAND,
 }
 
-if TXUI.IsWrath then slots[18] = _G.INVTYPE_RANGED end
+if TXUI.IsCata then slots[18] = _G.INVTYPE_RANGED end
 
 function DB:OnEvent(event)
   -- Update only ilvl display
@@ -126,7 +126,7 @@ function DB:OnEnter()
 
   if self.db.showItemLevel then
     local equippedPercent = min(1, max(1, self.avgItemLevel) / max(1, self.avgItemLevelEquipped))
-    if TXUI.IsWrath then equippedPercent = 1 - equippedPercent end -- We negate for Wrath
+    if TXUI.IsCata then equippedPercent = 1 - equippedPercent end -- We negate for Wrath
     local equippedColors = { F.SlowColorGradient(equippedPercent, 1, 0.1, 0.1, 1, 1, 0.1, 0.1, 1, 0.1) }
 
     DT.tooltip:AddLine("Item Level")
@@ -369,5 +369,5 @@ WB:RegisterSubModule(
   F.Table.Join({
     "UPDATE_INVENTORY_DURABILITY",
     "MERCHANT_SHOW",
-  }, F.Table.If(TXUI.IsRetail, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(TXUI.IsWrath, { "PLAYER_EQUIPMENT_CHANGED" }))
+  }, F.Table.If(TXUI.IsRetail, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(TXUI.IsCata, { "PLAYER_EQUIPMENT_CHANGED" }))
 )

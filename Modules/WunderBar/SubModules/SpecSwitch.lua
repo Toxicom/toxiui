@@ -127,7 +127,7 @@ function SS:SpecEnter(text, icon)
 
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Show Talent UI")
-    if TXUI.IsRetail or (TXUI.IsWrath and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
+    if TXUI.IsRetail or (TXUI.IsCata and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
     DT.tooltip:Show()
   end
 end
@@ -143,7 +143,7 @@ function SS:SpecClick(frame, button, ...)
   local hasDualSpec
   local activeGroup
 
-  if TXUI.IsWrath then
+  if TXUI.IsCata then
     hasDualSpec = GetNumTalentGroups() == 2
     activeGroup = GetActiveTalentGroup()
   end
@@ -154,7 +154,7 @@ function SS:SpecClick(frame, button, ...)
   else
     if button == "LeftButton" then
       ToggleTalentFrame()
-    elseif TXUI.IsWrath then
+    elseif TXUI.IsCata then
       if not hasDualSpec then return end
       SetActiveTalentGroup(activeGroup == 1 and 2 or 1)
     else
@@ -193,14 +193,26 @@ end
 function SS:GetWrathCacheForSpec(spec)
   local points = {}
   local highPointsSpentIndex = nil
-  for treeIndex = 1, 3 do
-    local name, _, pointsSpent, _, previewPointsSpent = GetTalentTabInfo(treeIndex, false, false, spec)
-    if name then
-      local displayPointsSpent = pointsSpent + previewPointsSpent
-      points[treeIndex] = displayPointsSpent
-      if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then highPointsSpentIndex = treeIndex end
-    else
-      points[treeIndex] = 0
+
+  if TXUI.IsVanilla then
+    for treeIndex = 1, 3 do
+      local name, _, pointsSpent, _, previewPointsSpent = GetTalentTabInfo(treeIndex, false, false, spec)
+      if name then
+        local displayPointsSpent = pointsSpent + previewPointsSpent
+        points[treeIndex] = displayPointsSpent
+        if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then highPointsSpentIndex = treeIndex end
+      else
+        points[treeIndex] = 0
+      end
+    end
+  elseif TXUI.IsCata then
+    highPointsSpentIndex = GetPrimaryTalentTree()
+    for treeIndex = 1, 3 do
+      if treeIndex == highPointsSpentIndex then
+        points[treeIndex] = GetNumTalentPoints()
+      else
+        points[treeIndex] = 0
+      end
     end
   end
 
@@ -208,15 +220,25 @@ function SS:GetWrathCacheForSpec(spec)
   if not role or role == "NONE" then role = "DAMAGER" end
 
   if highPointsSpentIndex ~= nil then
-    local name, _, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
+    local name
+    local stringId
+    local icon
 
-    if name then return {
-      id = stringId,
-      icon = stringId,
-      name = name,
-      role = role,
-      points = ("%s / %s / %s"):format(unpack(points)),
-    } end
+    if TXUI.IsVanilla then
+      name, _, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
+    elseif TXUI.IsCata then
+      _, name, _, icon, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
+    end
+
+    if name then
+      return {
+        id = stringId,
+        icon = TXUI.IsVanilla and stringId or icon,
+        name = name,
+        role = role,
+        points = ("%s / %s / %s"):format(unpack(points)),
+      }
+    end
   end
 
   return {
@@ -538,6 +560,6 @@ WB:RegisterSubModule(
       "TRAIT_CONFIG_UPDATED",
       "TRAIT_TREE_CHANGED",
     }),
-    F.Table.If(TXUI.IsWrath, { "TALENT_GROUP_ROLE_CHANGED" })
+    F.Table.If(TXUI.IsCata, { "TALENT_GROUP_ROLE_CHANGED" })
   )
 )

@@ -41,7 +41,7 @@ I.Strings.WALinks = {
   ["DEFAULT"] = "https://www.luxthos.com/",
   ["DEFAULT_VANILLA"] = "https://wago.io/classic-weakauras",
   ["FORMAT"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-dragonflight/",
-  ["FORMAT_WRATH"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-wrath-of-the-lich-king/",
+  ["FORMAT_CATA"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-wrath-of-the-lich-king/",
   ["FORMAT_VANILLA"] = "https://wago.io/classic-weakauras/classes/%s",
   ["WARRIOR"] = "warrior",
   ["HUNTER"] = "hunter",
@@ -148,7 +148,7 @@ I.Strings.Classes = {
     "WARLOCK",
     "DRUID",
   },
-  WRATH = {
+  CATA = {
     "WARRIOR",
     "PALADIN",
     "HUNTER",

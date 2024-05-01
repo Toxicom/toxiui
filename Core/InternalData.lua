@@ -35,7 +35,7 @@ I.Data.Contributor = {
         ["Toxiele-TarrenMill"] = true,
       },
 
-      [I.Enum.Flavor.WRATH] = {
+      [I.Enum.Flavor.CATA] = {
         -- Giantstalker
         ["Toxi-Giantstalker"] = true,
         ["Toxilich-Giantstalker"] = true,
@@ -92,7 +92,7 @@ I.Data.Contributor = {
         ["Ryadia-Draenor"] = true,
       },
 
-      [I.Enum.Flavor.WRATH] = {
+      [I.Enum.Flavor.CATA] = {
         -- Ashbringer
         ["Cyassa-Ashbringer"] = true,
         ["Ryashh-Ashbringer"] = true,
@@ -172,7 +172,7 @@ I.Data.Contributor = {
         ["Raovasbank-Daggerspine"] = true,
       },
 
-      [I.Enum.Flavor.WRATH] = {
+      [I.Enum.Flavor.CATA] = {
         -- Giantstalker
         ["Lexza-Giantstalker"] = true,
       },

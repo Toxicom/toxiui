@@ -120,8 +120,8 @@ function F.String.RandomClassColor(msg)
   local classNames
   if TXUI.IsVanilla then
     classNames = I.Strings.Classes.VANILLA
-  elseif TXUI.IsWrath then
-    classNames = I.Strings.Classes.WRATH
+  elseif TXUI.IsCata then
+    classNames = I.Strings.Classes.CATA
   else
     classNames = I.Strings.Classes.RETAIL
   end
@@ -209,7 +209,7 @@ function F.String.WALink(class)
   local classLink = I.Strings.WALinks[class]
 
   if classLink ~= nil then
-    local base = TXUI.IsVanilla and I.Strings.WALinks.FORMAT_VANILLA or TXUI.IsWrath and I.Strings.WALinks.FORMAT_WRATH or I.Strings.WALinks.FORMAT
+    local base = TXUI.IsVanilla and I.Strings.WALinks.FORMAT_VANILLA or TXUI.IsCata and I.Strings.WALinks.FORMAT_CATA or I.Strings.WALinks.FORMAT
     return format(base, classLink)
   end
 

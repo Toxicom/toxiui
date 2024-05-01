@@ -98,7 +98,7 @@ local function ToggleGroupFinder()
   end
 end
 
-local lfgLevelRequirement = TXUI.IsWrath and 15 or 10
+local lfgLevelRequirement = TXUI.IsCata and 15 or 10
 
 MM.microMenu = {
   ["ach"] = {
@@ -657,7 +657,8 @@ function MM:CreateButtons()
     frame.infoText = frame:CreateFontString(nil, "OVERLAY")
     frame.icon = frame:CreateFontString(nil, "OVERLAY")
     frame.icon:SetPoint("CENTER")
-    frame.icon:SetJustifyH("BOTTOM")
+    -- Not working in Cata? Maybe not needed at all?
+    -- frame.icon:SetJustifyH("BOTTOM")
 
     self.frameNames[name] = frame
     tinsert(self.frames, frame)

@@ -34,6 +34,7 @@ TXUI.Changelog["6.5.9"] = {
       .. F.String.Sublist("In some edge cases the name string would get too long to fit and cause all sorts of various bugs"),
     "Add " .. F.String.ToxiUI("Shadow Outline") .. " to most fonts",
     "Disable soft-interact icon in Plater",
+    "Update for Cataclysm Classic",
 
     "* Documentation",
     F.String.MinElv("13.61"),
