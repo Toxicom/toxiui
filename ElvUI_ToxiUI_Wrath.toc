@@ -1,21 +1,19 @@
-## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r
+## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r |cffe35f00Cataclysm|r
 ## Notes: Minimalistic ElvUI Edit by |cff18a8ffToxi|r
 ## Author: Toxi (Toxi#21206)
 ## Version: 6.6.1
-## RequiredDeps: ElvUI, ElvUI_WindTools
+## RequiredDeps: ElvUI
 ## OptionalDeps: Details, Plater
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
-## Interface: 100206
-## X-Interface: 100206
-## X-Flavor: Mainline
+## Interface: 30403
+## X-Interface: 30403
+## X-Flavor: Cata
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
 ## X-ElvUIVersion: 13.62
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
-## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick
-
 
 Libraries\Libraries.xml
 Initialize.lua

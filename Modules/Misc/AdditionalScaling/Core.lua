@@ -38,6 +38,9 @@ function M:AdditionalScaling()
 
       -- Classic: Professions
       M:AddCallbackOrScale("Blizzard_TradeSkillUI", self.ScaleProfessions)
+
+      -- Classic: Taxi Frame
+      M:SetElementScale("taxi", "TaxiFrame")
     end
   else
     TXUI:LogDebug("AdditionalScaling > E.db or E.db.TXUI not found, skipping scaling!")

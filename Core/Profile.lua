@@ -317,6 +317,10 @@ P.misc = {
     classTrainer = {
       scale = 1,
     },
+
+    taxi = {
+      scale = 1,
+    },
   },
 }
 

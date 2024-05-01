@@ -386,6 +386,26 @@ function O:Plugins_AdditionalScaling()
       max = 2,
       step = 0.05,
     }
+
+    -- Classic Group: Taxi
+    classicGroup.taxi = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Taxi",
+      disabled = function()
+        return TXUI.IsRetail
+      end,
+      get = function(_)
+        return E.db.TXUI.misc.scaling.taxi.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.taxi.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
   end
 end
 
