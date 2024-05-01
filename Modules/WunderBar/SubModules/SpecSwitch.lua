@@ -225,6 +225,7 @@ function SS:GetWrathCacheForSpec(spec)
     local name
     local stringId
     local icon
+    local _
 
     if TXUI.IsVanilla then
       name, _, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
