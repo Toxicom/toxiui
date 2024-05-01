@@ -102,7 +102,7 @@ function TXUI:Initialize()
   end
 
   -- Check for non Cata, non Retail and non Vanilla
-  if not self.IsRetail and not self.IsCata and not self.IsVanillla then return end
+  if not self.IsRetail and not self.IsCata and not self.IsVanilla then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
@@ -113,7 +113,7 @@ function TXUI:Initialize()
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 
-  if self.IsVanillla then
+  if self.IsVanilla then
     I.HearthstoneData = I.HearthstoneData_Vanilla
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
