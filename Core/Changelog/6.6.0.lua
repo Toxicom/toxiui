@@ -37,7 +37,7 @@ TXUI.Changelog["6.6.0"] = {
     "Update for Cataclysm Classic",
 
     "* Documentation",
-    F.String.MinElv("13.61"),
+    F.String.MinElv("13.62"),
 
     "* Settings refactoring",
     "Rename " --
