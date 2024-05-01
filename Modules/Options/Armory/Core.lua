@@ -1428,8 +1428,27 @@ function O:Armory_OnlyRetailMessage()
   local group = self:AddInlineDesc(options, {
     name = "Description",
   }, {
-    name = "Unfortunately this feature is available only for the Retail version of " .. TXUI.Title,
+    name = "Unfortunately this feature is available only for the Retail version of "
+      .. TXUI.Title
+      .. ".\n\n"
+      .. "For "
+      .. F.String.ToxiUI("Wrath of the Lich King: Classic")
+      .. " we recommend using "
+      .. F.String.WrathArmory()
+      .. " by "
+      .. F.String.Class("Repooc", "DRUID")
+      .. ".\n\n",
   }).args
+
+  group.websiteUrl = {
+    order = self:GetOrder(),
+    type = "input",
+    width = "full",
+    name = "Copy this URL",
+    get = function()
+      return I.Strings.Branding.Links.WrathArmory
+    end,
+  }
 end
 
 if TXUI.IsRetail then
