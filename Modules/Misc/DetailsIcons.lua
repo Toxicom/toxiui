@@ -1,10 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 
--- Created dummy WeakAura Anchor, for use by advanced users
 function M:DetailsIcons()
   if F.IsAddOnEnabled("Details") then
-    F.Log.Dev(Details, "Details")
     local iconsPath = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Textures\\Icons\\"
     local logoPath = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Backgrounds\\Logos\\LogoSmall.tga"
     local coords = { 0, 1, 0, 1 }

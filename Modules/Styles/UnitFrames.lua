@@ -367,9 +367,6 @@ end
 function ST:UpdateProfileForTheme()
   local pf = self:BuildUnitFramesProfile()
 
-  print("UPDATE PROFILE FOR THMS")
-  F.Log.Dev(pf, "pf")
-
   -- Custom Text
   -- Arena
   F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Health", "yOffset")
