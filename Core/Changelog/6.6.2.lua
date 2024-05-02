@@ -10,6 +10,7 @@ TXUI.Changelog["6.6.2"] = {
     "* Bug fixes",
     "Attempt to fix moving action bars",
     "Fix WunderBar's SpecSwitch to accurately show dual spec",
+    "Fix typo in Armory",
 
     "* Profile updates",
     "Remove happiness from pet frame for non-vanilla versions",

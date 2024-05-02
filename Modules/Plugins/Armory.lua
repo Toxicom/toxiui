@@ -1035,7 +1035,7 @@ function A:ApplyCustomStatCategories()
           stat = "ENERGY_REGEN",
           hideAt = 0,
           roles = { "TANK", "DAMAGER" },
-          classes = { "ROUGE", "DRUID", "MONK" },
+          classes = { "ROGUE", "DRUID", "MONK" },
         }, -- Added
         [11] = {
           stat = "RUNE_REGEN",
