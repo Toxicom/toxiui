@@ -15,6 +15,7 @@ TXUI.Changelog["6.6.2"] = {
     "Remove happiness from pet frame for non-vanilla versions",
 
     "* Documentation",
+    F.String.MinElv("13.63"),
 
     "* Settings refactoring",
 
