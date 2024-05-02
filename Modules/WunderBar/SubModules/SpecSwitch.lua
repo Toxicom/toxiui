@@ -208,10 +208,12 @@ function SS:GetWrathCacheForSpec(spec)
       end
     end
   elseif TXUI.IsCata then
-    highPointsSpentIndex = GetPrimaryTalentTree()
     for treeIndex = 1, 3 do
-      if treeIndex == highPointsSpentIndex then
-        points[treeIndex] = GetNumTalentPoints()
+      local _, name, _, _, pointsSpent, _, previewPointsSpent, _ = GetTalentTabInfo(treeIndex, false, false, spec)
+      if name then
+        local displayPointsSpent = pointsSpent + previewPointsSpent
+        points[treeIndex] = displayPointsSpent
+        if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then highPointsSpentIndex = treeIndex end
       else
         points[treeIndex] = 0
       end
