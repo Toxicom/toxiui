@@ -34,7 +34,9 @@ function O:Armory()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = TXUI.Title .. " Armory changes the appearance of your Character sheet.\n\n",
+      name = TXUI.Title
+        .. " Armory changes the appearance of your Character sheet.\n\n"
+        .. (TXUI.IsCata and (F.String.Error("[BETA]") .. ": This module is not stable yet on Cataclysm Classic!\n\n") or ""),
     }, I.Requirements.Armory).args
 
     -- Enable
@@ -99,6 +101,7 @@ function O:Armory()
         type = "toggle",
         desc = "Enabling this will show the maximum possible item level you can achieve with items currently in your bags.",
         name = "Bags iLvl",
+        disabled = not TXUI.IsRetail,
       }
 
       -- Formats
@@ -187,7 +190,7 @@ function O:Armory()
     end
 
     -- Animations
-    do
+    if TXUI.IsRetail then
       -- General Group
       local animationsGroup = self:AddInlineDesc(tab, {
         name = "Animations",
@@ -1113,7 +1116,7 @@ function O:Armory()
   end
 
   -- Stats
-  do
+  if TXUI.IsRetail then
     -- Tab
     local tab = self:AddGroup(options, {
       name = "Attributes",
@@ -1451,7 +1454,7 @@ function O:Armory_OnlyRetailMessage()
   }
 end
 
-if TXUI.IsRetail then
+if not TXUI.IsVanilla then
   O:AddCallback("Armory")
 else
   O:AddCallback("Armory_OnlyRetailMessage")

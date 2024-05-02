@@ -6,6 +6,11 @@ TXUI.Changelog["6.6.2"] = {
     "* Breaking changes",
 
     "* New features",
+    "Enabled Armory for Cataclysm Classic " --
+      .. F.String.Error("[BETA]")
+      .. F.String.Sublist("Very early testing phase")
+      .. F.String.Sublist("Some features missing and not sure if will be brought back")
+      .. F.String.Sublist("Might disable again if we find something critical that I can't fix :("),
 
     "* Bug fixes",
     "Attempt to fix moving action bars",

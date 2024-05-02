@@ -190,7 +190,7 @@ function SS:OnWunderBarUpdate()
   end)
 end
 
-function SS:GetWrathCacheForSpec(spec)
+function SS:GetCurrentSpecPoints(spec)
   local points = {}
   local highPointsSpentIndex = nil
 
@@ -217,6 +217,12 @@ function SS:GetWrathCacheForSpec(spec)
       end
     end
   end
+
+  return points, highPointsSpentIndex
+end
+
+function SS:GetWrathCacheForSpec(spec)
+  local points, highPointsSpentIndex = SS:GetCurrentSpecPoints(spec)
 
   local role = GetTalentGroupRole(spec)
   if not role or role == "NONE" then role = "DAMAGER" end
