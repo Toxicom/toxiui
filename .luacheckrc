@@ -3994,6 +3994,7 @@ globals = {
   "CharacterFrame",
   "CharacterFrameExpandButton",
   "CharacterStatsFrame",
+  "CharacterStatsPane",
   "ChangeMultiCastActionPage",
   "ChatChannelPasswordHandler",
   "ClaimRaidFrame",
