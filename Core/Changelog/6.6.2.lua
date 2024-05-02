@@ -18,7 +18,7 @@ TXUI.Changelog["6.6.2"] = {
     "Attempt to fix moving action bars",
     "Fix WunderBar's SpecSwitch to accurately show dual spec",
     "Fix typo in Armory",
-    "Retribution paladin spec icon not showing",
+    "Paladin spec icons not showing",
 
     "* Profile updates",
     "Remove happiness from pet frame for non-vanilla versions",
