@@ -232,12 +232,14 @@ A.characterSlots = {
 
 function A:GetPrimaryTalentIndex()
   local primaryTalentTreeIdx = 0
+  local _
   local primaryTalentTree = GetSpecialization()
+
   if primaryTalentTree then
     if TXUI.IsRetail then
       primaryTalentTreeIdx = GetSpecializationInfo(primaryTalentTree) or 0
     else
-      _, primaryTalentTreeIdx = SS:GetCurrentSpecPoints(primaryTalentTree) or 0
+      _, primaryTalentTreeIdx = SS:GetCurrentSpecPoints(primaryTalentTree) or nil, 0
     end
   end
 
