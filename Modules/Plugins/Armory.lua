@@ -1353,6 +1353,14 @@ function A:Enable()
   self:SecureHook(m, "ToggleItemLevelInfo", F.Event.GenerateClosure(self.ElvOptionsCheck, self))
   self:SecureHook(_G, "PaperDollFrame_UpdateStats", F.Event.GenerateClosure(self.UpdateCharacterStats, self))
 
+  if TXUI.IsCata then
+    CharacterFrame:HookScript("OnShow", function()
+      if CharacterFrameExpandButton and PaperDollFrame:IsVisible() then
+        if not CharacterStatsPane:IsShown() then CharacterFrameExpandButton:Click() end
+      end
+    end)
+  end
+
   -- Register Events
   F.Event.RegisterFrameEventAndCallback("UNIT_NAME_UPDATE", self.HandleEvent, self, "UNIT_NAME_UPDATE")
   F.Event.RegisterFrameEventAndCallback("PLAYER_PVP_RANK_CHANGED", self.HandleEvent, self, "PLAYER_PVP_RANK_CHANGED")

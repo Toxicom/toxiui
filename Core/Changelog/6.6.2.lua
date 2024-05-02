@@ -11,6 +11,8 @@ TXUI.Changelog["6.6.2"] = {
       .. F.String.Sublist("Very early testing phase")
       .. F.String.Sublist("Some features missing and not sure if will be brought back")
       .. F.String.Sublist("Might disable again if we find something critical that I can't fix :("),
+    "Auto open attributes window when opening armory" --
+      .. F.String.Sublist("For Cataclysm Classic"),
 
     "* Bug fixes",
     "Attempt to fix moving action bars",
