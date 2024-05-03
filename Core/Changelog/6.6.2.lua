@@ -28,6 +28,7 @@ TXUI.Changelog["6.6.2"] = {
 
     "* Documentation",
     F.String.MinElv("13.63"),
+    "Update Luxthos WA link for Cataclysm Classic",
 
     "* Settings refactoring",
 
