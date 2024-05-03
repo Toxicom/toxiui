@@ -20,6 +20,7 @@ TXUI.Changelog["6.6.2"] = {
     "Fix typo in Armory",
     "Paladin spec icons not showing",
     "Enable Adventure Guide in WunderBar for Cataclysm Classic",
+    "Add missing enchant to head slot for Retail Armory",
 
     "* Profile updates",
     "Remove happiness from pet frame for non-vanilla versions",

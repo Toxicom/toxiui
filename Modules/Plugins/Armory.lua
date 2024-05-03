@@ -95,7 +95,7 @@ A.colors = {
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
-    needsEnchant = false,
+    needsEnchant = TXUI.IsRetail and true or false,
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
