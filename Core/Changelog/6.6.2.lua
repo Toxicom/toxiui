@@ -21,6 +21,7 @@ TXUI.Changelog["6.6.2"] = {
     "Paladin spec icons not showing",
     "Enable Adventure Guide in WunderBar for Cataclysm Classic",
     "Add missing enchant to head slot for Retail Armory",
+    "Stance Bar was lost on Classic style ActionBars",
 
     "* Profile updates",
     "Remove happiness from pet frame for non-vanilla versions",

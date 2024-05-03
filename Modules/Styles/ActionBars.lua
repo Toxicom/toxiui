@@ -100,6 +100,7 @@ function ST:BuildActionBarsProfile()
         ElvAB_5 = F.Position("TOPLEFT", "ElvAB_1", "BOTTOM", defaultPadding / 2, -defaultPadding), -- right
         ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding / 2, 45), -- left
         ElvAB_4 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
+        ShiftAB = F.Position("BOTTOM", "ElvAB_3", "TOPRIGHT", 0, defaultPadding),
       },
       F.Table.If(IsHealer, {
         PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
@@ -109,6 +110,7 @@ function ST:BuildActionBarsProfile()
         ElvAB_5 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
         ElvAB_3 = F.Position("RIGHT", "ElvAB_6", "LEFT", -defaultPadding, 0), -- left
         ElvAB_4 = F.Position("LEFT", "ElvAB_5", "RIGHT", defaultPadding, 0), -- right
+        ShiftAB = F.Position("BOTTOM", "ElvAB_3", "TOPRIGHT", 0, defaultPadding),
 
         ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 180),
         ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 110),
