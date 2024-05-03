@@ -19,6 +19,7 @@ TXUI.Changelog["6.6.2"] = {
     "Fix WunderBar's SpecSwitch to accurately show dual spec",
     "Fix typo in Armory",
     "Paladin spec icons not showing",
+    "Enable Adventure Guide in WunderBar for Cataclysm Classic",
 
     "* Profile updates",
     "Remove happiness from pet frame for non-vanilla versions",

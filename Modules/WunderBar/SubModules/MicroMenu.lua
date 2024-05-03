@@ -143,16 +143,16 @@ MM.microMenu = {
   },
   ["journal"] = {
     name = ADVENTURE_JOURNAL,
-    available = TXUI.IsRetail,
+    available = not TXUI.IsVanilla,
     macro = {
       LeftButton = "/click EJMicroButton",
-      RightButton = "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end",
+      RightButton = TXUI.IsRetail and "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end" or nil,
     },
     keyBind = "TOGGLEENCOUNTERJOURNAL",
     newbieTooltip = NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL,
     tooltips = {
       MM.leftButtonText .. BINDING_NAME_TOGGLEENCOUNTERJOURNAL,
-      MM.rightButtonText .. "Show Weekly Rewards",
+      TXUI.IsRetail and MM.rightButtonText .. "Show Weekly Rewards" or "",
     },
   },
   ["menu"] = {
