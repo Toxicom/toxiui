@@ -318,7 +318,7 @@ function PF:BuildProfile()
     -- General Colors
     valuecolor = F.Table.CurrentClassColor(),
     backdropcolor = F.Table.HexToRGB("#1a1a1a"),
-    backdropfadecolor = F.Table.HexToRGB("#28282899"),
+    backdropfadecolor = F.Table.HexToRGB("#292929CC"),
     bordercolor = F.Table.HexToRGB("#000000"),
 
     -- General MiniMap

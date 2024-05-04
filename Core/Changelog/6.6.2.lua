@@ -25,6 +25,7 @@ TXUI.Changelog["6.6.2"] = {
 
     "* Profile updates",
     "Remove happiness from pet frame for non-vanilla versions",
+    "Increase backdrop fade transparency to 80",
 
     "* Documentation",
     F.String.MinElv("13.63"),
