@@ -27,7 +27,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     end
   end
 
-  local spacing, padding = 4, 4
+  local spacing, padding = 4, 16
   local slotWidth = 40 + E.Border
   local slotHeight = 30 + E.Border
 
@@ -39,11 +39,25 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local totalColumns = numPrimaryColumns + numSecondaryColumns
   local totalSlots = #primarySlots + (secondarySlots and #secondarySlots or 0)
 
-  -- Calculate the total width of the flyout
+  -- Calculate the total width and height of the flyout
   local totalWidth = totalColumns * slotWidth + (totalColumns - 1) * spacing + 2 * padding
+  local totalHeight = maxSlotsPerColumn * slotHeight + (maxSlotsPerColumn - 1) * spacing + 2 * padding
 
-  if not secureFlyOutFrame then secureFlyOutFrame = CreateFrame("Frame", nil, self.bar) end
-  secureFlyOutFrame:SetSize(totalWidth, maxSlotsPerColumn * slotHeight + (maxSlotsPerColumn - 1) * spacing + 2 * padding)
+  if not secureFlyOutFrame then
+    secureFlyOutFrame = CreateFrame("Frame", nil, self.bar, "BackdropTemplate")
+    -- Make backdrop only for items with secondarySlots, so in this case it's only for Mage portals
+    if secondarySlots then
+      secureFlyOutFrame:SetBackdrop {
+        bgFile = E.media.blankTex,
+        edgeFile = E.media.blankTex,
+      }
+      secureFlyOutFrame:SetBackdropColor(0, 0, 0, 0.8) -- Set the backdrop color
+      secureFlyOutFrame:SetBackdropBorderColor(0, 0, 0, 0.8) -- Set the border color
+      secureFlyOutFrame:EnableMouse(true) -- Enable mouse interaction
+    end
+  end
+
+  secureFlyOutFrame:SetSize(totalWidth, totalHeight)
 
   local numSlots = 0
 
@@ -112,8 +126,9 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     if indexInColumn == 1 then
       -- First slot in the column
-      -- Ensure the first slot respects the bottom padding of the flyout
-      slot:SetPoint("BOTTOMRIGHT", secureFlyOutFrame, "BOTTOMLEFT", columnOffset, padding)
+      -- I don't fucking know how I got here to this calc but I think it makes sense, basically position the column
+      -- based on all the columns, then add 4:3 ratio padding and add border because icons have borders /shrug
+      slot:SetPoint("BOTTOMRIGHT", secureFlyOutFrame, "BOTTOMLEFT", columnOffset + (padding / 4 * 3) + E.Border, padding)
       prevSlots[currentColumn] = slot
     else
       -- Subsequent slots, positioned above the previous slot in the same column
