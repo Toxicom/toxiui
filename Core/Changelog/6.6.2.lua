@@ -14,6 +14,11 @@ TXUI.Changelog["6.6.2"] = {
     "Auto open attributes window when opening armory" --
       .. F.String.Sublist("For Cataclysm Classic"),
     "Add backdrop to WunderBar's Mage portals flyout",
+    "During layout installation, if a bag addon is detected, disable " --
+      .. F.String.ElvUI()
+      .. " bags module"
+      .. F.String.Sublist("Bag AddOns we look for:")
+      .. F.String.Sublist("Bagnon, BetterBags, Baggins, Sorted, Inventorian, Baganator, ArkInventory, OneBag3, Combuctor"),
 
     "* Bug fixes",
     "Attempt to fix moving action bars",

@@ -2101,6 +2101,14 @@ function PF:BuildProfile()
 end
 
 function PF:ElvUIProfilePrivate()
+  local isBagsEnabled = true
+
+  local BAG_ADDONS = { "Bagnon", "BetterBags", "Baggins", "Sorted", "Inventorian", "Baganator", "ArkInventory", "OneBag3", "Combuctor" }
+
+  for _, addon in ipairs(BAG_ADDONS) do
+    if F.IsAddOnEnabled(addon) then isBagsEnabled = false end
+  end
+
   F.Table.Crush(E.private, {
     -- General
     general = {
@@ -2124,6 +2132,10 @@ function PF:ElvUIProfilePrivate()
     -- Chat
     chat = {
       enable = true,
+    },
+
+    bags = {
+      enable = isBagsEnabled,
     },
 
     -- Skins
