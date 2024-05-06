@@ -804,8 +804,11 @@ P.wunderbar = {
 
       displayedCurrency = "GOLD", -- NEEDS to be GOLD
       enabledCurrencies = {
-        [2003] = true, -- Dragon Isles Supplies
         [2245] = true, -- Flightstones
+        [2812] = true, -- Aspect's Awakened Crest
+        [2807] = true, -- Drake's Awakened Crest
+        [2806] = true, -- Whelpling's Awakened Crest
+        [2809] = true, -- Wyrm's Awakened Crest
       }, -- Format: [currencyID] = true,
 
       showIcon = true,
