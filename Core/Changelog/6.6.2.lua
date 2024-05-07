@@ -33,6 +33,8 @@ TXUI.Changelog["6.6.2"] = {
     "Remove happiness from pet frame for non-vanilla versions",
     "Increase backdrop fade transparency to 80",
     "Enable by default Awakened Crests in WunderBar currency module",
+    "Blacklist certain Warrior debuffs on Plater" --
+      .. F.String.Sublist("Trauma & Blood Frenzy"),
 
     "* Documentation",
     F.String.MinElv("13.63"),
