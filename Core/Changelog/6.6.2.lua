@@ -37,8 +37,9 @@ TXUI.Changelog["6.6.2"] = {
       .. F.String.Sublist("Trauma & Blood Frenzy"),
 
     "* Documentation",
-    F.String.MinElv("13.63"),
+    F.String.MinElv("13.64"),
     "Update Luxthos WA link for Cataclysm Classic",
+    "Update for Patch 10.2.7",
 
     "* Settings refactoring",
 
