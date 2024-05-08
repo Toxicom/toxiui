@@ -39,9 +39,11 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local totalColumns = numPrimaryColumns + numSecondaryColumns
   local totalSlots = #primarySlots + (secondarySlots and #secondarySlots or 0)
 
+  -- If there's less than 8 items in a column, we want to adjust our totalHeight calculation
+  local heightCalcVar = (maxSlotsPerColumn < #primarySlots and maxSlotsPerColumn or #primarySlots)
   -- Calculate the total width and height of the flyout
   local totalWidth = totalColumns * slotWidth + (totalColumns - 1) * spacing + 2 * padding
-  local totalHeight = maxSlotsPerColumn * slotHeight + (maxSlotsPerColumn - 1) * spacing + 2 * padding
+  local totalHeight = heightCalcVar * slotHeight + (heightCalcVar - 1) * spacing + 2 * padding
 
   if not secureFlyOutFrame then
     secureFlyOutFrame = CreateFrame("Frame", nil, self.bar, "BackdropTemplate")

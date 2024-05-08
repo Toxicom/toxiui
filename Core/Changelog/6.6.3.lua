@@ -8,6 +8,8 @@ TXUI.Changelog["6.6.3"] = {
     "* New features",
 
     "* Bug fixes",
+    "Adjust WunderBar's Flyout height" --
+      .. F.String.Sublist("If there are less than 8 items in a column, the backdrop will adjust to the proper size"),
 
     "* Profile updates",
 
