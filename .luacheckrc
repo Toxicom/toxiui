@@ -4191,6 +4191,7 @@ globals = {
   "PaperDollBgDesaturate",
   "PaperDollFormatStat",
   "PaperDollFrame",
+  "PetPaperDollFrame",
   "PaperDollStatTooltip",
   "PartyMemberHealthCheck",
   "PassClickToParent",

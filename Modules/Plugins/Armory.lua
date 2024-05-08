@@ -11,6 +11,7 @@ local CharacterFrame = CharacterFrame
 local CharacterFrameExpandButton = CharacterFrameExpandButton
 local CharacterStatsPane = CharacterStatsPane
 local PaperDollFrame = PaperDollFrame
+local PetPaperDollFrame = PetPaperDollFrame
 local EFFECTIVE_LEVEL_FORMAT = _G.EFFECTIVE_LEVEL_FORMAT
 local format = string.format
 local GetAchievementInfo = GetAchievementInfo
