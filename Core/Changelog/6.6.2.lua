@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.6.2"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Enabled Armory for Cataclysm Classic " --
       .. F.String.Error("[BETA]")
@@ -40,9 +38,5 @@ TXUI.Changelog["6.6.2"] = {
     F.String.MinElv("13.64"),
     "Update Luxthos WA link for Cataclysm Classic",
     "Update for Patch 10.2.7",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }

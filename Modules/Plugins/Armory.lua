@@ -1359,8 +1359,8 @@ function A:Enable()
 
   if TXUI.IsCata then
     CharacterFrame:HookScript("OnShow", function()
-      if CharacterFrameExpandButton and PaperDollFrame:IsVisible() then
-        if not CharacterStatsPane:IsShown() then CharacterFrameExpandButton:Click() end
+      if (PaperDollFrame:IsVisible() or PetPaperDollFrame:IsVisible()) and CharacterFrameExpandButton and not CharacterStatsPane:IsShown() then
+        CharacterFrameExpandButton:Click()
       end
     end)
   end
