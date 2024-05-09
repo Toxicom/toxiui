@@ -45,18 +45,29 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local totalWidth = totalColumns * slotWidth + (totalColumns - 1) * spacing + 2 * padding
   local totalHeight = heightCalcVar * slotHeight + (heightCalcVar - 1) * spacing + 2 * padding
 
-  if not secureFlyOutFrame then
-    secureFlyOutFrame = CreateFrame("Frame", nil, self.bar, "BackdropTemplate")
-    -- Make backdrop only for items with secondarySlots, so in this case it's only for Mage portals
-    if secondarySlots then
-      secureFlyOutFrame:SetBackdrop {
-        bgFile = E.media.blankTex,
-        edgeFile = E.media.blankTex,
-      }
-      secureFlyOutFrame:SetBackdropColor(0, 0, 0, 0.8) -- Set the backdrop color
-      secureFlyOutFrame:SetBackdropBorderColor(0, 0, 0, 0.8) -- Set the border color
-      secureFlyOutFrame:EnableMouse(true) -- Enable mouse interaction
+  if not secureFlyOutFrame then secureFlyOutFrame = CreateFrame("Frame", nil, self.bar, "BackdropTemplate") end
+
+  if E.db.TXUI.wunderbar.general.flyoutBackdrop then
+    local alpha = E.db.TXUI.wunderbar.general.flyoutBackdropAlpha
+    local r, g, b = 0, 0, 0
+
+    if E.db.TXUI.wunderbar.general.flyoutBackdropClassColor then
+      local color = E:ClassColor(E.myclass, true)
+      if not F.Table.IsEmpty(color) then
+        r, g, b = color.r, color.g, color.b
+      end
     end
+
+    secureFlyOutFrame:SetBackdrop {
+      bgFile = E.media.blankTex,
+      edgeFile = E.media.blankTex,
+      edgeSize = E.db.TXUI.wunderbar.general.flyoutBackdropBorderSize,
+    }
+    secureFlyOutFrame:SetBackdropColor(r, g, b, alpha) -- Set the backdrop color
+    secureFlyOutFrame:SetBackdropBorderColor(0, 0, 0, 1) -- Set the border color
+    secureFlyOutFrame:EnableMouse(true) -- Enable mouse interaction
+  else
+    secureFlyOutFrame:SetBackdrop()
   end
 
   secureFlyOutFrame:SetSize(totalWidth, totalHeight)

@@ -386,4 +386,55 @@ function O:WunderBar_General()
       end,
     }
   end
+
+  self:AddSpacer(options)
+
+  -- Flyout Backdrop
+  do
+    local flyoutGroup = self:AddInlineDesc(options, {
+      name = "Flyout Backdrop",
+      hidden = optionsHidden,
+    }, {
+      name = "Control the backdrop of WunderBar flyouts that show up in Profession and Hearthstone modules.\n\n",
+    }).args
+
+    flyoutGroup["flyoutBackdrop"] = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.wunderbar.general.flyoutBackdrop)
+      end,
+    }
+
+    local flyoutDisabled = function()
+      return self:GetEnabledState(E.db.TXUI.wunderbar.general.flyoutBackdrop) ~= self.enabledState.YES
+    end
+
+    flyoutGroup["flyoutBackdropAlpha"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Alpha",
+      min = 0,
+      max = 1,
+      step = 0.05,
+      disabled = flyoutDisabled,
+    }
+
+    flyoutGroup["flyoutBackdropClassColor"] = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Class Color",
+      disabled = flyoutDisabled,
+    }
+
+    flyoutGroup["flyoutBackdropBorderSize"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Border width",
+      min = 1,
+      max = 6,
+      step = 1,
+      disabled = flyoutDisabled,
+    }
+  end
 end

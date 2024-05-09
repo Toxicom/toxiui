@@ -6,6 +6,8 @@ TXUI.Changelog["6.6.3"] = {
     "* Breaking changes",
 
     "* New features",
+    "Configuration options for WunderBar Flyouts" --
+      .. F.String.Sublist(TXUI.Title .. " settings -> WunderBar -> General"),
 
     "* Bug fixes",
     "Adjust WunderBar's Flyout height" --
