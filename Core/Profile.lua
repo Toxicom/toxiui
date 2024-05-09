@@ -945,6 +945,7 @@ P.wunderbar = {
         -- Cata??
         ["PALADINCOMBAT"] = F.String.ConvertGlyph(59668),
         ["PALADINPROTECTION"] = F.String.ConvertGlyph(59667),
+        ["PALADINHOLY"] = F.String.ConvertGlyph(59666),
 
         ["WarriorArms"] = F.String.ConvertGlyph(59681),
         ["WarriorFury"] = F.String.ConvertGlyph(59682),
