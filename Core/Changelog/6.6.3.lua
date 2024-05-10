@@ -15,6 +15,7 @@ TXUI.Changelog["6.6.3"] = {
     "Fix Holy Paladin spec icon on Cataclysm Classic",
 
     "* Profile updates",
+    "Change Plater fonts for NPC without Health bars",
 
     "* Documentation",
 
