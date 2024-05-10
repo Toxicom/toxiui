@@ -422,7 +422,7 @@ function M:Tags()
 
   local maxLevelTable = {
     ["Vanilla"] = 60,
-    ["Cata"] = 85,
+    ["Cata"] = 80,
     ["Mainline"] = 70,
   }
 
