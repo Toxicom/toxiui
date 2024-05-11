@@ -166,11 +166,11 @@ function PR:GetProfessions()
       cooking = nil,
       first_aid = nil,
       fishing = nil,
+      archaeology = nil,
     }
 
     for skillIndex = 1, GetNumSkillLines() do
       local skillName, isHeader, _, _, _, _, _, isAbandonable = GetSkillLineInfo(skillIndex)
-
       if skillName and not isHeader then
         if isAbandonable then
           if not professions.first then
@@ -186,12 +186,14 @@ function PR:GetProfessions()
             professions.first_aid = skillIndex
           elseif skillName == PROFESSIONS_FISHING or skillNameLower == lower(PROFESSIONS_FISHING) then
             professions.fishing = skillIndex
+          elseif skillName == PROFESSIONS_ARCHAEOLOGY or skillNameLower == lower(PROFESSIONS_ARCHAEOLOGY) then
+            professions.archaeology = skillIndex
           end
         end
       end
     end
 
-    return professions.first, professions.second, nil, professions.fishing, professions.cooking, professions.first_aid
+    return professions.first, professions.second, professions.archaeology, professions.fishing, professions.cooking, professions.first_aid
   end
 end
 
@@ -226,6 +228,9 @@ do
 
       -- Inscription
       tinsert(professionMap, { spellIds = { 45357, 45358, 45359, 45360, 45361, 45363, 86008, 110417, 158748, 195115 }, skillLine = 773, texture = 237171 })
+
+      -- Archaeology
+      tinsert(professionMap, { spellIds = { 78670, 89721, 89722, 89718, 89720, 89719, 88961 }, skillLine = 794, texture = 441139 })
     end
 
     local function searchLocaleSpellName(ids, texture)

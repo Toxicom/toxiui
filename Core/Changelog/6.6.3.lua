@@ -13,6 +13,7 @@ TXUI.Changelog["6.6.3"] = {
     "Adjust WunderBar's Flyout height" --
       .. F.String.Sublist("If there are less than 8 items in a column, the backdrop will adjust to the proper size"),
     "Fix Holy Paladin spec icon on Cataclysm Classic",
+    "Show Archaeology in WunderBar's Professions",
 
     "* Profile updates",
     "Change Plater fonts for NPC without Health bars",
