@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.6.3"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Configuration options for WunderBar Flyouts" --
       .. F.String.Sublist(TXUI.Title .. " settings -> WunderBar -> General"),
@@ -19,11 +17,5 @@ TXUI.Changelog["6.6.3"] = {
 
     "* Profile updates",
     "Change Plater fonts for NPC without Health bars",
-
-    "* Documentation",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
