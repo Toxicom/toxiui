@@ -60,7 +60,7 @@ function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
   local installFrame = _G["PluginInstallFrame"]
 
-  if not installFrame.background then installFrame.background = installFrame:CreateTexture("InstallerBackground") end
+  if not installFrame.background then installFrame.background = installFrame:CreateTexture("ToxiUIInstallerBackground") end
 
   installFrame.background:SetAllPoints(installFrame)
 
@@ -166,8 +166,6 @@ function IS:Dialog()
           else
             installer:CloseInstall()
           end
-
-          if timer then timer:Cancel() end
 
           self.installerOpen = false
         end)
