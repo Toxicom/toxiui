@@ -141,7 +141,8 @@ F.AddMedia("logo", "Youtube")
 -- -----
 
 F.AddMedia("installer", "Layouts")
-F.AddMedia("installer", "Details")
+F.AddMedia("installer", "DetailsOne")
+F.AddMedia("installer", "DetailsTwo")
 F.AddMedia("installer", "Plater")
 F.AddMedia("installer", "BigWigs")
 F.AddMedia("installer", "WeakAuras")

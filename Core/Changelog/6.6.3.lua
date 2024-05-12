@@ -8,6 +8,8 @@ TXUI.Changelog["6.6.3"] = {
     "* New features",
     "Configuration options for WunderBar Flyouts" --
       .. F.String.Sublist(TXUI.Title .. " settings -> WunderBar -> General"),
+    "Installer Images now show on Button Hover!" --
+      .. F.String.Sublist("Credits to " .. F.String.Class("Jiberish", "MAGE") .. " and " .. F.String.Eltreum() .. " for idea"),
 
     "* Bug fixes",
     "Adjust WunderBar's Flyout height" --

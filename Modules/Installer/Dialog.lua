@@ -27,94 +27,112 @@ local Pages = {
   Complete = 9,
 }
 
+local function SetupAnimations(obj, duration)
+  obj.FadeIn = obj.FadeIn or TXUI:CreateAnimationGroup(obj)
+
+  obj.FadeIn.ResetFade = obj.FadeIn.ResetFade or obj.FadeIn:CreateAnimation("Fade")
+  obj.FadeIn.ResetFade:SetDuration(0)
+  obj.FadeIn.ResetFade:SetChange(0)
+  obj.FadeIn.ResetFade:SetOrder(1)
+
+  obj.FadeIn.Fade = obj.FadeIn.Fade or obj.FadeIn:CreateAnimation("Fade")
+  obj.FadeIn.Fade:SetDuration(duration)
+  obj.FadeIn.Fade:SetEasing("out-quadratic")
+  obj.FadeIn.Fade:SetChange(1)
+  obj.FadeIn.Fade:SetOrder(2)
+
+  obj.FadeOut = obj.FadeOut or TXUI:CreateAnimationGroup(obj)
+
+  obj.FadeOut.ResetFade = obj.FadeOut.ResetFade or obj.FadeOut:CreateAnimation("Fade")
+  obj.FadeOut.ResetFade:SetDuration(0)
+  obj.FadeOut.ResetFade:SetChange(1)
+  obj.FadeOut.ResetFade:SetOrder(1)
+
+  obj.FadeOut.Fade = obj.FadeOut.Fade or obj.FadeOut:CreateAnimation("Fade")
+  obj.FadeOut.Fade:SetDuration(duration)
+  obj.FadeOut.Fade:SetEasing("out-quadratic")
+  obj.FadeOut.Fade:SetChange(0)
+  obj.FadeOut.Fade:SetOrder(2)
+end
+
 -- Installer Dialog Table
 function IS:Dialog()
   local installer = E:GetModule("PluginInstaller")
   local installFrame = _G["PluginInstallFrame"]
 
-  local timer
-  local currentImageIndex
+  if not installFrame.background then installFrame.background = installFrame:CreateTexture("InstallerBackground") end
 
-  -- Helper function to cycle to the next image in a list
-  local function ChangeImage(imageList)
-    -- Set the texture to the next image in the list
-    installFrame.tutorialImage:SetTexture(imageList[currentImageIndex])
-    installFrame.tutorialImage:Size(512, 256)
+  installFrame.background:SetAllPoints(installFrame)
 
-    -- Increment the current index or loop back to the beginning
-    currentImageIndex = currentImageIndex + 1
-    if currentImageIndex > #imageList then currentImageIndex = 1 end
+  SetupAnimations(installFrame.background, 0.5)
+
+  local installerElements = { "Title", "SubTitle", "Desc1", "Desc2", "Desc3", "tutorialImage" }
+  for _, element in ipairs(installerElements) do
+    SetupAnimations(installFrame[element], 0.3)
+  end
+
+  local function AddImageScripts(imageList, customIndex)
+    for index, image in ipairs(imageList) do
+      if customIndex then index = customIndex end
+
+      installFrame["Option" .. index]:SetScript("OnEnter", function()
+        if installFrame.background.FadeOut:IsPlaying() then installFrame.background.FadeOut:Stop() end
+        installFrame.background.FadeIn:Play()
+        installFrame.background:SetTexture(image)
+
+        for _, element in ipairs(installerElements) do
+          if installFrame[element].FadeIn:IsPlaying() then installFrame[element].FadeIn:Stop() end
+          installFrame[element].FadeOut:Play()
+          installFrame[element].FadeOut:SetScript("OnFinished", function()
+            installFrame[element]:Hide()
+          end)
+        end
+      end)
+
+      installFrame["Option" .. index]:SetScript("OnLeave", function()
+        if installFrame.background.FadeIn:IsPlaying() then installFrame.background.FadeIn:Stop() end
+        installFrame.background.FadeOut:Play()
+        installFrame.background.FadeOut:SetScript("OnFinished", function()
+          installFrame.background:SetTexture(nil)
+        end)
+
+        for _, element in ipairs(installerElements) do
+          if installFrame[element].FadeOut:IsPlaying() then installFrame[element].FadeOut:Stop() end
+          installFrame[element]:Show()
+          installFrame[element].FadeIn:Play()
+        end
+      end)
+    end
   end
 
   local function SetupCustomInstaller(page)
-    -- Stop the timer on each page
-    if timer then timer:Cancel() end
-
-    -- Reset current image index to 1 so it starts from beginning each time
-    currentImageIndex = 1
-
     -- Increase size of installer frame
-    installFrame:Size(825, 600)
+    installFrame:Size(1024, 512)
 
     -- Increase installer scale for first time installations, since the fonts are small
     if not F.IsTXUIProfile() then installFrame:SetScale(1.35) end
 
-    -- Custom tutorial image
+    -- Reset scripts on each page
+    installFrame.Option1:SetScript("OnEnter", nil)
+    installFrame.Option2:SetScript("OnEnter", nil)
+    installFrame.Option3:SetScript("OnEnter", nil)
+    installFrame.Option1:SetScript("OnLeave", nil)
+    installFrame.Option2:SetScript("OnLeave", nil)
+    installFrame.Option3:SetScript("OnLeave", nil)
+
+    -- Custom handling for each page
     if page == Pages.Core then
-      -- List of images to cycle through
-      local imageList = {
-        I.Media.Installer.Horizontal,
-        I.Media.Installer.Vertical,
-      }
-
-      -- Set initial texture to last image of the list, since it will start from the first one
-      installFrame.tutorialImage:SetTexture(imageList[#imageList])
-      installFrame.tutorialImage:Size(512, 256)
-
-      -- Start the timer
-      timer = C_Timer.NewTicker(5, function()
-        ChangeImage(imageList)
-      end)
+      AddImageScripts { I.Media.Installer.Vertical, I.Media.Installer.Horizontal }
     elseif page == Pages.Details then
-      installFrame.tutorialImage:SetTexture(I.Media.Installer.Details)
-      installFrame.tutorialImage:Size(512, 256)
+      AddImageScripts { I.Media.Installer.DetailsOne, I.Media.Installer.DetailsTwo }
     elseif page == Pages.Plater then
-      installFrame.tutorialImage:SetTexture(I.Media.Installer.Plater)
-      installFrame.tutorialImage:Size(512, 256)
+      AddImageScripts { I.Media.Installer.Plater }
     elseif page == Pages.BigWigs then
-      installFrame.tutorialImage:SetTexture(I.Media.Installer.BigWigs)
-      installFrame.tutorialImage:Size(512, 256)
+      AddImageScripts { I.Media.Installer.BigWigs }
     elseif page == Pages.WeakAuras then
-      installFrame.tutorialImage:SetTexture(I.Media.Installer.WeakAuras)
-      installFrame.tutorialImage:Size(512, 256)
+      AddImageScripts { I.Media.Installer.WeakAuras }
     elseif page == Pages.Additional then
-      local imageList = {}
-      local addOns = {
-        OmniCD = I.Media.Installer.OmniCD,
-        WarpDeplete = I.Media.Installer.WarpDeplete,
-      }
-
-      for addOnName, imagePath in pairs(addOns) do
-        if F.IsAddOnEnabled(addOnName) then tinsert(imageList, imagePath) end
-      end
-
-      if not F.Table.IsEmpty(imageList) then
-        -- Set initial texture to last image of the list, since it will start from the first one
-        installFrame.tutorialImage:SetTexture(imageList[#imageList])
-        installFrame.tutorialImage:Size(512, 256)
-
-        -- Start the timer
-        timer = C_Timer.NewTicker(3, function()
-          ChangeImage(imageList)
-        end)
-      else
-        installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
-        installFrame.tutorialImage:Size(256, 128)
-      end
-    else
-      -- Reset to defaults
-      installFrame.tutorialImage:SetTexture(I.Media.Logos.Logo)
-      installFrame.tutorialImage:Size(256, 128)
+      AddImageScripts { I.Media.Installer.OmniCD, I.Media.Installer.WarpDeplete }
     end
 
     -- Center description
@@ -464,6 +482,7 @@ function IS:Dialog()
               PF["Apply" .. addonName .. "Profile"]()
               self:ShowStepComplete(F.String.ToxiUI(addonName) .. " profile installed.")
             end)
+            AddImageScripts { I.Media.Installer[addonName], buttonIndex }
             buttonIndex = buttonIndex + 1
           end
         end
