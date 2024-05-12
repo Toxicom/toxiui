@@ -73,35 +73,39 @@ function IS:Dialog()
 
   local function AddImageScripts(imageList, customIndex)
     for index, image in ipairs(imageList) do
-      if customIndex then index = customIndex end
+      if image == "skip" then
+        TXUI:LogDebug("Skipping image script")
+      else
+        if customIndex then index = customIndex end
 
-      installFrame["Option" .. index]:SetScript("OnEnter", function()
-        if installFrame.background.FadeOut:IsPlaying() then installFrame.background.FadeOut:Stop() end
-        installFrame.background.FadeIn:Play()
-        installFrame.background:SetTexture(image)
+        installFrame["Option" .. index]:SetScript("OnEnter", function()
+          if installFrame.background.FadeOut:IsPlaying() then installFrame.background.FadeOut:Stop() end
+          installFrame.background.FadeIn:Play()
+          installFrame.background:SetTexture(image)
 
-        for _, element in ipairs(installerElements) do
-          if installFrame[element].FadeIn:IsPlaying() then installFrame[element].FadeIn:Stop() end
-          installFrame[element].FadeOut:Play()
-          installFrame[element].FadeOut:SetScript("OnFinished", function()
-            installFrame[element]:Hide()
-          end)
-        end
-      end)
-
-      installFrame["Option" .. index]:SetScript("OnLeave", function()
-        if installFrame.background.FadeIn:IsPlaying() then installFrame.background.FadeIn:Stop() end
-        installFrame.background.FadeOut:Play()
-        installFrame.background.FadeOut:SetScript("OnFinished", function()
-          installFrame.background:SetTexture(nil)
+          for _, element in ipairs(installerElements) do
+            if installFrame[element].FadeIn:IsPlaying() then installFrame[element].FadeIn:Stop() end
+            installFrame[element].FadeOut:Play()
+            installFrame[element].FadeOut:SetScript("OnFinished", function()
+              installFrame[element]:Hide()
+            end)
+          end
         end)
 
-        for _, element in ipairs(installerElements) do
-          if installFrame[element].FadeOut:IsPlaying() then installFrame[element].FadeOut:Stop() end
-          installFrame[element]:Show()
-          installFrame[element].FadeIn:Play()
-        end
-      end)
+        installFrame["Option" .. index]:SetScript("OnLeave", function()
+          if installFrame.background.FadeIn:IsPlaying() then installFrame.background.FadeIn:Stop() end
+          installFrame.background.FadeOut:Play()
+          installFrame.background.FadeOut:SetScript("OnFinished", function()
+            installFrame.background:SetTexture(nil)
+          end)
+
+          for _, element in ipairs(installerElements) do
+            if installFrame[element].FadeOut:IsPlaying() then installFrame[element].FadeOut:Stop() end
+            installFrame[element]:Show()
+            installFrame[element].FadeIn:Play()
+          end
+        end)
+      end
     end
   end
 
@@ -121,7 +125,9 @@ function IS:Dialog()
     installFrame.Option3:SetScript("OnLeave", nil)
 
     -- Custom handling for each page
-    if page == Pages.Core then
+    if page == Pages.Welcome then
+      AddImageScripts { "skip", "skip", I.Media.Installer.DiscordBanner }
+    elseif page == Pages.Core then
       AddImageScripts { I.Media.Installer.Vertical, I.Media.Installer.Horizontal }
     elseif page == Pages.Details then
       AddImageScripts { I.Media.Installer.DetailsOne, I.Media.Installer.DetailsTwo }
@@ -130,9 +136,11 @@ function IS:Dialog()
     elseif page == Pages.BigWigs then
       AddImageScripts { I.Media.Installer.BigWigs }
     elseif page == Pages.WeakAuras then
-      AddImageScripts { I.Media.Installer.WeakAuras }
+      AddImageScripts { I.Media.Installer.WeakAuras, I.Media.Installer.WAGuide }
     elseif page == Pages.Additional then
       AddImageScripts { I.Media.Installer.OmniCD, I.Media.Installer.WarpDeplete }
+    elseif page == Pages.Complete then
+      AddImageScripts { "skip", I.Media.Installer.DiscordBanner, I.Media.Installer.WebPreview }
     end
 
     -- Center description
@@ -157,7 +165,7 @@ function IS:Dialog()
       [Pages.Welcome] = function()
         self.installerOpen = true
         self:HideAnnoyances()
-        SetupCustomInstaller()
+        SetupCustomInstaller(Pages.Welcome)
 
         -- Custom close frame handler
         installFrame:SetScript("OnHide", function()
@@ -221,7 +229,7 @@ function IS:Dialog()
 
       -- Profile Page
       [Pages.Profile] = function()
-        SetupCustomInstaller()
+        SetupCustomInstaller(Pages.Profile)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Profile"))
 
         installFrame.Desc1:SetText("You can either create a new profile for " .. TXUI.Title .. " or you can overwrite your current profile. We recommend creating a new one!")
@@ -512,7 +520,7 @@ function IS:Dialog()
 
       -- Completed Page
       [Pages.Complete] = function()
-        SetupCustomInstaller()
+        SetupCustomInstaller(Pages.Complete)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
 
         installFrame.Desc1:SetText(F.String.Good("You have completed the installation process!"))

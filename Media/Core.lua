@@ -150,6 +150,9 @@ F.AddMedia("installer", "OmniCD")
 F.AddMedia("installer", "WarpDeplete")
 F.AddMedia("installer", "Vertical")
 F.AddMedia("installer", "Horizontal")
+F.AddMedia("installer", "DiscordBanner")
+F.AddMedia("installer", "WAGuide")
+F.AddMedia("installer", "WebPreview")
 
 -- -----
 --   STYLE THUBMNAILS
