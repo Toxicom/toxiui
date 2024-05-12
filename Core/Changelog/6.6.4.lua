@@ -14,6 +14,7 @@ TXUI.Changelog["6.6.4"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Add page numbers to steps in the Installer",
 
     "* Development improvements",
   },

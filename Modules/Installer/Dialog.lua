@@ -557,22 +557,22 @@ function IS:Dialog()
 
     -- Installation Steps
     StepTitles = {
-      [Pages.Welcome] = "Welcome",
-      [Pages.Profile] = "Profile",
-      [Pages.Core] = "Core Settings",
-      [Pages.Details] = "Details",
-      [Pages.Plater] = "Plater",
-      [Pages.BigWigs] = "BigWigs",
-      [Pages.WeakAuras] = "WeakAuras",
-      [Pages.Additional] = "Additional AddOns",
-      [Pages.Complete] = "Installation Complete",
+      [Pages.Welcome] = "Welcome -  " .. Pages.Welcome,
+      [Pages.Profile] = "Profile - " .. Pages.Profile,
+      [Pages.Core] = "Core Settings - " .. Pages.Core,
+      [Pages.Details] = "Details - " .. Pages.Details,
+      [Pages.Plater] = "Plater - " .. Pages.Plater,
+      [Pages.BigWigs] = "BigWigs - " .. Pages.BigWigs,
+      [Pages.WeakAuras] = "WeakAuras - " .. Pages.WeakAuras,
+      [Pages.Additional] = "Add. AddOns - " .. Pages.Additional,
+      [Pages.Complete] = "Complete - " .. Pages.Complete,
     },
 
     -- Customize colors
     StepTitlesColor = { 1, 1, 1 },
     StepTitlesColorSelected = I.Strings.Branding.ColorRGB,
     StepTitleWidth = 200,
-    StepTitleButtonWidth = 180,
+    StepTitleButtonWidth = 200,
     StepTitleTextJustification = "RIGHT",
   }
 end
