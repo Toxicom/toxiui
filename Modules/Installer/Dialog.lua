@@ -137,8 +137,6 @@ function IS:Dialog()
       AddImageScripts { I.Media.Installer.BigWigs }
     elseif page == Pages.WeakAuras then
       AddImageScripts { I.Media.Installer.WeakAuras, I.Media.Installer.WAGuide }
-    elseif page == Pages.Additional then
-      AddImageScripts { I.Media.Installer.OmniCD, I.Media.Installer.WarpDeplete }
     elseif page == Pages.Complete then
       AddImageScripts { "skip", I.Media.Installer.DiscordBanner, I.Media.Installer.WebPreview }
     end
@@ -488,7 +486,7 @@ function IS:Dialog()
               PF["Apply" .. addonName .. "Profile"]()
               self:ShowStepComplete(F.String.ToxiUI(addonName) .. " profile installed.")
             end)
-            AddImageScripts { I.Media.Installer[addonName], buttonIndex }
+            AddImageScripts({ I.Media.Installer[addonName] }, buttonIndex)
             buttonIndex = buttonIndex + 1
           end
         end

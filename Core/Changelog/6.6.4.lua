@@ -8,6 +8,7 @@ TXUI.Changelog["6.6.4"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix Additional Addons installer images",
 
     "* Profile updates",
 
