@@ -224,7 +224,7 @@ P.addons = {
 
     labelEnabled = true, -- Enabled by default
     labelFont = I.Fonts.Primary,
-    labelFontSize = 20,
+    labelFontSize = 16,
     labelFontShadow = false,
     labelFontOutline = "OUTLINE",
   },

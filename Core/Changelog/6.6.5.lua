@@ -10,6 +10,7 @@ TXUI.Changelog["6.6.5"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Reduce deconstruct's label font size",
 
     "* Documentation",
     "Update Dragonflight Season 4 Mythic+ portals for WunderBar",

@@ -415,7 +415,7 @@ function DC:UpdateAllowedStates()
 end
 
 function DC:IsUsable(itemID, professionState)
-  -- Dischanting
+  -- Disenchanting
   if professionState == I.Enum.DeconstructState.DISENCHANT then
     if self:IsAllowedState(professionState) then
       -- Always true if in allowList
