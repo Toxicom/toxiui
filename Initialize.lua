@@ -42,7 +42,7 @@ TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
 
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
-TXUI.RetailSeason = "df3"
+TXUI.RetailSeason = "df4"
 
 TXUI.Modules = {}
 TXUI.Modules.Changelog = TXUI:NewModule("Changelog", "AceEvent-3.0", "AceTimer-3.0")
