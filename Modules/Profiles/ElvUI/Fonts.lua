@@ -247,16 +247,16 @@ function PF:ElvUIFont()
           castbar = {
             customTextFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
-              fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = F.FontSizeScaled(14),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
 
             customTimeFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
-              fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = F.FontSizeScaled(16),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
           },
         },
@@ -284,16 +284,16 @@ function PF:ElvUIFont()
           castbar = {
             customTextFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
-              fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = F.FontSizeScaled(14),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
 
             customTimeFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
-              fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = F.FontSizeScaled(16),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
           },
         },
@@ -307,16 +307,16 @@ function PF:ElvUIFont()
           castbar = {
             customTextFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
-              fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = F.FontSizeScaled(14),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
 
             customTimeFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
+              font = F.FontOverride(I.Fonts.Primary),
               fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
           },
         },
@@ -346,16 +346,16 @@ function PF:ElvUIFont()
           castbar = {
             customTextFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
-              fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = F.FontSizeScaled(14),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
 
             customTimeFont = {
               enable = true,
-              font = F.FontOverride(I.Fonts.Title),
-              fontSize = F.FontSizeScaled(22),
-              fontStyle = F.FontStyleOverride(I.Fonts.Title, "SHADOW"),
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = F.FontSizeScaled(16),
+              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             },
           },
         },

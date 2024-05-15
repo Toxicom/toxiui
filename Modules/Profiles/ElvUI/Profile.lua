@@ -30,6 +30,7 @@ function PF:BuildColorsProfile()
     transparentPower = false,
     healthclass = F.ChooseForTheme(true, false),
     customhealthbackdrop = F.ChooseForTheme(false, true),
+    castClassColor = true,
 
     -- UnitFrames Colors heal prediction
     healPrediction = {
@@ -633,7 +634,7 @@ function PF:BuildProfile()
     -- UnitFrame Player Castbar
     castbar = {
       width = F.Dpi(250),
-      height = F.Dpi(25),
+      height = F.Dpi(20),
 
       -- UnitFrame Player Castbar Options
       insideInfoPanel = false,
@@ -796,7 +797,7 @@ function PF:BuildProfile()
       -- UnitFrame Target Castbar
       castbar = {
         width = F.Dpi(250),
-        height = F.Dpi(25),
+        height = F.Dpi(20),
 
         -- UnitFrame Target Castbar Options
         insideInfoPanel = false,
