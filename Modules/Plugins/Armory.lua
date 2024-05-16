@@ -105,7 +105,7 @@ A.characterSlots = {
     needsEnchant = false,
     needsSocket = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     direction = A.enumDirection.LEFT,
   },
@@ -119,7 +119,7 @@ A.characterSlots = {
     id = 15,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.LEFT,
@@ -128,7 +128,7 @@ A.characterSlots = {
     id = 5,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.LEFT,
@@ -149,7 +149,7 @@ A.characterSlots = {
     id = 9,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.LEFT,
@@ -170,7 +170,7 @@ A.characterSlots = {
     id = 7,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.RIGHT,
@@ -179,7 +179,7 @@ A.characterSlots = {
     id = 8,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.RIGHT,
@@ -188,7 +188,7 @@ A.characterSlots = {
     id = 11,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.RIGHT,
@@ -197,7 +197,7 @@ A.characterSlots = {
     id = 12,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.RIGHT,
@@ -218,7 +218,7 @@ A.characterSlots = {
     id = 16,
     needsEnchant = true,
     warningCondition = {
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
     needsSocket = false,
     direction = A.enumDirection.RIGHT,
@@ -228,8 +228,14 @@ A.characterSlots = {
     needsEnchant = true,
     warningCondition = {
       itemType = ENUM_ITEM_CLASS_WEAPON,
-      level = 70,
+      level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
+    needsSocket = false,
+    direction = A.enumDirection.LEFT,
+  },
+  ["RangedSlot"] = {
+    id = 19,
+    needsEnchant = false,
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
@@ -1265,9 +1271,17 @@ function A:UpdateCharacterArmory()
   if self.frame:IsShown() then E:GetModule("Misc"):UpdateCharacterInfo() end
 end
 
+function A:OpenCharacterStats()
+  if (PaperDollFrame:IsVisible() or PetPaperDollFrame:IsVisible()) and CharacterFrameExpandButton and not CharacterStatsPane:IsShown() then CharacterFrameExpandButton:Click() end
+end
+
 function A:OpenCharacterArmory()
+  if TXUI.IsCata then self:OpenCharacterStats() end
   self:UpdateCharacterArmory()
-  self:PlayAnimations()
+  -- For some reason in Cata animation doesn't happen immediately unless you hover the character frame, not sure what event we're missing
+  E:Delay(TXUI.IsCata and 0.01 or 0, function()
+    self:PlayAnimations()
+  end)
 end
 
 function A:CreateElements()
@@ -1357,14 +1371,6 @@ function A:Enable()
   self:SecureHook(m, "UpdateInspectPageFonts", F.Event.GenerateClosure(self.UpdatePageInfo, self))
   self:SecureHook(m, "ToggleItemLevelInfo", F.Event.GenerateClosure(self.ElvOptionsCheck, self))
   self:SecureHook(_G, "PaperDollFrame_UpdateStats", F.Event.GenerateClosure(self.UpdateCharacterStats, self))
-
-  if TXUI.IsCata then
-    CharacterFrame:HookScript("OnShow", function()
-      if (PaperDollFrame:IsVisible() or PetPaperDollFrame:IsVisible()) and CharacterFrameExpandButton and not CharacterStatsPane:IsShown() then
-        CharacterFrameExpandButton:Click()
-      end
-    end)
-  end
 
   -- Register Events
   F.Event.RegisterFrameEventAndCallback("UNIT_NAME_UPDATE", self.HandleEvent, self, "UNIT_NAME_UPDATE")

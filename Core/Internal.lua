@@ -16,6 +16,12 @@ I.General = {
   ChatFontSize = F.FontSizeScaled(14, 13), -- Default Blizzard chat font size, font styles defined by elvui but not size
 }
 
+I.MaxLevelTable = {
+  ["Vanilla"] = 60,
+  ["Cata"] = 80,
+  ["Mainline"] = 70,
+}
+
 I.Fonts = {
   Primary = "- ToxiUI",
   Title = "- Big Noodle Titling", -- - Big Noodle Titling

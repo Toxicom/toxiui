@@ -420,18 +420,12 @@ function M:Tags()
     end
   end)
 
-  local maxLevelTable = {
-    ["Vanilla"] = 60,
-    ["Cata"] = 80,
-    ["Mainline"] = 70,
-  }
-
   -- Level Tag
   E:AddTag("tx:level", "UNIT_LEVEL PLAYER_LEVEL_UP", function(unit)
     local level = UnitLevel(unit)
 
     -- Do not show level for max level units
-    if level >= maxLevelTable[TXUI.MetaFlavor] then return end
+    if level >= I.MaxLevelTable[TXUI.MetaFlavor] then return end
 
     -- Handle unknown or missing level
     if level == -1 or not level or level == "" then level = "??" end
