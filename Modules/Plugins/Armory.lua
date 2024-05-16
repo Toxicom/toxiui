@@ -7,7 +7,6 @@ local _G = _G
 local BreakUpLargeNumbers = BreakUpLargeNumbers
 local C_PaperDollInfo = _G.C_PaperDollInfo
 local CreateFrame = CreateFrame
-local CharacterFrame = CharacterFrame
 local CharacterFrameExpandButton = CharacterFrameExpandButton
 local CharacterStatsPane = CharacterStatsPane
 local PaperDollFrame = PaperDollFrame
