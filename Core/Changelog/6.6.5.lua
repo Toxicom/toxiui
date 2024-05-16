@@ -8,6 +8,7 @@ TXUI.Changelog["6.6.5"] = {
     "* New features",
 
     "* Bug fixes",
+    "Remove season property from some mage portals",
 
     "* Profile updates",
     "Reduce deconstruct's label font size",

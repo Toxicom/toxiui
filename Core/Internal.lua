@@ -518,11 +518,11 @@ I.HearthstoneData = {
   --                --
   -- Mage Teleports --
   --                --
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Stormwind
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Orgrimmar
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Ironforge
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Undercity
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["season"] = "df" }, -- Teleport: Darnassus
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
   [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
   [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon
