@@ -11,10 +11,12 @@ TXUI.Changelog["6.6.5"] = {
 
     "* Profile updates",
     "Reduce deconstruct's label font size",
-    "Castbar changes" --
+    F.String.ElvUI()
+      .. " Castbar changes" --
       .. F.String.Sublist("Change font to Primary")
       .. F.String.Sublist("Reduce height to match smaller font")
       .. F.String.Sublist("Enable class colors for cast bar"),
+    "Change " .. F.String.Plater() .. " Castbar to match " .. F.String.ElvUI(),
 
     "* Documentation",
     "Update Dragonflight Season 4 Mythic+ portals for WunderBar",
