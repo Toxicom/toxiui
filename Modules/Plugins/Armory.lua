@@ -102,7 +102,7 @@ A.characterSlots = {
   ["NeckSlot"] = {
     id = 2,
     needsEnchant = false,
-    needsSocket = true,
+    needsSocket = TXUI.IsRetail,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
