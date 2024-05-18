@@ -596,13 +596,13 @@ P.armory = {
 
     iLvLFont = I.Fonts.Primary,
     iLvLFontSize = 14,
-    iLvLFontShadow = true,
-    iLvLFontOutline = "NONE",
+    iLvLFontShadow = false,
+    iLvLFontOutline = "OUTLINE",
 
     enchantFont = I.Fonts.Primary,
-    enchantFontSize = 12,
-    enchantFontShadow = true,
-    enchantFontOutline = "NONE",
+    enchantFontSize = 10,
+    enchantFontShadow = false,
+    enchantFontOutline = "OUTLINE",
   },
 
   nameTextOffsetX = 0,

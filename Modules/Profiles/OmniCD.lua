@@ -309,7 +309,7 @@ function PF:BuildOmniCDProfile()
         },
 
         visibility = {
-          raid = true,
+          raid = false,
           arena = false,
           size = 40,
         },

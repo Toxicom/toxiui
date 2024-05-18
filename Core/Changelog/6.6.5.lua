@@ -22,9 +22,11 @@ TXUI.Changelog["6.6.5"] = {
     "Change " .. F.String.Plater() .. " Castbar to match " .. F.String.ElvUI(),
     "Update fonts used" --
       .. F.String.Sublist("Primary instead of TitleRaid in most cases"),
+    "Update Armory default fonts",
     "Update default ToxiUI icons" --
       .. F.String.Sublist("Material styles for role & group icons")
       .. F.String.Sublist("Previous icons still available"),
+    "Disable OmniCD in raid by default",
 
     "* Documentation",
     "Update Dragonflight Season 4 Mythic+ portals for WunderBar",
