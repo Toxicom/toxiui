@@ -232,13 +232,14 @@ A.characterSlots = {
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
-  ["RangedSlot"] = {
-    id = 19,
-    needsEnchant = false,
-    needsSocket = false,
-    direction = A.enumDirection.LEFT,
-  },
 }
+
+if TXUI.IsCata then A.characterSlots["RangedSlot"] = {
+  id = 19,
+  needsEnchant = false,
+  needsSocket = false,
+  direction = A.enumDirection.LEFT,
+} end
 
 function A:GetPrimaryTalentIndex()
   local primaryTalentTreeIdx = 0
@@ -1278,9 +1279,9 @@ function A:OpenCharacterArmory()
   if TXUI.IsCata then self:OpenCharacterStats() end
   self:UpdateCharacterArmory()
   -- For some reason in Cata animation doesn't happen immediately unless you hover the character frame, not sure what event we're missing
-  E:Delay(TXUI.IsCata and 0.01 or 0, function()
-    self:PlayAnimations()
-  end)
+  -- E:Delay(TXUI.IsCata and 0.01 or 0, function()
+  self:PlayAnimations()
+  -- end)
 end
 
 function A:CreateElements()
