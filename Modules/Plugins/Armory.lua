@@ -1279,9 +1279,9 @@ function A:OpenCharacterArmory()
   if TXUI.IsCata then self:OpenCharacterStats() end
   self:UpdateCharacterArmory()
   -- For some reason in Cata animation doesn't happen immediately unless you hover the character frame, not sure what event we're missing
-  -- E:Delay(TXUI.IsCata and 0.01 or 0, function()
-  self:PlayAnimations()
-  -- end)
+  E:Delay(0.01, function()
+    self:PlayAnimations()
+  end)
 end
 
 function A:CreateElements()
