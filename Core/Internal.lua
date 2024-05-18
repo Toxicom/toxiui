@@ -40,7 +40,7 @@ I.FontNames = {
 I.FontDescription = {
   [I.Fonts.Primary] = "Used in the majority of the UI.",
   [I.Fonts.Title] = "Used mostly for names.",
-  [I.Fonts.TitleRaid] = "Used for names in Raid Frames.",
+  [I.Fonts.TitleRaid] = "Currently only used in BigWigs, Details & Raid Frames Group number.",
   [I.Fonts.TitleBlack] = "Very bold font used in a couple places, like map coordinates.",
 }
 

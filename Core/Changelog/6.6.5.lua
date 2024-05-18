@@ -20,6 +20,11 @@ TXUI.Changelog["6.6.5"] = {
       .. F.String.Sublist("Reduce height to match smaller font")
       .. F.String.Sublist("Enable class colors for cast bar"),
     "Change " .. F.String.Plater() .. " Castbar to match " .. F.String.ElvUI(),
+    "Update fonts used" --
+      .. F.String.Sublist("Primary instead of TitleRaid in most cases"),
+    "Update default ToxiUI icons" --
+      .. F.String.Sublist("Material styles for role & group icons")
+      .. F.String.Sublist("Previous icons still available"),
 
     "* Documentation",
     "Update Dragonflight Season 4 Mythic+ portals for WunderBar",

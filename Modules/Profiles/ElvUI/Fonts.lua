@@ -96,15 +96,15 @@ function PF:ElvUIFont()
       },
 
       altPowerBar = {
-        font = F.FontOverride(I.Fonts.Title),
+        font = F.FontOverride(I.Fonts.Primary),
         fontSize = F.FontSizeScaled(18),
-        fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       },
 
       minimap = {
-        locationFont = F.FontOverride(I.Fonts.Title),
+        locationFont = F.FontOverride(I.Fonts.Primary),
         locationFontSize = F.FontSizeScaled(22),
-        locationFontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
+        locationFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
         icons = {
           queueStatus = {
@@ -181,7 +181,7 @@ function PF:ElvUIFont()
 
       tabFont = F.FontOverride(I.Fonts.Primary),
       tabFontSize = F.FontSizeScaled(14, 13),
-      tabFontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
+      tabFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
     },
 
     -- Auras
@@ -211,9 +211,9 @@ function PF:ElvUIFont()
 
     -- UnitFrames
     unitframe = {
-      font = F.FontOverride(I.Fonts.TitleRaid),
+      font = F.FontOverride(I.Fonts.Primary),
       fontSize = F.FontSizeScaled(16),
-      fontOutline = F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE"),
+      fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
       cooldown = {
         fonts = {
@@ -230,7 +230,7 @@ function PF:ElvUIFont()
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "!ClassIcon", I.Fonts.Title, 12, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
+            { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
             TXUI.IsVanilla and { "!Power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
@@ -267,7 +267,7 @@ function PF:ElvUIFont()
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "!ClassIcon", I.Fonts.Title, 12, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
+            { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
             { "!Classification", I.Fonts.Primary, 20, "SHADOWOUTLINE", true },
           },
 
@@ -330,7 +330,7 @@ function PF:ElvUIFont()
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "!ClassIcon", I.Fonts.Title, 12, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
+            { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
           },
 
           buffs = {
@@ -367,7 +367,7 @@ function PF:ElvUIFont()
               { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
               { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
               { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-              { "!ClassIcon", I.Fonts.Title, 10, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
+              { "!ClassIcon", I.Fonts.Primary, 10, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
             },
 
             buffs = {
@@ -392,59 +392,59 @@ function PF:ElvUIFont()
               { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
               { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
               { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-              { "!ClassIcon", I.Fonts.Title, 10, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
+              { "!ClassIcon", I.Fonts.Primary, 10, "SHADOWOUTLINE" }, -- Font and Outline doesn't matter
             },
           })
         ),
 
         raid1 = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
             { "!Group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
           },
 
           rdebuffs = {
-            font = F.FontOverride(I.Fonts.Title),
-            fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
+            font = F.FontOverride(I.Fonts.Primary),
+            fontSize = F.FontSizeScaled(14),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
         },
 
         raid2 = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
             { "!Group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
           },
 
           rdebuffs = {
-            font = F.FontOverride(I.Fonts.Title),
-            fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
+            font = F.FontOverride(I.Fonts.Primary),
+            fontSize = F.FontSizeScaled(14),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
         },
 
         raid3 = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
             { "!Group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
           },
 
           rdebuffs = {
-            font = F.FontOverride(I.Fonts.Title),
-            fontSize = F.FontSizeScaled(16),
-            fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
+            font = F.FontOverride(I.Fonts.Primary),
+            fontSize = F.FontSizeScaled(14),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
         },
 
         tank = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
           },
         },
 
         assist = {
           customTexts = customTextSize {
-            { "!Name", F.FontOverride(I.Fonts.TitleRaid), 16, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "!Name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
           },
         },
 
@@ -499,9 +499,9 @@ function PF:ElvUIFont()
       smallTextFontSize = F.FontSizeScaled(14),
 
       healthBar = {
-        font = F.FontOverride(I.Fonts.Title),
-        fontSize = F.FontSizeScaled(20),
-        fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
+        font = F.FontOverride(I.Fonts.Primary),
+        fontSize = F.FontSizeScaled(16),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       },
     },
 

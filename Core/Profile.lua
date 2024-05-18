@@ -328,33 +328,33 @@ P.misc = {
 P.elvUIIcons = {
   roleIcons = {
     enabled = true, -- Enabled by default
-    theme = "TXUI_STYLIZED",
+    theme = "TXUI_MATERIAL",
   },
 
   raidIcons = {
     leader = {
       enabled = true, -- Enabled by default
-      theme = "TXUI_STYLIZED",
+      theme = "TXUI_MATERIAL",
     },
 
     assist = {
       enabled = true, -- Enabled by default
-      theme = "TXUI_STYLIZED",
+      theme = "TXUI_MATERIAL",
     },
 
     looter = {
       enabled = true, -- Enabled by default
-      theme = "TXUI_STYLIZED",
+      theme = "TXUI_MATERIAL",
     },
 
     mainAssist = {
       enabled = true, -- Enabled by default
-      theme = "TXUI_STYLIZED",
+      theme = "TXUI_MATERIAL",
     },
 
     mainTank = {
       enabled = true, -- Enabled by default
-      theme = "TXUI_STYLIZED",
+      theme = "TXUI_MATERIAL",
     },
   },
 
@@ -461,28 +461,28 @@ P.armory = {
     itemLevelFont = I.Fonts.Title,
     itemLevelFontSize = 30,
     itemLevelFontShadow = true,
-    itemLevelFontOutline = "NONE",
+    itemLevelFontOutline = "OUTLINE",
     itemLevelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     itemLevelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     headerFont = I.Fonts.Title,
     headerFontSize = 22,
     headerFontShadow = true,
-    headerFontOutline = "NONE",
+    headerFontOutline = "OUTLINE",
     headerFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
     headerFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     labelFont = I.Fonts.Primary,
     labelFontSize = 12,
-    labelFontShadow = true,
-    labelFontOutline = "NONE",
+    labelFontShadow = false,
+    labelFontOutline = "OUTLINE",
     labelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     labelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     valueFont = I.Fonts.Primary,
     valueFontSize = 15,
-    valueFontShadow = true,
-    valueFontOutline = "NONE",
+    valueFontShadow = false,
+    valueFontOutline = "OUTLINE",
     valueFontColor = "CUSTOM", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
     valueFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 

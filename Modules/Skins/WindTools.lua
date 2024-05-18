@@ -30,7 +30,7 @@ function S:ElvUI_WindTools()
       frame.text.SetFormattedText = function(text, _, time)
         text:SetText(format("%d", time))
       end
-      frame.text:FontTemplate(F.GetFontPath(I.Fonts.Title), F.FontSizeScaled(26), "OUTLINE")
+      frame.text:FontTemplate(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(20), "OUTLINE")
       frame.text:ClearAllPoints()
       frame.text:SetPoint("TOP", frame, "TOP", 0, -3)
     end

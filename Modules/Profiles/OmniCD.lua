@@ -24,9 +24,9 @@ function PF:BuildOmniCDProfile()
             flag = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
           },
           statusBar = {
-            font = F.FontOverride(I.Fonts.TitleRaid),
+            font = F.FontOverride(I.Fonts.Primary),
             size = F.FontSizeScaled(24),
-            flag = F.FontStyleOverride(I.Fonts.TitleRaid, "OUTLINE"),
+            flag = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
           },
         },
         textures = {
