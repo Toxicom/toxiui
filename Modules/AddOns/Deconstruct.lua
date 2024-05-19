@@ -58,6 +58,7 @@ DC.excludeList = {
     [136629] = true, -- Felgibber Shotgun
     [11287] = true, -- Lesser Magic Wand
     [11288] = true, -- Greater Magic Wand
+    [31404] = true, -- Green Trophy Tabard of the Illidari
   },
 }
 
