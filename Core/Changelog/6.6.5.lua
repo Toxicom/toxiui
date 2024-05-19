@@ -3,10 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.6.5"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
     "* Bug fixes",
     "Remove season property from some mage portals",
     "Fix Armory's missing enchants showing too early",
@@ -30,9 +26,5 @@ TXUI.Changelog["6.6.5"] = {
 
     "* Documentation",
     "Update Dragonflight Season 4 Mythic+ portals for WunderBar",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
