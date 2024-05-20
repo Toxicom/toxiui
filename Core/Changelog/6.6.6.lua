@@ -10,6 +10,7 @@ TXUI.Changelog["6.6.6"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Fix Raid 2 not seeing 6th group",
 
     "* Documentation",
     "Update Disenchant exlude list for Deconstruct",

@@ -1445,7 +1445,7 @@ function PF:BuildProfile()
       groupsPerRowCol = 1,
       growthDirection = "RIGHT_UP",
       horizontalSpacing = F.Dpi(1),
-      numGroups = 5,
+      numGroups = 6,
       raidWideSorting = false,
       startFromCenter = false,
       verticalSpacing = F.Dpi(1),
