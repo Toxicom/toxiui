@@ -325,10 +325,15 @@ function O:Plugins_AdditionalScaling()
 
   -- Retail
   do
+    local retailDisabled = function()
+      return not TXUI.IsRetail
+    end
+
     -- Retail Group
     local retailGroup = self:AddInlineDesc(options, {
       name = "Retail Only",
       hidden = optionsHidden,
+      disabled = retailDisabled,
     }, {
       name = "Scale Retail only frames.\n\n",
     }).args
@@ -338,9 +343,6 @@ function O:Plugins_AdditionalScaling()
       order = self:GetOrder(),
       type = "range",
       name = "Wardrobe",
-      disabled = function()
-        return not TXUI.IsRetail
-      end,
       get = function(_)
         return E.db.TXUI.misc.scaling.wardrobe.scale
       end,
@@ -350,6 +352,42 @@ function O:Plugins_AdditionalScaling()
       end,
       min = 0.5,
       max = 2,
+      step = 0.05,
+    }
+
+    -- Retail Group: Item Upgrade Frame
+    retailGroup.itemUpgrade = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Item Upgrade",
+      desc = "Interfaces where you add an item, eg.: item upgrade frame, catalyst upgrade",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.itemUpgrade.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.itemUpgrade.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
+    -- Retail Group: Equipment Flyout
+    retailGroup.equipmentFlyout = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Equipment Flyout",
+      desc = "Flyout of items for interfaces where you add an item, eg.: item upgrade frame, catalyst upgrade",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.equipmentFlyout.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.equipmentFlyout.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 3,
       step = 0.05,
     }
   end

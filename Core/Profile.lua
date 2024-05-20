@@ -282,6 +282,14 @@ P.misc = {
       scale = 1,
     },
 
+    itemUpgrade = {
+      scale = 1,
+    },
+
+    equipmentFlyout = {
+      scale = 2,
+    },
+
     collections = {
       scale = 1,
     },

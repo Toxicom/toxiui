@@ -5,19 +5,36 @@ local _G = _G
 local IsRetailTalentsWindowHooked = false
 
 function M:SetElementScale(dbName, blizzName)
-  local option = E.db.TXUI.misc.scaling[dbName]
+  local option
 
-  if not option then
+  if E and E.db and E.db.TXUI and E.db.TXUI.misc and E.db.TXUI.misc.scaling and E.db.TXUI.misc.scaling[dbName] then
+    option = E.db.TXUI.misc.scaling[dbName]
+  else
     TXUI:LogDebug("AdditionalScaling > option " .. dbName .. " not found, skipping scaling!")
     return
   end
 
-  _G[blizzName]:SetScale(option.scale)
+  local blizzElement = _G[blizzName]
+  if blizzElement then
+    blizzElement:SetScale(option.scale)
+  else
+    TXUI:LogDebug("AdditionalScaling > blizzElement " .. F.String.ToxiUI(blizzName) .. " not found, skipping scaling!")
+  end
 end
 
 function M:ScaleCollections()
   M:SetElementScale("collections", "CollectionsJournal")
   if TXUI.IsRetail then M:SetElementScale("wardrobe", "WardrobeFrame") end
+end
+
+function M:ScaleItemUpgrade()
+  M:SetElementScale("itemUpgrade", "ItemUpgradeFrame")
+  M:SetElementScale("equipmentFlyout", "EquipmentFlyoutFrameButtons")
+end
+
+function M:ScaleCatalyst()
+  M:SetElementScale("itemUpgrade", "ItemInteractionFrame")
+  M:SetElementScale("equipmentFlyout", "EquipmentFlyoutFrameButtons")
 end
 
 function M:ScaleProfessions()

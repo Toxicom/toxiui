@@ -6,6 +6,7 @@ TXUI.Changelog["6.6.6"] = {
     "* Breaking changes",
 
     "* New features",
+    "Additional Scaling for Item Upgrade & Catalyst UIs",
 
     "* Bug fixes",
 
