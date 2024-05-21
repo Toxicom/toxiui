@@ -33,4 +33,15 @@ function TXUI:LoadStaticPopups()
       F.ResetModuleProfile(profile)
     end,
   }
+
+  E.PopupDialogs.TXUI_RESET_MISC_PROFILE = {
+    text = "Are you sure you want to reset " .. F.String.Error("%s") .. "?",
+    button1 = F.String.Error(YES),
+    button2 = F.String.Good(NO),
+    hideOnEscape = 1,
+    whileDead = 1,
+    OnAccept = function(_, profile)
+      F.ResetMiscProfile(profile)
+    end,
+  }
 end

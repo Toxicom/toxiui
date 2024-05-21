@@ -83,7 +83,7 @@ function O:Reset()
         order = self:GetOrder(),
         type = "execute",
         name = F.String.Error("Armory"),
-        desc = "Reset all " .. F.String.Error("Armory") .. " Settings.",
+        desc = "Reset all " .. F.String.Error("Armory") .. " settings.",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "Armory", nil, "armory")
         end,
@@ -92,7 +92,7 @@ function O:Reset()
         order = self:GetOrder(),
         type = "execute",
         name = F.String.Error("MiniMapCoords"),
-        desc = "Reset all " .. F.String.Error("MiniMapCoords") .. " Settings.",
+        desc = "Reset all " .. F.String.Error("MiniMapCoords") .. "settings.",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "MiniMapCoords", nil, "miniMapCoords")
         end,
@@ -101,9 +101,18 @@ function O:Reset()
         order = self:GetOrder(),
         type = "execute",
         name = F.String.Error("VehicleBar"),
-        desc = "Reset all " .. F.String.Error("VehicleBar") .. " Settings.",
+        desc = "Reset all " .. F.String.Error("VehicleBar") .. " settings.",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "VehicleBar", nil, "vehicleBar")
+        end,
+      },
+      ["additionalScaling"] = {
+        order = self:GetOrder(),
+        type = "execute",
+        name = F.String.Error("Additional Scaling"),
+        desc = "Reset all " .. F.String.Error("Additional Scaling") .. " settings.",
+        func = function()
+          E:StaticPopup_Show("TXUI_RESET_MISC_PROFILE", "Additional Scaling", nil, "scaling")
         end,
       },
     },

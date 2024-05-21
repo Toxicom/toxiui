@@ -7,8 +7,10 @@ TXUI.Changelog["6.6.6"] = {
 
     "* New features",
     "Additional Scaling for Item Upgrade & Catalyst UIs",
+    "Add Additional Scaling button to Reset section",
 
     "* Bug fixes",
+    "Show Missing Belt enchant in Armory",
 
     "* Profile updates",
     "Fix Raid 2 not seeing 6th group",

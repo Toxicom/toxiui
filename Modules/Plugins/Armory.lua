@@ -161,7 +161,7 @@ A.characterSlots = {
   },
   ["WaistSlot"] = {
     id = 6,
-    needsEnchant = false,
+    needsEnchant = TXUI.IsRetail,
     needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },

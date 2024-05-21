@@ -78,9 +78,9 @@ end
 
 function F.ResetMiscProfile(profile)
   if not F.IsTXUIProfile() then return TXUI:LogDebug(TXUI, "ResetMiscProfile > No TXUI Profile found") end
-  if P[profile] == nil then return TXUI:LogDebug(TXUI, "ResetMiscProfile > Invalid config:", profile) end
+  if P.misc[profile] == nil then return TXUI:LogDebug(TXUI, "ResetMiscProfile > Invalid config:", profile) end
 
-  E:CopyTable(E.db.TXUI[profile], P[profile])
+  E:CopyTable(E.db.TXUI.misc[profile], P.misc[profile])
   ReloadUI()
 end
 
