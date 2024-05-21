@@ -18,7 +18,7 @@ I.General = {
 
 I.MaxLevelTable = {
   ["Vanilla"] = 60,
-  ["Cata"] = 80,
+  ["Cata"] = 85,
   ["Mainline"] = 70,
 }
 

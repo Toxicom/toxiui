@@ -15,6 +15,7 @@ TXUI.Changelog["6.6.6"] = {
 
     "* Documentation",
     "Update Disenchant exlude list for Deconstruct",
+    "Increase max level in Cata",
 
     "* Settings refactoring",
 
