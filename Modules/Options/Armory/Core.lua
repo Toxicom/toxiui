@@ -567,6 +567,16 @@ function O:Armory()
       -- Spacer
       self:AddSpacer(fontGroup)
 
+      fontGroup.levelTitleTextShort = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Abbreviate Label",
+        desc = "Abbreviate the 'Level' text to 'Lv'.",
+      }
+
+      -- Spacer
+      self:AddSpacer(fontGroup)
+
       -- Position X
       fontGroup.levelTitleTextOffsetX = {
         order = self:GetOrder(),

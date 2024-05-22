@@ -499,7 +499,11 @@ function A:UpdateTitle()
     F.SetFontColorFromDB(self.db, "titleText", self.titleText)
   end
 
-  self.levelTitleText:SetText("Level")
+  if self.db.levelTitleTextShort then
+    self.levelTitleText:SetText("Lv")
+  else
+    self.levelTitleText:SetText("Level")
+  end
   self.levelText:SetText(playerLevel)
 
   local fontIcon

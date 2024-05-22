@@ -633,6 +633,7 @@ P.armory = {
 
   levelTitleTextOffsetX = 0,
   levelTitleTextOffsetY = -1,
+  levelTitleTextShort = true,
   levelTitleTextFont = I.Fonts.Title,
   levelTitleTextFontSize = 20,
   levelTitleTextFontShadow = true,
