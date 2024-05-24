@@ -23,6 +23,32 @@ function O:Plugins_HideFrames()
     }, {
       name = "These options allow you to completely hide some frames.\n\nOnce an option is enabled, the frame will never show until disabled again.\n\n",
     }, I.Requirements.HideFrames).args
+
+    -- Enable
+    generalGroup.enabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " Hide Frames module.\n\n",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.misc.hide.enabled, generalGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.misc.hide.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.hide.enabled = value
+        if value then
+          Misc:HideFrames()
+        else
+          E:StaticPopup_Show("CONFIG_RL")
+        end
+      end,
+    }
+
+    -- Hidden helper
+    optionsHidden = function()
+      return self:GetEnabledState(E.db.TXUI.misc.hide.enabled, generalGroup) ~= self.enabledState.YES
+    end
   end
 
   -- Spacer
@@ -37,6 +63,7 @@ function O:Plugins_HideFrames()
     -- Character Group
     local retailGroup = self:AddInlineDesc(options, {
       name = "Retail Only",
+      hidden = optionsHidden,
       disabled = retailDisabled,
     }, {
       name = "Hide Retail only frames.\n\n",

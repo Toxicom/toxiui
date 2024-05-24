@@ -7,6 +7,7 @@ function M:HideFrames()
   self.db = E and E.db and E.db.TXUI and E.db.TXUI.misc and E.db.TXUI.misc.hide or nil
 
   if not self.db then return end
+  if not self.db.enabled then return end
 
   local lootFrame = _G.GroupLootHistoryFrame
   if self.db.lootFrame then

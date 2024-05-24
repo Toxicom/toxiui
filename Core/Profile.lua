@@ -332,6 +332,7 @@ P.misc = {
   },
 
   hide = {
+    enabled = false,
     lootFrame = false,
   },
 }
