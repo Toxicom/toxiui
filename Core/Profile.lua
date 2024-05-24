@@ -330,6 +330,10 @@ P.misc = {
       scale = 1,
     },
   },
+
+  hide = {
+    lootFrame = false,
+  },
 }
 
 -- ElvUI Icons

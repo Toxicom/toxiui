@@ -3,5 +3,6 @@
 
   <Script file='AdditionalScaling.lua' />
   <Script file='MiniMapCoords.lua' />
+  <Script file='HideFrames.lua' />
   <Script file='VehicleBar.lua' />
 </Ui>

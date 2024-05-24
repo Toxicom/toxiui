@@ -139,6 +139,7 @@ I.Requirements = {
   },
   ["GameMenuButton"] = {},
   ["AdditionalScaling"] = {},
+  ["HideFrames"] = {},
   ["RoleIcons"] = {
     I.Enum.Requirements.SL_DISABLED,
   },

@@ -5,6 +5,7 @@
   <Script file='ChatIcon.lua' />
   <Script file='DetailsIcons.lua' />
   <Script file='GameMenuButton.lua' />
+  <Script file='HideFrames.lua' />
   <Script file='SplashScreen.lua' />
   <Script file='StatusReport.lua' />
   <Script file='Tags.lua' />
