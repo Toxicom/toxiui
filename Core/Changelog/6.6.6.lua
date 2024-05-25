@@ -16,6 +16,7 @@ TXUI.Changelog["6.6.6"] = {
 
     "* Bug fixes",
     "Show Missing Belt enchant in Armory",
+    "Remove 'Missing' text in Armory for Pandaria Remix",
 
     "* Profile updates",
     "Fix Raid 2 not seeing 6th group",

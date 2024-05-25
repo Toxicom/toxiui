@@ -614,7 +614,7 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
           slotItem.enchantText:SetText(F.String.FastGradientHex(text, A.colors.LIGHT_GREEN, A.colors.DARK_GREEN))
         end
       end
-    elseif self.db.pageInfo.missingEnchantText and slotOptions.needsEnchant then
+    elseif self.db.pageInfo.missingEnchantText and slotOptions.needsEnchant and not E.TimerunningID then
       if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
         slotItem.enchantText:SetText(F.String.Error("Missing"))
       else
