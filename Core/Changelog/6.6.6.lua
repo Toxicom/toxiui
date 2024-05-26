@@ -8,7 +8,7 @@ TXUI.Changelog["6.6.6"] = {
     "* New features",
     F.String.Scaling() .. " for Item Upgrade & Catalyst UIs",
     F.String.Scaling() .. " for Auction House",
-    F.String.Scaling() .. " option to increase Transmog frame width" .. F.String.Sublist("Retail only") .. F.String.Sublist("Credits to Kayr"),
+    F.String.Scaling() .. " option to increase Transmog frame width" .. F.String.Sublist("Retail only"),
     "Add " .. F.String.Scaling() .. " button to Reset section",
     "Abbreviate Level text option in Armory",
     F.String.ToxiUI("Hide Frames")

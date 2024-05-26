@@ -413,7 +413,7 @@ function O:Plugins_AdditionalScaling()
       order = self:GetOrder(),
       type = "toggle",
       name = "Transmog Frame",
-      desc = "Makes the transmogrification frame bigger. Credits to Kayr for code.",
+      desc = "Makes the transmogrification frame bigger.",
       get = function(_)
         return E.db.TXUI.misc.scaling.retailTransmog.enabled
       end,
