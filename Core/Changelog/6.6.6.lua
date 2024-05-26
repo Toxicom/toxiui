@@ -12,9 +12,10 @@ TXUI.Changelog["6.6.6"] = {
     "Add " .. F.String.Scaling() .. " button to Reset section",
     "Abbreviate Level text option in Armory",
     F.String.ToxiUI("Hide Frames")
-      .. " module" --
+      .. " module"
       .. F.String.Sublist(F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91") .. " -> " .. F.String.Class("Hide Frames"))
       .. F.String.Sublist("Currently only has the Loot Frame (Retail only)"),
+    TXUI.Title .. " Health Tag option to display full health value instead of percentage" .. F.String.Sublist("Disabled by default") .. F.String.Sublist("Styles -> UnitFrame"),
 
     "* Bug fixes",
     "Show Missing Belt enchant in Armory",

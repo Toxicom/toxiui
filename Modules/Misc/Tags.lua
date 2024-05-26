@@ -228,32 +228,62 @@ function M:Tags()
     end
   end
 
+  local function ConstructFullHealthStr(reverseGradient, health, percentHealth)
+    if not reverseGradient then
+      -- TODO: fix this to be an actual | sign instead of l (letter L)
+      return health .. " l " .. percentHealth
+    else
+      return percentHealth .. " l " .. health
+    end
+  end
+
   local function ColorHealthTag(unit, percentSign)
-    local health = GetHealthPercentage(unit)
-    local healthStr = tostring(health)
+    local db = E.db.TXUI.styles.healthTag
+
+    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+
+    if db.enabled and status then return status end
+
+    local min, max = UnitHealth(unit), UnitHealthMax(unit)
+    local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+
+    local percentHealth = GetHealthPercentage(unit)
+    local percentHealthStr = tostring(percentHealth)
+
+    local finalHealth
     local reverseGradient = not reverseUnitsTable[unit]
 
-    if percentSign then healthStr = healthStr .. "%" end
-
     local colorHealth = E.db.TXUI.themes.gradientMode.colorHealth
+    if percentSign then percentHealthStr = percentHealthStr .. "%" end
+
+    if db.enabled then
+      if db.style == "FullPercent" then
+        -- combine string with pipe, revert for target etc
+        finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
+      else
+        finalHealth = health
+      end
+    else
+      finalHealth = percentHealthStr
+    end
 
     -- Return different coloring for Dark Mode
     if dm.isEnabled then
-      return FormatColorTag(healthStr, unit, reverseGradient)
+      return FormatColorTag(finalHealth, unit, reverseGradient)
     -- If not gradient mode, or the option is disabled, return early an uncolored string
     elseif not gm.isEnabled or not colorHealth or not colorHealth.enabled then
-      return healthStr
+      return finalHealth
     end
 
     local yellow = colorHealth.yellowThreshold
     local red = colorHealth.redThreshold
 
-    if health <= yellow and health > red then
-      return F.String.GradientClass(healthStr, "ROGUE", reverseGradient)
-    elseif health <= red then
-      return F.String.GradientClass(healthStr, "DEATHKNIGHT", reverseGradient)
+    if percentHealth <= yellow and percentHealth > red then
+      return F.String.GradientClass(finalHealth, "ROGUE", reverseGradient)
+    elseif percentHealth <= red then
+      return F.String.GradientClass(finalHealth, "DEATHKNIGHT", reverseGradient)
     else
-      return healthStr
+      return finalHealth
     end
   end
 
@@ -290,17 +320,9 @@ function M:Tags()
 
       local percentHealth = GetHealthPercentage(unit)
       local percentHealthStr = tostring(percentHealth)
-
-      local finalHealth
-
-      -- combine string with pipe, revert for target etc
       local reverseGradient = reverseUnitsTable[unit]
-      if not reverseGradient then
-        -- TODO: fix this to be an actual | sign instead of l (letter L)
-        finalHealth = health .. " l " .. percentHealthStr
-      else
-        finalHealth = percentHealthStr .. " l " .. health
-      end
+
+      local finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
 
       if not dm.isEnabled then return finalHealth end
 
@@ -321,17 +343,9 @@ function M:Tags()
       local percentHealthStr = tostring(percentHealth)
       -- append % sign
       percentHealthStr = percentHealthStr .. "%"
-
-      local finalHealth
-
-      -- combine string with pipe, revert for target etc
       local reverseGradient = reverseUnitsTable[unit]
-      if not reverseGradient then
-        -- TODO: fix this to be an actual | sign instead of l (letter L)
-        finalHealth = health .. " l " .. percentHealthStr
-      else
-        finalHealth = percentHealthStr .. " l " .. health
-      end
+
+      local finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
 
       if not dm.isEnabled then return finalHealth end
 

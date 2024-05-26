@@ -28,6 +28,56 @@ function O:Styles_UnitFrames()
   -- Spacer
   self:AddSpacer(options)
 
+  do
+    local healthTag = self:AddInlineRequirementsDesc(options, {
+      name = TXUI.Title .. " Health Tag",
+    }, {
+      name = "This option will change the default ToxiUI health tag to show full health value instead of percentage.\n\n"
+        .. "This only works for these tags: "
+        .. F.String.ToxiUI("[tx:health:percent:nosign]")
+        .. ", "
+        .. F.String.ToxiUI("[tx:health:percent]")
+        .. ".\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "If you enable this setting, the font size for health will definitely be too big. It's up to you to adjust that!\nVisit the "
+        .. TXUI.Title
+        .. " Website's FAQ if you're not sure how to change UnitFrame texts.\n\n",
+    })
+
+    healthTag["args"]["enable"] = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.styles.healthTag.enabled, healthTag)
+      end,
+      get = function()
+        return E.db.TXUI.styles.healthTag.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.styles.healthTag.enabled = value
+      end,
+    }
+
+    healthTag["args"]["style"] = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Style",
+      get = function()
+        return E.db.TXUI.styles.healthTag.style
+      end,
+      set = function(_, value)
+        E.db.TXUI.styles.healthTag.style = value
+      end,
+      values = {
+        ["Full"] = "127.3K",
+        ["FullPercent"] = "127.3K l 100",
+      },
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
   -- New Style
   do
     local newStyle = self:AddInlineRequirementsDesc(options, {
