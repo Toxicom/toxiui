@@ -30,7 +30,7 @@ function O:Plugins_AdditionalScaling()
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Additional Scaling.\n\n",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " " .. F.String.Scaling() .. ".\n\n",
       name = function()
         return self:GetEnableName(E.db.TXUI.misc.scaling.enabled, generalGroup)
       end,
@@ -405,6 +405,26 @@ function O:Plugins_AdditionalScaling()
       min = 0.5,
       max = 3,
       step = 0.05,
+    }
+
+    self:AddSpacer(retailGroup)
+
+    retailGroup.transmog = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Transmog Frame",
+      desc = "Makes the transmogrification frame bigger. Credits to Kayr for code.",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.retailTransmog.enabled
+      end,
+      set = function(_)
+        E.db.TXUI.misc.scaling.retailTransmog.enabed = value
+        if value then
+          Misc:AdditionalScaling()
+        else
+          E:StaticPopup_Show("CONFIG_RL")
+        end
+      end,
     }
   end
 

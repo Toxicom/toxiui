@@ -35,7 +35,7 @@ TXUI.Changelog["6.3.2"] = {
     "Move " .. TXUI.Title .. " Game Menu Button settings to " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
 
     "* Development improvements",
-    "Refactor Additional Scaling feature, it now has it's own separate tab in " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91"),
+    "Refactor " .. F.String.Scaling() .. " feature, it now has it's own separate tab in " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91"),
     "Make the '" .. F.String.ToxiUI("/tx install") .. "' command actually open the installer",
     "Add alias to open " .. TXUI.Title .. " Installer - '" .. F.String.ToxiUI("/tx i") .. "'",
   },

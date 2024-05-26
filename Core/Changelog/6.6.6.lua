@@ -6,14 +6,15 @@ TXUI.Changelog["6.6.6"] = {
     "* Breaking changes",
 
     "* New features",
-    "Additional Scaling for Item Upgrade & Catalyst UIs",
-    "Add Additional Scaling button to Reset section",
+    F.String.Scaling() .. " for Item Upgrade & Catalyst UIs",
+    F.String.Scaling() .. " for Auction House",
+    F.String.Scaling() .. " option to increase Transmog frame width" .. F.String.Sublist("Retail only") .. F.String.Sublist("Credits to Kayr"),
+    "Add " .. F.String.Scaling() .. " button to Reset section",
     "Abbreviate Level text option in Armory",
     F.String.ToxiUI("Hide Frames")
-      .. " feature" --
+      .. " module" --
       .. F.String.Sublist(F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91") .. " -> " .. F.String.Class("Hide Frames"))
       .. F.String.Sublist("Currently only has the Loot Frame (Retail only)"),
-    "Auction House Additional Scaling added",
 
     "* Bug fixes",
     "Show Missing Belt enchant in Armory",

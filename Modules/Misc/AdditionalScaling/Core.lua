@@ -30,6 +30,8 @@ function M:AdditionalScaling()
       -- For some reason these are different, altho they function exactly the same
       M:AddCallbackOrScale("Blizzard_ItemUpgradeUI", self.ScaleItemUpgrade)
       M:AddCallbackOrScale("Blizzard_ItemInteractionUI", self.ScaleCatalyst)
+
+      M:AddCallbackOrScale("Blizzard_Collections", self.AdjustTransmogFrame)
     end
 
     -- Retail & Cata scaling

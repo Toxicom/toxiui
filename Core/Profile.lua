@@ -333,6 +333,10 @@ P.misc = {
     auctionHouse = {
       scale = 1,
     },
+
+    retailTransmog = {
+      enabled = true,
+    },
   },
 
   hide = {
