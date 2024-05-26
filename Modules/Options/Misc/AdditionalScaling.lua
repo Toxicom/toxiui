@@ -417,7 +417,7 @@ function O:Plugins_AdditionalScaling()
       get = function(_)
         return E.db.TXUI.misc.scaling.retailTransmog.enabled
       end,
-      set = function(_)
+      set = function(_, value)
         E.db.TXUI.misc.scaling.retailTransmog.enabed = value
         if value then
           Misc:AdditionalScaling()
