@@ -114,7 +114,7 @@ function M:AdjustTransmogFrame()
 
   -- Ease constraints on zooming out
   local function ExtendZoomDistance()
-    modelScene.activeCamera.maxZoomDistance = 4
+    modelScene.activeCamera.maxZoomDistance = 6
   end
 
   modelScene:SetScript("OnShow", function()
