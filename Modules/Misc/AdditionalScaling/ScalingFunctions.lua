@@ -45,6 +45,14 @@ function M:ScaleClassTrainer()
   M:SetElementScale("classTrainer", "ClassTrainerFrame")
 end
 
+function M:ScaleAuctionHouse()
+  if TXUI.IsRetail then
+    M:SetElementScale("auctionHouse", "AuctionHouseFrame")
+  else
+    M:SetElementScale("auctionHouse", "AuctionFrame")
+  end
+end
+
 function M:ScaleInspectUI()
   -- Special case for synced character & inspect frames
   -- If sync is enabled, we take the value of the characterFrame in the database

@@ -329,6 +329,10 @@ P.misc = {
     taxi = {
       scale = 1,
     },
+
+    auctionHouse = {
+      scale = 1,
+    },
   },
 
   hide = {

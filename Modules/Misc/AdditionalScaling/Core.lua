@@ -25,6 +25,7 @@ function M:AdditionalScaling()
     -- Retail scaling
     if TXUI.IsRetail then
       M:AddCallbackOrScale("Blizzard_ClassTalentUI", self.ScaleTalents)
+      M:AddCallbackOrScale("Blizzard_AuctionHouseUI", self.ScaleAuctionHouse)
 
       -- For some reason these are different, altho they function exactly the same
       M:AddCallbackOrScale("Blizzard_ItemUpgradeUI", self.ScaleItemUpgrade)
@@ -39,6 +40,7 @@ function M:AdditionalScaling()
       M:AddCallbackOrScale("Blizzard_TalentUI", self.ScaleTalents)
       M:AddCallbackOrScale("Blizzard_TrainerUI", self.ScaleClassTrainer)
       M:AddCallbackOrScale("Blizzard_TradeSkillUI", self.ScaleProfessions)
+      M:AddCallbackOrScale("Blizzard_AuctionUI", self.ScaleAuctionHouse)
       M:SetElementScale("taxi", "TaxiFrame")
     end
   else

@@ -233,6 +233,22 @@ function O:Plugins_AdditionalScaling()
       max = 2,
       step = 0.05,
     }
+
+    npcGroup.auctionHouse = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Auction House",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.auctionHouse.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.auctionHouse.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
   end
 
   -- Spacer

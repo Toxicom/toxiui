@@ -13,6 +13,7 @@ TXUI.Changelog["6.6.6"] = {
       .. " feature" --
       .. F.String.Sublist(F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91") .. " -> " .. F.String.Class("Hide Frames"))
       .. F.String.Sublist("Currently only has the Loot Frame (Retail only)"),
+    "Auction House Additional Scaling added",
 
     "* Bug fixes",
     "Show Missing Belt enchant in Armory",

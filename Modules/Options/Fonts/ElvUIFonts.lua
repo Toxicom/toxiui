@@ -13,7 +13,7 @@ function O:Fonts_ElvUIFonts()
     local generalGroup = self:AddInlineDesc(options, {
       name = "Description",
     }, {
-      name = "This group allows to update all fonts used in the " .. TXUI.Title .. " Profile.\n\n" .. F.String.Error(
+      name = "This group allows to update all fonts used in the " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Profile.\n\n" .. F.String.Error(
         "Warning: Some fonts might still not look ideal! The results will not be ideal, but it should help you customize the fonts :)\n"
       ),
     }).args
