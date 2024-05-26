@@ -1,7 +1,7 @@
 ## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r |cff2eda00Vanilla|r
 ## Notes: Minimalistic ElvUI Edit by |cff18a8ffToxi|r
 ## Author: Toxi (Toxi#21206)
-## Version: 6.6.6
+## Version: 6.6.7
 ## RequiredDeps: ElvUI
 ## OptionalDeps: Details, Plater
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga

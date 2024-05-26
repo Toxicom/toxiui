@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.6.6"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     F.String.Scaling() .. " for Item Upgrade & Catalyst UIs",
     F.String.Scaling() .. " for Auction House",
@@ -27,10 +25,6 @@ TXUI.Changelog["6.6.6"] = {
     "* Documentation",
     "Update Disenchant exlude list for Deconstruct",
     "Increase max level in Cata",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
     F.String.MinElv("13.65"),
   },
 }
