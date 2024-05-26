@@ -97,7 +97,7 @@ function M:AdjustTransmogFrame()
 
   -- Calculate inset width only once
   local modelScene = transmogFrame.ModelScene
-  local insetWidth = Round(initialTransmogFrameWidth - modelScene:GetWidth(), 0)
+  local insetWidth = E:Round(initialTransmogFrameWidth - modelScene:GetWidth(), 0)
   transmogFrame.Inset.BG:SetWidth(transmogFrame.Inset.BG:GetWidth() - insetWidth)
   modelScene:SetWidth(transmogFrame:GetWidth() - insetWidth)
 
