@@ -8,6 +8,9 @@ TXUI.Changelog["6.6.7"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix Incandescent Essence enchant in Armory" --
+      .. F.String.Sublist("Had to disable gradient text on enchant strings")
+      .. F.String.Sublist("Now has option for class color or default green"),
 
     "* Profile updates",
 

@@ -610,6 +610,7 @@ P.armory = {
 
     enchantTextEnabled = true,
     abbreviateEnchantText = true,
+    useEnchantClassColor = true,
     missingEnchantText = true,
     missingSocketText = true,
 

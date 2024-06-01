@@ -993,6 +993,14 @@ function O:Armory()
         disabled = optionsDisabled,
       }
 
+      enchantGroup.useEnchantClassColor = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Use class color for the enchant strings.",
+        name = "Class Color",
+        disabled = optionsDisabled,
+      }
+
       -- Spacer
       self:AddSpacer(enchantGroup)
 

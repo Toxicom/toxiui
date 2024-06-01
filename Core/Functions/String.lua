@@ -344,7 +344,16 @@ end
 
 function F.String.StripColor(text)
   if type(text) ~= "string" then return text end
-  return gsub(text, "|c%x%x%x%x%x%x%x%x(.-)|r", "%1")
+  -- Remove |c...|r format
+  text = text:gsub("|c%x%x%x%x%x%x%x%x(.-)|r", "%1")
+  -- Remove |cn...: format
+  text = text:gsub("|cn.-:(.-)|r", "%1")
+  -- Remove any remaining |r
+  text = text:gsub("|r", "")
+  -- Remove any remaining |
+  text = text:gsub("|", "")
+
+  return text
 end
 
 function F.String.Strip(text)
