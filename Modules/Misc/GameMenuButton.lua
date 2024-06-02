@@ -86,12 +86,7 @@ function M:GameMenuButton()
     local bgColor
 
     if E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled then
-      -- Custom Colors for priest
-      if E.myclass == "PRIEST" then
-        bgColor = I.PriestColors
-      else
-        bgColor = E:ClassColor(E.myclass, true)
-      end
+      bgColor = E:ClassColor(E.myclass, true)
     else
       bgColor = E.db.TXUI.addons.gameMenuButton.backgroundFade.color
     end

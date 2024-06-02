@@ -133,7 +133,7 @@ function F.Table.CurrentClassColor()
   local color = E:ClassColor(E.myclass, true)
 
   -- Fuck priests
-  if E.myclass == "PRIEST" then return F.Table.RGB(I.PriestColors.r, I.PriestColors.g, I.PriestColors.b) end
+  if E.myclass == "PRIEST" then return F.Table.RGB(E.PriestColors.r, E.PriestColors.g, E.PriestColors.b) end
 
   return F.Table.RGB(color.r, color.g, color.b)
 end

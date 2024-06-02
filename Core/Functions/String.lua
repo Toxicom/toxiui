@@ -110,7 +110,6 @@ end
 
 function F.String.Class(msg, class)
   local finalClass = class or E.myclass
-  if finalClass == "PRIEST" then return F.String.Color(msg, F.String.FastRGB(0.7, 0.7, 0.7)) end
 
   local color = E:ClassColor(finalClass, true)
   return F.String.Color(msg, F.String.FastRGB(color.r, color.g, color.b))

@@ -13,6 +13,8 @@ function T:SetupCvars()
 end
 
 function T:SetupProfile()
+  E.PriestColors = { r = 0.094, g = 0.659, b = 1, colorStr = "ff18a8ff" }
+
   -- Misc
   E.db.TXUI.vehicleBar.enabled = true
 
