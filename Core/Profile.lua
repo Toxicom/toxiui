@@ -479,6 +479,11 @@ P.armory = {
     style = 1,
   },
 
+  lines = {
+    enabled = true,
+    alpha = 0.6,
+  },
+
   stats = {
     showAvgItemLevel = true, -- Enabled by default
     itemLevelFormat = "%.2f",

@@ -7,6 +7,7 @@ TXUI.Changelog["6.6.7"] = {
     "Remove " .. F.String.ToxiUI("[tx:group:raid]") .. " tag" .. F.String.Sublist("It was buggy and not used anywhere"),
 
     "* New features",
+    "Decorative lines in Armory",
 
     "* Bug fixes",
     "Fix Incandescent Essence enchant in Armory" --

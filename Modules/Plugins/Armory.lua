@@ -1247,6 +1247,20 @@ function A:UpdateBackground()
   end
 end
 
+function A:UpdateLines()
+  if self.db.lines.enabled then
+    local classColor = E:ClassColor(E.myclass, true)
+    local r, g, b = classColor.r, classColor.g, classColor.b
+    local alpha = self.db.lines.alpha
+
+    self.frame.topLine.Texture:SetColorTexture(r, g, b, alpha)
+    self.frame.bottomLine.Texture:SetColorTexture(r, g, b, alpha)
+  else
+    self.frame.topLine.Texture:SetColorTexture(0, 0, 0, 0)
+    self.frame.bottomLine.Texture:SetColorTexture(0, 0, 0, 0)
+  end
+end
+
 function A:KillBlizzard()
   local killList = { "CharacterLevelText", "CharacterFrameTitleText", "CharacterModelFrameBackgroundOverlay" }
   for _, frame in ipairs(killList) do
@@ -1270,6 +1284,7 @@ function A:UpdateCharacterArmory()
 
   self:KillBlizzard()
   self:UpdateBackground()
+  self:UpdateLines()
   self:UpdateTitle()
   self:UpdatePageInfo() -- Also does :UpdateItemLevel
   self:UpdateCharacterStats()
@@ -1321,6 +1336,28 @@ function A:CreateElements()
   background.Texture:SetTexCoord(0, 1, cutOffPercentage, 1)
 
   self.frame.TXBackground = background
+
+  local lineHeight = 1
+  local topLine = CreateFrame("Frame", nil, self.frameHolder)
+  local bottomLine = CreateFrame("Frame", nil, self.frameHolder)
+  local classColor = E:ClassColor(E.myclass, true)
+  local r, g, b = classColor.r, classColor.g, classColor.b
+
+  topLine:SetHeight(lineHeight)
+  bottomLine:SetHeight(lineHeight)
+  topLine:SetPoint("TOPLEFT", self.frame.TXBackground, "TOPLEFT", 0, 0)
+  topLine:SetPoint("TOPRIGHT", self.frame.TXBackground, "TOPRIGHT", 0, 0)
+  bottomLine:SetPoint("BOTTOMLEFT", self.frame.TXBackground, "BOTTOMLEFT", 0, 1)
+  bottomLine:SetPoint("BOTTOMRIGHT", self.frame.TXBackground, "BOTTOMRIGHT", 0, 1)
+  topLine.Texture = topLine:CreateTexture(nil, "BACKGROUND")
+  bottomLine.Texture = bottomLine:CreateTexture(nil, "BACKGROUND")
+  topLine.Texture:SetAllPoints()
+  topLine.Texture:SetColorTexture(r, g, b, 1)
+  bottomLine.Texture:SetAllPoints()
+  bottomLine.Texture:SetColorTexture(r, g, b, 1)
+
+  self.frame.topLine = topLine
+  self.frame.bottomLine = bottomLine
 
   self.nameText = nameText
   self.titleText = titleText

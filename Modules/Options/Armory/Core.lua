@@ -287,6 +287,49 @@ function O:Armory()
         disabled = optionsDisabled,
       }
     end
+
+    -- Lines
+    do
+      -- Lines Group
+      local linesGroup = self:AddInlineDesc(tab, {
+        name = "Decorative Lines",
+        get = function(info)
+          return E.db.TXUI.armory.lines[info[#info]]
+        end,
+        set = function(info, value)
+          E.db.TXUI.armory.lines[info[#info]] = value
+          F.Event.TriggerEvent("Armory.SettingsUpdate")
+        end,
+      }, {
+        name = "Settings for the custom " .. TXUI.Title .. " Armory decorative lines.\n\n",
+      }).args
+
+      -- Enable
+      linesGroup.enabled = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Toggling this on enables the " .. TXUI.Title .. " Armory decorative lines.",
+        name = function()
+          return self:GetEnableName(E.db.TXUI.armory.lines.enabled)
+        end,
+      }
+
+      local optionsDisabled = function()
+        return self:GetEnabledState(E.db.TXUI.armory.lines.enabled) ~= self.enabledState.YES
+      end
+
+      -- Alpha
+      linesGroup.alpha = {
+        order = self:GetOrder(),
+        type = "range",
+        name = "Alpha",
+        min = 0,
+        max = 1,
+        step = 0.01,
+        isPercent = true,
+        disabled = optionsDisabled,
+      }
+    end
   end
 
   -- Title
