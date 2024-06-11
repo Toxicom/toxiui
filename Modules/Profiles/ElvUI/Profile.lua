@@ -1427,7 +1427,7 @@ function PF:BuildProfile()
     },
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
       -- UnitFrame Raid Healer Layout
-      growthDirection = "RIGHT_DOWN",
+      growthDirection = "DOWN_RIGHT",
     })
   )
 
@@ -1524,7 +1524,7 @@ function PF:BuildProfile()
     },
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
       -- UnitFrame Raid2 Healer Layout
-      growthDirection = "RIGHT_DOWN",
+      growthDirection = "DOWN_RIGHT",
     })
   )
 
@@ -1534,11 +1534,11 @@ function PF:BuildProfile()
     {
       enable = true,
       width = F.Dpi(80),
-      height = F.Dpi(22),
+      height = F.Dpi(35),
 
       -- UnitFrame Raid3 Options
       groupBy = "ROLE",
-      groupSpacing = F.Dpi(0),
+      groupSpacing = 10,
       groupsPerRowCol = 1,
       growthDirection = "RIGHT_UP",
       horizontalSpacing = F.Dpi(1),
@@ -1622,7 +1622,7 @@ function PF:BuildProfile()
     },
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
       -- UnitFrame Raid3 Healer Layout
-      growthDirection = "RIGHT_DOWN",
+      growthDirection = "DOWN_RIGHT",
     })
   )
 
