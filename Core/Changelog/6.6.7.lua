@@ -8,6 +8,8 @@ TXUI.Changelog["6.6.7"] = {
 
     "* New features",
     "Decorative lines in Armory",
+    "Random names & class icons in UnitFrame preview" --
+      .. F.String.Sublist("Requires at least ElvUI 13.67"),
 
     "* Bug fixes",
     "Fix Incandescent Essence enchant in Armory" --

@@ -7,7 +7,6 @@ local ipairs = ipairs
 local select = select
 local floor = math.floor
 local uppercase = string.upper
-local UnitClass = UnitClass
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
 local Abbrev = E.TagFunctions.Abbrev
@@ -636,6 +635,48 @@ function M:Tags()
       TagNames.POWER,
       "Displays raw power value for mana users, otherwise percentage. No percentage sign and no decimals. Changes color when mana gets low."
     )
+  end
+
+  -- Requires ElvUI 13.67 or later
+  if UF and UF.overrideTags then
+    local overrideTags = {
+      ["tx:level"] = true,
+      ["tx:level:difficulty"] = true,
+      ["tx:classicon"] = true,
+      ["tx:health:full"] = true,
+      ["tx:health:full:nosign"] = true,
+      ["tx:health:percent:nosign"] = true,
+      ["tx:health:percent"] = true,
+      ["tx:health:current:shortvalue"] = true,
+
+      ["tx:name:veryshort"] = true,
+      ["tx:name:short"] = true,
+      ["tx:name:medium"] = true,
+      ["tx:name:long"] = true,
+
+      ["tx:name:abbrev:veryshort"] = true,
+      ["tx:name:abbrev:short"] = true,
+      ["tx:name:abbrev:medium"] = true,
+      ["tx:name:abbrev:long"] = true,
+
+      ["tx:name:veryshort:uppercase"] = true,
+      ["tx:name:short:uppercase"] = true,
+      ["tx:name:medium:uppercase"] = true,
+      ["tx:name:long:uppercase"] = true,
+
+      ["tx:name:abbrev:veryshort:uppercase"] = true,
+      ["tx:name:abbrev:short:uppercase"] = true,
+      ["tx:name:abbrev:medium:uppercase"] = true,
+      ["tx:name:abbrev:long:uppercase"] = true,
+
+      ["tx:power:percent"] = true,
+      ["tx:power:percent:nosign"] = true,
+      ["tx:smartpower"] = true,
+      ["tx:smartpower:percent"] = true,
+      ["tx:smartpower:percent:nosign"] = true,
+    }
+
+    F.Table.Crush(UF.overrideTags, overrideTags)
   end
 
   -- Settings Callback
