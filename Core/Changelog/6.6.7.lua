@@ -4,6 +4,7 @@ TXUI.Changelog["6.6.7"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove " .. F.String.ToxiUI("[tx:group:raid]") .. " tag" .. F.String.Sublist("It was buggy and not used anywhere"),
 
     "* New features",
 
@@ -17,6 +18,7 @@ TXUI.Changelog["6.6.7"] = {
     "Fix Raid UnitFrames overlapping" --
       .. F.String.Sublist("Change Growth direction for Horizontal layout")
       .. F.String.Sublist("Change Raid 3 frame size to match other raid frames"),
+    "Change veryshort name tag's limit to 4 instead of 5",
 
     "* Documentation",
     F.String.MinElv("13.66"),

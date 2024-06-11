@@ -162,7 +162,7 @@ function M:Tags()
   end
 
   -- Name tags
-  local nameLength = { veryshort = 5, short = 10, medium = 15, long = 20 }
+  local nameLength = { veryshort = 4, short = 10, medium = 15, long = 20 }
   for textFormat, length in pairs(nameLength) do
     E:AddTag(format("tx:name:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_FACTION", function(unit)
       local name = UnitName(unit)
@@ -479,38 +479,6 @@ function M:Tags()
     return (FormatColorTag("Lv ", unit, reverseGradient) or "Lv") .. coloredLvl
   end)
 
-  -- Group Tag
-  local validGroups = {
-    [1] = true,
-    [6] = true,
-    [11] = true,
-    [16] = true,
-    [21] = true,
-    [26] = true,
-    [31] = true,
-    [36] = true,
-  }
-
-  E:AddTag("tx:group:raid", "GROUP_ROSTER_UPDATE", function(unit)
-    if IsInRaid() then
-      local name, realm = UnitName(unit)
-      if name then
-        local nameRealm = (realm and realm ~= "" and format("%s-%s", name, realm)) or name
-        for i = 1, GetNumGroupMembers() do
-          local raidName, _, group = GetRaidRosterInfo(i)
-          if raidName == nameRealm then
-            -- This will work only with full groups
-            if validGroups[i] then
-              return "Group " .. group
-            else
-              return nil -- Group has already been encountered, return nil
-            end
-          end
-        end
-      end
-    end
-  end)
-
   -- Credits to ElvUI [classification:icon]
   do
     local icon = F.String.ConvertGlyph(59706) -- star (xp) icon
@@ -562,15 +530,6 @@ function M:Tags()
     end
     -- Classification
     E:AddTagInfo("tx:classification", TagNames.GENERAL, "Displays a silver or gold " .. TXUI.Title .. " star for rare & elite monsters")
-
-    -- Raid group
-    E:AddTagInfo(
-      "tx:group:raid",
-      TagNames.GENERAL,
-      "Displays raid group number with a 'Group' prefix for the first unit in a group. (e.g. Group 1) "
-        .. F.String.Error("Warning: ")
-        .. "This will work only for full proper groups!"
-    )
   end
 
   -- Tag info: Names
@@ -587,7 +546,7 @@ function M:Tags()
 
     -- Lengths and their descriptions
     local lengths = {
-      { name = "veryshort", limit = 5 },
+      { name = "veryshort", limit = 4 },
       { name = "short", limit = 10 },
       { name = "medium", limit = 15 },
       { name = "long", limit = 20 },
