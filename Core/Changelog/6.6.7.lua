@@ -24,5 +24,7 @@ TXUI.Changelog["6.6.7"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Refactor Raid Frames profile" --
+      .. F.String.Sublist("Raid frames are now identical except for visibility field"),
   },
 }

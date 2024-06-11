@@ -1334,96 +1334,100 @@ function PF:BuildProfile()
     })
   )
 
+  local raidFramesTable = {
+    enable = true,
+    width = F.Dpi(80),
+    height = F.Dpi(35),
+
+    -- UnitFrame Raid1 Options
+    groupBy = "GROUP",
+    groupSpacing = 10,
+    groupsPerRowCol = 1,
+    growthDirection = "RIGHT_UP",
+    horizontalSpacing = F.Dpi(1),
+    numGroups = 8,
+    raidWideSorting = false,
+    startFromCenter = false,
+    verticalSpacing = F.Dpi(1),
+
+    -- UnitFrame Raid1 Custom Texts
+    customTexts = {
+      -- UnitFrame Raid1 Custom Texts Name
+      ["!Name"] = createCustomText({}, {
+        attachTextTo = "Frame",
+        text_format = "[tx:name:veryshort]",
+        justifyH = "CENTER",
+        xOffset = F.Dpi(0),
+        yOffset = F.Dpi(0),
+      }),
+
+      ["!Group"] = createCustomText({}, {
+        attachTextTo = "Frame",
+        text_format = "[group:raid]",
+        justifyH = "RIGHT",
+        xOffset = -2,
+        yOffset = -10,
+      }),
+    },
+
+    -- UnitFrame Raid1 Heal Prediction
+    healPrediction = {
+      enable = true,
+      absorbStyle = "REVERSED",
+    },
+
+    -- UnitFrame Raid1 Raid Debuffs
+    rdebuffs = {
+      enable = true,
+      size = F.Dpi(20),
+      yOffset = F.Dpi(5),
+
+      duration = {
+        color = F.Table.HexToRGB("#fff0ea"),
+      },
+
+      stack = {
+        color = F.Table.HexToRGB("#ffe900"),
+        position = "BOTTOMRIGHT",
+        yOffset = F.Dpi(0),
+      },
+    },
+
+    -- UnitFrame Raid1 Ready Check Icon
+    readycheckIcon = {
+      size = F.Dpi(24),
+    },
+
+    -- UnitFrame Raid1 Role Icon
+    roleIcon = {
+      enable = true,
+      damager = false,
+      position = "BOTTOMLEFT",
+      size = F.Dpi(20),
+      xOffset = 0,
+      yOffset = 2,
+    },
+
+    raidRoleIcons = {
+      enable = true,
+      scale = 2,
+      yOffset = F.Dpi(6),
+    },
+
+    -- Disable UnitFrame Raid1 health text
+    health = { text_format = "" },
+    -- Disable UnitFrame Raid1 name text
+    name = { text_format = "" },
+    -- Disable UnitFrame Raid1 power
+    power = { enable = false },
+  }
+
   -- UnitFrame Raid1
   F.Table.Crush(
     pf.unitframe.units.raid1,
+    raidFramesTable,
     {
-      enable = true,
-      width = F.Dpi(80),
-      height = F.Dpi(35),
-
-      -- UnitFrame Raid1 Options
-      groupBy = "GROUP",
-      groupSpacing = 10,
-      groupsPerRowCol = 1,
-      growthDirection = "RIGHT_UP",
-      horizontalSpacing = F.Dpi(1),
-      numGroups = 8,
-      raidWideSorting = false,
-      startFromCenter = false,
-      verticalSpacing = F.Dpi(1),
       visibility = TXUI.IsRetail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
-
-      -- UnitFrame Raid1 Custom Texts
-      customTexts = {
-        -- UnitFrame Raid1 Custom Texts Name
-        ["!Name"] = createCustomText({}, {
-          attachTextTo = "Frame",
-          text_format = "[tx:name:veryshort]",
-          justifyH = "CENTER",
-          xOffset = F.Dpi(0),
-          yOffset = F.Dpi(0),
-        }),
-
-        ["!Group"] = createCustomText({}, {
-          attachTextTo = "Frame",
-          text_format = "[group:raid]",
-          justifyH = "RIGHT",
-          xOffset = -2,
-          yOffset = -10,
-        }),
-      },
-
-      -- UnitFrame Raid1 Heal Prediction
-      healPrediction = {
-        enable = true,
-        absorbStyle = "REVERSED",
-      },
-
-      -- UnitFrame Raid1 Raid Debuffs
-      rdebuffs = {
-        enable = true,
-        size = F.Dpi(20),
-        yOffset = F.Dpi(5),
-
-        duration = {
-          color = F.Table.HexToRGB("#fff0ea"),
-        },
-
-        stack = {
-          color = F.Table.HexToRGB("#ffe900"),
-          position = "BOTTOMRIGHT",
-          yOffset = F.Dpi(0),
-        },
-      },
-
-      -- UnitFrame Raid1 Ready Check Icon
-      readycheckIcon = {
-        size = F.Dpi(24),
-      },
-
-      -- UnitFrame Raid1 Role Icon
-      roleIcon = {
-        enable = true,
-        damager = false,
-        position = "BOTTOMLEFT",
-        size = F.Dpi(20),
-        xOffset = 0,
-        yOffset = 2,
-      },
-
-      raidRoleIcons = {
-        enable = true,
-        scale = 2,
-        yOffset = F.Dpi(6),
-      },
-
-      -- Disable UnitFrame Raid1 health text
-      health = { text_format = "" },
-      -- Disable UnitFrame Raid1 name text
-      name = { text_format = "" },
-      -- Disable UnitFrame Raid1 power
-      power = { enable = false },
     },
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
       -- UnitFrame Raid Healer Layout
@@ -1434,93 +1438,9 @@ function PF:BuildProfile()
   -- UnitFrame Raid2
   F.Table.Crush(
     pf.unitframe.units.raid2,
+    raidFramesTable,
     {
-      enable = true,
-      width = F.Dpi(80),
-      height = F.Dpi(35),
-
-      -- UnitFrame Raid2 Options
-      groupBy = "GROUP",
-      groupSpacing = 10,
-      groupsPerRowCol = 1,
-      growthDirection = "RIGHT_UP",
-      horizontalSpacing = F.Dpi(1),
-      numGroups = 8,
-      raidWideSorting = false,
-      startFromCenter = false,
-      verticalSpacing = F.Dpi(1),
       visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
-
-      -- UnitFrame Raid2 Custom Texts
-      customTexts = {
-        -- UnitFrame Raid2 Custom Texts Name
-        ["!Name"] = createCustomText({}, {
-          attachTextTo = "Frame",
-          text_format = "[tx:name:veryshort]",
-          justifyH = "CENTER",
-          xOffset = F.Dpi(0),
-          yOffset = F.Dpi(0),
-        }),
-
-        ["!Group"] = createCustomText({}, {
-          attachTextTo = "Frame",
-          text_format = "[group:raid]",
-          justifyH = "RIGHT",
-          xOffset = -2,
-          yOffset = -10,
-        }),
-      },
-
-      -- UnitFrame Raid2 Heal Prediction
-      healPrediction = {
-        enable = true,
-        absorbStyle = "REVERSED",
-      },
-
-      -- UnitFrame Raid2 Raid Debuffs
-      rdebuffs = {
-        enable = true,
-        size = F.Dpi(20),
-        yOffset = F.Dpi(5),
-
-        duration = {
-          color = F.Table.HexToRGB("#fff0ea"),
-        },
-
-        stack = {
-          color = F.Table.HexToRGB("#ffe900"),
-          position = "BOTTOMRIGHT",
-          yOffset = F.Dpi(0),
-        },
-      },
-
-      -- UnitFrame Raid2 Ready Check Icon
-      readycheckIcon = {
-        size = F.Dpi(24),
-      },
-
-      -- UnitFrame Raid2 Role Icon
-      roleIcon = {
-        enable = true,
-        damager = false,
-        position = "BOTTOMLEFT",
-        size = F.Dpi(20),
-        xOffset = 0,
-        yOffset = 2,
-      },
-
-      raidRoleIcons = {
-        enable = true,
-        scale = 2,
-        yOffset = F.Dpi(6),
-      },
-
-      -- Disable UnitFrame Raid2 health text
-      health = { text_format = "" },
-      -- Disable UnitFrame Raid2 name text
-      name = { text_format = "" },
-      -- Disable UnitFrame Raid2 power
-      power = { enable = false },
     },
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
       -- UnitFrame Raid2 Healer Layout
@@ -1531,94 +1451,9 @@ function PF:BuildProfile()
   -- UnitFrame Raid3
   F.Table.Crush(
     pf.unitframe.units.raid3,
+    raidFramesTable,
     {
-      enable = true,
-      width = F.Dpi(80),
-      height = F.Dpi(35),
-
-      -- UnitFrame Raid3 Options
-      groupBy = "ROLE",
-      groupSpacing = 10,
-      groupsPerRowCol = 1,
-      growthDirection = "RIGHT_UP",
-      horizontalSpacing = F.Dpi(1),
-      numGroups = 8,
-      raidWideSorting = false,
-      startFromCenter = false,
-      verticalSpacing = F.Dpi(1),
       visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
-
-      -- UnitFrame Raid3 Custom Texts
-      customTexts = {
-        -- UnitFrame Raid3 Custom Texts Name
-        ["!Name"] = createCustomText({}, {
-          attachTextTo = "Frame",
-          text_format = "[tx:name:veryshort]",
-          justifyH = "CENTER",
-          xOffset = F.Dpi(0),
-          yOffset = F.Dpi(0),
-        }),
-
-        ["!Group"] = createCustomText({}, {
-          attachTextTo = "Frame",
-          text_format = "[group:raid]",
-          justifyH = "RIGHT",
-          xOffset = -2,
-          yOffset = -6,
-        }),
-      },
-
-      -- UnitFrame Raid3 Heal Prediction
-      healPrediction = {
-        absorbStyle = "REVERSED",
-        enable = true,
-      },
-
-      -- UnitFrame Raid3 Raid Debuffs
-      rdebuffs = {
-        enable = true,
-        size = F.Dpi(18),
-        xOffset = F.Dpi(0),
-        yOffset = F.Dpi(4),
-
-        duration = {
-          color = F.Table.HexToRGB("#fff0ea"),
-        },
-
-        stack = {
-          color = F.Table.HexToRGB("#ffe900"),
-          position = "BOTTOMRIGHT",
-          yOffset = F.Dpi(0),
-        },
-      },
-
-      -- UnitFrame Raid3 Ready Check Icon
-      readycheckIcon = {
-        size = F.Dpi(24),
-      },
-
-      -- UnitFrame Raid3 Role Icon
-      roleIcon = {
-        enable = true,
-        damager = false,
-        position = "BOTTOMLEFT",
-        size = F.Dpi(20),
-        xOffset = 0,
-        yOffset = 2,
-      },
-
-      raidRoleIcons = {
-        enable = true,
-        scale = 2,
-        yOffset = F.Dpi(6),
-      },
-
-      -- Disable UnitFrame Raid3 health text
-      health = { text_format = "" },
-      -- Disable UnitFrame Raid3 name text
-      name = { text_format = "" },
-      -- Disable UnitFrame Raid3 power
-      power = { enable = false },
     },
     F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
       -- UnitFrame Raid3 Healer Layout
