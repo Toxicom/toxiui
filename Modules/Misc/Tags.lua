@@ -161,7 +161,7 @@ function M:Tags()
   end
 
   -- Name tags
-  local nameLength = { veryshort = 4, short = 10, medium = 15, long = 20 }
+  local nameLength = { veryshort = 5, short = 10, medium = 15, long = 20 }
   for textFormat, length in pairs(nameLength) do
     E:AddTag(format("tx:name:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_FACTION", function(unit)
       local name = UnitName(unit)
@@ -545,7 +545,7 @@ function M:Tags()
 
     -- Lengths and their descriptions
     local lengths = {
-      { name = "veryshort", limit = 4 },
+      { name = "veryshort", limit = 5 },
       { name = "short", limit = 10 },
       { name = "medium", limit = 15 },
       { name = "long", limit = 20 },
