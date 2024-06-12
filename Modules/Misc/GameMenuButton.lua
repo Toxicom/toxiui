@@ -55,7 +55,7 @@ function M:GameMenuButton()
   -- Vars
   local buttonWidth, buttonHeight = GameMenuButtonLogout:GetSize()
 
-  local db = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
+  local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
 
   -- ToxiUI Button Holder
   local buttonHolder = CreateFrame("Frame", nil, GameMenuFrame)
@@ -272,23 +272,28 @@ function M:GameMenuButton()
       if buttonHolder.backgroundFade.guildText and buttonHolder.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
 
-        local fallback = db and db[0] or ""
-        local specIcon
+        local fallback = iconsDb and iconsDb[0] or ""
+        local specIcon = "none"
 
         if TXUI.IsRetail then
           local _, classId = UnitClassBase("player")
           local specIndex = GetSpecialization()
           local id = GetSpecializationInfoForClassID(classId, specIndex)
 
-          if id and db then specIcon = db[id] end
+          if id and iconsDb then specIcon = iconsDb[id] end
         else
           local spec
           local talents = GetActiveTalentGroup()
 
           if talents then spec = SS:GetWrathCacheForSpec(talents) end
 
-          if spec.id and db then specIcon = db[spec.id] end
+          if spec.id and iconsDb then specIcon = iconsDb[spec.id] end
         end
+
+        F.Log.Dev(fallback, "fallback")
+        F.Log.Dev(specIcon, "specIcon")
+        F.Log.Dev(iconsDb, "iconsDb")
+        F.Log.Dev(specIcon and specIcon or fallback, "condition")
 
         buttonHolder.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
         buttonHolder.backgroundFade.levelText:SetText(
