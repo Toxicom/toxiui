@@ -290,11 +290,6 @@ function M:GameMenuButton()
           if spec.id and iconsDb then specIcon = iconsDb[spec.id] end
         end
 
-        F.Log.Dev(fallback, "fallback")
-        F.Log.Dev(specIcon, "specIcon")
-        F.Log.Dev(iconsDb, "iconsDb")
-        F.Log.Dev(specIcon and specIcon or fallback, "condition")
-
         buttonHolder.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
         buttonHolder.backgroundFade.levelText:SetText(
           "Lv " .. E.mylevel .. " " .. F.String.GradientClass((specIcon and specIcon or fallback) .. " " .. E.myLocalizedClass, nil, true)
