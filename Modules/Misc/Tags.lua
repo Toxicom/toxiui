@@ -6,6 +6,7 @@ local ElvUF = E.oUF
 local ipairs = ipairs
 local select = select
 local floor = math.floor
+local match = string.match
 local uppercase = string.upper
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
@@ -69,8 +70,10 @@ local reverseUnitsTable = {
 }
 
 function M:Tags()
+  local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
   local classIcon = [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\]] .. iconTheme .. [[:32:32:0:0:512:512:%s|t]]
+  -- x1:x2:y1:y2
   local classIcons = {
     WARRIOR = "0:64:0:64",
     MAGE = "64:128:0:64",
@@ -424,11 +427,25 @@ function M:Tags()
     return ColorSmartPowerTag(unit, true)
   end)
 
+  local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
+
   -- Class Icon Tag
   E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED", function(unit)
     if UnitIsPlayer(unit) then
       local _, class = UnitClass(unit)
       local icon = classIcons[class]
+
+      if usingSpecIcons then
+        local fallback = iconsDb and iconsDb[0] or ""
+        local specIcon = "none"
+
+        local info = E:GetUnitSpecInfo(unit)
+
+        if info.id and iconsDb then specIcon = iconsDb[info.id] end
+
+        return specIcon and specIcon or fallback
+      end
+
       if icon then return format(classIcon, icon) end
     end
   end)

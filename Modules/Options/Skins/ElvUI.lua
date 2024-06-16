@@ -524,19 +524,34 @@ function O:Skins_ElvUI()
     classIconsGroup.empty = {
       order = self:GetOrder(),
       type = "description",
-      name = "\n",
+      name = "\n\n" .. F.String.ToxiUI("Information: ") .. "Spec Icons on " .. F.String.ElvUI() .. " UnitFrames are available only for Retail!\n\n",
     }
 
     classIconsGroup.style = {
       order = self:GetOrder(),
       type = "select",
       name = "Style",
-      values = {
-        ToxiClasses = TXUI.Title,
-        UggColored = F.String.Ugg() .. " " .. F.String.Rainbow("Colored"),
-        UggColoredStroke = F.String.Ugg() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
-        UggWhiteStroke = F.String.Ugg() .. " White Stroke",
-      },
+      values = function()
+        local tbl = {
+          ToxiClasses = TXUI.Title,
+          UggColored = F.String.Ugg() .. " " .. F.String.Rainbow("Colored"),
+          UggColoredStroke = F.String.Ugg() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
+          UggWhiteStroke = F.String.Ugg() .. " White Stroke",
+        }
+
+        if TXUI.IsRetail then
+          local retailTable = {
+            ToxiSpecColored = TXUI.Title .. " Spec Colored",
+            ToxiSpecColoredStroke = TXUI.Title .. " Spec Colored Stroke",
+            ToxiSpecWhite = TXUI.Title .. " Spec White",
+            ToxiSpecWhiteStroke = TXUI.Title .. " Spec White Stroke",
+          }
+
+          F.Table.Crush(tbl, retailTable)
+        end
+
+        return tbl
+      end,
       get = function()
         return E.db.TXUI.elvUIIcons.classIcons.theme
       end,
