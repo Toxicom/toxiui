@@ -69,7 +69,7 @@ local reverseUnitsTable = {
   ["boss8"] = true,
 }
 
-function getCoordinates(col, row)
+local function getCoordinates(col, row)
   local width = 64
   local height = 64
 
