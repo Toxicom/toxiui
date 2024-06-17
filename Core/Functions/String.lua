@@ -456,10 +456,14 @@ function F.String.GradientClass(text, class, reverse)
     local left = colorMap[1][unitClass] -- Left (player UF)
     local right = colorMap[2][unitClass] -- Right (player UF)
 
-    if not reverse then
-      return F.String.FastGradient(text, left.r, left.g, left.b, right.r, right.g, right.b)
+    if left and left.r and right and right.r then
+      if not reverse then
+        return F.String.FastGradient(text, left.r, left.g, left.b, right.r, right.g, right.b)
+      else
+        return F.String.FastGradient(text, right.r, right.g, right.b, left.r, left.g, left.b)
+      end
     else
-      return F.String.FastGradient(text, right.r, right.g, right.b, left.r, left.g, left.b)
+      return text
     end
   else
     return text

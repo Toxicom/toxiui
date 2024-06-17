@@ -1280,7 +1280,7 @@ function A:UpdateLineColors()
         local left = colorMap[1][E.myclass] -- Left (player UF)
         local right = colorMap[2][E.myclass] -- Right (player UF)
 
-        if left.r and right.r then
+        if left and left.r and right and right.r then
           top:SetGradient(orientation, { r = left.r, g = left.g, b = left.b, a = alpha }, { r = right.r, g = right.g, b = right.b, a = alpha })
           bottom:SetGradient(orientation, { r = left.r, g = left.g, b = left.b, a = alpha }, { r = right.r, g = right.g, b = right.b, a = alpha })
         else
