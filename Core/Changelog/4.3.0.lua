@@ -19,7 +19,7 @@ TXUI.Changelog["4.3.0"] = {
     "Tooltip font size 13 -> 14",
     "Tooltip health font changed",
     "Minimap button bar now shows 2 buttons per row to avoid overlap with Raid Markers",
-    "Changed item level font in Armory",
+    "Changed item level font in " .. F.String.Menu.Armory(),
     "Disabled target castbar icon",
     "Update Objective Tracker" --
       .. F.String.Sublist("Header font size reduced to 22")

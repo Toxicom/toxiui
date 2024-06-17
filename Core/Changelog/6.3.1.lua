@@ -37,6 +37,6 @@ TXUI.Changelog["6.3.1"] = {
     "New changelog format, please provide feedback if this is easier to read",
     "Update installer dialog texts & information",
     "Update " .. TXUI.Title .. " brand color from " .. F.String.Color("old", "00e4f5") .. " to " .. F.String.ToxiUI("new") .. " to better match the " .. TXUI.Title .. " logo",
-    F.String.ToxiUI("Wrath: ") .. "Add link to " .. F.String.WrathArmory() .. " in " .. TXUI.Title .. " Armory settings",
+    F.String.ToxiUI("Wrath: ") .. "Add link to " .. F.String.WrathArmory() .. " in " .. TXUI.Title .. " " .. F.String.Menu.Armory() .. " settings",
   },
 }

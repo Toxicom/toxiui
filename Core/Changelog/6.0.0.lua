@@ -14,7 +14,7 @@ TXUI.Changelog["6.0.0"] = {
     "WunderBar: Covenant Hearthstones are now chosen dynamically, just in time for Dragonflight!",
     "First Wrath Release, please report all bugs in "
       .. F.String.Good("GitHub") --
-      .. F.String.Sublist("Deconstruct & Armory: Not available currently")
+      .. F.String.Sublist("Deconstruct & " .. F.String.Menu.Armory() .. ": Not available currently")
       .. F.String.Sublist("Known Issue: DataBar tooltip currently broken in " .. F.String.ElvUI("ElvUI")),
 
     "* Bug fixes",

@@ -10,6 +10,7 @@ TXUI.Changelog["6.6.8"] = {
       .. " Specialization icons for UnitFrames & Details!"
       .. F.String.Sublist("UnitFrame icons are available only for Retail due to API constraints")
       .. F.String.Sublist("Change in " .. TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
+    "Add Line Height option for " .. F.String.Menu.Armory() .. " decorative lines",
 
     "* Bug fixes",
 

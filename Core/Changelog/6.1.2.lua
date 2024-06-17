@@ -5,11 +5,11 @@ TXUI.Changelog["6.1.2"] = {
   CHANGES = {
     "* New features",
     "Evoker spec icons. Credits to " .. F.String.WunderUI(),
-    "Armory: Socket warning for neck slot. Credits to " .. F.String.Epic("Ryada"),
+    F.String.Menu.Armory() .. ": Socket warning for neck slot. Credits to " .. F.String.Epic("Ryada"),
 
     "* Bug fixes",
     "Fix Gradient Mode's Dead unit color",
-    "Armory: Update enchant slots for Dragonflight",
+    F.String.Menu.Armory() .. ": Update enchant slots for Dragonflight",
     "VehicleBar: Fix taint that would happen during combat while mounting. Credits to " .. F.String.Epic("Ryada"),
 
     "* Profile updates",

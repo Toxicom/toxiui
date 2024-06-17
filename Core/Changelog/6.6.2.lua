@@ -4,7 +4,9 @@ TXUI.Changelog["6.6.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* New features",
-    "Enabled Armory for Cataclysm Classic " --
+    "Enabled "
+      .. F.String.Menu.Armory()
+      .. " for Cataclysm Classic " --
       .. F.String.Error("[BETA]")
       .. F.String.Sublist("Very early testing phase")
       .. F.String.Sublist("Some features missing and not sure if will be brought back")
@@ -21,10 +23,10 @@ TXUI.Changelog["6.6.2"] = {
     "* Bug fixes",
     "Attempt to fix moving action bars",
     "Fix WunderBar's SpecSwitch to accurately show dual spec",
-    "Fix typo in Armory",
+    "Fix typo in " .. F.String.Menu.Armory(),
     "Paladin spec icons not showing",
     "Enable Adventure Guide in WunderBar for Cataclysm Classic",
-    "Add missing enchant to head slot for Retail Armory",
+    "Add missing enchant to head slot for Retail " .. F.String.Menu.Armory(),
     "Stance Bar was lost on Classic style ActionBars",
 
     "* Profile updates",

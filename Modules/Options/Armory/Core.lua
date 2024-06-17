@@ -329,6 +329,17 @@ function O:Armory()
         isPercent = true,
         disabled = optionsDisabled,
       }
+
+      -- Line Height
+      linesGroup.height = {
+        order = self:GetOrder(),
+        type = "range",
+        name = "Line Height",
+        min = 1,
+        max = 5,
+        step = 1,
+        disabled = optionsDisabled,
+      }
     end
   end
 

@@ -4,7 +4,7 @@ TXUI.Changelog["5.2.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* Bug fixes",
-    "ArmoryMode: Fixed an error with non-english clients",
+    F.String.Menu.Armory() .. ": Fixed an error with non-english clients",
 
     "* Profile updates",
     "WindTools: Enable BlizzMoveFrames module",

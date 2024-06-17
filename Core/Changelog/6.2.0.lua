@@ -5,7 +5,7 @@ TXUI.Changelog["6.2.0"] = {
   CHANGES = {
     "* Bug fixes",
     "Fix scaling at 5k resolution. Credits to " .. F.String.Class("Nikipe", "MAGE"),
-    "Armory: Update API variable used for weapon item class. Credits to " .. F.String.Beta("Stiimo"),
+    F.String.Menu.Armory() .. ": Update API variable used for weapon item class. Credits to " .. F.String.Beta("Stiimo"),
     "WunderBar: Fix DataText's tooltips by creating virtual frames. Credits to " .. F.String.Beta("Stiimo") .. " & " .. F.String.Class("ElvUI WindTools", "SHAMAN"),
 
     "* Documentation",

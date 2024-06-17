@@ -1252,9 +1252,13 @@ function A:UpdateLines()
     local classColor = E:ClassColor(E.myclass, true)
     local r, g, b = classColor.r, classColor.g, classColor.b
     local alpha = self.db.lines.alpha
+    local height = self.db.lines.height
 
     self.frame.topLine.Texture:SetColorTexture(r, g, b, alpha)
     self.frame.bottomLine.Texture:SetColorTexture(r, g, b, alpha)
+
+    self.frame.topLine:SetHeight(height)
+    self.frame.bottomLine:SetHeight(height)
   else
     self.frame.topLine.Texture:SetColorTexture(0, 0, 0, 0)
     self.frame.bottomLine.Texture:SetColorTexture(0, 0, 0, 0)
@@ -1337,7 +1341,7 @@ function A:CreateElements()
 
   self.frame.TXBackground = background
 
-  local lineHeight = 1
+  local lineHeight = E.db.TXUI.armory.lines.height or 1
   local topLine = CreateFrame("Frame", nil, self.frameHolder)
   local bottomLine = CreateFrame("Frame", nil, self.frameHolder)
   local classColor = E:ClassColor(E.myclass, true)

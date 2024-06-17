@@ -17,7 +17,7 @@ TXUI.Changelog["6.4.0"] = {
     "Changing images in installer dialog" .. F.String.Sublist("Example in Additional Addons step of installer"),
     "Custom ElvUI tag for power" .. F.String.Sublist("Same as before, but hides when power is 0"),
     "Create separate profiles for " .. F.String.OmniCD() .. " depending on " .. F.String.ToxiUI("DPS/Tank") .. " or " .. F.String.Class("Healer", "MONK") .. " layout selected",
-    F.String.GradientString() .. F.String.Class(" class color") .. " font options for " .. TXUI.Title .. " Armory",
+    F.String.GradientString() .. F.String.Class(" class color") .. " font options for " .. TXUI.Title .. " " .. F.String.Menu.Armory(),
     F.String.GradientString() .. " UnitFrame text tags in Dark Mode" .. F.String.Sublist("Credits to " .. F.String.Eltreum() .. " and " .. F.String.ElvUI("ElvUI discord")),
     F.String.GradientString() .. " Details texts in Dark Mode" .. F.String.Sublist("Disabled by default") .. F.String.Sublist(
       "Enable in " .. F.String.Menu.Themes() .. " -> Dark Mode -> " .. F.String.Class("Gradient name")

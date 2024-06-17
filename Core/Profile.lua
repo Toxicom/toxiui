@@ -482,6 +482,7 @@ P.armory = {
   lines = {
     enabled = true,
     alpha = 0.6,
+    height = 1,
   },
 
   stats = {

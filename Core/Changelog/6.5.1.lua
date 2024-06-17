@@ -43,7 +43,7 @@ TXUI.Changelog["6.5.1"] = {
       .. F.String.Sublist("Move Level text down")
       .. F.String.Sublist("Disable Class Icon"),
     "Add Hearthstone of the Flame to WunderBar's Hearthstone Module",
-    "Update Armory's Item Level coloring for 10.2",
+    "Update " .. F.String.Menu.Armory() .. "'s Item Level coloring for 10.2",
 
     "* Documentation",
     F.String.MinElv("13.53"),

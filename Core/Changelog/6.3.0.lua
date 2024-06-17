@@ -26,7 +26,7 @@ TXUI.Changelog["6.3.0"] = {
     "Update " .. F.String.ToxiUI("Interrupt not ready Cast Color") .. " mod for Plater",
 
     "* Bug fixes",
-    "Fix " .. TXUI.Title .. " Armory module's item level colors bug",
+    "Fix " .. TXUI.Title .. F.String.Menu.Armory() .. " module's item level colors bug",
     "Add missing Augmentation Evoker data & icons. Credits to " .. F.String.WunderUI(),
 
     "* Development improvements",

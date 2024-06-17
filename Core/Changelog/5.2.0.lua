@@ -3,7 +3,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["5.2.0"] = {
   CHANGES = {
     "* New features",
-    "Armory: Character Sheet module stylised for " .. TXUI.Title,
+    F.String.Menu.Armory() .. ": Character Sheet module stylised for " .. TXUI.Title,
     "VehicleBar: A Fork of the S&L Vehicle Bar",
     "MiniMapCoords: Display Coordinates on the Minimap",
     "RoleIcons: New module for custom Role Icons with updated icons",

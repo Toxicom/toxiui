@@ -5,8 +5,8 @@ TXUI.Changelog["6.6.5"] = {
   CHANGES = {
     "* Bug fixes",
     "Remove season property from some mage portals",
-    "Fix Armory's missing enchants showing too early",
-    "Fix Armory's neck slot missing sockets showing on Cataclysm Classic",
+    "Fix " .. F.String.Menu.Armory() .. "'s missing enchants showing too early",
+    "Fix " .. F.String.Menu.Armory() .. "'s neck slot missing sockets showing on Cataclysm Classic",
 
     "* Profile updates",
     "Reduce deconstruct's label font size",
