@@ -24,7 +24,7 @@ function O:Skins_ClassIcons()
   self:AddSpacer(options)
 
   do
-    local infoGroup = self:AddInlineDesc(options, {
+    self:AddInlineDesc(options, {
       name = "Spec Icons Information",
     }, {
       name = "Spec Icons on "
