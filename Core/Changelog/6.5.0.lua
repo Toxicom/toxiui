@@ -67,13 +67,13 @@ TXUI.Changelog["6.5.0"] = {
     "Update " .. F.String.ToxiUI("Open Installer") .. " button text",
     "Add " .. F.String.Class("Status Report", "MONK") .. " button to General settings",
     "Refactor the "
-      .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+      .. F.String.Menu.Skins()
       .. " options:" --
       .. F.String.Sublist("Update descriptions to be more accurate")
       .. F.String.Sublist("Split existing options to a new Group Icons tab")
       .. F.String.Sublist("Split existing options to a new Raid Role Icons tab"),
     "Update " --
-      .. F.String.FastGradientHex("WunderBar", "#98ee99", "#338a3e")
+      .. F.String.Menu.WunderBar()
       .. " settings:"
       .. F.String.Sublist("Update descriptions be more accurate and informative")
       .. F.String.Sublist("Rename Modules -> Module Positions")

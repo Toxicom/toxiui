@@ -39,7 +39,7 @@ function O:Styles_ActionBars()
         .. "With this style the ActionBars are mouseover at the bottom, right above the WunderBar.\n\n"
         .. F.String.ToxiUI("Information: ")
         .. "If you'd still like to display ActionBars while in WeakAuras style, navigate to the "
-        .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+        .. F.String.Menu.Skins()
         .. " tab on the left and select "
         .. F.String.Class("ElvUI")
         .. " to find ActionBars Fade settings.\n\n",

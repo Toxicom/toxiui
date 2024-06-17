@@ -11,7 +11,7 @@ TXUI.Changelog["6.5.1"] = {
 
     "* New features",
     "New " --
-      .. F.String.FastGradientHex("Styles", "#ff26a8", "#a10355")
+      .. F.String.Menu.Styles()
       .. " tab in "
       .. TXUI.Title
       .. " Settings"
@@ -53,11 +53,11 @@ TXUI.Changelog["6.5.1"] = {
 
     "* Settings refactoring",
     "Move " --
-      .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91")
+      .. F.String.Menu.Plugins()
       .. " -> "
       .. F.String.Class("Others")
       .. " to "
-      .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+      .. F.String.Menu.Skins()
       .. " -> "
       .. F.String.Class("ElvUI"),
 

@@ -162,7 +162,8 @@ F.AddMedia("style", "WeakAuras")
 F.AddMedia("style", "Classic")
 F.AddMedia("style", "New")
 F.AddMedia("style", "Old")
-F.AddMedia("style", "IconStylesPreview")
+F.AddMedia("style", "ClassIconsPreview")
+F.AddMedia("style", "SpecIconsPreview")
 
 -- -----
 --   ARMORY BACKGROUNDS

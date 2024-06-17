@@ -16,7 +16,9 @@ local utf8lower = string.utf8lower
 local utf8sub = string.utf8sub
 local utf8upper = string.utf8upper
 
-F.String = {}
+F.String = {
+  Menu = {},
+}
 
 function F.String.Color(msg, color)
   if type(color) == "string" then
@@ -462,6 +464,50 @@ function F.String.GradientClass(text, class, reverse)
   else
     return text
   end
+end
+
+function F.String.Menu.General()
+  return F.String.FastGradientHex("General", "#fffd61", "#c79a00")
+end
+
+function F.String.Menu.Contacts()
+  return F.String.FastGradientHex("Contacts", "#ffa270", "#c63f17")
+end
+
+function F.String.Menu.Themes()
+  return F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3")
+end
+
+function F.String.Menu.WunderBar()
+  return F.String.FastGradientHex("WunderBar", "#98ee99", "#338a3e")
+end
+
+function F.String.Menu.Armory()
+  return F.String.FastGradientHex("Armory", "#6ff9ff", "#0095a8")
+end
+
+function F.String.Menu.Skins()
+  return F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+end
+
+function F.String.Menu.Styles()
+  return F.String.FastGradientHex("Styles", "#ff26a8", "#a10355")
+end
+
+function F.String.Menu.Fonts()
+  return F.String.FastGradientHex("Fonts", "#df78ef", "#790e8b")
+end
+
+function F.String.Menu.Plugins()
+  return F.String.FastGradientHex("Plugins", "#b085f5", "#4d2c91")
+end
+
+function F.String.Menu.Changelog()
+  return F.String.FastGradientHex("Changelog", "#8e99f3", "#26418f")
+end
+
+function F.String.Menu.Reset()
+  return F.String.FastGradientHex("Reset", "#ff867c", "#b61827")
 end
 
 -- Credits to WunderUI

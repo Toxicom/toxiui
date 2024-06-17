@@ -230,7 +230,7 @@ function PF:ElvUIFont()
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "!ClassIcon", I.Fonts.Primary, 24, "SHADOWOUTLINE" },
+            { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             TXUI.IsVanilla and { "!Power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
@@ -267,7 +267,7 @@ function PF:ElvUIFont()
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "!ClassIcon", I.Fonts.Primary, 24, "SHADOWOUTLINE" },
+            { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             { "!Classification", I.Fonts.Primary, 20, "SHADOWOUTLINE", true },
           },
 
@@ -330,7 +330,7 @@ function PF:ElvUIFont()
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "!ClassIcon", I.Fonts.Primary, 24, "SHADOWOUTLINE" },
+            { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           },
 
           buffs = {
@@ -367,7 +367,7 @@ function PF:ElvUIFont()
               { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
               { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
               { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-              { "!ClassIcon", I.Fonts.Primary, 24, "SHADOWOUTLINE" },
+              { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             },
 
             buffs = {
@@ -392,7 +392,7 @@ function PF:ElvUIFont()
               { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
               { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
               { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-              { "!ClassIcon", I.Fonts.Primary, 24, "SHADOWOUTLINE" },
+              { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             },
           })
         ),

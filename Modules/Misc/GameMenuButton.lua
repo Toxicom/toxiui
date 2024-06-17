@@ -158,7 +158,7 @@ function M:GameMenuButton()
             .. " Discord server if you ever need help or just want to chat! Check out the "
             .. TXUI.Title
             .. " settings "
-            .. F.String.Class("Contacts", "DRUID")
+            .. F.String.Menu.Contacts()
             .. " tab for links.",
           -- 5
           "The same "
@@ -208,7 +208,7 @@ function M:GameMenuButton()
           "These tips change each time you reload your UI or log in. Make sure to check them out since we keep adding new ones. Never know when you might learn something new! ;)",
           -- 16
           "You can switch to different "
-            .. F.String.FastGradientHex("Styles", "#ff26a8", "#a10355")
+            .. F.String.Menu.Styles()
             .. " in "
             .. TXUI.Title
             .. " settings!",
@@ -216,7 +216,7 @@ function M:GameMenuButton()
 
         local randomIndex = math.random(1, #randomTips)
         -- For debugging
-        -- local randomIndex = 12
+        -- randomIndex = 4
         local randomTip = randomTips[randomIndex]
 
         local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
@@ -273,7 +273,7 @@ function M:GameMenuButton()
         local guildName = GetGuildInfo("player")
 
         local fallback = iconsDb and iconsDb[0] or ""
-        local specIcon = "none"
+        local specIcon
 
         if TXUI.IsRetail then
           local _, classId = UnitClassBase("player")

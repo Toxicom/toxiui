@@ -5,7 +5,7 @@ TXUI.Changelog["6.5.2"] = {
   CHANGES = {
     "* New features",
     "Add option to toggle the ActionBars Fade visibility when in a Vehicle or DragonRiding"
-      .. F.String.Sublist(F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI") .. " -> " .. F.String.Class("ActionBars Fade", "ROGUE")),
+      .. F.String.Sublist(F.String.Menu.Skins() .. " -> " .. F.String.Class("ElvUI") .. " -> " .. F.String.Class("ActionBars Fade", "ROGUE")),
     "Add Right Click option to WunderBar's " --
       .. F.String.ToxiUI("Durability Module")
       .. " to summon "

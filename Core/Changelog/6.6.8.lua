@@ -9,18 +9,18 @@ TXUI.Changelog["6.6.8"] = {
     TXUI.Title
       .. " Specialization icons for UnitFrames & Details!"
       .. F.String.Sublist("UnitFrame icons are available only for Retail due to API constraints")
-      .. F.String.Sublist("Change in " .. TXUI.Title .. " -> " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
+      .. F.String.Sublist("Change in " .. TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
 
     "* Bug fixes",
 
     "* Profile updates",
-    "Update ClassIcon fonts for UnitFrames to accomodate the Spec Icons"
-      .. F.String.Sublist("If you don't want to run installer for this, just change all the !ClassIcon font sizes to 24~"),
 
     "* Documentation",
 
     "* Settings refactoring",
+    "Class Icons now have their own dedicated tab" .. F.String.Sublist(TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
 
     "* Development improvements",
+    "Add string functions for " .. TXUI.Title .. " settings menu names",
   },
 }

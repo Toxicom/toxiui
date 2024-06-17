@@ -21,7 +21,7 @@ TXUI.Changelog["6.6.0"] = {
     "Add Health Coloring to UnitFrames" --
       .. F.String.Sublist("Enabled by default")
       .. F.String.Sublist("Only works in " .. F.String.GradientString() .. " mode")
-      .. F.String.Sublist("All information and options can be found under " .. F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3") .. " -> Gradient Mode -> Settings"),
+      .. F.String.Sublist("All information and options can be found under " .. F.String.Menu.Themes() .. " -> Gradient Mode -> Settings"),
     "Add " .. F.String.ToxiUI("Equipment Sets") .. " DataText from " .. F.String.ElvUI() .. " to WunderBar",
     "Add 2 new Armory backgrounds featuring The War Within content",
 

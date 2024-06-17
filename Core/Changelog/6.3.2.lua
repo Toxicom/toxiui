@@ -10,8 +10,8 @@ TXUI.Changelog["6.3.2"] = {
       .. F.String.Sublist(F.String.Class("Wardrobe Frame"))
       .. F.String.Sublist(F.String.Class("Dressing Room"))
       .. F.String.Sublist(F.String.Class("Inspect Frame")),
-    "Add Background Fade for Game Menu" .. F.String.Sublist("Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
-    "Add " .. TXUI.Title .. " group Leader icon" .. F.String.Sublist("Customize it in " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.ElvUI()),
+    "Add Background Fade for Game Menu" .. F.String.Sublist("Customize it in " .. F.String.Menu.Skins() .. " -> " .. F.String.ElvUI()),
+    "Add " .. TXUI.Title .. " group Leader icon" .. F.String.Sublist("Customize it in " .. F.String.Menu.Skins() .. " -> " .. F.String.ElvUI()),
 
     "* Bug fixes",
     F.String.ElvUI() .. ": Force Priest class color",
@@ -32,10 +32,10 @@ TXUI.Changelog["6.3.2"] = {
     F.String.MinElv("13.40"),
 
     "* Settings refactoring",
-    "Move " .. TXUI.Title .. " Game Menu Button settings to " .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e") .. " -> " .. F.String.Class("ElvUI"),
+    "Move " .. TXUI.Title .. " Game Menu Button settings to " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("ElvUI"),
 
     "* Development improvements",
-    "Refactor " .. F.String.Scaling() .. " feature, it now has it's own separate tab in " .. F.String.FastGradientHex("Miscellaneous", "#b085f5", "#4d2c91"),
+    "Refactor " .. F.String.Scaling() .. " feature, it now has it's own separate tab in " .. F.String.Menu.Plugins(),
     "Make the '" .. F.String.ToxiUI("/tx install") .. "' command actually open the installer",
     "Add alias to open " .. TXUI.Title .. " Installer - '" .. F.String.ToxiUI("/tx i") .. "'",
   },

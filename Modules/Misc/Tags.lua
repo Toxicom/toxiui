@@ -69,6 +69,19 @@ local reverseUnitsTable = {
   ["boss8"] = true,
 }
 
+function getCoordinates(col, row)
+  local width = 64
+  local height = 64
+
+  local x1 = (col - 1) * width
+  local x2 = col * width
+  local y1 = (row - 1) * height
+  local y2 = row * height
+
+  -- Return the formatted string
+  return string.format("%d:%d:%d:%d", x1, x2, y1, y2)
+end
+
 function M:Tags()
   local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
@@ -88,6 +101,50 @@ function M:Tags()
     MONK = "128:192:128:192",
     DEMONHUNTER = "192:256:128:192",
     EVOKER = "256:320:0:64",
+  }
+
+  local specIcons = {
+    -- Retail
+    [0] = getCoordinates(8, 8), -- Unknown
+    [62] = getCoordinates(3, 2), -- Mage Arcane
+    [63] = getCoordinates(4, 2), -- Mage Fire
+    [64] = getCoordinates(5, 2), -- Mage Frost
+    [65] = getCoordinates(1, 3), -- Paladin Holy
+    [66] = getCoordinates(2, 3), -- Paladin Protection
+    [70] = getCoordinates(3, 3), -- Paladin Retribution
+    [71] = getCoordinates(8, 4), -- Warrior Arms
+    [72] = getCoordinates(1, 5), -- Warrior Fury
+    [73] = getCoordinates(2, 5), -- Warrior Protection
+    [102] = getCoordinates(4, 1), -- Druid Balance
+    [103] = getCoordinates(5, 1), -- Druid Feral
+    [104] = getCoordinates(6, 1), -- Druid Guardian
+    [105] = getCoordinates(7, 1), -- Druid Restoration
+    [250] = getCoordinates(1, 1), -- Death Knight Blood
+    [251] = getCoordinates(2, 1), -- Death Knight Frost
+    [252] = getCoordinates(3, 1), -- Death Knight Unholy
+    [253] = getCoordinates(8, 1), -- Hunter Beast Master
+    [254] = getCoordinates(1, 2), -- Hunter Marksmanship
+    [255] = getCoordinates(2, 2), -- Hunter Survival
+    [256] = getCoordinates(4, 3), -- Priest Discipline
+    [257] = getCoordinates(5, 3), -- Priest Holy
+    [258] = getCoordinates(6, 3), -- Priest Shadow
+    [259] = getCoordinates(7, 3), -- Rogue Assassination
+    [260] = getCoordinates(8, 3), -- Rogue Outlaw
+    [261] = getCoordinates(1, 4), -- Rogue Subtlety
+    [262] = getCoordinates(2, 4), -- Shaman Elemental
+    [263] = getCoordinates(3, 4), -- Shaman Enhancement
+    [264] = getCoordinates(4, 4), -- Shaman Restoration
+    [265] = getCoordinates(5, 4), -- Warlock Affliction
+    [266] = getCoordinates(6, 4), -- Warlock Demonology
+    [267] = getCoordinates(7, 4), -- Warlock Destruction
+    [268] = getCoordinates(6, 2), -- Monk Brewmaster
+    [269] = getCoordinates(8, 2), -- Monk Windwalker
+    [270] = getCoordinates(7, 2), -- Monk Mistweaver
+    [577] = getCoordinates(3, 5), -- Demon Hunter Havoc
+    [581] = getCoordinates(4, 5), -- Demon Hunter Vengeance
+    [1467] = getCoordinates(6, 5), -- Evoker Devastation
+    [1468] = getCoordinates(7, 5), -- Evoker Preservation
+    [1473] = getCoordinates(8, 5), -- Evoker Augmentation
   }
 
   local function SetGradientColorMapString(name, unitClass, reverseGradient)
@@ -436,14 +493,17 @@ function M:Tags()
       local icon = classIcons[class]
 
       if usingSpecIcons then
-        local fallback = iconsDb and iconsDb[0] or ""
-        local specIcon = "none"
+        local specIcon = ""
 
         local info = E:GetUnitSpecInfo(unit)
 
-        if info.id and iconsDb then specIcon = iconsDb[info.id] end
+        if info and info.id and iconsDb then
+          icon = specIcons[info.id]
 
-        return specIcon and specIcon or fallback
+          if icon then specIcon = format(classIcon, icon) end
+        end
+
+        return specIcon
       end
 
       if icon then return format(classIcon, icon) end
@@ -521,14 +581,7 @@ function M:Tags()
     E:AddTagInfo(
       "tx:classicon",
       TagNames.GENERAL,
-      "Displays "
-        .. TXUI.Title
-        .. " class icon. The class icon style can be customized in "
-        .. TXUI.Title
-        .. " settings -> "
-        .. F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
-        .. " -> "
-        .. F.String.ElvUI()
+      "Displays " .. TXUI.Title .. " class icon. The class icon style can be customized in " .. TXUI.Title .. " settings -> " .. F.String.Menu.Skins() .. " -> " .. F.String.ElvUI()
     )
 
     -- Level
