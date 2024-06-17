@@ -483,6 +483,7 @@ P.armory = {
     enabled = true,
     alpha = 0.6,
     height = 1,
+    color = "CLASS",
   },
 
   stats = {

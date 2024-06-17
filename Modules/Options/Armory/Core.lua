@@ -340,6 +340,17 @@ function O:Armory()
         step = 1,
         disabled = optionsDisabled,
       }
+
+      linesGroup.color = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Line Color",
+        values = {
+          CLASS = F.String.Class("Class"),
+          GRADIENT = F.String.GradientClass("Gradient Class"),
+        },
+        disabled = optionsDisabled,
+      }
     end
   end
 

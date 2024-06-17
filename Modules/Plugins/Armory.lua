@@ -1247,22 +1247,62 @@ function A:UpdateBackground()
   end
 end
 
-function A:UpdateLines()
+function A:UpdateLineColors()
+  local orientation = "HORIZONTAL"
+  local white = CreateColor(1, 1, 1, 1)
+
+  local top = self.frame.topLine.Texture
+  local bottom = self.frame.bottomLine.Texture
+
+  -- Reset gradient
+  top:SetGradient(orientation, white, white)
+  bottom:SetGradient(orientation, white, white)
+
   if self.db.lines.enabled then
-    local classColor = E:ClassColor(E.myclass, true)
-    local r, g, b = classColor.r, classColor.g, classColor.b
     local alpha = self.db.lines.alpha
-    local height = self.db.lines.height
 
-    self.frame.topLine.Texture:SetColorTexture(r, g, b, alpha)
-    self.frame.bottomLine.Texture:SetColorTexture(r, g, b, alpha)
+    -- Set default white lines for Gradient
+    top:SetColorTexture(1, 1, 1, alpha)
+    bottom:SetColorTexture(1, 1, 1, alpha)
 
-    self.frame.topLine:SetHeight(height)
-    self.frame.bottomLine:SetHeight(height)
+    if self.db.lines.color == "CLASS" then
+      local classColor = E:ClassColor(E.myclass, true)
+      local r, g, b = classColor.r, classColor.g, classColor.b
+
+      top:SetColorTexture(r, g, b, alpha)
+      bottom:SetColorTexture(r, g, b, alpha)
+    end
+
+    if self.db.lines.color == "GRADIENT" then
+      if E.db.TXUI.themes.gradientMode.classColorMap then
+        local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
+
+        local left = colorMap[1][E.myclass] -- Left (player UF)
+        local right = colorMap[2][E.myclass] -- Right (player UF)
+
+        if left.r and right.r then
+          top:SetGradient(orientation, { r = left.r, g = left.g, b = left.b, a = alpha }, { r = right.r, g = right.g, b = right.b, a = alpha })
+          bottom:SetGradient(orientation, { r = left.r, g = left.g, b = left.b, a = alpha }, { r = right.r, g = right.g, b = right.b, a = alpha })
+        else
+          TXUI:LogDebug("Armory Lines >> Left or Right gradient not found")
+        end
+      else
+        TXUI:LogDebug("Armory Lines >> Gradient color map not found")
+      end
+    end
   else
-    self.frame.topLine.Texture:SetColorTexture(0, 0, 0, 0)
-    self.frame.bottomLine.Texture:SetColorTexture(0, 0, 0, 0)
+    top:SetColorTexture(0, 0, 0, 0)
+    bottom:SetColorTexture(0, 0, 0, 0)
   end
+end
+
+function A:UpdateLines()
+  local height = self.db.lines.height
+
+  self.frame.topLine:SetHeight(height)
+  self.frame.bottomLine:SetHeight(height)
+
+  self:UpdateLineColors()
 end
 
 function A:KillBlizzard()
@@ -1344,8 +1384,6 @@ function A:CreateElements()
   local lineHeight = E.db.TXUI.armory.lines.height or 1
   local topLine = CreateFrame("Frame", nil, self.frameHolder)
   local bottomLine = CreateFrame("Frame", nil, self.frameHolder)
-  local classColor = E:ClassColor(E.myclass, true)
-  local r, g, b = classColor.r, classColor.g, classColor.b
 
   topLine:SetHeight(lineHeight)
   bottomLine:SetHeight(lineHeight)
@@ -1356,12 +1394,12 @@ function A:CreateElements()
   topLine.Texture = topLine:CreateTexture(nil, "BACKGROUND")
   bottomLine.Texture = bottomLine:CreateTexture(nil, "BACKGROUND")
   topLine.Texture:SetAllPoints()
-  topLine.Texture:SetColorTexture(r, g, b, 1)
   bottomLine.Texture:SetAllPoints()
-  bottomLine.Texture:SetColorTexture(r, g, b, 1)
 
   self.frame.topLine = topLine
   self.frame.bottomLine = bottomLine
+
+  self:UpdateLineColors()
 
   self.nameText = nameText
   self.titleText = titleText
