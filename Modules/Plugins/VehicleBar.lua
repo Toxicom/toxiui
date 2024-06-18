@@ -17,6 +17,10 @@ local UnregisterStateDriver = UnregisterStateDriver
 local vigorHeight = 10
 local spacing = 2
 
+function VB:IsVigorAvailable()
+  return TXUI.IsRetail and E:IsDragonRiding()
+end
+
 function VB:StopAllAnimations()
   if self.bar.SlideIn and (self.bar.SlideIn.SlideIn:IsPlaying()) then self.bar.SlideIn.SlideIn:Finish() end
 
@@ -27,7 +31,7 @@ function VB:StopAllAnimations()
     end
   end
 
-  if TXUI.IsRetail and self.vigorBar and self.vigorBar.segments then
+  if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
     for _, segment in ipairs(self.vigorBar.segments) do
       if segment.FadeIn and (segment.FadeIn:IsPlaying()) then
         segment.FadeIn:Stop()
@@ -62,7 +66,7 @@ end
 function VB:OnShowEvent()
   self:StopAllAnimations()
 
-  if TXUI.IsRetail then
+  if self:IsVigorAvailable() then
     -- Hide the Default Vigor Bar
     local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"] -- Replace with the actual frame name if different
     if defaultVigorBar then defaultVigorBar:Hide() end
@@ -75,7 +79,7 @@ function VB:OnShowEvent()
       self:SetupButtonAnim(button, i)
     end
 
-    if TXUI.IsRetail and self.vigorBar and self.vigorBar.segments then
+    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
       for i, segment in ipairs(self.vigorBar.segments) do
         self:SetupButtonAnim(segment, i)
       end
@@ -91,7 +95,7 @@ function VB:OnShowEvent()
     end
   end
 
-  if TXUI.IsRetail and self.vigorBar and self.vigorBar.segments then
+  if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
     for _, segment in ipairs(self.vigorBar.segments) do
       if animationsAllowed then
         segment:SetAlpha(0)
@@ -103,7 +107,7 @@ function VB:OnShowEvent()
   end
 
   -- Show the custom vigor bar when the vehicle bar is shown
-  if TXUI.IsRetail then
+  if self:IsVigorAvailable() then
     self.vigorBar:Show()
     self:UpdateVigorBar()
   end
