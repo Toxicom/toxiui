@@ -216,8 +216,8 @@ function VB:UpdateVigorSegments()
   -- Assuming we are only interested in the first widget that matches our criteria
   local widgetInfo = nil
   for _, w in pairs(widgets) do
-    widgetInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
-    if widgetInfo and widgetInfo.widgetSetID == 283 then break end
+    local tempInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
+    if tempInfo and tempInfo.shownState == 1 then widgetInfo = tempInfo end
   end
 
   if not widgetInfo then return end
@@ -233,13 +233,19 @@ function VB:UpdateVigorSegments()
 
   local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (spacing * 2)
 
+  local r, g, b = 0, 0.65, 1
+  if E.myclass ~= "PRIEST" then
+    local classColor = E:ClassColor(E.myclass, true)
+    r, g, b = classColor.r, classColor.g, classColor.b
+  end
+
   -- Create new segments based on max Vigor
   for i = 1, maxVigor do
     local segment = CreateFrame("StatusBar", nil, self.vigorBar)
     segment:SetSize(segmentWidth, vigorHeight) -- Width, Height of each segment
     segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-g1"])
     segment:GetStatusBarTexture():SetHorizTile(false)
-    segment:SetStatusBarColor(0, 0.65, 1)
+    segment:SetStatusBarColor(r, g, b)
 
     -- Background
     local bg = segment:CreateTexture(nil, "BACKGROUND")
@@ -285,8 +291,8 @@ function VB:UpdateVigorBar()
   -- Assuming we are only interested in the first widget that matches our criteria
   local widgetInfo = nil
   for _, w in pairs(widgets) do
-    widgetInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
-    if widgetInfo and widgetInfo.widgetSetID == 283 then break end
+    local tempInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
+    if tempInfo and tempInfo.shownState == 1 then widgetInfo = tempInfo end
   end
 
   if not widgetInfo then return end
