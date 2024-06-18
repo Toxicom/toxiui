@@ -77,7 +77,7 @@ function VB:OnCombatEvent(toggle)
 end
 
 -- Function to format keybind with class color for modifier
-local function FormatKeybind(keybind)
+function VB:FormatKeybind(keybind)
   local modifier, key = keybind:match("^(%w)-(.+)$")
   if modifier and key then
     if E.db.TXUI.addons.colorModifiers.enabled then
@@ -101,7 +101,7 @@ function VB:UpdateKeybinds()
       local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
       if keybind then
         button.HotKey:SetTextColor(1, 1, 1)
-        button.HotKey:SetText(FormatKeybind(GetBindingText(keybind, "KEY_", 1)))
+        button.HotKey:SetText(self:FormatKeybind(GetBindingText(keybind, "KEY_", 1)))
         button.HotKey:Show()
       else
         button.HotKey:Hide()
