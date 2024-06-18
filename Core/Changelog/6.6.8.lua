@@ -26,6 +26,7 @@ TXUI.Changelog["6.6.8"] = {
 
     "* Settings refactoring",
     "Class Icons now have their own dedicated tab" .. F.String.Sublist(TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
+    "Rename Miscellaneous tab to " .. F.String.Menu.Plugins(),
 
     "* Development improvements",
     "Add string functions for " .. TXUI.Title .. " settings menu names",
