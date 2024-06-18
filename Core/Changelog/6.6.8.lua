@@ -12,6 +12,10 @@ TXUI.Changelog["6.6.8"] = {
       .. F.String.Sublist("Change in " .. TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
     "Add Line Height option for " .. F.String.Menu.Armory() .. " decorative lines",
     "Add " .. F.String.Class("Gradient Class color") .. " option for " .. F.String.Menu.Armory() .. " decorative lines",
+    "Vehicle Bar updates:" --
+      .. F.String.Sublist("Display 8 buttons instead of 7")
+      .. F.String.Sublist("Increase button size")
+      .. F.String.Sublist("Display keybindings"),
 
     "* Bug fixes",
 

@@ -96,7 +96,7 @@ end
 
 function VB:UpdateBar()
   -- Vars
-  local size = 40
+  local size = 48
   local spacing = 2
 
   -- Create or get bar
@@ -142,8 +142,8 @@ function VB:UpdateBar()
   if not bar.buttons then
     bar.buttons = {}
 
-    for i = 1, 7 do
-      local buttonIndex = (i == 7) and 12 or i
+    for i = 1, 8 do
+      local buttonIndex = (i == 8) and 12 or i
 
       -- Create button
       local button = LAB:CreateButton(buttonIndex, "TXUIVehicleBarButton" .. buttonIndex, bar, nil)
@@ -161,14 +161,32 @@ function VB:UpdateBar()
       button:SetCheckedTexture("")
       button.MasqueSkinned = true -- Ugly fix for smaller cooldowns, not actually using Masque
 
+      -- Mirror Keybinds from bar 1 and display them
+      local actionButton = _G["ActionButton" .. buttonIndex]
+      if actionButton then
+        local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
+        if keybind then
+          button.HotKey:SetTextColor(1, 1, 1)
+          button.HotKey:SetText(GetBindingText(keybind, "KEY_", 1))
+          button.HotKey:Show()
+        else
+          button.HotKey:Hide()
+        end
+      end
+
+      -- Adjust the count position
+      button.Count:ClearAllPoints()
+      button.Count:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 2, 2)
+
       -- Add to array
       bar.buttons[i] = button
     end
   end
 
   -- Calculate Bar Width/Height
-  bar:SetWidth((size * 7) + (spacing * (7 - 1)) + 4)
-  bar:SetHeight((size / 4 * 3) + 4)
+  local width = (size * 8) + (spacing * (8 - 1)) + 4
+  bar:SetWidth(width)
+  bar:SetHeight((width / 4 * 3))
 
   -- Update button position and size
   for i, button in ipairs(bar.buttons) do
