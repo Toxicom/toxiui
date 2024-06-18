@@ -138,7 +138,7 @@ function VB:CreateVigorBar()
   local vigorBar = CreateFrame("Frame", "CustomVigorBar", UIParent)
   local width = self.bar:GetWidth()
   vigorBar:SetSize(width, vigorHeight)
-  vigorBar:SetPoint("BOTTOM", TXUIVehicleBar, "TOP", 0, spacing * 3) -- Adjust position as needed
+  vigorBar:SetPoint("BOTTOM", self.bar, "TOP", 0, spacing * 3) -- Adjust position as needed
   vigorBar:Hide()
 
   vigorBar.segments = {}
@@ -166,7 +166,6 @@ function VB:UpdateVigorSegments()
   -- Clear existing segments
   for _, segment in ipairs(self.vigorBar.segments) do
     segment:Hide()
-    segment = nil
   end
   self.vigorBar.segments = {}
 
@@ -406,7 +405,7 @@ function VB:Enable()
     eventFrame:RegisterEvent("UNIT_POWER_UPDATE")
     eventFrame:RegisterEvent("UNIT_MAXPOWER")
     eventFrame:RegisterEvent("UPDATE_UI_WIDGET")
-    eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2)
+    eventFrame:SetScript("OnEvent", function(_, event, arg1, arg2)
       if event == "UNIT_POWER_UPDATE" and arg1 == "player" and arg2 == "ALTERNATE" then
         VB:UpdateVigorBar()
       elseif event == "UPDATE_UI_WIDGET" then
