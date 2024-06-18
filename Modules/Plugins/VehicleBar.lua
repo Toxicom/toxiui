@@ -38,6 +38,11 @@ function VB:StopAllAnimations()
         segment:SetAlpha(1)
       end
     end
+
+    if self.vigorBar.speedText.FadeIn and (self.vigorBar.speedText.FadeIn:IsPlaying()) then
+      self.vigorBar.speedText.FadeIn:Stop()
+      self.vigorBar.speedText:SetAlpha(1)
+    end
   end
 end
 
@@ -83,6 +88,8 @@ function VB:OnShowEvent()
       for i, segment in ipairs(self.vigorBar.segments) do
         self:SetupButtonAnim(segment, i)
       end
+
+      self:SetupButtonAnim(self.vigorBar.speedText, 8)
     end
   end
 
@@ -104,16 +111,32 @@ function VB:OnShowEvent()
         segment:SetAlpha(1)
       end
     end
+
+    if animationsAllowed then
+      self.vigorBar.speedText:SetAlpha(0)
+      self.vigorBar.speedText.FadeIn:Play()
+    else
+      self.vigorBar.speedText:SetAlpha(1)
+    end
   end
 
   -- Show the custom vigor bar when the vehicle bar is shown
   if self:IsVigorAvailable() then
     self.vigorBar:Show()
+    self.vigorBar.speedText:Show()
     self:UpdateVigorBar()
   end
 
   -- Update keybinds when the bar is shown
   self:UpdateKeybinds()
+end
+
+function VB:OnHideEvent()
+  -- Hide the custom vigor bar and its speed text when the vehicle bar is hidden
+  if self.vigorBar then
+    self.vigorBar:Hide()
+    self.vigorBar.speedText:Hide()
+  end
 end
 
 function VB:OnCombatEvent(toggle)
@@ -160,7 +183,22 @@ function VB:CreateVigorBar()
   local width = self.bar:GetWidth()
   vigorBar:SetSize(width - spacing, vigorHeight)
   vigorBar:SetPoint("BOTTOM", self.bar, "TOP", 0, spacing * 3) -- Adjust position as needed
+
+  -- Create the speed text
+  vigorBar.speedText = vigorBar:CreateFontString(nil, "OVERLAY")
+  vigorBar.speedText:SetFont(F.GetFontPath(I.Fonts.TitleBlack), F.FontSizeScaled(24), "OUTLINE")
+  vigorBar.speedText:SetPoint("BOTTOM", vigorBar, "TOP", 0, 0)
+  vigorBar.speedText:SetText("0%")
+
+  -- Set parent-child relationship
+  vigorBar.speedText:SetParent(vigorBar)
+
   vigorBar:Hide()
+
+  -- Update speed text regularly
+  vigorBar:SetScript("OnUpdate", function()
+    self:UpdateSpeedText()
+  end)
 
   vigorBar.segments = {}
   self.vigorBar = vigorBar
@@ -228,6 +266,15 @@ function VB:UpdateVigorSegments()
   end
 end
 
+function VB:UpdateSpeedText()
+  if VB:IsVigorAvailable() and not self.vigorBar then return end
+  local isGliding, canGlide, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
+  local base = isGliding and forwardSpeed or GetUnitSpeed("player")
+  local movespeed = Round(base / BASE_MOVEMENT_SPEED * 100)
+
+  self.vigorBar.speedText:SetText(format("%d%%", movespeed))
+end
+
 function VB:UpdateVigorBar()
   local widgetSetID = C_UIWidgetManager.GetPowerBarWidgetSetID()
   local widgets = C_UIWidgetManager.GetAllWidgetsBySetID(widgetSetID)
@@ -261,6 +308,9 @@ function VB:UpdateVigorBar()
       segment:Hide()
     end
   end
+
+  -- Update the speed text
+  self:UpdateSpeedText()
 end
 
 function VB:UpdateBar()
@@ -375,6 +425,7 @@ function VB:UpdateBar()
 
   -- Hook for animation
   self:SecureHookScript(bar, "OnShow", "OnShowEvent")
+  if TXUI.IsRetail then self:SecureHookScript(bar, "OnHide", "OnHideEvent") end
 
   -- Hide
   bar:Hide()
