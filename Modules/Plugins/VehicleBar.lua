@@ -87,11 +87,48 @@ function VB:OnShowEvent()
       button:SetAlpha(1)
     end
   end
+
+  -- Update keybinds when the bar is shown
+  self:UpdateKeybinds()
 end
 
 function VB:OnCombatEvent(toggle)
   self.combatLock = toggle
   if self.combatLock then self:StopAllAnimations() end
+end
+
+-- Function to format keybind with class color for modifier
+local function FormatKeybind(keybind)
+  local modifier, key = keybind:match("^(%w)-(.+)$")
+  if modifier and key then
+    if E.db.TXUI.addons.colorModifiers.enabled then
+      local color = E:ClassColor(E.myclass, true)
+      local r, g, b = color.r, color.g, color.b
+      return string.format("|cff%02x%02x%02x%s|r%s", r * 255, g * 255, b * 255, modifier:upper(), key)
+    else
+      return modifier:upper() .. key
+    end
+  else
+    return keybind
+  end
+end
+
+-- Function to update keybinds
+function VB:UpdateKeybinds()
+  for i, button in ipairs(self.bar.buttons) do
+    local buttonIndex = (i == 8) and 12 or i
+    local actionButton = _G["ActionButton" .. buttonIndex]
+    if actionButton then
+      local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
+      if keybind then
+        button.HotKey:SetTextColor(1, 1, 1)
+        button.HotKey:SetText(FormatKeybind(GetBindingText(keybind, "KEY_", 1)))
+        button.HotKey:Show()
+      else
+        button.HotKey:Hide()
+      end
+    end
+  end
 end
 
 function VB:UpdateBar()
@@ -161,19 +198,6 @@ function VB:UpdateBar()
       button:SetCheckedTexture("")
       button.MasqueSkinned = true -- Ugly fix for smaller cooldowns, not actually using Masque
 
-      -- Mirror Keybinds from bar 1 and display them
-      local actionButton = _G["ActionButton" .. buttonIndex]
-      if actionButton then
-        local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
-        if keybind then
-          button.HotKey:SetTextColor(1, 1, 1)
-          button.HotKey:SetText(GetBindingText(keybind, "KEY_", 1))
-          button.HotKey:Show()
-        else
-          button.HotKey:Hide()
-        end
-      end
-
       -- Adjust the count position
       button.Count:ClearAllPoints()
       button.Count:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 2, 2)
@@ -233,6 +257,9 @@ function VB:UpdateBar()
     for _, button in pairs(bar.buttons) do
       button:UpdateAction()
     end
+
+    -- Initial call to update keybinds
+    self:UpdateKeybinds()
   end
 end
 
