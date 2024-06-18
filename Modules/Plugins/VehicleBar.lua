@@ -13,6 +13,9 @@ local pairs = pairs
 local RegisterStateDriver = RegisterStateDriver
 local strsplit = strsplit
 local UnregisterStateDriver = UnregisterStateDriver
+local C_PlayerInfo = C_PlayerInfo
+local Round = Round
+local BASE_MOVEMENT_SPEED = BASE_MOVEMENT_SPEED
 
 local vigorHeight = 10
 local spacing = 2
@@ -268,7 +271,7 @@ end
 
 function VB:UpdateSpeedText()
   if VB:IsVigorAvailable() and not self.vigorBar then return end
-  local isGliding, canGlide, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
+  local isGliding, _, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
   local base = isGliding and forwardSpeed or GetUnitSpeed("player")
   local movespeed = Round(base / BASE_MOVEMENT_SPEED * 100)
 
