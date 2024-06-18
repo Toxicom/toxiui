@@ -16,7 +16,8 @@ TXUI.Changelog["6.6.8"] = {
       .. F.String.Sublist("Display 8 buttons instead of 7")
       .. F.String.Sublist("Increase button size")
       .. F.String.Sublist("Display keybindings")
-      .. F.String.Sublist("Keybindings respect the Color Modifiers setting"),
+      .. F.String.Sublist("Keybindings respect the Color Modifiers setting")
+      .. F.String.Sublist("Remove stuck animation of moving up"),
 
     "* Bug fixes",
 

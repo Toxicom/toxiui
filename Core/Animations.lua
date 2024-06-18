@@ -964,57 +964,6 @@ function TXUI:CreateAnimationGroup(parent)
   return Group
 end
 
--- Movement
-Initialize["move"] = function(self)
-  if self.Playing then return end
-
-  local A1, P1, A2, X, Y = self.Parent:GetPoint()
-
-  self.Timer = 0
-  self.A1 = A1
-  self.P = P1
-  self.A2 = A2
-  self.StartX = X
-  self.EndX = X + (self.XSetting or 0)
-  self.StartY = Y
-  self.EndY = Y + (self.YSetting or 0)
-  self.XChange = self.EndX - self.StartX
-  self.YChange = self.EndY - self.StartY
-
-  if self.IsRounded then
-    if self.XChange == 0 or self.YChange == 0 then -- Double check if we're valid to be rounded
-      self.IsRounded = false
-    else
-      self.ModTimer = 0
-    end
-  end
-
-  self:StartUpdating()
-end
-
-Update["move"] = function(self, elapsed, i)
-  self.Timer = self.Timer + elapsed
-
-  if self.Timer >= self.Duration then
-    tremove(Updater, i)
-    self.Parent:SetPoint(self.A1, self.P, self.A2, self.EndX, self.EndY)
-    self.Playing = false
-    self:Callback("OnFinished")
-    self.Group:CheckOrder()
-  else
-    if self.IsRounded then
-      self.ModTimer = Easing[self.Easing](self.Timer, 0, self.Duration, self.Duration)
-      self.XOffset = self.StartX - -1 * (self.XChange * (1 - cos(90 * self.ModTimer / self.Duration)))
-      self.YOffset = self.StartY + self.YChange * sin(90 * self.ModTimer / self.Duration)
-    else
-      self.XOffset = Easing[self.Easing](self.Timer, self.StartX, self.XChange, self.Duration)
-      self.YOffset = Easing[self.Easing](self.Timer, self.StartY, self.YChange, self.Duration)
-    end
-
-    self.Parent:SetPoint(self.A1, self.P, self.A2, (self.EndX ~= 0 and self.XOffset or self.StartX), (self.EndY ~= 0 and self.YOffset or self.StartY))
-  end
-end
-
 -- Fade
 Initialize["fade"] = function(self)
   if self.Playing then return end

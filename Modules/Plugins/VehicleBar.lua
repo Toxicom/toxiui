@@ -47,33 +47,12 @@ function VB:SetupButtonAnim(button, index)
   button.FadeIn.Fade:SetOrder(3)
 end
 
-function VB:SetupBarAnim()
-  local iconFade = ((7 * 0.10) * self.db.animationsMult) + (1 * self.db.animationsMult)
-
-  self.bar.SlideIn = self.bar.SlideIn or {}
-
-  self.bar.SlideIn.ResetOffset = self.bar.SlideIn.ResetOffset or TXUI:CreateAnimationGroup(self.bar):CreateAnimation("Move")
-  self.bar.SlideIn.ResetOffset:SetDuration(0)
-  self.bar.SlideIn.ResetOffset:SetOffset(0, -60)
-  self.bar.SlideIn.ResetOffset:SetScript("OnFinished", function(anim)
-    anim:GetParent().SlideIn.SlideIn:SetOffset(0, 60)
-    anim:GetParent().SlideIn.SlideIn:Play()
-  end)
-
-  self.bar.SlideIn.SlideIn = self.bar.SlideIn.SlideIn or TXUI:CreateAnimationGroup(self.bar):CreateAnimation("Move")
-  self.bar.SlideIn.SlideIn:SetEasing("out-quintic")
-  self.bar.SlideIn.SlideIn:SetDuration(iconFade)
-end
-
 function VB:OnShowEvent()
   self:StopAllAnimations()
 
   local animationsAllowed = self.db.animations and (not InCombatLockdown()) and not self.combatLock
 
   if animationsAllowed then
-    self:SetupBarAnim()
-    self.bar.SlideIn.ResetOffset:Play()
-
     for i, button in ipairs(self.bar.buttons) do
       self:SetupButtonAnim(button, i)
     end
