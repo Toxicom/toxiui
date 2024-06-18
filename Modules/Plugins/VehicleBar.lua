@@ -26,6 +26,15 @@ function VB:StopAllAnimations()
       button:SetAlpha(1)
     end
   end
+
+  if TXUI.IsRetail and self.vigorBar and self.vigorBar.segments then
+    for _, segment in ipairs(self.vigorBar.segments) do
+      if segment.FadeIn and (segment.FadeIn:IsPlaying()) then
+        segment.FadeIn:Stop()
+        segment:SetAlpha(1)
+      end
+    end
+  end
 end
 
 function VB:SetupButtonAnim(button, index)
@@ -65,6 +74,12 @@ function VB:OnShowEvent()
     for i, button in ipairs(self.bar.buttons) do
       self:SetupButtonAnim(button, i)
     end
+
+    if TXUI.IsRetail and self.vigorBar and self.vigorBar.segments then
+      for i, segment in ipairs(self.vigorBar.segments) do
+        self:SetupButtonAnim(segment, i)
+      end
+    end
   end
 
   for _, button in ipairs(self.bar.buttons) do
@@ -76,10 +91,20 @@ function VB:OnShowEvent()
     end
   end
 
+  if TXUI.IsRetail and self.vigorBar and self.vigorBar.segments then
+    for _, segment in ipairs(self.vigorBar.segments) do
+      if animationsAllowed then
+        segment:SetAlpha(0)
+        segment.FadeIn:Play()
+      else
+        segment:SetAlpha(1)
+      end
+    end
+  end
+
   -- Show the custom vigor bar when the vehicle bar is shown
   if TXUI.IsRetail then
     self.vigorBar:Show()
-    self.vigorBar.txSoftShadow:Show()
     self:UpdateVigorBar()
   end
 
@@ -90,14 +115,6 @@ end
 function VB:OnCombatEvent(toggle)
   self.combatLock = toggle
   if self.combatLock then self:StopAllAnimations() end
-end
-
-function VB:OnHideEvent()
-  -- Hide the custom vigor bar when the vehicle bar is hidden
-  if self.vigorBar then
-    self.vigorBar:Hide()
-    if self.vigorBar.txSoftShadow then self.vigorBar.txSoftShadow:Hide() end
-  end
 end
 
 -- Function to format keybind with class color for modifier
@@ -137,13 +154,12 @@ end
 function VB:CreateVigorBar()
   local vigorBar = CreateFrame("Frame", "CustomVigorBar", UIParent)
   local width = self.bar:GetWidth()
-  vigorBar:SetSize(width, vigorHeight)
+  vigorBar:SetSize(width - spacing, vigorHeight)
   vigorBar:SetPoint("BOTTOM", self.bar, "TOP", 0, spacing * 3) -- Adjust position as needed
   vigorBar:Hide()
 
   vigorBar.segments = {}
   self.vigorBar = vigorBar
-  F.CreateSoftShadow(self.vigorBar, 4)
 
   self:UpdateVigorSegments()
 end
@@ -167,6 +183,7 @@ function VB:UpdateVigorSegments()
   for _, segment in ipairs(self.vigorBar.segments) do
     segment:Hide()
   end
+
   self.vigorBar.segments = {}
 
   local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (spacing * 2)
@@ -201,6 +218,8 @@ function VB:UpdateVigorSegments()
     end
 
     segment:SetMinMaxValues(0, 1)
+    F.CreateSoftShadow(segment, 8)
+
     table.insert(self.vigorBar.segments, segment)
   end
 end
@@ -352,7 +371,6 @@ function VB:UpdateBar()
 
   -- Hook for animation
   self:SecureHookScript(bar, "OnShow", "OnShowEvent")
-  if TXUI.IsRetail then self:SecureHookScript(bar, "OnHide", "OnHideEvent") end
 
   -- Hide
   bar:Hide()
