@@ -14,6 +14,9 @@ local RegisterStateDriver = RegisterStateDriver
 local strsplit = strsplit
 local UnregisterStateDriver = UnregisterStateDriver
 
+local vigorHeight = 10
+local spacing = 2
+
 function VB:StopAllAnimations()
   if self.bar.SlideIn and (self.bar.SlideIn.SlideIn:IsPlaying()) then self.bar.SlideIn.SlideIn:Finish() end
 
@@ -50,6 +53,12 @@ end
 function VB:OnShowEvent()
   self:StopAllAnimations()
 
+  if TXUI.IsRetail then
+    -- Hide the Default Vigor Bar
+    local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"] -- Replace with the actual frame name if different
+    if defaultVigorBar then defaultVigorBar:Hide() end
+  end
+
   local animationsAllowed = self.db.animations and (not InCombatLockdown()) and not self.combatLock
 
   if animationsAllowed then
@@ -67,6 +76,13 @@ function VB:OnShowEvent()
     end
   end
 
+  -- Show the custom vigor bar when the vehicle bar is shown
+  if TXUI.IsRetail then
+    self.vigorBar:Show()
+    self.vigorBar.txSoftShadow:Show()
+    self:UpdateVigorBar()
+  end
+
   -- Update keybinds when the bar is shown
   self:UpdateKeybinds()
 end
@@ -74,6 +90,14 @@ end
 function VB:OnCombatEvent(toggle)
   self.combatLock = toggle
   if self.combatLock then self:StopAllAnimations() end
+end
+
+function VB:OnHideEvent()
+  -- Hide the custom vigor bar when the vehicle bar is hidden
+  if self.vigorBar then
+    self.vigorBar:Hide()
+    if self.vigorBar.txSoftShadow then self.vigorBar.txSoftShadow:Hide() end
+  end
 end
 
 -- Function to format keybind with class color for modifier
@@ -110,10 +134,116 @@ function VB:UpdateKeybinds()
   end
 end
 
+function VB:CreateVigorBar()
+  local vigorBar = CreateFrame("Frame", "CustomVigorBar", UIParent)
+  local width = self.bar:GetWidth()
+  vigorBar:SetSize(width, vigorHeight)
+  vigorBar:SetPoint("BOTTOM", TXUIVehicleBar, "TOP", 0, spacing * 3) -- Adjust position as needed
+  vigorBar:Hide()
+
+  vigorBar.segments = {}
+  self.vigorBar = vigorBar
+  F.CreateSoftShadow(self.vigorBar, 4)
+
+  self:UpdateVigorSegments()
+end
+
+function VB:UpdateVigorSegments()
+  local widgetSetID = C_UIWidgetManager.GetPowerBarWidgetSetID()
+  local widgets = C_UIWidgetManager.GetAllWidgetsBySetID(widgetSetID)
+
+  -- Assuming we are only interested in the first widget that matches our criteria
+  local widgetInfo = nil
+  for _, w in pairs(widgets) do
+    widgetInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
+    if widgetInfo and widgetInfo.widgetSetID == 283 then break end
+  end
+
+  if not widgetInfo then return end
+
+  local maxVigor = widgetInfo.numTotalFrames -- Total Vigor Segments
+
+  -- Clear existing segments
+  for _, segment in ipairs(self.vigorBar.segments) do
+    segment:Hide()
+    segment = nil
+  end
+  self.vigorBar.segments = {}
+
+  local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (spacing * 2)
+
+  -- Create new segments based on max Vigor
+  for i = 1, maxVigor do
+    local segment = CreateFrame("StatusBar", nil, self.vigorBar)
+    segment:SetSize(segmentWidth, vigorHeight) -- Width, Height of each segment
+    segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-g1"])
+    segment:GetStatusBarTexture():SetHorizTile(false)
+    segment:SetStatusBarColor(0, 0.65, 1)
+
+    -- Background
+    local bg = segment:CreateTexture(nil, "BACKGROUND")
+    bg:SetAllPoints(true)
+    bg:SetColorTexture(0, 0, 0, 0.5)
+
+    -- Border
+    local border = CreateFrame("Frame", nil, segment, "BackdropTemplate")
+    border:SetPoint("TOPLEFT", -1, 1)
+    border:SetPoint("BOTTOMRIGHT", 1, -1)
+    border:SetBackdrop {
+      edgeFile = E.media.blankTex,
+      edgeSize = 1,
+    }
+    border:SetBackdropBorderColor(0, 0, 0)
+
+    if i == 1 then
+      segment:SetPoint("LEFT", self.vigorBar, "LEFT", spacing, 0)
+    else
+      segment:SetPoint("LEFT", self.vigorBar.segments[i - 1], "RIGHT", spacing * 2, 0) -- Adjust spacing as needed
+    end
+
+    segment:SetMinMaxValues(0, 1)
+    table.insert(self.vigorBar.segments, segment)
+  end
+end
+
+function VB:UpdateVigorBar()
+  local widgetSetID = C_UIWidgetManager.GetPowerBarWidgetSetID()
+  local widgets = C_UIWidgetManager.GetAllWidgetsBySetID(widgetSetID)
+
+  -- Assuming we are only interested in the first widget that matches our criteria
+  local widgetInfo = nil
+  for _, w in pairs(widgets) do
+    widgetInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
+    if widgetInfo and widgetInfo.widgetSetID == 283 then break end
+  end
+
+  if not widgetInfo then return end
+
+  local currentVigor = widgetInfo.numFullFrames
+  local partialFill = widgetInfo.fillValue / widgetInfo.fillMax
+  local maxVigor = widgetInfo.numTotalFrames
+
+  if #self.vigorBar.segments ~= maxVigor then self:UpdateVigorSegments() end
+
+  for i, segment in ipairs(self.vigorBar.segments) do
+    if i <= currentVigor then
+      segment:SetValue(1)
+      segment:Show()
+    elseif i == currentVigor + 1 then
+      segment:SetValue(partialFill)
+      segment:Show()
+    elseif i <= maxVigor then
+      segment:SetValue(0)
+      segment:Show()
+    else
+      segment:Hide()
+    end
+  end
+end
+
 function VB:UpdateBar()
   -- Vars
   local size = 48
-  local spacing = 2
 
   -- Create or get bar
   local init = self.bar == nil
@@ -179,7 +309,7 @@ function VB:UpdateBar()
 
       -- Adjust the count position
       button.Count:ClearAllPoints()
-      button.Count:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", 2, 2)
+      button.Count:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", spacing, spacing)
 
       -- Add to array
       bar.buttons[i] = button
@@ -189,7 +319,7 @@ function VB:UpdateBar()
   -- Calculate Bar Width/Height
   local width = (size * 8) + (spacing * (8 - 1)) + 4
   bar:SetWidth(width)
-  bar:SetHeight((width / 4 * 3))
+  bar:SetHeight((size / 4 * 3))
 
   -- Update button position and size
   for i, button in ipairs(bar.buttons) do
@@ -197,7 +327,7 @@ function VB:UpdateBar()
     button:ClearAllPoints()
 
     if i == 1 then
-      button:SetPoint("BOTTOMLEFT", 2, 2)
+      button:SetPoint("BOTTOMLEFT", spacing, spacing)
     else
       button:SetPoint("LEFT", bar.buttons[i - 1], "RIGHT", spacing, 0)
     end
@@ -223,6 +353,7 @@ function VB:UpdateBar()
 
   -- Hook for animation
   self:SecureHookScript(bar, "OnShow", "OnShowEvent")
+  if TXUI.IsRetail then self:SecureHookScript(bar, "OnHide", "OnHideEvent") end
 
   -- Hide
   bar:Hide()
@@ -236,6 +367,8 @@ function VB:UpdateBar()
     for _, button in pairs(bar.buttons) do
       button:UpdateAction()
     end
+
+    if TXUI.IsRetail and not self.vigorBar then self:CreateVigorBar() end
 
     -- Initial call to update keybinds
     self:UpdateKeybinds()
@@ -266,6 +399,24 @@ function VB:Enable()
 
   -- Update or create bar
   self:UpdateBar()
+
+  -- Register event to update the custom vigor bar when vigor changes
+  if TXUI.IsRetail then
+    local eventFrame = CreateFrame("Frame")
+    eventFrame:RegisterEvent("UNIT_POWER_UPDATE")
+    eventFrame:RegisterEvent("UNIT_MAXPOWER")
+    eventFrame:RegisterEvent("UPDATE_UI_WIDGET")
+    eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2)
+      if event == "UNIT_POWER_UPDATE" and arg1 == "player" and arg2 == "ALTERNATE" then
+        VB:UpdateVigorBar()
+      elseif event == "UPDATE_UI_WIDGET" then
+        VB:UpdateVigorBar()
+      end
+    end)
+
+    -- Initial update
+    self:UpdateVigorBar()
+  end
 
   -- Overwrite default bar visibility
   local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", (self.db.dragonRiding and "[bonusbar:5]") or "")
@@ -314,6 +465,7 @@ function VB:Initialize()
   -- Vars
   self.combatLock = false
   self.ab = E:GetModule("ActionBars")
+  self.vigorBar = nil
 
   -- Register for updates
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
