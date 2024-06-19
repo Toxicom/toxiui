@@ -233,17 +233,26 @@ function VB:UpdateVigorSegments()
 
   local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (spacing * 2)
 
-  local r, g, b = 0, 0.65, 1
-  if E.myclass ~= "PRIEST" then
-    local classColor = E:ClassColor(E.myclass, true)
-    r, g, b = classColor.r, classColor.g, classColor.b
+  local classColor = E:ClassColor(E.myclass, true)
+  local r, g, b = classColor.r, classColor.g, classColor.b
+
+  if E.myclass == "PRIEST" and E.db.TXUI.themes.gradientMode.enabled then
+    r, g, b = 0, 0.65, 1
   end
 
   -- Create new segments based on max Vigor
   for i = 1, maxVigor do
     local segment = CreateFrame("StatusBar", nil, self.vigorBar)
     segment:SetSize(segmentWidth, vigorHeight) -- Width, Height of each segment
-    segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-g1"])
+
+    if E.db.TXUI.themes.darkMode.enabled then
+      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-half"])
+    elseif E.db.TXUI.themes.gradientMode.enabled then
+      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-g1"])
+    else
+      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-clean"])
+    end
+
     segment:GetStatusBarTexture():SetHorizTile(false)
     segment:SetStatusBarColor(r, g, b)
 
