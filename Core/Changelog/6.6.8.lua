@@ -32,5 +32,6 @@ TXUI.Changelog["6.6.8"] = {
 
     "* Development improvements",
     "Add string functions for " .. TXUI.Title .. " settings menu names",
+    "Remove Priest color overrides" .. F.String.Sublist("It never worked correctly and caused more issues than benefits"),
   },
 }

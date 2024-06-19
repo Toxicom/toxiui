@@ -48,9 +48,6 @@ function TXUI:SetupDevRelease()
 end
 
 function TXUI:InitializeModules()
-  -- Make Priest darker color
-  E.PriestColors = I.PriestColors
-
   -- Update cooldown text settings
   E:UpdateCooldownSettings("all")
 
