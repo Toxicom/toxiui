@@ -288,7 +288,8 @@ function VB:UpdateVigorSegments()
     end
 
     segment:SetMinMaxValues(0, 1)
-    F.CreateSoftShadow(segment, 8)
+
+    if E.db.TXUI.addons.elvUITheme.enabled and E.db.TXUI.addons.elvUITheme.shadowEnabled then F.CreateSoftShadow(segment, E.db.TXUI.addons.elvUITheme.shadowSize * 2) end
 
     table.insert(self.vigorBar.segments, segment)
   end
