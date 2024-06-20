@@ -33,7 +33,7 @@ function O:Plugins_VehicleBar()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "General",
     }, {
       name = "An additional Vehicle Bar that doesn't get affected by Global Fade.\n\n"
         .. F.String.Warning("Warning: ")
@@ -55,6 +55,23 @@ function O:Plugins_VehicleBar()
         E.db.TXUI.vehicleBar.enabled = value
         F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
       end,
+    }
+
+    generalGroup.buttonSize = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Button Width",
+      desc = "Change the Vehicle Bar's Button width. The height will scale accordingly in a 4:3 aspect ratio.",
+      get = function()
+        return E.db.TXUI.vehicleBar.buttonWidth
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.buttonWidth = value
+        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+      end,
+      min = 24,
+      max = 64,
+      step = 4,
     }
 
     optionsHidden = function()

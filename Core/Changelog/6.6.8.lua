@@ -19,6 +19,7 @@ TXUI.Changelog["6.6.8"] = {
       .. F.String.Sublist("Keybindings respect the Color Modifiers setting")
       .. F.String.Sublist("Remove stuck animation of moving up"),
     "Vigor (Dragonriding) bar for Vehicle Bar",
+    "Button width option for Vehicle Bar",
 
     "* Bug fixes",
     "Improve fallback colors for F.Color.SetGradient",

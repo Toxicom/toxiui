@@ -10,6 +10,7 @@ local GetVehicleBarIndex = GetVehicleBarIndex
 local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
 local pairs = pairs
+local tinsert = table.insert
 local RegisterStateDriver = RegisterStateDriver
 local strsplit = strsplit
 local UnregisterStateDriver = UnregisterStateDriver
@@ -291,7 +292,7 @@ function VB:UpdateVigorSegments()
 
     if E.db.TXUI.addons.elvUITheme.enabled and E.db.TXUI.addons.elvUITheme.shadowEnabled then F.CreateSoftShadow(segment, E.db.TXUI.addons.elvUITheme.shadowSize * 2) end
 
-    table.insert(self.vigorBar.segments, segment)
+    tinsert(self.vigorBar.segments, segment)
   end
 end
 
@@ -321,7 +322,25 @@ function VB:UpdateVigorBar()
   local partialFill = widgetInfo.fillValue / widgetInfo.fillMax
   local maxVigor = widgetInfo.numTotalFrames
 
-  if #self.vigorBar.segments ~= maxVigor then self:UpdateVigorSegments() end
+  -- Check if bar width has changed
+  local currentBarWidth = self.bar:GetWidth()
+  if currentBarWidth ~= self.previousBarWidth then
+    -- Update the width of the vigorBar to match the width of self.bar
+    local width = currentBarWidth - spacing
+    self.vigorBar:SetWidth(width)
+
+    -- Calculate the new segment width based on the updated vigorBar width
+    local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (spacing * 2)
+
+    if #self.vigorBar.segments ~= maxVigor then self:UpdateVigorSegments() end
+
+    for _, segment in ipairs(self.vigorBar.segments) do
+      segment:SetWidth(segmentWidth) -- Update the width of each segment
+    end
+
+    -- Store the new width
+    self.previousBarWidth = currentBarWidth
+  end
 
   for i, segment in ipairs(self.vigorBar.segments) do
     if i <= currentVigor then
@@ -344,7 +363,7 @@ end
 
 function VB:UpdateBar()
   -- Vars
-  local size = 48
+  local size = self.db.buttonWidth or 48
 
   -- Create or get bar
   local init = self.bar == nil
@@ -567,6 +586,7 @@ function VB:Initialize()
   self.combatLock = false
   self.ab = E:GetModule("ActionBars")
   self.vigorBar = nil
+  self.previousBarWidth = nil
 
   -- Register for updates
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
