@@ -1232,6 +1232,7 @@ globals = {
   "C_Trophy.MonumentSaveSelection",
   "C_Trophy",
   "C_UIWidgetManager",
+  "C_UnitAuras",
   "C_Vignettes.GetNumVignettes",
   "C_Vignettes.GetVignetteGUID",
   "C_Vignettes.GetVignetteInfoFromInstanceID",
