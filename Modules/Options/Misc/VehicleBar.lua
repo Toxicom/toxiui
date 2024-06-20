@@ -27,7 +27,7 @@ function O:Plugins_VehicleBar()
 
   -- Options
   local options = self.options.misc.args.vehicleBar.args
-  local optionsHidden
+  local optionsDisabled
 
   -- General
   do
