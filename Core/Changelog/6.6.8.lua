@@ -21,6 +21,7 @@ TXUI.Changelog["6.6.8"] = {
     "Vigor (Dragonriding) bar for Vehicle Bar",
 
     "* Bug fixes",
+    "Improve fallback colors for F.Color.SetGradient",
 
     "* Profile updates",
 

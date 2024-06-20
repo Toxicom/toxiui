@@ -13,8 +13,8 @@ end
 function F.Color.SetGradient(obj, orientation, minColor, maxColor)
   if not obj then return end
 
-  local min = minColor or "#000000"
-  local max = maxColor or "#FFFFFF"
+  local min = minColor or CreateColor(0, 0, 0, 1)
+  local max = maxColor or CreateColor(1, 1, 1, 1)
 
   obj:SetGradient(orientation, min, max)
 end
