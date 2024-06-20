@@ -57,6 +57,10 @@ function O:Plugins_VehicleBar()
       end,
     }
 
+    optionsDisabled = function()
+      return isVehicleBarDisabled() or self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
+    end
+
     generalGroup.buttonSize = {
       order = self:GetOrder(),
       type = "range",
@@ -72,11 +76,21 @@ function O:Plugins_VehicleBar()
       min = 24,
       max = 64,
       step = 4,
+      disabled = optionsDisabled,
     }
 
-    optionsHidden = function()
-      return isVehicleBarDisabled() or self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
-    end
+    generalGroup.thrillColor = {
+      order = self:GetOrder(),
+      type = "color",
+      name = "Thrill Color",
+      desc = "The color for vigor bar's speed text when you are regaining vigor.",
+      hasAlpha = false,
+      get = self:GetFontColorGetter("TXUI.vehicleBar", P.vehicleBar),
+      set = self:GetFontColorSetter("TXUI.vehicleBar", function()
+        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+      end),
+      disabled = optionsDisabled,
+    }
   end
 
   -- Spacer
@@ -87,7 +101,7 @@ function O:Plugins_VehicleBar()
     -- Animations Group
     local animationsGroup = self:AddInlineDesc(options, {
       name = "Animations",
-      hidden = optionsHidden,
+      hidden = optionsDisabled,
     }, {
       name = "Vehicle Bar animations when entering or leaving a vehicle.\n\n",
     }).args
@@ -132,7 +146,7 @@ function O:Plugins_VehicleBar()
     -- Dragon Riding Group
     local dragonRidingGroup = self:AddInlineDesc(options, {
       name = "Dragonriding",
-      hidden = optionsHidden,
+      hidden = optionsDisabled,
     }, {
       name = "Enables the vehicle bar while dragonriding.\n\n",
     }).args

@@ -443,6 +443,7 @@ P.blizzardFonts = {
 P.vehicleBar = {
   enabled = false,
   buttonWidth = 48,
+  thrillColor = F.Table.HexToRGB("#00caff"),
   animations = true,
   animationsMult = 1, -- Animation speed, higher than 1 => slower, lower than 1 => faster
   -- This applies to bar combat fadeIn/fadeOut and "normal" font color changes (not clock/txui button etc)

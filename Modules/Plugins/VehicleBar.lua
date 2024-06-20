@@ -15,6 +15,7 @@ local RegisterStateDriver = RegisterStateDriver
 local strsplit = strsplit
 local UnregisterStateDriver = UnregisterStateDriver
 local C_PlayerInfo = C_PlayerInfo
+local C_UnitAuras = C_UnitAuras
 local Round = Round
 local BASE_MOVEMENT_SPEED = BASE_MOVEMENT_SPEED
 
@@ -296,13 +297,24 @@ function VB:UpdateVigorSegments()
   end
 end
 
+function VB:ColorSpeedText(msg)
+  local thrillActive = C_UnitAuras.GetPlayerAuraBySpellID(377234)
+  if thrillActive then
+    local r, g, b = self.db.thrillColor.r, self.db.thrillColor.g, self.db.thrillColor.b
+
+    return F.String.Color(msg, F.String.FastRGB(r, g, b))
+  else
+    return msg
+  end
+end
+
 function VB:UpdateSpeedText()
   if VB:IsVigorAvailable() and not self.vigorBar then return end
   local isGliding, _, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
   local base = isGliding and forwardSpeed or GetUnitSpeed("player")
   local movespeed = Round(base / BASE_MOVEMENT_SPEED * 100)
 
-  self.vigorBar.speedText:SetText(format("%d%%", movespeed))
+  self.vigorBar.speedText:SetText(self:ColorSpeedText(format("%d%%", movespeed)))
 end
 
 function VB:UpdateVigorBar()
