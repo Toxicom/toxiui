@@ -236,8 +236,18 @@ function VB:UpdateVigorSegments()
   local classColor = E:ClassColor(E.myclass, true)
   local r, g, b = classColor.r, classColor.g, classColor.b
 
-  if E.myclass == "PRIEST" and E.db.TXUI.themes.gradientMode.enabled then
-    r, g, b = 0, 0.65, 1
+  local leftColor, rightColor
+
+  if E.db.TXUI.themes.gradientMode.enabled then
+    local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
+
+    local left = colorMap[1][E.myclass]
+    local right = colorMap[2][E.myclass]
+
+    if left.r and right.r then
+      leftColor = CreateColor(left.r, left.g, left.b, 1)
+      rightColor = CreateColor(right.r, right.g, right.b, 1)
+    end
   end
 
   -- Create new segments based on max Vigor
@@ -247,14 +257,14 @@ function VB:UpdateVigorSegments()
 
     if E.db.TXUI.themes.darkMode.enabled then
       segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-half"])
-    elseif E.db.TXUI.themes.gradientMode.enabled then
-      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-g1"])
     else
       segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-clean"])
     end
 
     segment:GetStatusBarTexture():SetHorizTile(false)
     segment:SetStatusBarColor(r, g, b)
+
+    if E.db.TXUI.themes.gradientMode.enabled and leftColor and rightColor then segment:GetStatusBarTexture():SetGradient("HORIZONTAL", leftColor, rightColor) end
 
     -- Background
     local bg = segment:CreateTexture(nil, "BACKGROUND")
