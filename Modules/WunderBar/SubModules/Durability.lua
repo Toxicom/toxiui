@@ -61,7 +61,7 @@ function DB:OnEvent(event)
       if currentDura and maxDura and maxDura > 0 then
         -- Populate percentage for tooltip
         local perc = (currentDura / maxDura) * 100
-        local repairCost = 0
+        local repairCost
 
         self.invDurability[index] = perc
 
