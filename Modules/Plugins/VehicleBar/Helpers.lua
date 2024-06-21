@@ -27,7 +27,7 @@ function VB:FormatKeybind(keybind)
     if E.db.TXUI.addons.colorModifiers.enabled then
       local color = E:ClassColor(E.myclass, true)
       local r, g, b = color.r, color.g, color.b
-      return string.format("|cff%02x%02x%02x%s|r%s", r * 255, g * 255, b * 255, modifier:upper(), key)
+      return format("|cff%02x%02x%02x%s|r%s", r * 255, g * 255, b * 255, modifier:upper(), key)
     else
       return modifier:upper() .. key
     end
