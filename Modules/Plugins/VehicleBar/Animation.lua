@@ -1,6 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
 
+local ipairs = ipairs
+
 function VB:StopAllAnimations()
   if self.bar.SlideIn and (self.bar.SlideIn.SlideIn:IsPlaying()) then self.bar.SlideIn.SlideIn:Finish() end
 

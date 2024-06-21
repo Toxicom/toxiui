@@ -4,19 +4,11 @@ local VB = TXUI:NewModule("VehicleBar", "AceHook-3.0")
 -- Globals
 local CreateFrame = CreateFrame
 local format = string.format
-local GetOverrideBarIndex = GetOverrideBarIndex
-local GetVehicleBarIndex = GetVehicleBarIndex
+
 local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
-local pairs = pairs
-local tinsert = table.insert
 local RegisterStateDriver = RegisterStateDriver
-local strsplit = strsplit
 local UnregisterStateDriver = UnregisterStateDriver
-local C_PlayerInfo = C_PlayerInfo
-local C_UnitAuras = C_UnitAuras
-local Round = Round
-local BASE_MOVEMENT_SPEED = BASE_MOVEMENT_SPEED
 
 function VB:OnShowEvent()
   self:StopAllAnimations()

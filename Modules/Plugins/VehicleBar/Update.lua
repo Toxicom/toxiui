@@ -2,6 +2,17 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
 local LAB = LibStub("LibActionButton-1.0-ElvUI")
 
+local GetOverrideBarIndex = GetOverrideBarIndex
+local GetVehicleBarIndex = GetVehicleBarIndex
+local format = string.format
+local pairs = pairs
+local ipairs = ipairs
+local tinsert = table.insert
+local strsplit = strsplit
+local C_PlayerInfo = C_PlayerInfo
+local Round = Round
+local BASE_MOVEMENT_SPEED = BASE_MOVEMENT_SPEED
+
 function VB:UpdateVigorSegments()
   local widgetInfo = self:GetWidgetInfo()
 
