@@ -213,15 +213,7 @@ function VB:CreateVigorBar()
 end
 
 function VB:UpdateVigorSegments()
-  local widgetSetID = C_UIWidgetManager.GetPowerBarWidgetSetID()
-  local widgets = C_UIWidgetManager.GetAllWidgetsBySetID(widgetSetID)
-
-  -- Assuming we are only interested in the first widget that matches our criteria
-  local widgetInfo = nil
-  for _, w in pairs(widgets) do
-    local tempInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
-    if tempInfo and tempInfo.shownState == 1 then widgetInfo = tempInfo end
-  end
+  local widgetInfo = self:GetWidgetInfo()
 
   if not widgetInfo then return end
 
@@ -318,16 +310,21 @@ function VB:UpdateSpeedText()
   self.vigorBar.speedText:SetText(self:ColorSpeedText(format("%d%%", movespeed)))
 end
 
-function VB:UpdateVigorBar()
+function VB:GetWidgetInfo()
   local widgetSetID = C_UIWidgetManager.GetPowerBarWidgetSetID()
   local widgets = C_UIWidgetManager.GetAllWidgetsBySetID(widgetSetID)
 
-  -- Assuming we are only interested in the first widget that matches our criteria
   local widgetInfo = nil
   for _, w in pairs(widgets) do
     local tempInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
     if tempInfo and tempInfo.shownState == 1 then widgetInfo = tempInfo end
   end
+
+  return widgetInfo
+end
+
+function VB:UpdateVigorBar()
+  local widgetInfo = self:GetWidgetInfo()
 
   if not widgetInfo then return end
 
