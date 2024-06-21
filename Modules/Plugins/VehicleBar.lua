@@ -23,7 +23,7 @@ local vigorHeight = 10
 local spacing = 2
 
 function VB:IsVigorAvailable()
-  return TXUI.IsRetail and E:IsDragonRiding()
+  return TXUI.IsRetail and IsMounted() and HasBonusActionBar()
 end
 
 function VB:StopAllAnimations()
