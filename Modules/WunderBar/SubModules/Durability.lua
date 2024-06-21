@@ -58,9 +58,11 @@ function DB:OnEvent(event)
 
     for index in pairs(slots) do
       local currentDura, maxDura = GetInventoryItemDurability(index)
-      if currentDura and maxDura > 0 then
+      if currentDura and maxDura and maxDura > 0 then
         -- Populate percentage for tooltip
-        local perc, repairCost = (currentDura / maxDura) * 100
+        local perc = (currentDura / maxDura) * 100
+        local repairCost = 0
+
         self.invDurability[index] = perc
 
         -- Update lowest durability
@@ -72,12 +74,12 @@ function DB:OnEvent(event)
           E.ScanTooltip:Show()
 
           local tooltipData = E.ScanTooltip:GetTooltipData()
-          repairCost = tooltipData and tooltipData.repairCost
+          repairCost = tooltipData and tooltipData.repairCost or 0
         else
-          repairCost = select(3, E.ScanTooltip:SetInventoryItem("player", index))
+          repairCost = select(3, E.ScanTooltip:SetInventoryItem("player", index)) or 0
         end
 
-        totalRepairCost = totalRepairCost + (repairCost or 0)
+        totalRepairCost = totalRepairCost + repairCost
 
         -- Get item level if enabled (for Wrath we use UpdateAverageItemLevel)
         if TXUI.IsRetail and self.db.showItemLevel then

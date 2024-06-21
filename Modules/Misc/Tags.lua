@@ -199,6 +199,7 @@ function M:Tags()
         return SetGradientColorMapString(str, unitClass, reverse)
       else
         local cs = ElvUF.colors.class[unitClass]
+        ---@diagnostic disable-next-line: ambiguity-1
         return (cs and "|cff" .. F.String.FastRGB(cs[1], cs[2], cs[3]) .. str) or "|cffcccccc" .. str
       end
     else
@@ -215,6 +216,7 @@ function M:Tags()
         end
       else
         local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
+        ---@diagnostic disable-next-line: ambiguity-1
         return (cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. str) or "|cffcccccc" .. str
       end
     end

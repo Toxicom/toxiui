@@ -1,7 +1,8 @@
-local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
+local TXUI, F, E = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
 
 local C_UnitAuras = C_UnitAuras
+local C_UIWidgetManager = C_UIWidgetManager
 local format = string.format
 
 function VB:IsVigorAvailable()

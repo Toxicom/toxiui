@@ -176,7 +176,7 @@ function IS:ElvUIProfileDialog()
     end
 
     E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
-    IS:ShowStepComplete("Profile Created", true)
+    IS:ShowStepComplete("Profile Created")
     if self.installerOpen and not TXUI.PreventProfileUpdates then E:GetModule("PluginInstaller"):SetPage(2) end
   end
 
