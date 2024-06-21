@@ -80,6 +80,7 @@ function VB:OnShowEvent()
     -- Hide the Default Vigor Bar
     local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"] -- Replace with the actual frame name if different
     if defaultVigorBar then defaultVigorBar:Hide() end
+    self:UpdateVigorSegments()
   end
 
   local animationsAllowed = self.db.animations and (not InCombatLockdown()) and not self.combatLock
