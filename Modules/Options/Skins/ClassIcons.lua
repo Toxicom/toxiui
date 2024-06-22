@@ -71,11 +71,7 @@ function O:Skins_ClassIcons()
     local styleGroup = self:AddInlineDesc(options, {
       name = "Icon Style",
     }, {
-      name = "Change the style for the "
-        .. F.String.ToxiUI("[tx:classicon]")
-        .. " tag used in UnitFrames.\n\n"
-        .. F.String.Class("P.S.", "MONK")
-        .. " We are looking for people that can improve the Spec Stylized icons!\n\n",
+      name = "Change the style for the " .. F.String.ToxiUI("[tx:classicon]") .. " tag used in UnitFrames.\n\n",
     }).args
 
     styleGroup.style = {
@@ -92,7 +88,7 @@ function O:Skins_ClassIcons()
 
         if TXUI.IsRetail then
           local retailTable = {
-            ToxiSpecStylized = F.String.Class("Spec Stylized"),
+            ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
             ToxiSpecColored = F.String.Class("Spec") .. " " .. F.String.Rainbow("Colored"),
             ToxiSpecColoredStroke = F.String.Class("Spec") .. " " .. F.String.Rainbow("Colored") .. " Stroke",
             ToxiSpecWhite = F.String.Class("Spec") .. " White",
