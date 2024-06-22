@@ -100,6 +100,11 @@ function VB:Disable()
     RegisterStateDriver(self.ab["handledBars"]["bar1"], "visibility", E.db.actionbar["bar1"].visibility)
 
     self.bar:Hide()
+
+    if self.vigorBar then
+      self.vigorBar:Hide()
+      if self.vigorBar.speedText then self.vigorBar.speedText:Hide() end
+    end
   end
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self)
@@ -113,7 +118,7 @@ function VB:Enable()
   self:UpdateBar()
 
   -- Register event to update the custom vigor bar when vigor changes
-  if TXUI.IsRetail then
+  if TXUI.IsRetail and not self.eventScriptSet then
     local eventFrame = CreateFrame("Frame")
     eventFrame:RegisterEvent("UNIT_POWER_UPDATE")
     eventFrame:RegisterEvent("UNIT_MAXPOWER")
@@ -126,6 +131,7 @@ function VB:Enable()
       end
     end)
 
+    self.eventScriptSet = true
     -- Initial update
     self:UpdateVigorBar()
   end
@@ -181,6 +187,7 @@ function VB:Initialize()
   self.previousBarWidth = nil
   self.vigorHeight = 10
   self.spacing = 2
+  self.eventScriptSet = false
 
   -- Register for updates
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
