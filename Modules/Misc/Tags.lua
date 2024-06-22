@@ -142,9 +142,9 @@ function M:Tags()
     [270] = getCoordinates(7, 2), -- Monk Mistweaver
     [577] = getCoordinates(3, 5), -- Demon Hunter Havoc
     [581] = getCoordinates(4, 5), -- Demon Hunter Vengeance
-    [1467] = getCoordinates(6, 5), -- Evoker Devastation
-    [1468] = getCoordinates(7, 5), -- Evoker Preservation
-    [1473] = getCoordinates(8, 5), -- Evoker Augmentation
+    [1467] = getCoordinates(5, 5), -- Evoker Devastation
+    [1468] = getCoordinates(6, 5), -- Evoker Preservation
+    [1473] = getCoordinates(7, 5), -- Evoker Augmentation
   }
 
   local function SetGradientColorMapString(name, unitClass, reverseGradient)
