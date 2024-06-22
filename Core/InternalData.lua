@@ -182,7 +182,38 @@ I.Data.Contributor = {
   },
 
   -- LEGENDARY => Orange Badge
-  [I.Enum.ContributorType.LEGENDARY] = {},
+  [I.Enum.ContributorType.LEGENDARY] = {
+    -- They painted the Stylized Spec icons
+    ["Shaz"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Draenor
+        ["Illyanna-Draenor"] = true,
+        ["Seffy-Draenor"] = true,
+        ["Myrcene-Draenor"] = true,
+        ["Cassièl-Draenor"] = true,
+        ["Shonisdog-Draenor"] = true,
+        ["Liliael-Draenor"] = true,
+        ["Illyea-Draenor"] = true,
+        ["Sanígawd-Draenor"] = true,
+        ["Lilliwilli-Draenor"] = true,
+        ["Lilliaeth-Draenor"] = true,
+        ["Lilywilly-Draenor"] = true,
+        ["Illyra-Draenor"] = true,
+        ["Iraqiprince-Draenor"] = true,
+        ["Illy-Draenor"] = true,
+        ["Xyllene-Draenor"] = true,
+        ["Isbeth-Draenor"] = true,
+        ["Lilliam-Draenor"] = true,
+        ["Zyphira-Draenor"] = true,
+        ["Lielee-Draenor"] = true,
+        ["Brokeilly-Draenor"] = true,
+        ["Iressi-Draenor"] = true,
+        ["Sephy-Draenor"] = true,
+        ["Liliam-Draenor"] = true,
+        ["Demonilly-Draenor"] = true,
+      },
+    },
+  },
 
   -- EPIC => Purple Badge (epic supporter)
   [I.Enum.ContributorType.EPIC] = {
