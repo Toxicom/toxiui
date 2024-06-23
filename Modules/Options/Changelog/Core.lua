@@ -6,7 +6,7 @@ local ipairs = ipairs
 local sub = string.sub
 local type = type
 
-function O:FormatChangelog(options, version, changelogIndex, changelog)
+function O:FormatChangelog(options, version, changelogIndex, changelog, returnText)
   -- Get the changes from the last changelog
   local changelogGeneralData = changelog.CHANGES
   local changelogRetailData = changelog.CHANGES_RETAIL
@@ -52,6 +52,8 @@ function O:FormatChangelog(options, version, changelogIndex, changelog)
   end
 
   local generatedText = generateSectionLog(changelogGeneralData)
+
+  if returnText then return generatedText end
 
   if changelog.DYNAMIC then
     local dynamicSection = changelog.DYNAMIC()

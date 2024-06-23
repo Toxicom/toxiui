@@ -1,10 +1,12 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local AFK = TXUI:NewModule("AFK", "AceHook-3.0", "AceTimer-3.0")
+local O = TXUI:GetModule("Options")
+local CL = TXUI:GetModule("Changelog")
 
 -- Globals
 local CloseAllWindows = CloseAllWindows
-local CreateFrame = CreateFrame
 local floor = math.floor
+local format = string.format
 local GetTime = GetTime
 local MoveViewLeftStart = MoveViewLeftStart
 local MoveViewLeftStop = MoveViewLeftStop
@@ -16,7 +18,6 @@ local tinsert = table.insert
 local UIParent = UIParent
 
 -- Vars
-AFK.timerText = "Away for "
 AFK.randomAnimations = {
   [60] = true, -- EmoteTalk
   [66] = true, -- EmoteBow
@@ -113,7 +114,8 @@ end
 
 function AFK:UpdateTimer()
   local time = GetTime() - self.startTime
-  self.frame.bottom.logoText:SetFormattedText("%s %02d:%02d", F.String.GradientClass(self.timerText), floor(time / 60), time % 60)
+  local formattedText = format("%02d:%02d", floor(time / 60), time % 60)
+  self.frame.bottom.logoText:SetText(F.String.GradientClass(formattedText))
 end
 
 function AFK:SetAFK(_, status)
@@ -122,6 +124,27 @@ function AFK:SetAFK(_, status)
   self:CancelAllTimers()
 
   if status and not self.elvUIAfk.isAFK then
+    local guildName = GetGuildInfo("player")
+    local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
+
+    local fallback = iconsDb and iconsDb[0] or ""
+    local specIcon
+
+    if TXUI.IsRetail then
+      local _, classId = UnitClassBase("player")
+      local specIndex = GetSpecialization()
+      local id = GetSpecializationInfoForClassID(classId, specIndex)
+
+      if id and iconsDb then specIcon = iconsDb[id] end
+    else
+      local spec
+      local talents = GetActiveTalentGroup()
+
+      if talents then spec = SS:GetWrathCacheForSpec(talents) end
+
+      if spec.id and iconsDb then specIcon = iconsDb[spec.id] end
+    end
+
     self.elvUIAfk.isAFK = true
 
     if self.db.turnCamera then
@@ -132,7 +155,7 @@ function AFK:SetAFK(_, status)
     CloseAllWindows()
     UIParent:Hide()
 
-    self.frame.bottom:SetHeight(0)
+    self.frame.bottom:SetAlpha(0)
     self.frame.bottom.anim:Play()
 
     self.startTime = GetTime()
@@ -147,6 +170,8 @@ function AFK:SetAFK(_, status)
       self:PlayIdleAnimation()
     end)
 
+    self.frame.bottom.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
+    self.frame.bottom.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass((specIcon and specIcon or fallback) .. " " .. E.myLocalizedClass, nil, true))
     if self.db.playEmotes then
       self:ResetPlayedAnimations()
       self:PlayRandomAnimation()
@@ -179,44 +204,116 @@ end
 
 function AFK:SetupFrames()
   -- Vars
-  local bottomHeight = E.physicalHeight * (1 / 9)
+  local bottomHeight = E.physicalHeight
+  local padding = 20
   self.frame = self.elvUIAfk.AFKMode
+
+  local changelog = TXUI.Changelog[TXUI.Version]
+  local changelogText = O:FormatChangelog(nil, nil, nil, changelog, true)
+  local changelogHeader = "Latest changelog for " .. F.String.ToxiUI(CL:FormattedVersion(TXUI.Version))
 
   -- Cancel ElvUI timers
   self.elvUIAfk:CancelAllTimers()
 
   -- Move the chat lower
   self.frame.chat:ClearAllPoints()
-  self.frame.chat:SetPoint("TOPLEFT", self.frame.bottom, "BOTTOMLEFT", F.Dpi(4), F.Dpi(-10))
+  self.frame.chat:SetPoint("BOTTOMLEFT", self.frame.bottom, "BOTTOMLEFT", padding, padding)
+
+  self.frame.bottom:SetHeight(bottomHeight)
 
   -- Bottom Frame Animation
-  self.frame.bottom.anim = TXUI:CreateAnimationGroup(self.frame.bottom):CreateAnimation("Height")
-  self.frame.bottom.anim:SetChange(bottomHeight)
+  self.frame.bottom.anim = TXUI:CreateAnimationGroup(self.frame.bottom):CreateAnimation("Fade")
+  self.frame.bottom.anim:SetChange(1)
   self.frame.bottom.anim:SetDuration(1)
-  self.frame.bottom.anim:SetEasing("out-bounce")
+  self.frame.bottom.anim:SetEasing("out-quadratic")
 
-  -- ToxiUI logo
-  self.frame.bottom.logoBackground = CreateFrame("Frame", nil, self.frame)
-  self.frame.bottom.logoBackground:SetPoint("CENTER", self.frame.bottom, "CENTER", 0, 0)
-  self.frame.bottom.logoBackground:SetFrameStrata("MEDIUM")
-  self.frame.bottom.logoBackground:SetFrameLevel(10)
-  self.frame.bottom.logoBackground:SetSize(F.Dpi(220), F.Dpi(120))
+  -- ToxiUI logo1
   self.frame.bottom.faction:SetTexture(I.Media.Logos.Logo)
   self.frame.bottom.faction:ClearAllPoints()
-  self.frame.bottom.faction:SetParent(self.frame.bottom.logoBackground)
-  self.frame.bottom.faction:SetInside()
+  self.frame.bottom.faction:Size(256, 128)
+  self.frame.bottom.faction:SetPoint("TOP", self.frame.bottom, "TOP", 0, -padding * 5)
+
+  self.frame.bottom.changelogHeader = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.changelogHeader:SetPoint("TOPLEFT", self.frame.bottom, "TOPLEFT", padding, -padding * 5)
+  self.frame.bottom.changelogHeader:SetFont(self.titleFont, F.FontSizeScaled(24), "SHADOWOUTLINE")
+  self.frame.bottom.changelogHeader:SetJustifyH("LEFT")
+  self.frame.bottom.changelogHeader:SetTextColor(1, 1, 1, 0.8)
+  self.frame.bottom.changelogHeader:SetText(changelogHeader)
+
+  -- Add ElvUI name
+  self.frame.bottom.changelog = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.changelog:SetPoint("TOPLEFT", self.frame.bottom.changelogHeader, "BOTTOMLEFT", 0, -padding / 2)
+  self.frame.bottom.changelog:SetFont(self.primaryFont, F.FontSizeScaled(16), "SHADOWOUTLINE")
+  self.frame.bottom.changelog:SetJustifyH("LEFT")
+  self.frame.bottom.changelog:SetTextColor(1, 1, 1, 0.8)
+  self.frame.bottom.changelog:SetText(changelogText)
 
   -- Add ElvUI name
   self.frame.bottom.logoText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
-  self.frame.bottom.logoText:SetPoint("LEFT", self.frame.bottom, "LEFT", F.Dpi(25), 0)
-  self.frame.bottom.logoText:SetFont(self.primaryFont, F.FontSizeScaled(24), "SHADOWOUTLINE")
+  self.frame.bottom.logoText:SetPoint("TOP", self.frame.bottom.faction, "BOTTOM", 0, -padding)
+  self.frame.bottom.logoText:SetFont(self.titleFont, F.FontSizeScaled(32), "SHADOWOUTLINE")
   self.frame.bottom.logoText:SetTextColor(1, 1, 1, 1)
   self.frame.bottom.logoText:SetText(" ")
 
   -- Player Model
-  self.frame.bottom.model:SetPoint("CENTER", self.frame.bottom.modelHolder, "CENTER", F.Dpi(-50), F.Dpi(150))
-  self.frame.bottom.model:SetCamDistanceScale(3) -- Lower number => bigger model. Higher number => smaller model.
+  self.frame.bottom.model:SetPoint("CENTER", self.frame.bottom.modelHolder, "CENTER", F.Dpi(-100), F.Dpi(100))
+  self.frame.bottom.model:SetCamDistanceScale(4) -- Lower number => bigger model. Higher number => smaller model.
   self.frame.bottom.model:SetScript("OnUpdate", nil)
+
+  -- Bottom text promotion
+  self.frame.bottom.bottomText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.bottomText:Point("BOTTOM", 0, padding)
+  self.frame.bottom.bottomText:SetFont(self.primaryFont, F.FontSizeScaled(14), "OUTLINE")
+  self.frame.bottom.bottomText:SetTextColor(1, 1, 1, 0.6)
+  self.frame.bottom.bottomText:SetText("You can find all the relevant " .. TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
+
+  -- Player Name
+  self.frame.bottom.nameText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.nameText:SetPoint("TOP", self.frame.bottom.logoText, "BOTTOM", 0, -30)
+  self.frame.bottom.nameText:SetFont(self.titleFont, F.FontSizeScaled(28), "OUTLINE")
+  self.frame.bottom.nameText:SetTextColor(1, 1, 1, 1)
+  self.frame.bottom.nameText:SetText(F.String.GradientClass(E.myname))
+
+  -- Player Guild
+  self.frame.bottom.guildText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.guildText:SetPoint("TOP", self.frame.bottom.nameText, "BOTTOM", 0, 0)
+  self.frame.bottom.guildText:SetFont(self.primaryFont, F.FontSizeScaled(16), "OUTLINE")
+  self.frame.bottom.guildText:SetTextColor(1, 1, 1, 1)
+
+  -- Player Level & Class
+  self.frame.bottom.levelText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.levelText:SetPoint("TOP", self.frame.bottom.guildText, "BOTTOM", 0, -25)
+  self.frame.bottom.levelText:SetFont(self.primaryFont, F.FontSizeScaled(20), "OUTLINE")
+  self.frame.bottom.levelText:SetTextColor(1, 1, 1, 1)
+
+  -- Random tips
+  local randomTips = I.Constants.RandomTips
+
+  local indexOne = math.random(1, #randomTips)
+  local indexTwo = math.random(1, #randomTips)
+  local indexThree = math.random(1, #randomTips)
+  -- For debugging
+  -- randomIndex = 4
+  local tipOne = randomTips[indexOne]
+  local tipTwo = randomTips[indexTwo]
+  local tipThree = randomTips[indexThree]
+
+  self.frame.bottom.tipHeader = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.tipHeader:SetPoint("TOPRIGHT", self.frame.bottom, "TOPRIGHT", -padding, -padding * 5)
+  self.frame.bottom.tipHeader:SetFont(self.titleFont, F.FontSizeScaled(24), "OUTLINE")
+  self.frame.bottom.tipHeader:SetTextColor(1, 1, 1, 0.8)
+  self.frame.bottom.tipHeader:SetJustifyH("RIGHT")
+  self.frame.bottom.tipHeader:SetText("Random Tips")
+
+  self.frame.bottom.tipText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.tipText:SetPoint("TOPRIGHT", self.frame.bottom.tipHeader, "BOTTOMRIGHT", 0, -padding / 2)
+  self.frame.bottom.tipText:SetFont(self.primaryFont, F.FontSizeScaled(16), "OUTLINE")
+  self.frame.bottom.tipText:SetTextColor(1, 1, 1, 0.8)
+  self.frame.bottom.tipText:SetJustifyH("RIGHT")
+
+  self.frame.bottom.tipText:SetText(tipOne .. "\n\n\n" .. tipTwo .. "\n\n\n" .. tipThree)
+
+  self.frame.bottom.tipText:SetWidth(600)
 
   -- Sush
   F.CreateSoftShadow(self.frame.bottom, bottomHeight)
@@ -282,6 +379,7 @@ function AFK:Initialize()
 
   -- Get font
   self.primaryFont = F.GetFontPath(I.Fonts.Primary)
+  self.titleFont = F.GetFontPath(I.Fonts.TitleRaid)
 
   -- We are done, hooray!
   self.Initialized = true

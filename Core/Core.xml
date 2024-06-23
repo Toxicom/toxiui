@@ -15,11 +15,14 @@
   <Script file='Core.lua' />
   <Script file='DBConvert.lua' />
 
-  <!-- Other Core releated functions -->
+  <!-- Other Core related functions -->
   <Script file='Export.lua' />
   <Script file='StaticPopups.lua' />
   <Script file='Commands.lua' />
   <Script file='Animations.lua' />
+
+  <!-- Constants that require functions etc. and need to be loaded later -->
+  <Script file='Constants.lua' />
 
   <!-- Changelogs -->
   <Include file='Changelog\Changelog.xml' />

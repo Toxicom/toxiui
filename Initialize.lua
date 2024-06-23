@@ -35,6 +35,7 @@ TXUI.DevTag = ""
 TXUI.DelayedWorldEntered = false
 TXUI.MetaFlavor = GetAddOnMetadata(addonName, "X-Flavor")
 TXUI.ClientBuildVersion = select(4, GetBuildInfo())
+TXUI.Version = GetAddOnMetadata(addonName, "Version")
 
 TXUI.IsVanilla = TXUI.MetaFlavor == "Vanilla"
 TXUI.IsCata = TXUI.MetaFlavor == "Cata"
