@@ -26,6 +26,7 @@ TXUI.Changelog["6.6.8"] = {
     "Update " .. TXUI.Title .. " class icon on spec change",
 
     "* Profile updates",
+    "Update default Hunter's shift color",
 
     "* Documentation",
 
