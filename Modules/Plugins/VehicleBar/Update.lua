@@ -23,6 +23,7 @@ function VB:UpdateVigorSegments()
   -- Clear existing segments
   for _, segment in ipairs(self.vigorBar.segments) do
     segment:Hide()
+    segment:ClearAllPoints()
   end
 
   self.vigorBar.segments = {}
@@ -64,7 +65,7 @@ function VB:UpdateVigorSegments()
 
     -- Background
     local bg = segment:CreateTexture(nil, "BACKGROUND")
-    bg:SetAllPoints(true)
+    bg:SetAllPoints()
     bg:SetColorTexture(0, 0, 0, 0.5)
 
     -- Border

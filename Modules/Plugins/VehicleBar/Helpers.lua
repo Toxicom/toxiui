@@ -6,7 +6,11 @@ local C_UIWidgetManager = C_UIWidgetManager
 local format = string.format
 
 function VB:IsVigorAvailable()
-  return TXUI.IsRetail and IsMounted() and HasBonusActionBar()
+  if TXUI.IsRetail and IsMounted() and HasBonusActionBar() then
+    return true
+  else
+    return false
+  end
 end
 
 function VB:GetWidgetInfo()

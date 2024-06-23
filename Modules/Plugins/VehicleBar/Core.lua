@@ -15,7 +15,7 @@ function VB:OnShowEvent()
 
   if self:IsVigorAvailable() then
     -- Hide the Default Vigor Bar
-    local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"] -- Replace with the actual frame name if different
+    local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"]
     if defaultVigorBar then defaultVigorBar:Hide() end
     self:UpdateVigorSegments()
   end
