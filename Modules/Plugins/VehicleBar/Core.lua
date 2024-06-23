@@ -17,7 +17,6 @@ function VB:OnShowEvent()
     -- Hide the Default Vigor Bar
     local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"]
     if defaultVigorBar then defaultVigorBar:Hide() end
-    self:UpdateVigorSegments()
   end
 
   local animationsAllowed = self.db.animations and (not InCombatLockdown()) and not self.combatLock
@@ -67,7 +66,6 @@ function VB:OnShowEvent()
   if self:IsVigorAvailable() then
     self.vigorBar:Show()
     self.vigorBar.speedText:Show()
-    self:UpdateVigorBar()
   end
 
   -- Update keybinds when the bar is shown
@@ -120,20 +118,12 @@ function VB:Enable()
   -- Register event to update the custom vigor bar when vigor changes
   if TXUI.IsRetail and not self.eventScriptSet then
     local eventFrame = CreateFrame("Frame")
-    eventFrame:RegisterEvent("UNIT_POWER_UPDATE")
-    eventFrame:RegisterEvent("UNIT_MAXPOWER")
     eventFrame:RegisterEvent("UPDATE_UI_WIDGET")
-    eventFrame:SetScript("OnEvent", function(_, event, arg1, arg2)
-      if event == "UNIT_POWER_UPDATE" and arg1 == "player" and arg2 == "ALTERNATE" then
-        VB:UpdateVigorBar()
-      elseif event == "UPDATE_UI_WIDGET" then
-        VB:UpdateVigorBar()
-      end
+    eventFrame:SetScript("OnEvent", function(_, event)
+      if event == "UPDATE_UI_WIDGET" and self:IsVigorAvailable() then self:UpdateVigorBar() end
     end)
 
     self.eventScriptSet = true
-    -- Initial update
-    self:UpdateVigorBar()
   end
 
   -- Overwrite default bar visibility

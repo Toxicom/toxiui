@@ -7,7 +7,6 @@ local GetVehicleBarIndex = GetVehicleBarIndex
 local format = string.format
 local pairs = pairs
 local ipairs = ipairs
-local tinsert = table.insert
 local strsplit = strsplit
 local C_PlayerInfo = C_PlayerInfo
 local Round = Round
@@ -18,77 +17,20 @@ function VB:UpdateVigorSegments()
 
   if not widgetInfo then return end
 
-  local maxVigor = widgetInfo.numTotalFrames -- Total Vigor Segments
+  local currentVigor = widgetInfo.numFullFrames
+  local partialFill = widgetInfo.fillValue / widgetInfo.fillMax
 
-  -- Clear existing segments
-  for _, segment in ipairs(self.vigorBar.segments) do
-    segment:Hide()
-    segment:ClearAllPoints()
-  end
-
-  self.vigorBar.segments = {}
-
-  local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (self.spacing * 2)
-
-  local classColor = E:ClassColor(E.myclass, true)
-  local r, g, b = classColor.r, classColor.g, classColor.b
-
-  local leftColor, rightColor
-
-  if E.db.TXUI.themes.gradientMode.enabled then
-    local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
-
-    local left = colorMap[1][E.myclass]
-    local right = colorMap[2][E.myclass]
-
-    if left.r and right.r then
-      leftColor = CreateColor(left.r, left.g, left.b, 1)
-      rightColor = CreateColor(right.r, right.g, right.b, 1)
-    end
-  end
-
-  -- Create new segments based on max Vigor
-  for i = 1, maxVigor do
-    local segment = CreateFrame("StatusBar", nil, self.vigorBar)
-    segment:SetSize(segmentWidth, self.vigorHeight) -- Width, Height of each segment
-
-    if E.db.TXUI.themes.darkMode.enabled then
-      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-half"])
+  for i, segment in ipairs(self.vigorBar.segments) do
+    if i <= currentVigor then
+      segment:SetValue(1)
+      segment:Show()
+    elseif i == currentVigor + 1 then
+      segment:SetValue(partialFill)
+      segment:Show()
     else
-      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-clean"])
+      segment:SetValue(0)
+      segment:Show()
     end
-
-    segment:GetStatusBarTexture():SetHorizTile(false)
-    segment:SetStatusBarColor(r, g, b)
-
-    if E.db.TXUI.themes.gradientMode.enabled and leftColor and rightColor then segment:GetStatusBarTexture():SetGradient("HORIZONTAL", leftColor, rightColor) end
-
-    -- Background
-    local bg = segment:CreateTexture(nil, "BACKGROUND")
-    bg:SetAllPoints()
-    bg:SetColorTexture(0, 0, 0, 0.5)
-
-    -- Border
-    local border = CreateFrame("Frame", nil, segment, "BackdropTemplate")
-    border:SetPoint("TOPLEFT", -1, 1)
-    border:SetPoint("BOTTOMRIGHT", 1, -1)
-    border:SetBackdrop {
-      edgeFile = E.media.blankTex,
-      edgeSize = E.twoPixelsPlease and 2 or 1,
-    }
-    border:SetBackdropBorderColor(0, 0, 0)
-
-    if i == 1 then
-      segment:SetPoint("LEFT", self.vigorBar, "LEFT", self.spacing, 0)
-    else
-      segment:SetPoint("LEFT", self.vigorBar.segments[i - 1], "RIGHT", self.spacing * 2, 0)
-    end
-
-    segment:SetMinMaxValues(0, 1)
-
-    if E.db.TXUI.addons.elvUITheme.enabled and E.db.TXUI.addons.elvUITheme.shadowEnabled then F.CreateSoftShadow(segment, E.db.TXUI.addons.elvUITheme.shadowSize * 2) end
-
-    tinsert(self.vigorBar.segments, segment)
   end
 end
 
@@ -109,7 +51,7 @@ function VB:UpdateKeybinds()
       local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
       if keybind then
         button.HotKey:SetTextColor(1, 1, 1)
-        button.HotKey:SetText(self:FormatKeybind(GetBindingText(keybind, "KEY_", 1)))
+        button.HotKey:SetText(self:FormatKeybind(GetBindingText(keybind, "KEY_")))
         button.HotKey:Show()
       else
         button.HotKey:Hide()
@@ -119,25 +61,21 @@ function VB:UpdateKeybinds()
 end
 
 function VB:UpdateVigorBar()
-  local widgetInfo = self:GetWidgetInfo()
-
-  if not widgetInfo then return end
-
-  local currentVigor = widgetInfo.numFullFrames
-  local partialFill = widgetInfo.fillValue / widgetInfo.fillMax
-  local maxVigor = widgetInfo.numTotalFrames
+  if F.Table.IsEmpty(self.vigorBar.segments) then self:CreateVigorSegments() end
 
   -- Check if bar width has changed
   local currentBarWidth = self.bar:GetWidth()
   if currentBarWidth ~= self.previousBarWidth then
+    local widgetInfo = self:GetWidgetInfo()
     -- Update the width of the vigorBar to match the width of self.bar
     local width = currentBarWidth - self.spacing
     self.vigorBar:SetWidth(width)
 
+    if not widgetInfo then return end
+    local maxVigor = widgetInfo.numTotalFrames
+
     -- Calculate the new segment width based on the updated vigorBar width
     local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (self.spacing * 2)
-
-    if #self.vigorBar.segments ~= maxVigor then self:UpdateVigorSegments() end
 
     for _, segment in ipairs(self.vigorBar.segments) do
       segment:SetWidth(segmentWidth) -- Update the width of each segment
@@ -147,21 +85,7 @@ function VB:UpdateVigorBar()
     self.previousBarWidth = currentBarWidth
   end
 
-  for i, segment in ipairs(self.vigorBar.segments) do
-    if i <= currentVigor then
-      segment:SetValue(1)
-      segment:Show()
-    elseif i == currentVigor + 1 then
-      segment:SetValue(partialFill)
-      segment:Show()
-    elseif i <= maxVigor then
-      segment:SetValue(0)
-      segment:Show()
-    else
-      segment:Hide()
-    end
-  end
-
+  self:UpdateVigorSegments()
   -- Update the speed text
   self:UpdateSpeedText()
 end

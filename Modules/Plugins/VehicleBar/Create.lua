@@ -1,5 +1,7 @@
-local TXUI, F, _, I = unpack((select(2, ...)))
+local TXUI, F, E, I = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
+
+local tinsert = table.insert
 
 function VB:CreateVigorBar()
   local vigorBar = CreateFrame("Frame", "CustomVigorBar", UIParent)
@@ -23,8 +25,78 @@ function VB:CreateVigorBar()
     self:UpdateSpeedText()
   end)
 
-  vigorBar.segments = {}
   self.vigorBar = vigorBar
+  self.vigorBar.segments = {}
 
-  self:UpdateVigorSegments()
+  self:CreateVigorSegments()
+  if not F.Table.IsEmpty(self.vigorBar.segments) then self:UpdateVigorSegments() end
+end
+
+function VB:CreateVigorSegments()
+  local widgetInfo = self:GetWidgetInfo()
+  if not widgetInfo then return end
+
+  local maxVigor = widgetInfo.numTotalFrames -- Total Vigor Segments
+
+  local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (self.spacing * 2)
+
+  local classColor = E:ClassColor(E.myclass, true)
+  local r, g, b = classColor.r, classColor.g, classColor.b
+
+  local leftColor, rightColor
+
+  if E.db.TXUI.themes.gradientMode.enabled then
+    local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
+
+    local left = colorMap[1][E.myclass]
+    local right = colorMap[2][E.myclass]
+
+    if left.r and right.r then
+      leftColor = CreateColor(left.r, left.g, left.b, 1)
+      rightColor = CreateColor(right.r, right.g, right.b, 1)
+    end
+  end
+
+  for i = 1, maxVigor do
+    local segment = CreateFrame("StatusBar", nil, self.vigorBar)
+    segment:SetSize(segmentWidth, self.vigorHeight) -- Width, Height of each segment
+
+    if E.db.TXUI.themes.darkMode.enabled then
+      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-half"])
+    else
+      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-clean"])
+    end
+
+    segment:GetStatusBarTexture():SetHorizTile(false)
+    segment:SetStatusBarColor(r, g, b)
+
+    if E.db.TXUI.themes.gradientMode.enabled and leftColor and rightColor then segment:GetStatusBarTexture():SetGradient("HORIZONTAL", leftColor, rightColor) end
+
+    -- Background
+    local bg = segment:CreateTexture(nil, "BACKGROUND")
+    bg:SetAllPoints()
+    bg:SetColorTexture(0, 0, 0, 0.5)
+
+    -- Border
+    local border = CreateFrame("Frame", nil, segment, "BackdropTemplate")
+    border:SetPoint("TOPLEFT", -1, 1)
+    border:SetPoint("BOTTOMRIGHT", 1, -1)
+    border:SetBackdrop {
+      edgeFile = E.media.blankTex,
+      edgeSize = E.twoPixelsPlease and 2 or 1,
+    }
+    border:SetBackdropBorderColor(0, 0, 0)
+
+    if i == 1 then
+      segment:SetPoint("LEFT", self.vigorBar, "LEFT", self.spacing, 0)
+    else
+      segment:SetPoint("LEFT", self.vigorBar.segments[i - 1], "RIGHT", self.spacing * 2, 0)
+    end
+
+    segment:SetMinMaxValues(0, 1)
+
+    if E.db.TXUI.addons.elvUITheme.enabled and E.db.TXUI.addons.elvUITheme.shadowEnabled then F.CreateSoftShadow(segment, E.db.TXUI.addons.elvUITheme.shadowSize * 2) end
+
+    tinsert(self.vigorBar.segments, segment)
+  end
 end
