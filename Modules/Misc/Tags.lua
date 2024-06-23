@@ -490,7 +490,7 @@ function M:Tags()
   local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
 
   -- Class Icon Tag
-  E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED", function(unit)
+  E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)
     if UnitIsPlayer(unit) then
       local _, class = UnitClass(unit)
       local icon = classIcons[class]

@@ -23,6 +23,7 @@ TXUI.Changelog["6.6.8"] = {
 
     "* Bug fixes",
     "Improve fallback colors for F.Color.SetGradient",
+    "Update " .. TXUI.Title .. " class icon on spec change",
 
     "* Profile updates",
 
