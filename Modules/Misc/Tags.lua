@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, L, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
+local LOR = LibStub:GetLibrary("LibOpenRaid-1.0", true)
 
 local ipairs = ipairs
 local select = select
@@ -496,11 +497,18 @@ function M:Tags()
 
       if usingSpecIcons then
         local specIcon = ""
+        local specId = nil
+        local info = LOR.GetUnitInfo(unit)
 
-        local info = E:GetUnitSpecInfo(unit)
+        if info and info.specId ~= 0 then
+          specId = info.specId
+        else
+          info = E:GetUnitSpecInfo(unit)
+          if info and info.id then specId = info.id end
+        end
 
-        if info and info.id and iconsDb then
-          icon = specIcons[info.id]
+        if iconsDb and specId then
+          icon = specIcons[specId]
 
           if icon then specIcon = format(classIcon, icon) end
         end
