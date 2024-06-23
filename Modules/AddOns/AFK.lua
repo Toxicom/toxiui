@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local AFK = TXUI:NewModule("AFK", "AceHook-3.0", "AceTimer-3.0")
 local O = TXUI:GetModule("Options")
 local CL = TXUI:GetModule("Changelog")
+local SS = TXUI:GetModule("WunderBar"):GetModule("SpecSwitch")
 
 -- Globals
 local CloseAllWindows = CloseAllWindows
