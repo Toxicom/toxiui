@@ -8,8 +8,12 @@ local SetCVar = SetCVar
 local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet", "lfg" }
 
 function T:SetupCvars()
-  -- CVars
-  SetCVar("autoLootDefault", 1)
+  if E.TimerunningID and UnitLevel("player") < 70 then
+    return
+  else
+    -- CVars
+    SetCVar("autoLootDefault", 1)
+  end
 end
 
 function T:SetupProfile()
@@ -67,6 +71,8 @@ function T:SetupProfile()
   E.db.bags.bank = true
   E.db.bags.bankSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bankButtonSpacing = 2
+
+  if F.IsAddOnEnabled("BetterBags") then E.private.bags.enable = false end
 
   -- WindTools
   if TXUI.IsRetail then
