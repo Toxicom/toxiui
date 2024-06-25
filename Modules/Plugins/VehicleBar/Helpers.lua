@@ -44,7 +44,7 @@ end
 function VB:ColorSpeedText(msg)
   local thrillActive = C_UnitAuras.GetPlayerAuraBySpellID(377234)
   if thrillActive then
-    local r, g, b = self.db.thrillColor.r, self.db.thrillColor.g, self.db.thrillColor.b
+    local r, g, b = self.vdb.thrillColor.r, self.vdb.thrillColor.g, self.vdb.thrillColor.b
 
     return F.String.Color(msg, F.String.FastRGB(r, g, b))
   else

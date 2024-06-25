@@ -26,7 +26,7 @@ function VB:OnShowEvent()
       self:SetupButtonAnim(button, i)
     end
 
-    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
+    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments and self.vigorBar.speedText then
       for i, segment in ipairs(self.vigorBar.segments) do
         self:SetupButtonAnim(segment, i)
       end
@@ -44,7 +44,7 @@ function VB:OnShowEvent()
     end
   end
 
-  if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
+  if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments and self.vigorBar.speedText then
     for _, segment in ipairs(self.vigorBar.segments) do
       if animationsAllowed then
         segment:SetAlpha(0)
@@ -63,7 +63,7 @@ function VB:OnShowEvent()
   end
 
   -- Show the custom vigor bar when the vehicle bar is shown
-  if self:IsVigorAvailable() then
+  if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.speedText then
     self.vigorBar:Show()
     self.vigorBar.speedText:Show()
   end
@@ -116,18 +116,18 @@ function VB:Enable()
   self:UpdateBar()
 
   -- Register event to update the custom vigor bar when vigor changes
-  if TXUI.IsRetail and not self.eventScriptSet then
+  if TXUI.IsRetail and not self.eventScriptSet and self.vigorBar then
     local eventFrame = CreateFrame("Frame")
     eventFrame:RegisterEvent("UPDATE_UI_WIDGET")
     eventFrame:SetScript("OnEvent", function(_, event)
-      if event == "UPDATE_UI_WIDGET" and self:IsVigorAvailable() then self:UpdateVigorBar() end
+      if event == "UPDATE_UI_WIDGET" and self:IsVigorAvailable() and self.vigorBar then self:UpdateVigorBar() end
     end)
 
     self.eventScriptSet = true
   end
 
   -- Overwrite default bar visibility
-  local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", (self.db.dragonRiding and "[bonusbar:5]") or "")
+  local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", "[bonusbar:5]")
 
   self:Hook(self.ab, "PositionAndSizeBar", function(_, barName)
     local bar = self.ab["handledBars"][barName]
@@ -141,11 +141,7 @@ function VB:Enable()
   UnregisterStateDriver(self.bar, "visibility")
   UnregisterStateDriver(self.ab["handledBars"]["bar1"], "visibility")
 
-  RegisterStateDriver(
-    self.bar,
-    "visibility",
-    format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s show; hide", (self.db.dragonRiding and "[bonusbar:5]") or "")
-  )
+  RegisterStateDriver(self.bar, "visibility", format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s show; hide", "[bonusbar:5]"))
   RegisterStateDriver(self.ab["handledBars"]["bar1"], "visibility", visibility .. E.db.actionbar["bar1"].visibility)
 
   -- Register Events
@@ -159,6 +155,7 @@ function VB:DatabaseUpdate()
 
   -- Set db
   self.db = F.GetDBFromPath("TXUI.vehicleBar")
+  self.vdb = F.GetDBFromPath("TXUI.vehicleBar.vigorBar")
 
   -- Enable only out of combat
   F.Event.ContinueOutOfCombat(function()

@@ -184,13 +184,8 @@ function VB:UpdateBar()
 
   -- Update Paging
   if not TXUI.IsVanilla then
-    local pageState = format(
-      "[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s",
-      GetOverrideBarIndex(),
-      GetVehicleBarIndex(),
-      GetVehicleBarIndex(),
-      (self.db.dragonRiding and "[bonusbar:5] 11;") or ""
-    )
+    local pageState =
+      format("[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s", GetOverrideBarIndex(), GetVehicleBarIndex(), GetVehicleBarIndex(), "[bonusbar:5] 11;")
     local pageAttribute = self.ab:GetPage("bar1", 1, pageState)
     RegisterStateDriver(bar, "page", pageAttribute)
     self.bar:SetAttribute("page", pageAttribute)
@@ -217,7 +212,7 @@ function VB:UpdateBar()
       button:UpdateAction()
     end
 
-    if TXUI.IsRetail and not self.vigorBar then self:CreateVigorBar() end
+    if TXUI.IsRetail and not self.vigorBar and self.vdb.enabled then self:CreateVigorBar() end
 
     -- Initial call to update keybinds
     self:UpdateKeybinds()

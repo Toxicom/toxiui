@@ -1,5 +1,6 @@
 local TXUI, F, E, I = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
+local LSM = E.Libs.LSM
 
 local tinsert = table.insert
 
@@ -57,14 +58,17 @@ function VB:CreateVigorSegments()
     end
   end
 
+  local darkTexture = LSM:Fetch("statusbar", self.vdb.darkTexture)
+  local normalTexture = LSM:Fetch("statusbar", self.vdb.normalTexture)
+
   for i = 1, maxVigor do
     local segment = CreateFrame("StatusBar", nil, self.vigorBar)
     segment:SetSize(segmentWidth, self.vigorHeight) -- Width, Height of each segment
 
     if E.db.TXUI.themes.darkMode.enabled then
-      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-half"])
+      segment:SetStatusBarTexture(darkTexture)
     else
-      segment:SetStatusBarTexture(I.Media.Textures["ToxiUI-clean"])
+      segment:SetStatusBarTexture(normalTexture)
     end
 
     segment:GetStatusBarTexture():SetHorizTile(false)

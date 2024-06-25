@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local ACH = LibStub("LibAceConfigHelper")
 
 function O:Plugins_VehicleBar()
   local isVehicleBarDisabled = function()
@@ -16,11 +17,7 @@ function O:Plugins_VehicleBar()
     end,
     set = function(info, value)
       E.db.TXUI.vehicleBar[info[#info]] = value
-      if info[5] == "dragonRiding" then
-        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
-      else
-        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
-      end
+      F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
     end,
     args = {},
   }
@@ -28,6 +25,7 @@ function O:Plugins_VehicleBar()
   -- Options
   local options = self.options.misc.args.vehicleBar.args
   local optionsDisabled
+  local vigorDisabled
 
   -- General
   do
@@ -78,19 +76,69 @@ function O:Plugins_VehicleBar()
       step = 4,
       disabled = optionsDisabled,
     }
+  end
 
-    generalGroup.thrillColor = {
+  self:AddSpacer(options)
+
+  -- Vigor
+  do
+    -- Vigor Group
+    local vigorGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Skyriding Bar",
+      hidden = optionsDisabled,
+    }, {
+      name = "A Skyriding bar displaying your current Vigor, speed percentage and also if the Thrill buff is active.\n\n",
+    }, I.Requirements.VehicleBar).args
+
+    -- Enable
+    vigorGroup.enabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " Skyriding Bar.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.vehicleBar.vigorBar.enabled, vigorGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.vehicleBar.vigorBar.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      disabled = optionsDisabled,
+    }
+
+    vigorDisabled = function()
+      return isVehicleBarDisabled() or self:GetEnabledState(E.db.TXUI.vehicleBar.vigorBar.enabled, vigorGroup) ~= self.enabledState.YES
+    end
+
+    vigorGroup.thrillColor = {
       order = self:GetOrder(),
       type = "color",
       name = "Thrill Color",
       desc = "The color for vigor bar's speed text when you are regaining vigor.",
       hasAlpha = false,
-      get = self:GetFontColorGetter("TXUI.vehicleBar", P.vehicleBar),
-      set = self:GetFontColorSetter("TXUI.vehicleBar", function()
+      get = self:GetFontColorGetter("TXUI.vehicleBar.vigorBar", P.vehicleBar.vigorBar),
+      set = self:GetFontColorSetter("TXUI.vehicleBar.vigorBar", function()
         F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
       end),
-      disabled = optionsDisabled,
+      disabled = vigorDisabled,
     }
+
+    -- function ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
+    vigorGroup.normalTexture = ACH:SharedMediaStatusbar("Normal Texture", "Vigor bar texture for Normal and Gradient Mode", self:GetOrder(), 200, function()
+      return E.db.TXUI.vehicleBar.vigorBar.normalTexture
+    end, function(_, value)
+      E.db.TXUI.vehicleBar.vigorBar.normalTexture = value
+      E:StaticPopup_Show("CONFIG_RL")
+    end, vigorDisabled)
+
+    vigorGroup.darkTexture = ACH:SharedMediaStatusbar("Dark Texture", "Vigor bar texture for Dark Mode", self:GetOrder(), 200, function()
+      return E.db.TXUI.vehicleBar.vigorBar.darkTexture
+    end, function(_, value)
+      E.db.TXUI.vehicleBar.vigorBar.darkTexture = value
+      E:StaticPopup_Show("CONFIG_RL")
+    end, vigorDisabled)
   end
 
   -- Spacer
@@ -136,29 +184,6 @@ function O:Plugins_VehicleBar()
         E.db.TXUI.vehicleBar.animationsMult = 1 / value
       end,
       disabled = animationsDisabled,
-    }
-  end
-
-  self:AddSpacer(options)
-
-  -- Dragon Riding
-  do
-    -- Dragon Riding Group
-    local dragonRidingGroup = self:AddInlineDesc(options, {
-      name = "Dragonriding",
-      hidden = optionsDisabled,
-    }, {
-      name = "Enables the vehicle bar while dragonriding.\n\n",
-    }).args
-
-    -- Enable
-    dragonRidingGroup.dragonRiding = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Vehicle Bar for dragonriding.",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.vehicleBar.dragonRiding)
-      end,
     }
   end
 end
