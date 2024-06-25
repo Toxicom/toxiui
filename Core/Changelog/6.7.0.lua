@@ -10,16 +10,18 @@ TXUI.Changelog["6.7.0"] = {
       .. " Specialization icons for UnitFrames & Details!"
       .. F.String.Sublist("UnitFrame icons are available only for Retail due to API constraints")
       .. F.String.Sublist("Change in " .. TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
-    "Add Line Height option for " .. F.String.Menu.Armory() .. " decorative lines",
-    "Add " .. F.String.Class("Gradient Class color") .. " option for " .. F.String.Menu.Armory() .. " decorative lines",
+    "New " .. TXUI.Title .. " Specialization icons for " .. F.String.Class("Enhancement Shaman", "SHAMAN") .. " and " .. F.String.Class("Outlaw Rogue", "ROGUE"),
+    "Update " .. F.String.Menu.Armory() .. " decorative line options" .. F.String.Sublist("Add line height option") .. F.String.Sublist(
+      "Add " .. F.String.Class("Gradient Class color") .. " option"
+    ),
     "Vehicle Bar updates:" --
       .. F.String.Sublist("Display 8 buttons instead of 7")
       .. F.String.Sublist("Increase button size")
       .. F.String.Sublist("Display keybindings")
       .. F.String.Sublist("Keybindings respect the Color Modifiers setting")
-      .. F.String.Sublist("Remove stuck animation of moving up"),
-    "Vigor (Dragonriding) bar for Vehicle Bar",
-    "Button width option for Vehicle Bar",
+      .. F.String.Sublist("Remove stuck animation of moving up")
+      .. F.String.Sublist("Add option to change button width")
+      .. F.String.Sublist("Add a Vigor (Skyriding) bar"),
     "Redesigned AFK screen",
 
     "* Bug fixes",
