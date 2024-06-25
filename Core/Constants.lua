@@ -35,9 +35,9 @@ I.Constants.RandomTips = {
   "The first version of "
     .. TXUI.Title
     .. " was released on "
-    .. F.String.GradientClass("October 18, 2020")
+    .. F.String.Class("October 18, 2020")
     .. " and the Discord server was created a week later, on "
-    .. F.String.GradientClass("October 24, 2020"),
+    .. F.String.Class("October 24, 2020"),
   -- 7
   "If you want to support "
     .. TXUI.Title
@@ -61,7 +61,7 @@ I.Constants.RandomTips = {
   "Keeping your ActionBars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
   -- 12
   "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts. "
-    .. F.String.GradientClass("Class Icons")
+    .. F.String.Class("Class Icons")
     .. " are also Custom Texts!",
   -- 13
   "Most elements are hidden until you hover over them with your mouse. One example of that is the Pet ActionBar, which is under your Player UnitFrame.",
