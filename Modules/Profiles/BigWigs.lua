@@ -8,42 +8,17 @@ function PF:BuildBigWigsProfile()
   local pf = {}
   local profileName = I.ProfileNames[E.db.TXUI.installer.layout]
 
-  local width = E.physicalWidth
-  local height = E.physicalHeight
-
   -- Default (2560)
-  local Anchor_x = -46
-  local EmphasizeAnchor_x = 241
-  local Proximity_x = 845
+  local Anchor_x = F.Dpi(-38)
+  local EmphasizeAnchor_x = F.Dpi(201)
+  local Proximity_x = F.Dpi(845)
 
   -- Default (1440)
-  local Anchor_y = 400
-  local EmphasizeAnchor_y = -110
-  local Proximity_y = 155
-  local Messages_y = -160
-  local Countdown_y = -150
-
-  -- Maybe we could move all of these out to a separate file and just
-  -- call a function to get the correct settings based on width/height?
-  if width == 3440 then
-    Anchor_x = -46
-    EmphasizeAnchor_x = 241
-    Proximity_x = 1090
-  end
-
-  if width == 1920 then
-    Anchor_x = -46
-    EmphasizeAnchor_x = 241
-    Proximity_x = 900
-  end
-
-  if height == 1080 then
-    Anchor_y = 400
-    EmphasizeAnchor_y = -110
-    Proximity_y = 240
-    Messages_y = -20
-    Countdown_y = 100
-  end
+  local Anchor_y = F.Dpi(400)
+  local EmphasizeAnchor_y = F.Dpi(-110)
+  local Proximity_y = F.Dpi(155)
+  local Messages_y = F.Dpi(-160)
+  local Countdown_y = F.Dpi(-150)
 
   F.Table.Crush(pf, {
     ["namespaces"] = {
@@ -76,7 +51,7 @@ function PF:BuildBigWigsProfile()
         ["profiles"] = {
           [profileName] = {
             ["normalHeight"] = 26,
-            ["normalWidth"] = 354,
+            ["normalWidth"] = F.Dpi(295),
             ["normalPosition"] = {
               -- Anchor point of the Bar
               "BOTTOMRIGHT",
@@ -86,7 +61,7 @@ function PF:BuildBigWigsProfile()
               Anchor_y,
             },
             ["expHeight"] = 26,
-            ["expWidth"] = 271,
+            ["expWidth"] = F.Dpi(226),
             ["expPosition"] = {
               -- Anchor point of the Bar
               "LEFT",
