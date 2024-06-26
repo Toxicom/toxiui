@@ -379,16 +379,7 @@ function IS:Dialog()
           installFrame.Desc1:SetText(
             "BigWigs is a boss encounter AddOn. It consists of many individual encounter scripts, or boss modules; mini AddOns that are designed to trigger alert messages, timer bars, sounds, and so forth, for one specific raid encounter."
           )
-          installFrame.Desc2:SetText(
-            "Currently supported resolutions: "
-              .. F.String.Good("2560x1440")
-              .. ", "
-              .. F.String.Good("3440x1440")
-              .. ", "
-              .. F.String.Good("1920x1080")
-              .. ". For other resolutions, open a pull request on GitHub."
-          )
-          installFrame.Desc3:SetText("Importance: " .. F.String.Good("Low"))
+          installFrame.Desc2:SetText("Importance: " .. F.String.Good("Low"))
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("BigWigs")

@@ -8,18 +8,6 @@ function PF:BuildBigWigsProfile()
   local pf = {}
   local profileName = I.ProfileNames[E.db.TXUI.installer.layout]
 
-  -- Default (2560)
-  local Anchor_x = F.Dpi(-38)
-  local EmphasizeAnchor_x = F.Dpi(201)
-  local Proximity_x = F.Dpi(845)
-
-  -- Default (1440)
-  local Anchor_y = F.Dpi(400)
-  local EmphasizeAnchor_y = F.Dpi(-110)
-  local Proximity_y = F.Dpi(155)
-  local Messages_y = F.Dpi(-160)
-  local Countdown_y = F.Dpi(-150)
-
   F.Table.Crush(pf, {
     ["namespaces"] = {
       ["BigWigs_Plugins_AltPower"] = {
@@ -51,24 +39,28 @@ function PF:BuildBigWigsProfile()
         ["profiles"] = {
           [profileName] = {
             ["normalHeight"] = 26,
-            ["normalWidth"] = F.Dpi(295),
+            ["normalWidth"] = 354,
             ["normalPosition"] = {
               -- Anchor point of the Bar
-              "BOTTOMRIGHT",
+              "BOTTOMLEFT",
               -- Anchor point of the screen
-              "BOTTOMRIGHT",
-              Anchor_x,
-              Anchor_y,
+              "TOPLEFT",
+              0,
+              F.Dpi(150),
+              -- Frame to anchor to
+              "DetailsBaseFrame1",
             },
             ["expHeight"] = 26,
             ["expWidth"] = F.Dpi(226),
             ["expPosition"] = {
               -- Anchor point of the Bar
-              "LEFT",
+              "BOTTOMLEFT",
               -- Anchor point of the screen
-              "CENTER",
-              EmphasizeAnchor_x,
-              EmphasizeAnchor_y,
+              "TOPLEFT",
+              0,
+              F.Dpi(110),
+              -- Frame to anchor to
+              "ElvUF_Target",
             },
             ["alignText"] = "RIGHT",
             ["alignTime"] = "LEFT",
@@ -135,7 +127,7 @@ function PF:BuildBigWigsProfile()
             ["position"] = {
               [1] = "CENTER",
               [2] = "CENTER",
-              [4] = Countdown_y,
+              [4] = F.Dpi(-150),
             },
             ["voice"] = "enUS: Default (Male)",
           },
@@ -169,7 +161,7 @@ function PF:BuildBigWigsProfile()
               "CENTER",
               "CENTER",
               -340,
-              Messages_y,
+              F.Dpi(-160),
             },
             ["outline"] = "OUTLINE",
           },
@@ -185,8 +177,8 @@ function PF:BuildBigWigsProfile()
               ["close"] = false,
               ["sound"] = false,
             },
-            ["posx"] = Proximity_x,
-            ["posy"] = Proximity_y,
+            ["posx"] = F.Dpi(845),
+            ["posy"] = F.Dpi(155),
           },
         },
       },
@@ -206,19 +198,6 @@ function PF:BuildBigWigsProfile()
       },
     },
   })
-
-  if F.HiDpi() then
-    if E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER then -- Move Anchor for Healer layout
-      pf["namespaces"]["BigWigs_Plugins_Bars"]["profiles"][profileName]["expPosition"] = {
-        nil,
-        nil,
-        EmphasizeAnchor_x,
-        EmphasizeAnchor_y + 15,
-      }
-    end
-  else
-    if E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER then self:LogWarning("Sorry, we don't have a 1080p profile yet for healers") end
-  end
 
   -- Those are not included in the export, change manually if needed
   pf["profiles"] = {}
