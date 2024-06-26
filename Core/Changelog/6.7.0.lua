@@ -33,6 +33,7 @@ TXUI.Changelog["6.7.0"] = {
     "Update BigWigs Bars positions" .. F.String.Sublist("Resolutions other than 2560x1440 might need re-adjustments"),
 
     "* Documentation",
+    F.String.MinElv("13.67"),
 
     "* Settings refactoring",
     "Class Icons now have their own dedicated tab" .. F.String.Sublist(TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
