@@ -384,6 +384,7 @@ function IS:Dialog()
           installFrame.Option1:Show()
           installFrame.Option1:SetText("BigWigs")
           installFrame.Option1:SetScript("OnClick", function()
+            self.reloadRequired = true
             PF:MergeBigWigsProfile()
             self:ShowStepComplete(F.String.ToxiUI("BigWigs") .. " profile installed.")
             installFrame.Next:Click()
