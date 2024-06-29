@@ -71,10 +71,10 @@ function TXUI:HandleDevExports(arg1)
   end
 end
 
-function TXUI:HandleDevCommand(category, arg1, arg2)
+function TXUI:HandleDevCommand(category, arg1)
   -- Command help
   local printUsage = function()
-    self:LogInfo("Usage: /tx dev profile; reset; cvar; chat; export; wb <arg1> <arg2>")
+    self:LogInfo("Usage: /tx dev profile; reset; cvar; chat; export; wb <arg1>")
   end
 
   if not category then
