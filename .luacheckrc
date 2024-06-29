@@ -37,10 +37,7 @@ globals = {
   "LibStub",
 
   -- AddOn DBs
-  "BigWigs3DB",
-  "BigWigsClassicDB",
-  "BigWigsIconClassicDB",
-  "BigWigsIconDB",
+  "BigWigsAPI",
   "DBT_AllPersistentOptions",
   "ElvDB",
 

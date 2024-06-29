@@ -30,7 +30,7 @@ TXUI.Changelog["6.7.0"] = {
 
     "* Profile updates",
     "Update default Hunter's shift color",
-    "Update BigWigs Bars positions" .. F.String.Sublist("Resolutions other than 2560x1440 might need re-adjustments"),
+    "Update " .. F.String.BigWigs() .. " Bars positions" .. F.String.Sublist("Resolutions other than 2560x1440 might need re-adjustments"),
 
     "* Documentation",
     F.String.MinElv("13.67"),
@@ -42,5 +42,6 @@ TXUI.Changelog["6.7.0"] = {
     "* Development improvements",
     "Add string functions for " .. TXUI.Title .. " settings menu names",
     "Remove Priest color overrides" .. F.String.Sublist("It never worked correctly and caused more issues than benefits"),
+    "Use the new " .. F.String.BigWigs() .. " profile API",
   },
 }

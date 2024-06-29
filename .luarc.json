@@ -13,10 +13,7 @@
     "ElvUI",
     "LibStub",
 
-    "BigWigs3DB",
-    "BigWigsClassicDB",
-    "BigWigsIconClassicDB",
-    "BigWigsIconDB",
+    "BigWigsAPI",
     "DBT_AllPersistentOptions",
     "ElvDB",
 
@@ -19503,6 +19500,5 @@
     "_RECORDING_WARNING_CORRUPTED",
     "C_Container"
   ],
-  "diagnostics.disable": ["deprecated", "inject-field",
-        "undefined-field"]
+  "diagnostics.disable": ["deprecated", "inject-field", "undefined-field"]
 }

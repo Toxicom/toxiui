@@ -147,6 +147,7 @@ function O:General()
   addToCredits("cc0e00", "Gennoken")
   addToCredits("ffffff", F.String.ElvUI() .. " discord")
   addToCredits("ffffff", F.String.Eltreum())
+  addToCredits("4beb2c", "Luckyone")
 
   local creditsGroup = self:AddInlineDesc(options, {
     name = "Credits",

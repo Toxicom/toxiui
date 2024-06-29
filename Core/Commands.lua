@@ -44,7 +44,7 @@ function TXUI:HandleDevProfiles(arg1)
     TXUI:GetModule("Profiles"):Plater()
   elseif arg1 == "bw" then
     self:LogInfo("Applying BigWigs Profile ...")
-    TXUI:GetModule("Profiles"):MergeBigWigsProfile()
+    TXUI:GetModule("Profiles"):BigWigs()
   elseif arg1 == "font" then
     self:LogInfo("Applying Fonts Profile ...")
     E:UpdateDB()
