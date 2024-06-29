@@ -30,6 +30,7 @@ I.Data.Contributor = {
         ["Toximoon-TarrenMill"] = true,
         ["Toxivoid-TarrenMill"] = true,
         ["Toxiwiz-TarrenMill"] = true,
+        ["Toxisorc-TarrenMill"] = true,
         ["Toxichi-TarrenMill"] = true,
         ["Toxiele-TarrenMill"] = true,
         ["Toximeta-TarrenMill"] = true,
