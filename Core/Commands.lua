@@ -56,27 +56,14 @@ function TXUI:HandleDevProfiles(arg1)
   end
 end
 
-function TXUI:HandleDevExports(arg1, arg2)
+function TXUI:HandleDevExports(arg1)
   -- Command help
   local printUsage = function()
-    self:LogInfo("Usage: /tx dev export bw; names")
-    self:LogInfo("Example: /tx dev export bw healer")
+    self:LogInfo("Usage: /tx dev export names")
   end
 
   if not arg1 then -- Command Usage
     printUsage()
-  elseif arg1 == "bw" then -- BigWigs export
-    if not arg2 then
-      printUsage()
-    elseif arg2 == "dps" then
-      self:LogInfo("Exporting BigWigs DPS Profile ...")
-      TXUI:ExportProfile(arg1, I.ProfileNames[I.Enum.Layouts.DPS])
-    elseif arg2 == "healer" then
-      self:LogInfo("Exporting BigWigs Healer Profile ...")
-      TXUI:ExportProfile(arg1, I.ProfileNames[I.Enum.Layouts.HEALER])
-    else
-      self:LogInfo("Usage: /tx dev export bw dps; healer")
-    end
   elseif arg1 == "names" then -- Names import
     TXUI:ExportProfile("import_names")
   else
@@ -104,7 +91,7 @@ function TXUI:HandleDevCommand(category, arg1, arg2)
     TXUI:GetModule("Profiles"):ElvUIChat()
     E:StaggeredUpdateAll()
   elseif (category == "export") and F.IsDeveloper() then
-    self:HandleDevExports(arg1, arg2)
+    self:HandleDevExports(arg1)
   elseif (category == "splash") and F.IsDeveloper() then
     TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
       self:LogInfo("Showing splash screen for 15 seconds ...")
