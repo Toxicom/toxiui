@@ -93,6 +93,10 @@ function PF:ElvUIFont()
         itemLevelFont = F.FontOverride(I.Fonts.Primary),
         itemLevelFontSize = F.FontSize(11),
         itemLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+
+        totalLevelFont = F.FontOverride(I.Fonts.Primary),
+        totalLevelFontSize = F.FontSize(12),
+        totalLevelFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       },
 
       altPowerBar = {

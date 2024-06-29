@@ -31,6 +31,7 @@ TXUI.Changelog["6.7.0"] = {
     "* Profile updates",
     "Update default Hunter's shift color",
     "Update " .. F.String.BigWigs() .. " Bars positions" .. F.String.Sublist("Resolutions other than 2560x1440 might need re-adjustments"),
+    "Update font for inspect item level",
 
     "* Documentation",
     F.String.MinElv("13.67"),
