@@ -155,6 +155,7 @@ I.Requirements = {
   },
   ["Armory"] = {
     I.Enum.Requirements.ARMORY_DISABLED,
+    I.Enum.Requirements.CHARACTER_SKIN_ENABLED,
   },
   ["Deconstruct"] = {
     I.Enum.Requirements.SL_DECONSTRUCT_DISABLED,
