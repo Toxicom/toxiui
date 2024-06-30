@@ -68,7 +68,7 @@ function TXUI:CheckRequirements(requirements, skipProfile)
         end
       end
     elseif requirement == I.Enum.Requirements.CHARACTER_SKIN_ENABLED then
-      if not F.GetDBFromPath("E.private.skins.blizzard.character") then return requirement end
+      if E.private.skins.blizzard.character ~= true then return requirement end
     elseif requirement == I.Enum.Requirements.WT_ENABLED then
       if not F.IsAddOnEnabled("ElvUI_WindTools") then return requirement end
     elseif requirement == I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED then
