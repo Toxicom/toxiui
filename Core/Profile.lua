@@ -482,32 +482,32 @@ P.armory = {
   background = {
     enabled = true, -- Enabled by default
     alpha = 0.5,
-    style = 1,
+    style = 2,
   },
 
   lines = {
     enabled = true,
     alpha = 0.6,
     height = 1,
-    color = "CLASS",
+    color = "GRADIENT",
   },
 
   stats = {
     showAvgItemLevel = true, -- Enabled by default
-    itemLevelFormat = "%.2f",
+    itemLevelFormat = "%.1f",
 
-    itemLevelFont = I.Fonts.Title,
-    itemLevelFontSize = 30,
+    itemLevelFont = I.Fonts.TitleBlack,
+    itemLevelFontSize = 20,
     itemLevelFontShadow = true,
     itemLevelFontOutline = "OUTLINE",
     itemLevelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     itemLevelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
-    headerFont = I.Fonts.Title,
-    headerFontSize = 22,
-    headerFontShadow = true,
+    headerFont = I.Fonts.TitleRaid,
+    headerFontSize = 14,
+    headerFontShadow = false,
     headerFontOutline = "OUTLINE",
-    headerFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
+    headerFontColor = "CLASS_GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, CLASS_GRADIENT
     headerFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     labelFont = I.Fonts.Primary,
@@ -521,7 +521,7 @@ P.armory = {
     valueFontSize = 15,
     valueFontShadow = false,
     valueFontOutline = "OUTLINE",
-    valueFontColor = "CUSTOM", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
+    valueFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     valueFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
     alternatingBackgroundEnabled = true, -- Enabled by default
@@ -634,66 +634,66 @@ P.armory = {
     itemQualityGradientEndAlpha = 0,
 
     iLvLFont = I.Fonts.Primary,
-    iLvLFontSize = 14,
+    iLvLFontSize = 12,
     iLvLFontShadow = false,
     iLvLFontOutline = "OUTLINE",
 
     enchantFont = I.Fonts.Primary,
-    enchantFontSize = 10,
+    enchantFontSize = 9,
     enchantFontShadow = false,
     enchantFontOutline = "OUTLINE",
   },
 
   nameTextOffsetX = 0,
   nameTextOffsetY = 0,
-  nameTextFont = I.Fonts.Title,
-  nameTextFontSize = 22,
-  nameTextFontShadow = true,
-  nameTextFontOutline = "NONE",
-  nameTextFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
+  nameTextFont = I.Fonts.TitleRaid,
+  nameTextFontSize = 18,
+  nameTextFontShadow = false,
+  nameTextFontOutline = "OUTLINE",
+  nameTextFontColor = "CLASS_GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT, CLASS_GRADIENT
   nameTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
   titleTextOffsetX = 5,
   titleTextOffsetY = -2,
   titleTextFont = I.Fonts.Title,
   titleTextFontSize = 16,
-  titleTextFontShadow = true,
-  titleTextFontOutline = "NONE",
+  titleTextFontShadow = false,
+  titleTextFontOutline = "OUTLINE",
   titleTextFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
   titleTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
   levelTitleTextOffsetX = 0,
   levelTitleTextOffsetY = -1,
   levelTitleTextShort = true,
-  levelTitleTextFont = I.Fonts.Title,
-  levelTitleTextFontSize = 20,
-  levelTitleTextFontShadow = true,
-  levelTitleTextFontOutline = "NONE",
+  levelTitleTextFont = I.Fonts.Primary,
+  levelTitleTextFontSize = 14,
+  levelTitleTextFontShadow = false,
+  levelTitleTextFontOutline = "OUTLINE",
   levelTitleTextFontColor = "CUSTOM", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
-  levelTitleTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
+  levelTitleTextFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
   levelTextOffsetX = 0,
   levelTextOffsetY = -1,
-  levelTextFont = I.Fonts.Title,
-  levelTextFontSize = 24,
-  levelTextFontShadow = true,
-  levelTextFontOutline = "NONE",
+  levelTextFont = I.Fonts.Primary,
+  levelTextFontSize = 16,
+  levelTextFontShadow = false,
+  levelTextFontOutline = "OUTLINE",
   levelTextFontColor = "CUSTOM", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
-  levelTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
+  levelTextFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
   specIconFont = I.Fonts.Icons,
   specIconFontSize = 18,
-  specIconFontShadow = true,
-  specIconFontOutline = "NONE",
+  specIconFontShadow = false,
+  specIconFontOutline = "OUTLINE",
   specIconFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
   specIconFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
   classTextOffsetX = 0,
   classTextOffsetY = -2,
-  classTextFont = I.Fonts.Title,
-  classTextFontSize = 20,
-  classTextFontShadow = true,
-  classTextFontOutline = "NONE",
+  classTextFont = I.Fonts.Primary,
+  classTextFontSize = 14,
+  classTextFontShadow = false,
+  classTextFontOutline = "OUTLINE",
   classTextFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
   classTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 }
