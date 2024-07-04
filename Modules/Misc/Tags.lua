@@ -7,7 +7,9 @@ local LOR = LibStub:GetLibrary("LibOpenRaid-1.0", true)
 local ipairs = ipairs
 local select = select
 local floor = math.floor
+local format = string.format
 local match = string.match
+local sub = string.sub
 local uppercase = string.upper
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
@@ -80,7 +82,7 @@ local function getCoordinates(col, row)
   local y2 = row * height
 
   -- Return the formatted string
-  return string.format("%d:%d:%d:%d", x1, x2, y1, y2)
+  return format("%d:%d:%d:%d", x1, x2, y1, y2)
 end
 
 function M:Tags()
@@ -223,6 +225,45 @@ function M:Tags()
     end
   end
 
+  local function SplitName(name, match)
+    if match and match ~= "" then
+      -- Check if the name starts with the matching string
+      local start, finish = string.find(name, match, 1, true)
+      if start == 1 then
+        local nameHighlight = match
+        local nameRest = sub(name, finish + 1)
+        return nameHighlight, nameRest
+      end
+    end
+
+    -- Count the number of spaces in the name
+    local spaceCount = select(2, name:gsub(" ", ""))
+    -- Adjust the split point by the number of spaces
+    local splitPoint = floor(#name / 2) + spaceCount
+    local nameHighlight = sub(name, 1, splitPoint)
+    local nameRest = sub(name, splitPoint + 1)
+    return nameHighlight, nameRest
+  end
+
+  local function SplitAndColorName(name, unit, match)
+    local nameHighlight, nameRest = SplitName(name, match)
+
+    if nameHighlight and nameRest then
+      if UnitIsPlayer(unit) then
+        local _, unitClass = UnitClass(unit)
+        local class = unitClass or E.myclass
+
+        return nameHighlight .. F.String.Class(nameRest, class)
+      else
+        local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
+        ---@diagnostic disable-next-line: ambiguity-1
+        return nameHighlight .. (cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. nameRest) or "|cffcccccc" .. nameRest
+      end
+    else
+      return name
+    end
+  end
+
   -- Name tags
   local nameLength = { veryshort = 5, short = 10, medium = 15, long = 20 }
   for textFormat, length in pairs(nameLength) do
@@ -277,6 +318,25 @@ function M:Tags()
 
       local reverseGradient = reverseUnitsTable[unit]
       return FormatColorTag(name, unit, reverseGradient)
+    end)
+
+    E:AddTag(format("tx:name:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, match)
+      local name = UnitName(unit)
+      if not name then return "missing name wtf" end
+
+      name = E:ShortenString(name, length)
+
+      return SplitAndColorName(name, unit, match)
+    end)
+
+    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+      local name = UnitName(unit)
+      if not name then return "missing name wtf" end
+
+      if strfind(name, "%s") then name = Abbrev(name) end
+      name = E:ShortenString(name, length)
+
+      return SplitAndColorName(name, unit)
     end)
   end
 
@@ -615,11 +675,11 @@ function M:Tags()
   do
     -- Tag categories and their descriptions
     local tagCategories = {
-      { modifier = "", description = "Displays the name of the unit with " },
+      { modifier = "", description = F.String.ToxiUI("[BASIC]") .. " Displays the name of the unit with " },
       {
         modifier = "abbrev:",
-        description = "Displays the name of the unit with abbreviation and ",
-        uppercaseDesc = "Displays the name of the unit in UPPERCASE with abbreviation and ",
+        description = F.String.ToxiUI("[BASIC / ABBREV]") .. " Displays the name of the unit with abbreviation and ",
+        uppercaseDesc = F.String.ToxiUI("[UPPERCASE / ABREV]") .. " Displays the name of the unit in UPPERCASE with abbreviation and ",
       },
     }
 
@@ -651,10 +711,39 @@ function M:Tags()
         else
           -- For non-abbreviated tags, add uppercase versions
           local uppercaseTagName = "tx:name:" .. length.name .. uppercaseModifier
-          local uppercaseDescription = "Displays the name of the unit in UPPERCASE with " .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
+          local uppercaseDescription = F.String.ToxiUI("[UPPERCASE]")
+            .. " Displays the name of the unit in UPPERCASE with "
+            .. TXUI.Title
+            .. " colors. (limited to "
+            .. length.limit
+            .. " letters)"
           E:AddTagInfo(uppercaseTagName, TagNames.NAMES, uppercaseDescription)
         end
       end
+    end
+
+    -- Tag info: Names Split
+    for _, length in ipairs(lengths) do
+      E:AddTagInfo(
+        format("tx:name:%s:split", length.name),
+        TagNames.NAMES,
+        F.String.ToxiUI("[SPLIT]")
+          .. " Displays the name of the unit split in |cffffffffwhite|r and "
+          .. F.String.Class("class")
+          .. " color. Can use |cfff4f4f4{stringMatch}|r to split. (limited to "
+          .. length.limit
+          .. " letters)"
+      )
+      E:AddTagInfo(
+        format("tx:name:abbrev:%s:split", length.name),
+        TagNames.NAMES,
+        F.String.ToxiUI("[SPLIT / ABBREV]")
+          .. " Displays the name of the unit with abbreviation split in |cffffffffwhite|r and "
+          .. F.String.Class("class")
+          .. " color. Can use |cfff4f4f4{stringMatch}|r to split. (limited to "
+          .. length.limit
+          .. " letters)"
+      )
     end
   end
 

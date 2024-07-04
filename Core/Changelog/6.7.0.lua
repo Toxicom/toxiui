@@ -23,6 +23,7 @@ TXUI.Changelog["6.7.0"] = {
       .. F.String.Sublist("Add option to change button width")
       .. F.String.Sublist("Add a Vigor (Skyriding) bar"),
     "Redesigned AFK screen",
+    "New split name tags" .. F.String.Sublist("See Available Tags"),
 
     "* Bug fixes",
     "Improve fallback colors for F.Color.SetGradient",
