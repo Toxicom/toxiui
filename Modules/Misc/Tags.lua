@@ -225,12 +225,12 @@ function M:Tags()
     end
   end
 
-  local function SplitName(name, match)
-    if match and match ~= "" then
+  local function SplitName(name, strMatch)
+    if strMatch and strMatch ~= "" then
       -- Check if the name starts with the matching string
-      local start, finish = string.find(name, match, 1, true)
+      local start, finish = string.find(name, strMatch, 1, true)
       if start == 1 then
-        local nameHighlight = match
+        local nameHighlight = strMatch
         local nameRest = sub(name, finish + 1)
         return nameHighlight, nameRest
       end
@@ -245,8 +245,8 @@ function M:Tags()
     return nameHighlight, nameRest
   end
 
-  local function SplitAndColorName(name, unit, match)
-    local nameHighlight, nameRest = SplitName(name, match)
+  local function SplitAndColorName(name, unit, strMatch)
+    local nameHighlight, nameRest = SplitName(name, strMatch)
 
     if nameHighlight and nameRest then
       if UnitIsPlayer(unit) then
@@ -320,23 +320,23 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, match)
+    E:AddTag(format("tx:name:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, strMatch)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
       name = E:ShortenString(name, length)
 
-      return SplitAndColorName(name, unit, match)
+      return SplitAndColorName(name, unit, strMatch)
     end)
 
-    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, strMatch)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
       if strfind(name, "%s") then name = Abbrev(name) end
       name = E:ShortenString(name, length)
 
-      return SplitAndColorName(name, unit)
+      return SplitAndColorName(name, unit, strMatch)
     end)
   end
 
