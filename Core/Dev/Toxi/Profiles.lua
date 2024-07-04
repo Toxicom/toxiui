@@ -6,6 +6,7 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 
 local SetCVar = SetCVar
 local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet", "lfg" }
+local splitUnitframes = { "player", "party", "focus", "targettarget", "pet" }
 
 function T:SetupCvars()
   if E.TimerunningID and UnitLevel("player") < 70 then
@@ -56,6 +57,11 @@ function T:SetupProfile()
 
   -- ElvUI
   E.db.general.taintLog = false
+
+  for _, unit in ipairs(splitUnitframes) do
+    E.db.unitframe.units[unit].customTexts["!Name"].text_format = "[tx:name:medium:split{Toxi}]"
+  end
+  E.db.unitframe.units.target.customTexts["!Name"].text_format = "[tx:name:abbrev:medium:split{Toxi}]"
 
   E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bagButtonSpacing = 2
