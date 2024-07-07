@@ -655,11 +655,11 @@ P.armory = {
 
   titleTextOffsetX = 5,
   titleTextOffsetY = -2,
-  titleTextFont = I.Fonts.Title,
-  titleTextFontSize = 16,
+  titleTextFont = I.Fonts.TitleRaid,
+  titleTextFontSize = 10,
   titleTextFontShadow = false,
   titleTextFontOutline = "OUTLINE",
-  titleTextFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
+  titleTextFontColor = "CLASS_GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT, CLASS_GRADIENT
   titleTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 
   levelTitleTextOffsetX = 0,
