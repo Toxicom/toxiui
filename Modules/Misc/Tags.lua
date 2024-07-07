@@ -9,12 +9,14 @@ local select = select
 local floor = math.floor
 local format = string.format
 local match = string.match
-local sub = string.sub
 local uppercase = string.upper
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
 local Abbrev = E.TagFunctions.Abbrev
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
+
+local utf8len = string.utf8len
+local utf8sub = string.utf8sub
 
 function M:_TagsUpdate()
   if not F.IsTXUIProfile() then return end
@@ -231,7 +233,7 @@ function M:Tags()
       local start, finish = string.find(name, strMatch, 1, true)
       if start == 1 then
         local nameHighlight = strMatch
-        local nameRest = sub(name, finish + 1)
+        local nameRest = utf8sub(name, finish + 1)
         return nameHighlight, nameRest
       end
     end
@@ -239,9 +241,9 @@ function M:Tags()
     -- Count the number of spaces in the name
     local spaceCount = select(2, name:gsub(" ", ""))
     -- Adjust the split point by the number of spaces
-    local splitPoint = floor(#name / 2) + spaceCount
-    local nameHighlight = sub(name, 1, splitPoint)
-    local nameRest = sub(name, splitPoint + 1)
+    local splitPoint = floor(utf8len(name) / 2) + spaceCount
+    local nameHighlight = utf8sub(name, 1, splitPoint)
+    local nameRest = utf8sub(name, splitPoint + 1)
     return nameHighlight, nameRest
   end
 
