@@ -41,13 +41,13 @@ function PF:BuildOmniCDProfile()
         party = {
           extraBars = {
             -- Interrupts
-            raidBar0 = {
+            raidBar1 = {
               name = "Interrupts",
               hideSpark = true,
               textOfsX = 4,
               statusBarWidth = 426,
               manualPos = {
-                raidBar0 = {
+                raidBar1 = {
                   x = F.Dpi(329),
                   y = F.Dpi(165),
                 },
@@ -64,7 +64,7 @@ function PF:BuildOmniCDProfile()
             },
 
             -- Defensives
-            raidBar1 = {
+            raidBar2 = {
               name = "Defensives",
               spellType = {
                 other = false,
@@ -88,7 +88,7 @@ function PF:BuildOmniCDProfile()
               progressBar = false,
               enabled = true,
               manualPos = {
-                raidBar1 = {
+                raidBar2 = {
                   x = F.Dpi(165),
                   y = F.Dpi(250),
                 },
@@ -96,11 +96,10 @@ function PF:BuildOmniCDProfile()
               paddingX = 1,
               layout = "horizontal",
               showName = false,
-              locked = true,
             },
 
             -- CC
-            raidBar2 = {
+            raidBar3 = {
               name = "CC",
               truncateIconName = 4,
               scale = 0.94,
@@ -113,17 +112,16 @@ function PF:BuildOmniCDProfile()
               paddingY = 1,
               enabled = true,
               manualPos = {
-                raidBar2 = {
+                raidBar3 = {
                   x = F.Dpi(790),
                   y = F.Dpi(345),
                 },
               },
               columns = 3,
-              locked = true,
             },
 
             -- Immunes
-            raidBar3 = {
+            raidBar4 = {
               name = "Immunes",
               truncateIconName = 4,
               scale = 0.9199999999999999,
@@ -138,15 +136,25 @@ function PF:BuildOmniCDProfile()
               paddingY = 1,
               enabled = true,
               manualPos = {
-                raidBar3 = {
+                raidBar4 = {
                   x = F.Dpi(790),
                   y = F.Dpi(425),
                 },
               },
               paddingX = 1,
               columns = 3,
-              locked = true,
             },
+          },
+
+          frame = {
+            externalDefensive = 0,
+            raidDefensive = 0,
+            defensive = 2,
+            disarm = 3,
+            aoeCC = 3,
+            cc = 3,
+            counterCC = 3,
+            immunity = 4,
           },
 
           highlight = {
@@ -320,9 +328,9 @@ function PF:BuildOmniCDProfile()
         party = {
           extraBars = {
             -- Interrupts
-            raidBar0 = {
+            raidBar1 = {
               manualPos = {
-                raidBar0 = {
+                raidBar1 = {
                   x = F.Dpi(165),
                   y = F.Dpi(365),
                 },
