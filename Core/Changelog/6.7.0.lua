@@ -28,7 +28,7 @@ TXUI.Changelog["6.7.0"] = {
     "* Bug fixes",
     "Improve fallback colors for F.Color.SetGradient",
     "Update " .. TXUI.Title .. " class icon on spec change",
-    "Fix broken " .. F.String.Omnicd() .. " installer",
+    "Fix broken " .. F.String.OmniCD() .. " installer",
 
     "* Profile updates",
     "Update default Hunter's shift color",
