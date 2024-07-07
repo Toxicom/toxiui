@@ -590,14 +590,19 @@ function M:Tags()
     if level >= I.MaxLevelTable[TXUI.MetaFlavor] then return end
 
     -- Handle unknown or missing level
-    if level == -1 or not level or level == "" then level = "??" end
+    local levelStr
+    if level == -1 or not level or level == "" then
+      levelStr = "??"
+    else
+      levelStr = tostring(level)
+    end
 
-    local levelStr = "Lv " .. tostring(level)
+    local levelDisplayStr = "Lv " .. levelStr
 
-    if not dm.isEnabled then return levelStr end
+    if not dm.isEnabled then return levelDisplayStr end
 
     local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(levelStr, unit, reverseGradient)
+    return FormatColorTag(levelDisplayStr, unit, reverseGradient)
   end)
 
   -- Level Difficulty Tag
@@ -605,19 +610,23 @@ function M:Tags()
     local level = UnitLevel(unit)
 
     -- Handle unknown or missing level
-    if level == -1 or not level or level == "" then level = "??" end
+    local levelStr
+    if level == -1 or not level or level == "" then
+      levelStr = "??"
+    else
+      levelStr = tostring(level)
+    end
 
     local color
     local hex
 
-    if level == "??" then
+    if levelStr == "??" then
       hex = "6e6e6e" -- #6e6e6e
     else
       color = GetCreatureDifficultyColor(level)
       hex = E:RGBToHex(color.r, color.g, color.b, "")
     end
 
-    local levelStr = tostring(level)
     local coloredLvl = F.String.Color(levelStr, hex)
 
     if not dm.isEnabled then return "Lv " .. coloredLvl end
