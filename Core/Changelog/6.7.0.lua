@@ -40,6 +40,7 @@ TXUI.Changelog["6.7.0"] = {
 
     "* Documentation",
     F.String.MinElv("13.67"),
+    "Update version for Vanilla",
 
     "* Settings refactoring",
     "Class Icons now have their own dedicated tab" .. F.String.Sublist(TXUI.Title .. " -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class ") .. "Icons"),
