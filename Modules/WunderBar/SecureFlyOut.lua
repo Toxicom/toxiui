@@ -5,7 +5,6 @@ local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
 local GetSpellTexture = GetSpellTexture
 local InCombatLockdown = InCombatLockdown
-local unpack = unpack
 
 local secureFlyOutFrame
 local secureFlyOutButtons = {}
