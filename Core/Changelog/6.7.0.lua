@@ -37,6 +37,7 @@ TXUI.Changelog["6.7.0"] = {
     "Update " .. F.String.BigWigs() .. " Bars positions" .. F.String.Sublist("Resolutions other than 2560x1440 might need re-adjustments"),
     "Update font for inspect item level",
     "Update default " .. F.String.Menu.Armory() .. " profile",
+    "Update " .. F.String.Plater() .. " mods",
 
     "* Documentation",
     F.String.MinElv("13.67"),
