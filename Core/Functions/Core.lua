@@ -128,9 +128,14 @@ local doubleScaleResolutions = {
   [2880] = true,
 }
 
+local customScaleResolutions = {
+  [1920] = 0.65,
+}
+
 function F.PixelPerfect()
   local perfectScale = 768 / E.physicalHeight
   if doubleScaleResolutions[E.physicalHeight] then perfectScale = perfectScale * 2 end
+  if customScaleResolutions[E.physicalHeight] then perfectScale = customScaleResolutions[E.physicalHeight] end
   return perfectScale
 end
 

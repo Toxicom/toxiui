@@ -52,5 +52,6 @@ TXUI.Changelog["6.7.0"] = {
     "Remove Priest color overrides" .. F.String.Sublist("It never worked correctly and caused more issues than benefits"),
     "Use the new " .. F.String.BigWigs() .. " profile API",
     "Disable " .. F.String.Menu.Armory() .. " if " .. F.String.ElvUI() .. " Character Frame Skin is disabled",
+    "Add a custom scale table for weird resolutions",
   },
 }
