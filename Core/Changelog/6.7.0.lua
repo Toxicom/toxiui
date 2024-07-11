@@ -40,7 +40,7 @@ TXUI.Changelog["6.7.0"] = {
     "Update " .. F.String.Plater() .. " mods",
 
     "* Documentation",
-    F.String.MinElv("13.68"),
+    F.String.MinElv("13.69"),
     "Update version for Vanilla",
 
     "* Settings refactoring",
