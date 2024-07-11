@@ -6,7 +6,7 @@ function O:Skins_ElvUI()
   self.options.skins.args["elvuiGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "ElvUI " .. E.NewSign,
+    name = "ElvUI",
     args = {},
   }
 
