@@ -1930,10 +1930,6 @@ function PF:BuildProfile()
   pf.convertPages = true -- don't you dare fuck the action bars up again
   pf.general.taintLog = false
   -- ! --
-
-  -- ! Personal change
-  if F.DevBuildProfile then F.Table.Crush(pf, F.DevBuildProfile(pf)) end
-
   return pf
 end
 

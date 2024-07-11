@@ -99,9 +99,6 @@ function IS:ElvUI(callback)
   -- Apply AddOnSkins settings
   PF:AddOnSkins()
 
-  -- ! Personal change, second pass needed
-  if F.DevBuildProfile then PF:MergeElvUIProfile() end
-
   -- Force UIScale
   E:UIScale(true)
   E:UIScale()

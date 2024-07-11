@@ -20,5 +20,6 @@ TXUI.Changelog["6.7.1"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Clean up unused code",
   },
 }

@@ -15,7 +15,7 @@ function GR:AddFrameToSettingsUpdate(category, frame, func)
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate." .. category, F.Event.GenerateClosure(updateCallbackWrapper, self, func), frame)
 end
 
-function GR:UpdateFradeDirection(frame)
+function GR:UpdateFadeDirection(frame)
   local unitType = frame.unitframeType or frame.__owner.unitframeType
   local fadeDirection = unitType and (self.leftFrames[unitType] and I.Enum.GradientMode.Direction.LEFT or (self.rightFrames[unitType] and I.Enum.GradientMode.Direction.RIGHT))
   if not fadeDirection then fadeDirection = I.Enum.GradientMode.Direction.RIGHT end
@@ -35,7 +35,7 @@ function GR:UpdateStatusBarFrame(frame)
 
     -- Hook if needed
     if not self:IsHooked(frame.Health, "PostUpdateColor") then
-      self:UpdateFradeDirection(frame.Health)
+      self:UpdateFadeDirection(frame.Health)
       self:RawHook(frame.Health, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdateHealthColor, self))
       self:AddFrameToSettingsUpdate("Health", frame.Health, F.Event.GenerateClosure(self.PostUpdateHealthColor, self, frame.Health, frame.unit))
     end
@@ -48,7 +48,7 @@ function GR:UpdateStatusBarFrame(frame)
 
     -- Hook if needed
     if not self:IsHooked(frame.Castbar, "PostCastStart") then
-      self:UpdateFradeDirection(frame.Castbar)
+      self:UpdateFadeDirection(frame.Castbar)
       self:SecureHook(frame.Castbar, "PostCastStart", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
       self:SecureHook(frame.Castbar, "PostCastFail", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, true))
       self:SecureHook(frame.Castbar, "PostCastInterruptible", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
@@ -64,7 +64,7 @@ function GR:UpdateStatusBarFrame(frame)
 
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
-      self:UpdateFradeDirection(frame.Power)
+      self:UpdateFadeDirection(frame.Power)
       self:RawHook(frame.Power, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdatePowerColor, self))
       self:AddFrameToSettingsUpdate("Power", frame.Power, F.Event.GenerateClosure(self.PostUpdatePowerColor, self, frame.Power, frame.unit))
     end
@@ -101,10 +101,6 @@ function GR:SettingsUpdate()
   -- Set layout
   self.leftFrames = I.GradientMode.Layouts[E.db.TXUI.installer.layout].Left
   self.rightFrames = I.GradientMode.Layouts[E.db.TXUI.installer.layout].Right
-
-  -- ! Personal change
-  if F.DevWeakAuraBarRefresh then F.DevWeakAuraBarRefresh() end
-  if F.DevPlaterBarsRefresh then F.DevPlaterBarsRefresh() end
 end
 
 function GR:Disable()

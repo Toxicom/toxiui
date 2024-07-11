@@ -30,9 +30,6 @@ function PF:Plater()
     end)
   end
 
-  -- ! Personal change
-  platerProfile = I.DevPlaterProfile or platerProfile
-
   -- Decompres data
   local profile = Plater.DecompressData(platerProfile, "print")
 
