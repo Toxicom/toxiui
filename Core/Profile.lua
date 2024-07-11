@@ -384,7 +384,7 @@ P.elvUIIcons = {
   },
 
   classIcons = {
-    theme = "ToxiClasses",
+    theme = TXUI.IsRetail and "ToxiSpecStylized" or "ToxiClasses",
   },
 
   deadIcons = {
