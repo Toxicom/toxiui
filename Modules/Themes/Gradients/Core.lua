@@ -30,8 +30,8 @@ function GR:UpdateStatusBarFrame(frame)
 
   -- Comfigure Health
   if frame.Health then
-    frame.Health:SetStatusBarTexture(self.db.texture)
-    frame.Health.bg:SetTexture(self.db.texture)
+    -- frame.Health:SetStatusBarTexture(self.db.texture)
+    -- frame.Health.bg:SetTexture(self.db.texture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Health, "PostUpdateColor") then
@@ -43,8 +43,8 @@ function GR:UpdateStatusBarFrame(frame)
 
   -- Configure CastBar
   if frame.Castbar then
-    frame.Castbar:SetStatusBarTexture(self.db.texture)
-    frame.Castbar.bg:SetTexture(self.db.texture)
+    -- frame.Castbar:SetStatusBarTexture(self.db.texture)
+    -- frame.Castbar.bg:SetTexture(self.db.texture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Castbar, "PostCastStart") then
@@ -55,25 +55,12 @@ function GR:UpdateStatusBarFrame(frame)
       self:SecureHook(frame.Castbar, "SetValue", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
       self:SecureHook(frame.Castbar, "SetMinMaxValues", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
     end
-
-    -- ! Personal Change
-    if F.DevCastAnimationStop then
-      if not self:IsHooked(frame.Castbar, "Hide") then
-        local hideFun = frame.Castbar.Hide
-        local showFun = frame.Castbar.Show
-        local shownFun = frame.Castbar.IsShown
-
-        self:RawHook(frame.Castbar, "Hide", F.Event.GenerateClosure(F.DevCastAnimationHideProxy, frame.Castbar, hideFun), true)
-        self:RawHook(frame.Castbar, "Show", F.Event.GenerateClosure(F.DevCastAnimationShowProxy, frame.Castbar, showFun), true)
-        self:RawHook(frame.Castbar, "IsShown", F.Event.GenerateClosure(F.DevCastAnimationIsShownProxy, frame.Castbar, shownFun), true)
-      end
-    end
   end
 
   -- Configure Power Bar
   if frame.Power then
-    frame.Power:SetStatusBarTexture(self.db.texture)
-    frame.Power.BG:SetTexture(self.db.texture)
+    -- frame.Power:SetStatusBarTexture(self.db.texture)
+    -- frame.Power.BG:SetTexture(self.db.texture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
