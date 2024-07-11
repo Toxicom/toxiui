@@ -448,7 +448,7 @@ function M:StatusReportUpdate()
 
       for i = 1, count do
         local data = pluginData[i]
-        local name = F.String.Strip(data.title or data.name) or UNKNOWN
+        local name = data.title or data.name or UNKNOWN
         local version = F.String.Strip(data.version) or UNKNOWN
         local versionString = (data.old or version == UNKNOWN) and F.String.Error(version) or F.String.Good(version)
         PluginSection.Content["Line" .. i].Text:SetFormattedText("%s %s", name, versionString)
