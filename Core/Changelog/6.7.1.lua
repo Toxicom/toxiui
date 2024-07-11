@@ -10,6 +10,7 @@ TXUI.Changelog["6.7.1"] = {
 
     "* Bug fixes",
     "Allow changing textures in Gradient mode",
+    "Fix " .. TXUI.Title .. " icon's in WunderBar tooltip",
 
     "* Profile updates",
     "Update default ilvl font for " .. F.String.Menu.Armory() .. " in |cffe35f00Cataclysm|r",

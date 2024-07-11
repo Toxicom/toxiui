@@ -431,11 +431,13 @@ function MM:ToxiUITooltip(button)
     for _, addOn in ipairs { "ElvUI", "Details", "Plater", "BigWigs", "WeakAuras" } do
       if F.IsAddOnEnabled(addOn) then
         local data = {}
-        data.name = F.String.Strip(GetAddOnMetadata(addOn, "Title")) or addOn
+        data.name = GetAddOnMetadata(addOn, "Title") or addOn
         data.version = F.String.Strip(GetAddOnMetadata(addOn, "Version")) or UNKNOWN
 
-        -- Special case for special addon authors ............
-        if data.version == UNKNOWN and addOn == "Details" then data.version = Details and Details.version or UNKNOWN end
+        if addOn == "Details" then
+          data.name = "Details!"
+          data.version = Details.GetVersionString()
+        end
 
         tinsert(addOnData, data)
       end
@@ -464,7 +466,7 @@ function MM:ToxiUITooltip(button)
 
       for i = 1, #pluginData do
         local data = pluginData[i]
-        local name = F.String.Strip(data.title or data.name) or UNKNOWN
+        local name = data.title or data.name or UNKNOWN
         local version = F.String.Strip(data.version) or UNKNOWN
         local color = (data.old or version == "") and "ff3333" or "33ff33"
         local r, g, b = E:HexToRGB(color)
