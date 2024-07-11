@@ -50,12 +50,12 @@ function SD:RefreshRow(frame, _, dR, dG, dB)
   local valueChanged = frame.currentPercent == nil or (abs(frame.currentPercent - valuePercentage) > 0.05)
   if valueChanged then frame.currentPercent = valuePercentage end
 
-  if not self.updateCache[frame] then
-    -- https://discord.com/channels/769550106948141086/769550106948141088/1163948358331813959
-    if frame.lineBorder then frame.lineBorder:Kill() end
-    frame.statusbar:CreateBackdrop("Default", nil, false, false, true)
-    self:RefreshTexture(frame)
-  end
+  -- if not self.updateCache[frame] then
+  -- https://discord.com/channels/769550106948141086/769550106948141088/1163948358331813959
+  -- if frame.lineBorder then frame.lineBorder:Kill() end
+  -- frame.statusbar:CreateBackdrop("Default", nil, false, false, true)
+  -- self:RefreshTexture(frame)
+  -- end
 
   if not dB then
     dR, dG, dB = frame.textura:GetVertexColor()
@@ -80,8 +80,8 @@ function SD:RefreshRows(instance, instanceSpecific)
       bar.fadeDirection = I.Enum.GradientMode.Direction.RIGHT
 
       self:RawHook(bar.textura, "SetVertexColor", F.Event.GenerateClosure(self.RefreshRow, self, bar), true)
-      self:RawHook(bar.textura, "SetTexture", F.Event.GenerateClosure(self.RefreshTexture, self, bar), true)
-      self:SecureHook(bar.statusbar, "SetValue", F.Event.GenerateClosure(self.RefreshTexture, self, bar), true)
+      -- self:RawHook(bar.textura, "SetTexture", F.Event.GenerateClosure(self.RefreshTexture, self, bar), true)
+      -- self:SecureHook(bar.statusbar, "SetValue", F.Event.GenerateClosure(self.RefreshTexture, self, bar), true)
     end
   end
 end

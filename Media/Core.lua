@@ -33,6 +33,8 @@ F.AddMedia("texture", "ToxiUI-g2", "- Tx Right", "statusbar")
 
 -- Texture alternatives (not in use)
 F.AddMedia("texture", "ToxiUI-half", "- ToxiUI Half", "statusbar")
+F.AddMedia("texture", "ToxiUI-half-transparent", "- ToxiUI Half Fade", "statusbar")
+F.AddMedia("texture", "ToxiUI-half-transparent-stroke", "- ToxiUI Half Fade Stroke", "statusbar")
 F.AddMedia("texture", "ToxiUI-dark", "- ToxiUI Dark", "statusbar")
 F.AddMedia("texture", "Bezo", "- Bezo", "statusbar")
 F.AddMedia("texture", "Bezo-dark1", "- Bezo Dark", "statusbar")
