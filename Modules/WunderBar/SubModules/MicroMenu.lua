@@ -434,6 +434,8 @@ function MM:ToxiUITooltip(button)
         data.name = GetAddOnMetadata(addOn, "Title") or addOn
         data.version = F.String.Strip(GetAddOnMetadata(addOn, "Version")) or UNKNOWN
 
+        if addOn == "ElvUI" then data.version = E.versionString end
+
         if addOn == "Details" then
           data.name = "Details!"
           data.version = Details.GetVersionString()

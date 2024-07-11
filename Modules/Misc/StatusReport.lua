@@ -401,6 +401,9 @@ function M:StatusReportUpdate()
         local data = {}
         local name = GetAddOnMetadata(addOn, "Title")
         local version = GetAddOnMetadata(addOn, "Version")
+
+        if addOn == "ElvUI" then version = E.versionString end
+
         if addOn == "Details" then
           name = "Details!"
           version = Details.GetVersionString()
