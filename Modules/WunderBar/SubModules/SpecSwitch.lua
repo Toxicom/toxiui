@@ -194,27 +194,14 @@ function SS:GetCurrentSpecPoints(spec)
   local points = {}
   local highPointsSpentIndex = nil
 
-  if TXUI.IsVanilla then
-    for treeIndex = 1, 3 do
-      local name, _, pointsSpent, _, previewPointsSpent = GetTalentTabInfo(treeIndex, false, false, spec)
-      if name then
-        local displayPointsSpent = pointsSpent + previewPointsSpent
-        points[treeIndex] = displayPointsSpent
-        if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then highPointsSpentIndex = treeIndex end
-      else
-        points[treeIndex] = 0
-      end
-    end
-  elseif TXUI.IsCata then
-    for treeIndex = 1, 3 do
-      local _, name, _, _, pointsSpent, _, previewPointsSpent, _ = GetTalentTabInfo(treeIndex, false, false, spec)
-      if name then
-        local displayPointsSpent = pointsSpent + previewPointsSpent
-        points[treeIndex] = displayPointsSpent
-        if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then highPointsSpentIndex = treeIndex end
-      else
-        points[treeIndex] = 0
-      end
+  for treeIndex = 1, 3 do
+    local _, name, _, _, pointsSpent, _, previewPointsSpent, _ = GetTalentTabInfo(treeIndex, false, false, spec)
+    if name then
+      local displayPointsSpent = pointsSpent + previewPointsSpent
+      points[treeIndex] = displayPointsSpent
+      if displayPointsSpent > 0 and (not highPointsSpentIndex or displayPointsSpent > points[highPointsSpentIndex]) then highPointsSpentIndex = treeIndex end
+    else
+      points[treeIndex] = 0
     end
   end
 
@@ -228,26 +215,15 @@ function SS:GetWrathCacheForSpec(spec)
   if not role or role == "NONE" then role = "DAMAGER" end
 
   if highPointsSpentIndex ~= nil then
-    local name
-    local stringId
-    local icon
-    local _
+    local _, name, _, icon, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
 
-    if TXUI.IsVanilla then
-      name, _, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
-    elseif TXUI.IsCata then
-      _, name, _, icon, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
-    end
-
-    if name then
-      return {
-        id = stringId,
-        icon = TXUI.IsVanilla and stringId or icon,
-        name = name,
-        role = role,
-        points = ("%s / %s / %s"):format(unpack(points)),
-      }
-    end
+    if name then return {
+      id = stringId,
+      icon = icon,
+      name = name,
+      role = role,
+      points = ("%s / %s / %s"):format(unpack(points)),
+    } end
   end
 
   return {
@@ -547,8 +523,6 @@ function SS:OnInit()
   -- We are done, hooray!
   self.Initialized = true
 end
-
-if TXUI.IsVanilla then return end
 
 WB:RegisterSubModule(
   SS,

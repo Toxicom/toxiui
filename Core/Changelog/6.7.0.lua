@@ -31,6 +31,7 @@ TXUI.Changelog["6.7.0"] = {
     "Fix broken " .. F.String.OmniCD() .. " installer",
     "Fix squashed icons in " .. F.String.Menu.WunderBar() .. " flyouts",
     "Fix " .. F.String.Details() .. " version in " .. F.String.ToxiUI("/tx status"),
+    "Fix SpecSwitch module in |cff2eda00Vanilla|r",
 
     "* Profile updates",
     "Update default Hunter's shift color",
