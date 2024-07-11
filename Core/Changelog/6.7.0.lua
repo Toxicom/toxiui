@@ -40,6 +40,7 @@ TXUI.Changelog["6.7.0"] = {
     "Update default " .. F.String.Menu.Armory() .. " profile",
     "Update " .. F.String.Plater() .. " mods",
     "Set Spec Stylized icons as default for Retail",
+    "Update " .. F.String.Details() .. " default selected icons",
 
     "* Documentation",
     F.String.MinElv("13.69"),
