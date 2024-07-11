@@ -496,8 +496,8 @@ P.armory = {
     showAvgItemLevel = true, -- Enabled by default
     itemLevelFormat = "%.1f",
 
-    itemLevelFont = I.Fonts.TitleBlack,
-    itemLevelFontSize = 20,
+    itemLevelFont = TXUI.IsRetail and I.Fonts.TitleBlack or I.Fonts.Primary,
+    itemLevelFontSize = TXUI.IsRetail and 20 or 12,
     itemLevelFontShadow = true,
     itemLevelFontOutline = "OUTLINE",
     itemLevelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
