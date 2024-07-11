@@ -4,6 +4,7 @@ TXUI.Changelog["6.7.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "ActionBars and UnitFrames styles no longer persist through installations",
 
     "* New features",
 
