@@ -521,6 +521,8 @@ P.armory = {
     labelFontOutline = "OUTLINE",
     labelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     labelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
+    abbreviateLabels = true,
+    showIcons = true,
 
     valueFont = I.Fonts.Primary,
     valueFontSize = 15,
@@ -538,18 +540,23 @@ P.armory = {
       -- Attributes Category
       STRENGTH = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59728),
       },
       AGILITY = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59729),
       },
       INTELLECT = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59730),
       },
       STAMINA = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59731),
       },
       HEALTH = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59731),
       },
       POWER = {
         mode = 0,
@@ -574,6 +581,7 @@ P.armory = {
       },
       MOVESPEED = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59732),
       },
 
       -- Enhancements Category
@@ -591,15 +599,19 @@ P.armory = {
       },
       CRITCHANCE = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59733),
       },
       HASTE = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59734),
       },
       MASTERY = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59735),
       },
       VERSATILITY = {
         mode = 1,
+        icon = F.String.ConvertGlyph(59736),
       },
       LIFESTEAL = {
         mode = 0,

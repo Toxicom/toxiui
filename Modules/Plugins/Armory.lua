@@ -841,8 +841,15 @@ function A:UpdateCharacterStat(frame, showGradient)
 
     local labelString = F.String.StripColor(frame.Label:GetText())
 
+    if self.db.stats.abbreviateLabels then labelString = E:ShortenString(E.TagFunctions.Abbrev(labelString), 12) end
+
+    if self.db.stats.showIcons and self.db.stats.mode[frame.stringId] then
+      local icon = self.db.stats.mode[frame.stringId].icon or ""
+      if icon and icon ~= "" then labelString = icon .. " " .. labelString end
+    end
+
     if self:UseFontGradient(self.db.stats, "label") then
-      frame.Label:SetText(F.String.FastGradient(F.String.StripColor(frame.Label:GetText()), 0, 0.6, 1, 0, 0.9, 1))
+      frame.Label:SetText(F.String.FastGradient(labelString, 0, 0.6, 1, 0, 0.9, 1))
     elseif self:UseFontClassGradient(self.db.stats, "label") then
       frame.Label:SetText(F.String.GradientClass(labelString))
     else
@@ -956,6 +963,9 @@ function A:UpdateCharacterStats()
       local hideAt = stat.hideAt
       local showStat = true
       local statMode = 1
+
+      -- Append ID string to stat frame
+      statFrame.stringId = stat.stat
 
       if self.db.stats.mode[stat.stat] ~= nil then
         statMode = self.db.stats.mode[stat.stat].mode

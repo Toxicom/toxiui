@@ -1395,6 +1395,20 @@ function O:Armory()
           return E.db.TXUI.armory.stats["labelFontColor"] ~= "CUSTOM"
         end,
       }
+
+      fontGroup.abbreviateLabels = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Short Labels " .. E.NewSign,
+        desc = "Shorten and abbreviate attribute labels.",
+      }
+
+      fontGroup.showIcons = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Attribute Icons " .. E.NewSign,
+        desc = "Show icons before the attribute labels. Only the main attributes are supported currently.",
+      }
     end
 
     -- Value Text
