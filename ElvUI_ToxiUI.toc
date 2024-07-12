@@ -17,7 +17,6 @@
 ## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick
 
 
-Libraries\Libraries.xml
 Initialize.lua
 Core\Core.xml
 Media\Media.xml

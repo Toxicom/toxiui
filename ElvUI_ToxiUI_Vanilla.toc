@@ -15,7 +15,6 @@
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 
-Libraries\Libraries.xml
 Initialize.lua
 Core\Core.xml
 Media\Media.xml
