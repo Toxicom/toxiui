@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local ACH = LibStub("LibAceConfigHelper")
 
 local _G = _G
 local FACTION_BAR_COLORS = _G.FACTION_BAR_COLORS
@@ -528,6 +529,38 @@ function O:ToxiUI_Themes_GradientMode()
     }, {
       name = "Here you can change additional settings for the " .. gradientTitle .. " Mode|r.\n\n",
     })
+
+    -- Spacer
+    self:AddSpacer(tab)
+
+    do
+      local texturesGroup = self:AddInlineDesc(tab, {
+        name = "UnitFrame Textures",
+      }, {
+        name = "Change the textures used for UnitFrame's Health, Power and Cast status bars.",
+      }).args
+
+      texturesGroup.health = ACH:SharedMediaStatusbar("Health Texture", "Health bar texture for UnitFrames", self:GetOrder(), 200, function()
+        return E.db.TXUI.themes.gradientMode.textures.health
+      end, function(_, value)
+        E.db.TXUI.themes.gradientMode.textures.health = value
+        F.Event.TriggerEvent("ThemesGradients.TexturesUpdate")
+      end)
+
+      texturesGroup.power = ACH:SharedMediaStatusbar("Power Texture", "Power bar texture for UnitFrames", self:GetOrder(), 200, function()
+        return E.db.TXUI.themes.gradientMode.textures.power
+      end, function(_, value)
+        E.db.TXUI.themes.gradientMode.textures.power = value
+        F.Event.TriggerEvent("ThemesGradients.TexturesUpdate")
+      end)
+
+      texturesGroup.cast = ACH:SharedMediaStatusbar("Castbar Texture", "Castbar texture for UnitFrames", self:GetOrder(), 200, function()
+        return E.db.TXUI.themes.gradientMode.textures.cast
+      end, function(_, value)
+        E.db.TXUI.themes.gradientMode.textures.cast = value
+        F.Event.TriggerEvent("ThemesGradients.TexturesUpdate")
+      end)
+    end
 
     -- Spacer
     self:AddSpacer(tab)

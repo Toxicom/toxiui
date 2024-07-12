@@ -7,9 +7,10 @@ TXUI.Changelog["6.7.1"] = {
     "ActionBars and UnitFrames styles no longer persist through installations",
 
     "* New features",
+    "Option to change Unitframe textures in Gradient mode" .. F.String.Sublist(F.String.Menu.Themes() .. " -> Gradient Mode -> Settings"),
+    "Allow changing Details textures in Gradient mode",
 
     "* Bug fixes",
-    "Allow changing textures in Gradient mode",
     "Fix " .. TXUI.Title .. " icon's in WunderBar tooltip",
 
     "* Profile updates",

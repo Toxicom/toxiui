@@ -66,7 +66,12 @@ P.themes = {
   gradientMode = {
     enabled = true, -- Enabled by default
 
-    texture = E.media.blankTex,
+    textures = {
+      health = "- ToxiUI",
+      power = "- ToxiUI",
+      cast = "- ToxiUI",
+    },
+
     backgroundMultiplier = 0.35,
 
     interruptCDEnabled = false,
@@ -452,7 +457,7 @@ P.vehicleBar = {
     enabled = true,
     thrillColor = F.Table.HexToRGB("#00caff"),
     normalTexture = "- ToxiUI",
-    darkTexture = "- ToxiUI Half",
+    darkTexture = "- Tx Half",
   },
 }
 

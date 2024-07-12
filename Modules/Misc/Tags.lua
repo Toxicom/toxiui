@@ -87,6 +87,42 @@ local function getCoordinates(col, row)
   return format("%d:%d:%d:%d", x1, x2, y1, y2)
 end
 
+function M:SplitName(name, strMatch)
+  if strMatch and strMatch ~= "" then
+    -- Check if the name starts with the matching string
+    local start, finish = string.find(name, strMatch, 1, true)
+    if start == 1 then
+      local nameHighlight = strMatch
+      local nameRest = utf8sub(name, finish + 1)
+      return nameHighlight, nameRest
+    end
+  end
+
+  -- Count the number of spaces in the name
+  local spaceCount = select(2, name:gsub(" ", ""))
+  -- Adjust the split point by the number of spaces
+  local splitPoint = floor(utf8len(name) / 2) + spaceCount
+  local nameHighlight = utf8sub(name, 1, splitPoint)
+  local nameRest = utf8sub(name, splitPoint + 1)
+  return nameHighlight, nameRest
+end
+
+function M:SplitAndColorName(name, unit, strMatch, class)
+  local nameHighlight, nameRest = self:SplitName(name, strMatch)
+
+  if nameHighlight and nameRest then
+    if UnitIsPlayer(unit) then
+      return nameHighlight .. F.String.Class(nameRest, class)
+    else
+      local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
+      ---@diagnostic disable-next-line: ambiguity-1
+      return nameHighlight .. (cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. nameRest) or "|cffcccccc" .. nameRest
+    end
+  else
+    return name
+  end
+end
+
 function M:Tags()
   local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
@@ -227,45 +263,6 @@ function M:Tags()
     end
   end
 
-  local function SplitName(name, strMatch)
-    if strMatch and strMatch ~= "" then
-      -- Check if the name starts with the matching string
-      local start, finish = string.find(name, strMatch, 1, true)
-      if start == 1 then
-        local nameHighlight = strMatch
-        local nameRest = utf8sub(name, finish + 1)
-        return nameHighlight, nameRest
-      end
-    end
-
-    -- Count the number of spaces in the name
-    local spaceCount = select(2, name:gsub(" ", ""))
-    -- Adjust the split point by the number of spaces
-    local splitPoint = floor(utf8len(name) / 2) + spaceCount
-    local nameHighlight = utf8sub(name, 1, splitPoint)
-    local nameRest = utf8sub(name, splitPoint + 1)
-    return nameHighlight, nameRest
-  end
-
-  local function SplitAndColorName(name, unit, strMatch)
-    local nameHighlight, nameRest = SplitName(name, strMatch)
-
-    if nameHighlight and nameRest then
-      if UnitIsPlayer(unit) then
-        local _, unitClass = UnitClass(unit)
-        local class = unitClass or E.myclass
-
-        return nameHighlight .. F.String.Class(nameRest, class)
-      else
-        local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-        ---@diagnostic disable-next-line: ambiguity-1
-        return nameHighlight .. (cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. nameRest) or "|cffcccccc" .. nameRest
-      end
-    else
-      return name
-    end
-  end
-
   -- Name tags
   local nameLength = { veryshort = 5, short = 10, medium = 15, long = 20 }
   for textFormat, length in pairs(nameLength) do
@@ -327,8 +324,9 @@ function M:Tags()
       if not name then return "missing name wtf" end
 
       name = E:ShortenString(name, length)
+      local _, unitClass = UnitClass(unit)
 
-      return SplitAndColorName(name, unit, strMatch)
+      return self:SplitAndColorName(name, unit, strMatch, unitClass)
     end)
 
     E:AddTag(format("tx:name:abbrev:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, strMatch)
@@ -337,8 +335,9 @@ function M:Tags()
 
       if strfind(name, "%s") then name = Abbrev(name) end
       name = E:ShortenString(name, length)
+      local _, unitClass = UnitClass(unit)
 
-      return SplitAndColorName(name, unit, strMatch)
+      return self:SplitAndColorName(name, unit, strMatch, unitClass)
     end)
   end
 
@@ -834,10 +833,20 @@ function M:Tags()
       ["tx:name:medium"] = true,
       ["tx:name:long"] = true,
 
+      ["tx:name:veryshort:split"] = true,
+      ["tx:name:short:split"] = true,
+      ["tx:name:medium:split"] = true,
+      ["tx:name:long:split"] = true,
+
       ["tx:name:abbrev:veryshort"] = true,
       ["tx:name:abbrev:short"] = true,
       ["tx:name:abbrev:medium"] = true,
       ["tx:name:abbrev:long"] = true,
+
+      ["tx:name:abbrev:veryshort:split"] = true,
+      ["tx:name:abbrev:short:split"] = true,
+      ["tx:name:abbrev:medium:split"] = true,
+      ["tx:name:abbrev:long:split"] = true,
 
       ["tx:name:veryshort:uppercase"] = true,
       ["tx:name:short:uppercase"] = true,

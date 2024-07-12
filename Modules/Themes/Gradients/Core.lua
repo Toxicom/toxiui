@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local GR = TXUI:NewModule("ThemesGradients", "AceHook-3.0")
+local LSM = E.Libs.LSM
 
 local pairs = pairs
 
@@ -30,8 +31,9 @@ function GR:UpdateStatusBarFrame(frame)
 
   -- Comfigure Health
   if frame.Health then
-    -- frame.Health:SetStatusBarTexture(self.db.texture)
-    -- frame.Health.bg:SetTexture(self.db.texture)
+    local healthTexture = LSM:Fetch("statusbar", self.db.textures.health)
+    frame.Health:SetStatusBarTexture(healthTexture)
+    frame.Health.bg:SetTexture(healthTexture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Health, "PostUpdateColor") then
@@ -43,8 +45,9 @@ function GR:UpdateStatusBarFrame(frame)
 
   -- Configure CastBar
   if frame.Castbar then
-    -- frame.Castbar:SetStatusBarTexture(self.db.texture)
-    -- frame.Castbar.bg:SetTexture(self.db.texture)
+    local castTexture = LSM:Fetch("statusbar", self.db.textures.cast)
+    frame.Castbar:SetStatusBarTexture(castTexture)
+    frame.Castbar.bg:SetTexture(castTexture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Castbar, "PostCastStart") then
@@ -59,8 +62,9 @@ function GR:UpdateStatusBarFrame(frame)
 
   -- Configure Power Bar
   if frame.Power then
-    -- frame.Power:SetStatusBarTexture(self.db.texture)
-    -- frame.Power.BG:SetTexture(self.db.texture)
+    local powerTexture = LSM:Fetch("statusbar", self.db.textures.power)
+    frame.Power:SetStatusBarTexture(powerTexture)
+    frame.Power.BG:SetTexture(powerTexture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
@@ -101,6 +105,10 @@ function GR:SettingsUpdate()
   -- Set layout
   self.leftFrames = I.GradientMode.Layouts[E.db.TXUI.installer.layout].Left
   self.rightFrames = I.GradientMode.Layouts[E.db.TXUI.installer.layout].Right
+end
+
+function GR:TexturesUpdate()
+  self:UpdateStatusBars()
 end
 
 function GR:Disable()
@@ -187,6 +195,7 @@ function GR:Initialize()
   F.Event.RegisterCallback("TXUI.DatabaseUpdate", self.DatabaseUpdate, self)
   F.Event.RegisterCallback("ThemesGradients.DatabaseUpdate", self.DatabaseUpdate, self)
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate", self.SettingsUpdate, self)
+  F.Event.RegisterCallback("ThemesGradients.TexturesUpdate", self.TexturesUpdate, self)
 
   -- We are done, hooray!
   self.Initialized = true
