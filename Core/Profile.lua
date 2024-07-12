@@ -67,9 +67,9 @@ P.themes = {
     enabled = true, -- Enabled by default
 
     textures = {
-      health = "- ToxiUI",
-      power = "- ToxiUI",
-      cast = "- ToxiUI",
+      health = "ElvUI Blank",
+      power = "ElvUI Blank",
+      cast = "ElvUI Blank",
     },
 
     backgroundMultiplier = 0.35,

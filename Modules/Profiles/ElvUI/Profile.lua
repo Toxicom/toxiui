@@ -41,7 +41,7 @@ function PF:BuildColorsProfile()
     -- UnitFrame Colors MouseOver Glow
     frameGlow = {
       mouseoverGlow = {
-        texture = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
+        texture = "- ToxiUI",
       },
     },
 
@@ -352,7 +352,7 @@ function PF:BuildProfile()
 
     -- AltPowerBar
     altPowerBar = {
-      statusBar = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
+      statusBar = "- ToxiUI",
     },
 
     -- AddOn Compartment
@@ -477,7 +477,7 @@ function PF:BuildProfile()
     -- UnitFrames Options
     smoothbars = true,
     maxAllowedGroups = false,
-    statusbar = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
+    statusbar = "- ToxiUI",
   })
 
   -- UnitFrames Colors
@@ -1949,7 +1949,7 @@ function PF:ElvUIProfilePrivate()
       raidUtility = true,
       totemTracker = false,
       glossTex = "- ToxiUI", -- Secondary Texture
-      normTex = F.ChooseForGradient("- ToxiUI", "- Tx Mid"),
+      normTex = "- ToxiUI",
 
       minimap = {
         hideClassHallReport = false,
