@@ -29,7 +29,8 @@ function F.Color.CalculateMultiplier(multi, color)
 end
 
 function F.Color.CalculateShift(boost, colorArray)
-  local modS, modL = boost and 1.6 or 1, boost and 0.6 or I.GradientMode.BackupMultiplier
+  local db = F.GetDBFromPath("TXUI.themes.gradientMode")
+  local modS, modL = boost and db.shiftSat or 1, boost and db.shiftLight or I.GradientMode.BackupMultiplier
   local h, s, l = F.ConvertToHSL(colorArray.r, colorArray.g, colorArray.b)
   local r, g, b = F.ConvertToRGB(F.ClampToHSL(h, s * modS, l * modL))
   return CreateColor(r, g, b, 1)
@@ -73,9 +74,9 @@ do
         for _, colorType in pairs { I.Enum.GradientMode.Color.NORMAL, I.Enum.GradientMode.Color.SHIFT } do
           local modS, modL
           if colorType == I.Enum.GradientMode.Color.NORMAL then
-            modS, modL = 0.9, 1
+            modS, modL = db.normalSat, db.normalLight
           else
-            modS, modL = 1.6, 0.6
+            modS, modL = db.shiftSat, db.shiftLight
           end
 
           for colorEntry, colorArray in pairs(colorMap[colorType]) do

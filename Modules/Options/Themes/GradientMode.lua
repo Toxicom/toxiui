@@ -676,7 +676,7 @@ function O:ToxiUI_Themes_GradientMode()
 
     -- Saturation Boost
     local saturationGroup = self:AddInlineDesc(tab, {
-      name = F.String.Legendary("LEGENDARY: ") .. "Saturation Boost",
+      name = "Saturation Boost " .. E.NewSign,
       get = function(info)
         return E.db.TXUI.themes.gradientMode[info[#info]]
       end,
@@ -698,6 +698,46 @@ function O:ToxiUI_Themes_GradientMode()
       name = function()
         return self:GetEnableName(E.db.TXUI.themes.gradientMode.saturationBoost, saturationGroup)
       end,
+    }
+
+    saturationGroup.shiftLight = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Shift Lightness",
+      desc = "Control the Lightness value of HSL for the Shift color.",
+      min = 0.1,
+      max = 2,
+      step = 0.01,
+    }
+
+    saturationGroup.shiftSat = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Shift Saturation",
+      desc = "Control the Saturation value of HSL for the Shift color.",
+      min = 0.1,
+      max = 1,
+      step = 0.01,
+    }
+
+    saturationGroup.normalLight = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Normal Lightness",
+      desc = "Control the Lightness value of HSL for the Normal color.",
+      min = 0.1,
+      max = 2,
+      step = 0.01,
+    }
+
+    saturationGroup.normalSat = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Normal Saturation",
+      desc = "Control the Saturation value of HSL for the Normal color.",
+      min = 0.1,
+      max = 1,
+      step = 0.01,
     }
 
     -- Spacer

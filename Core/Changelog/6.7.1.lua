@@ -12,6 +12,7 @@ TXUI.Changelog["6.7.1"] = {
     F.String.Menu.Armory() .. " Attributes updates:" .. F.String.Sublist("Option to abbreviate and shorten label") .. F.String.Sublist(
       "Attribute icons! " .. F.String.ConvertGlyph(59728)
     ),
+    "Controls for Gradient mode's Saturation Boost" .. F.String.Sublist(F.String.Menu.Themes() .. " -> Gradient Mode -> Settings"),
 
     "* Bug fixes",
     "Fix " .. TXUI.Title .. " icon's in WunderBar tooltip",
