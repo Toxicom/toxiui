@@ -38,7 +38,7 @@ end
 
 function F.Color.SlowCalculateShift(colorArray)
   local db = F.GetDBFromPath("TXUI.themes.gradientMode")
-  return F.Color.CalculateShift(db and db.saturationBoost, colorArray)
+  return F.Color.CalculateShift(db and db.saturationBoost.enabled, colorArray)
 end
 
 function F.Color.SlowCalculateBackground(colorArray)
@@ -74,15 +74,15 @@ do
         for _, colorType in pairs { I.Enum.GradientMode.Color.NORMAL, I.Enum.GradientMode.Color.SHIFT } do
           local modS, modL
           if colorType == I.Enum.GradientMode.Color.NORMAL then
-            modS, modL = db.normalSat, db.normalLight
+            modS, modL = db.saturationBoost.normalSat, db.saturationBoost.normalLight
           else
-            modS, modL = db.shiftSat, db.shiftLight
+            modS, modL = db.saturationBoost.shiftSat, db.saturationBoost.shiftLight
           end
 
           for colorEntry, colorArray in pairs(colorMap[colorType]) do
             local r1, g1, b1
 
-            if db.saturationBoost then
+            if db.saturationBoost.enabled then
               local h, s, l = F.ConvertToHSL(colorArray.r, colorArray.g, colorArray.b)
               r1, g1, b1 = F.ConvertToRGB(F.ClampToHSL(h, s * modS, l * modL))
             else

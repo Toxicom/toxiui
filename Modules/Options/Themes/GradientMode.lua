@@ -678,12 +678,12 @@ function O:ToxiUI_Themes_GradientMode()
     local saturationGroup = self:AddInlineDesc(tab, {
       name = "Saturation Boost " .. E.NewSign,
       get = function(info)
-        return E.db.TXUI.themes.gradientMode[info[#info]]
+        return E.db.TXUI.themes.gradientMode.saturationBoost[info[#info]]
       end,
       set = function(info, value)
-        if E.db.TXUI.themes.gradientMode[info[#info]] == value then return end
+        if E.db.TXUI.themes.gradientMode.saturationBoost[info[#info]] == value then return end
 
-        E.db.TXUI.themes.gradientMode[info[#info]] = value
+        E.db.TXUI.themes.gradientMode.saturationBoost[info[#info]] = value
         F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
         F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power", true)
         F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
@@ -692,7 +692,7 @@ function O:ToxiUI_Themes_GradientMode()
       name = "Boosts the saturation and darkens " .. gradientTitle .. " Colors|r\nFor people that like it a bit more extreme\n\n",
     }).args
 
-    saturationGroup.saturationBoost = {
+    saturationGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
       name = function()

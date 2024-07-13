@@ -83,11 +83,13 @@ P.themes = {
       redThreshold = 35,
     },
 
-    saturationBoost = false,
-    shiftLight = 0.7,
-    shiftSat = 1,
-    normalLight = 1.3,
-    normalSat = 0.9,
+    saturationBoost = {
+      enabled = false,
+      shiftLight = 0.7,
+      shiftSat = 1,
+      normalLight = 1.3,
+      normalSat = 0.9,
+    },
 
     reactionColorMap = {
       [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
