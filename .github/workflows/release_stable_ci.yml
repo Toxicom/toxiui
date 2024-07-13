@@ -2,8 +2,6 @@ name: ToxiUI Stable Build Release
 
 on:
   push:
-    branches:
-      - development
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
