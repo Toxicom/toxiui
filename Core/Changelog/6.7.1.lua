@@ -20,6 +20,7 @@ TXUI.Changelog["6.7.1"] = {
     "Update default ilvl font for " .. F.String.Menu.Armory() .. " in |cffe35f00Cataclysm|r",
 
     "* Documentation",
+    F.String.MinElv("13.70"),
 
     "* Settings refactoring",
 
