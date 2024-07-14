@@ -843,7 +843,7 @@ function A:UpdateCharacterStat(frame, showGradient)
 
     if self.db.stats.abbreviateLabels then labelString = E:ShortenString(E.TagFunctions.Abbrev(labelString), 12) end
 
-    if self.db.stats.showIcons and self.db.stats.mode[frame.stringId] then
+    if self.db.stats.showIcons and self.db.stats.mode[frame.stringId] and E.db.TXUI.armory.stats.labelFont == I.Fonts.Primary then
       local icon = self.db.stats.mode[frame.stringId].icon or ""
       if icon and icon ~= "" then labelString = icon .. " " .. labelString end
     end

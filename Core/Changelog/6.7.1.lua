@@ -17,6 +17,7 @@ TXUI.Changelog["6.7.1"] = {
     "* Bug fixes",
     "Fix " .. TXUI.Title .. " icon's in WunderBar tooltip",
     "Remove " .. F.String.BigWigs() .. " call on Private profile update",
+    "Disable Attribute icons if selected font is not " .. F.String.ToxiUI(I.Fonts.Primary),
 
     "* Profile updates",
     "Update default ilvl font for " .. F.String.Menu.Armory() .. " in |cffe35f00Cataclysm|r",

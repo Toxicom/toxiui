@@ -1247,6 +1247,8 @@ function O:Armory()
       }
     end
 
+    self:AddSpacer(tab)
+
     -- Category Header Text
     do
       -- Font Group
@@ -1322,11 +1324,15 @@ function O:Armory()
       }
     end
 
+    self:AddSpacer(tab)
+
     -- Label Text
     do
       -- Font Group
-      local fontGroup = self:AddInlineGroup(tab, {
+      local fontGroup = self:AddInlineDesc(tab, {
         name = "Attribute Label",
+      }, {
+        name = F.String.ToxiUI("Information: ") .. "For attribute icons to work properly, you must select the " .. F.String.ToxiUI(I.Fonts.Primary) .. " font.\n\n",
       }).args
 
       -- Fonts Font
@@ -1408,8 +1414,13 @@ function O:Armory()
         type = "toggle",
         name = "Attribute Icons " .. E.NewSign,
         desc = "Show icons before the attribute labels. Only the main attributes are supported currently.",
+        disabled = function()
+          return E.db.TXUI.armory.stats.labelFont ~= I.Fonts.Primary
+        end,
       }
     end
+
+    self:AddSpacer(tab)
 
     -- Value Text
     do
@@ -1484,6 +1495,8 @@ function O:Armory()
         end,
       }
     end
+
+    self:AddSpacer(tab)
 
     -- Stats Mode
     do
