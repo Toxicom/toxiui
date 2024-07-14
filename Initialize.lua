@@ -94,10 +94,21 @@ function TXUI:Initialize()
   local ElvUIVersion = tonumber(E.version)
   local RequiredVersion = tonumber(GetAddOnMetadata(self.AddOnName, "X-ElvUIVersion"))
 
+  E.PopupDialogs.ELVUI_MINIMUM_VERSION_REQUIRED = {
+    text = TXUI.Title
+      .. " did not load because your version of |cff1784d1ElvUI|r |cffef5350"
+      .. E.versionString
+      .. "|r is insufficient.\n\nPlease install |cff1784d1ElvUI|r version |cff66bb6a"
+      .. GetAddOnMetadata(self.AddOnName, "X-ElvUIVersion")
+      .. "|r or higher!",
+    button1 = OKAY,
+    showAlert = true,
+  }
+
   -- ElvUI's version check
   if ElvUIVersion < 1 or (ElvUIVersion < RequiredVersion) then
     E:Delay(2, function()
-      E:StaticPopup_Show("ELVUI_UPDATE_AVAILABLE")
+      E:StaticPopup_Show("ELVUI_MINIMUM_VERSION_REQUIRED")
     end)
     return
   end

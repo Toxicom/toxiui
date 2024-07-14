@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
-local YES = YES
-local NO = NO
+local YES, NO = YES, NO
 
 function TXUI:LoadStaticPopups()
   E.PopupDialogs.TXUI_RESET_TXUI_PROFILE = {
