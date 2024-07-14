@@ -26,6 +26,7 @@ TXUI.Changelog["6.7.1"] = {
 
     "* Development improvements",
     "Clean up unused code",
+    "Remove AceConfigHelper library, since " .. F.String.ElvUI() .. " provides it",
     "Display a clear message to the user when " .. F.String.ElvUI() .. " does not meet minimum required version",
   },
 }
