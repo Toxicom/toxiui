@@ -696,7 +696,7 @@ function O:ToxiUI_Themes_GradientMode()
       order = self:GetOrder(),
       type = "toggle",
       name = function()
-        return self:GetEnableName(E.db.TXUI.themes.gradientMode.saturationBoost, saturationGroup)
+        return self:GetEnableName(E.db.TXUI.themes.gradientMode.saturationBoost.enabled, saturationGroup)
       end,
     }
 
