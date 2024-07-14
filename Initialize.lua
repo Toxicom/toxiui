@@ -8,6 +8,7 @@ local GetAddOnMetadata = GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local select = select
 local tonumber = tonumber
+local OKAY = OKAY
 
 local TXUI = E:NewModule(addonName, "AceConsole-3.0", "AceTimer-3.0", "AceHook-3.0")
 
