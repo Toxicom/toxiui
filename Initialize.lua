@@ -92,14 +92,15 @@ function TXUI:Initialize()
 
   -- Check required ElvUI Version
   local ElvUIVersion = tonumber(E.version)
-  local RequiredVersion = tonumber(GetAddOnMetadata(self.AddOnName, "X-ElvUIVersion"))
+  local RequiredVersionString = GetAddOnMetadata(self.AddOnName, "X-ElvUIVersion")
+  local RequiredVersion = tonumber(RequiredVersionString)
 
   E.PopupDialogs.ELVUI_MINIMUM_VERSION_REQUIRED = {
     text = TXUI.Title
       .. " did not load because your version of |cff1784d1ElvUI|r |cffef5350"
       .. E.versionString
       .. "|r is insufficient.\n\nPlease install |cff1784d1ElvUI|r version |cff66bb6a"
-      .. GetAddOnMetadata(self.AddOnName, "X-ElvUIVersion")
+      .. RequiredVersionString
       .. "|r or higher!",
     button1 = OKAY,
     showAlert = true,
