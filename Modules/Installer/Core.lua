@@ -135,7 +135,6 @@ function IS:Privates()
 
   -- AddOns
   PF:AddOnSkins_Private()
-  PF:BigWigs_Private()
   PF:Details_Private()
   PF:Plater_Private()
 
