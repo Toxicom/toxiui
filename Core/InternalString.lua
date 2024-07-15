@@ -95,7 +95,7 @@ I.Strings.Branding = {
     Website = "https://toxiui.com",
     Discord = "https://discord.gg/r85TGUU7zA",
     WAGuide = "https://toxiui.com/wa",
-    Youtube = "https://www.youtube.com/channel/UCHJmprM_gp9RnpFloB5HICg",
+    Youtube = "https://www.youtube.com/@ToxiTV",
     Github = "https://github.com/toxicom/toxiui",
     WrathArmory = "https://www.curseforge.com/wow/addons/wratharmory-elvui-plugin",
   },
