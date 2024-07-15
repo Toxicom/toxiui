@@ -58,6 +58,17 @@ function TXUI:DBConvert()
     end
   end
 
+  -- Saturation Boost convert
+  if db.themes.gradientMode.saturationBoost == false or db.themes.gradientMode.saturationBoost == true then
+    -- Store old value
+    local value = db.themes.gradientMode.saturationBoost
+    -- Set new value from defaults
+    db.themes.gradientMode.saturationBoost = P.themes.gradientMode.saturationBoost
+    -- Set old value
+    db.themes.gradientMode.saturationBoost.enabled = value
+    self:LogDebug("DBConvert > Converted Saturation Boost to new format")
+  end
+
   -- Print debug message
   self:LogDebug("DBConvert > DB Upgrade finished")
 

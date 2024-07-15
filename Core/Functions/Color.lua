@@ -73,16 +73,18 @@ do
       if colorMap then
         for _, colorType in pairs { I.Enum.GradientMode.Color.NORMAL, I.Enum.GradientMode.Color.SHIFT } do
           local modS, modL
-          if colorType == I.Enum.GradientMode.Color.NORMAL then
-            modS, modL = db.saturationBoost.normalSat, db.saturationBoost.normalLight
-          else
-            modS, modL = db.saturationBoost.shiftSat, db.saturationBoost.shiftLight
+          if type(db.saturationBoost) == "table" then
+            if colorType == I.Enum.GradientMode.Color.NORMAL then
+              modS, modL = db.saturationBoost.normalSat, db.saturationBoost.normalLight
+            else
+              modS, modL = db.saturationBoost.shiftSat, db.saturationBoost.shiftLight
+            end
           end
 
           for colorEntry, colorArray in pairs(colorMap[colorType]) do
             local r1, g1, b1
 
-            if db.saturationBoost.enabled then
+            if type(db.saturationBoost) == "table" and db.saturationBoost.enabled then
               local h, s, l = F.ConvertToHSL(colorArray.r, colorArray.g, colorArray.b)
               r1, g1, b1 = F.ConvertToRGB(F.ClampToHSL(h, s * modS, l * modL))
             else
