@@ -6,6 +6,7 @@ local CreateFrame = CreateFrame
 local _G = _G
 local GameTooltip = GameTooltip
 local GetSpellTexture = GetSpellTexture
+local GetSpellCooldown = GetSpellCooldown
 
 function PS:CreateButton()
   if self.button then return end
@@ -59,9 +60,9 @@ function PS:CreateButton()
   button.cooldown = cooldown
 
   -- Hook OnUpdate script to update cooldown
-  button:SetScript("OnUpdate", function()
-    local start, duration = GetSpellCooldown(self.spellID)
-    if start and duration and duration > 0 then self.cooldown:SetCooldown(start, duration) end
+  button:SetScript("OnUpdate", function(btn)
+    local start, duration = GetSpellCooldown(btn.spellID)
+    if start and duration and duration > 0 then btn.cooldown:SetCooldown(start, duration) end
   end)
 
   F.Log.Dev(button, "button")
@@ -71,8 +72,8 @@ end
 
 function PS:OnEvent(event, addonName)
   if event == "ADDON_LOADED" and addonName == "Blizzard_Professions" then
-    _G.ProfessionsFrame:HookScript("OnShow", function(self)
-      local prof = self:GetProfessionInfo()
+    _G.ProfessionsFrame:HookScript("OnShow", function(frame)
+      local prof = frame:GetProfessionInfo()
       if prof and prof.professionID == 185 then
         if not PS.button then PS:CreateButton() end
         PS.button:Show()
