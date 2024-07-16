@@ -59,8 +59,8 @@ function PS:CreateButton()
   button.cooldown = cooldown
 
   -- Hook OnUpdate script to update cooldown
-  button:SetScript("OnUpdate", function(self)
-    local start, duration, enable = GetSpellCooldown(self.spellID)
+  button:SetScript("OnUpdate", function()
+    local start, duration = GetSpellCooldown(self.spellID)
     if start and duration and duration > 0 then self.cooldown:SetCooldown(start, duration) end
   end)
 
