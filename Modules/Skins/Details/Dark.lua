@@ -32,28 +32,8 @@ function SD:CalculateBackdropColor(eColors, r, g, b)
   return r, g, b
 end
 
-function SD:RefreshTexture(row)
-  if not self.isEnabled or not self.db or not self.db.enabled then return end
-  self.hooks[row.textura]["SetTexture"](row.textura, self.statusbarTexture)
-
-  if self.db.transparency then
-    row.background:SetTexture(E.media.blankTex)
-  else
-    row.background:SetTexture(self.statusbarTexture)
-  end
-end
-
 function SD:RefreshRow(row, r, g, b, bgR, bgG, bgB)
   row.textura:SetVertexColor(r, g, b, 1)
-
-  if not self.updateCache[row] then
-    row.lineBorder:Kill()
-    row.statusbar:CreateBackdrop("Default", nil, false, false, true)
-    row.statusbar.backdrop.Center:StripTextures()
-    row.statusbar.backdrop.Center:Kill()
-
-    self:RefreshTexture(row)
-  end
 
   if self.db.transparency then
     row.background:SetVertexColor(bgR, bgG, bgB, self.db.transparencyAlpha)
@@ -97,11 +77,6 @@ function SD:RefreshRows(instance, instanceSpecific)
   for _, bar in ipairs(instance.barras) do
     if not bar or not bar.textura then return end
 
-    -- Hook for texture update
-    if not self:IsHooked(bar.textura, "SetTexture") then self:RawHook(bar.textura, "SetTexture", function()
-      self:RefreshTexture(bar)
-    end, true) end
-
     self:RefreshRow(bar, r, g, b, bgR, bgG, bgB)
   end
 end
@@ -112,10 +87,6 @@ end
 
 function SD:SettingsUpdate()
   if not DT or not self.isEnabled or not self.Initialized then return end
-
-  -- Get textures and calculate colors
-  self.statusbarTexture = LSM:Fetch("statusbar", E.db.unitframe.statusbar)
-  if not self.statusbarTexture then self.statusbarTexture = E.media.blankTex end -- backup to elvui texture if not found
 
   self.updateCache = {}
   self:RefreshDetails()
@@ -194,7 +165,6 @@ function SD:Initialize()
 
   -- Vars
   self.updateCache = {}
-  self.statusbarTexture = E.media.blankTex
 
   -- Keep track if we have  transparency enabled
   self.isTransparencyEnabled = false
