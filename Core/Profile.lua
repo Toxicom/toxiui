@@ -223,6 +223,8 @@ P.addons = {
     enabled = true, -- Enabled by default
     turnCamera = true,
     playEmotes = true,
+    showChangelog = true,
+    showTips = true,
   },
 
   -- Deconstruct

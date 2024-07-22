@@ -234,20 +234,21 @@ function AFK:SetupFrames()
   self.frame.bottom.faction:Size(256, 128)
   self.frame.bottom.faction:SetPoint("TOP", self.frame.bottom, "TOP", 0, -padding * 5)
 
-  self.frame.bottom.changelogHeader = self.frame.bottom:CreateFontString(nil, "OVERLAY")
-  self.frame.bottom.changelogHeader:SetPoint("TOPLEFT", self.frame.bottom, "TOPLEFT", padding, -padding * 5)
-  self.frame.bottom.changelogHeader:SetFont(self.titleFont, F.FontSizeScaled(24), "SHADOWOUTLINE")
-  self.frame.bottom.changelogHeader:SetJustifyH("LEFT")
-  self.frame.bottom.changelogHeader:SetTextColor(1, 1, 1, 0.8)
-  self.frame.bottom.changelogHeader:SetText(changelogHeader)
+  if self.db.showChangelog then
+    self.frame.bottom.changelogHeader = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+    self.frame.bottom.changelogHeader:SetPoint("TOPLEFT", self.frame.bottom, "TOPLEFT", padding, -padding * 5)
+    self.frame.bottom.changelogHeader:SetFont(self.titleFont, F.FontSizeScaled(24), "SHADOWOUTLINE")
+    self.frame.bottom.changelogHeader:SetJustifyH("LEFT")
+    self.frame.bottom.changelogHeader:SetTextColor(1, 1, 1, 0.8)
+    self.frame.bottom.changelogHeader:SetText(changelogHeader)
 
-  -- Add ElvUI name
-  self.frame.bottom.changelog = self.frame.bottom:CreateFontString(nil, "OVERLAY")
-  self.frame.bottom.changelog:SetPoint("TOPLEFT", self.frame.bottom.changelogHeader, "BOTTOMLEFT", 0, -padding / 2)
-  self.frame.bottom.changelog:SetFont(self.primaryFont, F.FontSizeScaled(16), "SHADOWOUTLINE")
-  self.frame.bottom.changelog:SetJustifyH("LEFT")
-  self.frame.bottom.changelog:SetTextColor(1, 1, 1, 0.8)
-  self.frame.bottom.changelog:SetText(changelogText)
+    self.frame.bottom.changelog = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+    self.frame.bottom.changelog:SetPoint("TOPLEFT", self.frame.bottom.changelogHeader, "BOTTOMLEFT", 0, -padding / 2)
+    self.frame.bottom.changelog:SetFont(self.primaryFont, F.FontSizeScaled(16), "SHADOWOUTLINE")
+    self.frame.bottom.changelog:SetJustifyH("LEFT")
+    self.frame.bottom.changelog:SetTextColor(1, 1, 1, 0.8)
+    self.frame.bottom.changelog:SetText(changelogText)
+  end
 
   -- Add ElvUI name
   self.frame.bottom.logoText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
@@ -288,33 +289,35 @@ function AFK:SetupFrames()
   self.frame.bottom.levelText:SetTextColor(1, 1, 1, 1)
 
   -- Random tips
-  local randomTips = I.Constants.RandomTips
+  if self.db.showTips then
+    local randomTips = I.Constants.RandomTips
 
-  local indexOne = math.random(1, #randomTips)
-  local indexTwo = math.random(1, #randomTips)
-  local indexThree = math.random(1, #randomTips)
-  -- For debugging
-  -- randomIndex = 4
-  local tipOne = randomTips[indexOne]
-  local tipTwo = randomTips[indexTwo]
-  local tipThree = randomTips[indexThree]
+    local indexOne = math.random(1, #randomTips)
+    local indexTwo = math.random(1, #randomTips)
+    local indexThree = math.random(1, #randomTips)
+    -- For debugging
+    -- randomIndex = 4
+    local tipOne = randomTips[indexOne]
+    local tipTwo = randomTips[indexTwo]
+    local tipThree = randomTips[indexThree]
 
-  self.frame.bottom.tipHeader = self.frame.bottom:CreateFontString(nil, "OVERLAY")
-  self.frame.bottom.tipHeader:SetPoint("TOPRIGHT", self.frame.bottom, "TOPRIGHT", -padding, -padding * 5)
-  self.frame.bottom.tipHeader:SetFont(self.titleFont, F.FontSizeScaled(24), "OUTLINE")
-  self.frame.bottom.tipHeader:SetTextColor(1, 1, 1, 0.8)
-  self.frame.bottom.tipHeader:SetJustifyH("RIGHT")
-  self.frame.bottom.tipHeader:SetText("Random Tips")
+    self.frame.bottom.tipHeader = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+    self.frame.bottom.tipHeader:SetPoint("TOPRIGHT", self.frame.bottom, "TOPRIGHT", -padding, -padding * 5)
+    self.frame.bottom.tipHeader:SetFont(self.titleFont, F.FontSizeScaled(24), "OUTLINE")
+    self.frame.bottom.tipHeader:SetTextColor(1, 1, 1, 0.8)
+    self.frame.bottom.tipHeader:SetJustifyH("RIGHT")
+    self.frame.bottom.tipHeader:SetText("Random Tips")
 
-  self.frame.bottom.tipText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
-  self.frame.bottom.tipText:SetPoint("TOPRIGHT", self.frame.bottom.tipHeader, "BOTTOMRIGHT", 0, -padding / 2)
-  self.frame.bottom.tipText:SetFont(self.primaryFont, F.FontSizeScaled(16), "OUTLINE")
-  self.frame.bottom.tipText:SetTextColor(1, 1, 1, 0.8)
-  self.frame.bottom.tipText:SetJustifyH("RIGHT")
+    self.frame.bottom.tipText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+    self.frame.bottom.tipText:SetPoint("TOPRIGHT", self.frame.bottom.tipHeader, "BOTTOMRIGHT", 0, -padding / 2)
+    self.frame.bottom.tipText:SetFont(self.primaryFont, F.FontSizeScaled(16), "OUTLINE")
+    self.frame.bottom.tipText:SetTextColor(1, 1, 1, 0.8)
+    self.frame.bottom.tipText:SetJustifyH("RIGHT")
 
-  self.frame.bottom.tipText:SetText(tipOne .. "\n\n\n" .. tipTwo .. "\n\n\n" .. tipThree)
+    self.frame.bottom.tipText:SetText(tipOne .. "\n\n\n" .. tipTwo .. "\n\n\n" .. tipThree)
 
-  self.frame.bottom.tipText:SetWidth(600)
+    self.frame.bottom.tipText:SetWidth(600)
+  end
 
   -- Sush
   F.CreateSoftShadow(self.frame.bottom, bottomHeight)

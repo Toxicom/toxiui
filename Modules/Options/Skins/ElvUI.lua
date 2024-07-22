@@ -261,6 +261,30 @@ function O:Skins_ElvUI()
       name = "Turn Camera",
       disabled = optionsDisabled,
     }
+
+    elvuiAfkGroup.showChangelog = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enabling this option displays the latest " .. TXUI.Title .. " changelog while the AFK screen is active.",
+      name = "Show Changelog " .. E.NewSign,
+      disabled = optionsDisabled,
+      set = function(_, value)
+        E.db.TXUI.addons.afkMode.showChangelog = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    elvuiAfkGroup.showTips = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enabling this option displays random " .. TXUI.Title .. " tips while the AFK screen is active.",
+      name = "Show Tips " .. E.NewSign,
+      disabled = optionsDisabled,
+      set = function(_, value)
+        E.db.TXUI.addons.afkMode.showTips = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
   end
 
   -- Spacer

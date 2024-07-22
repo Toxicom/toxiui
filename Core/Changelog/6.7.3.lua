@@ -6,6 +6,7 @@ TXUI.Changelog["6.7.3"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add options to remove the Changelog and Random Tips from AFK module",
 
     "* Bug fixes",
     "Remove texture restrictions from " .. F.String.Details() .. " in Dark Mode",
