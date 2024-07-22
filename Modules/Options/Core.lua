@@ -380,8 +380,8 @@ function O:OptionsCallback()
   }
 
   -- Fill the options table
-  for catagory, info in pairs(self.options) do
-    E.Options.args.TXUI.args[catagory] = {
+  for category, info in pairs(self.options) do
+    E.Options.args.TXUI.args[category] = {
       order = info.order,
       type = "group",
       childGroups = info.group,
