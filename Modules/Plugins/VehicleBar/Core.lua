@@ -2,7 +2,6 @@ local TXUI, F, E, I = unpack((select(2, ...)))
 local VB = TXUI:NewModule("VehicleBar", "AceHook-3.0")
 
 -- Globals
-local CreateFrame = CreateFrame
 local format = string.format
 
 local InCombatLockdown = InCombatLockdown
