@@ -9,6 +9,7 @@ TXUI.Changelog["6.7.3"] = {
 
     "* Bug fixes",
     "Remove texture restrictions from " .. F.String.Details() .. " in Dark Mode",
+    "Improve Skyriding Bar performance",
 
     "* Profile updates",
 

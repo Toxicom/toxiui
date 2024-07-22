@@ -86,8 +86,6 @@ function VB:UpdateVigorBar()
   end
 
   self:UpdateVigorSegments()
-  -- Update the speed text
-  self:UpdateSpeedText()
 end
 
 function VB:UpdateBar()
