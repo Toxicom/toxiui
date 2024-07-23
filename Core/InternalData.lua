@@ -243,6 +243,31 @@ I.Data.Contributor = {
         ["Ashenveil-WyrmrestAccord"] = true,
       },
     },
+
+    ["Reat"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Sanguino
+        ["Reät-Sanguino"] = true,
+        ["Reatp-Sanguino"] = true,
+        ["Evoreat-Sanguino"] = true,
+        ["Rëat-Sanguino"] = true,
+
+        -- Silvermoon
+        ["Reatoker-Silvermoon"] = true,
+        ["Reät-Silvermoon"] = true,
+        ["Rëat-Silvermoon"] = true,
+        ["Reatonk-Silvermoon"] = true,
+        ["Reatuid-Silvermoon"] = true,
+        ["Reatsham-Silvermoon"] = true,
+        ["Reatp-Silvermoon"] = true,
+        ["Reatmix-Silvermoon"] = true,
+        ["Reatix-Silvermoon"] = true,
+
+        -- TarrenMill
+        ["Reatpal-TarrenMill"] = true,
+        ["Rëat-TarrenMill"] = true,
+      },
+    },
   },
 
   -- BETA => Orange Badge (beta testers)

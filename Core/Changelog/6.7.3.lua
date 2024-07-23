@@ -15,6 +15,7 @@ TXUI.Changelog["6.7.3"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Update " .. TXUI.Title .. " contributors",
 
     "* Settings refactoring",
 
