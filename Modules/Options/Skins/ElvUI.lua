@@ -105,20 +105,18 @@ function O:Skins_ElvUI()
 
   -- ToxiUI Game Menu Button
   do
-    local optionsDisabled
-
     -- ToxiUI Game Menu Button Group
     local gameMenuButtonGroup = self:AddInlineRequirementsDesc(options, {
       name = TXUI.Title .. " Game Menu Skin",
     }, {
-      name = "Enabling this option adds a " .. TXUI.Title .. " button in the Game Menu (ESC). This also adds a background with additional information.\n\n",
+      name = "This option skins the Game Menu (ESC) background with additional information.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     -- ToxiUI Game Menu Button Enable
     gameMenuButtonGroup.gameMenuButton = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this option shows a " .. TXUI.Title .. " button in the Game Menu (ESC).",
+      desc = "Enabling this option enables the " .. TXUI.Title .. " Game Menu (ESC) skin.",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.gameMenuButton.enabled, gameMenuButtonGroup)
       end,
@@ -143,15 +141,13 @@ function O:Skins_ElvUI()
         E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.enabled
+      end,
     }
-
-    optionsDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled, gameMenuButtonGroup) ~= self.enabledState.YES
-    end
 
     gameMenuButtonGroup.showInfo = {
       order = self:GetOrder(),
-      disabled = optionsDisabled,
       type = "toggle",
       name = "Show Player Info",
       desc = "Toggling this on displays player information in the game menu background. Requires Background Fade enabled.",
@@ -162,12 +158,17 @@ function O:Skins_ElvUI()
         E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.enabled or not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+      end,
     }
 
     gameMenuButtonGroup.showTips = {
       order = self:GetOrder(),
       disabled = function()
-        return not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled or not E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo
+        return not E.db.TXUI.addons.gameMenuButton.enabled
+          or not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+          or not E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo
       end,
       type = "toggle",
       name = "Show Random Tips",
@@ -183,7 +184,6 @@ function O:Skins_ElvUI()
 
     gameMenuButtonGroup.classColor = {
       order = self:GetOrder(),
-      disabled = optionsDisabled,
       type = "toggle",
       name = "Class Color",
       desc = "Toggling this on will enable your current class' color for the background fade",
@@ -194,11 +194,13 @@ function O:Skins_ElvUI()
         E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.enabled or not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+      end,
     }
 
     gameMenuButtonGroup.bgColor = {
       order = self:GetOrder(),
-      disabled = optionsDisabled,
       type = "color",
       name = "Background Color",
       hasAlpha = false,
@@ -207,6 +209,11 @@ function O:Skins_ElvUI()
       set = self:GetFontColorSetter("TXUI.addons.gameMenuButton.backgroundFade", function()
         E:StaticPopup_Show("CONFIG_RL")
       end, "color"),
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.enabled
+          or not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+          or E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled
+      end,
     }
   end
 

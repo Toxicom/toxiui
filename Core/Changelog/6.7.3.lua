@@ -4,7 +4,7 @@ TXUI.Changelog["6.7.3"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
-    "Disable Game Menu Button for " .. TXUI.Title .. F.String.Sublist("Known issue, not game breaking so disabling until I can fix it"),
+    "Remove " .. TXUI.Title .. " Game Menu (ESC) button",
     "Disable ElvUI Theme Skin for " .. TXUI.Title .. F.String.Sublist("Known issue, not game breaking so disabling until I can fix it"),
 
     "* New features",
