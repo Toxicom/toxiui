@@ -20,6 +20,7 @@ local format = string.format
 local GetNumQuestLogEntries = GetNumQuestLogEntries
 local GetQuestLogRewardXP = GetQuestLogRewardXP
 local GetQuestLogTitle = GetQuestLogTitle
+local GetWatchedFactionInfo = GetWatchedFactionInfo
 local GetXPExhaustion = GetXPExhaustion
 local IsPlayerAtEffectiveMaxLevel = IsPlayerAtEffectiveMaxLevel
 local IsXPUserDisabledFunction = nil
@@ -67,7 +68,6 @@ function DB:OnEvent(event)
 
     F.Event.ContinueOutOfCombat(function()
       self.updateRepNextOutOfCombat = false
-      local factionData = C_Reputation_GetWatchedFactionData()
 
       local name
       local reaction
@@ -76,13 +76,18 @@ function DB:OnEvent(event)
       local curValue
       local factionID
 
-      if factionData then
-        name = factionData.name
-        reaction = factionData.reaction
-        minValue = factionData.currentReactionThreshold
-        maxValue = factionData.nextReactionThreshold
-        curValue = factionData.currentStanding
-        factionID = factionData.factionID
+      if TXUI.IsRetail then
+        local factionData = C_Reputation_GetWatchedFactionData()
+        if factionData then
+          name = factionData.name
+          reaction = factionData.reaction
+          minValue = factionData.currentReactionThreshold
+          maxValue = factionData.nextReactionThreshold
+          curValue = factionData.currentStanding
+          factionID = factionData.factionID
+        end
+      else
+        name, reaction, minValue, maxValue, curValue, factionID = GetWatchedFactionInfo()
       end
 
       local isCapped = false

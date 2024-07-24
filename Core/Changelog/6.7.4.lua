@@ -8,6 +8,7 @@ TXUI.Changelog["6.7.4"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix DataBar for Cataclysm",
 
     "* Profile updates",
 
