@@ -3,9 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.7.3"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Known issues",
-    "Action Bars do not fade in when opening spellbook or macro frame",
-
     "* Breaking changes",
     "Disable Game Menu Button for " .. TXUI.Title .. F.String.Sublist("Known issue, not game breaking so disabling until I can fix it"),
     "Disable ElvUI Theme Skin for " .. TXUI.Title .. F.String.Sublist("Known issue, not game breaking so disabling until I can fix it"),
@@ -20,6 +17,7 @@ TXUI.Changelog["6.7.3"] = {
     "Fix WunderBar DataBar errors",
     "Fix Spec Icon erroring out when " .. F.String.Details() .. " is disabled",
     "Fix CharacterStatsPane strata level",
+    "Fix Action Bar fading when opening spellbook or macros",
 
     "* Profile updates",
 
