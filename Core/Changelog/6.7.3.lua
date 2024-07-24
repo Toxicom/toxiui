@@ -13,21 +13,15 @@ TXUI.Changelog["6.7.3"] = {
     "Remove texture restrictions from " .. F.String.Details() .. " in Dark Mode",
     "Improve Skyriding Bar performance",
     "Fix new Spellbook for " .. F.String.Scaling(),
-    "Fix WunderBar DataBar errors",
+    "Fix " .. F.String.Menu.WunderBar() .. " DataBar errors",
     "Fix Spec Icon erroring out when " .. F.String.Details() .. " is disabled",
     "Fix CharacterStatsPane strata level",
     "Fix Action Bar fading when opening spellbook or macros",
-    "Fix ElvUI theme skin",
-
-    "* Profile updates",
+    "Fix " .. F.String.ElvUI() .. " theme skin",
 
     "* Documentation",
     "Update " .. TXUI.Title .. " contributors",
     F.String.MinElv("13.71"),
     "Update " .. F.String.Luxthos() .. " link for War Within",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
