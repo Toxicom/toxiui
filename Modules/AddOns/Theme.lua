@@ -3,13 +3,10 @@ local T = TXUI:NewModule("Theme", "AceHook-3.0")
 
 -- Globals
 local _G = _G
-local CommunitiesListEntryMixin = CommunitiesListEntryMixin
 local CreateFrame = CreateFrame
 local EnumerateFrames = EnumerateFrames
 local getmetatable = getmetatable
 local pairs = pairs
--- local tinsert = table.insert
-local unpack = unpack
 
 T.onEnabledCallbacks = {}
 
