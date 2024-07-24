@@ -5,7 +5,6 @@ TXUI.Changelog["6.7.3"] = {
   CHANGES = {
     "* Known issues",
     "Action Bars do not fade in when opening spellbook or macro frame",
-    "Character Stats Pane is overlayed by " .. TXUI.Title .. " background",
 
     "* Breaking changes",
     "Disable Game Menu Button for " .. TXUI.Title .. F.String.Sublist("Known issue, not game breaking so disabling until I can fix it"),
@@ -20,6 +19,7 @@ TXUI.Changelog["6.7.3"] = {
     "Fix new Spellbook for " .. F.String.Scaling(),
     "Fix WunderBar DataBar errors",
     "Fix Spec Icon erroring out when " .. F.String.Details() .. " is disabled",
+    "Fix CharacterStatsPane strata level",
 
     "* Profile updates",
 

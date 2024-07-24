@@ -914,6 +914,9 @@ function A:UpdateCharacterStats()
   local characterStatsPane = _G.CharacterStatsPane
   if not characterStatsPane then return end
 
+  -- 11.0 Fucked up the strata I guess?
+  characterStatsPane:SetFrameStrata("HIGH")
+
   local spec = GetSpecialization()
   local level = UnitLevel("player")
   local categoryYOffset = 0
