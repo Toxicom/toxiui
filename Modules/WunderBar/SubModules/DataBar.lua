@@ -68,12 +68,22 @@ function DB:OnEvent(event)
     F.Event.ContinueOutOfCombat(function()
       self.updateRepNextOutOfCombat = false
       local factionData = C_Reputation_GetWatchedFactionData()
-      local name = factionData.name
-      local reaction = factionData.reaction
-      local minValue = factionData.currentReactionThreshold
-      local maxValue = factionData.nextReactionThreshold
-      local curValue = factionData.currentStanding
-      local factionID = factionData.factionID
+
+      local name
+      local reaction
+      local minValue
+      local maxValue
+      local curValue
+      local factionID
+
+      if factionData then
+        name = factionData.name
+        reaction = factionData.reaction
+        minValue = factionData.currentReactionThreshold
+        maxValue = factionData.nextReactionThreshold
+        curValue = factionData.currentStanding
+        factionID = factionData.factionID
+      end
 
       local isCapped = false
 
