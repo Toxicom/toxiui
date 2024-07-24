@@ -4,6 +4,7 @@ TXUI.Changelog["6.7.3"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Disable Game Menu Button for " .. TXUI.Title .. F.String.Sublist("Known issue, not game breaking so disabling until I can fix it"),
 
     "* New features",
     "Add options to remove the Changelog and Random Tips from AFK module",

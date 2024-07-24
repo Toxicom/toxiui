@@ -248,7 +248,7 @@ P.addons = {
 
   -- Game Menu Button
   gameMenuButton = {
-    enabled = true, -- Enabled by default
+    enabled = false, -- Enabled by default
 
     backgroundFade = {
       enabled = true,

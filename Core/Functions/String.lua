@@ -133,6 +133,7 @@ function F.String.RandomClassColor(msg)
 end
 
 function F.String.Luxthos(msg)
+  if not msg or msg == "" then msg = "Luxthos" end
   return F.String.Color(msg, I.Enum.Colors.LUXTHOS)
 end
 
