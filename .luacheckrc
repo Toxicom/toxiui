@@ -4038,7 +4038,6 @@ globals = {
   "DressUpBattlePet",
   "DressUpItemLink",
   "DressUpTexturePath",
-  "EasyMenu",
   "escapePatternSymbols",
   "ExhaustionToolTipText",
   "ExtraActionButtonKey",

@@ -9,6 +9,7 @@ TXUI.Changelog["6.7.4"] = {
 
     "* Bug fixes",
     "Fix DataBar for Cataclysm",
+    "Fix Currency module's Shift-RightClick",
 
     "* Profile updates",
 

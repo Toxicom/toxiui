@@ -9,7 +9,6 @@ local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
 local C_Timer_NewTicker = C_Timer.NewTicker
 local C_WowTokenPublic_GetCurrentMarketPrice = C_WowTokenPublic and C_WowTokenPublic.GetCurrentMarketPrice
 local C_WowTokenPublic_UpdateMarketPrice = C_WowTokenPublic and C_WowTokenPublic.UpdateMarketPrice
-local EasyMenu = EasyMenu
 local floor = math.floor
 local format = string.format
 local GetContainerNumFreeSlots = GetContainerNumFreeSlots or (C_Container and C_Container.GetContainerNumFreeSlots)
@@ -117,7 +116,7 @@ function CR:OnClick(_, button)
       end
 
       E:SetEasyMenuAnchor(E.EasyMenu, self.frame)
-      EasyMenu(menuList, E.EasyMenu, nil, nil, nil, "MENU")
+      E:ComplicatedMenu(menuList, E.EasyMenu, nil, nil, nil, "MENU")
     elseif IsControlKeyDown() then
       self.goldProfit = 0
       self.goldSpent = 0
