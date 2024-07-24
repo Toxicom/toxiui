@@ -104,15 +104,6 @@ function T:API(object)
   if mt.SetFrameStrata and (not self:IsHooked(mt, "SetFrameStrata")) then self:SecureHook(mt, "SetFrameStrata", "UpdateTemplateStrata") end
 end
 
-function T:UpdateClubInfo(frame, clubInfo)
-  local cI = clubInfo or frame.clubInfo
-  if not cI or not cI.clubId or (clubInfo.clubId ~= 156744552) then return end
-
-  frame.Icon:SetBlendMode("DISABLE")
-  frame.Icon:SetTexture(I.Media.Logos.LogoSmall)
-  frame.Icon:SetTexCoord(unpack(E.TexCoords))
-end
-
 function T:ForceRefresh()
   -- Refresh Templates
   E:UpdateFrameTemplates()
@@ -179,22 +170,6 @@ function T:Enable()
     if not self:IsHooked(as, "SetTemplate") then
       self:SecureHook(as, "SetTemplate", "SetTemplateAS")
       as:UpdateSettings()
-    end
-  end)
-
-  F.Event.ContinueOnAddOnLoaded("Blizzard_Communities", function()
-    local communitiesListEntryMixin = CommunitiesListEntryMixin
-
-    if communitiesListEntryMixin then
-      if not self:IsHooked(communitiesListEntryMixin, "SetAddCommunity") then
-        self:SecureHook(communitiesListEntryMixin, "SetAddCommunity", "UpdateClubInfo")
-        self:SecureHook(communitiesListEntryMixin, "SetClubInfo", "UpdateClubInfo")
-
-        if TXUI.IsRetail then
-          self:SecureHook(communitiesListEntryMixin, "SetFindCommunity", "UpdateClubInfo")
-          self:SecureHook(communitiesListEntryMixin, "SetGuildFinder", "UpdateClubInfo")
-        end
-      end
     end
   end)
 
