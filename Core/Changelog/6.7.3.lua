@@ -19,6 +19,7 @@ TXUI.Changelog["6.7.3"] = {
     "Improve Skyriding Bar performance",
     "Fix new Spellbook for " .. F.String.Scaling(),
     "Fix WunderBar DataBar errors",
+    "Fix Spec Icon erroring out when " .. F.String.Details() .. " is disabled",
 
     "* Profile updates",
 

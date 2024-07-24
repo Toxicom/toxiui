@@ -560,7 +560,7 @@ function M:Tags()
       if usingSpecIcons then
         local specIcon = ""
         local specId = nil
-        local info = LOR.GetUnitInfo(unit)
+        local info = LOR and LOR.GetUnitInfo(unit) or nil
 
         if info and info.specId ~= 0 then
           specId = info.specId
