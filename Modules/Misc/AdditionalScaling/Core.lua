@@ -11,7 +11,6 @@ function M:AdditionalScaling()
     M:SetElementScale("map", "WorldMapFrame")
     M:SetElementScale("characterFrame", "CharacterFrame")
     M:SetElementScale("dressingRoom", "DressUpFrame")
-    M:SetElementScale("spellbook", "SpellBookFrame")
     M:SetElementScale("vendor", "MerchantFrame")
     M:SetElementScale("gossip", "GossipFrame")
     M:SetElementScale("quest", "QuestFrame")
@@ -32,6 +31,7 @@ function M:AdditionalScaling()
       M:AddCallbackOrScale("Blizzard_ItemInteractionUI", self.ScaleCatalyst)
 
       M:AddCallbackOrScale("Blizzard_Collections", self.AdjustTransmogFrame)
+      M:AddCallbackOrScale("Blizzard_PlayerSpells", self.ScaleRetailSpellbook)
     end
 
     -- Retail & Cata scaling
@@ -44,6 +44,7 @@ function M:AdditionalScaling()
       M:AddCallbackOrScale("Blizzard_TradeSkillUI", self.ScaleProfessions)
       M:AddCallbackOrScale("Blizzard_AuctionUI", self.ScaleAuctionHouse)
       M:SetElementScale("taxi", "TaxiFrame")
+      M:SetElementScale("spellbook", "SpellBookFrame")
     end
   else
     TXUI:LogDebug("AdditionalScaling > E.db or E.db.TXUI not found, skipping scaling!")

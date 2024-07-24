@@ -53,6 +53,10 @@ function M:ScaleAuctionHouse()
   end
 end
 
+function M:ScaleRetailSpellbook()
+  M:SetElementScale("spellbook", "PlayerSpellsFrame")
+end
+
 function M:ScaleInspectUI()
   -- Special case for synced character & inspect frames
   -- If sync is enabled, we take the value of the characterFrame in the database
