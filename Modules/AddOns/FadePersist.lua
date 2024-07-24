@@ -118,7 +118,7 @@ function FP:Enable()
   -- Hook Macro Window on Load
   local macroEvent = CreateFrame("Frame")
   macroEvent:RegisterEvent("ADDON_LOADED")
-  macroEvent:SetScript("OnEvent", function(Frame, event, addon)
+  macroEvent:SetScript("OnEvent", function(_, event, addon)
     if event == "ADDON_LOADED" and addon == "Blizzard_MacroUI" then
       if not TXUI:HasRequirements(I.Requirements.FadePersist) or not (self.db and self.db.enabled) then return end
 
@@ -132,7 +132,7 @@ function FP:Enable()
   if TXUI.IsRetail then
     local eventFrame = CreateFrame("Frame")
     eventFrame:RegisterEvent("ADDON_LOADED")
-    eventFrame:SetScript("OnEvent", function(Frame, event, addon)
+    eventFrame:SetScript("OnEvent", function(_, event, addon)
       if event == "ADDON_LOADED" and addon == "Blizzard_PlayerSpells" then
         local spellBookFrame = _G["PlayerSpellsFrame"]
         if spellBookFrame then
