@@ -12,6 +12,7 @@ TXUI.Changelog["6.7.3"] = {
     "Remove texture restrictions from " .. F.String.Details() .. " in Dark Mode",
     "Improve Skyriding Bar performance",
     "Fix new Spellbook for " .. F.String.Scaling(),
+    "Fix WunderBar DataBar errors",
 
     "* Profile updates",
 
