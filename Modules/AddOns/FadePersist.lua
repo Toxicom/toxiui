@@ -124,14 +124,26 @@ function FP:Enable()
   end)
 
   -- Hook Spellbook
-  local spellBookFrame = _G["SpellBookFrame"]
-  if spellBookFrame then
-    self:SecureHookScript(spellBookFrame, "OnShow", F.Event.GenerateClosure(self.ToggleOverride, self, true, "spell"))
-    self:SecureHookScript(spellBookFrame, "OnHide", F.Event.GenerateClosure(self.ToggleOverride, self, false, "spell"))
+  if TXUI.IsRetail then
+    F.Event.ContinueOnAddOnLoaded("Blizzard_PlayerSpells", function()
+      TXUI:LogDebug("Blizzard_PlayerSpells loaded")
+      local spellBookFrame = _G["PlayerSpellsFrame"]
+      if spellBookFrame then
+        self:SecureHookScript(spellBookFrame, "OnShow", F.Event.GenerateClosure(self.ToggleOverride, self, true, "spell"))
+        self:SecureHookScript(spellBookFrame, "OnHide", F.Event.GenerateClosure(self.ToggleOverride, self, false, "spell"))
+      else
+        self:LogDebug("PlayerSpellsFrame could not be found")
+      end
+    end)
   else
-    self:LogDebug("SpellBookFrame could not be found")
+    local spellBookFrame = _G["SpellBookFrame"]
+    if spellBookFrame then
+      self:SecureHookScript(spellBookFrame, "OnShow", F.Event.GenerateClosure(self.ToggleOverride, self, true, "spell"))
+      self:SecureHookScript(spellBookFrame, "OnHide", F.Event.GenerateClosure(self.ToggleOverride, self, false, "spell"))
+    else
+      self:LogDebug("SpellBookFrame could not be found")
+    end
   end
-
   -- Re-register so command gets updated with new reference
   E:UnregisterChatCommand("kb")
   E:RegisterChatCommand("kb", self.ab.ActivateBindMode)

@@ -203,7 +203,7 @@ P.themes = {
 P.addons = {
   -- ElvUI Theme
   elvUITheme = {
-    enabled = true, -- Enabled by default
+    enabled = false, -- Enabled by default
 
     shadowEnabled = true,
     shadowAlpha = 0.6,
