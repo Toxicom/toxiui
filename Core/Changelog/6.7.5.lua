@@ -8,6 +8,7 @@ TXUI.Changelog["6.7.5"] = {
     "* New features",
 
     "* Bug fixes",
+    "Update skyriding logic",
 
     "* Profile updates",
 

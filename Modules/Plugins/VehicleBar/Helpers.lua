@@ -6,7 +6,7 @@ local C_UIWidgetManager = C_UIWidgetManager
 local format = string.format
 
 function VB:IsVigorAvailable()
-  if TXUI.IsRetail and (E:IsDragonRiding() or (IsMounted() and HasBonusActionBar())) then
+  if F.IsSkyriding() then
     return true
   else
     return false
