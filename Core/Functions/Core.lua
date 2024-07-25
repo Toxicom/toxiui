@@ -85,7 +85,7 @@ function F.ResetMiscProfile(profile)
 end
 
 function F.IsAddOnEnabled(addon)
-  return GetAddOnEnableState(E.myname, addon) == 2 and IsAddOnLoaded(addon)
+  return GetAddOnEnableState(addon) == 2 and IsAddOnLoaded(addon)
 end
 
 function F.Enum(tbl)
