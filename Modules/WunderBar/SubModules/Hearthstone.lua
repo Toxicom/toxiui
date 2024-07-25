@@ -43,7 +43,7 @@ function HS:GetCooldownForItem(itemInfo)
 
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:GetCooldownForItem > Item could not be found in DB") end
 
-  local gcd = nil
+  local _, gcd = nil, nil
   if TXUI.IsRetail then
     gcd = GetSpellCooldown(61304) and GetSpellCooldown(61304).duration or nil
   else
