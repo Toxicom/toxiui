@@ -1037,6 +1037,7 @@ globals = {
   "C_StorePublic.IsDisabledByParentalControls",
   "C_StorePublic.IsEnabled",
   "C_StorePublic",
+  "C_Spell",
   "C_TalkingHead.GetConversationsDeferred",
   "C_TalkingHead.GetCurrentLineAnimationInfo",
   "C_TalkingHead.GetCurrentLineInfo",
