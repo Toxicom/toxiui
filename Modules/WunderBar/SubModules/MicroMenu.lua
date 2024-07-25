@@ -28,6 +28,7 @@ local ipairs = ipairs
 local IsInGuild = IsInGuild
 local next = next
 local pairs = pairs
+local PlayerSpellsUtil = PlayerSpellsUtil
 local PlaySound = PlaySound
 local select = select
 local ShowUIPanel = ShowUIPanel
@@ -251,8 +252,14 @@ MM.microMenu = {
   },
   ["spell"] = {
     name = SPELLBOOK_ABILITIES_BUTTON,
-    macro = {
-      LeftButton = "/click SpellbookMicroButton",
+    click = {
+      LeftButton = function()
+        if TXUI.IsRetail then
+          PlayerSpellsUtil.ToggleSpellBookFrame()
+        else
+          ToggleFrame(SpellBookFrame)
+        end
+      end,
     },
     keyBind = "TOGGLESPELLBOOK",
     newbieTooltip = NEWBIE_TOOLTIP_SPELLBOOK,
