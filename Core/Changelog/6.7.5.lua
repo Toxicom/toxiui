@@ -10,7 +10,8 @@ TXUI.Changelog["6.7.5"] = {
     "* Bug fixes",
     "Update skyriding logic",
     "Fix Hearthstone timer in " .. F.String.Menu.WunderBar(),
-    "Fix Spellbook in " .. F.String.Menu.WunderBar(),
+    "Fix Spellbook in " .. F.String.Menu.WunderBar() .. " MicroMenu",
+    "Fix Talents in " .. F.String.Menu.WunderBar() .. " MicroMenu",
 
     "* Profile updates",
 

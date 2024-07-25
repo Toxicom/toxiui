@@ -254,10 +254,10 @@ MM.microMenu = {
     name = SPELLBOOK_ABILITIES_BUTTON,
     click = {
       LeftButton = function()
-        if TXUI.IsRetail then
+        if PlayerSpellsUtil then
           PlayerSpellsUtil.ToggleSpellBookFrame()
         else
-          ToggleFrame(SpellBookFrame)
+          ToggleFrame(_G.SpellBookFrame)
         end
       end,
     },
@@ -267,8 +267,14 @@ MM.microMenu = {
   },
   ["talent"] = {
     name = TALENTS_BUTTON,
-    macro = {
-      LeftButton = "/click TalentMicroButton",
+    click = {
+      LeftButton = function()
+        if PlayerSpellsUtil then
+          PlayerSpellsUtil.ToggleClassTalentFrame()
+        else
+          _G.ToggleTalentFrame()
+        end
+      end,
     },
     keyBind = "TOGGLETALENTS",
     newbieTooltip = NEWBIE_TOOLTIP_TALENTS,
