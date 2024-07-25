@@ -4,7 +4,7 @@ local addonName, addon = ...
 
 local _G = _G
 local find = string.find
-local GetAddOnMetadata = GetAddOnMetadata
+local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 local GetBuildInfo = GetBuildInfo
 local select = select
 local tonumber = tonumber

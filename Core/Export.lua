@@ -1,10 +1,10 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
-local EnableAddOn = EnableAddOn
+local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
 local format = string.format
 local ipairs = ipairs
-local IsAddOnLoaded = IsAddOnLoaded
-local LoadAddOn = LoadAddOn
+local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local pairs = pairs
 local ReloadUI = ReloadUI
 local sort = table.sort

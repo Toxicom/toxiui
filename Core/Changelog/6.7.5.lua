@@ -9,6 +9,7 @@ TXUI.Changelog["6.7.5"] = {
 
     "* Bug fixes",
     "Update skyriding logic",
+    "Fix Hearthstone timer in " .. F.String.Menu.WunderBar(),
 
     "* Profile updates",
 
@@ -18,5 +19,6 @@ TXUI.Changelog["6.7.5"] = {
     "Re-enable " .. F.String.ElvUI() .. " theme",
 
     "* Development improvements",
+    "Update deprecated functions",
   },
 }

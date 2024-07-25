@@ -10,8 +10,8 @@ local GetBindLocation = GetBindLocation
 local GetItemCooldownFunction = C_Container.GetItemCooldown
 local GetItemCount = GetItemCount
 local GetItemIcon = GetItemIcon
-local GetSpellCooldown = GetSpellCooldown
-local GetSpellTexture = GetSpellTexture
+local GetSpellCooldown = (C_Spell and C_Spell.GetSpellCooldown) or GetSpellCooldown
+local GetSpellTexture = (C_Spell and C_Spell.GetSpellTexture) or GetSpellTexture
 local GetTime = GetTime
 local mod = mod
 local pairs = pairs
@@ -43,7 +43,12 @@ function HS:GetCooldownForItem(itemInfo)
 
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:GetCooldownForItem > Item could not be found in DB") end
 
-  local _, gcd = GetSpellCooldown(61304)
+  local gcd = nil
+  if TXUI.IsRetail then
+    gcd = GetSpellCooldown(61304) and GetSpellCooldown(61304).duration or nil
+  else
+    _, gcd = GetSpellCooldown(61304)
+  end
   if gcd == nil then return self:LogDebug("HS:GetCooldownForItem > GetSpellCooldown returned nil for gcd") end
 
   local startTime, duration
@@ -51,7 +56,12 @@ function HS:GetCooldownForItem(itemInfo)
   if (itemInfo.type == "toy") or (itemInfo.type == "item") then
     startTime, duration = GetItemCooldownFunction(itemInfo.id)
   elseif itemInfo.type == "spell" then
-    startTime, duration = GetSpellCooldown(itemInfo.id)
+    if TXUI.IsRetail then
+      local cd = GetSpellCooldown(itemInfo.id)
+      startTime, duration = cd.startTime, cd.duration
+    else
+      startTime, duration = GetSpellCooldown(itemInfo.id)
+    end
   end
 
   if startTime == nil or duration == nil then return self:LogDebug("HS:GetCooldownForItem > GetItemCooldown returned nil for item") end

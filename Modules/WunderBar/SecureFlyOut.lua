@@ -3,8 +3,9 @@ local WB = TXUI:GetModule("WunderBar")
 
 local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
-local GetSpellTexture = GetSpellTexture
+local GetSpellTexture = (C_Spell and C_Spell.GetSpellTexture) or GetSpellTexture
 local InCombatLockdown = InCombatLockdown
+local GetSpellInfo = (C_Spell and C_Spell.GetSpellInfo) or GetSpellInfo
 
 local secureFlyOutFrame
 local secureFlyOutButtons = {}

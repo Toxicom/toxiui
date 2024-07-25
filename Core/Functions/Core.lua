@@ -11,16 +11,16 @@ local CreateFromMixins = CreateFromMixins
 local error = error
 local FindSpellOverrideByID = FindSpellOverrideByID
 local format = string.format
-local GetAddOnEnableState = GetAddOnEnableState
+local GetAddOnEnableState = (C_AddOns and C_AddOns.GetAddOnEnableState) or GetAddOnEnableState
 local GetItemCount = GetItemCount
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
-local GetSpellCooldown = GetSpellCooldown
+local GetSpellCooldown = (C_Spell and C_Spell.GetSpellCooldown) or GetSpellCooldown
 local GetTime = GetTime
 local gmatch = string.gmatch
 local gsub = string.gsub
 local ipairs = ipairs
-local IsAddOnLoaded = IsAddOnLoaded
+local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
 local IsSpellKnownOrOverridesKnown = IsSpellKnownOrOverridesKnown
 local ItemMixin = ItemMixin
 local match = string.match
@@ -853,11 +853,24 @@ function F.CanInterruptEvaluation()
 
   for _, interruptSpellId in ipairs(spellIDs) do
     if E.myclass ~= "WARLOCK" then
-      local cdStart, cdDur = GetSpellCooldown(interruptSpellId)
+      local cdStart, cdDur
+      if TXUI.IsRetail then
+        local cd = GetSpellCooldown(interruptSpellId)
+        cdStart, cdDur = cd.startTime, cd.duration
+      else
+        cdStart, cdDur = GetSpellCooldown(interruptSpellId)
+      end
+
       local tmpInterruptCD = (cdStart > 0 and cdDur - (GetTime() - cdStart)) or 0
       if not interruptCD or (tmpInterruptCD < interruptCD) then interruptCD = tmpInterruptCD end
     elseif FindSpellOverrideByID(119898) then -- Check if WL has the command ability
-      local cdStart, cdDur = GetSpellCooldown(interruptSpellId)
+      local cdStart, cdDur
+      if TXUI.IsRetail then
+        local cd = GetSpellCooldown(interruptSpellId)
+        cdStart, cdDur = cd.startTime, cd.duration
+      else
+        cdStart, cdDur = GetSpellCooldown(interruptSpellId)
+      end
       local tmpInterruptCD = (cdStart > 0 and cdDur - (GetTime() - cdStart)) or 0
       if (tmpInterruptCD > 0) and (not interruptCD or (tmpInterruptCD < interruptCD)) then interruptCD = tmpInterruptCD end
     end

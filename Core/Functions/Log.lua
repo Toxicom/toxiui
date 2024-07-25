@@ -13,7 +13,7 @@ local tconcat = table.concat
 local tinsert = table.insert
 local ipairs = ipairs
 
-local IsAddOnLoaded = IsAddOnLoaded
+local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
 
 local DEFAULT_CHAT_FRAME = DEFAULT_CHAT_FRAME
 

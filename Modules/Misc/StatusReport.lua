@@ -9,7 +9,7 @@ local wipe, sort, format = wipe, sort, string.format
 local next, pairs, ipairs, tinsert = next, pairs, ipairs, tinsert
 
 local CreateFrame = CreateFrame
-local GetAddOnMetadata = GetAddOnMetadata
+local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
 local GetRealZoneText = GetRealZoneText
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
