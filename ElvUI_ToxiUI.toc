@@ -7,7 +7,7 @@
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
 ## Interface: 110000, 110002
-## X-Interface: 100207
+## X-Interface: 110000
 ## X-Flavor: Mainline
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
