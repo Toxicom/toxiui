@@ -303,6 +303,7 @@ function PF:BuildProfile()
   F.Table.Crush(pf.general, {
     -- General AFK Mode
     afk = true,
+    gameMenuScale = 0.8,
 
     -- General Options
     autoRepair = "PLAYER",

@@ -19,10 +19,11 @@ function M:GameMenuButton()
 
   -- Background Fade
   if E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled then
-    local backgroundFade = CreateFrame("Frame", nil, GameMenuFrame, "BackdropTemplate")
+    local backgroundFade = CreateFrame("Frame", nil, E.UIParent, "BackdropTemplate")
     backgroundFade:SetAllPoints(E.UIParent)
-    backgroundFade:SetFrameStrata("BACKGROUND")
-    backgroundFade:SetFrameLevel(0)
+    backgroundFade:SetFrameStrata("HIGH")
+    backgroundFade:SetFrameLevel(GameMenuFrame:GetFrameLevel() - 1)
+    backgroundFade:EnableMouse(true)
 
     local bgColor
 
@@ -124,6 +125,7 @@ function M:GameMenuButton()
     backgroundFade:SetTemplate("Transparent")
 
     self.backgroundFade = backgroundFade
+    self.backgroundFade:Hide()
   end
 
   -- Hook show event cause blizzard resizes the menu
@@ -153,10 +155,15 @@ function M:GameMenuButton()
         self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass((specIcon and specIcon or fallback) .. " " .. E.myLocalizedClass, nil, true))
       end
+      self.backgroundFade:Show()
       self.backgroundFade.Animation:Stop()
       self.backgroundFade:SetAlpha(0)
       self.backgroundFade.Animation:Play()
     end
+  end)
+
+  self:SecureHookScript(GameMenuFrame, "OnHide", function()
+    self.backgroundFade:Hide()
   end)
 end
 

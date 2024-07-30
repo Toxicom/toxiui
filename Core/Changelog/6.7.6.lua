@@ -11,11 +11,13 @@ TXUI.Changelog["6.7.6"] = {
     "Fix AddOns not being recognized by " .. TXUI.Title .. " installer",
 
     "* Profile updates",
+    "Reduce Game Menu scale to 0.8",
 
     "* Documentation",
 
     "* Settings refactoring",
 
     "* Development improvements",
+    "Don't anchor Game Menu background to Game Menu, so it doesn't get affected by scale" .. F.String.Sublist("Additionally, block mouse events under the background fade"),
   },
 }
