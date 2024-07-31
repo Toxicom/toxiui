@@ -61,10 +61,25 @@ function VB:OnShowEvent()
     end
   end
 
+  -- TODO: Remove debug logs
+  TXUI:LogDebug("Should show Vigor Bar now.")
   -- Show the custom vigor bar when the vehicle bar is shown
   if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.speedText then
     self.vigorBar:Show()
     self.vigorBar.speedText:Show()
+    TXUI:LogDebug("Vigor Bar shown.")
+  else
+    TXUI:LogDebug("Vigor Bar NOT shown, adding data to DevTools.")
+    if not self:IsVigorAvailable() then
+      TXUI:LogDebug("Vigor is not available? Logging individual functions.")
+      F.Log.Dev(IsMounted(), "IsMounted")
+      F.Log.Dev(HasBonusActionBar(), "HasBonusActionBar")
+    end
+
+    F.Log.Dev(self.vigorBar, "vigorBar")
+    F.Log.Dev(self.vigorBar.speedText, "speedText")
+    local widgetInfo = self:GetWidgetInfo()
+    F.Log.Dev(widgetInfo, "widgetInfo")
   end
 
   -- Update keybinds when the bar is shown

@@ -979,7 +979,13 @@ function F.ProcessMovers(dbRef)
 end
 
 function F.IsSkyriding()
-  return TXUI.IsRetail and ((IsMounted() or GetShapeshiftForm() ~= 0) and HasBonusActionBar())
+  if TXUI.IsRetail then
+    return E:Delay(0.01, function()
+      return (IsMounted() or GetShapeshiftForm() ~= 0) and HasBonusActionBar()
+    end)
+  else
+    return false
+  end
 end
 
 F.CheckInterruptSpells = F.CreateThrottleWrapper("CheckInterruptSpells", 2, F.CheckInterruptSpellsEvaluation)

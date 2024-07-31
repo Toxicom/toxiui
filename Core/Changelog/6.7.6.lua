@@ -23,5 +23,6 @@ TXUI.Changelog["6.7.6"] = {
     "* Development improvements",
     "Don't anchor Game Menu background to Game Menu, so it doesn't get affected by scale" .. F.String.Sublist("Additionally, block mouse events under the background fade"),
     "Internally rename layouts to Vertical & Horizontal",
+    "Add delay to Skyriding check" .. F.String.Sublist("For some reason Blizzard sometimes returns false for IsMounted(), so waiting 0.01 second seems to prevent that 'bug'"),
   },
 }
