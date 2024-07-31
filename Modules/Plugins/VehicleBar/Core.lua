@@ -16,6 +16,24 @@ function VB:OnShowEvent()
     -- Hide the Default Vigor Bar
     local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"]
     if defaultVigorBar then defaultVigorBar:Hide() end
+
+    local widgetInfo = self:GetWidgetInfo()
+    if self.vigorBar.segments and widgetInfo then
+      -- Check if we have the correct amount of segments. If not, recreate the segments.
+      if #self.vigorBar.segments < widgetInfo.numTotalFrames then
+        TXUI:LogDebug("Amount of segments is wrong ~ recreating segments.")
+        TXUI:LogDebug("Segments: " .. #self.vigorBar.segments .. "; Total: " .. widgetInfo.numTotalFrames)
+
+        -- Clear existing segments
+        for _, segment in ipairs(self.vigorBar.segments) do
+          segment:Kill()
+        end
+        self.vigorBar.segments = {} -- Clear the table
+
+        -- Create new segments
+        self:CreateVigorSegments()
+      end
+    end
   end
 
   local animationsAllowed = self.db.animations and (not InCombatLockdown()) and not self.combatLock
@@ -62,14 +80,13 @@ function VB:OnShowEvent()
   end
 
   -- TODO: Remove debug logs
-  TXUI:LogDebug("Should show Vigor Bar now.")
   -- Show the custom vigor bar when the vehicle bar is shown
   if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.speedText then
     self.vigorBar:Show()
     self.vigorBar.speedText:Show()
-    TXUI:LogDebug("Vigor Bar shown.")
+    TXUI:LogDebug("Vigor Bar displayed " .. F.String.Good("correctly."))
   else
-    TXUI:LogDebug("Vigor Bar NOT shown, adding data to DevTools.")
+    TXUI:LogDebug("Vigor Bar " .. F.String.Error("NOT displayed") .. ", attempting to add data to DevTools.")
     if not self:IsVigorAvailable() then
       TXUI:LogDebug("Vigor is not available? Logging individual functions.")
       F.Log.Dev(IsMounted(), "IsMounted")

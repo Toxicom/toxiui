@@ -40,6 +40,7 @@ function VB:CreateVigorBar()
 end
 
 function VB:CreateVigorSegments()
+  local segments = {}
   local widgetInfo = self:GetWidgetInfo()
   if not widgetInfo then return end
 
@@ -100,13 +101,15 @@ function VB:CreateVigorSegments()
     if i == 1 then
       segment:SetPoint("LEFT", self.vigorBar, "LEFT", self.spacing, 0)
     else
-      segment:SetPoint("LEFT", self.vigorBar.segments[i - 1], "RIGHT", self.spacing * 2, 0)
+      segment:SetPoint("LEFT", segments[i - 1], "RIGHT", self.spacing * 2, 0)
     end
 
     segment:SetMinMaxValues(0, 1)
 
     if E.db.TXUI.addons.elvUITheme.enabled and E.db.TXUI.addons.elvUITheme.shadowEnabled then F.CreateSoftShadow(segment, E.db.TXUI.addons.elvUITheme.shadowSize * 2) end
 
-    tinsert(self.vigorBar.segments, segment)
+    tinsert(segments, segment)
   end
+
+  self.vigorBar.segments = segments
 end
