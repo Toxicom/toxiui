@@ -244,6 +244,7 @@ I.Data.Contributor = {
       },
     },
 
+    -- Joined Jul 15, 2024
     ["Reat"] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Sanguino
@@ -266,6 +267,28 @@ I.Data.Contributor = {
         -- TarrenMill
         ["Reatpal-TarrenMill"] = true,
         ["Rëat-TarrenMill"] = true,
+      },
+    },
+
+    -- Patreon expires August 19, 2024; Remove on August 31, 2024
+    ["mrkhaglund"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Al'Akir
+        ["Firaga-Al'Akir"] = true,
+        ["Ishaka-Al'Akir"] = true,
+        ["Leep-Al'Akir"] = true,
+
+        -- Darkspear
+        ["Deadshoot-Darkspear"] = true,
+        ["Türok-Darkspear"] = true,
+        ["Erhja-Darkspear"] = true,
+        ["Ortodoxx-Darkspear"] = true,
+        ["Vildsint-Darkspear"] = true,
+        ["Thulsa-Darkspear"] = true,
+
+        -- ShatteredHalls
+        ["Torwald-ShatteredHalls"] = true,
+        ["Lupin-ShatteredHalls"] = true,
       },
     },
   },
