@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 -- Defaults
 P.installer = {
-  layout = I.Enum.Layouts.DPS,
+  layout = I.Enum.Layouts.VERTICAL,
 }
 
 -- Debug table

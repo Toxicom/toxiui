@@ -299,13 +299,13 @@ function IS:Dialog()
         installFrame.Option1:Show()
         installFrame.Option1:SetText(F.String.ToxiUI("Vertical"))
         installFrame.Option1:SetScript("OnClick", function()
-          installElvUI(I.Enum.Layouts.DPS)
+          installElvUI(I.Enum.Layouts.VERTICAL)
         end)
 
         installFrame.Option2:Show()
         installFrame.Option2:SetText(F.String.Class("Horizontal", "MONK"))
         installFrame.Option2:SetScript("OnClick", function()
-          installElvUI(I.Enum.Layouts.HEALER)
+          installElvUI(I.Enum.Layouts.HORIZONTAL)
         end)
       end,
 

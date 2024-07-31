@@ -11,7 +11,7 @@ function ST:BuildUnitFramesProfile()
   end
 
   local pf = E.db
-  local IsHealer = pf.TXUI.installer.layout == I.Enum.Layouts.HEALER
+  local IsHorizontalLayout = pf.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL
 
   if style == "New" then
     -- UnitFrames
@@ -169,7 +169,7 @@ function ST:BuildUnitFramesProfile()
           },
         },
       },
-      F.Table.If(IsHealer, {
+      F.Table.If(IsHorizontalLayout, {
         party = {
           customTexts = {
             ["!Health"] = {
@@ -341,7 +341,7 @@ function ST:BuildUnitFramesProfile()
           },
         },
       },
-      F.Table.If(IsHealer, {
+      F.Table.If(IsHorizontalLayout, {
         party = {
           customTexts = {
             ["!Health"] = {

@@ -100,9 +100,8 @@ _Prefix: `/tx` `/txui` `/toxi` `/toxiui`_
 
 ### Devs Only
 
-`/tx dev toggle` - Toggles Developer mode, which activates overrides and custom features _(like Escape-Menu Background etc)_<br>
+`/tx dev toggle` - Toggles Developer mode, which activates overrides<br>
 
 ### Exports
 
-`/tx dev export bw [dps|healer]` - Exports the BigWigs profile for DPS or Healer<br>
 `/tx dev export names` - Triggers the import of badge names (decode)

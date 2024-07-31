@@ -23,15 +23,15 @@ function TXUI:HandleDevProfiles(arg1)
   end
 
   -- Set layout if not set
-  E.db.TXUI.installer.layout = E.db.TXUI.installer.layout or I.Enum.Layouts.DPS
+  E.db.TXUI.installer.layout = E.db.TXUI.installer.layout or I.Enum.Layouts.VERTICAL
 
   if arg1 == "dps" then
-    E.db.TXUI.installer.layout = I.Enum.Layouts.DPS
-    self:LogInfo("Applying " .. F.String.ElvUI("ElvUI") .. " DPS Profile ...")
+    E.db.TXUI.installer.layout = I.Enum.Layouts.VERTICAL
+    self:LogInfo("Applying " .. F.String.ElvUI("ElvUI") .. " Vertical Profile ...")
     TXUI:GetModule("Installer"):ElvUI()
   elseif arg1 == "healer" then
-    E.db.TXUI.installer.layout = I.Enum.Layouts.HEALER
-    self:LogInfo("Applying " .. F.String.ElvUI("ElvUI") .. " Healer Profile ...")
+    E.db.TXUI.installer.layout = I.Enum.Layouts.HORIZONTAL
+    self:LogInfo("Applying " .. F.String.ElvUI("ElvUI") .. " Horizontal Profile ...")
     TXUI:GetModule("Installer"):ElvUI()
   elseif arg1 == "private" then
     self:LogInfo("Applying all Privates ...")

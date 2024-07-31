@@ -10,7 +10,7 @@ function ST:BuildActionBarsProfile()
   end
 
   local pf = E.db
-  local IsHealer = E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER
+  local IsHorizontalLayout = E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL
   local defaultPadding = 4
 
   local customTextTemplate = {
@@ -102,7 +102,7 @@ function ST:BuildActionBarsProfile()
         ElvAB_4 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
         ShiftAB = F.Position("BOTTOM", "ElvAB_3", "TOPRIGHT", 0, defaultPadding),
       },
-      F.Table.If(IsHealer, {
+      F.Table.If(IsHorizontalLayout, {
         PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
         ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
@@ -185,7 +185,7 @@ function ST:BuildActionBarsProfile()
         ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvAB_6", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Far Left
         ElvAB_4 = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Far Right
       },
-      F.Table.If(IsHealer, {
+      F.Table.If(IsHorizontalLayout, {
         ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 200),
         ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
         ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),

@@ -137,10 +137,10 @@ function PF:BuildProfile()
   end
 
   -- Special Case: ToxiUIWAAnchor
-  local WAAnchorY = { 329, 359 }
+  local WAAnchorY = { 329, 399 }
 
   local defaultPadding = 4
-  local IsHealer = E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER
+  local IsHorizontalLayout = E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL
   local abStyle = E.db.TXUI.styles.actionBars
   local isClassicAb = abStyle == "Classic"
 
@@ -273,15 +273,15 @@ function PF:BuildProfile()
       PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 158),
       AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding * 4),
     }),
-    F.Table.If(IsHealer, {
+    F.Table.If(IsHorizontalLayout, {
 
-      -- Healer Layout
+      -- Horizontal Layout
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 326, 518),
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 565, 235),
       ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -280, 347),
 
-      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 380),
-      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 380),
+      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 420),
+      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 420),
 
       ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 160),
 
@@ -843,7 +843,7 @@ function PF:BuildProfile()
       -- Disable UnitFrame Target name text
       name = { text_format = "" },
     },
-    F.Table.If(IsHealer, {
+    F.Table.If(IsHorizontalLayout, {
       fader = { enable = true, range = true },
     })
   )
@@ -1258,9 +1258,9 @@ function PF:BuildProfile()
       -- Disable UnitFrame Party CombatIcon
       CombatIcon = { enable = false },
     },
-    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, { -- Party
+    F.Table.If(IsHorizontalLayout, { -- Party
 
-      -- UnitFrame Party Healer Layout
+      -- UnitFrame Party Horizontal Layout
       width = F.Dpi(150),
       height = F.Dpi(60),
       verticalSpacing = F.Dpi(5),
@@ -1268,7 +1268,7 @@ function PF:BuildProfile()
       growthDirection = "RIGHT_DOWN",
       showPlayer = true,
 
-      -- UnitFrame Party Healer Layout Text
+      -- UnitFrame Party Horizontal Layout Text
       customTexts = {
         ["!Health"] = {
           yOffset = F.Dpi(0),
@@ -1294,13 +1294,13 @@ function PF:BuildProfile()
         },
       },
 
-      -- UnitFrame Party Heal Layout Power
+      -- UnitFrame Party Horizontal Layout Power
       power = {
         width = "filled",
         height = F.Dpi(15),
       },
 
-      -- UnitFrame Party Heal Layout Buffs
+      -- UnitFrame Party Horizontal Layout Buffs
       buffs = {
         perrow = 4,
         numrows = 2,
@@ -1310,7 +1310,7 @@ function PF:BuildProfile()
         spacing = 2,
       },
 
-      -- UnitFrame Party Heal Layout Debuffs
+      -- UnitFrame Party Horizontal Layout Debuffs
       debuffs = {
         anchorPoint = "TOP",
         perrow = 4,
@@ -1319,12 +1319,12 @@ function PF:BuildProfile()
         spacing = 2,
       },
 
-      -- UnitFrame Party Heal Layout Raid Debuffs
+      -- UnitFrame Party Horizontal Layout Raid Debuffs
       rdebuffs = {
         enable = true,
       },
 
-      -- UnitFrame Party Heal Layout Role Icon
+      -- UnitFrame Party Horizontal Layout Role Icon
       roleIcon = {
         position = "TOPLEFT",
         size = F.Dpi(22),
@@ -1430,8 +1430,8 @@ function PF:BuildProfile()
     {
       visibility = TXUI.IsRetail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
     },
-    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
-      -- UnitFrame Raid Healer Layout
+    F.Table.If(IsHorizontalLayout, {
+      -- UnitFrame Raid Horizontal Layout
       growthDirection = "DOWN_RIGHT",
     })
   )
@@ -1443,8 +1443,8 @@ function PF:BuildProfile()
     {
       visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
     },
-    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
-      -- UnitFrame Raid2 Healer Layout
+    F.Table.If(IsHorizontalLayout, {
+      -- UnitFrame Raid2 Horizontal Layout
       growthDirection = "DOWN_RIGHT",
     })
   )
@@ -1456,8 +1456,8 @@ function PF:BuildProfile()
     {
       visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
     },
-    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
-      -- UnitFrame Raid3 Healer Layout
+    F.Table.If(IsHorizontalLayout, {
+      -- UnitFrame Raid3 Horizontal Layout
       growthDirection = "DOWN_RIGHT",
     })
   )

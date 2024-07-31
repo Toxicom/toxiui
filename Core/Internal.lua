@@ -99,8 +99,8 @@ I.Media = {
 -- This only affects BigWigs
 I.ProfileNames = {
   ["Default"] = "ToxiUI", -- Plater, Details
-  [I.Enum.Layouts.DPS] = "ToxiUI-DPS", -- BigWigs and OmniCD
-  [I.Enum.Layouts.HEALER] = "ToxiUI-Healer", -- BigWigs and OmniCD
+  [I.Enum.Layouts.VERTICAL] = "ToxiUI-Vertical", -- BigWigs and OmniCD
+  [I.Enum.Layouts.HORIZONTAL] = "ToxiUI-Horizontal", -- BigWigs and OmniCD
   ["Dev"] = "ToxiUI-Dev",
 }
 
@@ -184,9 +184,9 @@ I.GradientMode = {
 
   -- Layout specific settings
   ["Layouts"] = {
-    -- Healer layout specific settings
-    [I.Enum.Layouts.HEALER] = {
-      -- Left Healer Gradient
+    -- Horizontal layout specific settings
+    [I.Enum.Layouts.HORIZONTAL] = {
+      -- Left Horizontal Gradient
       ["Left"] = {
         ["player"] = true,
         ["pet"] = true,
@@ -196,7 +196,7 @@ I.GradientMode = {
         ["assisttarget"] = true,
       },
 
-      -- Right Healer Gradient
+      -- Right Horizontal Gradient
       ["Right"] = {
         ["target"] = true,
         ["targettarget"] = true,
@@ -206,9 +206,9 @@ I.GradientMode = {
       },
     },
 
-    -- DPS layout specific settings
-    [I.Enum.Layouts.DPS] = {
-      -- Left DPS Gradient
+    -- Vertical layout specific settings
+    [I.Enum.Layouts.VERTICAL] = {
+      -- Left Vertical Gradient
       ["Left"] = {
         ["player"] = true,
         ["pet"] = true,
@@ -222,7 +222,7 @@ I.GradientMode = {
         ["assisttarget"] = true,
       },
 
-      -- Right DPS Gradient
+      -- Right Vertical Gradient
       ["Right"] = {
         ["target"] = true,
         ["targettarget"] = true,

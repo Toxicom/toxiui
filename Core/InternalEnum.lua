@@ -3,7 +3,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 I.Enum = {}
 
 -- IDs for layouts
-I.Enum.Layouts = F.Enum { "DPS", "HEALER" }
+I.Enum.Layouts = F.Enum { "VERTICAL", "HORIZONTAL" }
 
 -- IDs for Layout Style
 I.Enum.LayoutStyle = F.Enum { "OLD", "NEW" }

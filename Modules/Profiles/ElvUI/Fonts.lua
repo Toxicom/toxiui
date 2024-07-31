@@ -390,7 +390,7 @@ function PF:ElvUIFont()
               fontOutline = F.FontStyleOverride(I.Fonts.Title, "SHADOWOUTLINE"),
             },
           },
-          F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
+          F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL, {
             customTexts = customTextSize {
               { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
               { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },

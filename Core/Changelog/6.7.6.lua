@@ -12,6 +12,7 @@ TXUI.Changelog["6.7.6"] = {
 
     "* Profile updates",
     "Reduce Game Menu scale to 0.8",
+    "Move Player, Target, WeakAuras frames higher on Horizontal layout",
 
     "* Documentation",
 
@@ -19,5 +20,6 @@ TXUI.Changelog["6.7.6"] = {
 
     "* Development improvements",
     "Don't anchor Game Menu background to Game Menu, so it doesn't get affected by scale" .. F.String.Sublist("Additionally, block mouse events under the background fade"),
+    "Internally rename layouts to Vertical & Horizontal",
   },
 }

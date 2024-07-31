@@ -323,7 +323,7 @@ function PF:BuildOmniCDProfile()
         },
       },
     },
-    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER, {
+    F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL, {
       Party = {
         party = {
           extraBars = {
@@ -370,7 +370,7 @@ function PF:ApplyOmniCDProfile()
     return
   end
 
-  local profileName = E.db.TXUI.installer.layout == I.Enum.Layouts.HEALER and I.ProfileNames[I.Enum.Layouts.HEALER] or I.ProfileNames[I.Enum.Layouts.DPS]
+  local profileName = E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL and I.ProfileNames[I.Enum.Layouts.HORIZONTAL] or I.ProfileNames[I.Enum.Layouts.VERTICAL]
   local profile = PF:BuildOmniCDProfile() or {}
 
   db.DB:SetProfile(profileName)
