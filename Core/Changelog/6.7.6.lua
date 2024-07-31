@@ -15,6 +15,7 @@ TXUI.Changelog["6.7.6"] = {
     "Move Player, Target, WeakAuras frames higher on Horizontal layout",
 
     "* Documentation",
+    "Add " .. F.String.Rare("mrkhaglund") .. " to supporters",
 
     "* Settings refactoring",
     "Update images in installer",
