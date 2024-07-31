@@ -17,6 +17,7 @@ TXUI.Changelog["6.7.6"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Update layout images in installer",
 
     "* Development improvements",
     "Don't anchor Game Menu background to Game Menu, so it doesn't get affected by scale" .. F.String.Sublist("Additionally, block mouse events under the background fade"),
