@@ -912,10 +912,16 @@ function A:UpdateCharacterStats()
   if not self.frame:IsShown() then return end
 
   local characterStatsPane = _G.CharacterStatsPane
+  local titlePane = _G.PaperDollFrame.TitleManagerPane
+  local equipmentPane = _G.PaperDollFrame.EquipmentManagerPane
+  local sidebarTabs = _G.PaperDollSidebarTabs
   if not characterStatsPane then return end
 
   -- 11.0 Fucked up the strata I guess?
-  characterStatsPane:SetFrameStrata("HIGH")
+  local strataFrames = { characterStatsPane, titlePane, equipmentPane, sidebarTabs }
+  for _, frame in ipairs(strataFrames) do
+    if frame then frame:SetFrameStrata("HIGH") end
+  end
 
   local spec = GetSpecialization()
   local level = UnitLevel("player")
