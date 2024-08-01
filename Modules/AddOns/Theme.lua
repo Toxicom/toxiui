@@ -72,12 +72,6 @@ function T:SetTemplateAS(_, frame, template, _)
   self:SetTemplate(frame, template)
 end
 
-function T:HandleWidget(_, widget)
-  local widgetType = widget.type
-  if not widgetType then return end
-  if widgetType == "Button" or widgetType == "Button-ElvUI" then self:HandleButton(nil, widget) end
-end
-
 function T:API(object)
   local mt = getmetatable(object).__index
 
