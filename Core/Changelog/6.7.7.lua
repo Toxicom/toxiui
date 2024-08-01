@@ -15,6 +15,7 @@ TXUI.Changelog["6.7.7"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Prefix Mythic+ portals with " .. F.String.Class("Mythic:", "DEMONHUNTER") .. " in " .. F.String.Menu.WunderBar() .. " Hearthstone select",
 
     "* Development improvements",
   },

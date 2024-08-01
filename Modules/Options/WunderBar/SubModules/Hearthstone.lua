@@ -47,6 +47,8 @@ function O:WunderBar_SubModules_Hearthstone_Select(group, order, name, disabled)
         if option.known then
           if option.teleport or option.portal then
             names[option.id] = F.String.Class(classNames["MAGE"] .. ": ", "MAGE") .. option.name
+          elseif option.mythic then
+            names[option.id] = F.String.Class("Mythic: ", "DEMONHUNTER") .. option.name
           elseif not option.class then
             names[option.id] = option.name
           end
