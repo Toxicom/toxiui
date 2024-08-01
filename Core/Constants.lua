@@ -2,6 +2,8 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 I.Constants = {}
 
+I.Constants.VIGOR_BAR_ID = 631
+
 I.Constants.RandomTips = {
   -- 1
   TXUI.Title

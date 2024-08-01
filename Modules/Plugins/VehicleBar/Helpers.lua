@@ -6,11 +6,7 @@ local C_UIWidgetManager = C_UIWidgetManager
 local format = string.format
 
 function VB:IsVigorAvailable()
-  if F.IsSkyriding() then
-    return true
-  else
-    return false
-  end
+  return F.IsSkyriding()
 end
 
 function VB:GetWidgetInfo()

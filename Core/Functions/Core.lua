@@ -980,10 +980,7 @@ end
 
 function F.IsSkyriding()
   if TXUI.IsRetail then
-    -- For some reason IsMounted() sometimes returns false, even if you are mounted. Adding a delay seems to fix that.
-    return E:Delay(0.01, function()
-      return (IsMounted() or GetShapeshiftForm() ~= 0) and HasBonusActionBar()
-    end)
+    return UnitPowerBarID("player") == I.Constants.VIGOR_BAR_ID
   else
     return false
   end
