@@ -21,9 +21,6 @@ function VB:OnShowEvent()
     if self.vigorBar.segments and widgetInfo then
       -- Check if we have the correct amount of segments. If not, recreate the segments.
       if #self.vigorBar.segments < widgetInfo.numTotalFrames then
-        TXUI:LogDebug("Amount of segments is wrong ~ recreating segments.")
-        TXUI:LogDebug("Segments: " .. #self.vigorBar.segments .. "; Total: " .. widgetInfo.numTotalFrames)
-
         -- Clear existing segments
         for _, segment in ipairs(self.vigorBar.segments) do
           segment:Kill()
@@ -84,19 +81,6 @@ function VB:OnShowEvent()
   if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.speedText then
     self.vigorBar:Show()
     self.vigorBar.speedText:Show()
-    TXUI:LogDebug("Vigor Bar displayed " .. F.String.Good("correctly."))
-  else
-    TXUI:LogDebug("Vigor Bar " .. F.String.Error("NOT displayed") .. ", attempting to add data to DevTools.")
-    if not self:IsVigorAvailable() then
-      TXUI:LogDebug("Vigor is not available? Logging individual functions.")
-      F.Log.Dev(IsMounted(), "IsMounted")
-      F.Log.Dev(HasBonusActionBar(), "HasBonusActionBar")
-    end
-
-    F.Log.Dev(self.vigorBar, "vigorBar")
-    F.Log.Dev(self.vigorBar.speedText, "speedText")
-    local widgetInfo = self:GetWidgetInfo()
-    F.Log.Dev(widgetInfo, "widgetInfo")
   end
 
   -- Update keybinds when the bar is shown

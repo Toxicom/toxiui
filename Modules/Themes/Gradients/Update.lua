@@ -37,10 +37,6 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
         frame.shiftColor = fgMap[I.Enum.GradientMode.Color.SHIFT][frame.colorEntry]
         frame.normalColorBG = bgMap[I.Enum.GradientMode.Color.NORMAL][frame.colorEntry]
         frame.shiftColorBG = bgMap[I.Enum.GradientMode.Color.SHIFT][frame.colorEntry]
-      else
-        TXUI:LogDebug("This is for debugging an issue with Details in retail. If you are seeing this you are running a beta version.")
-        TXUI:LogDebug("fgMap or bgMap was nil for: " .. frame.colorMap)
-        TXUI:LogDebug("colorEntry: " .. frame.colorEntry)
       end
 
       if frame.normalColor == nil then
