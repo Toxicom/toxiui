@@ -3872,6 +3872,7 @@ globals = {
   "UnitPlayerOrPetInRaid",
   "UnitPosition",
   "UnitPower",
+  "UnitPowerBarID",
   "UnitPowerBarTimerInfo",
   "UnitPowerMax",
   "UnitPowerType",
