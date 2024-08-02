@@ -120,6 +120,10 @@ function O:WunderBar_SubModules_Hearthstone()
   self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 2, "primaryHS", primaryHsDisabled)
   self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 3, "secondaryHS")
 
+  -- Sort hearthstone selects by value
+  tab.hearthstoneGroup.args.primaryHS.sortByValue = true
+  tab.hearthstoneGroup.args.secondaryHS.sortByValue = true
+
   -- Cooldowns
   tab.cooldownGroup = ACH:Group("Cooldown Text Group", nil, 2)
   tab.cooldownGroup.inline = true
