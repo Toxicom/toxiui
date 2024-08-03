@@ -9,6 +9,7 @@ local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
 local C_Timer_NewTicker = C_Timer.NewTicker
 local C_WowTokenPublic_GetCurrentMarketPrice = C_WowTokenPublic and C_WowTokenPublic.GetCurrentMarketPrice
 local C_WowTokenPublic_UpdateMarketPrice = C_WowTokenPublic and C_WowTokenPublic.UpdateMarketPrice
+local C_Bank_FetchDepositedMoney = C_Bank and C_Bank.FetchDepositedMoney
 local floor = math.floor
 local format = string.format
 local GetContainerNumFreeSlots = GetContainerNumFreeSlots or (C_Container and C_Container.GetContainerNumFreeSlots)
@@ -199,7 +200,16 @@ function CR:OnEnter()
     if totalHorde ~= 0 then DT.tooltip:AddDoubleLine("Horde: ", E:FormatMoney(totalHorde, style, true), 1, 0.2, 0.2, 1, 1, 1) end
     DT.tooltip:AddLine(" ")
   end
-  DT.tooltip:AddDoubleLine("Total: ", E:FormatMoney(totalGold, style, true), 1, 1, 1, 1, 1, 1)
+  DT.tooltip:AddDoubleLine("All characters: ", E:FormatMoney(totalGold, style, true), 1, 1, 1, 1, 1, 1)
+
+  if C_Bank_FetchDepositedMoney then
+    local warbandMoney = C_Bank_FetchDepositedMoney(2) -- 2 = account
+    if warbandMoney then
+      DT.tooltip:AddDoubleLine("Warbank: ", E:FormatMoney(warbandMoney, style, true), 1, 1, 1, 1, 1, 1)
+      DT.tooltip:AddLine(" ")
+      DT.tooltip:AddDoubleLine("Total: ", E:FormatMoney(warbandMoney + totalGold, style, true), 1, 1, 1, 1, 1, 1)
+    end
+  end
   DT.tooltip:AddLine(" ")
 
   local shownHeaders = {}

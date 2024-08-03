@@ -6,6 +6,7 @@ TXUI.Changelog["6.7.7"] = {
     "* Breaking changes",
 
     "* New features",
+    "Display Warbank money in Currency module for " .. F.String.Menu.WunderBar(),
 
     "* Bug fixes",
     "Again update Skyriding logic",

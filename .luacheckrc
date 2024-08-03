@@ -87,6 +87,7 @@ globals = {
   "TradeSkillOnlyShowMakeable",
   "TradeSkillOnlyShowSkillUps",
   "UIDropDownMenu_GetCurrentDropDown",
+  "C_Bank",
   "C_BattleNet",
   "C_FriendList",
   "ChatFrame_ToggleMenu",
