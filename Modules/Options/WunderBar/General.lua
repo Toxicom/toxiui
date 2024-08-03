@@ -13,7 +13,7 @@ function O:WunderBar_General()
     local wunderBarDesc = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = "WunderBar - a full replacement for old XIV Databar. Displays important information and offers buttons for easier life.\n\n",
+      name = F.String.Menu.WunderBar() .. " - a full replacement for old XIV Databar. Displays important information and offers buttons for easier life.\n\n",
     }, I.Requirements.WunderBar)
 
     -- Wunderbar Description Enable Toggle
@@ -124,7 +124,8 @@ function O:WunderBar_General()
     generalGroup["args"]["barSpacing"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Width",
+      name = "Spacing",
+      desc = "Amount of spacing that " .. F.String.Menu.WunderBar() .. " should be offset from each side of the screen.",
       min = 1,
       max = 100,
       step = 1,
@@ -395,7 +396,7 @@ function O:WunderBar_General()
       name = "Flyout Backdrop",
       hidden = optionsHidden,
     }, {
-      name = "Control the backdrop of WunderBar flyouts that show up in Profession and Hearthstone modules.\n\n",
+      name = "Control the backdrop of " .. F.String.Menu.WunderBar() .. " flyouts that show up in Profession and Hearthstone modules.\n\n",
     }).args
 
     flyoutGroup["flyoutBackdrop"] = {
