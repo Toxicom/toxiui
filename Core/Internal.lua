@@ -605,6 +605,7 @@ I.HearthstoneData_Cata = {
   [54452] = { ["type"] = "item", ["hearthstone"] = true }, -- Ethereal Portal
   [184871] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dark Portal (TBC Deluxe Edition)
   [64488] = { ["type"] = "toy", ["hearthstone"] = true }, -- The Innkeeper's Daughter
+  [52251] = { ["type"] = "item", ["hearthstone"] = false }, -- Jaina's Locket
 
   -- Hearthstone: Death Knight
   [50977] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DEATHKNIGHT" }, -- Death Gate

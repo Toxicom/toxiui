@@ -15,6 +15,7 @@ TXUI.Changelog["6.7.7"] = {
 
     "* Documentation",
     "Add The Innkeeper's daughter hearthstone to Cataclysm",
+    "Add Jaina's Locket portal to Cataclysm",
 
     "* Settings refactoring",
     "Prefix Mythic+ portals with " .. F.String.Class("Mythic:", "DEMONHUNTER") .. " in " .. F.String.Menu.WunderBar() .. " Hearthstone select",
