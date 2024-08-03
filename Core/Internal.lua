@@ -604,6 +604,7 @@ I.HearthstoneData_Cata = {
   [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
   [54452] = { ["type"] = "item", ["hearthstone"] = true }, -- Ethereal Portal
   [184871] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dark Portal (TBC Deluxe Edition)
+  [64488] = { ["type"] = "toy", ["hearthstone"] = true }, -- The Innkeeper's Daughter
 
   -- Hearthstone: Death Knight
   [50977] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DEATHKNIGHT" }, -- Death Gate
