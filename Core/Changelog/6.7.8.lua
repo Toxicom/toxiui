@@ -8,6 +8,7 @@ TXUI.Changelog["6.7.8"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix error with Game Menu skin when background fade is disabled",
 
     "* Profile updates",
 

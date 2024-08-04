@@ -163,7 +163,7 @@ function M:GameMenuButton()
   end)
 
   self:SecureHookScript(GameMenuFrame, "OnHide", function()
-    self.backgroundFade:Hide()
+    if self.backgroundFade then self.backgroundFade:Hide() end
   end)
 end
 
