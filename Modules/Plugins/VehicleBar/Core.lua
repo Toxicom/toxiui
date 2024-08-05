@@ -76,7 +76,6 @@ function VB:OnShowEvent()
     end
   end
 
-  -- TODO: Remove debug logs
   -- Show the custom vigor bar when the vehicle bar is shown
   if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.speedText then
     self.vigorBar:Show()

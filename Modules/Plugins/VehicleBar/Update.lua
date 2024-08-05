@@ -51,7 +51,9 @@ function VB:UpdateKeybinds()
       local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
       if keybind then
         button.HotKey:SetTextColor(1, 1, 1)
-        button.HotKey:SetText(self:FormatKeybind(GetBindingText(keybind, "KEY_")))
+        button.HotKey:SetText(self:FormatKeybind(keybind))
+        -- stop truncating keybinds (thx Repooc =])
+        button.HotKey:Width(button:GetWidth())
         button.HotKey:Show()
       else
         button.HotKey:Hide()
@@ -211,8 +213,7 @@ function VB:UpdateBar()
     end
 
     if TXUI.IsRetail and not self.vigorBar and self.vdb.enabled then self:CreateVigorBar() end
-
-    -- Initial call to update keybinds
-    self:UpdateKeybinds()
   end
+
+  self:UpdateKeybinds()
 end
