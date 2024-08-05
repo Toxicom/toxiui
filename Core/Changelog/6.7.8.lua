@@ -6,6 +6,7 @@ TXUI.Changelog["6.7.8"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add Korean glyphs to fonts used in ToxiUI" .. F.String.Sublist("Credits to bbingr"),
 
     "* Bug fixes",
     "Fix error with Game Menu skin when background fade is disabled",
