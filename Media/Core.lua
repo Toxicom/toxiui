@@ -2,20 +2,20 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local LSM = E.Libs.LSM
 
 -- Vars
-local supportedBits = LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western + LSM.LOCALE_BIT_koKR
-local allLocaleBits = LSM.LOCALE_BIT_zhCN + LSM.LOCALE_BIT_zhTW + supportedBits
+local westAndRUBits = LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western
+local allLocaleBits = LSM.LOCALE_BIT_koKR + LSM.LOCALE_BIT_zhCN + LSM.LOCALE_BIT_zhTW + westAndRUBits
 
 -- -----
 --   FONT - LSM
 -- -----
 
 F.AddMedia("font", "ToxiUIIcons.ttf", I.Fonts.Icons, nil, allLocaleBits)
-F.AddMedia("font", "ToxiUI.ttf", I.Fonts.Primary, nil, supportedBits)
-F.AddMedia("font", "BigNoodleToo.ttf", I.Fonts.Title, nil, supportedBits)
-F.AddMedia("font", "Steelfish.ttf", "- Steelfish", nil, supportedBits)
-F.AddMedia("font", "Montserrat-Medium.ttf", "- M 500", nil, supportedBits)
-F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleRaid, nil, supportedBits)
-F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.TitleBlack, nil, supportedBits)
+F.AddMedia("font", "ToxiUI.ttf", I.Fonts.Primary, nil, westAndRUBits)
+F.AddMedia("font", "BigNoodleToo.ttf", I.Fonts.Title, nil, westAndRUBits)
+F.AddMedia("font", "Steelfish.ttf", "- Steelfish", nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-Medium.ttf", "- M 500", nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleRaid, nil, westAndRUBits)
+F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.TitleBlack, nil, westAndRUBits)
 
 -- -----
 --   STATUSBAR - LSM
