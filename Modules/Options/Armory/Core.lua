@@ -284,7 +284,18 @@ function O:Armory()
           [2] = "2. Azj-Kahet",
           [3] = "3. Draenor",
         },
+        disabled = function()
+          return E.db.TXUI.armory.background.class or optionsDisabled()
+        end,
+      }
+
+      backgroundGroup.class = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Class Background " .. E.NewSign,
+        desc = "Use class specific backgrounds.",
         disabled = optionsDisabled,
+        width = 1.4,
       }
     end
 

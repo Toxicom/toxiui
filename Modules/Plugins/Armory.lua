@@ -1258,7 +1258,11 @@ end
 
 function A:UpdateBackground()
   if self.db.background.enabled then
-    self.frame.TXBackground.Texture:SetTexture(I.Media.Armory["BG" .. self.db.background.style])
+    if self.db.background.class then
+      self.frame.TXBackground.Texture:SetTexture(I.Media.Armory["ToxiUI-" .. E.myclass])
+    else
+      self.frame.TXBackground.Texture:SetTexture(I.Media.Armory["BG" .. self.db.background.style])
+    end
     self.frame.TXBackground.Texture:SetVertexColor(1, 1, 1, self.db.background.alpha)
   else
     self.frame.TXBackground.Texture:SetTexture(nil)

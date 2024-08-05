@@ -496,6 +496,7 @@ P.armory = {
     enabled = true, -- Enabled by default
     alpha = 0.5,
     style = 2,
+    class = true,
   },
 
   lines = {
