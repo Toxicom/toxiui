@@ -298,23 +298,6 @@ function O:Plugins_AdditionalScaling()
       step = 0.05,
     }
 
-    -- Other Group: Talents
-    otherGroup.talents = {
-      order = self:GetOrder(),
-      type = "range",
-      name = "Talents",
-      get = function(_)
-        return E.db.TXUI.misc.scaling.talents.scale
-      end,
-      set = function(_, value)
-        E.db.TXUI.misc.scaling.talents.scale = value
-        Misc:AdditionalScaling()
-      end,
-      min = 0.5,
-      max = 2,
-      step = 0.05,
-    }
-
     -- Other Group: Collections
     otherGroup.collections = {
       order = self:GetOrder(),
@@ -454,6 +437,26 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.profession.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
+    -- Classic Group: Talents
+    classicGroup.talents = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Talents",
+      disabled = function()
+        return TXUI.IsRetail
+      end,
+      get = function(_)
+        return E.db.TXUI.misc.scaling.talents.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.talents.scale = value
         Misc:AdditionalScaling()
       end,
       min = 0.5,

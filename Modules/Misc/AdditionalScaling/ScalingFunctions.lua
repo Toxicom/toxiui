@@ -54,7 +54,11 @@ function M:ScaleAuctionHouse()
 end
 
 function M:ScaleRetailSpellbook()
-  M:SetElementScale("spellbook", "PlayerSpellsFrame")
+  if TXUI.IsRetail and not IsRetailTalentsWindowHooked then
+    M:HookRetailTalentsWindow()
+  else
+    M:SetElementScale("spellbook", "PlayerSpellsFrame")
+  end
 end
 
 function M:ScaleInspectUI()
@@ -65,22 +69,17 @@ function M:ScaleInspectUI()
 end
 
 function M:HookRetailTalentsWindow()
-  _G.ClassTalentFrame:HookScript("OnShow", function()
-    M:ScaleTalents()
+  _G.PlayerSpellsFrame:HookScript("OnShow", function()
+    M:ScaleRetailSpellbook()
   end)
-  _G.ClassTalentFrame:HookScript("OnEvent", function()
-    M:ScaleTalents()
+  _G.PlayerSpellsFrame:HookScript("OnEvent", function()
+    M:ScaleRetailSpellbook()
   end)
   IsRetailTalentsWindowHooked = true
 end
 
 function M:ScaleTalents()
-  local frameName = TXUI.IsRetail and "ClassTalentFrame" or "PlayerTalentFrame"
-  if TXUI.IsRetail and not IsRetailTalentsWindowHooked then
-    M:HookRetailTalentsWindow()
-  else
-    M:SetElementScale("talents", frameName)
-  end
+  M:SetElementScale("talents", "PlayerTalentFrame")
 end
 
 -- Credits to Kayr

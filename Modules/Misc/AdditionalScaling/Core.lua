@@ -23,7 +23,6 @@ function M:AdditionalScaling()
 
     -- Retail scaling
     if TXUI.IsRetail then
-      M:AddCallbackOrScale("Blizzard_ClassTalentUI", self.ScaleTalents)
       M:AddCallbackOrScale("Blizzard_AuctionHouseUI", self.ScaleAuctionHouse)
 
       -- For some reason these are different, altho they function exactly the same
