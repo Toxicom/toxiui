@@ -1089,6 +1089,18 @@ function O:Armory()
         disabled = optionsDisabled,
       }
 
+      enchantGroup.moveSockets = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Move Sockets " .. E.NewSign,
+        desc = "Crops and moves sockets above enchant text.",
+        disabled = optionsDisabled,
+        set = function(_, value)
+          E.db.TXUI.armory.pageInfo.moveSockets = value
+          if value == false then E:StaticPopup_Show("CONFIG_RL") end
+        end,
+      }
+
       -- Spacer
       self:AddSpacer(enchantGroup)
 
