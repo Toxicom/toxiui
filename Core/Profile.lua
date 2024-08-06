@@ -904,6 +904,7 @@ P.wunderbar = {
       iconFontSize = 18,
 
       seasonMythics = false,
+      showLabels = true,
 
       cooldownEnabled = true,
       cooldownFont = I.Fonts.Primary,

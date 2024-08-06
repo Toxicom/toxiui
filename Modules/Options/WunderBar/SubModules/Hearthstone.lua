@@ -96,8 +96,22 @@ function O:WunderBar_SubModules_Hearthstone()
     max = 100,
     step = 1,
   }, nil, nil, nil, iconDisabled)
-  tab.generalGroup.args.seasonMythics =
-    ACH:Toggle("Seasonal M+ Teleports", "Enabling this will show only the current season's teleports in the Flyout frame", 4, nil, nil, nil, nil, nil, not TXUI.IsRetail)
+  tab.generalGroup.args.seasonMythics = {
+    type = "toggle",
+    name = "Seasonal M+ Teleports",
+    desc = "Enabling this will show only the current season's teleports in the Flyout frame",
+    order = 4,
+    hidden = not TXUI.IsRetail,
+    width = 1.2,
+  }
+
+  tab.generalGroup.args.showLabels = {
+    type = "toggle",
+    name = "Show labels " .. E.NewSign,
+    desc = "Enabling this will show a label of the teleport on the button. Currently only Mythic+ portals are supported.",
+    order = 5,
+    hidden = not TXUI.IsRetail,
+  }
 
   -- Hearthstones
   tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 2)

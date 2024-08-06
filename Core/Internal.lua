@@ -457,69 +457,69 @@ I.HearthstoneData = {
   -- Mythic+ Teleports --
   --                   --
   -- Cataclysm
-  [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df2" }, -- The Vortex Pinnacle
-  [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Throne of the Tides
+  [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df2", ["label"] = "VP" }, -- The Vortex Pinnacle
+  [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "TOT" }, -- Throne of the Tides
 
   -- Mists of Pandaria --
-  [131204] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1" }, -- Temple of the Jade Serpent
-  [131205] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Stormstout Brewery
-  [131206] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Shado-Pan Monastery
-  [131222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Mogu'shan Palace
-  [131225] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Gate of the Setting Sun
-  [131228] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Siege of Niuzao
-  [131229] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Scarlet Monastery
-  [131231] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Scarlet Halls
-  [131232] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop" }, -- Scholomance
+  [131204] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1", ["label"] = "ToJS" }, -- Temple of the Jade Serpent
+  [131205] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "SB" }, -- Stormstout Brewery
+  [131206] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "SPM" }, -- Shado-Pan Monastery
+  [131222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "MP" }, -- Mogu'shan Palace
+  [131225] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "GSS" }, -- Gate of the Setting Sun
+  [131228] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "SON" }, -- Siege of Niuzao
+  [131229] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "SM" }, -- Scarlet Monastery
+  [131231] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "SH" }, -- Scarlet Halls
+  [131232] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mop", ["label"] = "SCH" }, -- Scholomance
 
   -- Warlords of Draenor
-  [159895] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Bloodmaul Slag Mines
-  [159896] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Iron Docks
-  [159897] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Auchindoun
-  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Skyreach
-  [159899] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1" }, -- Shadowmoon Burial Grounds
-  [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl4" }, -- Grimrail Depot
-  [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- The Everbloom
-  [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod" }, -- Upper Blackrock Spire
+  [159895] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "BSM" }, -- Bloodmaul Slag Mines
+  [159896] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "ID" }, -- Iron Docks
+  [159897] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "AUCH" }, -- Auchindoun
+  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "SR" }, -- Skyreach
+  [159899] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1", ["label"] = "SBG" }, -- Shadowmoon Burial Grounds
+  [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl4", ["label"] = "GD" }, -- Grimrail Depot
+  [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "TEB" }, -- The Everbloom
+  [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "UBS" }, -- Upper Blackrock Spire
 
   -- Legion
-  [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Neltharion's Lair
-  [424153] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Black Rook Hold
-  [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Darkheart Thicket
-  [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Halls of Valor
-  [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Court of Stars
+  [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "NL" }, -- Neltharion's Lair
+  [424153] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "BRH" }, -- Black Rook Hold
+  [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DT" }, -- Darkheart Thicket
+  [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "HOV" }, -- Halls of Valor
+  [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "COS" }, -- Court of Stars
 
   -- Battle for Azeroth
-  [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Waycrest Manor
-  [424187] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Atal'Dazar
-  [410074] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Underrot
-  [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df" }, -- Freehold
+  [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "WM" }, -- Waycrest Manor
+  [424187] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "AD" }, -- Atal'Dazar
+  [410074] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "UR" }, -- Underrot
+  [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "FH" }, -- Freehold
 
   -- Shadowlands
-  [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Necrotic Wake
-  [354463] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Plaguefall
-  [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Mists of Tirna Scithe
-  [354465] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Halls of Atonement
-  [354466] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Spires of Ascension
-  [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Theater of Pain
-  [354468] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- De Other Side
-  [354469] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Sanguine Depths
-  [367416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Tazavesh, the Veiled Market
-  [373190] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Castle Nathria
-  [373191] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Sanctum of Domination
-  [373192] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Sepulcher of the First Ones
-  [373262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Karazhan
-  [373274] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl" }, -- Mechagon
+  [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "NW" }, -- Necrotic Wake
+  [354463] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "PF" }, -- Plaguefall
+  [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "MOTS" }, -- Mists of Tirna Scithe
+  [354465] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "HOA" }, -- Halls of Atonement
+  [354466] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SOA" }, -- Spires of Ascension
+  [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "TOP" }, -- Theater of Pain
+  [354468] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "DOS" }, -- De Other Side
+  [354469] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SD" }, -- Sanguine Depths
+  [367416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "TVM" }, -- Tazavesh, the Veiled Market
+  [373190] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "CN" }, -- Castle Nathria
+  [373191] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SOD" }, -- Sanctum of Domination
+  [373192] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SotFO" }, -- Sepulcher of the First Ones
+  [373262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "KZ" }, -- Karazhan
+  [373274] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "MG" }, -- Mechagon
 
   -- Dragonflight
-  [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Uldaman: Legacy of Tyr
-  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Ruby Life Pools
-  [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Nokhud Offensive
-  [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Brackenhide Hollow
-  [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Algeth'ar Academy
-  [393276] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Neltharus
-  [393279] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Azure Vault
-  [393283] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4" }, -- Halls of Infusion
-  [424197] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3" }, -- Dawn of the Infinite
+  [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "ULD" }, -- Uldaman: Legacy of Tyr
+  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "RLP" }, -- Ruby Life Pools
+  [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "NO" }, -- Nokhud Offensive
+  [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "BH" }, -- Brackenhide Hollow
+  [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "AA" }, -- Algeth'ar Academy
+  [393276] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "NELT" }, -- Neltharus
+  [393279] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "AV" }, -- Azure Vault
+  [393283] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "HOI" }, -- Halls of Infusion
+  [424197] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DOI" }, -- Dawn of the Infinite
 
   --                --
   -- Mage Teleports --

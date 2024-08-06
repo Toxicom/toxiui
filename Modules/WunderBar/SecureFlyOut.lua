@@ -41,6 +41,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local spacing, padding = 4, 16
   local slotWidth = 40 + E.Border
   local slotHeight = 30 + E.Border
+  local primaryFont = F.GetFontPath(I.Fonts.Primary)
 
   -- Limit the number of slots per column
   local maxSlotsPerColumn = 8
@@ -121,6 +122,10 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
       slot:SetScript("OnEnter", showTooltip)
       slot:SetScript("OnLeave", F.Event.GenerateClosure(GameTooltip.Hide, GameTooltip))
 
+      slot.label = slot:CreateFontString(nil, "OVERLAY")
+      slot.label:SetFont(primaryFont, 14, "OUTLINE")
+      slot.label:SetPoint("CENTER", slot, "CENTER")
+
       slot.FadeIn = TXUI:CreateAnimationGroup(slot)
 
       slot.FadeIn.ResetFade = slot.FadeIn:CreateAnimation("Fade")
@@ -186,6 +191,12 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     disabledTexture:SetTexCoord(left, right, top, bottom)
     disabledTexture:SetInside()
     disabledTexture:SetDesaturated(true)
+
+    if info.label and E.db.TXUI.wunderbar.subModules.Hearthstone.showLabels then
+      slot.label:SetText(info.label)
+    else
+      slot.label:SetText("")
+    end
 
     slot:SetAlpha(0)
     slot:Show()
