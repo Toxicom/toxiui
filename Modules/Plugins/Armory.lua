@@ -1256,8 +1256,19 @@ function A:ApplyCustomStatCategories()
   }
 end
 
+local isHooked = false
 function A:UpdateBackground()
   if self.db.background.enabled then
+    if self.db.background.hideControls then
+      local controlFrame = _G.CharacterModelScene and _G.CharacterModelScene.ControlFrame
+      if controlFrame and not isHooked then
+        controlFrame:SetScript("OnShow", function(self)
+          self:Hide()
+        end)
+        isHooked = true
+      end
+    end
+
     if self.db.background.class then
       self.frame.TXBackground.Texture:SetTexture(I.Media.Armory["ToxiUI-" .. E.myclass])
     else

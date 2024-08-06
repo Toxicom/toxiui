@@ -497,6 +497,7 @@ P.armory = {
     alpha = 0.5,
     style = 2,
     class = true,
+    hideControls = true,
   },
 
   lines = {

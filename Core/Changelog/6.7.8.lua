@@ -9,6 +9,7 @@ TXUI.Changelog["6.7.8"] = {
     "Add Korean glyphs to fonts used in ToxiUI" .. F.String.Sublist("Credits to bbingr"),
     F.String.Class("Class") .. " background option in " .. F.String.Menu.Armory(),
     "Show labels option for Mythic+ flyout in " .. F.String.Menu.WunderBar(),
+    "Option to hide camera controls in " .. F.String.Menu.Armory(),
 
     "* Bug fixes",
     "Fix error with Game Menu skin when background fade is disabled",

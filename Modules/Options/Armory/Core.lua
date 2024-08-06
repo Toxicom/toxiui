@@ -295,7 +295,19 @@ function O:Armory()
         name = "Class Background " .. E.NewSign,
         desc = "Use class specific backgrounds.",
         disabled = optionsDisabled,
-        width = 1.4,
+        width = 1.2,
+      }
+
+      backgroundGroup.hideControls = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Hide controls " .. E.NewSign,
+        desc = "Hides the camera controls when hovering the character model.",
+        set = function(_, value)
+          E.db.TXUI.armory.background.hideControls = value
+          if value == false then E:StaticPopup_Show("CONFIG_RL") end
+        end,
+        disabled = optionsDisabled,
       }
     end
 
