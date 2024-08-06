@@ -1262,8 +1262,8 @@ function A:UpdateBackground()
     if self.db.background.hideControls then
       local controlFrame = _G.CharacterModelScene and _G.CharacterModelScene.ControlFrame
       if controlFrame and not isHooked then
-        controlFrame:SetScript("OnShow", function(self)
-          self:Hide()
+        controlFrame:SetScript("OnShow", function(frame)
+          frame:Hide()
         end)
         isHooked = true
       end
