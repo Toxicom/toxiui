@@ -12,7 +12,7 @@ local UnregisterStateDriver = UnregisterStateDriver
 function VB:OnShowEvent()
   self:StopAllAnimations()
 
-  if self:IsVigorAvailable() then
+  if self.vigorBar and self:IsVigorAvailable() then
     -- Hide the Default Vigor Bar
     local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"]
     if defaultVigorBar then defaultVigorBar:Hide() end
