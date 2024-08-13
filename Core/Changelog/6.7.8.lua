@@ -15,6 +15,7 @@ TXUI.Changelog["6.7.8"] = {
     "* Bug fixes",
     "Fix error with Game Menu skin when background fade is disabled",
     "Fix Spellbook scaling for Retail",
+    "Fix ActionBars ColorModifiers for non-latin alphabets",
 
     "* Profile updates",
 
