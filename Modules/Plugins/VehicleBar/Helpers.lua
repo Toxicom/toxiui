@@ -1,9 +1,11 @@
 local TXUI, F, E, I, V, P, G, L = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
+local CM = TXUI:GetModule("ColorModifiers")
 
 local C_UnitAuras = C_UnitAuras
 local C_UIWidgetManager = C_UIWidgetManager
-local format = string.format
+local sub = string.utf8sub
+local len = strlenutf8
 
 function VB:IsVigorAvailable()
   return F.IsSkyriding()
@@ -52,17 +54,10 @@ end
 function VB:FormatKeybind(keybind)
   local text = self:FixKeybindText(keybind)
 
-  -- TODO: extract this logic and use the same approach here and in ColorModifiers.lua
-  -- Match the modifier and key parts, ensuring modifier does not include digits
-  local modifier, key = text:match("^([^%d]+)(.+)$")
-  if modifier and key then
-    if E.db.TXUI.addons.colorModifiers.enabled then
-      local color = E:ClassColor(E.myclass, true)
-      local r, g, b = color.r, color.g, color.b
-      return format("|cff%02x%02x%02x%s|r%s", r * 255, g * 255, b * 255, modifier, key)
-    else
-      return modifier .. key
-    end
+  if text and text ~= _G.RANGE_INDICATOR and len(text) > 1 and E.db.TXUI.addons.colorModifiers.enabled then
+    local colorHex = sub(E:ClassColor(E.myclass, true).colorStr, 3)
+    text = CM:ColorizeKey(text, colorHex)
+    return text
   else
     return text
   end

@@ -499,7 +499,13 @@ function O:Skins_ElvUI()
     local colorModifiersGroup = self:AddInlineRequirementsDesc(options, {
       name = "Color Modifier Keys",
     }, {
-      name = "This option " .. F.String.Class("colors") .. " your modifier keys to " .. F.String.Class("class") .. " color.\n\n",
+      name = "This option "
+        .. F.String.Class("colors")
+        .. " your modifier keys to "
+        .. F.String.Class("class")
+        .. " color.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "This option also increases the ActionBars Keybind width to match the Button's width.\n\n",
     }, I.Requirements.ColorModifiers).args
 
     colorModifiersGroup.enable = {
