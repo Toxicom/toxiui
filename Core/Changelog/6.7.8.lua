@@ -19,6 +19,7 @@ TXUI.Changelog["6.7.8"] = {
     "* Profile updates",
 
     "* Documentation",
+    F.String.MinElv("13.73"),
 
     "* Settings refactoring",
     "Move Talents frame scaling to Classic only",
