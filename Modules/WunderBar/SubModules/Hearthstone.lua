@@ -45,7 +45,8 @@ function HS:GetCooldownForItem(itemInfo)
 
   local _, gcd
   if TXUI.IsRetail then
-    gcd = GetSpellCooldown(61304) and GetSpellCooldown(61304).duration or nil
+    gcd = GetSpellCooldown(61304)
+    gcd = gcd and gcd.duration or nil
   else
     _, gcd = GetSpellCooldown(61304)
   end
