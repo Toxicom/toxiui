@@ -23,6 +23,7 @@ TXUI.Changelog["6.7.8"] = {
     "Fix Dark Mode toggle updating movers",
 
     "* Profile updates",
+    "Update the Player's Power bar to match Target" .. F.String.Sublist("It is still disabled by default"),
 
     "* Documentation",
     F.String.MinElv("13.74"),

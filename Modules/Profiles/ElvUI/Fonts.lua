@@ -234,6 +234,7 @@ function PF:ElvUIFont()
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+            { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             TXUI.IsVanilla and { "!Power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },

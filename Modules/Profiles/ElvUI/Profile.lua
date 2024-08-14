@@ -192,6 +192,7 @@ function PF:BuildProfile()
       -- Movers: UnitFrames
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 350),
       ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
+      PlayerPowerBarMover = F.Position("RIGHT", "ElvUF_Player", "BOTTOMRIGHT", -10, 0),
 
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 350),
       ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
@@ -534,6 +535,14 @@ function PF:BuildProfile()
         yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
       }),
 
+      -- UnitFrame Player Custom Texts Power
+      ["!Power"] = createCustomText({}, {
+        attachTextTo = "Power",
+        text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+        xOffset = F.Dpi(10),
+        yOffset = F.Dpi(0),
+      }),
+
       -- UnitFrame Player Custom Texts Class Icon
       ["!ClassIcon"] = createCustomText({}, {
         justifyH = "LEFT",
@@ -632,6 +641,14 @@ function PF:BuildProfile()
       attachTo = "CENTER",
     },
 
+    power = {
+      enable = false, -- Disabled by default
+      detachFromFrame = true,
+      autoHide = true,
+      detachedWidth = F.Dpi(120),
+      text_format = "",
+    },
+
     -- UnitFrame Player Castbar
     castbar = {
       width = F.Dpi(250),
@@ -663,8 +680,6 @@ function PF:BuildProfile()
     aurabar = { enable = false },
     -- Disable UnitFrame Player classbar
     classbar = { enable = false },
-    -- Disable UnitFrame Player power
-    power = { enable = false },
     -- Disable UnitFrame Player health text
     health = { text_format = "" },
     -- Disable UnitFrame Target name text
