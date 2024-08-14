@@ -90,10 +90,10 @@ end
 function M:SplitName(name, strMatch)
   if strMatch and strMatch ~= "" then
     -- Check if the name starts with the matching string
-    local start, finish = string.find(name, strMatch, 1, true)
+    local start = string.find(name, strMatch, 1, true)
     if start == 1 then
       local nameHighlight = strMatch
-      local nameRest = utf8sub(name, finish + 1)
+      local nameRest = utf8sub(name, utf8len(strMatch) + 1)
       return nameHighlight, nameRest
     end
   end

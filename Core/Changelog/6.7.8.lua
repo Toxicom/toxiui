@@ -19,6 +19,7 @@ TXUI.Changelog["6.7.8"] = {
     "Fix Spellbook scaling for Retail",
     "Fix ActionBars ColorModifiers for UTF8 characters",
     "Fix VehicleBar Keybinds ColorModifier for UTF8 characters",
+    "Fix Split name tag for UTF8 characters",
 
     "* Profile updates",
 
