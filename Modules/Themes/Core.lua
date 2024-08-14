@@ -54,7 +54,7 @@ function TH:Toggle(theme, value)
 
         -- apply custom tags
         F.Event.TriggerEvent("Tags.DatabaseUpdate")
-      end)
+      end, true)
     end, true)
   end
 

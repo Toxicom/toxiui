@@ -20,6 +20,7 @@ TXUI.Changelog["6.7.8"] = {
     "Fix ActionBars ColorModifiers for UTF8 characters",
     "Fix VehicleBar Keybinds ColorModifier for UTF8 characters",
     "Fix Split name tag for UTF8 characters",
+    "Fix Dark Mode toggle updating movers",
 
     "* Profile updates",
 
