@@ -21,6 +21,7 @@ TXUI.Changelog["6.7.8"] = {
     "Fix VehicleBar Keybinds ColorModifier for UTF8 characters",
     "Fix Split name tag for UTF8 characters",
     "Fix Dark Mode toggle updating movers",
+    "Hopefully fix Skyriding Bar's wrong width",
 
     "* Profile updates",
     "Update the Player's Power bar to match Target" .. F.String.Sublist("It is still disabled by default"),

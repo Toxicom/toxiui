@@ -68,12 +68,17 @@ function VB:UpdateVigorBar()
   -- Check if bar width has changed
   local currentBarWidth = self.bar:GetWidth()
   if currentBarWidth ~= self.previousBarWidth then
-    local widgetInfo = self:GetWidgetInfo()
     -- Update the width of the vigorBar to match the width of self.bar
     local width = currentBarWidth - self.spacing
     self.vigorBar:SetWidth(width)
 
-    if not widgetInfo then return end
+    -- Store the new width
+    self.previousBarWidth = currentBarWidth
+  end
+
+  local widgetInfo = self:GetWidgetInfo()
+
+  if widgetInfo and widgetInfo.numTotalFrames then
     local maxVigor = widgetInfo.numTotalFrames
 
     -- Calculate the new segment width based on the updated vigorBar width
@@ -82,9 +87,6 @@ function VB:UpdateVigorBar()
     for _, segment in ipairs(self.vigorBar.segments) do
       segment:SetWidth(segmentWidth) -- Update the width of each segment
     end
-
-    -- Store the new width
-    self.previousBarWidth = currentBarWidth
   end
 
   self:UpdateVigorSegments()
