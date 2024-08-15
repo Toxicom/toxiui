@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.7.8"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add Korean glyphs to fonts used in ToxiUI" .. F.String.Sublist("Credits to bbingr"),
     F.String.Class("Class") .. " background option in " .. F.String.Menu.Armory(),
@@ -36,7 +34,5 @@ TXUI.Changelog["6.7.8"] = {
     "* Settings refactoring",
     "Move Talents frame scaling to Classic only",
     "Rename " .. F.String.Class("MiniMapCoords") .. " to " .. F.String.Class("Minimap Coordinates"),
-
-    "* Development improvements",
   },
 }

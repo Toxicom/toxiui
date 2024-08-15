@@ -91,8 +91,8 @@ function O:Reset()
       ["miniMapCoords"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.Error("MiniMapCoords"),
-        desc = "Reset all " .. F.String.Error("MiniMapCoords") .. "settings.",
+        name = F.String.Error("Minimap Coordinates"),
+        desc = "Reset all " .. F.String.Error("Minimap Coordinates") .. "settings.",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "MiniMapCoords", nil, "miniMapCoords")
         end,
