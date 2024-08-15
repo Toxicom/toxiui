@@ -1364,10 +1364,8 @@ function O:Armory()
     -- Label Text
     do
       -- Font Group
-      local fontGroup = self:AddInlineDesc(tab, {
+      local fontGroup = self:AddInlineGroup(tab, {
         name = "Attribute Label",
-      }, {
-        name = F.String.ToxiUI("Information: ") .. "For attribute icons to work properly, you must select the " .. F.String.ToxiUI(I.Fonts.Primary) .. " font.\n\n",
       }).args
 
       -- Fonts Font
@@ -1443,14 +1441,78 @@ function O:Armory()
         name = "Short Labels " .. E.NewSign,
         desc = "Shorten and abbreviate attribute labels.",
       }
+    end
+
+    self:AddSpacer(tab)
+
+    -- Icon Text
+    do
+      -- Font Group
+      local fontGroup = self:AddInlineDesc(tab, {
+        name = "Attribute Icons " .. E.NewSign,
+      }, {
+        name = "Show icons before the attribute labels. Only the main attributes are supported currently.\n\n",
+      }).args
 
       fontGroup.showIcons = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Attribute Icons " .. E.NewSign,
-        desc = "Show icons before the attribute labels. Only the main attributes are supported currently.",
+        name = function()
+          return self:GetEnableName(E.db.TXUI.armory.stats.showIcons, fontGroup)
+        end,
+      }
+
+      -- Fonts Outline
+      fontGroup.iconFontOutline = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Font Outline",
+        desc = "Set the font outline.",
+        values = self:GetAllFontOutlinesFunc(),
         disabled = function()
-          return E.db.TXUI.armory.stats.labelFont ~= I.Fonts.Primary
+          return (E.db.TXUI.armory.stats["iconFontShadow"] == true)
+        end,
+      }
+
+      -- Fonts Size
+      fontGroup.iconFontSize = {
+        order = self:GetOrder(),
+        type = "range",
+        name = "Font Size",
+        desc = "Set the font size.",
+        min = 1,
+        max = 42,
+        step = 1,
+      }
+
+      -- Fonts Shadow
+      fontGroup.iconFontShadow = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Font Shadow",
+        desc = "Set font drop shadow.",
+      }
+
+      -- Font color select
+      fontGroup.iconFontColor = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Font Color",
+        values = self:GetAllFontColorsFunc(),
+      }
+
+      -- Font Custom Color
+      fontGroup.iconFontCustomColor = {
+        order = self:GetOrder(),
+        type = "color",
+        name = "Custom Color",
+        hasAlpha = true,
+        get = self:GetFontColorGetter("TXUI.armory.stats", P.armory.stats),
+        set = self:GetFontColorSetter("TXUI.armory.stats", function()
+          F.Event.TriggerEvent("Armory.SettingsUpdate")
+        end),
+        hidden = function()
+          return E.db.TXUI.armory.stats["iconFontColor"] ~= "CUSTOM"
         end,
       }
     end

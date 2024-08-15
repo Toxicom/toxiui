@@ -23,6 +23,7 @@ TXUI.Changelog["6.7.8"] = {
     "Fix Dark Mode toggle updating movers",
     "Hopefully fix Skyriding Bar's wrong width",
     "Display Specialization icon in Game Menu no matter which font is selected",
+    "Display Attribute icon in " .. F.String.Menu.Armory() .. " no matter which font is selected",
 
     "* Profile updates",
     "Update the Player's Power bar to match Target" .. F.String.Sublist("It is still disabled by default"),
@@ -33,6 +34,7 @@ TXUI.Changelog["6.7.8"] = {
     "* Settings refactoring",
     "Move Talents frame scaling to Classic only",
     "Rename " .. F.String.Class("MiniMapCoords") .. " to " .. F.String.Class("Minimap Coordinates"),
+    "Add more options to " .. F.String.Menu.Armory() .. " attribute icon",
 
     "* Development improvements",
   },

@@ -871,15 +871,27 @@ function A:UpdateCharacterStat(frame, showGradient)
 
     if self.db.stats.abbreviateLabels then labelString = E:ShortenString(E.TagFunctions.Abbrev(labelString), 12) end
 
-    if self.db.stats.showIcons and self.db.stats.mode[frame.stringId] and E.db.TXUI.armory.stats.labelFont == I.Fonts.Primary then
+    if self.db.stats.showIcons and self.db.stats.mode[frame.stringId] then
+      if not frame.Icon then
+        frame.Icon = frame:CreateFontString(nil, "OVERLAY")
+        frame.Icon:SetPoint("RIGHT", frame.Label, "LEFT", 0, 0)
+        frame.Icon:SetTextColor(1, 1, 1, 1)
+      end
+
       local icon = self.db.stats.mode[frame.stringId].icon or ""
-      if icon and icon ~= "" then labelString = icon .. " " .. labelString end
+      if icon and icon ~= "" then
+        F.SetFontFromDB(self.db.stats, "icon", frame.Icon, false)
+        frame.Icon:SetText(icon)
+        F.SetFontColorFromDB(self.db.stats, "icon", frame.Icon)
+      end
+    else
+      if frame.Icon then frame.Icon:SetText("") end
     end
 
     if self:UseFontGradient(self.db.stats, "label") then
       frame.Label:SetText(F.String.FastGradient(labelString, 0, 0.6, 1, 0, 0.9, 1))
     elseif self:UseFontClassGradient(self.db.stats, "label") then
-      frame.Label:SetText(F.String.GradientClass(labelString))
+      frame.Label:SetText(F.String.GradientClass(labelString, nil, true))
     else
       frame.Label:SetText(labelString)
       F.SetFontColorFromDB(self.db.stats, "label", frame.Label)

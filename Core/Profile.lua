@@ -518,6 +518,14 @@ P.armory = {
     itemLevelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     itemLevelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
+    showIcons = true,
+    iconFont = I.Fonts.Icons,
+    iconFontSize = 14,
+    iconFontShadow = false,
+    iconFontOutline = "OUTLINE",
+    iconFontColor = "TXUI",
+    iconFontCustomColor = F.Table.HexToRGB("#ffffffff"),
+
     headerFont = I.Fonts.TitleRaid,
     headerFontSize = 14,
     headerFontShadow = false,
@@ -532,7 +540,6 @@ P.armory = {
     labelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
     labelFontCustomColor = F.Table.HexToRGB("#ffffffff"),
     abbreviateLabels = true,
-    showIcons = true,
 
     valueFont = I.Fonts.Primary,
     valueFontSize = 15,
