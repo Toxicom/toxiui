@@ -6,7 +6,7 @@ function O:Plugins_MiniMapCoords()
   self.options.misc.args.miniMapCoords = {
     order = self:GetOrder(),
     type = "group",
-    name = "MiniMapCoords",
+    name = "Minimap Coordinates",
     get = function(info)
       return E.db.TXUI.miniMapCoords[info[#info]]
     end,

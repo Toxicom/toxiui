@@ -31,6 +31,7 @@ TXUI.Changelog["6.7.8"] = {
 
     "* Settings refactoring",
     "Move Talents frame scaling to Classic only",
+    "Rename " .. F.String.Class("MiniMapCoords") .. " to " .. F.String.Class("Minimap Coordinates"),
 
     "* Development improvements",
   },
