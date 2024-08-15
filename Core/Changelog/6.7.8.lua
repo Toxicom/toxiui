@@ -13,6 +13,7 @@ TXUI.Changelog["6.7.8"] = {
     "Option to reposition sockets in " .. F.String.Menu.Armory(),
     "Increase action bars keybind width to match the button width"
       .. F.String.Sublist("Currently this option is tied to the ColorModifiers setting with no option to individually disable it."),
+    "Add more options to " .. F.String.Menu.Armory() .. " attribute icon",
 
     "* Bug fixes",
     "Fix error with Game Menu skin when background fade is disabled",
@@ -35,7 +36,6 @@ TXUI.Changelog["6.7.8"] = {
     "* Settings refactoring",
     "Move Talents frame scaling to Classic only",
     "Rename " .. F.String.Class("MiniMapCoords") .. " to " .. F.String.Class("Minimap Coordinates"),
-    "Add more options to " .. F.String.Menu.Armory() .. " attribute icon",
 
     "* Development improvements",
   },
