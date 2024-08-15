@@ -204,7 +204,7 @@ function O:Skins_ElvUI()
       type = "color",
       name = "Background Color",
       hasAlpha = false,
-      width = 1,
+      width = 1.1,
       get = self:GetFontColorGetter("TXUI.addons.gameMenuButton.backgroundFade", P.addons.gameMenuButton.backgroundFade, "color"),
       set = self:GetFontColorSetter("TXUI.addons.gameMenuButton.backgroundFade", function()
         E:StaticPopup_Show("CONFIG_RL")
@@ -213,6 +213,53 @@ function O:Skins_ElvUI()
         return not E.db.TXUI.addons.gameMenuButton.enabled
           or not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
           or E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled
+      end,
+    }
+
+    gameMenuButtonGroup.specIconStyle = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Spec Icon Style",
+      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
+      width = 1.2,
+      values = {
+        ToxiSpecColored = "Class Colored",
+        ToxiSpecColoredStroke = "Class Colored Stroke",
+        ToxiSpecStylized = "Stylized",
+        ToxiSpecWhite = "White",
+        ToxiSpecWhiteStroke = "White Stroke",
+      },
+      get = function()
+        return E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle = value
+      end,
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.enabled
+          or not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+          or not E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo
+      end,
+    }
+
+    gameMenuButtonGroup.specIconSize = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Spec Icon Size",
+      desc = "Change the size of the specialization icon.",
+      min = 8,
+      max = 64,
+      step = 1,
+      get = function()
+        return E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconSize
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconSize = value
+      end,
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuButton.enabled
+          or not E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled
+          or not E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo
       end,
     }
   end

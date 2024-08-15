@@ -260,6 +260,9 @@ P.addons = {
 
       showInfo = true,
       showTips = true,
+
+      specIconStyle = "ToxiSpecStylized",
+      specIconSize = 20,
     },
   },
 

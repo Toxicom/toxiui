@@ -6,6 +6,7 @@ TXUI.Changelog["6.7.9"] = {
     "* Breaking changes",
 
     "* New features",
+    "Spec Icon options for the Game Menu skin",
 
     "* Bug fixes",
 

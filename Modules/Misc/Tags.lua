@@ -74,19 +74,6 @@ local reverseUnitsTable = {
   ["boss8"] = true,
 }
 
-local function getCoordinates(col, row)
-  local width = 64
-  local height = 64
-
-  local x1 = (col - 1) * width
-  local x2 = col * width
-  local y1 = (row - 1) * height
-  local y2 = row * height
-
-  -- Return the formatted string
-  return format("%d:%d:%d:%d", x1, x2, y1, y2)
-end
-
 function M:SplitName(name, strMatch)
   if strMatch and strMatch ~= "" then
     -- Check if the name starts with the matching string
@@ -126,67 +113,7 @@ end
 function M:Tags()
   local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
-  local classIcon = [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\]] .. iconTheme .. [[:32:32:0:0:512:512:%s|t]]
-  -- x1:x2:y1:y2
-  local classIcons = {
-    WARRIOR = "0:64:0:64",
-    MAGE = "64:128:0:64",
-    ROGUE = "128:192:0:64",
-    DRUID = "192:256:0:64",
-    HUNTER = "0:64:64:128",
-    SHAMAN = "64:128:64:128",
-    PRIEST = "128:192:64:128",
-    WARLOCK = "192:256:64:128",
-    PALADIN = "0:64:128:192",
-    DEATHKNIGHT = "64:128:128:192",
-    MONK = "128:192:128:192",
-    DEMONHUNTER = "192:256:128:192",
-    EVOKER = "256:320:0:64",
-  }
-
-  local specIcons = {
-    -- Retail
-    [0] = getCoordinates(8, 8), -- Unknown
-    [62] = getCoordinates(3, 2), -- Mage Arcane
-    [63] = getCoordinates(4, 2), -- Mage Fire
-    [64] = getCoordinates(5, 2), -- Mage Frost
-    [65] = getCoordinates(1, 3), -- Paladin Holy
-    [66] = getCoordinates(2, 3), -- Paladin Protection
-    [70] = getCoordinates(3, 3), -- Paladin Retribution
-    [71] = getCoordinates(8, 4), -- Warrior Arms
-    [72] = getCoordinates(1, 5), -- Warrior Fury
-    [73] = getCoordinates(2, 5), -- Warrior Protection
-    [102] = getCoordinates(4, 1), -- Druid Balance
-    [103] = getCoordinates(5, 1), -- Druid Feral
-    [104] = getCoordinates(6, 1), -- Druid Guardian
-    [105] = getCoordinates(7, 1), -- Druid Restoration
-    [250] = getCoordinates(1, 1), -- Death Knight Blood
-    [251] = getCoordinates(2, 1), -- Death Knight Frost
-    [252] = getCoordinates(3, 1), -- Death Knight Unholy
-    [253] = getCoordinates(8, 1), -- Hunter Beast Master
-    [254] = getCoordinates(1, 2), -- Hunter Marksmanship
-    [255] = getCoordinates(2, 2), -- Hunter Survival
-    [256] = getCoordinates(4, 3), -- Priest Discipline
-    [257] = getCoordinates(5, 3), -- Priest Holy
-    [258] = getCoordinates(6, 3), -- Priest Shadow
-    [259] = getCoordinates(7, 3), -- Rogue Assassination
-    [260] = getCoordinates(8, 3), -- Rogue Outlaw
-    [261] = getCoordinates(1, 4), -- Rogue Subtlety
-    [262] = getCoordinates(2, 4), -- Shaman Elemental
-    [263] = getCoordinates(3, 4), -- Shaman Enhancement
-    [264] = getCoordinates(4, 4), -- Shaman Restoration
-    [265] = getCoordinates(5, 4), -- Warlock Affliction
-    [266] = getCoordinates(6, 4), -- Warlock Demonology
-    [267] = getCoordinates(7, 4), -- Warlock Destruction
-    [268] = getCoordinates(6, 2), -- Monk Brewmaster
-    [269] = getCoordinates(8, 2), -- Monk Windwalker
-    [270] = getCoordinates(7, 2), -- Monk Mistweaver
-    [577] = getCoordinates(3, 5), -- Demon Hunter Havoc
-    [581] = getCoordinates(4, 5), -- Demon Hunter Vengeance
-    [1467] = getCoordinates(5, 5), -- Evoker Devastation
-    [1468] = getCoordinates(6, 5), -- Evoker Preservation
-    [1473] = getCoordinates(7, 5), -- Evoker Augmentation
-  }
+  local iconPath = self:GetClassIconPath(iconTheme)
 
   local function SetGradientColorMapString(name, unitClass, reverseGradient)
     if not name or name == "" then return end
@@ -555,7 +482,7 @@ function M:Tags()
   E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)
     if UnitIsPlayer(unit) then
       local _, class = UnitClass(unit)
-      local icon = classIcons[class]
+      local icon = M.ClassIcons[class]
 
       if usingSpecIcons then
         local specIcon = ""
@@ -570,15 +497,15 @@ function M:Tags()
         end
 
         if iconsDb and specId then
-          icon = specIcons[specId]
+          icon = M.SpecIcons[specId]
 
-          if icon then specIcon = format(classIcon, icon) end
+          if icon then specIcon = format(iconPath, icon) end
         end
 
         return specIcon
       end
 
-      if icon then return format(classIcon, icon) end
+      if icon then return format(iconPath, icon) end
     end
   end)
 

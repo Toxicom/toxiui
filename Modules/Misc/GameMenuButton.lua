@@ -15,8 +15,6 @@ function M:GameMenuButton()
   -- Don't do anything if disabled
   if not E.db.TXUI.addons.gameMenuButton.enabled then return end
 
-  local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
-
   -- Background Fade
   if E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled then
     local backgroundFade = CreateFrame("Frame", nil, E.UIParent, "BackdropTemplate")
@@ -47,7 +45,6 @@ function M:GameMenuButton()
     if E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo then
       local primaryFont = F.GetFontPath(I.Fonts.Primary)
       local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
-      local iconsFont = F.GetFontPath(I.Fonts.Icons)
 
       -- Bottom text promotion
       backgroundFade.bottomText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -71,8 +68,6 @@ function M:GameMenuButton()
 
       backgroundFade.specIcon = backgroundFade:CreateFontString(nil, "OVERLAY")
       backgroundFade.specIcon:SetPoint("TOP", backgroundFade.guildText, "BOTTOM", 0, -25)
-      backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(20), "OUTLINE")
-      backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
 
       backgroundFade.levelText = backgroundFade:CreateFontString(nil, "OVERLAY")
       backgroundFade.levelText:SetPoint("RIGHT", backgroundFade.specIcon, "LEFT", -4, 0)
@@ -144,26 +139,33 @@ function M:GameMenuButton()
       if self.backgroundFade.guildText and self.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
 
-        local fallback = iconsDb and iconsDb[0] or ""
+        local fallback = M.SpecIcons and M.SpecIcons[0] or ""
         local specIcon
+        local iconPath = self:GetClassIconPath(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle or "ToxiSpecStylized")
+        local iconsFont = F.GetFontPath(I.Fonts.Icons)
 
         if TXUI.IsRetail then
           local _, classId = UnitClassBase("player")
           local specIndex = GetSpecialization()
           local id = GetSpecializationInfoForClassID(classId, specIndex)
 
-          if id and iconsDb then specIcon = iconsDb[id] end
+          if id and M.SpecIcons then specIcon = format(iconPath, M.SpecIcons[id]) end
         else
           local spec
           local talents = GetActiveTalentGroup()
 
           if talents then spec = SS:GetWrathCacheForSpec(talents) end
 
-          if spec.id and iconsDb then specIcon = iconsDb[spec.id] end
+          if spec.id and M.SpecIcons then specIcon = format(iconPath, M.SpecIcons[spec.id]) end
         end
 
+        F.Log.Dev(specIcon)
+
+        self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconSize), "")
+        self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
+
         self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
-        self.backgroundFade.specIcon:SetText(F.String.Class(specIcon and specIcon or fallback))
+        self.backgroundFade.specIcon:SetText(specIcon and specIcon or fallback)
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end

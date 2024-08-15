@@ -1,5 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file='Core.lua' />
+  <Script file ='Helpers.lua' />
 
   <Include file='AdditionalScaling\AdditionalScaling.xml' />
   <Script file='ChatIcon.lua' />
