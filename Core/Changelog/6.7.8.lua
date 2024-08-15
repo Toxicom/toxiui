@@ -24,6 +24,7 @@ TXUI.Changelog["6.7.8"] = {
     "Hopefully fix Skyriding Bar's wrong width",
     "Display Specialization icon in Game Menu no matter which font is selected",
     "Display Attribute icon in " .. F.String.Menu.Armory() .. " no matter which font is selected",
+    "Disable icons in the changelog if font isn't " .. F.String.ToxiUI("'- ToxiUI'"),
 
     "* Profile updates",
     "Update the Player's Power bar to match Target" .. F.String.Sublist("It is still disabled by default"),
