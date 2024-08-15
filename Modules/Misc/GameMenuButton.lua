@@ -47,6 +47,7 @@ function M:GameMenuButton()
     if E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo then
       local primaryFont = F.GetFontPath(I.Fonts.Primary)
       local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
+      local iconsFont = F.GetFontPath(I.Fonts.Icons)
 
       -- Bottom text promotion
       backgroundFade.bottomText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -68,11 +69,20 @@ function M:GameMenuButton()
       backgroundFade.guildText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
       backgroundFade.guildText:SetTextColor(1, 1, 1, 1)
 
-      -- Player Level & Class
+      backgroundFade.specIcon = backgroundFade:CreateFontString(nil, "OVERLAY")
+      backgroundFade.specIcon:SetPoint("TOP", backgroundFade.guildText, "BOTTOM", 0, -25)
+      backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(20), "OUTLINE")
+      backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
+
       backgroundFade.levelText = backgroundFade:CreateFontString(nil, "OVERLAY")
-      backgroundFade.levelText:SetPoint("TOP", backgroundFade.guildText, "BOTTOM", 0, -25)
+      backgroundFade.levelText:SetPoint("RIGHT", backgroundFade.specIcon, "LEFT", -4, 0)
       backgroundFade.levelText:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
       backgroundFade.levelText:SetTextColor(1, 1, 1, 1)
+
+      backgroundFade.classText = backgroundFade:CreateFontString(nil, "OVERLAY")
+      backgroundFade.classText:SetPoint("LEFT", backgroundFade.specIcon, "RIGHT", 4, 0)
+      backgroundFade.classText:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
+      backgroundFade.classText:SetTextColor(1, 1, 1, 1)
 
       -- Random tip
       if E.db.TXUI.addons.gameMenuButton.backgroundFade.showTips then
@@ -153,7 +163,9 @@ function M:GameMenuButton()
         end
 
         self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
-        self.backgroundFade.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass((specIcon and specIcon or fallback) .. " " .. E.myLocalizedClass, nil, true))
+        self.backgroundFade.specIcon:SetText(F.String.Class(specIcon and specIcon or fallback))
+        self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
+        self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
       self.backgroundFade:Show()
       self.backgroundFade.Animation:Stop()

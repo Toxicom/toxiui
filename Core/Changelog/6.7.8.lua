@@ -22,6 +22,7 @@ TXUI.Changelog["6.7.8"] = {
     "Fix Split name tag for UTF8 characters",
     "Fix Dark Mode toggle updating movers",
     "Hopefully fix Skyriding Bar's wrong width",
+    "Display Specialization icon in Game Menu no matter which font is selected",
 
     "* Profile updates",
     "Update the Player's Power bar to match Target" .. F.String.Sublist("It is still disabled by default"),
