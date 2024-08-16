@@ -98,7 +98,7 @@ function M:GameMenuButton()
         local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
 
         backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
-        backgroundFade.tipText:SetPoint("TOP", backgroundFade.levelText, "BOTTOM", 0, -25)
+        backgroundFade.tipText:SetPoint("TOP", backgroundFade.specIcon, "BOTTOM", 0, -25)
         backgroundFade.tipText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         backgroundFade.tipText:SetTextColor(1, 1, 1, 1)
 
