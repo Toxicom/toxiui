@@ -7,6 +7,7 @@ TXUI.Changelog["6.7.9"] = {
 
     "* New features",
     "Spec Icon options for the Game Menu skin",
+    "Add more attribute icons to " .. F.String.Menu.Armory(),
 
     "* Bug fixes",
     "Fix duplicating " .. F.String.Menu.Armory() .. " attribute icons",

@@ -583,21 +583,26 @@ P.armory = {
       },
       ARMOR = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59737),
       },
       STAGGER = {
         mode = 0,
       },
       MANAREGEN = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59739),
       },
       ENERGY_REGEN = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59739),
       },
       RUNE_REGEN = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59739),
       },
       FOCUS_REGEN = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59739),
       },
       MOVESPEED = {
         mode = 1,
@@ -616,6 +621,7 @@ P.armory = {
       },
       SPELLPOWER = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59730),
       },
       CRITCHANCE = {
         mode = 1,
@@ -635,21 +641,27 @@ P.armory = {
       },
       LIFESTEAL = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59738),
       },
       AVOIDANCE = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59740),
       },
       SPEED = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59732),
       },
       DODGE = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59740),
       },
       PARRY = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59712),
       },
       BLOCK = {
         mode = 0,
+        icon = F.String.ConvertGlyph(59683),
       },
     },
   },
