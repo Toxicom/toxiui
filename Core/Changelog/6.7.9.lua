@@ -11,6 +11,8 @@ TXUI.Changelog["6.7.9"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Update default Gradient mode textures to " .. F.String.ToxiUI("'- ToxiUI'"),
+    "Update OmniCD textures to " .. F.String.ToxiUI("'- ToxiUI'"),
 
     "* Documentation",
 

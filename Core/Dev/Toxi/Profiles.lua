@@ -55,11 +55,6 @@ function T:SetupProfile()
     E.db.TXUI.misc.scaling.wardrobe.scale = 1.3
   end
 
-  -- Class colors
-  E.db.TXUI.themes.gradientMode.textures.health = "- ToxiUI"
-  E.db.TXUI.themes.gradientMode.textures.power = "- ToxiUI"
-  E.db.TXUI.themes.gradientMode.textures.cast = "- ToxiUI"
-
   -- ElvUI
   E.db.general.taintLog = false
 
@@ -84,7 +79,7 @@ function T:SetupProfile()
   E.db.bags.bankSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bankButtonSpacing = 2
 
-  if F.IsAddOnEnabled("BetterBags") then E.private.bags.enable = false end
+  if F.IsAddOnEnabled("BetterBags") or F.IsAddOnEnabled("Sorted") then E.private.bags.enable = false end
 
   -- WindTools
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then

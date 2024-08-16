@@ -16,6 +16,7 @@ function PF:BuildOmniCDProfile()
         fonts = {
           anchor = {
             font = F.FontOverride(I.Fonts.Primary),
+            size = F.FontSizeScaled(16),
             flag = F.FontStyleOverride(I.Fonts.Primary, "OUTLINE"),
           },
           icon = {
@@ -31,8 +32,8 @@ function PF:BuildOmniCDProfile()
         },
         textures = {
           statusBar = {
-            BG = "- Tx Left",
-            bar = "- Tx Left",
+            BG = "- ToxiUI",
+            bar = "- ToxiUI",
           },
         },
       },
