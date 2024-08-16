@@ -9,6 +9,7 @@ TXUI.Changelog["6.7.9"] = {
     "Spec Icon options for the Game Menu skin",
 
     "* Bug fixes",
+    "Fix duplicating " .. F.String.Menu.Armory() .. " attribute icons",
 
     "* Profile updates",
     "Update default Gradient mode textures to " .. F.String.ToxiUI("'- ToxiUI'"),

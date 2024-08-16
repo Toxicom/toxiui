@@ -879,11 +879,10 @@ function A:UpdateCharacterStat(frame, showGradient)
       end
 
       local icon = self.db.stats.mode[frame.stringId].icon or ""
-      if icon and icon ~= "" then
-        F.SetFontFromDB(self.db.stats, "icon", frame.Icon, false)
-        frame.Icon:SetText(icon)
-        F.SetFontColorFromDB(self.db.stats, "icon", frame.Icon)
-      end
+
+      F.SetFontFromDB(self.db.stats, "icon", frame.Icon, false)
+      frame.Icon:SetText(icon)
+      F.SetFontColorFromDB(self.db.stats, "icon", frame.Icon)
     else
       if frame.Icon then frame.Icon:SetText("") end
     end
