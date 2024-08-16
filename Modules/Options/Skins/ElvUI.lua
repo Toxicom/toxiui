@@ -27,7 +27,7 @@ function O:Skins_ElvUI()
   do
     -- ElvUI Theme
     local elvuiTheme = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Theme",
+      name = TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin",
       get = function(info)
         return E.db.TXUI.addons.elvUITheme[info[#info]]
       end,
@@ -37,14 +37,14 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("Theme.SettingsUpdate")
       end,
     }, {
-      name = TXUI.Title .. " " .. F.String.ElvUI() .. " Theme applies a grain background and shadows to all " .. F.String.ElvUI() .. " elements.\n\n",
+      name = "This module applies a grain background and shadows to all " .. F.String.ElvUI() .. " elements.\n\n",
     }, I.Requirements.ElvUITheme)
 
     -- ElvUI Theme Mode Enable
     elvuiTheme["args"]["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " ElvUI Theme.",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin.",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.elvUITheme.enabled)
       end,
@@ -109,7 +109,7 @@ function O:Skins_ElvUI()
     local gameMenuButtonGroup = self:AddInlineRequirementsDesc(options, {
       name = TXUI.Title .. " Game Menu Skin",
     }, {
-      name = "This option skins the Game Menu (ESC) background with additional information.\n\n",
+      name = "This module skins the Game Menu (ESC) background with additional information.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     -- ToxiUI Game Menu Button Enable

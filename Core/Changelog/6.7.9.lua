@@ -15,6 +15,7 @@ TXUI.Changelog["6.7.9"] = {
     "Update OmniCD textures to " .. F.String.ToxiUI("'- ToxiUI'"),
 
     "* Documentation",
+    "Update descriptions and naming of " .. F.String.Menu.Skins() .. " section",
 
     "* Settings refactoring",
 
