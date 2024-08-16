@@ -19,6 +19,8 @@ TXUI.Changelog["6.7.9"] = {
     "Update descriptions and naming of " .. F.String.Menu.Skins() .. " section",
 
     "* Settings refactoring",
+    "Require UI reload when disabling ActionBars Fade to properly unhook everything",
+    "Disable ActionBars Fade if " .. F.String.ToxiUI("ElvUI_ActionBarBuddy") .. " is enabled",
 
     "* Development improvements",
   },

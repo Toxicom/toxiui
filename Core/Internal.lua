@@ -126,14 +126,15 @@ I.Requirements = {
   },
   ["VehicleBar"] = {
     I.Enum.Requirements.SL_VEHICLE_BAR_DISABLED,
-    I.Enum.Requirements.ELVUI_ACTIONBARS_DISABLED,
+    I.Enum.Requirements.ELVUI_ACTIONBARS_ENABLED,
   },
   ["MiniMapCoords"] = {
     I.Enum.Requirements.SL_MINIMAP_COORDS_DISABLED,
   },
   ["FadePersist"] = {
     I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED,
-    I.Enum.Requirements.ELVUI_ACTIONBARS_DISABLED,
+    I.Enum.Requirements.ELVUI_ACTIONBARS_ENABLED,
+    I.Enum.Requirements.AB_BUDDY_DISABLED,
   },
   ["GameMenuButton"] = {},
   ["AdditionalScaling"] = {},

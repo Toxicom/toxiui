@@ -485,7 +485,7 @@ function O:Skins_ElvUI()
       end,
       set = function(_, value)
         E.db.TXUI.addons.fadePersist.enabled = value
-        F.Event.TriggerEvent("FadePersist.DatabaseUpdate")
+        E:StaticPopup_Show("CONFIG_RL")
       end,
     }
 
