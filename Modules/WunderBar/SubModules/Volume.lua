@@ -125,7 +125,7 @@ function VL:OnInit()
   -- Enable mouse wheel support
   self.Module:EnableMouseWheel(true)
 
-  -- Dumy
+  -- Dummy
   self.dataTextDummy = WB:GetElvUIDummy()
   self.dataTextDummy.EnableMouseWheel = E.noop
   self.dataTextDummy.SetScript = function(_, event, func)
