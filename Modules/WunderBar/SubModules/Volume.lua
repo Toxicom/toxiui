@@ -1,9 +1,9 @@
-local TXUI, F, E, I, V, P, G, L = unpack((select(2, ...)))
+local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local WB = TXUI:GetModule("WunderBar")
 local VL = WB:NewModule("Volume")
 
 function VL:OnEvent(...)
-  local dtModule = WB:GetElvUIDataText(L["Volume"])
+  local dtModule = WB:GetElvUIDataText("Volume")
 
   if dtModule then
     dtModule.eventFunc(self.dataTextDummy, ...)
@@ -13,7 +13,7 @@ function VL:OnEvent(...)
 end
 
 function VL:OnClick(...)
-  local dtModule = WB:GetElvUIDataText(L["Volume"])
+  local dtModule = WB:GetElvUIDataText("Volume")
   if dtModule then dtModule.onClick(...) end
 end
 
@@ -26,7 +26,7 @@ function VL:OnEnter()
   self.mouseOver = true
   self:UpdateColor()
 
-  local dtModule = WB:GetElvUIDataText(L["Volume"])
+  local dtModule = WB:GetElvUIDataText("Volume")
   if dtModule then dtModule.onEnter() end
 end
 

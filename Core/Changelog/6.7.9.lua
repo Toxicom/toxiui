@@ -11,7 +11,6 @@ TXUI.Changelog["6.7.9"] = {
 
     "* Bug fixes",
     "Fix duplicating " .. F.String.Menu.Armory() .. " attribute icons",
-    "Fix " .. F.String.Menu.WunderBar() .. " Volume module for non-english locales" .. F.String.Sublist("Credits to Blinkii"),
 
     "* Profile updates",
     "Update default Gradient mode textures to " .. F.String.ToxiUI("'- ToxiUI'"),
