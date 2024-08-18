@@ -126,6 +126,7 @@ local doubleScaleResolutions = {
   [2054] = true,
   [2160] = true,
   [2880] = true,
+  [1971] = true,
 }
 
 local customScaleResolutions = {
