@@ -270,7 +270,7 @@ I.Data.Contributor = {
       },
     },
 
-    -- Patreon expires August 19, 2024; Remove on August 31, 2024
+    -- Joined Jul 19, 2024
     ["mrkhaglund"] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Al'Akir
@@ -289,6 +289,36 @@ I.Data.Contributor = {
         -- ShatteredHalls
         ["Torwald-ShatteredHalls"] = true,
         ["Lupin-ShatteredHalls"] = true,
+      },
+    },
+
+    -- Joined Aug 18, 2024
+    ["Dieman"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Silvermoon
+        ["Diemans-Silvermoon"] = true,
+        ["Diedk-Silvermoon"] = true,
+        ["Diesha-Silvermoon"] = true,
+        ["Diehun-Silvermoon"] = true,
+        ["Diedot-Silvermoon"] = true,
+        ["Diepri-Silvermoon"] = true,
+        ["Diedem-Silvermoon"] = true,
+        ["Dievok-Silvermoon"] = true,
+        ["Diedru-Silvermoon"] = true,
+        ["Diepal-Silvermoon"] = true,
+        ["Dierou-Silvermoon"] = true,
+        ["Diemonk-Silvermoon"] = true,
+        ["Diemag-Silvermoon"] = true,
+        ["Wëñdy-Silvermoon"] = true,
+
+        -- Nemesis
+        ["Dieman-Nemesis"] = true,
+        ["Ninjutsu-Nemesis"] = true,
+        ["Wildflame-Nemesis"] = true,
+        ["Qaelthalas-Nemesis"] = true,
+
+        -- Kazzak
+        ["Diemaster-Kazzak"] = true,
       },
     },
   },
