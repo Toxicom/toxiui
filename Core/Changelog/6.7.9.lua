@@ -26,5 +26,6 @@ TXUI.Changelog["6.7.9"] = {
 
     "* Development improvements",
     "Add extra information to using " .. TXUI.Title .. " commands without having a proper " .. TXUI.Title .. " profile",
+    "Force 1440p UI scale for 1600 height resolution (1440p 16:10)",
   },
 }
