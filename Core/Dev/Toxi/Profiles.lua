@@ -84,7 +84,7 @@ function T:SetupProfile()
   -- WindTools
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
     E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
-    E.db.WT.quest.turnIn.enable = false
+    E.db.WT.quest.turnIn.enable = true
   end
 end
 

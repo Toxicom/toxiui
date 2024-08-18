@@ -4,7 +4,6 @@ TXUI.Changelog["6.7.9"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
-    "For resolutions above 1440p, set a 0.65 UI scale to avoid non-sensical 4K resolution issues",
 
     "* New features",
     "Spec Icon options for the Game Menu skin",
