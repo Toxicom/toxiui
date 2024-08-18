@@ -225,6 +225,7 @@ function TXUI:HandleChatCommand(msg)
   elseif F.IsTXUIProfile() then
     self:LogInfo("Usage: /tx cl; changelog; install; i; settings; status; wb; debug")
   else
+    self:LogInfo("You are not using a " .. TXUI.Title .. " profile. Please install " .. TXUI.Title .. " first.")
     self:LogInfo("Usage: /tx cl; changelog; install; i; settings")
   end
 end

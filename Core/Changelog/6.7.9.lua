@@ -25,5 +25,6 @@ TXUI.Changelog["6.7.9"] = {
     "Disable ActionBars Fade if " .. F.String.ToxiUI("ElvUI_ActionBarBuddy") .. " is enabled",
 
     "* Development improvements",
+    "Add extra information to using " .. TXUI.Title .. " commands without having a proper " .. TXUI.Title .. " profile",
   },
 }
