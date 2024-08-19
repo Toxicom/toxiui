@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local AFK = TXUI:NewModule("AFK", "AceHook-3.0", "AceTimer-3.0")
 local O = TXUI:GetModule("Options")
 local CL = TXUI:GetModule("Changelog")
-local SS = TXUI:GetModule("WunderBar"):GetModule("SpecSwitch")
+local M = TXUI:GetModule("Misc")
 
 -- Globals
 local CloseAllWindows = CloseAllWindows
@@ -126,25 +126,7 @@ function AFK:SetAFK(_, status)
 
   if status and not self.elvUIAfk.isAFK then
     local guildName = GetGuildInfo("player")
-    local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
-
-    local fallback = iconsDb and iconsDb[0] or ""
-    local specIcon
-
-    if TXUI.IsRetail then
-      local _, classId = UnitClassBase("player")
-      local specIndex = GetSpecialization()
-      local id = GetSpecializationInfoForClassID(classId, specIndex)
-
-      if id and iconsDb then specIcon = iconsDb[id] end
-    else
-      local spec
-      local talents = GetActiveTalentGroup()
-
-      if talents then spec = SS:GetWrathCacheForSpec(talents) end
-
-      if spec.id and iconsDb then specIcon = iconsDb[spec.id] end
-    end
+    local specIcon, iconsFont = M:GenerateSpecIcon(E.db.TXUI.addons.afkMode.specIconStyle)
 
     self.elvUIAfk.isAFK = true
 
@@ -171,8 +153,14 @@ function AFK:SetAFK(_, status)
       self:PlayIdleAnimation()
     end)
 
+    self.frame.bottom.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.afkMode.specIconSize), "")
+    self.frame.bottom.specIcon:SetTextColor(1, 1, 1, 1)
+
     self.frame.bottom.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
-    self.frame.bottom.levelText:SetText("Lv " .. E.mylevel .. " " .. F.String.GradientClass((specIcon and specIcon or fallback) .. " " .. E.myLocalizedClass, nil, true))
+    self.frame.bottom.specIcon:SetText(specIcon)
+    self.frame.bottom.levelText:SetText("Lv " .. E.mylevel)
+    self.frame.bottom.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
+
     if self.db.playEmotes then
       self:ResetPlayedAnimations()
       self:PlayRandomAnimation()
@@ -282,11 +270,18 @@ function AFK:SetupFrames()
   self.frame.bottom.guildText:SetFont(self.primaryFont, F.FontSizeScaled(16), "OUTLINE")
   self.frame.bottom.guildText:SetTextColor(1, 1, 1, 1)
 
-  -- Player Level & Class
+  self.frame.bottom.specIcon = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.specIcon:SetPoint("TOP", self.frame.bottom.guildText, "BOTTOM", 0, -25)
+
   self.frame.bottom.levelText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
-  self.frame.bottom.levelText:SetPoint("TOP", self.frame.bottom.guildText, "BOTTOM", 0, -25)
+  self.frame.bottom.levelText:SetPoint("RIGHT", self.frame.bottom.specIcon, "LEFT", -4, 0)
   self.frame.bottom.levelText:SetFont(self.primaryFont, F.FontSizeScaled(20), "OUTLINE")
   self.frame.bottom.levelText:SetTextColor(1, 1, 1, 1)
+
+  self.frame.bottom.classText = self.frame.bottom:CreateFontString(nil, "OVERLAY")
+  self.frame.bottom.classText:SetPoint("LEFT", self.frame.bottom.specIcon, "RIGHT", 4, 0)
+  self.frame.bottom.classText:SetFont(self.primaryFont, F.FontSizeScaled(20), "OUTLINE")
+  self.frame.bottom.classText:SetTextColor(1, 1, 1, 1)
 
   -- Random tips
   if self.db.showTips then

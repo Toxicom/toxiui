@@ -219,15 +219,15 @@ function O:Skins_ElvUI()
     gameMenuButtonGroup.specIconStyle = {
       order = self:GetOrder(),
       type = "select",
-      name = "Spec Icon Style",
+      name = "Spec Icon Style " .. E.NewSign,
       desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
-      width = 1.2,
+      width = 1.5,
       values = {
-        ToxiSpecColored = "Class Colored",
-        ToxiSpecColoredStroke = "Class Colored Stroke",
-        ToxiSpecStylized = "Stylized",
-        ToxiSpecWhite = "White",
-        ToxiSpecWhiteStroke = "White Stroke",
+        ToxiSpecColored = TXUI.Title .. F.String.Class(" Class Colored "),
+        ToxiSpecColoredStroke = TXUI.Title .. F.String.Class(" Class Colored ") .. F.String.ToxiUI("[STROKE]"),
+        ToxiSpecStylized = TXUI.Title .. " Stylized",
+        ToxiSpecWhite = TXUI.Title .. " White",
+        ToxiSpecWhiteStroke = TXUI.Title .. " White " .. F.String.ToxiUI("[STROKE]"),
       },
       get = function()
         return E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle
@@ -245,7 +245,7 @@ function O:Skins_ElvUI()
     gameMenuButtonGroup.specIconSize = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spec Icon Size",
+      name = "Spec Icon Size " .. E.NewSign,
       desc = "Change the size of the specialization icon.",
       min = 8,
       max = 64,
@@ -337,6 +337,49 @@ function O:Skins_ElvUI()
       set = function(_, value)
         E.db.TXUI.addons.afkMode.showTips = value
         E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    elvuiAfkGroup.specIconStyle = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Spec Icon Style " .. E.NewSign,
+      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
+      width = 1.5,
+      values = {
+        ToxiSpecColored = TXUI.Title .. F.String.Class(" Class Colored "),
+        ToxiSpecColoredStroke = TXUI.Title .. F.String.Class(" Class Colored ") .. F.String.ToxiUI("[STROKE]"),
+        ToxiSpecStylized = TXUI.Title .. " Stylized",
+        ToxiSpecWhite = TXUI.Title .. " White",
+        ToxiSpecWhiteStroke = TXUI.Title .. " White " .. F.String.ToxiUI("[STROKE]"),
+      },
+      get = function()
+        return E.db.TXUI.addons.afkMode.specIconStyle
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.afkMode.specIconStyle = value
+      end,
+      disabled = function()
+        return not E.db.TXUI.addons.afkMode.enabled
+      end,
+    }
+
+    elvuiAfkGroup.specIconSize = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Spec Icon Size " .. E.NewSign,
+      desc = "Change the size of the specialization icon.",
+      min = 8,
+      max = 64,
+      step = 1,
+      get = function()
+        return E.db.TXUI.addons.afkMode.specIconSize
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.afkMode.specIconSize = value
+      end,
+      disabled = function()
+        return not E.db.TXUI.addons.afkMode.enabled
       end,
     }
   end

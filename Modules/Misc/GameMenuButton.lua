@@ -1,12 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
-local WB = TXUI:GetModule("WunderBar")
-local SS = WB:GetModule("SpecSwitch")
 
 local CreateFrame = CreateFrame
 local GameMenuFrame = GameMenuFrame
-local GetSpecialization = GetSpecialization
-local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
 
 function M:GameMenuButton()
   -- Don't init if its not a TXUI profile or requirements are not met
@@ -138,33 +134,7 @@ function M:GameMenuButton()
     if self.backgroundFade and self.backgroundFade.Animation then
       if self.backgroundFade.guildText and self.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
-
-        local specIcon
-        local iconPath = self:GetClassIconPath(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle or "ToxiSpecStylized")
-        local iconsFont = F.GetFontPath(I.Fonts.Icons)
-
-        if TXUI.IsRetail then
-          local _, classId = UnitClassBase("player")
-          local specIndex = GetSpecialization()
-          local id = GetSpecializationInfoForClassID(classId, specIndex)
-
-          if id and id ~= 0 and M.SpecIcons[id] then
-            specIcon = format(iconPath, M.SpecIcons[id])
-          else
-            specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
-          end
-        else
-          local spec
-          local talents = GetActiveTalentGroup()
-
-          if talents then spec = SS:GetWrathCacheForSpec(talents) end
-
-          if spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
-            specIcon = format(iconPath, M.SpecIcons[spec.id])
-          else
-            specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
-          end
-        end
+        local specIcon, iconsFont = self:GenerateSpecIcon(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle)
 
         self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconSize), "")
         self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)

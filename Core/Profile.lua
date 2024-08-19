@@ -225,6 +225,9 @@ P.addons = {
     playEmotes = true,
     showChangelog = true,
     showTips = true,
+
+    specIconStyle = "ToxiSpecStylized",
+    specIconSize = 20,
   },
 
   -- Deconstruct

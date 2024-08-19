@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, L, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
+local SS = TXUI:GetModule("WunderBar"):GetModule("SpecSwitch")
 
 local format = string.format
 
@@ -80,4 +81,35 @@ function M:GetClassIconPath(theme)
   if not theme or theme == "" then theme = "ToxiClasses" end
 
   return [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\]] .. theme .. [[:32:32:0:0:512:512:%s|t]]
+end
+
+function M:GenerateSpecIcon(dbPath)
+  local specIcon
+  local iconPath = self:GetClassIconPath(dbPath or "ToxiSpecStylized")
+  local iconsFont = F.GetFontPath(I.Fonts.Icons)
+
+  if TXUI.IsRetail then
+    local _, classId = UnitClassBase("player")
+    local specIndex = GetSpecialization()
+    local id = GetSpecializationInfoForClassID(classId, specIndex)
+
+    if id and id ~= 0 and M.SpecIcons[id] then
+      specIcon = format(iconPath, M.SpecIcons[id])
+    else
+      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+    end
+  else
+    local spec
+    local talents = GetActiveTalentGroup()
+
+    if talents then spec = SS:GetWrathCacheForSpec(talents) end
+
+    if spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
+      specIcon = format(iconPath, M.SpecIcons[spec.id])
+    else
+      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+    end
+  end
+
+  return specIcon, iconsFont
 end
