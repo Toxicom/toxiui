@@ -139,8 +139,7 @@ function M:GameMenuButton()
       if self.backgroundFade.guildText and self.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
 
-        local fallback = M.SpecIcons and M.SpecIcons[0] or ""
-        local specIcon
+        local specIcon = ""
         local iconPath = self:GetClassIconPath(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle or "ToxiSpecStylized")
         local iconsFont = F.GetFontPath(I.Fonts.Icons)
 
@@ -149,23 +148,21 @@ function M:GameMenuButton()
           local specIndex = GetSpecialization()
           local id = GetSpecializationInfoForClassID(classId, specIndex)
 
-          if id and M.SpecIcons then specIcon = format(iconPath, M.SpecIcons[id]) end
+          if id and M.SpecIcons[id] then specIcon = format(iconPath, M.SpecIcons[id]) end
         else
           local spec
           local talents = GetActiveTalentGroup()
 
           if talents then spec = SS:GetWrathCacheForSpec(talents) end
 
-          if spec.id and M.SpecIcons then specIcon = format(iconPath, M.SpecIcons[spec.id]) end
+          if spec and spec.id and M.SpecIcons[spec.id] then specIcon = format(iconPath, M.SpecIcons[spec.id]) end
         end
-
-        F.Log.Dev(specIcon)
 
         self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconSize), "")
         self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
 
         self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
-        self.backgroundFade.specIcon:SetText(specIcon and specIcon or fallback)
+        self.backgroundFade.specIcon:SetText(specIcon)
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
