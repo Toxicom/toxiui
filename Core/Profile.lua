@@ -944,7 +944,7 @@ P.wunderbar = {
 
       randomPrimaryHs = true,
       primaryHS = 6948,
-      secondaryHS = TXUI.IsRetail and 110560 or 6948,
+      secondaryHS = TXUI.IsRetail and 140192 or 6948,
       additionalHS = {},
     },
     Durability = {
