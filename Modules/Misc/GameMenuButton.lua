@@ -139,7 +139,7 @@ function M:GameMenuButton()
       if self.backgroundFade.guildText and self.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
 
-        local specIcon = ""
+        local specIcon
         local iconPath = self:GetClassIconPath(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle or "ToxiSpecStylized")
         local iconsFont = F.GetFontPath(I.Fonts.Icons)
 
