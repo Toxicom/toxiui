@@ -148,14 +148,22 @@ function M:GameMenuButton()
           local specIndex = GetSpecialization()
           local id = GetSpecializationInfoForClassID(classId, specIndex)
 
-          if id and M.SpecIcons[id] then specIcon = format(iconPath, M.SpecIcons[id]) end
+          if id and id ~= 0 and M.SpecIcons[id] then
+            specIcon = format(iconPath, M.SpecIcons[id])
+          else
+            specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+          end
         else
           local spec
           local talents = GetActiveTalentGroup()
 
           if talents then spec = SS:GetWrathCacheForSpec(talents) end
 
-          if spec and spec.id and M.SpecIcons[spec.id] then specIcon = format(iconPath, M.SpecIcons[spec.id]) end
+          if spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
+            specIcon = format(iconPath, M.SpecIcons[spec.id])
+          else
+            specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+          end
         end
 
         self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconSize), "")
