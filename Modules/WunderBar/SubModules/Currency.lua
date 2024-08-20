@@ -1,23 +1,21 @@
 local TXUI, F, E, _, _, P = unpack((select(2, ...)))
 local WB = TXUI:GetModule("WunderBar")
-local CR = WB:NewModule("Currency")
+local CR = WB:NewModule("Currency", "AceHook-3.0")
 local DT = E:GetModule("DataTexts")
 
 local _G = _G
 local BreakUpLargeNumbers = BreakUpLargeNumbers
+local C_Bank_FetchDepositedMoney = C_Bank and C_Bank.FetchDepositedMoney
 local C_CurrencyInfo_GetCurrencyInfo = C_CurrencyInfo.GetCurrencyInfo
 local C_Timer_NewTicker = C_Timer.NewTicker
 local C_WowTokenPublic_GetCurrentMarketPrice = C_WowTokenPublic and C_WowTokenPublic.GetCurrentMarketPrice
 local C_WowTokenPublic_UpdateMarketPrice = C_WowTokenPublic and C_WowTokenPublic.UpdateMarketPrice
-local C_Bank_FetchDepositedMoney = C_Bank and C_Bank.FetchDepositedMoney
 local floor = math.floor
 local format = string.format
 local GetContainerNumFreeSlots = GetContainerNumFreeSlots or (C_Container and C_Container.GetContainerNumFreeSlots)
 local GetMoney = GetMoney
 local ipairs = ipairs
-local IsControlKeyDown = IsControlKeyDown
 local IsLoggedIn = IsLoggedIn
-local IsShiftKeyDown = IsShiftKeyDown
 local mod = mod
 local pairs = pairs
 local sort = table.sort
@@ -93,40 +91,42 @@ function CR:DeleteCharacter(realm, name)
   if name == E.myname and realm == E.myrealm then self:OnEvent("ELVUI_FORCE_UPDATE") end
 end
 
-function CR:OnClick(_, button)
-  if button == "RightButton" then
-    if IsShiftKeyDown() then
-      local menuList = {}
+function CR:LeftClick()
+  ToggleAllBags()
+end
 
+function CR:ShiftRightClick()
+  local menuList = {}
+
+  tinsert(menuList, {
+    text = "Delete Character",
+    isTitle = true,
+    notCheckable = true,
+  })
+
+  for realm in pairs(_G.ElvDB.serverID[E.serverID]) do
+    for name in pairs(_G.ElvDB.gold[realm]) do
       tinsert(menuList, {
-        text = "Delete Character",
-        isTitle = true,
+        text = format("%s - %s", name, realm),
         notCheckable = true,
+        func = function()
+          CR:DeleteCharacter(realm, name)
+        end,
       })
-
-      for realm in pairs(_G.ElvDB.serverID[E.serverID]) do
-        for name in pairs(_G.ElvDB.gold[realm]) do
-          tinsert(menuList, {
-            text = format("%s - %s", name, realm),
-            notCheckable = true,
-            func = function()
-              CR:DeleteCharacter(realm, name)
-            end,
-          })
-        end
-      end
-
-      E:SetEasyMenuAnchor(E.EasyMenu, self.frame)
-      E:ComplicatedMenu(menuList, E.EasyMenu, nil, nil, nil, "MENU")
-    elseif IsControlKeyDown() then
-      self.goldProfit = 0
-      self.goldSpent = 0
-    else
-      ToggleCharacter("TokenFrame")
     end
-  else
-    ToggleAllBags()
   end
+
+  E:SetEasyMenuAnchor(E.EasyMenu, self.frame)
+  E:ComplicatedMenu(menuList, E.EasyMenu, nil, nil, nil, "MENU")
+end
+
+function CR:CtrlRightClick()
+  self.goldProfit = 0
+  self.goldSpent = 0
+end
+
+function CR:RightClick()
+  ToggleCharacter("TokenFrame")
 end
 
 function CR:OnEnter()
@@ -264,6 +264,7 @@ function CR:OnEnter()
   DT.tooltip:AddLine(" ")
   DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Bags")
   DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Currency Frame")
+  if TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift + Left Click:|r Summon Mobile Warbank") end
   DT.tooltip:AddLine("|cffFFFFFFCtrl + Right Click:|r Reset Session Data")
   DT.tooltip:AddLine("|cffFFFFFFShift + Right Click:|r Reset Character Data")
   DT.tooltip:Show()
@@ -348,8 +349,48 @@ function CR:UpdateElements()
 end
 
 function CR:CreateText()
-  local currencyText = self.frame:CreateFontString(nil, "OVERLAY")
-  local currencyIcon = self.frame:CreateFontString(nil, "OVERLAY")
+  local secureFrameHolder = CreateFrame("Button", nil, self.frame, "SecureActionButtonTemplate")
+  secureFrameHolder:ClearAllPoints()
+  secureFrameHolder:SetAllPoints()
+  secureFrameHolder:EnableMouse(true)
+  secureFrameHolder:RegisterForClicks("AnyDown")
+
+  self:HookScript(secureFrameHolder, "OnEnter", function(...)
+    WB:ModuleOnEnter(self, ...)
+  end)
+
+  self:HookScript(secureFrameHolder, "OnLeave", function(...)
+    WB:ModuleOnLeave(self, ...)
+  end)
+
+  self.secureFrame = secureFrameHolder
+
+  if TXUI.IsRetail then
+    local spellName = C_Spell.GetSpellName(460905)
+    self.secureFrame:SetAttribute("shift-type1", "spell")
+    self.secureFrame:SetAttribute("shift-spell1", spellName)
+  end
+
+  self.secureFrame:SetAttribute("type1", "function")
+  self.secureFrame:SetAttribute("_function1", function()
+    self:LeftClick()
+  end)
+  self.secureFrame:SetAttribute("type2", "function")
+  self.secureFrame:SetAttribute("_function2", function()
+    self:RightClick()
+  end)
+  self.secureFrame:SetAttribute("shift-type2", "function")
+  self.secureFrame:SetAttribute("shift-_function2", function()
+    self:ShiftRightClick()
+  end)
+  self.secureFrame:SetAttribute("ctrl-type2", "function")
+  self.secureFrame:SetAttribute("ctrl-_function2", function()
+    self:CtrlRightClick()
+  end)
+
+  local currencyText = secureFrameHolder:CreateFontString(nil, "OVERLAY")
+  local currencyIcon = secureFrameHolder:CreateFontString(nil, "OVERLAY")
+  currencyText.cooldownText = secureFrameHolder:CreateFontString(nil, "OVERLAY")
 
   currencyText:SetPoint("CENTER")
   currencyIcon:SetPoint("CENTER")
