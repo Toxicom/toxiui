@@ -32,6 +32,7 @@ I.Enum.Requirements = F.Enum {
   "ELTRUISM_COLOR_MODIFIERS_DISABLED",
   "CHARACTER_SKIN_ENABLED",
   "AB_BUDDY_DISABLED",
+  "ELTRUISM_DISABLED",
 }
 
 -- Used for F.String.Color functions

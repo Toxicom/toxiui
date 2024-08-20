@@ -137,7 +137,9 @@ I.Requirements = {
     I.Enum.Requirements.AB_BUDDY_DISABLED,
   },
   ["GameMenuButton"] = {},
-  ["AdditionalScaling"] = {},
+  ["AdditionalScaling"] = {
+    I.Enum.Requirements.ELTRUISM_DISABLED,
+  },
   ["HideFrames"] = {},
   ["RoleIcons"] = {
     I.Enum.Requirements.SL_DISABLED,

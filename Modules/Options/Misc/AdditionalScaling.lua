@@ -49,7 +49,7 @@ function O:Plugins_AdditionalScaling()
 
     -- Hidden helper
     optionsHidden = function()
-      return self:GetEnabledState(E.db.TXUI.misc.scaling.enabled, generalGroup) ~= self.enabledState.YES
+      return self:GetEnabledState(E.db.TXUI.misc.scaling.enabled, generalGroup) ~= self.enabledState.YES or not TXUI:HasRequirements(I.Requirements.AdditionalScaling)
     end
   end
 

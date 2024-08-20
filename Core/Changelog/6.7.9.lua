@@ -27,6 +27,7 @@ TXUI.Changelog["6.7.9"] = {
     "* Settings refactoring",
     "Require UI reload when disabling ActionBars Fade to properly unhook everything",
     "Disable ActionBars Fade if " .. F.String.ToxiUI("ElvUI_ActionBarBuddy") .. " is enabled",
+    "Disable " .. F.String.Scaling() .. " if EltruismUI is enabled",
 
     "* Development improvements",
     "Add extra information to using " .. TXUI.Title .. " commands without having a proper " .. TXUI.Title .. " profile",
