@@ -95,9 +95,9 @@ function F.String.WarpDeplete(msg)
 end
 
 function F.String.WindTools(msg)
-  if not msg or msg == "" then return F.String.Color("WindTools", I.Enum.Colors.WT) end
+  if not msg or msg == "" then return "|cff5385edW|r|cff5094eai|r|cff4da4e7n|r|cff4ab4e4d|r|cff47c0e1T|r|cff44cbdfo|r|cff41d7ddo|r|cff41d7ddl|r|cff41d7dds|r" end
 
-  return F.String.Color(msg, I.Enum.Colors.WT)
+  return F.String.FastGradientHex(msg, "#5385ed", "#41d7dd")
 end
 
 function F.String.ElvUI(msg)

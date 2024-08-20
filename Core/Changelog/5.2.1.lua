@@ -7,7 +7,7 @@ TXUI.Changelog["5.2.1"] = {
     F.String.Menu.Armory() .. ": Fixed an error with non-english clients",
 
     "* Profile updates",
-    "WindTools: Enable BlizzMoveFrames module",
+    F.String.WindTools() .. ": Enable BlizzMoveFrames module",
 
     "* Settings refactoring",
     "ActionBarFade: Changed description for the module",

@@ -8,9 +8,9 @@ TXUI.Changelog["5.3.2"] = {
     "AFK: Fix LUA error",
 
     "* Profile updates",
-    F.String.ElvUI("WindTools") .. ": Disable Blizzard and ElvUI Skins by default, since we provide our own",
-    F.String.ElvUI("ElvUI") .. ": Enable transparent actionbars",
-    F.String.ElvUI("ElvUI") .. ": Enable Parchment Remover",
+    F.String.WindTools() .. ": Disable Blizzard and ElvUI Skins by default, since we provide our own",
+    F.String.ElvUI() .. ": Enable transparent actionbars",
+    F.String.ElvUI() .. ": Enable Parchment Remover",
     F.String.Menu.Armory() .. ": Increase the default alpha % for background",
   },
 }

@@ -16,7 +16,7 @@ TXUI.Changelog["5.3.0"] = {
     "WunderBar now auto-hides during Pet Battles",
 
     "* Profile updates",
-    F.String.ElvUI("WindTools") .. ": Enabled Raid Marker bar",
+    F.String.WindTools() .. ": Enabled Raid Marker bar",
     "Plater: Cast Bar colors for Interrupt",
   },
 }

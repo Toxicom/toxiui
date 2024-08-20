@@ -4,6 +4,6 @@ TXUI.Changelog["5.4.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* Bug fixes",
-    " Fix " .. F.String.ElvUI("ElvUI WindTools") .. " LUA error during installer",
+    " Fix " .. F.String.WindTools() .. " LUA error during installer",
   },
 }

@@ -28,7 +28,7 @@ TXUI.Changelog["5.0.0"] = {
     "Changed Disconnected unitframe color",
     "Fix Bag Items font",
     "Reverted Chat to how it was before v4.3.5",
-    "Disable Chat Link in WindTools",
+    "Disable Chat Link in " .. F.String.WindTools(),
     "MM:SS Threshold increased to 5min",
     "Macro text enabled for Bar 1",
     "Blizz UI Widgets moved",

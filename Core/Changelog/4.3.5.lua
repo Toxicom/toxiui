@@ -7,7 +7,7 @@ TXUI.Changelog["4.3.5"] = {
     "Fixed an issue with UI scale",
 
     "* Profile updates",
-    "Disabled some announcements in WindTools",
+    "Disabled some announcements in " .. F.String.WindTools(),
     "Moved Right Chat to be above Left Chat (still testing this)",
     "Moved Battle.net toast",
     "Moved Durability frame",
