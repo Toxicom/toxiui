@@ -390,6 +390,23 @@ function O:Plugins_AdditionalScaling()
       step = 0.05,
     }
 
+    -- Retail Group: Group Finder
+    retailGroup.groupFinder = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Group Finder",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.groupFinder.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.groupFinder.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 3,
+      step = 0.05,
+    }
+
     self:AddSpacer(retailGroup)
 
     retailGroup.transmog = {

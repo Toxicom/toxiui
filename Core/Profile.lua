@@ -313,6 +313,10 @@ P.misc = {
       scale = 2,
     },
 
+    groupFinder = {
+      scale = 1,
+    },
+
     collections = {
       scale = 1,
     },

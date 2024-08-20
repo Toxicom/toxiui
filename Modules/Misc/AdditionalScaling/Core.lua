@@ -31,6 +31,7 @@ function M:AdditionalScaling()
 
       M:AddCallbackOrScale("Blizzard_Collections", self.AdjustTransmogFrame)
       M:AddCallbackOrScale("Blizzard_PlayerSpells", self.ScaleRetailSpellbook)
+      M:SetElementScale("groupFinder", "PVEFrame")
     end
 
     -- Retail & Cata scaling
