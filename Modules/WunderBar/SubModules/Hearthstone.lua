@@ -255,6 +255,7 @@ function HS:UpdateTooltip()
   DT.tooltip:AddLine(" ")
 
   self:AddHearthstoneLine(self.hsPrimary)
+  F.Log.Dev(self.hsPrimary, "hsPrimary")
   if self.hsPrimary ~= self.hsSecondary then self:AddHearthstoneLine(self.hsSecondary) end
 
   DT.tooltip:AddLine(" ")

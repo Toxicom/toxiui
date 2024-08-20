@@ -9,7 +9,7 @@ TXUI.Changelog["6.7.9"] = {
     "Spec Icon options for the Game Menu skin",
     "Spec Icon options for the AFK skin",
     "Add more attribute icons to " .. F.String.Menu.Armory(),
-    "Ability to open Mobile Warbank via " .. F.String.Menu.WunderBar() .. " Currency module" .. F.String.Sublist("No cooldown text shown yet"),
+    "Ability to open Mobile Warbank via " .. F.String.Menu.WunderBar() .. " Currency module" .. F.String.Sublist("Cooldown text in the tooltip updates only when tooltip shows up"),
     F.String.Scaling() .. " for Group Finder frame",
 
     "* Bug fixes",

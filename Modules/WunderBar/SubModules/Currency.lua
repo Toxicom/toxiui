@@ -2,6 +2,7 @@ local TXUI, F, E, _, _, P = unpack((select(2, ...)))
 local WB = TXUI:GetModule("WunderBar")
 local CR = WB:NewModule("Currency", "AceHook-3.0")
 local DT = E:GetModule("DataTexts")
+local HS = WB:GetModule("Hearthstone")
 
 local _G = _G
 local BreakUpLargeNumbers = BreakUpLargeNumbers
@@ -261,6 +262,14 @@ function CR:OnEnter()
     DT.tooltip:AddDoubleLine("Grays", E:FormatMoney(grayValue, style, true), nil, nil, nil, 1, 1, 1)
   end
 
+  -- Mobile Warbank cooldown
+  if TXUI.IsRetail then
+    local spellName = C_Spell.GetSpellName(self.warbankId)
+    DT.tooltip:AddLine(" ")
+    DT.tooltip:AddLine("Mobile Warbank")
+    HS:AddHearthstoneLine { id = self.warbankId, name = spellName, type = "spell" }
+  end
+
   DT.tooltip:AddLine(" ")
   DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Bags")
   DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Currency Frame")
@@ -366,7 +375,7 @@ function CR:CreateText()
   self.secureFrame = secureFrameHolder
 
   if TXUI.IsRetail then
-    local spellName = C_Spell.GetSpellName(460905)
+    local spellName = C_Spell.GetSpellName(self.warbankId)
     self.secureFrame:SetAttribute("shift-type1", "spell")
     self.secureFrame:SetAttribute("shift-spell1", spellName)
   end
@@ -431,6 +440,7 @@ function CR:OnInit()
   self.goldSpent = 0
   self.totalGold = 0
   self.freeBagSpace = 0
+  self.warbankId = 460905
 
   -- Create ElvDB for this toon
   self:CreateElvUIDB()
