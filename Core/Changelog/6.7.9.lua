@@ -18,6 +18,7 @@ TXUI.Changelog["6.7.9"] = {
     "* Profile updates",
     "Update default Gradient mode textures to " .. F.String.ToxiUI("'- ToxiUI'"),
     "Update OmniCD textures to " .. F.String.ToxiUI("'- ToxiUI'"),
+    "Disable Spec & Race icons for tooltips in " .. F.String.ElvUI("WindTools"),
 
     "* Documentation",
     "Update descriptions and naming of " .. F.String.Menu.Skins() .. " section",

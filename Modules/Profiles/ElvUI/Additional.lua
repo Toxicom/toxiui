@@ -124,6 +124,13 @@ function PF:ElvUIAdditional()
           enable = false,
         },
       },
+
+      tooltips = {
+        elvUITweaks = {
+          raceIcon = false,
+          specIcon = false,
+        },
+      },
     })
   end
 
