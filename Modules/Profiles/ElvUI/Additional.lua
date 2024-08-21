@@ -116,6 +116,10 @@ function PF:ElvUIAdditional()
         chatBar = {
           enable = false,
         },
+
+        contextMenu = {
+          enable = false,
+        },
       },
 
       -- Misc
