@@ -20,6 +20,7 @@ TXUI.Changelog["6.7.9"] = {
     "Update OmniCD textures to " .. F.String.ToxiUI("'- ToxiUI'"),
     "Disable Spec & Race icons for tooltips in " .. F.String.WindTools(),
     "Disable Context Menu in " .. F.String.WindTools(),
+    "Update " .. F.String.Plater() .. " mods",
 
     "* Documentation",
     "Update descriptions and naming of " .. F.String.Menu.Skins() .. " section",
