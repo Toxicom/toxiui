@@ -230,6 +230,13 @@ I.Data.Contributor = {
         ["Mojoshooter-Illidan"] = true,
       },
     },
+
+    ["tarballqc"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Velen
+        ["Tarbällqc-Velen"] = true,
+      },
+    },
   },
 
   -- RARE => Green Badge (rare supporter)
