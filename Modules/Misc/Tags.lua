@@ -606,7 +606,11 @@ function M:Tags()
       )
     end
     -- Classification
-    E:AddTagInfo("tx:classification", TagNames.GENERAL, "Displays a silver or gold " .. TXUI.Title .. " star for rare & elite monsters")
+    E:AddTagInfo(
+      "tx:classification",
+      TagNames.GENERAL,
+      "Displays a silver or gold " .. TXUI.Title .. " star for rare & elite monsters. This tag can be used only with the " .. F.String.ToxiUI("'- ToxiUI'") .. " font!"
+    )
   end
 
   -- Tag info: Names
