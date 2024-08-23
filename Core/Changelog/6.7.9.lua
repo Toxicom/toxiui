@@ -27,6 +27,7 @@ TXUI.Changelog["6.7.9"] = {
     "Add " .. F.String.Rare("Dieman") .. " to the contributors",
     "Change default secondary hearthstone to Dalaran's Hearthstone in " .. F.String.Menu.WunderBar(),
     "Add " .. F.String.Epic("tarballqc") .. " to the contributors",
+    F.String.MinElv("13.75"),
 
     "* Settings refactoring",
     "Require UI reload when disabling ActionBars Fade to properly unhook everything",
