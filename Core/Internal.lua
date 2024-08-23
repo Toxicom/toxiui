@@ -19,7 +19,7 @@ I.General = {
 I.MaxLevelTable = {
   ["Vanilla"] = 60,
   ["Cata"] = 85,
-  ["Mainline"] = 70,
+  ["Mainline"] = 80,
 }
 
 I.Fonts = {

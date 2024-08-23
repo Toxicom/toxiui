@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.7.9"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Spec Icon options for the Game Menu skin",
     "Spec Icon options for the AFK skin",
@@ -28,6 +26,7 @@ TXUI.Changelog["6.7.9"] = {
     "Change default secondary hearthstone to Dalaran's Hearthstone in " .. F.String.Menu.WunderBar(),
     "Add " .. F.String.Epic("tarballqc") .. " to the contributors",
     F.String.MinElv("13.75"),
+    "Update internal max level to 80 for Retail",
 
     "* Settings refactoring",
     "Require UI reload when disabling ActionBars Fade to properly unhook everything",
