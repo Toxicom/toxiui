@@ -61,6 +61,7 @@ function O:WunderBar_Modules_Select(group, panelName)
         TXUI:GetModule("WunderBar"):UpdatePanelSubModules()
         TXUI:GetModule("WunderBar"):UpdateBar()
       end,
+      width = 1.5,
     }
   end
 end
