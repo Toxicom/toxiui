@@ -12,6 +12,7 @@ TXUI.Changelog["6.8.0"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Add Dornogal portals to " .. F.String.Menu.WunderBar(),
 
     "* Settings refactoring",
     "Allow matching any part of the string with the " .. TXUI.Title .. " split tag",

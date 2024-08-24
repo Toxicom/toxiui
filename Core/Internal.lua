@@ -553,6 +553,7 @@ I.HearthstoneData = {
   [281404] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dazar'alor
   [344587] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Oribos
   [395277] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Valdrakken
+  [446540] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dornogal
 
   -- Mage Portals --
   [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
@@ -580,6 +581,7 @@ I.HearthstoneData = {
   [281402] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dazar'alor
   [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Oribos
   [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Valdrakken
+  [446534] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dornogal
 
   -- Other Teleportation Items/Spells --
   [37863] = { ["type"] = "item", ["hearthstone"] = false }, -- Direbrew's Remote
