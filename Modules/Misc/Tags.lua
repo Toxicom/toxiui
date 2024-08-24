@@ -74,40 +74,50 @@ local reverseUnitsTable = {
   ["boss8"] = true,
 }
 
-function M:SplitName(name, strMatch)
+function M:ReplaceAndColorRest(name, strMatch, colorFunc)
   if strMatch and strMatch ~= "" then
-    -- Check if the name starts with the matching string
-    local start = string.find(name, strMatch, 1, true)
-    if start == 1 then
-      local nameHighlight = strMatch
-      local nameRest = utf8sub(name, utf8len(strMatch) + 1)
-      return nameHighlight, nameRest
+    -- Convert both strings to lowercase for case-insensitive matching
+    local lowerName = name:lower()
+    local lowerMatch = strMatch:lower()
+
+    -- Find the start position of the match
+    local startPos, endPos = lowerName:find(lowerMatch, 1, true)
+
+    if startPos then
+      -- Keep the matched string white
+      local whiteMatch = "|cffffffff" .. name:sub(startPos, endPos) .. "|r"
+      local nameBefore = name:sub(1, startPos - 1)
+      local nameAfter = name:sub(endPos + 1)
+
+      -- Color the rest of the string
+      local coloredNameBefore = colorFunc(nameBefore)
+      local coloredNameAfter = colorFunc(nameAfter)
+
+      return coloredNameBefore .. whiteMatch .. coloredNameAfter
     end
   end
 
-  -- Count the number of spaces in the name
+  -- If no match is found, split the name and color the second half
   local spaceCount = select(2, name:gsub(" ", ""))
-  -- Adjust the split point by the number of spaces
   local splitPoint = floor(utf8len(name) / 2) + spaceCount
   local nameHighlight = utf8sub(name, 1, splitPoint)
   local nameRest = utf8sub(name, splitPoint + 1)
-  return nameHighlight, nameRest
+  return nameHighlight .. colorFunc(nameRest)
 end
 
 function M:SplitAndColorName(name, unit, strMatch, class)
-  local nameHighlight, nameRest = self:SplitName(name, strMatch)
-
-  if nameHighlight and nameRest then
+  -- Define the color function for class or reaction coloring
+  local function colorFunc(text)
     if UnitIsPlayer(unit) then
-      return nameHighlight .. F.String.Class(nameRest, class)
+      return F.String.Class(text, class)
     else
       local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-      ---@diagnostic disable-next-line: ambiguity-1
-      return nameHighlight .. (cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. nameRest) or "|cffcccccc" .. nameRest
+      return cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. text or "|cffcccccc" .. text
     end
-  else
-    return name
   end
+
+  -- Replace and color the non-matched part or split and color if no match
+  return self:ReplaceAndColorRest(name, strMatch, colorFunc)
 end
 
 function M:Tags()
