@@ -4,8 +4,9 @@ local ACH = LibStub("LibAceConfigHelper")
 
 function O:WunderBar_SubModules_System()
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.system = ACH:Group("System", nil, self:GetOrder(), nil, function(info)
+  options.system = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59718) .. " ") or "") .. "System", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules["System"][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules["System"][info[#info]] = value

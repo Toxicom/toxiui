@@ -5,8 +5,9 @@ local ACH = LibStub("LibAceConfigHelper")
 function O:WunderBar_SubModules_Time()
   local dbEntry = "Time"
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.time = ACH:Group("Time", nil, self:GetOrder(), nil, function(info)
+  options.time = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59734) .. " ") or "") .. "Time", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]] = value

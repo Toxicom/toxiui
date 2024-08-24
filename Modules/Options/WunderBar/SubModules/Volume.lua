@@ -5,8 +5,9 @@ local ACH = LibStub("LibAceConfigHelper")
 function O:WunderBar_SubModules_Volume()
   local dbEntry = "Volume"
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.volume = ACH:Group("Volume", nil, self:GetOrder(), nil, function(info)
+  options.volume = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59724) .. " ") or "") .. "Volume", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]] = value

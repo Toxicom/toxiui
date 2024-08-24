@@ -5,8 +5,9 @@ local ACH = LibStub("LibAceConfigHelper")
 function O:WunderBar_SubModules_SpecSwitch()
   local dbEntry = "SpecSwitch"
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.specswitch = ACH:Group("SpecSwitch", nil, self:GetOrder(), nil, function(info)
+  options.specswitch = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59707) .. " ") or "") .. "SpecSwitch", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]] = value

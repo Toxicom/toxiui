@@ -5,8 +5,9 @@ local ACH = LibStub("LibAceConfigHelper")
 function O:WunderBar_SubModules_Durability()
   local dbEntry = "Durability"
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.durability = ACH:Group("Durability", nil, self:GetOrder(), nil, function(info)
+  options.durability = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59721) .. " ") or "") .. "Durability", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]] = value

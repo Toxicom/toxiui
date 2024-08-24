@@ -9,8 +9,9 @@ local tostring = tostring
 function O:WunderBar_SubModules_Currency()
   local dbEntry = "Currency"
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.currency = ACH:Group("Currencies", nil, self:GetOrder(), nil, function(info)
+  options.currency = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59705) .. " ") or "") .. "Currencies", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]] = value

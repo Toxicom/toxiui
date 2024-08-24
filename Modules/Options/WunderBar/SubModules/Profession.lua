@@ -7,8 +7,9 @@ local select = select
 function O:WunderBar_SubModules_Profession()
   local dbEntry = "Profession"
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.profession = ACH:Group("Profession", nil, self:GetOrder(), nil, function(info)
+  options.profession = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59708) .. " ") or "") .. "Profession", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]] = value

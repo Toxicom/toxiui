@@ -5,8 +5,9 @@ local ACH = LibStub("LibAceConfigHelper")
 function O:WunderBar_SubModules_ElvUILDB()
   local dbEntry = "ElvUILDB"
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.elvuildb = ACH:Group("ElvUI & LDB", nil, self:GetOrder(), nil, function(info)
+  options.elvuildb = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59692) .. " ") or "") .. "ElvUI & LDB", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]] = value

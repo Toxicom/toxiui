@@ -72,8 +72,9 @@ end
 
 function O:WunderBar_SubModules_Hearthstone()
   local options = self.options.wunderbar.args.submodules.args
+  local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.hearthstone = ACH:Group("Hearthstone", nil, self:GetOrder(), nil, function(info)
+  options.hearthstone = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59717) .. " ") or "") .. "Hearthstone", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules["Hearthstone"][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules["Hearthstone"][info[#info]] = value
