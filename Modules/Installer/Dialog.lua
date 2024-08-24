@@ -113,9 +113,6 @@ function IS:Dialog()
     -- Increase size of installer frame
     installFrame:Size(1024, 512)
 
-    -- Increase installer scale for first time installations, since the fonts are small
-    if not F.IsTXUIProfile() then installFrame:SetScale(1.35) end
-
     -- Reset scripts on each page
     installFrame.Option1:SetScript("OnEnter", nil)
     installFrame.Option2:SetScript("OnEnter", nil)

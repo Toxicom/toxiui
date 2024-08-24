@@ -15,6 +15,7 @@ TXUI.Changelog["6.8.0"] = {
 
     "* Settings refactoring",
     "Allow matching any part of the string with the " .. TXUI.Title .. " split tag",
+    "Remove first time scale increase from " .. TXUI.Title .. " installer",
 
     "* Development improvements",
   },
