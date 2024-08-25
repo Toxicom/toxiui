@@ -23,5 +23,6 @@ TXUI.Changelog["6.8.0"] = {
     "Add icons to " .. F.String.Menu.WunderBar() .. " Module Settings tabs" .. F.String.Sublist("Should only be visible with the " .. F.String.ToxiUI("- ToxiUI") .. " font"),
 
     "* Development improvements",
+    "Improve functions that require a Blizzard AddOn loaded",
   },
 }

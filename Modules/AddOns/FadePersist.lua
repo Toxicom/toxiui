@@ -3,7 +3,6 @@ local FP = TXUI:NewModule("FadePersist", "AceHook-3.0")
 
 local _G = _G
 local UnitAffectingCombat = UnitAffectingCombat
-local CreateFrame = CreateFrame
 
 function FP:OnEvent(parent, event)
   -- If disabled but still hooked, call original method
@@ -114,31 +113,25 @@ function FP:Enable()
   self:SecureHook(self.ab, "DeactivateBindMode", F.Event.GenerateClosure(self.ToggleOverride, self, false, "kb"))
 
   -- Hook Macro Window on Load
-  local macroEvent = CreateFrame("Frame")
-  macroEvent:RegisterEvent("ADDON_LOADED")
-  macroEvent:SetScript("OnEvent", function(_, event, addon)
-    if event == "ADDON_LOADED" and addon == "Blizzard_MacroUI" then
-      if not TXUI:HasRequirements(I.Requirements.FadePersist) or not (self.db and self.db.enabled) then return end
+  F.Event.ContinueOnAddOnLoaded("Blizzard_MacroUI", function()
+    if not TXUI:HasRequirements(I.Requirements.FadePersist) or not (self.db and self.db.enabled) then return end
 
-      local macroFrame = _G["MacroFrame"]
-      self:SecureHookScript(macroFrame, "OnShow", F.Event.GenerateClosure(self.ToggleOverride, self, true, "macro"))
-      self:SecureHookScript(macroFrame, "OnHide", F.Event.GenerateClosure(self.ToggleOverride, self, false, "macro"))
-    end
+    local macroFrame = _G["MacroFrame"]
+    self:SecureHookScript(macroFrame, "OnShow", F.Event.GenerateClosure(self.ToggleOverride, self, true, "macro"))
+    self:SecureHookScript(macroFrame, "OnHide", F.Event.GenerateClosure(self.ToggleOverride, self, false, "macro"))
   end)
 
   -- Hook Spellbook
   if TXUI.IsRetail then
-    local eventFrame = CreateFrame("Frame")
-    eventFrame:RegisterEvent("ADDON_LOADED")
-    eventFrame:SetScript("OnEvent", function(_, event, addon)
-      if event == "ADDON_LOADED" and addon == "Blizzard_PlayerSpells" then
-        local spellBookFrame = _G["PlayerSpellsFrame"]
-        if spellBookFrame then
-          self:SecureHookScript(spellBookFrame, "OnShow", F.Event.GenerateClosure(self.ToggleOverride, self, true, "spell"))
-          self:SecureHookScript(spellBookFrame, "OnHide", F.Event.GenerateClosure(self.ToggleOverride, self, false, "spell"))
-        else
-          self:LogDebug("PlayerSpellsFrame could not be found")
-        end
+    F.Event.ContinueOnAddOnLoaded("Blizzard_PlayerSpells", function()
+      if not TXUI:HasRequirements(I.Requirements.FadePersist) or not (self.db and self.db.enabled) then return end
+
+      local spellBookFrame = _G["PlayerSpellsFrame"]
+      if spellBookFrame then
+        self:SecureHookScript(spellBookFrame, "OnShow", F.Event.GenerateClosure(self.ToggleOverride, self, true, "spell"))
+        self:SecureHookScript(spellBookFrame, "OnHide", F.Event.GenerateClosure(self.ToggleOverride, self, false, "spell"))
+      else
+        self:LogDebug("PlayerSpellsFrame could not be found")
       end
     end)
   else

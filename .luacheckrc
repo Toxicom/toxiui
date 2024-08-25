@@ -1681,6 +1681,7 @@ globals = {
   "Enum",
   "EnumerateFrames",
   "EnumerateServerChannels",
+  "EventUtil",
   "EquipCursorItem",
   "EquipItemByName",
   "EquipmentManagerClearIgnoredSlotsForSave",

@@ -2,7 +2,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
-local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
 local next = next
 local pairs = pairs
 local rawset = rawset
@@ -271,13 +270,7 @@ do
   end
 
   function F.Event.ContinueOnAddOnLoaded(addOnName, callback)
-    local _, isLoaded = IsAddOnLoaded(addOnName)
-    if isLoaded then
-      callback()
-      return
-    end
-
-    F.Event.RegisterOnceFrameEventAndCallback("ADDON_LOADED", callback, addOnName)
+    EventUtil.ContinueOnAddOnLoaded(addOnName, callback)
   end
 
   function F.Event.ContinueOutOfCombat(callback)
