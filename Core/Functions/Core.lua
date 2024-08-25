@@ -132,6 +132,7 @@ local doubleScaleResolutions = {
 local customScaleResolutions = {
   [1920] = 0.65,
   [1600] = 768 / 1440, -- This is 1440p but 16:10
+  [1900] = 768 / 1080, -- Weird ass 4k mac screen
 }
 
 function F.PixelPerfect()
