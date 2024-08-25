@@ -14,6 +14,7 @@ TXUI.Changelog["6.8.0"] = {
 
     "* Documentation",
     "Add Dornogal portals to " .. F.String.Menu.WunderBar(),
+    "Change " .. F.String.Menu.Armory() .. " quality string to require War Within achievements",
 
     "* Settings refactoring",
     "Allow matching any part of the string with the " .. TXUI.Title .. " split tag",

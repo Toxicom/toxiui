@@ -434,12 +434,12 @@ function A:UpdateItemLevel()
   end
 
   if self:UseFontGradient(self.db.stats, "itemLevel") then
-    local epicComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 18977 or 5372))
+    local epicComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 40147 or 5372))
 
     if epicComplete then
       self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.78, 0.13, 0.57, 0.42, 0.08, 0.82))
     else
-      local rareComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 18976 or 5373))
+      local rareComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 40146 or 5373))
 
       if rareComplete then
         self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.01, 0.78, 0.98, 0, 0.38, 0.90))
