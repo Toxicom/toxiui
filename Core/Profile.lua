@@ -907,11 +907,12 @@ P.wunderbar = {
 
       displayedCurrency = "GOLD", -- NEEDS to be GOLD
       enabledCurrencies = {
-        [2245] = true, -- Flightstones
-        [2812] = true, -- Aspect's Awakened Crest
-        [2807] = true, -- Drake's Awakened Crest
-        [2806] = true, -- Whelpling's Awakened Crest
-        [2809] = true, -- Wyrm's Awakened Crest
+        [3008] = true, --               Valorstones
+        [2914] = true, -- Weathered Harbinger Crest
+        [2915] = true, --    Carved Harbinger Crest
+        [2916] = true, --     Runed Harbinger Crest
+        [2917] = true, --    Gilded Harbinger Crest
+        [2815] = true, --        Resonance Crystals
       }, -- Format: [currencyID] = true,
 
       showIcon = true,
