@@ -10,6 +10,7 @@ TXUI.Changelog["6.8.0"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Increase " .. F.String.Details() .. " tooltip font size",
 
     "* Documentation",
     "Add Dornogal portals to " .. F.String.Menu.WunderBar(),
