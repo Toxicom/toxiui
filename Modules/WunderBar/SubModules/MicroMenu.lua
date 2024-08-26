@@ -12,8 +12,6 @@ local C_BattleNet_GetFriendAccountInfo = C_BattleNet.GetFriendAccountInfo
 local C_BattleNet_GetFriendGameAccountInfo = C_BattleNet.GetFriendGameAccountInfo
 local C_BattleNet_GetFriendNumGameAccounts = C_BattleNet.GetFriendNumGameAccounts
 local C_FriendList_GetNumOnlineFriends = C_FriendList.GetNumOnlineFriends
-local ChatFrame_ToggleMenu = ChatFrame_ToggleMenu
-local ChatMenu = ChatMenu
 local CloseAllWindows = CloseAllWindows
 local CloseMenus = CloseMenus
 local CreateFrame = CreateFrame
@@ -35,6 +33,7 @@ local ShowUIPanel = ShowUIPanel
 local sort = sort
 local tinsert = table.insert
 local ToggleCharacter = ToggleCharacter
+local ToggleChannelFrame = ToggleChannelFrame
 local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
@@ -331,11 +330,7 @@ MM.microMenu = {
     name = CHAT,
     click = {
       LeftButton = function()
-        if ChatMenu:IsVisible() then
-          ChatMenu:Hide()
-        else
-          ChatFrame_ToggleMenu()
-        end
+        ToggleChannelFrame()
       end,
     },
     keyBind = "TOGGLECHATTAB",

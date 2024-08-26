@@ -4309,6 +4309,7 @@ globals = {
   "ToggleBag",
   "ToggleBattlefieldMinimap",
   "ToggleCalendar",
+  "ToggleChannelFrame",
   "ToggleCharacter",
   "ToggleChatChannel",
   "ToggleChatColorNamesByClassGroup",
