@@ -98,14 +98,6 @@ function PR:ProfessionClick(prof, frame, button)
   end
 end
 
-function PR:OpenProfessionUIToSkillLine(skillLineID)
-  _G["ProfessionsFrame_LoadUI"]()
-  local currBaseProfessionInfo = C_TradeSkillUI.GetBaseProfessionInfo()
-  if currBaseProfessionInfo == nil or currBaseProfessionInfo.professionID ~= skillLineID then C_TradeSkillUI.OpenTradeSkill(skillLineID) end
-  _G["ProfessionsFrame"]:SetTab(_G["ProfessionsFrame"].recipesTabID)
-  _G["ShowUIPanel"](ProfessionsFrame)
-end
-
 function PR:ProfessionOpen(prof)
   local skillLine, name, _, _, _, extraSpellId = self:GetProfessionInfo(prof)
 
@@ -114,9 +106,9 @@ function PR:ProfessionOpen(prof)
     local isShown = _G["ProfessionsFrame"] and _G["ProfessionsFrame"]:IsShown()
 
     if isShown and currBaseProfessionInfo ~= nil and currBaseProfessionInfo.professionID == skillLine then
-      _G["ProfessionsFrame"]:CheckConfirmClose()
-    else
-      self:OpenProfessionUIToSkillLine(skillLine) -- TODO: REPLACE with global when blizz pushes beta branch to retail
+      C_TradeSkillUI.CloseTradeSkill()
+    elseif skillLine then
+      C_TradeSkillUI.OpenTradeSkill(skillLine) -- TODO: REPLACE with global when blizz pushes beta branch to retail
     end
   else
     if extraSpellId then

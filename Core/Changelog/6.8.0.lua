@@ -27,5 +27,6 @@ TXUI.Changelog["6.8.0"] = {
 
     "* Development improvements",
     "Improve functions that require a Blizzard AddOn loaded",
+    "Use updated Blizzard API to toggle professions in " .. F.String.Menu.WunderBar(),
   },
 }
