@@ -17,6 +17,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
 
   local function generateSectionLog(section, title)
     if (type(section) ~= "table") or (#section == 0) then return "" end
+    local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
     local text = ""
 
@@ -35,7 +36,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
 
       if specialCase then
         local formattedLine = F.String.ConvertGlyph(specialCase.glyph) .. " " .. line:sub(3)
-        if I.Fonts.Primary ~= "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Fonts\\ToxiUI.ttf" then formattedLine = line:sub(3) end
+        if not isUsingToxiUIFont then formattedLine = line:sub(3) end
         text = text .. "\n" .. F.String.Trim(F.String.GradientClass(formattedLine, specialCase.class)) .. "\n\n"
       elseif sub(line, 1, 2) == "* " then
         if title then
