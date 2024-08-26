@@ -331,30 +331,11 @@ function TI:OnInit()
   self.activeInfoText = {}
 
   -- Create virtual frame and connect it to datatext
-  self.timeVirtualFrame = {
-    name = "Time",
-    text = {
-      SetFormattedText = E.noop,
-    },
-    CreateAnimationGroup = function()
-      return {
-        CreateAnimation = function()
-          return {
-            SetFromAlpha = E.noop,
-            SetToAlpha = E.noop,
-            SetOrder = E.noop,
-            SetDuration = E.noop,
-          }
-        end,
-        SetScript = E.noop,
-        Play = E.noop,
-        Stop = E.noop,
-        IsPlaying = function()
-          return false
-        end,
-      }
-    end,
-  }
+  self.timeVirtualFrame = CreateFrame("Frame")
+
+  self.timeVirtualFrame.name = "Time"
+  self.timeVirtualFrame.text = { SetFormattedText = E.noop }
+
   WB:ConnectVirtualFrameToDataText("Time", self.timeVirtualFrame)
 
   self:CreateClock()

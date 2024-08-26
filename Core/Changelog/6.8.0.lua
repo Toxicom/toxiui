@@ -9,6 +9,7 @@ TXUI.Changelog["6.8.0"] = {
 
     "* Bug fixes",
     "Fix " .. F.String.Menu.WunderBar() .. " chat button in MicroMenu",
+    "Fix " .. F.String.Menu.WunderBar() .. " breaking when you have a calendar invite",
 
     "* Profile updates",
     "Increase " .. F.String.Details() .. " tooltip font size",
