@@ -822,7 +822,7 @@ P.wunderbar = {
       useAccent = true,
 
       flashColon = true,
-      flashOnInvite = false,
+      flashOnInvite = true,
 
       infoEnabled = true,
       infoFont = I.Fonts.Primary,
