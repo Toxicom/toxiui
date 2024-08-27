@@ -217,6 +217,10 @@ I.Data.Contributor = {
     ["tarballqc"] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Velen
+        ["Léajade-Velen"] = true,
+        ["Khoal-Velen"] = true,
+        ["Ève-Velen"] = true,
+        ["Bohris-Velen"] = true,
         ["Tarbällqc-Velen"] = true,
       },
     },
