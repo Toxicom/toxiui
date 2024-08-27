@@ -213,6 +213,13 @@ I.Data.Contributor = {
         ["Demonilly-Draenor"] = true,
       },
     },
+
+    ["tarballqc"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Velen
+        ["Tarbällqc-Velen"] = true,
+      },
+    },
   },
 
   -- EPIC => Purple Badge (epic supporter)
@@ -228,13 +235,6 @@ I.Data.Contributor = {
         ["Totembegone-Illidan"] = true,
         ["Andelul-Illidan"] = true,
         ["Mojoshooter-Illidan"] = true,
-      },
-    },
-
-    ["tarballqc"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Velen
-        ["Tarbällqc-Velen"] = true,
       },
     },
   },
