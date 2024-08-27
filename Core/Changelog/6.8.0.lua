@@ -27,6 +27,7 @@ TXUI.Changelog["6.8.0"] = {
       .. F.String.Sublist("Change missing text to be more clear")
       .. F.String.Sublist("Remove missing text from waist & head slot")
       .. F.String.Sublist("Add missing text for head slot in Cataclysm"),
+    F.String.MinElv("13.76"),
 
     "* Settings refactoring",
     "Allow matching any part of the string with the " .. TXUI.Title .. " split tag",
