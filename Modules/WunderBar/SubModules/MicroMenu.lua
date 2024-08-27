@@ -122,9 +122,12 @@ MM.microMenu = {
         end
       end,
     },
+    macro = {
+      RightButton = "/narci",
+    },
     keyBind = "TOGGLECHARACTER0",
     newbieTooltip = NEWBIE_TOOLTIP_CHARACTER,
-    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHARACTER0 },
+    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHARACTER0, MM.rightButtonText .. "Toggle Narcissus" },
   },
   ["pet"] = {
     available = not TXUI.IsVanilla,

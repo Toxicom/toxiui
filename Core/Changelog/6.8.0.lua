@@ -6,6 +6,7 @@ TXUI.Changelog["6.8.0"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add Narcissus macro to " .. F.String.Menu.WunderBar() .. "'s MicroMenu Character Info right click",
 
     "* Bug fixes",
     "Fix " .. F.String.Menu.WunderBar() .. " chat button in MicroMenu",
