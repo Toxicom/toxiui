@@ -95,7 +95,7 @@ A.colors = {
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
-    needsEnchant = TXUI.IsRetail and true or false,
+    needsEnchant = TXUI.IsCata, -- Reputation Arcanum's
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
@@ -161,7 +161,7 @@ A.characterSlots = {
   },
   ["WaistSlot"] = {
     id = 6,
-    needsEnchant = TXUI.IsRetail,
+    needsEnchant = false,
     needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
@@ -189,7 +189,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = false,
+    needsSocket = true,
     direction = A.enumDirection.RIGHT,
   },
   ["Finger1Slot"] = {
@@ -198,7 +198,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = false,
+    needsSocket = true,
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket0Slot"] = {
@@ -604,7 +604,18 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
 
   -- Enchant/Socket Text Handling
   if self.db.pageInfo.enchantTextEnabled and slotInfo.itemLevelColors and next(slotInfo.itemLevelColors) then
-    if slotInfo.enchantColors and next(slotInfo.enchantColors) then
+    if self.db.pageInfo.missingSocketText and slotOptions.needsSocket then
+      if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
+        local missingGemSlots = 2 - #slotInfo.gems
+        if missingGemSlots > 0 then
+          local text = format("Add %d sockets", missingGemSlots)
+          local missingColor = { F.String.FastColorGradientHex(missingGemSlots / 2, A.colors.LIGHT_GREEN, A.colors.RED) }
+          slotItem.enchantText:SetText(F.String.RGB(text, missingColor))
+        end
+      else
+        slotItem.enchantText:SetText("")
+      end
+    elseif slotInfo.enchantColors and next(slotInfo.enchantColors) then
       if slotInfo.enchantText and (slotInfo.enchantText ~= "") then
         local text = slotInfo.enchantTextShort
         -- Strip color
@@ -619,18 +630,7 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
       end
     elseif self.db.pageInfo.missingEnchantText and slotOptions.needsEnchant and not E.TimerunningID then
       if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
-        slotItem.enchantText:SetText(F.String.Error("Missing"))
-      else
-        slotItem.enchantText:SetText("")
-      end
-    elseif self.db.pageInfo.missingSocketText and slotOptions.needsSocket then
-      if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
-        local missingGemSlots = 3 - #slotInfo.gems
-        if missingGemSlots > 0 then
-          local text = format("Missing %d", missingGemSlots)
-          local missingColor = { F.String.FastColorGradientHex(missingGemSlots / 3, A.colors.LIGHT_GREEN, A.colors.RED) }
-          slotItem.enchantText:SetText(F.String.RGB(text, missingColor))
-        end
+        slotItem.enchantText:SetText(F.String.Error("Add enchant"))
       else
         slotItem.enchantText:SetText("")
       end
