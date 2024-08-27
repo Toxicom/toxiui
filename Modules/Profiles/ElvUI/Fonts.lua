@@ -119,6 +119,11 @@ function PF:ElvUIFont()
         },
       },
 
+      queueStatus = {
+        font = F.FontOverride(I.Fonts.Primary),
+        fontSize = F.FontSizeScaled(16),
+      },
+
       lootRoll = {
         nameFont = F.FontOverride(I.Fonts.Primary),
         nameFontSize = F.FontSizeScaled(14),

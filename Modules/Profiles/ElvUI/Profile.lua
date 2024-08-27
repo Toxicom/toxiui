@@ -243,6 +243,7 @@ function PF:BuildProfile()
       TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -15, 100),
       TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -35),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
+      QueueStatusMover = F.Position("BOTTOMRIGHT", "MinimapMover", "BOTTOMRIGHT", -defaultPadding * 2, defaultPadding * 2),
 
       -- Movers: ToxiUI
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[1]),
@@ -343,6 +344,11 @@ function PF:BuildProfile()
           yOffset = F.Dpi(0),
         },
       },
+    },
+
+    queueStatus = {
+      xOffset = 0,
+      yOffset = 0,
     },
 
     -- Loot Roll
