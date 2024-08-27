@@ -189,7 +189,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = true,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.RIGHT,
   },
   ["Finger1Slot"] = {
@@ -198,7 +198,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = true,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket0Slot"] = {
