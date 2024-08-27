@@ -35,6 +35,11 @@ TXUI.Changelog["6.8.0"] = {
     "Remove first time scale increase from " .. TXUI.Title .. " installer",
     "Increase width of " .. F.String.Menu.WunderBar() .. " Module Positions dropdowns",
     "Add icons to " .. F.String.Menu.WunderBar() .. " Module Settings tabs" .. F.String.Sublist("Should only be visible with the " .. F.String.ToxiUI("- ToxiUI") .. " font"),
+    "Improvements to the "
+      .. TXUI.Title
+      .. " Status Report window" --
+      .. F.String.Sublist("Increased width of main panel")
+      .. F.String.Sublist("List more AddOns in the " .. F.String.ToxiUI("A") .. "ddOns section"),
 
     "* Development improvements",
     "Improve functions that require a Blizzard AddOn loaded",
