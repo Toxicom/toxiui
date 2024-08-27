@@ -16,7 +16,6 @@ TXUI.Changelog["6.8.0"] = {
     "* Profile updates",
     "Increase " .. F.String.Details() .. " tooltip font size",
     "Reposition QueueStatusButton (LFG Eye) and fix it's fonts",
-    "Reduce backdrop fade transparency to 40%",
 
     "* Documentation",
     "Add Dornogal portals to " .. F.String.Menu.WunderBar(),
