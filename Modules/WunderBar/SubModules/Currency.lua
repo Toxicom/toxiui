@@ -130,6 +130,15 @@ function CR:RightClick()
   ToggleCharacter("TokenFrame")
 end
 
+local currencyColorTable = {
+  [3008] = _G.HEIRLOOM_BLUE_COLOR:GenerateHexColor(), --                Valorstones
+  [2914] = _G.UNCOMMON_GREEN_COLOR:GenerateHexColor(), -- Weathered Harbinger Crest
+  [2915] = _G.RARE_BLUE_COLOR:GenerateHexColor(), --         Carved Harbinger Crest
+  [2916] = _G.EPIC_PURPLE_COLOR:GenerateHexColor(), --        Runed Harbinger Crest
+  [2917] = _G.LEGENDARY_ORANGE_COLOR:GenerateHexColor(), --  Gilded Harbinger Crest
+  [3028] = _G.ARTIFACT_GOLD_COLOR:GenerateHexColor(), --        Restored Coffer Key
+}
+
 function CR:OnEnter()
   WB:SetFontAccentColor(self.currencyText)
   if self.db.showIcon then WB:SetFontAccentColor(self.currencyIcon) end
@@ -232,8 +241,10 @@ function CR:OnEnter()
         -- Get Icon Texture
         local iconTexture = currencyInfo.iconFileID and format("|T%s:16:16:0:0:64:64:4:60:4:60|t", currencyInfo.iconFileID) or format("|T%s:16:16:0:0:64:64:4:60:4:60|t", "136012")
 
+        local name = currencyInfo.name
+        if currencyColorTable[currencyIndex] then name = "|c" .. currencyColorTable[currencyIndex] .. name .. "|r" end
         -- Format name
-        local leftLine = format("%s %s", iconTexture, currencyInfo.name)
+        local leftLine = format("%s %s", iconTexture, name)
 
         -- Format quantity
         local rightLine

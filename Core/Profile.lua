@@ -913,6 +913,7 @@ P.wunderbar = {
         [2916] = true, --     Runed Harbinger Crest
         [2917] = true, --    Gilded Harbinger Crest
         [2815] = true, --        Resonance Crystals
+        [3028] = true, --       Restored Coffer Key
       }, -- Format: [currencyID] = true,
 
       showIcon = true,
