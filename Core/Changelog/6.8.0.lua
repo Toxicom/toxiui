@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.8.0"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add Narcissus macro to " .. F.String.Menu.WunderBar() .. "'s MicroMenu Character Info right click",
     "Add colors to some of the War Within currencies in " .. F.String.Menu.WunderBar(),
