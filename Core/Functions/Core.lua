@@ -131,7 +131,6 @@ local doubleScaleResolutions = {
 
 local customScaleResolutions = {
   [1920] = 0.65,
-  [1600] = 768 / 1440, -- This is 1440p but 16:10
 }
 
 function F.PixelPerfect()

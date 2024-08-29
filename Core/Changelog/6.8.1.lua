@@ -12,6 +12,7 @@ TXUI.Changelog["6.8.1"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Revert the 1600 height custom scale",
 
     "* Settings refactoring",
 
