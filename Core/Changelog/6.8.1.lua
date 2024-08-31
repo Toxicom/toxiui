@@ -6,6 +6,7 @@ TXUI.Changelog["6.8.1"] = {
     "* Breaking changes",
 
     "* New features",
+    "Option to open Professions Frame via " .. F.String.Menu.WunderBar() .. " MicroMenu",
 
     "* Bug fixes",
 

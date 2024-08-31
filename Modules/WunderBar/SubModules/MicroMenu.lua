@@ -262,10 +262,13 @@ MM.microMenu = {
           ToggleFrame(_G.SpellBookFrame)
         end
       end,
+
+      -- On Vanilla & Cataclysm the professions are part of the spellbook
+      RightButton = TXUI.IsRetail and _G.ProfessionMicroButton.OnClick or E.noop,
     },
     keyBind = "TOGGLESPELLBOOK",
     newbieTooltip = NEWBIE_TOOLTIP_SPELLBOOK,
-    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLESPELLBOOK },
+    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLESPELLBOOK, TXUI.IsRetail and MM.rightButtonText .. BINDING_NAME_TOGGLEPROFESSIONBOOK or nil },
   },
   ["talent"] = {
     name = TALENTS_BUTTON,
