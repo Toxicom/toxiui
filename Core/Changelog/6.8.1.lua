@@ -10,6 +10,7 @@ TXUI.Changelog["6.8.1"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Update Plater mods",
 
     "* Documentation",
     "Revert the 1600 height custom scale",
