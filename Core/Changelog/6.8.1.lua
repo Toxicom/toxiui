@@ -7,6 +7,7 @@ TXUI.Changelog["6.8.1"] = {
 
     "* New features",
     "Option to open Professions Frame via " .. F.String.Menu.WunderBar() .. " MicroMenu",
+    "Hearthstone module right-click opens Tome of Teleportation if that AddOn is enabled",
 
     "* Bug fixes",
 

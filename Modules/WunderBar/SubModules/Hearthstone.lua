@@ -215,7 +215,15 @@ function HS:UpdateSelected()
 
   -- Set Types
   self.secureFrame:SetAttribute("type1", self.hsPrimary.type)
-  self.secureFrame:SetAttribute("type2", self.hsSecondary.type)
+  if F.IsAddOnEnabled("TomeOfTeleportation") then
+    self.secureFrame:SetAttribute("type2", "function")
+    self.secureFrame:SetAttribute("_function2", function()
+      -- @todo: change to toggle whenever Tome of Teleportation adds it
+      _G.TeleporterOpenFrame()
+    end)
+  else
+    self.secureFrame:SetAttribute("type2", self.hsSecondary.type)
+  end
 
   if self.hsMythics and not F.Table.IsEmpty(self.hsMythics) then
     self.secureFrame:SetAttribute("shift-type1", "function")
@@ -290,7 +298,12 @@ function HS:UpdateTooltip()
   if self.hsPrimary and self.hsPrimary.name then DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Cast " .. self.hsPrimary.name) end
 
   -- Secondary
-  if self.hsSecondary and self.hsSecondary.name then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name) end
+  if F.IsAddOnEnabled("TomeOfTeleportation") then
+    -- @todo: change to toggle whenever Tome of Teleportation adds it
+    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Tome of Teleporation")
+  elseif self.hsSecondary and self.hsSecondary.name then
+    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name)
+  end
 
   -- Shift-Primary for Mythic+ Teleports
   if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end

@@ -134,8 +134,12 @@ function O:WunderBar_SubModules_Hearthstone()
   local primaryHsDisabled = function()
     return E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHs
   end
+  local tomeOfTeleportationEnabled = function()
+    return F.IsAddOnEnabled("TomeOfTeleportation")
+  end
+
   self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 2, "primaryHS", primaryHsDisabled)
-  self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 3, "secondaryHS")
+  self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 3, "secondaryHS", tomeOfTeleportationEnabled)
 
   -- Sort hearthstone selects by value
   tab.hearthstoneGroup.args.primaryHS.sortByValue = true
