@@ -120,7 +120,7 @@ function O:WunderBar_SubModules_Hearthstone()
   tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 2)
   tab.hearthstoneGroup.inline = true
   tab.hearthstoneGroup.args.randomPrimaryHs = ACH:Toggle(
-    "Randomize Primary Hearthstone\n\n",
+    "Randomize Primary Hearthstone",
     "Enabling this will randomize the selected Hearthstone toy each time you reload your UI. It will not pick Dalaran or Garrison hearthstones, class teleports, covenant stones.",
     1,
     nil,
