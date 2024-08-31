@@ -49,6 +49,8 @@ function O:WunderBar_SubModules_Hearthstone_Select(group, order, name, disabled)
             names[option.id] = F.String.Class(classNames["MAGE"] .. ": ", "MAGE") .. option.name
           elseif option.mythic then
             names[option.id] = F.String.Class("Mythic: ", "DEMONHUNTER") .. option.name
+          elseif option.covenant then
+            names[option.id] = F.String.Class("Covenant: ", "MONK") .. option.name
           elseif not option.class then
             names[option.id] = option.name
           end
@@ -118,12 +120,12 @@ function O:WunderBar_SubModules_Hearthstone()
   tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 2)
   tab.hearthstoneGroup.inline = true
   tab.hearthstoneGroup.args.randomPrimaryHs = ACH:Toggle(
-    "Randomize Primary Hearthstone",
+    "Randomize Primary Hearthstone\n\n",
     "Enabling this will randomize the selected Hearthstone toy each time you reload your UI. It will not pick Dalaran or Garrison hearthstones, class teleports, covenant stones.",
     1,
     nil,
     nil,
-    nil,
+    2,
     nil,
     nil,
     nil,

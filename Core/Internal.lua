@@ -401,10 +401,10 @@ I.HearthstoneData = {
   [166747] = { ["type"] = "toy", ["hearthstone"] = true }, -- Brewfest Reveler's Hearthstone
   [168907] = { ["type"] = "toy", ["hearthstone"] = true }, -- Holographic Digitalization Hearthstone
   [172179] = { ["type"] = "toy", ["hearthstone"] = true }, -- Eternal Traveler's Hearthstone
-  [180290] = { ["type"] = "toy", ["hearthstone"] = true }, -- Night Fae Hearthstone
-  [182773] = { ["type"] = "toy", ["hearthstone"] = true }, -- Necrolord Hearthstone
-  [183716] = { ["type"] = "toy", ["hearthstone"] = true }, -- Venthyr Sinstone
-  [184353] = { ["type"] = "toy", ["hearthstone"] = true }, -- Kyrian Hearthstone
+  [180290] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = true }, -- Night Fae Hearthstone
+  [182773] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = true }, -- Necrolord Hearthstone
+  [183716] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = true }, -- Venthyr Sinstone
+  [184353] = { ["type"] = "toy", ["hearthstone"] = true, ["covenant"] = true }, -- Kyrian Hearthstone
   [188952] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dominated Hearthstone
   [190237] = { ["type"] = "toy", ["hearthstone"] = true }, -- Broker Translocation Matrix
   [193588] = { ["type"] = "toy", ["hearthstone"] = true }, -- Timewalker's Hearthstone
