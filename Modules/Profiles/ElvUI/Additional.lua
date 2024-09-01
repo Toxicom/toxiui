@@ -74,6 +74,12 @@ function PF:ElvUIAdditional()
         whoClicked = {
           enable = false,
         },
+
+        eventTracker = {
+          font = {
+            scale = 0.7,
+          },
+        },
       },
 
       -- Quest

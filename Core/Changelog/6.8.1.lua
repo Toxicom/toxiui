@@ -13,6 +13,7 @@ TXUI.Changelog["6.8.1"] = {
 
     "* Profile updates",
     "Update Plater mods",
+    "Reduce " .. F.String.WindTools() .. " map event tracker font scale",
 
     "* Documentation",
     "Revert the 1600 height custom scale",
