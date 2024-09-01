@@ -22,6 +22,7 @@ TXUI.Changelog["6.8.1"] = {
       .. " Hearthstone module"
       .. F.String.Sublist("IDs are taken from Wowhead beta, so they might change when M+ releases"),
     "Covenant hearthstones now have a prefix in the hearthstone select dropdown",
+    "Show more AddOns in " .. F.String.Menu.WunderBar() .. " MicroMenu " .. TXUI.Title .. " button tooltip",
 
     "* Settings refactoring",
 
