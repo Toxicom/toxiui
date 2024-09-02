@@ -250,23 +250,20 @@ P.addons = {
   },
 
   -- Game Menu Button
-  gameMenuButton = {
+  gameMenuSkin = {
     enabled = true, -- Enabled by default
 
-    backgroundFade = {
-      enabled = true,
-      color = F.Table.HexToRGB("#000000"),
+    color = F.Table.HexToRGB("#000000"),
 
-      classColor = {
-        enabled = false,
-      },
-
-      showInfo = true,
-      showTips = true,
-
-      specIconStyle = "ToxiSpecStylized",
-      specIconSize = 20,
+    classColor = {
+      enabled = false,
     },
+
+    showInfo = true,
+    showTips = true,
+
+    specIconStyle = "ToxiSpecStylized",
+    specIconSize = 20,
   },
 
   -- Fade Persist

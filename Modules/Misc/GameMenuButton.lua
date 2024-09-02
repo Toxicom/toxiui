@@ -9,10 +9,10 @@ function M:GameMenuButton()
   if not TXUI:HasRequirements(I.Requirements.GameMenuButton) then return end
 
   -- Don't do anything if disabled
-  if not E.db.TXUI.addons.gameMenuButton.enabled then return end
+  if not E.db.TXUI.addons.gameMenuSkin.enabled then return end
 
   -- Background Fade
-  if E.db.TXUI.addons.gameMenuButton.backgroundFade.enabled then
+  if E.db.TXUI.addons.gameMenuSkin.enabled then
     local backgroundFade = CreateFrame("Frame", nil, E.UIParent, "BackdropTemplate")
     backgroundFade:SetAllPoints(E.UIParent)
     backgroundFade:SetFrameStrata("HIGH")
@@ -21,10 +21,10 @@ function M:GameMenuButton()
 
     local bgColor
 
-    if E.db.TXUI.addons.gameMenuButton.backgroundFade.classColor.enabled then
+    if E.db.TXUI.addons.gameMenuSkin.classColor.enabled then
       bgColor = E:ClassColor(E.myclass, true)
     else
-      bgColor = E.db.TXUI.addons.gameMenuButton.backgroundFade.color
+      bgColor = E.db.TXUI.addons.gameMenuSkin.color
     end
 
     backgroundFade.bg = backgroundFade:CreateTexture(nil, "BACKGROUND")
@@ -38,7 +38,7 @@ function M:GameMenuButton()
     backgroundFade.logo:Point("TOP", 0, -100)
 
     -- Player information texts
-    if E.db.TXUI.addons.gameMenuButton.backgroundFade.showInfo then
+    if E.db.TXUI.addons.gameMenuSkin.showInfo then
       local primaryFont = F.GetFontPath(I.Fonts.Primary)
       local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
 
@@ -76,7 +76,7 @@ function M:GameMenuButton()
       backgroundFade.classText:SetTextColor(1, 1, 1, 1)
 
       -- Random tip
-      if E.db.TXUI.addons.gameMenuButton.backgroundFade.showTips then
+      if E.db.TXUI.addons.gameMenuSkin.showTips then
         -- I have a suspicion that if it's defined outside it can cause gradient issues, not sure
         local randomTips = I.Constants.RandomTips
 
@@ -134,9 +134,9 @@ function M:GameMenuButton()
     if self.backgroundFade and self.backgroundFade.Animation then
       if self.backgroundFade.guildText and self.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
-        local specIcon, iconsFont = self:GenerateSpecIcon(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconStyle)
+        local specIcon, iconsFont = self:GenerateSpecIcon(E.db.TXUI.addons.gameMenuSkin.specIconStyle)
 
-        self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuButton.backgroundFade.specIconSize), "")
+        self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuSkin.specIconSize), "")
         self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
 
         self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")

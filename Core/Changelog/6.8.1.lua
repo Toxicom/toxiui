@@ -27,6 +27,7 @@ TXUI.Changelog["6.8.1"] = {
     "Show more AddOns in " .. F.String.Menu.WunderBar() .. " MicroMenu " .. TXUI.Title .. " button tooltip",
 
     "* Settings refactoring",
+    "Simplify the Game Menu Skin options, since we no longer add the button to the menu",
 
     "* Development improvements",
   },
