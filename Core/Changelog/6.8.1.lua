@@ -14,6 +14,7 @@ TXUI.Changelog["6.8.1"] = {
 
     "* Profile updates",
     "Update Plater mods",
+    "Add more debuffs to manual tracking in Plater",
     "Reduce " .. F.String.WindTools() .. " map event tracker font scale",
 
     "* Documentation",
