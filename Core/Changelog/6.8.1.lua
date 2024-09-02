@@ -28,6 +28,7 @@ TXUI.Changelog["6.8.1"] = {
 
     "* Settings refactoring",
     "Simplify the Game Menu Skin options, since we no longer add the button to the menu",
+    "Add extra information to the ActionBar Fade module",
 
     "* Development improvements",
   },

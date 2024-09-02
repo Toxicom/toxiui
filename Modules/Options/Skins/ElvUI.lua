@@ -488,7 +488,9 @@ function O:Skins_ElvUI()
     }, {
       name = "This option controls your ActionBars visibility.\n\n"
         .. F.String.ToxiUI("Information: ")
-        .. "The \"Show in Vehicles\" option is disabled and has no effect if you have VehicleBar enabled or you have set the Mode to \"ElvUI Default\"!\n\n",
+        .. "The \"Show in Vehicles\" option is disabled and has no effect if you have VehicleBar enabled or you have set the Mode to \"ElvUI Default\"!\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "Disabling this module will still not show Action Bars, as they are also faded out in the default ElvUI settings. We recommend using one of the available dropdown options.\n\n",
     }, I.Requirements.FadePersist).args
 
     -- ElvUI Global Fade Persist Enable
