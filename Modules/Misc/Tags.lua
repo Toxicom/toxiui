@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, L, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
-local LOR = LibStub:GetLibrary("LibOpenRaid-1.0", true)
+-- local LOR = LibStub:GetLibrary("LibOpenRaid-1.0", true)
 
 local ipairs = ipairs
 local select = select
