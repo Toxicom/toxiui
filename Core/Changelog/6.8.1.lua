@@ -11,6 +11,7 @@ TXUI.Changelog["6.8.1"] = {
     "Dynamic tooltip for " .. F.String.Menu.WunderBar() .. " Currency" .. F.String.Sublist("Credits to ") .. F.String.Color("Jake", "0070de"),
 
     "* Bug fixes",
+    "Temporarily remove LibOpenRaid to fix spec icons not updating",
 
     "* Profile updates",
     "Update Plater mods",

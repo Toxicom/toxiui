@@ -497,14 +497,15 @@ function M:Tags()
       if usingSpecIcons then
         local specIcon = ""
         local specId = nil
-        local info = LOR and LOR.GetUnitInfo(unit) or nil
+        -- LibOpenRaid seems to be bugged right now and doesn't correctly update specialization
+        -- local info = LOR and LOR.GetUnitInfo(unit) or nil
 
-        if info and info.specId ~= 0 then
-          specId = info.specId
-        else
-          info = E:GetUnitSpecInfo(unit)
-          if info and info.id then specId = info.id end
-        end
+        -- if info and info.specId ~= 0 then
+        --   specId = info.specId
+        -- else
+        local info = E:GetUnitSpecInfo(unit)
+        if info and info.id then specId = info.id end
+        -- end
 
         if iconsDb and specId then
           icon = M.SpecIcons[specId]
