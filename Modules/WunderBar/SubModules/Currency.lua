@@ -28,6 +28,15 @@ local unpack = unpack
 local CURRENCY = CURRENCY
 local NUM_BAG_SLOTS = NUM_BAG_SLOTS
 
+function CR:OnUpdate(elapsed)
+  self.updateWait = self.updateWait - elapsed
+  if self.updateWait > 0 then return end
+
+  if self.mouseOver then self:UpdateTooltip() end
+
+  self.updateWait = 1
+end
+
 function CR:OnEvent(event)
   -- otherwise our gold is sometimes 0, what the actual fuck
   if not IsLoggedIn() then return end
@@ -143,6 +152,17 @@ function CR:OnEnter()
   WB:SetFontAccentColor(self.currencyText)
   if self.db.showIcon then WB:SetFontAccentColor(self.currencyIcon) end
 
+  self:UpdateTooltip()
+  self.mouseOver = true
+end
+
+function CR:OnLeave()
+  self.mouseOver = false
+  self:UpdateFonts()
+end
+
+function CR:UpdateTooltip()
+  DT.tooltip:ClearLines()
   DT.tooltip:AddLine(CURRENCY)
   DT.tooltip:AddLine(" ")
 
@@ -288,10 +308,6 @@ function CR:OnEnter()
   DT.tooltip:AddLine("|cffFFFFFFCtrl + Right Click:|r Reset Session Data")
   DT.tooltip:AddLine("|cffFFFFFFShift + Right Click:|r Reset Character Data")
   DT.tooltip:Show()
-end
-
-function CR:OnLeave()
-  self:UpdateFonts()
 end
 
 function CR:OnWunderBarUpdate()
@@ -452,6 +468,8 @@ function CR:OnInit()
   self.totalGold = 0
   self.freeBagSpace = 0
   self.warbankId = 460905
+  self.updateWait = 0
+  self.mouseOver = false
 
   -- Create ElvDB for this toon
   self:CreateElvUIDB()
