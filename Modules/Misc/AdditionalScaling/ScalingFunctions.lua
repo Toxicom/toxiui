@@ -38,7 +38,25 @@ function M:ScaleCatalyst()
 end
 
 function M:ScaleProfessions()
-  M:SetElementScale("profession", "TradeSkillFrame")
+  if TXUI.IsRetail then
+    E:Delay(0.01, function()
+      local isHooked = M.hookedFrames["profession"] == true
+      if not isHooked then
+        -- Scale initially
+        M:SetElementScale("profession", "ProfessionsFrame")
+
+        -- Then hook each show. Idk why this frame needs this fucking special treatment
+        local frame = _G["ProfessionsFrame"]
+        frame:HookScript("OnShow", function()
+          M:SetElementScale("profession", "ProfessionsFrame")
+        end)
+
+        M.hookedFrames["profession"] = true
+      end
+    end)
+  else
+    M:SetElementScale("profession", "TradeSkillFrame")
+  end
 end
 
 function M:ScaleClassTrainer()

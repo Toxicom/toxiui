@@ -5,6 +5,8 @@ function M:AdditionalScaling()
   -- Don't init if its not a TXUI profile or requirements are not met
   if not TXUI:HasRequirements(I.Requirements.AdditionalScaling) then return end
 
+  self.hookedFrames = {}
+
   -- check if database is present
   if E.db and E.db.TXUI then
     if not E.db.TXUI.misc.scaling.enabled then return end
@@ -31,6 +33,7 @@ function M:AdditionalScaling()
 
       M:AddCallbackOrScale("Blizzard_Collections", self.AdjustTransmogFrame)
       M:AddCallbackOrScale("Blizzard_PlayerSpells", self.ScaleRetailSpellbook)
+      M:AddCallbackOrScale("Blizzard_Professions", self.ScaleProfessions)
       M:SetElementScale("groupFinder", "PVEFrame")
     end
 
