@@ -207,7 +207,7 @@ function VB:UpdateBar()
   -- Only run after first creation
   if init then
     -- Create Mover
-    E:CreateMover(bar, "ToxiUIVehicleBar", TXUI.Title .. " Vehicle Bar")
+    E:CreateMover(bar, "ToxiUIVehicleBar", TXUI.Title .. " Vehicle Bar", nil, nil, nil, nil, nil, "TXUI,misc,vehicleBar")
 
     -- Force update
     for _, button in pairs(bar.buttons) do

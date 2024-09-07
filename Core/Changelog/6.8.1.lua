@@ -10,6 +10,7 @@ TXUI.Changelog["6.8.1"] = {
     "Hearthstone module right-click opens Tome of Teleportation if that AddOn is enabled",
     "Dynamic tooltip for " .. F.String.Menu.WunderBar() .. " Currency" .. F.String.Sublist("Credits to ") .. F.String.Color("Jake", "0070de"),
     F.String.Scaling() .. " for Retail Professions frame",
+    "Right-clicking the " .. TXUI.Title .. " VehicleBar Mover will open it's settings",
 
     "* Bug fixes",
     "Temporarily remove LibOpenRaid to fix spec icons not updating",
