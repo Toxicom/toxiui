@@ -13,6 +13,7 @@ TXUI.Changelog["6.8.1"] = {
 
     "* Bug fixes",
     "Temporarily remove LibOpenRaid to fix spec icons not updating",
+    "Improve ActionBar Fade 'Show in Vehicles' option for Skyriding",
 
     "* Profile updates",
     "Update Plater mods",

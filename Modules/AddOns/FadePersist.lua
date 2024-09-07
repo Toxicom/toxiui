@@ -3,8 +3,10 @@ local FP = TXUI:NewModule("FadePersist", "AceHook-3.0")
 
 local _G = _G
 local UnitAffectingCombat = UnitAffectingCombat
+local IsPossessBarVisible, HasOverrideActionBar = IsPossessBarVisible, HasOverrideActionBar
 
-function FP:OnEvent(parent, event)
+local canGlide = false
+function FP:OnEvent(parent, event, arg1)
   -- If disabled but still hooked, call original method
   if not self.db.enabled or (self.db.mode == "ELVUI") then
     self.hooks[parent].OnEvent(parent, event)
@@ -24,9 +26,9 @@ function FP:OnEvent(parent, event)
 
     -- If vehicle bar is disabled we want to see bars in vehicle
     if not E.db.TXUI.vehicleBar.enabled and self.db.showInVehicles then
-      if F.IsSkyriding() then fadeIn = true end
+      if event == "PLAYER_CAN_GLIDE_CHANGED" then canGlide = arg1 end
 
-      if UnitInVehicle("player") then fadeIn = true end
+      if canGlide or UnitInVehicle("player") or IsPossessBarVisible() or HasOverrideActionBar() then fadeIn = true end
     end
   end
 
