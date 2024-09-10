@@ -55,7 +55,30 @@ function PF:ElvUIAdditional()
         },
 
         extraItemsBar = {
-          enable = false,
+          enable = true,
+
+          bar1 = {
+            alphaMax = 1,
+            alphaMin = 0.5,
+            anchor = "BOTTOMRIGHT",
+            backdropSpacing = 2,
+            buttonHeight = 30,
+            buttonsPerRow = 2,
+            buttonWidth = 40,
+            enable = true,
+            include = "QUEST,OPENABLE,DELVE",
+            mouseOver = true,
+            numButtons = 8,
+            spacing = 2,
+          },
+
+          bar2 = {
+            enable = false,
+          },
+
+          bar3 = {
+            enable = false,
+          },
         },
 
         delete = {

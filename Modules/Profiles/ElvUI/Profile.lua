@@ -224,7 +224,7 @@ function PF:BuildProfile()
 
       -- Movers: Chat
       LeftChatMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", defaultPadding, 60),
-      RightChatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -defaultPadding, 60),
+      RightChatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -defaultPadding, 45),
 
       -- Movers: Bags
       ElvUIBagMover = F.Position("BOTTOMLEFT", "RightChatMover", "TOPLEFT", 0, defaultPadding),
@@ -240,7 +240,7 @@ function PF:BuildProfile()
       GMMover = F.Position("TOPRIGHT", "BNETMover", "BOTTOMRIGHT", 0, -defaultPadding),
       MinimapMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -defaultPadding, -defaultPadding),
       ObjectiveFrameMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -70, -270),
-      TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -15, 100),
+      TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -15, 115),
       TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -35),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
       QueueStatusMover = F.Position("BOTTOMRIGHT", "MinimapMover", "BOTTOMRIGHT", -defaultPadding * 2, defaultPadding * 2),
@@ -255,6 +255,7 @@ function PF:BuildProfile()
       ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -280, 317),
       HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -573, -422),
       WTRaidMarkerBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -325, -4),
+      WTExtraItemsBar1Mover = F.Position("BOTTOMRIGHT", "RightChatMover", "BOTTOMLEFT", -defaultPadding, 0),
 
       -- Movers: ActionBars Retail Only
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -300, 200),

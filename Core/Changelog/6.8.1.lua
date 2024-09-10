@@ -20,6 +20,7 @@ TXUI.Changelog["6.8.1"] = {
     F.String.Plater() .. ": Update mods",
     F.String.Plater() .. ": Add more debuffs to manual tracking",
     F.String.WindTools() .. ": Reduce map event tracker font scale",
+    F.String.WindTools() .. ": Enable Extra Items Bar for Quest items, Openable items & Delve items",
 
     "* Documentation",
     "Revert the 1600 height custom scale",
