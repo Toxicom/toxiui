@@ -7,6 +7,24 @@ function O:WunderBar_SubModules_Durability()
   local options = self.options.wunderbar.args.submodules.args
   local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
+  local getMounts = function()
+    local repairMounts = {}
+
+    local mountIDs = {
+      2237, -- Grizzly Hills Packmaster
+      460, -- Grand Expedition Yak
+      257, -- Wooly Mammoth
+    }
+
+    for _, mountID in ipairs(mountIDs) do
+      local name, _, _, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
+
+      if isUsable then repairMounts[mountID] = name end
+    end
+
+    return repairMounts
+  end
+
   options.durability = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59721) .. " ") or "") .. "Durability", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
@@ -39,15 +57,26 @@ function O:WunderBar_SubModules_Durability()
   tab.generalGroup.args.showItemLevel = ACH:Toggle("Show Item Level", nil, 4)
   tab.generalGroup.args.itemLevelShort = ACH:Toggle("Short Item Level", nil, 5, nil, nil, nil, nil, nil, itemLevelDisabled)
 
+  -- Repair Mount
+  tab.mountGroup = ACH:Group("Repair Mount", nil, 2)
+  tab.mountGroup.inline = true
+  tab.mountGroup.args.description = ACH:Description("Select which repair mount will be summoned when right-clicking the module.\n\n", 1)
+  tab.mountGroup.args.repairMount = ACH:Select("Select Mount", nil, 2, getMounts)
+  tab.mountGroup.args.repairMount.width = 2
+  tab.mountGroup.args.repairMount.disabled = function()
+    return not TXUI.IsRetail or F.Table.IsEmpty(getMounts())
+  end
+  tab.mountGroup.args.repairMount.sortByValue = true
+
   -- Colors
-  tab.colorGroup = ACH:Group("Colors", nil, 2)
+  tab.colorGroup = ACH:Group("Colors", nil, 3)
   tab.colorGroup.inline = true
   tab.colorGroup.args.iconColor = ACH:Toggle("Color Icon", nil, 1, nil, nil, nil, nil, nil, iconDisabled)
   tab.colorGroup.args.textColor = ACH:Toggle("Color Text", nil, 2)
   tab.colorGroup.args.textColorFadeFromNormal = ACH:Toggle("Text Color as Base", nil, 3)
 
   -- Animations
-  tab.animateGroup = ACH:Group("Animations", nil, 3)
+  tab.animateGroup = ACH:Group("Animations", nil, 4)
   tab.animateGroup.inline = true
 
   tab.animateGroup.args.animateLow = ACH:Toggle("Animate Low", nil, 1)

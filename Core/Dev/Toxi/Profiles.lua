@@ -26,7 +26,7 @@ function T:SetupProfile()
 
   -- WunderBar: Modules
   E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
-  E.db.TXUI.wunderbar.modules.LeftPanel[3] = "DataBar"
+  E.db.TXUI.wunderbar.modules.LeftPanel[3] = "Durability"
   E.db.TXUI.wunderbar.modules.MiddlePanel[3] = "Volume"
 
   -- WunderBar: Submodules

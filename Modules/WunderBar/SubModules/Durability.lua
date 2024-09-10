@@ -117,8 +117,11 @@ function DB:OnClick(...)
   end
 
   if key == "RightButton" and TXUI.IsRetail then
-    local mount = C_MountJournal.GetMountInfoByID(460)
-    if mount then C_MountJournal.SummonByID(460) end
+    local mountID = self.db.repairMount
+    if mountID then
+      local _, _, _, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
+      if isUsable then C_MountJournal.SummonByID(mountID) end
+    end
   end
 end
 
@@ -161,7 +164,15 @@ function DB:OnEnter()
 
   DT.tooltip:AddLine(" ")
   DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Character Frame")
-  if TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Summon Grand Expedition Yak") end
+  if TXUI.IsRetail then
+    local mountID = self.db.repairMount
+    if mountID then
+      local name, _, icon, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
+      local iconStr = icon and format("|T%s:16:16:0:0:50:50:4:46:4:46|t", icon) or ""
+      if name and isUsable then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Summon " .. iconStr .. name) end
+    end
+  end
+
   DT.tooltip:Show()
 end
 

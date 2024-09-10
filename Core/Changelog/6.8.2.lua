@@ -6,6 +6,7 @@ TXUI.Changelog["6.8.2"] = {
     "* Breaking changes",
 
     "* New features",
+    "Option to select repair mount for " .. F.String.WunderBar() .. " Durability module",
 
     "* Bug fixes",
 

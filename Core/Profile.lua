@@ -958,6 +958,8 @@ P.wunderbar = {
       iconColor = false,
       iconFontSize = 18,
 
+      repairMount = 257,
+
       textColor = true,
       textColorFadeFromNormal = true,
 
