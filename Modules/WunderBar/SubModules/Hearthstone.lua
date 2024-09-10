@@ -218,8 +218,7 @@ function HS:UpdateSelected()
   if F.IsAddOnEnabled("TomeOfTeleportation") then
     self.secureFrame:SetAttribute("type2", "function")
     self.secureFrame:SetAttribute("_function2", function()
-      -- @todo: change to toggle whenever Tome of Teleportation adds it
-      _G.TeleporterOpenFrame()
+      _G.TeleporterSlashCmdFunction()
     end)
   else
     self.secureFrame:SetAttribute("type2", self.hsSecondary.type)
@@ -298,8 +297,7 @@ function HS:UpdateTooltip()
 
   -- Secondary
   if F.IsAddOnEnabled("TomeOfTeleportation") then
-    -- @todo: change to toggle whenever Tome of Teleportation adds it
-    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Tome of Teleporation")
+    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Toggle Tome of Teleporation")
   elseif self.hsSecondary and self.hsSecondary.name then
     DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name)
   end
