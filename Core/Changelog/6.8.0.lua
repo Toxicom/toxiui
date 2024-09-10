@@ -13,8 +13,8 @@ TXUI.Changelog["6.8.0"] = {
     "Fix missing " .. F.String.Menu.Changelog() .. " icons",
 
     "* Profile updates",
-    "Increase " .. F.String.Details() .. " tooltip font size",
-    "Reposition QueueStatusButton (LFG Eye) and fix it's fonts",
+    F.String.Details() .. ": Increase tooltip font size",
+    F.String.ElvUI() .. ": Reposition QueueStatusButton (LFG Eye) and fix it's fonts",
 
     "* Documentation",
     "Add Dornogal portals to " .. F.String.Menu.WunderBar(),

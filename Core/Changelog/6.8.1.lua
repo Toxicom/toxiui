@@ -17,9 +17,9 @@ TXUI.Changelog["6.8.1"] = {
     "Improve ActionBar Fade 'Show in Vehicles' option for Skyriding",
 
     "* Profile updates",
-    "Update Plater mods",
-    "Add more debuffs to manual tracking in Plater",
-    "Reduce " .. F.String.WindTools() .. " map event tracker font scale",
+    F.String.Plater() .. ": Update mods",
+    F.String.Plater() .. ": Add more debuffs to manual tracking",
+    F.String.WindTools() .. ": Reduce map event tracker font scale",
 
     "* Documentation",
     "Revert the 1600 height custom scale",

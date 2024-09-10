@@ -14,11 +14,10 @@ TXUI.Changelog["6.7.9"] = {
     "Fix duplicating " .. F.String.Menu.Armory() .. " attribute icons",
 
     "* Profile updates",
-    "Update default Gradient mode textures to " .. F.String.ToxiUI("'- ToxiUI'"),
-    "Update OmniCD textures to " .. F.String.ToxiUI("'- ToxiUI'"),
-    "Disable Spec & Race icons for tooltips in " .. F.String.WindTools(),
-    "Disable Context Menu in " .. F.String.WindTools(),
-    "Update " .. F.String.Plater() .. " mods",
+    F.String.OmniCD() .. ": Update textures to " .. F.String.ToxiUI("'- ToxiUI'"),
+    F.String.WindTools() .. ": Disable Spec & Race icons for tooltips",
+    F.String.WindTools() .. ": Disable Context Menu",
+    F.String.Plater() .. ": Update mods",
 
     "* Documentation",
     "Update descriptions and naming of " .. F.String.Menu.Skins() .. " section",
@@ -27,6 +26,7 @@ TXUI.Changelog["6.7.9"] = {
     "Add " .. F.String.Epic("tarballqc") .. " to the contributors",
     F.String.MinElv("13.75"),
     "Update internal max level to 80 for Retail",
+    "Update default Gradient mode textures to " .. F.String.ToxiUI("'- ToxiUI'"),
 
     "* Settings refactoring",
     "Require UI reload when disabling ActionBars Fade to properly unhook everything",

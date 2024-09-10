@@ -26,7 +26,7 @@ TXUI.Changelog["6.7.8"] = {
     "Disable icons in the changelog if font isn't " .. F.String.ToxiUI("'- ToxiUI'"),
 
     "* Profile updates",
-    "Update the Player's Power bar to match Target" .. F.String.Sublist("It is still disabled by default"),
+    F.String.ElvUI() .. ": Update the Player's Power bar to match Target" .. F.String.Sublist("It is still disabled by default"),
 
     "* Documentation",
     F.String.MinElv("13.74"),
