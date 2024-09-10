@@ -163,10 +163,6 @@ function PF:BuildProfile()
       ReputationBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -3, -264),
       ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -554, -363),
 
-      MirrorTimer1Mover = F.Position("TOP", "ElvUIParent", "TOP", 0, -60),
-      MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
-      MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
-
       -- Movers: ActionBars
       ElvAB_1 = isClassicAb and F.Position("TOP", "PlayerPowerBarMover", "BOTTOM", 0, -defaultPadding) or F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 45),
       ElvAB_6 = isClassicAb and F.Position("TOPRIGHT", "ElvAB_1", "BOTTOM", -defaultPadding / 2, -defaultPadding)
@@ -217,7 +213,7 @@ function PF:BuildProfile()
       ArenaHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, 0),
 
       -- Boss Frames
-      BossHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, -150),
+      BossHeaderMover = F.Position("TOPRIGHT", "ArenaHeaderMover", "TOPRIGHT", 0, 0),
 
       ElvUF_TankMover = F.Position("TOPLEFT", "LeftChatMover", "TOPRIGHT", defaultPadding, 0),
       ElvUF_AssistMover = F.Position("TOPLEFT", "ElvUF_TankMover", "BOTTOMLEFT", 0, -defaultPadding),
@@ -277,7 +273,6 @@ function PF:BuildProfile()
       AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding * 4),
     }),
     F.Table.If(IsHorizontalLayout, {
-
       -- Horizontal Layout
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 326, 518),
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 565, 235),
@@ -299,6 +294,11 @@ function PF:BuildProfile()
     }),
     F.Table.If(TXUI.IsCata, {
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
+    }),
+    F.Table.If(not TXUI.IsRetail, {
+      MirrorTimer1Mover = F.Position("TOP", "ElvUIParent", "TOP", 0, -60),
+      MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
+      MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
     })
   )
 
