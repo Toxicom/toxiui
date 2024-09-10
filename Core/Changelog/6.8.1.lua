@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.8.1"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Option to open Professions Frame via " .. F.String.Menu.WunderBar() .. " MicroMenu",
     "Hearthstone module right-click toggles Tome of Teleportation if that AddOn is enabled",
@@ -36,7 +34,5 @@ TXUI.Changelog["6.8.1"] = {
     "* Settings refactoring",
     "Simplify the Game Menu Skin options, since we no longer add the button to the menu",
     "Add extra information to the ActionBar Fade module",
-
-    "* Development improvements",
   },
 }
