@@ -253,7 +253,7 @@ P.addons = {
   gameMenuSkin = {
     enabled = true, -- Enabled by default
 
-    color = F.Table.HexToRGB("#000000"),
+    bgColor = F.Table.HexToRGB("#00000080"),
 
     classColor = {
       enabled = false,

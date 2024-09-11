@@ -13,24 +13,15 @@ function M:GameMenuButton()
 
   -- Background Fade
   if E.db.TXUI.addons.gameMenuSkin.enabled then
-    local backgroundFade = CreateFrame("Frame", nil, E.UIParent, "BackdropTemplate")
+    local backgroundFade = CreateFrame("Frame", nil, E.UIParent)
     backgroundFade:SetAllPoints(E.UIParent)
     backgroundFade:SetFrameStrata("HIGH")
     backgroundFade:SetFrameLevel(GameMenuFrame:GetFrameLevel() - 1)
     backgroundFade:EnableMouse(true)
 
-    local bgColor
-
-    if E.db.TXUI.addons.gameMenuSkin.classColor.enabled then
-      bgColor = E:ClassColor(E.myclass, true)
-    else
-      bgColor = E.db.TXUI.addons.gameMenuSkin.color
-    end
-
     backgroundFade.bg = backgroundFade:CreateTexture(nil, "BACKGROUND")
     backgroundFade.bg:SetAllPoints(backgroundFade)
     backgroundFade.bg:SetTexture(I.Media.Textures["ToxiUI-clean"])
-    backgroundFade.bg:SetVertexColor(bgColor.r, bgColor.g, bgColor.b, 0.2)
 
     backgroundFade.logo = backgroundFade:CreateTexture(nil, "OVERLAY")
     backgroundFade.logo:Size(256, 128)
@@ -77,45 +68,12 @@ function M:GameMenuButton()
 
       -- Random tip
       if E.db.TXUI.addons.gameMenuSkin.showTips then
-        -- I have a suspicion that if it's defined outside it can cause gradient issues, not sure
-        local randomTips = I.Constants.RandomTips
-
-        local randomIndex = math.random(1, #randomTips)
-        -- For debugging
-        -- randomIndex = 4
-        local randomTip = randomTips[randomIndex]
-
-        local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
-        local year = date("%Y") -- yyyy eg 2023
-        local ToxiBirthday = monthDate == "01/06"
-        local ToxiUiBirthday = monthDate == "10/18"
-        local ToxiUiAge = year - 2020
-        local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
-        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
-
         backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
         backgroundFade.tipText:SetPoint("TOP", backgroundFade.specIcon, "BOTTOM", 0, -25)
         backgroundFade.tipText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         backgroundFade.tipText:SetTextColor(1, 1, 1, 1)
 
-        -- let's call it an easter egg
-        if ToxiBirthday then
-          backgroundFade.tipText:SetText(
-            "Did you know that today, January 6th, is "
-              .. F.String.ToxiUI("Toxi")
-              .. "'s birthday?\n"
-              .. F.String.ToxiUI("Fun fact:")
-              .. " First version of the "
-              .. TXUI.Title
-              .. " installer was released on this day back in 2021!"
-          )
-        elseif ToxiUiBirthday then
-          backgroundFade.tipText:SetText("Did you know that today, October 18th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!")
-        else
-          backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
-        end
-
-        backgroundFade.tipText:SetWidth(600)
+        backgroundFade.tipText:SetWidth(700)
       end
     end
 
@@ -123,7 +81,6 @@ function M:GameMenuButton()
     backgroundFade.Animation:SetEasing("out-quintic")
     backgroundFade.Animation:SetChange(1)
     backgroundFade.Animation:SetDuration(1)
-    backgroundFade:SetTemplate("Transparent")
 
     self.backgroundFade = backgroundFade
     self.backgroundFade:Hide()
@@ -132,6 +89,15 @@ function M:GameMenuButton()
   -- Hook show event cause blizzard resizes the menu
   self:SecureHookScript(GameMenuFrame, "OnShow", function()
     if self.backgroundFade and self.backgroundFade.Animation then
+      local bgColor
+      local alpha = E.db.TXUI.addons.gameMenuSkin.bgColor.a
+      if E.db.TXUI.addons.gameMenuSkin.classColor.enabled then
+        bgColor = E:ClassColor(E.myclass, true)
+      else
+        bgColor = E.db.TXUI.addons.gameMenuSkin.bgColor
+      end
+      self.backgroundFade.bg:SetVertexColor(bgColor.r, bgColor.g, bgColor.b, alpha)
+
       if self.backgroundFade.guildText and self.backgroundFade.levelText then
         local guildName = GetGuildInfo("player")
         local specIcon, iconsFont = self:GenerateSpecIcon(E.db.TXUI.addons.gameMenuSkin.specIconStyle)
@@ -144,6 +110,43 @@ function M:GameMenuButton()
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
+
+      if self.backgroundFade.tipText then
+        -- I have a suspicion that if it's defined outside it can cause gradient issues, not sure
+        local randomTips = I.Constants.RandomTips
+
+        local randomIndex = math.random(1, #randomTips)
+        -- For debugging
+        -- randomIndex = 21
+        local randomTip = randomTips[randomIndex]
+
+        local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
+        local year = date("%Y") -- yyyy eg 2023
+        local ToxiBirthday = monthDate == "01/06"
+        local ToxiUiBirthday = monthDate == "10/18"
+        local ToxiUiAge = year - 2020
+        local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
+        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
+        -- let's call it an easter egg
+        if ToxiBirthday then
+          self.backgroundFade.tipText:SetText(
+            "Did you know that today, January 6th, is "
+              .. F.String.ToxiUI("Toxi")
+              .. "'s birthday?\n"
+              .. F.String.ToxiUI("Fun fact:")
+              .. " First version of the "
+              .. TXUI.Title
+              .. " installer was released on this day back in 2021!"
+          )
+        elseif ToxiUiBirthday then
+          self.backgroundFade.tipText:SetText(
+            "Did you know that today, October 18th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
+          )
+        else
+          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
+        end
+      end
+
       self.backgroundFade:Show()
       self.backgroundFade.Animation:Stop()
       self.backgroundFade:SetAlpha(0)

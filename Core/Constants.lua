@@ -19,7 +19,7 @@ I.Constants.RandomTips = {
     .. TXUI.Title
     .. " website that has a lot of useful information and also articles about what's happening in "
     .. TXUI.Title
-    .. "!\nCheck it out at "
+    .. "!\n\nCheck it out at "
     .. F.String.ToxiUI(I.Strings.Branding.Links.Website),
   -- 4
   "There is a " --
@@ -62,7 +62,7 @@ I.Constants.RandomTips = {
   -- 11
   "Keeping your ActionBars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
   -- 12
-  "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts. "
+  "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts.\n"
     .. F.String.Class("Class Icons")
     .. " are also Custom Texts!",
   -- 13
@@ -74,11 +74,38 @@ I.Constants.RandomTips = {
     .. TXUI.Title
     .. " settings. If an element is missing, let us know and we might add it!",
   -- 15
-  "These tips change each time you reload your UI or log in. Make sure to check them out since we keep adding new ones. Never know when you might learn something new! ;)",
+  "These tips change each time you open the game menu. Make sure to check them out since we keep adding new ones. Never know when you might learn something new! ;)",
   -- 16
   "You can switch to different "
     .. F.String.Menu.Styles()
     .. " in "
     .. TXUI.Title
     .. " settings!",
+  -- 17
+  "Right-clicking a mover in "
+    .. F.String.ElvUI()
+    .. " movers will open the settings for that mover if it has any.",
+  -- 18
+  "Check out the "
+    .. TXUI.Title
+    .. " YouTube channel to find various guides, patch update information and more!\n\n"
+    .. F.String.ToxiUI("https://www.youtube.com/@ToxiTV"),
+  -- 19
+  "Whenever there is an update for "
+    .. TXUI.Title
+    .. ", you don't need to fully run the installer! Simply check the "
+    .. F.String.Class("Profile updates", "ROGUE")
+    .. " section in the changelog to decide if there are parts of the UI you might want to update by running the installer.",
+  -- 20
+  "Did you know you can change the textures for "
+    .. F.String.Details()
+    .. " while in Gradient Mode? Try changing all 3 bar textures to "
+    .. F.String.ToxiUI("- Tx Half Fade Stroke")
+    .. " and disabling the border for a cool design.",
+  -- 21
+  "Did you know you can change the textures for UnitFrames while in Gradient Mode? Try changing the Health texture to "
+    .. F.String.ToxiUI("- Tx Fade")
+    .. " under "
+    .. TXUI.Title
+    .. " Gradient Mode settings for a cool design.",
 }

@@ -174,7 +174,6 @@ function O:Skins_ElvUI()
       end,
       set = function(_, value)
         E.db.TXUI.addons.gameMenuSkin.classColor.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
       end,
       disabled = function()
         return not E.db.TXUI.addons.gameMenuSkin.enabled
@@ -185,14 +184,12 @@ function O:Skins_ElvUI()
       order = self:GetOrder(),
       type = "color",
       name = "Background Color",
-      hasAlpha = false,
+      hasAlpha = true,
       width = 1.1,
-      get = self:GetFontColorGetter("TXUI.addons.gameMenuSkin", P.addons.gameMenuSkin, "color"),
-      set = self:GetFontColorSetter("TXUI.addons.gameMenuSkin", function()
-        E:StaticPopup_Show("CONFIG_RL")
-      end, "color"),
+      get = self:GetFontColorGetter("TXUI.addons.gameMenuSkin", P.addons.gameMenuSkin),
+      set = self:GetFontColorSetter("TXUI.addons.gameMenuSkin"),
       disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled or E.db.TXUI.addons.gameMenuSkin.classColor.enabled
+        return not E.db.TXUI.addons.gameMenuSkin.enabled
       end,
     }
 

@@ -187,7 +187,7 @@ function O:GetFontColorSetter(profileDB, callback, customKey)
     local profileEntry = F.GetDBFromPath(profileDB)[key]
     if profileEntry.r ~= r or profileEntry.g ~= g or profileEntry.b ~= b or profileEntry.a ~= a then
       profileEntry.r, profileEntry.g, profileEntry.b, profileEntry.a = r, g, b, a
-      callback()
+      if callback then callback() end
     end
   end
 end
