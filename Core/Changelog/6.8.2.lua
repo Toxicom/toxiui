@@ -11,6 +11,7 @@ TXUI.Changelog["6.8.2"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Disable Weekly Rewards skin",
 
     "* Documentation",
     F.String.MinElv("13.77"),

@@ -1997,6 +1997,10 @@ function PF:ElvUIProfilePrivate()
     -- Skins
     skins = {
       parchmentRemoverEnable = true,
+
+      blizzard = {
+        weeklyRewards = false,
+      },
     },
   })
 end
