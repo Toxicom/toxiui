@@ -7,6 +7,10 @@ TXUI.Changelog["6.8.2"] = {
 
     "* New features",
     "Option to select repair mount for " .. F.String.Menu.WunderBar() .. " Durability module",
+    "Sort the color-coded TWW currencies" --
+      .. F.String.Sublist("Crests")
+      .. F.String.Sublist("Valorstones")
+      .. F.String.Sublist("Coffer keys"),
 
     "* Bug fixes",
 

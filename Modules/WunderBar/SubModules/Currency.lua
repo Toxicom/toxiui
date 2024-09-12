@@ -140,12 +140,12 @@ function CR:RightClick()
 end
 
 local currencyColorTable = {
-  [3008] = _G.HEIRLOOM_BLUE_COLOR:GenerateHexColor(), --                Valorstones
-  [2914] = _G.UNCOMMON_GREEN_COLOR:GenerateHexColor(), -- Weathered Harbinger Crest
-  [2915] = _G.RARE_BLUE_COLOR:GenerateHexColor(), --         Carved Harbinger Crest
-  [2916] = _G.EPIC_PURPLE_COLOR:GenerateHexColor(), --        Runed Harbinger Crest
-  [2917] = _G.LEGENDARY_ORANGE_COLOR:GenerateHexColor(), --  Gilded Harbinger Crest
-  [3028] = _G.ARTIFACT_GOLD_COLOR:GenerateHexColor(), --        Restored Coffer Key
+  [2917] = { color = _G.LEGENDARY_ORANGE_COLOR:GenerateHexColor(), weight = 10 }, -- Gilded Harbinger Crest
+  [2916] = { color = _G.EPIC_PURPLE_COLOR:GenerateHexColor(), weight = 9 }, --        Runed Harbinger Crest
+  [2915] = { color = _G.RARE_BLUE_COLOR:GenerateHexColor(), weight = 8 }, --         Carved Harbinger Crest
+  [2914] = { color = _G.UNCOMMON_GREEN_COLOR:GenerateHexColor(), weight = 7 }, -- Weathered Harbinger Crest
+  [3008] = { color = _G.HEIRLOOM_BLUE_COLOR:GenerateHexColor(), weight = 6 }, --                Valorstones
+  [3028] = { color = _G.ARTIFACT_GOLD_COLOR:GenerateHexColor(), weight = 5 }, --        Restored Coffer Key
 }
 
 function CR:OnEnter()
@@ -245,7 +245,26 @@ function CR:UpdateTooltip()
   local shownHeaders = {}
   local addLine = false
 
-  for _, info in ipairs(E.global.datatexts.settings.Currencies.tooltipData) do
+  local function SortCurrenciesByWeight(tooltipData, colorTable)
+    local sortedData = {}
+
+    for _, info in ipairs(tooltipData) do
+      local _, currencyIndex = unpack(info)
+      local weight = (colorTable[currencyIndex] and colorTable[currencyIndex].weight) or 0
+      tinsert(sortedData, { info = info, weight = weight })
+    end
+
+    sort(sortedData, function(a, b)
+      return a.weight > b.weight
+    end)
+
+    return sortedData
+  end
+
+  local sortedTooltipData = SortCurrenciesByWeight(E.global.datatexts.settings.Currencies.tooltipData, currencyColorTable)
+
+  for _, data in ipairs(sortedTooltipData) do
+    local info = data.info
     local _, currencyIndex, headerIndex = unpack(info)
     if currencyIndex and self.db.enabledCurrencies[currencyIndex] then
       local currencyInfo = C_CurrencyInfo_GetCurrencyInfo(currencyIndex)
@@ -262,7 +281,7 @@ function CR:UpdateTooltip()
         local iconTexture = currencyInfo.iconFileID and format("|T%s:16:16:0:0:64:64:4:60:4:60|t", currencyInfo.iconFileID) or format("|T%s:16:16:0:0:64:64:4:60:4:60|t", "136012")
 
         local name = currencyInfo.name
-        if currencyColorTable[currencyIndex] then name = "|c" .. currencyColorTable[currencyIndex] .. name .. "|r" end
+        if currencyColorTable[currencyIndex] then name = "|c" .. currencyColorTable[currencyIndex].color .. name .. "|r" end
         -- Format name
         local leftLine = format("%s %s", iconTexture, name)
 
