@@ -11,6 +11,11 @@ TXUI.Changelog["6.8.2"] = {
       .. F.String.Sublist("Crests")
       .. F.String.Sublist("Valorstones")
       .. F.String.Sublist("Coffer keys"),
+    "More options for "
+      .. F.String.Menu.WunderBar()
+      .. " Profession module" --
+      .. F.String.Sublist("Abbreviate Names")
+      .. F.String.Sublist("Name Length limit"),
 
     "* Bug fixes",
 

@@ -35,8 +35,17 @@ function O:WunderBar_SubModules_Profession()
   tab.generalGroup.args.spacer1 = ACH:Spacer(3)
 
   tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase Names", nil, 4)
+  tab.generalGroup.args.abbreviate = ACH:Toggle("Abbreviate Names " .. E.NewSign, "This will abbreviate the name to custom strings, eg: 'BS', 'LW', 'Ench' etc.", 5)
+  tab.generalGroup.args.abbreviate.width = 1.2
+  tab.generalGroup.args.limitChar = ACH:Range("Name Length " .. E.NewSign, "Max character length of the Profession's name", 6)
+  tab.generalGroup.args.limitChar.step = 1
+  tab.generalGroup.args.limitChar.min = 1
+  tab.generalGroup.args.limitChar.max = 32
+  tab.generalGroup.args.limitChar.disabled = function()
+    return E.db.TXUI.wunderbar.subModules[dbEntry].general.abbreviate
+  end
 
-  tab.generalGroup.args.spacer2 = ACH:Spacer(5)
+  tab.generalGroup.args.spacer2 = ACH:Spacer(7)
 
   local professionValues = function(number)
     return function()
@@ -65,8 +74,8 @@ function O:WunderBar_SubModules_Profession()
     end
   end
 
-  tab.generalGroup.args.selectedProf1 = ACH:Select("Profession 1", nil, 6, professionValues(1), nil, 2)
-  tab.generalGroup.args.selectedProf2 = ACH:Select("Profession 2", nil, 7, professionValues(2), nil, 2)
+  tab.generalGroup.args.selectedProf1 = ACH:Select("Profession 1", nil, 8, professionValues(1), nil, 2)
+  tab.generalGroup.args.selectedProf2 = ACH:Select("Profession 2", nil, 9, professionValues(2), nil, 2)
 
   tab.barGroup = ACH:Group("Bars", nil, 2)
   tab.barGroup.inline = true

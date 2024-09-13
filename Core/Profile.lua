@@ -874,6 +874,9 @@ P.wunderbar = {
 
         iconFontSize = 18,
 
+        abbreviate = false,
+        limitChar = 16,
+
         showIcons = true,
         showBars = true,
 
@@ -896,6 +899,22 @@ P.wunderbar = {
         [755] = F.String.ConvertGlyph(59696), -- Jewelcrafting
         [773] = F.String.ConvertGlyph(59695), -- Inscription
         [794] = F.String.ConvertGlyph(59688), -- Archaeology
+      },
+      abbreviations = {
+        [164] = "BS",
+        [165] = "LW",
+        [171] = "Alch",
+        [182] = "Herb",
+        [185] = "Cook",
+        [186] = "Min",
+        [197] = "Tail",
+        [202] = "Engi",
+        [333] = "Ench",
+        [356] = "Fish",
+        [393] = "Skin",
+        [755] = "JC",
+        [773] = "Insc",
+        [794] = "Arch",
       },
     },
     Currency = {

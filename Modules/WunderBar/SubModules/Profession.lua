@@ -16,6 +16,7 @@ local lower = string.lower
 local next = next
 local securecall = securecall
 local tinsert = table.insert
+local utf8sub = string.utf8sub
 
 local PROFESSIONS_COOKING = PROFESSIONS_COOKING
 local PROFESSIONS_FIRST_AID = PROFESSIONS_FIRST_AID
@@ -391,6 +392,11 @@ function PR:UpdateElement(prof, frame, icon, text, bar)
 
   if skillLine or (name and rank and maxRank) then
     frame:Show()
+    if self.db.general.abbreviate then
+      name = self.db.abbreviations[skillLine]
+    else
+      name = utf8sub(name, 1, self.db.general.limitChar)
+    end
     text:SetText(self.db.general.useUppercase and F.String.Uppercase(name) or name)
 
     if self.db.general.showIcons and skillLine then
