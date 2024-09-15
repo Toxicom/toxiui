@@ -14,6 +14,7 @@ function O:WunderBar_SubModules_Durability()
       2237, -- Grizzly Hills Packmaster
       460, -- Grand Expedition Yak
       257, -- Wooly Mammoth
+      1039, -- Mighty Caravan Brutosaur
     }
 
     for _, mountID in ipairs(mountIDs) do
