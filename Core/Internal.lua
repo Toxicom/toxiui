@@ -540,61 +540,61 @@ I.HearthstoneData = {
   --                --
   -- Mage Teleports --
   --                --
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
-  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
-  [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
-  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon
-  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath (Alliance)
-  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath (Horde)
-  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Theramore
-  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stonard
-  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran - Northrend
-  [88342] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad (Alliance)
-  [88344] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Tol Barad (Horde)
-  [120145] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Ancient Teleport: Dalaran
-  [132621] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms (Alliance)
-  [132627] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Vale of Eternal Blossoms (Horde)
-  [176242] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Warspear
-  [176248] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormshield
-  [193759] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Hall of the Guardian
-  [224869] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran - Broken Isles
-  [281403] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Boralus
-  [281404] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dazar'alor
-  [344587] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Oribos
-  [395277] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Valdrakken
-  [446540] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dornogal
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "SW" }, -- Teleport: Stormwind
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "ORG" }, -- Teleport: Orgrimmar
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "IF" }, -- Teleport: Ironforge
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "UC" }, -- Teleport: Undercity
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "DARN" }, -- Teleport: Darnassus
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "TB" }, -- Teleport: Thunder Bluff
+  [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "EXO" }, -- Teleport: Exodar
+  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "SM" }, -- Teleport: Silvermoon
+  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "TBC" }, -- Teleport: Shattrath (Alliance)
+  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "TBC" }, -- Teleport: Shattrath (Horde)
+  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "THER" }, -- Teleport: Theramore
+  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "STON" }, -- Teleport: Stonard
+  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "WotLK" }, -- Teleport: Dalaran - Northrend
+  [88342] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "CATA" }, -- Teleport: Tol Barad (Alliance)
+  [88344] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "CATA" }, -- Teleport: Tol Barad (Horde)
+  [120145] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "DALA" }, -- Ancient Teleport: Dalaran
+  [132621] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "MOP" }, -- Teleport: Vale of Eternal Blossoms (Alliance)
+  [132627] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "MOP" }, -- Teleport: Vale of Eternal Blossoms (Horde)
+  [176242] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "WOD" }, -- Teleport: Warspear
+  [176248] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "WOD" }, -- Teleport: Stormshield
+  [193759] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "HALL" }, -- Teleport: Hall of the Guardian
+  [224869] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "DALA" }, -- Teleport: Dalaran - Broken Isles
+  [281403] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "BFA" }, -- Teleport: Boralus
+  [281404] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "BFA" }, -- Teleport: Dazar'alor
+  [344587] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "SL" }, -- Teleport: Oribos
+  [395277] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "DF" }, -- Teleport: Valdrakken
+  [446540] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "TWW" }, -- Teleport: Dornogal
 
   -- Mage Portals --
-  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
-  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
-  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
-  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
-  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
-  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
-  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Exodar
-  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Silvermoon
-  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath (Alliance)
-  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath (Horde)
-  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Theramore
-  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stonard
-  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran - Northrend
-  [88345] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad (Alliance)
-  [88346] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Tol Barad (Horde)
-  [120146] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Ancient Portal: Dalaran
-  [132620] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms (Alliance)
-  [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Vale of Eternal Blossoms (Horde)
-  [176244] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Warspear
-  [176246] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormshield
-  [224871] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran - Broken Isles
-  [281400] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Boralus
-  [281402] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dazar'alor
-  [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Oribos
-  [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Valdrakken
-  [446534] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dornogal
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "SW" }, -- Portal: Stormwind
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "ORG" }, -- Portal: Orgrimmar
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "IF" }, -- Portal: Ironforge
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "UC" }, -- Portal: Undercity
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "DARN" }, -- Portal: Darnassus
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "TB" }, -- Portal: Thunder Bluff
+  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "EXO" }, -- Portal: Exodar
+  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "SM" }, -- Portal: Silvermoon
+  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "TBC" }, -- Portal: Shattrath (Alliance)
+  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "TBC" }, -- Portal: Shattrath (Horde)
+  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "THER" }, -- Portal: Theramore
+  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "STON" }, -- Portal: Stonard
+  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "WotLK" }, -- Portal: Dalaran - Northrend
+  [88345] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "CATA" }, -- Portal: Tol Barad (Alliance)
+  [88346] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "CATA" }, -- Portal: Tol Barad (Horde)
+  [120146] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "DALA" }, -- Ancient Portal: Dalaran
+  [132620] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "MOP" }, -- Portal: Vale of Eternal Blossoms (Alliance)
+  [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "MOP" }, -- Portal: Vale of Eternal Blossoms (Horde)
+  [176244] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "WOD" }, -- Portal: Warspear
+  [176246] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "WOD" }, -- Portal: Stormshield
+  [224871] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "DALA" }, -- Portal: Dalaran - Broken Isles
+  [281400] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "BFA" }, -- Portal: Boralus
+  [281402] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "BFA" }, -- Portal: Dazar'alor
+  [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "SL" }, -- Portal: Oribos
+  [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "DF" }, -- Portal: Valdrakken
+  [446534] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "TWW" }, -- Portal: Dornogal
 
   -- Other Teleportation Items/Spells --
   [37863] = { ["type"] = "item", ["hearthstone"] = false }, -- Direbrew's Remote
