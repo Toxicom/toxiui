@@ -497,13 +497,13 @@ I.HearthstoneData = {
   [424187] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "AD" }, -- Atal'Dazar
   [410074] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "UNDR" }, -- Underrot
   [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "FH" }, -- Freehold
-  [272264] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SoB" }, -- Siege of Boralus
-  [272265] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SoB" }, -- Siege of Boralus
+  [272264] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
+  [272265] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
 
   -- Shadowlands
   [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "NW" }, -- Necrotic Wake
   [354463] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "PF" }, -- Plaguefall
-  [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "MIST" }, -- Mists of Tirna Scithe
+  [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "MISTS" }, -- Mists of Tirna Scithe
   [354465] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "HOA" }, -- Halls of Atonement
   [354466] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SOA" }, -- Spires of Ascension
   [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "TOP" }, -- Theater of Pain
@@ -528,12 +528,12 @@ I.HearthstoneData = {
   [424197] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DOI" }, -- Dawn of the Infinite
 
   -- The War Within
-  [442929] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "AK" }, -- Ara-Kara, City of Echoes
+  [442929] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "ARAK" }, -- Ara-Kara, City of Echoes
   [442932] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "CM" }, -- Cinderbrew Meadery
-  [442927] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "CoT" }, -- City of Threads
+  [442927] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "COT" }, -- City of Threads
   [442930] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "DC" }, -- Darkflame Cleft
   [442923] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "PSF" }, -- Priory of the Sacred Flame
-  [442931] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "DB" }, -- The Dawnbreaker
+  [442931] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "DAWN" }, -- The Dawnbreaker
   [442925] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "ROOK" }, -- The Rookery
   [442926] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SV" }, -- The Stonevault
 

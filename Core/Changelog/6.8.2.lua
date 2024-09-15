@@ -23,6 +23,7 @@ TXUI.Changelog["6.8.2"] = {
       .. F.String.Sublist("Increase the width for Random Tips text")
       .. F.String.Sublist("Random tips now update each time you open the Game Menu")
       .. F.String.Sublist("Add more Random Tips"),
+    "Update M+ labels to match R.IO",
 
     "* Settings refactoring",
     "Improve Game Menu Skin options" --
