@@ -1,30 +1,76 @@
+![Gameplay video](https://media.forgecdn.net/attachments/description/676447/description_79cd99f7-eac7-4849-b97c-427f1c7140b6.png)
 
-![ToxiUI](https://i.imgur.com/S5a4FCi.png)
-# ToxiUI: Enhancing Your World of Warcraft Experience
-Welcome to ToxiUI, a thoughtfully crafted plugin for the renowned ElvUI, meticulously designed by Toxi. If you're seeking a seamless and visually appealing overhaul for your World of Warcraft interface, you're in the right place. ToxiUI seamlessly combines functionality and aesthetics, ensuring that your gaming experience reaches new heights of enjoyment and efficiency.
+[![Video thumbnail](https://img.youtube.com/vi/jizdfGCNxmU/maxresdefault.jpg)](https://www.youtube.com/watch?v=jizdfGCNxmU)
 
-## Why ToxiUI?
-### Effortless Installation
-![ToxiUI Installer](https://i.imgur.com/SmPHcOb.png)
-Gone are the days of complex installation processes. ToxiUI prides itself on a straightforward installation that doesn't require a degree in rocket science. With clear instructions and user-friendly steps, you'll be up and running with ToxiUI in no time.
+###### Click the image above to see the video
 
-### WunderBar: Your Modern Data Panel
-![ToxiUI WunderBar](https://i.imgur.com/SopBA5h.png)
-Experience the future of data panels with WunderBar. ToxiUI introduces a modern and customizable data panel that serves as your one-stop hub for crucial information. Whether you're tracking your character's statistics, managing resources, or just staring at the clock while afk running around the capital city, WunderBar offers unparalleled convenience and customization.
+ 
 
-### A World of Themes and Customization
-![ToxiUI Themes](https://github.com/Toxicom/toxiui/assets/69549795/c07fb1ee-d988-4a06-9654-dfe033a2646c)
+![Features](https://media.forgecdn.net/attachments/description/676447/description_241dfa18-3e41-4400-99a9-cc1eedeb24d9.png)
 
-ToxiUI empowers you to personalize your World of Warcraft interface. With three distinct themes to choose from, you can align your UI with your personal style or adapt it to match your character's journey. And if that's not enough, the ability to easily customize gradient colors ensures your UI remains as unique as your adventure.
+*   Three themes to choose from: Gradient Mode, Dark Mode & default
+*   Beautiful Armory packed with information
+*   Elegant WunderBar to have all the important information at your fingertips
+*   Unique hand-made specialization icons
+*   Custom text tags
+*   Game Menu Skin to personalize your gameplay and provide useful information
+*   Enhanced custom installer
+*   Active Discord community
+*   …and more!
 
-### Community-Driven Evolution
-ToxiUI is not just a modification; it's a collaborative journey driven by the World of Warcraft community. As an open-source project, it thrives on the collective expertise and passion of players like you. While the pace of official development might have eased, the heart of ToxiUI beats stronger than ever through community contributions.
+![Requirements](https://media.forgecdn.net/attachments/description/676447/description_63516ad4-2c2e-4383-b5c8-29f43db86c80.png)
 
-### Tailored for Diverse Playstyles
-Whether you're a damage-dealing dynamo or a healing virtuoso, ToxiUI has you covered. It offers specialized layouts for DPS and healers, optimizing your interface for the roles you excel in. No matter your preferred playstyle, ToxiUI adapts to amplify your performance.
+Required AddOns:
+----------------
 
-### Embrace ToxiUI
-Elevate your World of Warcraft journey with ToxiUI. Seamlessly merging minimalist design, cutting-edge functionality, and immersive customization, ToxiUI stands as the ultimate UI modification for players who demand the best. Join the ranks of adventurers who have embraced ToxiUI and experience Azeroth like never before.
+*   [ElvUI](https://www.tukui.org/download.php?ui=elvui)
+
+Recommended AddOns:
+-------------------
+
+*   [Details! Damage Meter](https://www.curseforge.com/wow/addons/details)
+*   [Plater](https://www.curseforge.com/wow/addons/plater-nameplates)
+*   [Weak Auras](https://www.curseforge.com/wow/addons/weakauras-2)
+*   [ElvUI WindTools](https://www.curseforge.com/wow/addons/elvui-windtools) _(Retail only)_
+
+Additional supported AddOns:
+----------------------------
+
+*   [BigWigs](https://www.curseforge.com/wow/addons/big-wigs)
+*   [OmniCD - Party Cooldown Tracker](https://www.curseforge.com/wow/addons/omnicd)
+*   [WarpDeplete (Retail only)](https://www.curseforge.com/wow/addons/warpdeplete)
+*   [Ratio Minimap Auras](https://www.curseforge.com/wow/addons/elvui-ratiominimapauras)
+
+![Installation](https://media.forgecdn.net/attachments/description/676447/description_eef9d427-56cd-4167-a38e-59f260b92ac1.png)
+
+*   Make a backup of your WTF folder _(it is recommended to install ToxiUI on a clean profile)_
+*   Install the required addons
+*   Enter game & make sure that all of the AddOns are loaded correctly
+*   Once you load up your character, the ToxiUI installer will pop-up
+*   Simply **follow** the installers **instructions very closely**
+*   If you have any problems or issues at any step, please visit our discord server for support!
+
+[![Installation video guide](https://img.youtube.com/vi/C0YpDaEHvWU/maxresdefault.jpg)](https://www.youtube.com/watch?v=C0YpDaEHvWU)
+
+###### Click the image above to see the video
+
+ 
+
+![Credits](https://media.forgecdn.net/attachments/description/676447/description_d643a212-3ccc-47e5-b892-363771a6ac65.png)
+--------------------------------------------------------------------------------------------------------------------------
+
+*   Nawuko for developing the initial ToxiUI codebase
+*   Ryada, Wolen and others for contributing to the project staying alive
+*   Hekili for help with coding the first version of installer framework
+*   Releaf for those lovely WunderBar icons
+*   v0dKa for supporting heavily in the early days - real MVP
+*   Redtuzk & his team for the inspiration
+*   ElvUI discord for continuous help and support
+*   PayPal & Patreon supporters! You guys rock!
+
+![Discord](https://media.forgecdn.net/attachments/description/676447/description_9d2a48cc-2282-4076-8652-49eb0a8d7f03.png)
+
+*   If you're having any problems or just wanna chat with us, please join our [discord server](https://discord.gg/r85TGUU7zA)
 
 ## How to keep up to date with repo
 ### Windows OS
