@@ -38,10 +38,11 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     end
   end
 
-  local spacing, padding = 4, 16
-  local slotWidth = 40 + E.Border
-  local slotHeight = 30 + E.Border
-  local primaryFont = F.GetFontPath(I.Fonts.Primary)
+  local flyoutDb = F.GetDBFromPath("TXUI.wunderbar.general.flyoutBackdrop")
+  local spacing, padding = flyoutDb.spacing, flyoutDb.padding
+  local slotWidth = flyoutDb.width + E.Border
+  local slotHeight = (slotWidth - E.Border) / 4 * 3 + E.Border
+  local labelFont = F.GetFontPath(flyoutDb.labelFont)
 
   -- Limit the number of slots per column
   local maxSlotsPerColumn = 8
@@ -59,11 +60,11 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
   if not secureFlyOutFrame then secureFlyOutFrame = CreateFrame("Frame", nil, self.bar, "BackdropTemplate") end
 
-  if E.db.TXUI.wunderbar.general.flyoutBackdrop then
-    local alpha = E.db.TXUI.wunderbar.general.flyoutBackdropAlpha
+  if flyoutDb.enabled then
+    local alpha = flyoutDb.alpha
     local r, g, b = 0, 0, 0
 
-    if E.db.TXUI.wunderbar.general.flyoutBackdropClassColor then
+    if flyoutDb.classColor then
       local color = E:ClassColor(E.myclass, true)
       if not F.Table.IsEmpty(color) then
         r, g, b = color.r, color.g, color.b
@@ -73,13 +74,13 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     secureFlyOutFrame:SetBackdrop {
       bgFile = E.media.blankTex,
       edgeFile = E.media.blankTex,
-      edgeSize = E.db.TXUI.wunderbar.general.flyoutBackdropBorderSize,
+      edgeSize = flyoutDb.borderSize,
     }
     secureFlyOutFrame:SetBackdropColor(r, g, b, alpha) -- Set the backdrop color
     secureFlyOutFrame:SetBackdropBorderColor(0, 0, 0, 1) -- Set the border color
     secureFlyOutFrame:EnableMouse(true) -- Enable mouse interaction
   else
-    secureFlyOutFrame:SetBackdrop()
+    secureFlyOutFrame:SetBackdrop {}
   end
 
   secureFlyOutFrame:SetSize(totalWidth, totalHeight)
@@ -94,36 +95,38 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     local isPrimary = i <= #primarySlots
     local currentColumn
     local indexInColumn
+    local slotWithSpacing
 
     if isPrimary then
       info = primarySlots[i]
       slot = secureFlyOutButtons[i]
       currentColumn = math.ceil(i / maxSlotsPerColumn)
       indexInColumn = (i - 1) % maxSlotsPerColumn + 1
+      slotWithSpacing = slotWidth + spacing
       -- Primary slots start from the rightmost column and grow left
-      columnOffset = totalWidth - currentColumn * (slotWidth + spacing) + padding
+      columnOffset = (currentColumn - 1) * slotWithSpacing + padding
     else
       local secondaryIndex = i - #primarySlots
       info = secondarySlots[secondaryIndex]
       slot = secureFlyOutButtons[i]
       currentColumn = math.ceil(secondaryIndex / maxSlotsPerColumn)
       indexInColumn = (secondaryIndex - 1) % maxSlotsPerColumn + 1
+      slotWithSpacing = slotWidth + spacing
+      local slotOffset = (currentColumn - 1) * slotWithSpacing
       -- Secondary slots start to the left of the primary slots and grow left
-      columnOffset = totalWidth - (numPrimaryColumns * (slotWidth + spacing) + currentColumn * (slotWidth + spacing)) + padding
+      columnOffset = numPrimaryColumns * slotWithSpacing + slotOffset + padding
     end
 
     if not slot then
       slot = CreateFrame("Button", nil, secureFlyOutFrame, "SecureActionButtonTemplate")
       slot:EnableMouse(true)
       slot:RegisterForClicks("AnyDown")
-      slot:SetSize(slotWidth, slotHeight)
       slot:SetTemplate()
       slot:StyleButton(nil, true)
       slot:SetScript("OnEnter", showTooltip)
       slot:SetScript("OnLeave", F.Event.GenerateClosure(GameTooltip.Hide, GameTooltip))
 
       slot.label = slot:CreateFontString(nil, "OVERLAY")
-      slot.label:SetFont(primaryFont, 14, "OUTLINE")
       slot.label:SetPoint("CENTER", slot, "CENTER")
 
       slot.FadeIn = TXUI:CreateAnimationGroup(slot)
@@ -151,13 +154,15 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
       secureFlyOutButtons[i] = slot
     end
 
+    slot:SetSize(slotWidth, slotHeight)
+    slot.label:SetFont(labelFont, flyoutDb.labelFontSize, "OUTLINE")
     slot:ClearAllPoints()
 
     if indexInColumn == 1 then
       -- First slot in the column
       -- I don't fucking know how I got here to this calc but I think it makes sense, basically position the column
       -- based on all the columns, then add 4:3 ratio padding and add border because icons have borders /shrug
-      slot:SetPoint("BOTTOMRIGHT", secureFlyOutFrame, "BOTTOMLEFT", columnOffset + (padding / 4 * 3) + E.Border, padding)
+      slot:SetPoint("BOTTOMRIGHT", secureFlyOutFrame, "BOTTOMRIGHT", -columnOffset, padding)
       prevSlots[currentColumn] = slot
     else
       -- Subsequent slots, positioned above the previous slot in the same column

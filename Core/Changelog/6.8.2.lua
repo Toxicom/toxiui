@@ -4,6 +4,7 @@ TXUI.Changelog["6.8.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    F.String.Menu.WunderBar() .. " Flyout settings are reset due to database changes",
 
     "* New features",
     "Option to select repair mount for " .. F.String.Menu.WunderBar() .. " Durability module",
@@ -11,6 +12,12 @@ TXUI.Changelog["6.8.2"] = {
       .. F.String.Sublist("Crests")
       .. F.String.Sublist("Valorstones")
       .. F.String.Sublist("Coffer keys"),
+    F.String.Menu.WunderBar()
+      .. " Flyouts now have more options"
+      .. F.String.Sublist("Padding")
+      .. F.String.Sublist("Spacing")
+      .. F.String.Sublist("Slot Size")
+      .. F.String.Sublist("Font & Font Size"),
 
     "* Bug fixes",
 
@@ -29,7 +36,9 @@ TXUI.Changelog["6.8.2"] = {
     "Improve Game Menu Skin options" --
       .. F.String.Sublist("Background Color now has an Alpha slider")
       .. F.String.Sublist("Class Color and Background Color options no longer require a reload"),
+    F.String.Menu.WunderBar() .. " Flyout settings are no longer specific to it's backdrop",
 
     "* Development improvements",
+    "Improve calculations for " .. F.String.Menu.WunderBar() .. " Flyouts",
   },
 }

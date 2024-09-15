@@ -393,49 +393,165 @@ function O:WunderBar_General()
   -- Flyout Backdrop
   do
     local flyoutGroup = self:AddInlineDesc(options, {
-      name = "Flyout Backdrop",
+      name = "Flyouts",
       hidden = optionsHidden,
     }, {
-      name = "Control the backdrop of " .. F.String.Menu.WunderBar() .. " flyouts that show up in Profession and Hearthstone modules.\n\n",
+      name = "Control the " .. F.String.Menu.WunderBar() .. " flyouts that show up in Profession and Hearthstone modules.\n\n",
     }).args
 
-    flyoutGroup["flyoutBackdrop"] = {
+    flyoutGroup["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
       name = function()
-        return self:GetEnableName(E.db.TXUI.wunderbar.general.flyoutBackdrop)
+        return self:GetEnableName(E.db.TXUI.wunderbar.general.flyoutBackdrop.enabled)
+      end,
+      get = function(info)
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
       end,
     }
 
     local flyoutDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.wunderbar.general.flyoutBackdrop) ~= self.enabledState.YES
+      return self:GetEnabledState(E.db.TXUI.wunderbar.general.flyoutBackdrop.enabled) ~= self.enabledState.YES
     end
 
-    flyoutGroup["flyoutBackdropAlpha"] = {
+    flyoutGroup["alpha"] = {
       order = self:GetOrder(),
       type = "range",
       name = "Alpha",
+      desc = "Transparency of the flyout's backdrop.",
       min = 0,
       max = 1,
       step = 0.05,
       disabled = flyoutDisabled,
+      get = function(info)
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
     }
 
-    flyoutGroup["flyoutBackdropClassColor"] = {
+    flyoutGroup["classColor"] = {
       order = self:GetOrder(),
       type = "toggle",
       name = "Class Color",
+      desc = "Enabling this will set the flyout's backdrop to your class color.",
       disabled = flyoutDisabled,
+      get = function(info)
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
     }
 
-    flyoutGroup["flyoutBackdropBorderSize"] = {
+    flyoutGroup["borderSize"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Border width",
+      name = "Border Size",
+      desc = "Border size of the whole flyout backdrop.",
       min = 1,
       max = 6,
       step = 1,
       disabled = flyoutDisabled,
+      get = function(info)
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
+    }
+
+    flyoutGroup["padding"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Padding " .. E.NewSign,
+      desc = "Padding for the flyout backdrop.",
+      min = 0,
+      max = 32,
+      step = 1,
+      disabled = flyoutDisabled,
+      get = function(info)
+        F.Log.Dev(info, "info")
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
+    }
+
+    self:AddSpacer(flyoutGroup)
+
+    flyoutGroup["width"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Slot Width " .. E.NewSign,
+      desc = "Size of an individual slot. Height is going to change accordingly to maintain 4:3 aspect ratio.",
+      min = 20,
+      max = 80,
+      step = 1,
+      disabled = flyoutDisabled,
+      get = function(info)
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
+    }
+
+    flyoutGroup["spacing"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Spacing " .. E.NewSign,
+      desc = "Spacing between slots.",
+      min = 0,
+      max = 16,
+      step = 1,
+      disabled = flyoutDisabled,
+      get = function(info)
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
+    }
+
+    flyoutGroup["labelFont"] = {
+      order = self:GetOrder(),
+      type = "select",
+      dialogControl = "LSM30_Font",
+      name = "Label Font " .. E.NewSign,
+      desc = "Set the font for M+ portal labels.",
+      values = self:GetAllFontsFunc(),
+      disabled = flyoutDisabled,
+      get = function(info)
+        F.Log.Dev(info, "info")
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
+    }
+
+    flyoutGroup["labelFontSize"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Label Font Size " .. E.NewSign,
+      desc = "Set the font size for M+ portal labels.",
+      min = 8,
+      max = 64,
+      step = 1,
+      disabled = flyoutDisabled,
+      get = function(info)
+        F.Log.Dev(info, "info")
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
     }
   end
 end

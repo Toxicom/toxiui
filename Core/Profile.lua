@@ -781,10 +781,18 @@ P.wunderbar = {
     backgroundGradient = true,
     backgroundGradientAlpha = 1,
 
-    flyoutBackdrop = true,
-    flyoutBackdropAlpha = 0.8,
-    flyoutBackdropClassColor = false,
-    flyoutBackdropBorderSize = 2,
+    flyoutBackdrop = {
+      enabled = true,
+      alpha = 0.8,
+      classColor = false,
+      borderSize = 2,
+      width = 48,
+      spacing = 4,
+      padding = 16,
+
+      labelFont = I.Fonts.Primary,
+      labelFontSize = 14,
+    },
 
     accentFontColor = "CLASS", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM
     accentFontCustomColor = F.Table.HexToRGB("#ffffffff"),
