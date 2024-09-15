@@ -18,6 +18,11 @@ TXUI.Changelog["6.8.2"] = {
       .. F.String.Sublist("Spacing")
       .. F.String.Sublist("Slot Size")
       .. F.String.Sublist("Font & Font Size"),
+    "More options for "
+      .. F.String.Menu.WunderBar()
+      .. " Profession module" --
+      .. F.String.Sublist("Abbreviate Names")
+      .. F.String.Sublist("Name Length limit"),
 
     "* Bug fixes",
 
