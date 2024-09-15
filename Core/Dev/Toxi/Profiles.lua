@@ -43,7 +43,7 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.Profession.general.showIcons = true
 
   -- WunderBar: Hearthstone
-  E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 208704 or 6948
+  E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 209035 or 6948
 
   -- Miscellaneous: Additional Scaling
   E.db.TXUI.misc.scaling.enabled = true
