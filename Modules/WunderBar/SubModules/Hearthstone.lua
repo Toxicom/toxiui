@@ -157,9 +157,9 @@ function HS:ShowMageLovePortals()
   for _, option in F.Table.Sort(I.HearthstoneData) do
     if option.known then -- Show Only Known
       if option.teleport then
-        tinsert(teleportList, { spellID = option.id, type = "spell", label = option.label })
+        tinsert(teleportList, { spellID = option.id, type = "spell", label = option.label, mage = true })
       elseif option.portal then
-        tinsert(portalList, { spellID = option.id, type = "spell", label = option.label })
+        tinsert(portalList, { spellID = option.id, type = "spell", label = option.label, mage = true })
       end
     end
   end

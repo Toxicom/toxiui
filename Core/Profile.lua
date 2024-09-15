@@ -963,6 +963,7 @@ P.wunderbar = {
 
       seasonMythics = false,
       showLabels = true,
+      showMageLabels = true,
 
       cooldownEnabled = true,
       cooldownFont = I.Fonts.Primary,

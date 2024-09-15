@@ -43,6 +43,8 @@ TXUI.Changelog["6.8.2"] = {
       .. F.String.Sublist("Background Color now has an Alpha slider")
       .. F.String.Sublist("Class Color and Background Color options no longer require a reload"),
     F.String.Menu.WunderBar() .. " Flyout settings are no longer specific to it's backdrop",
+    "Add a new line before portals toggles in Hearthstone settings",
+    "Separate Mythic+ and Mage portal labels for " .. F.String.Menu.WunderBar() .. " Hearthstone module",
 
     "* Development improvements",
     "Improve calculations for " .. F.String.Menu.WunderBar() .. " Flyouts",

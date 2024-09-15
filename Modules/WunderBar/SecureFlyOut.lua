@@ -197,7 +197,9 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     disabledTexture:SetInside()
     disabledTexture:SetDesaturated(true)
 
-    if info.label and E.db.TXUI.wunderbar.subModules.Hearthstone.showLabels then
+    if info.label and E.db.TXUI.wunderbar.subModules.Hearthstone.showLabels and not info.mage then
+      slot.label:SetText(info.label)
+    elseif info.label and E.db.TXUI.wunderbar.subModules.Hearthstone.showMageLabels and info.mage then
       slot.label:SetText(info.label)
     else
       slot.label:SetText("")

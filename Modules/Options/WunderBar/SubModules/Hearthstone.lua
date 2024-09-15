@@ -92,28 +92,44 @@ function O:WunderBar_SubModules_Hearthstone()
   tab.generalGroup = ACH:Group("General", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase", nil, 1)
-  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", nil, 2)
-  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, 3, {
+  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase", nil, self:GetOrder())
+  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", nil, self:GetOrder())
+  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, self:GetOrder(), {
     min = 1,
     max = 100,
     step = 1,
   }, nil, nil, nil, iconDisabled)
+
+  self:AddSpacer(tab.generalGroup.args)
+
   tab.generalGroup.args.seasonMythics = {
     type = "toggle",
     name = "Seasonal M+ Teleports",
     desc = "Enabling this will show only the current season's teleports in the Flyout frame",
-    order = 4,
+    order = self:GetOrder(),
     hidden = not TXUI.IsRetail,
     width = 1.2,
   }
 
   tab.generalGroup.args.showLabels = {
     type = "toggle",
-    name = "Show labels " .. E.NewSign,
-    desc = "Enabling this will show a label of the teleport on the button. Currently only Mythic+ portals are supported.",
-    order = 5,
+    name = "Show " .. F.String.Class("Mythic+", "DEMONHUNTER") .. " labels " .. E.NewSign,
+    desc = "Enabling this will show a label of the Mythic+ teleport on the button.",
+    order = self:GetOrder(),
     hidden = not TXUI.IsRetail,
+    width = 1.2,
+  }
+
+  tab.generalGroup.args.showMageLabels = {
+    type = "toggle",
+    name = "Show " .. F.String.Class("Mage", "MAGE") .. " labels " .. E.NewSign,
+    desc = "Enabling this will show a label of the Mage teleport & portal on the button.",
+    order = self:GetOrder(),
+    disabled = function()
+      local _, class = UnitClass("player")
+      return class ~= "MAGE"
+    end,
+    width = 1.2,
   }
 
   -- Hearthstones
