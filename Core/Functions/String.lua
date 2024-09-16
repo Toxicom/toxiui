@@ -522,3 +522,21 @@ function F.String.ConvertGlyph(unicode)
   if unicode <= 0xFFFF then return char(0xE0 + floor(unicode / 0x1000), 0x80 + (floor(unicode / 0x40) % 0x40), 0x80 + (unicode % 0x40)) end
   error("Could not convert unicode " .. tostring(unicode))
 end
+
+function F.String.FormatTime(seconds)
+  if seconds >= 3600 then
+    return string.format("%02d:%02d", math.floor(seconds / 3600), math.floor((seconds % 3600) / 60))
+  else
+    return string.format("%02d:%02d", math.floor(seconds / 60), seconds % 60)
+  end
+end
+
+function F.String.FormatTimeClass(seconds)
+  local class = E.myclass
+  if seconds >= 60 then
+    local minutes = math.floor(seconds / 60)
+    return minutes .. F.String.Class("m", class)
+  else
+    return math.floor(seconds) .. F.String.Class("s", class)
+  end
+end

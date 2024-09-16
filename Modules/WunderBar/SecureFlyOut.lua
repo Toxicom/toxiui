@@ -20,7 +20,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
   local function getSpellID(button)
     local spellID
-    if C_Spell then
+    if C_Spell and C_Spell.GetSpellInfo then
       spellID = GetSpellInfo(button.spellID).spellID
     else
       spellID = select(7, GetSpellInfo(button.spellID))
@@ -118,7 +118,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     end
 
     if not slot then
-      slot = CreateFrame("Button", nil, secureFlyOutFrame, "SecureActionButtonTemplate")
+      slot = CreateFrame("Button", TXUI.Title .. "SecureFlyoutSlot" .. i, secureFlyOutFrame, "SecureActionButtonTemplate")
       slot:EnableMouse(true)
       slot:RegisterForClicks("AnyDown")
       slot:SetTemplate()
@@ -196,6 +196,36 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     disabledTexture:SetTexCoord(left, right, top, bottom)
     disabledTexture:SetInside()
     disabledTexture:SetDesaturated(true)
+
+    -- Create Cooldown for spells
+    if info.type == "spell" then
+      if not slot.cooldown then
+        local cooldown = CreateFrame("Cooldown", nil, slot, "CooldownFrameTemplate")
+        cooldown:SetAllPoints()
+        cooldown:SetDrawBling(false)
+        cooldown:SetDrawEdge(false)
+        slot.cooldown = cooldown
+      end
+
+      if not slot.cdText then
+        local cdText = slot.cooldown:CreateFontString(nil, "OVERLAY")
+        cdText:SetPoint("CENTER", slot.cooldown, "CENTER")
+        slot.cdText = cdText
+      end
+
+      slot.cdText:SetFont(labelFont, flyoutDb.labelFontSize, "OUTLINE")
+
+      -- Hook OnUpdate script to update cooldown
+      slot:SetScript("OnUpdate", function(btn)
+        local start, duration = E:GetSpellCooldown(info.spellID)
+        if start and duration and duration > 0 then
+          local currentTime = GetTime()
+          local remaining = math.floor((start + duration) - currentTime)
+          slot.cdText:SetText(F.String.FormatTimeClass(remaining))
+          btn.cooldown:SetCooldown(start, duration)
+        end
+      end)
+    end
 
     if info.label and E.db.TXUI.wunderbar.subModules.Hearthstone.showLabels and not info.mage then
       slot.label:SetText(info.label)

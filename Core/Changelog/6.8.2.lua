@@ -23,6 +23,7 @@ TXUI.Changelog["6.8.2"] = {
       .. " Profession module" --
       .. F.String.Sublist("Abbreviate Names")
       .. F.String.Sublist("Name Length limit"),
+    "Cooking Fire button in " .. F.String.Menu.WunderBar() .. " Profession flyout",
 
     "* Bug fixes",
 

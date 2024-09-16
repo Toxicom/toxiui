@@ -91,6 +91,15 @@ function PR:ProfessionClick(prof, frame, button)
           end,
         })
       end
+
+      -- Cooking Fire
+      if skillLine == 185 then
+        local cookingFireSpellId = 818
+        tinsert(menuList, {
+          spellID = cookingFireSpellId,
+          type = "spell",
+        })
+      end
     end
 
     WB:ShowSecureFlyOut(frame, "UP", menuList)
