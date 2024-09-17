@@ -26,6 +26,7 @@ TXUI.Changelog["6.8.2"] = {
     "Cooking Fire button in " .. F.String.Menu.WunderBar() .. " Profession flyout",
 
     "* Bug fixes",
+    "Remove outdated S&L database entry",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Disable Weekly Rewards skin",
