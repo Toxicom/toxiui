@@ -12,6 +12,7 @@ TXUI.Changelog["6.8.3"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Replace Wooly Mammoth with Traveler's Tundra Mammoth in " .. F.String.Menu.WunderBar() .. " Durability module",
 
     "* Settings refactoring",
 
