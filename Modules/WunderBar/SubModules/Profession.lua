@@ -81,6 +81,9 @@ function PR:ProfessionClick(prof, frame, button)
     for index, _ in next, self.others do
       local profId = self.others[index]
       local skillLine, name, _, _, icon, extraSpellId = self:GetProfessionInfo(profId)
+      -- 182 is Herablism skillLine ID
+      -- 193290 is the Herbalism Journal ID
+      if TXUI.IsRetail and skillLine == 182 then extraSpellId = 193290 end
       if skillLine then
         tinsert(menuList, {
           spellID = extraSpellId or name,

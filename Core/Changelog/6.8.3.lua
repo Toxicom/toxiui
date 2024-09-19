@@ -8,6 +8,7 @@ TXUI.Changelog["6.8.3"] = {
     "* New features",
 
     "* Bug fixes",
+    "Band-aid fix for " .. F.String.Menu.WunderBar() .. " Profession flyout's Herbalism icon freaking out",
 
     "* Profile updates",
 
