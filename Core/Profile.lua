@@ -990,7 +990,7 @@ P.wunderbar = {
       iconColor = false,
       iconFontSize = 18,
 
-      repairMount = 257,
+      repairMount = 460,
 
       textColor = true,
       textColorFadeFromNormal = true,

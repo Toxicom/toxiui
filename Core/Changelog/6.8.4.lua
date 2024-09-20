@@ -12,6 +12,7 @@ TXUI.Changelog["6.8.4"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Update default repair mount to the Yak",
 
     "* Settings refactoring",
 
