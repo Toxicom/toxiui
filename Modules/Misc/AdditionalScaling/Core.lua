@@ -17,6 +17,7 @@ function M:AdditionalScaling()
     M:SetElementScale("gossip", "GossipFrame")
     M:SetElementScale("quest", "QuestFrame")
     M:SetElementScale("mailbox", "MailFrame")
+    M:SetElementScale("friends", "FriendsFrame")
 
     -- In the next parts, if the AddOn isn't loaded by the game yet,
     -- we add it to a list to be loaded as soon as the AddOn has been loaded.

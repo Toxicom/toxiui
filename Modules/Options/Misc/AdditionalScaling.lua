@@ -318,7 +318,7 @@ function O:Plugins_AdditionalScaling()
       step = 0.05,
     }
 
-    -- Classic Group: Profession
+    -- Other Group: Profession
     otherGroup.profession = {
       order = self:GetOrder(),
       type = "range",
@@ -328,6 +328,23 @@ function O:Plugins_AdditionalScaling()
       end,
       set = function(_, value)
         E.db.TXUI.misc.scaling.profession.scale = value
+        Misc:AdditionalScaling()
+      end,
+      min = 0.5,
+      max = 2,
+      step = 0.05,
+    }
+
+    -- Other Group: Friends
+    otherGroup.friends = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Friends",
+      get = function(_)
+        return E.db.TXUI.misc.scaling.friends.scale
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.scaling.friends.scale = value
         Misc:AdditionalScaling()
       end,
       min = 0.5,

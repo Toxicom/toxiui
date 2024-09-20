@@ -361,6 +361,10 @@ P.misc = {
     retailTransmog = {
       enabled = true,
     },
+
+    friends = {
+      scale = 1,
+    },
   },
 
   hide = {
