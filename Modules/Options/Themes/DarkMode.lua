@@ -63,12 +63,12 @@ function O:ToxiUI_Themes_DarkMode()
   -- Gradient Name
   do
     -- Gradient Group
-    local gradientGroup = self:AddInlineDesc(options, {
+    local gradientGroup = self:AddInlineRequirementsDesc(options, {
       name = "Gradient name",
       hidden = optionsHidden,
     }, {
-      name = "Changes unitframe name to have gradient colors",
-    }).args
+      name = "Changes unitframe name to have gradient colors.\n\n",
+    }, I.Requirements.DarkModeGradientName).args
 
     -- Gradient Toggle
     gradientGroup.toggle = {

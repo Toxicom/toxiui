@@ -16,7 +16,7 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.CHARACTER_SKIN_ENABLED] = "You can't enable this option because you have ElvUI's Character Frame Skin disabled",
   [I.Enum.Requirements.WT_ENABLED] = "NO_STRING_NEEDED",
   [I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED] = "ElvUI_GlobalFadePersist is currently installed and enabled. To use this option, please disable ElvUI_GlobalFadePersist, as it interferes with ToxiUI's global fade persist.",
-  [I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE] = "NO_STRING_NEEDED",
+  [I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE] = "This option is disabled because Details is not loaded or your Details profile is not ToxiUI. Please run the ToxiUI installer and apply the Details profile to unlock this option.",
   [I.Enum.Requirements.ELVUI_BAGS_ENABLED] = "You can't enable this option because ElvUI's Bag module is currently turned off. Please enable it to unlock this option.",
   [I.Enum.Requirements.ELVUI_NOT_SKINNED] = "You can't enable this option because a similar module for UnitFrames is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.DETAILS_NOT_SKINNED] = "You can't enable this option because a similar module for Details is currently turned on. Please disable it to unlock this option.",
@@ -34,6 +34,7 @@ I.Strings.RequirementsDebug = {
   [I.Enum.Requirements.DARK_MODE_DISABLED] = "DM Enabled",
   [I.Enum.Requirements.GRADIENT_MODE_ENABLED] = "GM Disabled",
   [I.Enum.Requirements.GRADIENT_MODE_DISABLED] = "GM Enabled",
+  [I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE] = "ToxiUI Details not found",
 }
 
 I.Strings.ChangelogText = {
