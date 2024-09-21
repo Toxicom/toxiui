@@ -19,6 +19,7 @@ local format = string.format
 local FormatBindingKeyIntoText = FormatBindingKeyIntoText
 local GameMenuFrame = GameMenuFrame
 local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
+local GetCVarBool = GetCVarBool
 local GetNumGuildMembers = GetNumGuildMembers
 local HideUIPanel = HideUIPanel
 local InCombatLockdown = InCombatLockdown
@@ -32,8 +33,8 @@ local select = select
 local ShowUIPanel = ShowUIPanel
 local sort = sort
 local tinsert = table.insert
-local ToggleCharacter = ToggleCharacter
 local ToggleChannelFrame = ToggleChannelFrame
+local ToggleCharacter = ToggleCharacter
 local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
@@ -608,7 +609,7 @@ end
 function MM:CreateButtons()
   local function createMicroMenuButton(name, info)
     local frame = CreateFrame("BUTTON", nil, self.frame, "SecureActionButtonTemplate")
-    frame:RegisterForClicks("AnyDown")
+    frame:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
 
     frame.id = name
     frame.info = info

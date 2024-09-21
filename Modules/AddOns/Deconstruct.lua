@@ -10,6 +10,7 @@ local GameTooltip = GameTooltip
 local GameTooltip_Hide = GameTooltip_Hide
 local GetContainerItemInfo = GetContainerItemInfo or (C_Container and C_Container.GetContainerItemInfo)
 local GetContainerNumSlots = GetContainerNumSlots or (C_Container and C_Container.GetContainerNumSlots)
+local GetCVarBool = GetCVarBool
 local GetItemInfo = GetItemInfo
 local GetProfessionInfo = GetProfessionInfo
 local GetProfessions = GetProfessions
@@ -665,7 +666,7 @@ end
 
 function DC:CreateElements()
   local hoverButton = self.hoverButton or CreateFrame("Button", "TXDeconstructHoverButton", E.UIParent, "SecureActionButtonTemplate")
-  hoverButton:RegisterForClicks("AnyDown")
+  hoverButton:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
   hoverButton:SetFrameStrata("TOOLTIP")
 
   hoverButton.TipLines = {}

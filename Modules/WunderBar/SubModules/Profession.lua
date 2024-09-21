@@ -6,6 +6,7 @@ local DT = E:GetModule("DataTexts")
 local C_TradeSkillUI = C_TradeSkillUI
 local CreateFrame = CreateFrame
 local format = string.format
+local GetCVarBool = GetCVarBool
 local GetNumSkillLines = GetNumSkillLines
 local GetProfessionInfo = GetProfessionInfo
 local GetProfessions = GetProfessions
@@ -478,8 +479,8 @@ function PR:CreateProfessions()
   prof1Frame:SetScript("OnLeave", onLeave)
   prof2Frame:SetScript("OnLeave", onLeave)
 
-  prof1Frame:RegisterForClicks("AnyDown")
-  prof2Frame:RegisterForClicks("AnyDown")
+  prof1Frame:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
+  prof2Frame:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
 
   prof1Frame:SetScript("OnClick", onClick)
   prof2Frame:SetScript("OnClick", onClick)

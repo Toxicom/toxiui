@@ -7,6 +7,7 @@ local CreateFrame = CreateFrame
 local floor = math.floor
 local format = string.format
 local GetBindLocation = GetBindLocation
+local GetCVarBool = GetCVarBool
 local GetItemCooldownFunction = C_Container.GetItemCooldown
 local GetItemCount = GetItemCount
 local GetItemIcon = GetItemIcon
@@ -440,7 +441,7 @@ function HS:CreateText()
   secureFrameHolder:ClearAllPoints()
   secureFrameHolder:SetAllPoints()
   secureFrameHolder:EnableMouse(true)
-  secureFrameHolder:RegisterForClicks("AnyDown")
+  secureFrameHolder:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
 
   self:HookScript(secureFrameHolder, "OnEnter", function(...)
     WB:ModuleOnEnter(self, ...)

@@ -3,6 +3,7 @@ local WB = TXUI:GetModule("WunderBar")
 local DT = E:GetModule("DataTexts")
 
 local CreateFrame = CreateFrame
+local GetCVarBool = GetCVarBool
 local ipairs = ipairs
 local max = math.max
 local min = math.min
@@ -335,7 +336,7 @@ end
 
 function WB:ConstructModule(panel, moduleIndex, parentIndex)
   local module = CreateFrame("Button", "TXUIWunderBar" .. panel.panelName .. "Module" .. parentIndex, panel)
-  module:RegisterForClicks("AnyDown")
+  module:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
   module.subModule = nil
   module.extendedModule = false
   module.extendModuleRequest = false

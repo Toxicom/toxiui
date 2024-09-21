@@ -3,15 +3,17 @@ local WB = TXUI:GetModule("WunderBar")
 local SS = WB:NewModule("SpecSwitch")
 local DT = E:GetModule("DataTexts")
 
-local C_Traits_GetConfigInfo = C_Traits.GetConfigInfo
 local _G = _G
+local C_Traits_GetConfigInfo = C_Traits.GetConfigInfo
 local CreateFrame = CreateFrame
 local format = string.format
 local GetActiveTalentGroup = GetActiveTalentGroup
 local GetCurrentSpecID = TXUI.IsRetail and PlayerUtil.GetCurrentSpecID or nil
+local GetCVarBool = GetCVarBool
 local GetLastSelectedSavedConfigID = TXUI.IsRetail and C_ClassTalents.GetLastSelectedSavedConfigID or nil
 local GetLootSpecialization = GetLootSpecialization
 local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
+local GetNumTalentGroups = GetNumTalentGroups
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
 local GetTalentGroupRole = GetTalentGroupRole
@@ -19,11 +21,10 @@ local GetTalentTabInfo = GetTalentTabInfo
 local ipairs = ipairs
 local SetActiveTalentGroup = SetActiveTalentGroup
 local strjoin = strjoin
+local tinsert = table.insert
 local ToggleTalentFrame = ToggleTalentFrame
 local UnitClassBase = UnitClassBase
-local GetNumTalentGroups = GetNumTalentGroups
 local unpack = unpack
-local tinsert = table.insert
 
 local TALENT_SPEC_PRIMARY = TALENT_SPEC_PRIMARY
 local TALENT_SPEC_SECONDARY = TALENT_SPEC_SECONDARY
@@ -459,8 +460,8 @@ function SS:CreateSwitch()
   spec1Frame:SetScript("OnLeave", onLeave)
   spec2Frame:SetScript("OnLeave", onLeave)
 
-  spec1Frame:RegisterForClicks("AnyDown")
-  spec2Frame:RegisterForClicks("AnyDown")
+  spec1Frame:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
+  spec2Frame:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
 
   spec1Frame:SetScript("OnClick", onClick)
   spec2Frame:SetScript("OnClick", onClick)

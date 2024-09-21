@@ -14,6 +14,7 @@ local C_WowTokenPublic_UpdateMarketPrice = C_WowTokenPublic and C_WowTokenPublic
 local floor = math.floor
 local format = string.format
 local GetContainerNumFreeSlots = GetContainerNumFreeSlots or (C_Container and C_Container.GetContainerNumFreeSlots)
+local GetCVarBool = GetCVarBool
 local GetMoney = GetMoney
 local ipairs = ipairs
 local IsLoggedIn = IsLoggedIn
@@ -408,7 +409,7 @@ function CR:CreateText()
   secureFrameHolder:ClearAllPoints()
   secureFrameHolder:SetAllPoints()
   secureFrameHolder:EnableMouse(true)
-  secureFrameHolder:RegisterForClicks("AnyDown")
+  secureFrameHolder:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
 
   self:HookScript(secureFrameHolder, "OnEnter", function(...)
     WB:ModuleOnEnter(self, ...)

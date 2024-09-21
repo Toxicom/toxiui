@@ -3,6 +3,7 @@ local WB = TXUI:GetModule("WunderBar")
 
 local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
+local GetCVarBool = GetCVarBool
 local GetSpellInfo = (C_Spell and C_Spell.GetSpellInfo) or GetSpellInfo
 local GetSpellTexture = (C_Spell and C_Spell.GetSpellTexture) or GetSpellTexture
 local InCombatLockdown = InCombatLockdown
@@ -120,7 +121,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     if not slot then
       slot = CreateFrame("Button", TXUI.Title .. "SecureFlyoutSlot" .. i, secureFlyOutFrame, "SecureActionButtonTemplate")
       slot:EnableMouse(true)
-      slot:RegisterForClicks("AnyDown")
+      slot:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
       slot:SetTemplate()
       slot:StyleButton(nil, true)
       slot:SetScript("OnEnter", showTooltip)

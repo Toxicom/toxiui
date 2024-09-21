@@ -17,6 +17,7 @@ local C_Reputation_IsFactionParagon = C_Reputation.IsFactionParagon
 local C_Reputation_IsMajorFaction = C_Reputation.IsMajorFaction
 local CreateFrame = CreateFrame
 local format = string.format
+local GetCVarBool = GetCVarBool
 local GetNumQuestLogEntries = GetNumQuestLogEntries
 local GetQuestLogRewardXP = GetQuestLogRewardXP
 local GetQuestLogTitle = GetQuestLogTitle
@@ -451,7 +452,7 @@ function DB:CreateBar()
   barFrame:SetScript("OnEnter", onEnter)
   barFrame:SetScript("OnLeave", onLeave)
 
-  barFrame:RegisterForClicks("AnyDown")
+  barFrame:RegisterForClicks(GetCVarBool("ActionButtonUseKeyDown") and "AnyDown" or "AnyUp")
   barFrame:SetScript("OnClick", onClick)
 
   self.barFrame = barFrame
