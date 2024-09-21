@@ -309,36 +309,6 @@ I.Data.Contributor = {
         ["Torwald-ShatteredHalls"] = true,
       },
     },
-
-    -- Joined Aug 18, 2024
-    ["Dieman"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Silvermoon
-        ["Diemans-Silvermoon"] = true,
-        ["Diedk-Silvermoon"] = true,
-        ["Diesha-Silvermoon"] = true,
-        ["Diehun-Silvermoon"] = true,
-        ["Diedot-Silvermoon"] = true,
-        ["Diepri-Silvermoon"] = true,
-        ["Diedem-Silvermoon"] = true,
-        ["Dievok-Silvermoon"] = true,
-        ["Diedru-Silvermoon"] = true,
-        ["Diepal-Silvermoon"] = true,
-        ["Dierou-Silvermoon"] = true,
-        ["Diemonk-Silvermoon"] = true,
-        ["Diemag-Silvermoon"] = true,
-        ["Wëñdy-Silvermoon"] = true,
-
-        -- Nemesis
-        ["Dieman-Nemesis"] = true,
-        ["Ninjutsu-Nemesis"] = true,
-        ["Wildflame-Nemesis"] = true,
-        ["Qaelthalas-Nemesis"] = true,
-
-        -- Kazzak
-        ["Diemaster-Kazzak"] = true,
-      },
-    },
   },
 
   -- BETA => Orange Badge (beta testers)

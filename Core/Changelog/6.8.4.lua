@@ -13,7 +13,7 @@ TXUI.Changelog["6.8.4"] = {
 
     "* Documentation",
     "Update default repair mount to the Yak",
-    "Update " .. F.String.Rare("mrkhaglund") .. " characters",
+    "Update contributors list",
 
     "* Settings refactoring",
 
