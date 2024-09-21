@@ -286,20 +286,27 @@ I.Data.Contributor = {
       [I.Enum.Flavor.RETAIL] = {
         -- Al'Akir
         ["Firaga-Al'Akir"] = true,
-        ["Ishaka-Al'Akir"] = true,
+        ["Thalric-Al'Akir"] = true,
+        ["Loahand-Al'Akir"] = true,
         ["Leep-Al'Akir"] = true,
+        ["Vaiju-Al'Akir"] = true,
+        ["Xpzt-Al'Akir"] = true,
+        ["Saintbull-Al'Akir"] = true,
+        ["Mcgregor-Al'Akir"] = true,
+        ["Ishaka-Al'Akir"] = true,
+        ["Arcané-Al'Akir"] = true,
 
         -- Darkspear
         ["Deadshoot-Darkspear"] = true,
-        ["Türok-Darkspear"] = true,
-        ["Erhja-Darkspear"] = true,
-        ["Ortodoxx-Darkspear"] = true,
-        ["Vildsint-Darkspear"] = true,
         ["Thulsa-Darkspear"] = true,
+        ["Ortodoxx-Darkspear"] = true,
+        ["Erhja-Darkspear"] = true,
+        ["Türok-Darkspear"] = true,
+        ["Vildsint-Darkspear"] = true,
 
         -- ShatteredHalls
-        ["Torwald-ShatteredHalls"] = true,
         ["Lupin-ShatteredHalls"] = true,
+        ["Torwald-ShatteredHalls"] = true,
       },
     },
 
