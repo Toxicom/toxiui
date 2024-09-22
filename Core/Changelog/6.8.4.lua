@@ -14,6 +14,7 @@ TXUI.Changelog["6.8.4"] = {
     "* Documentation",
     "Update default repair mount to the Yak",
     "Update contributors list",
+    "Add BugSack & BugGrabber to Debug mode",
 
     "* Settings refactoring",
 

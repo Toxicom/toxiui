@@ -144,6 +144,9 @@ local AddOns = {
   -- Other AddOns
   Details = true,
   Plater = true,
+
+  BugSack = true,
+  BugGrabber = true,
 }
 
 local function LogDebugInfo()
