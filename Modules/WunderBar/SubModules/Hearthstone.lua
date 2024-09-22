@@ -151,7 +151,7 @@ function HS:GetCovenantStone(hs)
   return hs
 end
 
-function HS:ShowMageLovePortals()
+function HS:GetMagePortals()
   local teleportList = {}
   local portalList = {}
 
@@ -249,7 +249,7 @@ function HS:UpdateSelected()
     -- Portal & Teleport
     self.secureFrame:SetAttribute("shift-type2", "function")
     self.secureFrame:SetAttribute("shift-_function2", function()
-      self:ShowMageLovePortals()
+      self:GetMagePortals()
     end)
   end
 end

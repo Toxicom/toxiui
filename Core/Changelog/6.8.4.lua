@@ -19,5 +19,6 @@ TXUI.Changelog["6.8.4"] = {
 
     "* Development improvements",
     "Register AnyDown or AnyUp for WunderBar's buttons based on the CVar",
+    "Rename mage portals function for consistency",
   },
 }
