@@ -10,15 +10,7 @@ function O:WunderBar_SubModules_Durability()
   local getMounts = function()
     local repairMounts = {}
 
-    local mountIDs = {
-      2237, -- Grizzly Hills Packmaster
-      460, -- Grand Expedition Yak
-      284, -- Traveler's Tundra Mammoth (Horde)
-      280, -- Traveler's Tundra Mammoth (Alliance)
-      1039, -- Mighty Caravan Brutosaur
-    }
-
-    for _, mountID in ipairs(mountIDs) do
+    for _, mountID in ipairs(I.RepairMounts) do
       local name, _, _, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
 
       if isUsable then repairMounts[mountID] = name end
