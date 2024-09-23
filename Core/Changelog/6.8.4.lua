@@ -8,6 +8,7 @@ TXUI.Changelog["6.8.4"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix currency sorting issue where currencies would go under the wrong expansion header",
 
     "* Profile updates",
 

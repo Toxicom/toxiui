@@ -248,16 +248,50 @@ function CR:UpdateTooltip()
 
   local function SortCurrenciesByWeight(tooltipData, colorTable)
     local sortedData = {}
+    local currentGroup = {}
 
+    -- Iterate through each entry in tooltipData
     for _, info in ipairs(tooltipData) do
-      local _, currencyIndex = unpack(info)
-      local weight = (colorTable[currencyIndex] and colorTable[currencyIndex].weight) or 0
-      tinsert(sortedData, { info = info, weight = weight })
+      -- Unpack the info table: currencyName, currencyIndex, headerIndex, and isHeader
+      local _, currencyIndex, _, isHeader = unpack(info)
+
+      -- Check if this entry is a header
+      if isHeader then
+        -- Sort the previous group (if it exists) and add it to sortedData
+        if #currentGroup > 0 then
+          table.sort(currentGroup, function(a, b)
+            return a.weight > b.weight
+          end)
+
+          -- Add sorted group to final data
+          for _, entry in ipairs(currentGroup) do
+            tinsert(sortedData, entry.info)
+          end
+
+          -- Clear the group for the next set of currencies
+          currentGroup = {}
+        end
+
+        -- Add the header directly to sortedData (keeping it in its original position)
+        tinsert(sortedData, info)
+      else
+        -- If it's not a header, calculate the weight and add it to the current group
+        local weight = (colorTable[currencyIndex] and colorTable[currencyIndex].weight) or 0
+        tinsert(currentGroup, { info = info, weight = weight })
+      end
     end
 
-    sort(sortedData, function(a, b)
-      return a.weight > b.weight
-    end)
+    -- Sort and add the last group (if any)
+    if #currentGroup > 0 then
+      table.sort(currentGroup, function(a, b)
+        return a.weight > b.weight
+      end)
+
+      -- Add sorted group to final data
+      for _, entry in ipairs(currentGroup) do
+        tinsert(sortedData, entry.info)
+      end
+    end
 
     return sortedData
   end
@@ -265,8 +299,7 @@ function CR:UpdateTooltip()
   local sortedTooltipData = SortCurrenciesByWeight(E.global.datatexts.settings.Currencies.tooltipData, currencyColorTable)
 
   for _, data in ipairs(sortedTooltipData) do
-    local info = data.info
-    local _, currencyIndex, headerIndex = unpack(info)
+    local _, currencyIndex, headerIndex = unpack(data)
     if currencyIndex and self.db.enabledCurrencies[currencyIndex] then
       local currencyInfo = C_CurrencyInfo_GetCurrencyInfo(currencyIndex)
 
