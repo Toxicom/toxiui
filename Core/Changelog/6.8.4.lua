@@ -23,5 +23,6 @@ TXUI.Changelog["6.8.4"] = {
     "Register AnyDown or AnyUp for WunderBar's buttons based on the CVar",
     "Rename mage portals function for consistency",
     "Move Repair Mounts to the Internal table",
+    "Show default Vigor Bar if Blizz API freaks out and doesn't load ours",
   },
 }

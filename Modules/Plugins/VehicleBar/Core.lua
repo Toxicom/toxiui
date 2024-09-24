@@ -11,10 +11,10 @@ local UnregisterStateDriver = UnregisterStateDriver
 
 function VB:OnShowEvent()
   self:StopAllAnimations()
+  local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"]
 
   if self.vigorBar and self:IsVigorAvailable() then
     -- Hide the Default Vigor Bar
-    local defaultVigorBar = _G["UIWidgetPowerBarContainerFrame"]
     if defaultVigorBar then defaultVigorBar:Hide() end
 
     local widgetInfo = self:GetWidgetInfo()
@@ -31,6 +31,8 @@ function VB:OnShowEvent()
         self:CreateVigorSegments()
       end
     end
+  elseif defaultVigorBar and not defaultVigorBar:IsShown() then
+    defaultVigorBar:Show()
   end
 
   local animationsAllowed = self.db.animations and (not InCombatLockdown()) and not self.combatLock
