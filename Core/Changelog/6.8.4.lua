@@ -12,6 +12,7 @@ TXUI.Changelog["6.8.4"] = {
 
     "* Profile updates",
     F.String.BigWigs() .. ": Update Nameplate icons to match rest of " .. TXUI.Title,
+    F.String.Plater() .. ": Enable mod to help tanks with treants and elementals taunting",
 
     "* Documentation",
     "Update default repair mount to the Yak",
