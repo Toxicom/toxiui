@@ -601,9 +601,11 @@ function O:ToxiUI_Themes_GradientMode()
 
     do
       local healthGroup = self:AddInlineDesc(tab, {
-        name = "Health Color",
+        name = "Health Color Tags",
       }, {
-        name = "Colors the health value on UnitFrames.\n\n"
+        name = "Colors the health value of "
+          .. TXUI.Title
+          .. " text tags used in UnitFrames.\n\n"
           .. F.String.Error("Important: ")
           .. "This option only works for "
           .. F.String.ToxiUI("tx:health:percent")

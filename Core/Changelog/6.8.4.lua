@@ -22,6 +22,7 @@ TXUI.Changelog["6.8.4"] = {
     "Update version for Classic Era",
 
     "* Settings refactoring",
+    "Add more information for Gradient mode's Health Color tags setting",
 
     "* Development improvements",
     "Register AnyDown or AnyUp for WunderBar's buttons based on the CVar",
