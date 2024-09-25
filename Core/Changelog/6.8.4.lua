@@ -19,6 +19,7 @@ TXUI.Changelog["6.8.4"] = {
     "Update contributors list",
     "Add BugSack & BugGrabber to Debug mode",
     F.String.MinElv("13.78"),
+    "Update version for Classic Era",
 
     "* Settings refactoring",
 
