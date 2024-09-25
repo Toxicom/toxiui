@@ -25,5 +25,6 @@ TXUI.Changelog["6.8.4"] = {
     "Rename mage portals function for consistency",
     "Move Repair Mounts to the Internal table",
     "Show default Vigor Bar if Blizz API freaks out and doesn't load ours",
+    "Update Profession module to use C_Spell namespace if it's available" .. F.String.Sublist("This fixes broken professions module on Classic Era"),
   },
 }

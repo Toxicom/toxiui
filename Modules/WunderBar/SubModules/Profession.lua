@@ -241,8 +241,19 @@ do
 
     local function searchLocaleSpellName(ids, texture)
       for _, spellId in ipairs(ids) do
-        local name, _, icon = GetSpellInfo(spellId)
-        if texture == icon then return name end
+        local spellName
+        local iconID
+
+        if C_Spell and C_Spell.GetSpellInfo then
+          local spellInfo = GetSpellInfo(spellId)
+          spellName = spellInfo.name
+          iconID = spellInfo.iconID
+        else
+          local name, _, icon = GetSpellInfo(spellId)
+          spellName = name
+          iconID = icon
+        end
+        if texture == iconID then return spellName end
       end
     end
 
