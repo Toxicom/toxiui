@@ -11,6 +11,7 @@ TXUI.Changelog["6.8.4"] = {
     "Fix currency sorting issue where currencies would go under the wrong expansion header",
 
     "* Profile updates",
+    F.String.BigWigs() .. ": Update Nameplate icons to match rest of " .. TXUI.Title,
 
     "* Documentation",
     "Update default repair mount to the Yak",
