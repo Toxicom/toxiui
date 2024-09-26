@@ -134,14 +134,10 @@ function WB:UpdateBar()
     self:StopAnimationType(self.bar.barBackground, self.animationType.COLOR)
 
     if self.db.general.backgroundGradient then
-      local initialAlpha = color.a
-      local endAlpha = color.a * (1 - self.db.general.backgroundGradientAlpha)
+      local initialAlpha = isTop and color.a * (1 - self.db.general.backgroundGradientAlpha) or color.a
+      local endAlpha = isTop and color.a or color.a * (1 - self.db.general.backgroundGradientAlpha)
 
-      if isTop then
-        F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, endAlpha, color.r, color.g, color.b, initialAlpha)
-      else
-        F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, initialAlpha, color.r, color.g, color.b, endAlpha)
-      end
+      F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, initialAlpha, color.r, color.g, color.b, endAlpha)
     else
       F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, color.a, color.r, color.g, color.b, color.a)
     end
