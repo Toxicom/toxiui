@@ -37,7 +37,11 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("Theme.SettingsUpdate")
       end,
     }, {
-      name = "This module applies a grain background and shadows to all " .. F.String.ElvUI() .. " elements.\n\n",
+      name = "This module applies a grain background and shadows to all "
+        .. F.String.ElvUI()
+        .. " elements.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "This feature may increase your load times due to all the frames it has to skin. This should not however impact performance of the gameplay.\n\n",
     }, I.Requirements.ElvUITheme)
 
     -- ElvUI Theme Mode Enable

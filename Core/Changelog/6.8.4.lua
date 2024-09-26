@@ -25,6 +25,7 @@ TXUI.Changelog["6.8.4"] = {
 
     "* Settings refactoring",
     "Add more information for Gradient mode's Health Color tags setting",
+    "Add extra information to " .. TXUI.Title .. " " .. F.String.ElvUI() .. " skin",
 
     "* Development improvements",
     "Register AnyDown or AnyUp for WunderBar's buttons based on the CVar",
