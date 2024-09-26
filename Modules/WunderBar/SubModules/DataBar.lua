@@ -354,7 +354,10 @@ function DB:UpdatePosition()
   self.barIcon:SetPoint("RIGHT", self.bar, "LEFT", -iconPadding, iconOffset)
 
   self.infoText:ClearAllPoints()
-  self.infoText:SetPoint("CENTER", self.bar, "CENTER", 0, self.db.infoOffset)
+  local isTop = (WB.db.general.position or "BOTTOM") == "TOP"
+  local infoOffset = isTop and -self.db.general.infoOffset or self.db.infoOffset
+  self.infoText:SetPoint("CENTER", 0, infoOffset)
+
 
   self.bar.completedOverlay:ClearAllPoints()
   self.bar.completedOverlay:SetAllPoints(self.bar)

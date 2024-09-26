@@ -416,7 +416,10 @@ function MM:UpdateIcons()
       -- Info Text
       if frame.infoText then
         WB:SetFontFromDB(self.db.general, "info", frame.infoText, true, self.db.general.infoUseAccent)
-        frame.infoText:SetPoint("CENTER", 0, self.db.general.infoOffset)
+
+        local isTop = (WB.db.general.position or "BOTTOM") == "TOP"
+        local infoOffset = isTop and -self.db.general.infoOffset or self.db.general.infoOffset
+        frame.infoText:SetPoint("CENTER", 0, infoOffset)
 
         if self.db.general.infoEnabled then
           frame.infoText:Show()
