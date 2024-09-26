@@ -78,7 +78,7 @@ function O:WunderBar_General()
       order = self:GetOrder(),
       type = "select",
       name = "Position",
-      desc = "Choose whether to display the WunderBar at the top or bottom of the screen.",
+      desc = "Choose whether to display the " .. F.String.Menu.WunderBar() .. " at the top or bottom of the screen.",
       values = {
         TOP = "Top",
         BOTTOM = "Bottom",
