@@ -355,8 +355,7 @@ function DB:UpdatePosition()
 
   self.infoText:ClearAllPoints()
   local isTop = E.db.TXUI.wunderbar.general.position == "TOP"
-  local infoOffset = isTop and -self.db.infoOffset or self.db.infoOffset
-  self.infoText:SetPoint("CENTER", 0, infoOffset)
+  self.infoText:SetPoint("CENTER", 0, (isTop and -1 or 1) * self.db.infoOffset)
 
   self.bar.completedOverlay:ClearAllPoints()
   self.bar.completedOverlay:SetAllPoints(self.bar)
