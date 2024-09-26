@@ -174,7 +174,8 @@ function SS:SpecClick(frame, button, ...)
         end
       end
 
-      WB:ShowSecureFlyOut(frame, "UP", menuList)
+      local flyoutDirection = E.db.TXUI.wunderbar.general.position == "TOP" and "DOWN" or "UP"
+      WB:ShowSecureFlyOut(frame, flyoutDirection, menuList)
     end
   end
 end
@@ -344,7 +345,7 @@ function SS:UpdatePosition()
   secondaryIcon:SetPoint("RIGHT", secondaryText, "LEFT", -iconPadding, iconOffset - 0)
 
   self.infoText:ClearAllPoints()
-  self.infoText:SetPoint("CENTER", secondaryText, "CENTER", 0, self.db.general.infoOffset)
+  self.infoText:SetPoint("CENTER", secondaryText, "CENTER", 0, WB.dirMulti * self.db.general.infoOffset)
 
   if not self.forceHideSpec2 and (self.spec1 and self.spec2) then
     local totalWidth = (primaryText:GetStringWidth() + iconSpace)

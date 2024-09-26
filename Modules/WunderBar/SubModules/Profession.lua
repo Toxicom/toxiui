@@ -106,7 +106,8 @@ function PR:ProfessionClick(prof, frame, button)
       end
     end
 
-    WB:ShowSecureFlyOut(frame, "UP", menuList)
+    local flyoutDirection = E.db.TXUI.wunderbar.general.position == "TOP" and "DOWN" or "UP"
+    WB:ShowSecureFlyOut(frame, flyoutDirection, menuList)
   else
     self:ProfessionOpen(prof)
   end

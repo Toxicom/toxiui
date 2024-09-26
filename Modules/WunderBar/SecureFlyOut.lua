@@ -17,6 +17,11 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     return
   end
 
+  local dirUp = direction == "UP"
+  local dirDown = direction == "DOWN"
+  local dirLeft = direction == "LEFT"
+  local dirRight = direction == "RIGHT"
+
   if InCombatLockdown() then return end
 
   local function getSpellID(button)
@@ -161,14 +166,12 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     if indexInColumn == 1 then
       -- First slot in the column
-      -- I don't fucking know how I got here to this calc but I think it makes sense, basically position the column
-      -- based on all the columns, then add 4:3 ratio padding and add border because icons have borders /shrug
-      slot:SetPoint("BOTTOMRIGHT", secureFlyOutFrame, "BOTTOMRIGHT", -columnOffset, padding)
+      slot:SetPoint(dirDown and "TOPRIGHT" or "BOTTOMRIGHT", secureFlyOutFrame, dirDown and "TOPRIGHT" or "BOTTOMRIGHT", -columnOffset, self.dirMulti * padding)
       prevSlots[currentColumn] = slot
     else
       -- Subsequent slots, positioned above the previous slot in the same column
       -- Ensure the slot is positioned correctly with respect to spacing and the slot above it
-      slot:SetPoint("BOTTOM", prevSlots[currentColumn], "TOP", 0, spacing)
+      slot:SetPoint(dirDown and "TOP" or "BOTTOM", prevSlots[currentColumn], dirDown and "BOTTOM" or "TOP", 0, self.dirMulti * spacing)
       prevSlots[currentColumn] = slot
     end
 
@@ -257,13 +260,13 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   secureFlyOutFrame:SetFrameStrata("DIALOG")
   secureFlyOutFrame:ClearAllPoints()
 
-  if direction == "UP" then
+  if dirUp then
     secureFlyOutFrame:SetPoint("BOTTOMRIGHT", parent, "TOPRIGHT")
-  elseif direction == "DOWN" then
-    secureFlyOutFrame:SetPoint("TOP", parent, "BOTTOM")
-  elseif direction == "LEFT" then
+  elseif dirDown then
+    secureFlyOutFrame:SetPoint("TOPRIGHT", parent, "BOTTOMRIGHT")
+  elseif dirLeft then
     secureFlyOutFrame:SetPoint("RIGHT", parent, "LEFT")
-  elseif direction == "RIGHT" then
+  elseif dirRight then
     secureFlyOutFrame:SetPoint("LEFT", parent, "RIGHT")
   end
 

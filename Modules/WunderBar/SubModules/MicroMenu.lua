@@ -416,7 +416,8 @@ function MM:UpdateIcons()
       -- Info Text
       if frame.infoText then
         WB:SetFontFromDB(self.db.general, "info", frame.infoText, true, self.db.general.infoUseAccent)
-        frame.infoText:SetPoint("CENTER", 0, self.db.general.infoOffset)
+
+        frame.infoText:SetPoint("CENTER", 0, WB.dirMulti * self.db.general.infoOffset)
 
         if self.db.general.infoEnabled then
           frame.infoText:Show()

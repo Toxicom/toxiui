@@ -92,7 +92,12 @@ function WB:UpdateBar()
   local barHeight = E:Scale(self.db.general.barHeight)
   self.bar:SetSize(F.PerfectScale(self.db.general.barWidth), barHeight)
   self.bar:ClearAllPoints()
-  self.bar:SetPoint("BOTTOM", 0, 0)
+
+  if self.isTop then
+    self.bar:SetPoint("TOP", E.UIParent, "TOP", 0, 0)
+  else
+    self.bar:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 0)
+  end
 
   -- Size for modules
   local panelSize = F.PerfectScale(self:CalculateEqualWidth(self.db.general.barWidth, E:Scale(self.db.general.barSpacing)))
@@ -125,18 +130,10 @@ function WB:UpdateBar()
     self:StopAnimationType(self.bar.barBackground, self.animationType.COLOR)
 
     if self.db.general.backgroundGradient then
-      F.Color.SetGradientRGB(
-        self.bar.barBackground,
-        "VERTICAL",
-        color.r,
-        color.g,
-        color.b,
-        color.a,
-        color.r,
-        color.g,
-        color.b,
-        color.a * (1 - self.db.general.backgroundGradientAlpha)
-      )
+      local initialAlpha = self.isTop and color.a * (1 - self.db.general.backgroundGradientAlpha) or color.a
+      local endAlpha = self.isTop and color.a or color.a * (1 - self.db.general.backgroundGradientAlpha)
+
+      F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, initialAlpha, color.r, color.g, color.b, endAlpha)
     else
       F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, color.a, color.r, color.g, color.b, color.a)
     end

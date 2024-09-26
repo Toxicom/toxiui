@@ -165,7 +165,7 @@ function HS:GetMagePortals()
     end
   end
 
-  WB:ShowSecureFlyOut(self.frame, "UP", teleportList, portalList)
+  WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, teleportList, portalList)
 end
 
 function HS:UpdateSelected()
@@ -228,7 +228,7 @@ function HS:UpdateSelected()
   if self.hsMythics and not F.Table.IsEmpty(self.hsMythics) then
     self.secureFrame:SetAttribute("shift-type1", "function")
     self.secureFrame:SetAttribute("shift-_function1", function()
-      WB:ShowSecureFlyOut(self.frame, "UP", self.hsMythics)
+      WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics)
     end)
   end
 
@@ -427,7 +427,7 @@ function HS:UpdateElements()
   end
 
   self.hearthstoneIcon:SetPoint("RIGHT", self.hearthstoneText, "LEFT", -5, 3)
-  self.hearthstoneText.cooldownText:SetPoint("CENTER", self.hearthstoneText, "CENTER", 0, self.db.cooldownOffset)
+  self.hearthstoneText.cooldownText:SetPoint("CENTER", self.hearthstoneText, "CENTER", 0, WB.dirMulti * self.db.cooldownOffset)
 
   if self.db.showIcon then
     self.hearthstoneIcon:Show()
@@ -486,6 +486,8 @@ function HS:OnInit()
   -- Create stuff
   self:CreateText()
   self:OnWunderBarUpdate()
+
+  self.flyoutDirection = E.db.TXUI.wunderbar.general.position == "TOP" and "DOWN" or "UP"
 
   -- We are done, hooray!
   self.Initialized = true

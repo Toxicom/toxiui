@@ -73,6 +73,18 @@ function O:WunderBar_General()
     -- Spacer
     self:AddSpacer(generalGroup["args"])
 
+    -- Position
+    generalGroup["args"]["position"] = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Position",
+      desc = "Choose whether to display the " .. F.String.Menu.WunderBar() .. " at the top or bottom of the screen.",
+      values = {
+        TOP = "Top",
+        BOTTOM = "Bottom",
+      },
+    }
+
     -- Visibility
     generalGroup["args"]["barVisibility"] = {
       order = self:GetOrder(),

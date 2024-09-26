@@ -268,7 +268,7 @@ function TI:UpdateClock()
   self.colon:SetPoint("CENTER", self.frame, "CENTER", 0, self.db.textOffset)
 
   self.infoText:ClearAllPoints()
-  self.infoText:SetPoint("CENTER", self.colon, "CENTER", 0, self.db.infoOffset)
+  self.infoText:SetPoint("CENTER", self.colon, "CENTER", 0, WB.dirMulti * self.db.infoOffset)
 
   if self.showRestingAnimation then
     local _, fontSize = self.minutes:GetFont()
