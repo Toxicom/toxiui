@@ -22,9 +22,6 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local dirLeft = direction == "LEFT"
   local dirRight = direction == "RIGHT"
 
-  -- For reversing Y offset basically
-  local dirMulti = dirDown and -1 or 1
-
   if InCombatLockdown() then return end
 
   local function getSpellID(button)
@@ -169,12 +166,12 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     if indexInColumn == 1 then
       -- First slot in the column
-      slot:SetPoint(dirDown and "TOPRIGHT" or "BOTTOMRIGHT", secureFlyOutFrame, dirDown and "TOPRIGHT" or "BOTTOMRIGHT", -columnOffset, dirMulti * padding)
+      slot:SetPoint(dirDown and "TOPRIGHT" or "BOTTOMRIGHT", secureFlyOutFrame, dirDown and "TOPRIGHT" or "BOTTOMRIGHT", -columnOffset, self.dirMulti * padding)
       prevSlots[currentColumn] = slot
     else
       -- Subsequent slots, positioned above the previous slot in the same column
       -- Ensure the slot is positioned correctly with respect to spacing and the slot above it
-      slot:SetPoint(dirDown and "TOP" or "BOTTOM", prevSlots[currentColumn], dirDown and "BOTTOM" or "TOP", 0, dirMulti * spacing)
+      slot:SetPoint(dirDown and "TOP" or "BOTTOM", prevSlots[currentColumn], dirDown and "BOTTOM" or "TOP", 0, self.dirMulti * spacing)
       prevSlots[currentColumn] = slot
     end
 
