@@ -81,13 +81,8 @@ function O:WunderBar_General()
       desc = "Choose whether to display the WunderBar at the top or bottom of the screen.",
       values = {
         TOP = "Top",
-        BOTTOM = "Bottom"
+        BOTTOM = "Bottom",
       },
-      get = function(info) return E.db.TXUI.wunderbar.general.position or "BOTTOM" end,
-      set = function(info, value)
-        E.db.TXUI.wunderbar.general.position = value
-        TXUI:GetModule("WunderBar"):UpdateBar()
-      end,
     }
 
     -- Visibility

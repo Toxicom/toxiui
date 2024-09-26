@@ -762,6 +762,8 @@ P.wunderbar = {
   general = {
     enabled = true,
 
+    position = "BOTTOM",
+
     experimentalDynamicSize = true,
 
     animations = true,
