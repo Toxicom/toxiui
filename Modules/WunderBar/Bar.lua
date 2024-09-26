@@ -93,11 +93,7 @@ function WB:UpdateBar()
   self.bar:SetSize(F.PerfectScale(self.db.general.barWidth), barHeight)
   self.bar:ClearAllPoints()
 
-  local position = self.db.general.position or "BOTTOM"
-  local isTop = position == "TOP"
-
-  -- Use the new position setting
-  if isTop then
+  if self.isTop then
     self.bar:SetPoint("TOP", E.UIParent, "TOP", 0, 0)
   else
     self.bar:SetPoint("BOTTOM", E.UIParent, "BOTTOM", 0, 0)
@@ -134,8 +130,8 @@ function WB:UpdateBar()
     self:StopAnimationType(self.bar.barBackground, self.animationType.COLOR)
 
     if self.db.general.backgroundGradient then
-      local initialAlpha = isTop and color.a * (1 - self.db.general.backgroundGradientAlpha) or color.a
-      local endAlpha = isTop and color.a or color.a * (1 - self.db.general.backgroundGradientAlpha)
+      local initialAlpha = self.isTop and color.a * (1 - self.db.general.backgroundGradientAlpha) or color.a
+      local endAlpha = self.isTop and color.a or color.a * (1 - self.db.general.backgroundGradientAlpha)
 
       F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, initialAlpha, color.r, color.g, color.b, endAlpha)
     else

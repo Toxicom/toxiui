@@ -427,8 +427,7 @@ function HS:UpdateElements()
   end
 
   self.hearthstoneIcon:SetPoint("RIGHT", self.hearthstoneText, "LEFT", -5, 3)
-  local isTop = E.db.TXUI.wunderbar.general.position == "TOP"
-  self.hearthstoneText.cooldownText:SetPoint("CENTER", self.hearthstoneText, "CENTER", 0, (isTop and -1 or 1) * self.db.cooldownOffset)
+  self.hearthstoneText.cooldownText:SetPoint("CENTER", self.hearthstoneText, "CENTER", 0, WB.dirMulti * self.db.cooldownOffset)
 
   if self.db.showIcon then
     self.hearthstoneIcon:Show()

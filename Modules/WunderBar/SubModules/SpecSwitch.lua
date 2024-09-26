@@ -345,9 +345,7 @@ function SS:UpdatePosition()
   secondaryIcon:SetPoint("RIGHT", secondaryText, "LEFT", -iconPadding, iconOffset - 0)
 
   self.infoText:ClearAllPoints()
-  local isTop = (WB.db.general.position or "BOTTOM") == "TOP"
-  local infoOffset = isTop and -self.db.general.infoOffset or self.db.general.infoOffset
-  self.infoText:SetPoint("CENTER", secondaryText, "CENTER", 0, infoOffset)
+  self.infoText:SetPoint("CENTER", secondaryText, "CENTER", 0, WB.dirMulti * self.db.general.infoOffset)
 
   if not self.forceHideSpec2 and (self.spec1 and self.spec2) then
     local totalWidth = (primaryText:GetStringWidth() + iconSpace)
