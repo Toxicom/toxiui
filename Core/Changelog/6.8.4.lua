@@ -6,6 +6,7 @@ TXUI.Changelog["6.8.4"] = {
     "* Breaking changes",
 
     "* New features",
+    F.String.Menu.WunderBar() .. " can now be positioned at the top >.>" .. F.String.Sublist("Credits to arturogutierrez"),
 
     "* Bug fixes",
     "Fix currency sorting issue where currencies would go under the wrong expansion header",
