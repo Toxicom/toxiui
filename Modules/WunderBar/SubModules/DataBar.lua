@@ -354,8 +354,8 @@ function DB:UpdatePosition()
   self.barIcon:SetPoint("RIGHT", self.bar, "LEFT", -iconPadding, iconOffset)
 
   self.infoText:ClearAllPoints()
-  local isTop = (WB.db.general.position or "BOTTOM") == "TOP"
-  local infoOffset = isTop and -self.db.general.infoOffset or self.db.infoOffset
+  local isTop = E.db.TXUI.wunderbar.general.position == "TOP"
+  local infoOffset = isTop and -self.db.infoOffset or self.db.infoOffset
   self.infoText:SetPoint("CENTER", 0, infoOffset)
 
   self.bar.completedOverlay:ClearAllPoints()
