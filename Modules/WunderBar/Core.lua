@@ -137,8 +137,6 @@ function WB:DatabaseUpdate()
 
   -- Set db
   self.db = F.GetDBFromPath("TXUI.wunderbar")
-  self.isTop = self.db.general.position == "TOP"
-  self.dirMulti = self.isTop and -1 or 1
 
   if not self.Initialized then return end
 
@@ -151,6 +149,8 @@ end
 function WB:Construct()
   -- Set db
   self.db = F.GetDBFromPath("TXUI.wunderbar")
+  self.isTop = self.db.general.position == "TOP"
+  self.dirMulti = self.isTop and -1 or 1
 
   -- Register ElvUI & LDB DataText
   self:RegisterElvUIDatatexts()
