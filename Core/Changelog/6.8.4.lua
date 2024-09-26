@@ -21,6 +21,7 @@ TXUI.Changelog["6.8.4"] = {
     "Add BugSack & BugGrabber to Debug mode",
     F.String.MinElv("13.78"),
     "Update version for Classic Era",
+    "Display the name of the item that can add sockets in " .. F.String.Menu.Armory() .. "'s Missing Sockets description tooltip",
 
     "* Settings refactoring",
     "Add more information for Gradient mode's Health Color tags setting",
