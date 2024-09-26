@@ -348,7 +348,6 @@ function SS:UpdatePosition()
   local infoOffset = isTop and -self.db.general.infoOffset or self.db.general.infoOffset
   self.infoText:SetPoint("CENTER", secondaryText, "CENTER", 0, infoOffset)
 
-
   if not self.forceHideSpec2 and (self.spec1 and self.spec2) then
     local totalWidth = (primaryText:GetStringWidth() + iconSpace)
     totalWidth = totalWidth + (secondaryText:GetStringWidth() + iconSpace)

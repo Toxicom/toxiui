@@ -92,7 +92,7 @@ function WB:UpdateBar()
   local barHeight = E:Scale(self.db.general.barHeight)
   self.bar:SetSize(F.PerfectScale(self.db.general.barWidth), barHeight)
   self.bar:ClearAllPoints()
-  
+
   local position = self.db.general.position or "BOTTOM"
   local isTop = position == "TOP"
 
@@ -138,32 +138,10 @@ function WB:UpdateBar()
       local endAlpha = color.a * (1 - self.db.general.backgroundGradientAlpha)
 
       if isTop then
-        F.Color.SetGradientRGB(
-          self.bar.barBackground,
-          "VERTICAL",
-          color.r,
-          color.g,
-          color.b,
-          endAlpha,
-          color.r,
-          color.g,
-          color.b,
-          initialAlpha
-        )
-        else
-        F.Color.SetGradientRGB(
-          self.bar.barBackground,
-          "VERTICAL",
-          color.r,
-          color.g,
-          color.b,
-          initialAlpha,
-          color.r,
-          color.g,
-          color.b,
-          endAlpha
-        )
-        end
+        F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, endAlpha, color.r, color.g, color.b, initialAlpha)
+      else
+        F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, initialAlpha, color.r, color.g, color.b, endAlpha)
+      end
     else
       F.Color.SetGradientRGB(self.bar.barBackground, "VERTICAL", color.r, color.g, color.b, color.a, color.r, color.g, color.b, color.a)
     end

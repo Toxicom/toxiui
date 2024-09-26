@@ -358,7 +358,6 @@ function DB:UpdatePosition()
   local infoOffset = isTop and -self.db.general.infoOffset or self.db.infoOffset
   self.infoText:SetPoint("CENTER", 0, infoOffset)
 
-
   self.bar.completedOverlay:ClearAllPoints()
   self.bar.completedOverlay:SetAllPoints(self.bar)
 end
