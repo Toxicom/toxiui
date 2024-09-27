@@ -11,7 +11,6 @@ local GetNumSkillLines = GetNumSkillLines
 local GetProfessionInfo = GetProfessionInfo
 local GetProfessions = GetProfessions
 local GetSkillLineInfo = GetSkillLineInfo
-local GetSpellInfo = (C_Spell and C_Spell.GetSpellInfo) or GetSpellInfo
 local ipairs = ipairs
 local lower = string.lower
 local next = next
@@ -126,10 +125,7 @@ function PR:ProfessionOpen(prof)
       C_TradeSkillUI.OpenTradeSkill(skillLine) -- TODO: REPLACE with global when blizz pushes beta branch to retail
     end
   else
-    if extraSpellId then
-      local spellName = GetSpellInfo(extraSpellId)
-      name = spellName
-    end
+    if extraSpellId then name = E:GetSpellInfo(extraSpellId) end
     securecall("CastSpellByName", name)
   end
 end
@@ -242,18 +238,7 @@ do
 
     local function searchLocaleSpellName(ids, texture)
       for _, spellId in ipairs(ids) do
-        local spellName
-        local iconID
-
-        if C_Spell and C_Spell.GetSpellInfo then
-          local spellInfo = GetSpellInfo(spellId)
-          spellName = spellInfo.name
-          iconID = spellInfo.iconID
-        else
-          local name, _, icon = GetSpellInfo(spellId)
-          spellName = name
-          iconID = icon
-        end
+        local spellName, _, iconID = E:GetSpellInfo(spellId)
         if texture == iconID then return spellName end
       end
     end

@@ -4,7 +4,6 @@ local WB = TXUI:GetModule("WunderBar")
 local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
 local GetCVarBool = GetCVarBool
-local GetSpellInfo = (C_Spell and C_Spell.GetSpellInfo) or GetSpellInfo
 local GetSpellTexture = (C_Spell and C_Spell.GetSpellTexture) or GetSpellTexture
 local InCombatLockdown = InCombatLockdown
 
@@ -24,22 +23,11 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
   if InCombatLockdown() then return end
 
-  local function getSpellID(button)
-    local spellID
-    if C_Spell and C_Spell.GetSpellInfo then
-      spellID = GetSpellInfo(button.spellID).spellID
-    else
-      spellID = select(7, GetSpellInfo(button.spellID))
-    end
-
-    return spellID
-  end
-
   local showTooltip = function(button)
     if button.spellID then
       GameTooltip:SetOwner(button, "ANCHOR_LEFT", 4, 4)
       -- Necessary for professions
-      local spellID = getSpellID(button)
+      local _, _, _, _, _, _, spellID = E:GetSpellInfo(button.spellID)
       GameTooltip:SetSpellByID(spellID or button.spellID)
     end
   end
