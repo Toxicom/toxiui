@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local ST = TXUI:NewModule("Styles")
 local SS = TXUI:GetModule("SplashScreen")
-local PF = TXUI:GetModule("Profiles")
 
 function ST:StyleMovers()
   local pf = self:BuildActionBarsProfile()
