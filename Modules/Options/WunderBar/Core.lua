@@ -20,7 +20,7 @@ function O:WunderBar()
     end,
     set = function(info, value)
       E.db.TXUI.wunderbar.general[info[#info]] = value
-      TXUI:GetModule("WunderBar"):DatabaseUpdate()
+      TXUI:GetModule("WunderBar"):UpdateBar()
     end,
     args = {},
   }

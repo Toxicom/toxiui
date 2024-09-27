@@ -83,6 +83,10 @@ function O:WunderBar_General()
         TOP = "Top",
         BOTTOM = "Bottom",
       },
+      set = function(_, value)
+        E.db.TXUI.wunderbar.general.position = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
     }
 
     -- Visibility
