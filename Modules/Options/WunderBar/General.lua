@@ -487,7 +487,6 @@ function O:WunderBar_General()
       step = 1,
       disabled = flyoutDisabled,
       get = function(info)
-        F.Log.Dev(info, "info")
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
       set = function(info, value)
@@ -540,7 +539,6 @@ function O:WunderBar_General()
       values = self:GetAllFontsFunc(),
       disabled = flyoutDisabled,
       get = function(info)
-        F.Log.Dev(info, "info")
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
       set = function(info, value)
@@ -558,7 +556,6 @@ function O:WunderBar_General()
       step = 1,
       disabled = flyoutDisabled,
       get = function(info)
-        F.Log.Dev(info, "info")
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
       set = function(info, value)
