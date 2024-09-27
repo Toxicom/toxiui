@@ -539,7 +539,15 @@ function PF:BuildProfile()
       ["!Health"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:health:percent:nosign]",
+        xOffset = F.Dpi(-10),
         yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+      }),
+
+      ["!HealthSmall"] = createCustomText({}, {
+        justifyH = "RIGHT",
+        text_format = "[tx:health:current:shortvalue]",
+        xOffset = F.Dpi(-10),
+        yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-15)),
       }),
 
       -- UnitFrame Player Custom Texts Power
@@ -712,9 +720,17 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Target Custom Texts Health
         ["!Health"] = createCustomText({}, {
+          justifyH = "LEFT",
           text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+        }),
+
+        ["!HealthSmall"] = createCustomText({}, {
+          justifyH = "LEFT",
+          text_format = "[tx:health:current:shortvalue]",
+          xOffset = F.Dpi(10),
+          yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-15)),
         }),
 
         -- UnitFrame Target Custom Texts Name
@@ -1007,6 +1023,14 @@ function PF:BuildProfile()
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(10),
         yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
+      }),
+
+      -- UnitFrame Focus Custom Texts Health
+      ["!HealthSmall"] = createCustomText({}, {
+        justifyH = "LEFT",
+        text_format = "[tx:health:current:shortvalue]",
+        xOffset = F.Dpi(10),
+        yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-20)),
       }),
 
       -- UnitFrame Focus Custom Texts Power
@@ -1641,6 +1665,13 @@ function PF:BuildProfile()
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(5),
         yOffset = F.Dpi(15),
+      }),
+
+      -- UnitFrame Boss Custom Texts Health
+      ["!HealthSmall"] = createCustomText({}, {
+        text_format = "[tx:health:current:shortvalue]",
+        xOffset = F.Dpi(5),
+        yOffset = F.Dpi(-15),
       }),
 
       -- UnitFrame Boss Custom Texts Name

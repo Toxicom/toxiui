@@ -238,6 +238,7 @@ function PF:ElvUIFont()
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "!HealthSmall", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
@@ -275,6 +276,7 @@ function PF:ElvUIFont()
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "!HealthSmall", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
@@ -339,6 +341,7 @@ function PF:ElvUIFont()
           customTexts = customTextSize {
             { "!Name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "!HealthSmall", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
             { "!ClassIcon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           },
@@ -479,6 +482,7 @@ function PF:ElvUIFont()
         boss = {
           customTexts = customTextSize {
             { "!Health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "!HealthSmall", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "!Name", I.Fonts.Title, 24, "SHADOWOUTLINE" },
             { "!Power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
