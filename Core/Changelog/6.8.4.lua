@@ -4,6 +4,7 @@ TXUI.Changelog["6.8.4"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove UnitFrame " .. F.String.Menu.Styles(),
 
     "* New features",
     F.String.Menu.WunderBar() .. " can now be positioned at the top >.>" .. F.String.Sublist("Credits to arturogutierrez"),

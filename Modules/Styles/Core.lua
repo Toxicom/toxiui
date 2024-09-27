@@ -42,17 +42,6 @@ function ST:ApplyStyle(styleType, style, dontReload)
   -- Merge Tables
   crushFnc(E.db, pf)
 
-  if styleType == "unitFrames" then
-    self:UpdateProfileForTheme()
-    PF:UpdateProfileForGradient()
-    if not dontReload then
-      SS:Hide()
-      E:StaticPopup_Show("CONFIG_RL")
-    end
-    TXUI:LogInfo("UnitFrames Style applied. Please reload your UI!")
-    return
-  end
-
   -- Update ElvUI
   F.Event.RunNextFrame(function()
     F.Event.ContinueAfterElvUIUpdate(function()

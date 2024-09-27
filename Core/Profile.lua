@@ -46,12 +46,7 @@ P.general = {
 
 -- Styles
 P.styles = {
-  unitFrames = "New",
   actionBars = TXUI.IsVanilla and "Classic" or "WeakAuras",
-  healthTag = {
-    enabled = false,
-    style = "Full",
-  },
 }
 
 -- Themes

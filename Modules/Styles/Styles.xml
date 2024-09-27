@@ -2,5 +2,4 @@
   <Script file='Core.lua' />
 
   <Script file='ActionBars.lua' />
-  <Script file='UnitFrames.lua' />
 </Ui>

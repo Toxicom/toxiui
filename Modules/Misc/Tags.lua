@@ -299,52 +299,35 @@ function M:Tags()
   end
 
   local function ColorHealthTag(unit, percentSign)
-    local db = E.db.TXUI.styles.healthTag
-
     local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
 
-    if db.enabled and status then return status end
-
-    local min, max = UnitHealth(unit), UnitHealthMax(unit)
-    local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+    if status then return status end
 
     local percentHealth = GetHealthPercentage(unit)
     local percentHealthStr = tostring(percentHealth)
 
-    local finalHealth
     local reverseGradient = not reverseUnitsTable[unit]
 
     local colorHealth = E.db.TXUI.themes.gradientMode.colorHealth
     if percentSign then percentHealthStr = percentHealthStr .. "%" end
 
-    if db.enabled then
-      if db.style == "FullPercent" then
-        -- combine string with pipe, revert for target etc
-        finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
-      else
-        finalHealth = health
-      end
-    else
-      finalHealth = percentHealthStr
-    end
-
     -- Return different coloring for Dark Mode
     if dm.isEnabled then
-      return FormatColorTag(finalHealth, unit, reverseGradient)
+      return FormatColorTag(percentHealthStr, unit, reverseGradient)
     -- If not gradient mode, or the option is disabled, return early an uncolored string
     elseif not gm.isEnabled or not colorHealth or not colorHealth.enabled then
-      return finalHealth
+      return percentHealthStr
     end
 
     local yellow = colorHealth.yellowThreshold
     local red = colorHealth.redThreshold
 
     if percentHealth <= yellow and percentHealth > red then
-      return F.String.GradientClass(finalHealth, "ROGUE", reverseGradient)
+      return F.String.GradientClass(percentHealthStr, "ROGUE", reverseGradient)
     elseif percentHealth <= red then
-      return F.String.GradientClass(finalHealth, "DEATHKNIGHT", reverseGradient)
+      return F.String.GradientClass(percentHealthStr, "DEATHKNIGHT", reverseGradient)
     else
-      return finalHealth
+      return percentHealthStr
     end
   end
 
