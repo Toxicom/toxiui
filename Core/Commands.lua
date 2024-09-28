@@ -138,13 +138,8 @@ local AddOns = {
   -- ToxiUI
   ElvUI_ToxiUI = true,
 
-  -- ElvUI Plugins
-  ElvUI_WindTools = TXUI.IsRetail and true or false,
-
   -- Other AddOns
   Details = true,
-  Plater = true,
-
   BugSack = true,
   BugGrabber = true,
 }

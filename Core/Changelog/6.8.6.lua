@@ -12,6 +12,7 @@ TXUI.Changelog["6.8.6"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Remove some addons from debug mode" .. F.String.Sublist(TXUI.Title .. " did not interact with those addons directly, so the less clutter during debugging the better"),
 
     "* Settings refactoring",
 
