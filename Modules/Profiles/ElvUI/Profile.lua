@@ -2059,3 +2059,59 @@ function PF:UpdateProfileForGradient()
 
   E.private.general.normTex = E.db.unitframe.statusbar
 end
+
+function PF:UpdateProfileForTheme()
+  local pf = self:BuildProfile()
+
+  -- Custom Text
+  -- Arena
+  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Power", "text_format")
+  -- Boss
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Power", "text_format")
+  -- Focus
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "yOffset")
+  -- Pet
+  F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.!Name", "yOffset")
+  -- Player
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.raidRoleIcons", "yOffset")
+  -- Party
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.raidRoleIcons", "yOffset")
+  -- Target
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Classification", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.raidRoleIcons", "yOffset")
+  -- Target-Target
+  F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
+  -- UnitFrame Heights
+  F.UpdateDBFromPath(pf, "unitframe.units.pet", "height")
+  F.UpdateDBFromPath(pf, "unitframe.units.player", "height")
+  F.UpdateDBFromPath(pf, "unitframe.units.target", "height")
+  F.UpdateDBFromPath(pf, "unitframe.units.targettarget", "height")
+  -- UnitFrame Color Options
+  F.UpdateDBFromPath(pf, "unitframe.colors", "customhealthbackdrop")
+  F.UpdateDBFromPath(pf, "unitframe.colors", "healthclass")
+  -- UnitFrame Colors
+  F.UpdateDBFromPathRGB(pf, "unitframe.colors.health")
+  F.UpdateDBFromPathRGB(pf, "unitframe.colors.health_backdrop")
+  F.UpdateDBFromPathRGB(pf, "unitframe.colors.health_backdrop_dead")
+end
