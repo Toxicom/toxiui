@@ -87,4 +87,5 @@
   <Script file='6.8.4.lua' />
   <Script file='6.8.5.lua' />
   <Script file='6.8.6.lua' />
+  <Script file='6.8.7.lua' />
 </Ui>
