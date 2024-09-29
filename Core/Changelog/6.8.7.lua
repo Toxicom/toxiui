@@ -8,7 +8,7 @@ TXUI.Changelog["6.8.7"] = {
     "* New features",
 
     "* Bug fixes",
-    "Fix ID for Dawnbreaker M+ portal",
+    "Fix IDs for season 1 M+ portals",
 
     "* Profile updates",
 

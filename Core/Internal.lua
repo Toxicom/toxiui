@@ -470,7 +470,7 @@ I.HearthstoneData = {
   -- Cataclysm
   [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df2", ["label"] = "VP" }, -- The Vortex Pinnacle
   [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "TotT" }, -- Throne of the Tides
-  [396121] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "GB" }, -- Grim Batol
+  [445424] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "GB" }, -- Grim Batol
 
   -- Mists of Pandaria --
   [131204] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1", ["label"] = "TJS" }, -- Temple of the Jade Serpent
@@ -505,8 +505,7 @@ I.HearthstoneData = {
   [424187] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "AD" }, -- Atal'Dazar
   [410074] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "UNDR" }, -- Underrot
   [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "FH" }, -- Freehold
-  [272264] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
-  [272265] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
+  [464256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
 
   -- Shadowlands
   [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "NW" }, -- Necrotic Wake
@@ -536,14 +535,14 @@ I.HearthstoneData = {
   [424197] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DOI" }, -- Dawn of the Infinite
 
   -- The War Within
-  [442929] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "ARAK" }, -- Ara-Kara, City of Echoes
+  [445417] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "ARAK" }, -- Ara-Kara, City of Echoes
   [442932] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "CM" }, -- Cinderbrew Meadery
-  [442927] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "COT" }, -- City of Threads
+  [445416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "COT" }, -- City of Threads
   [442930] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "DC" }, -- Darkflame Cleft
   [442923] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "PSF" }, -- Priory of the Sacred Flame
   [445414] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "DAWN" }, -- The Dawnbreaker
   [442925] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "ROOK" }, -- The Rookery
-  [442926] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SV" }, -- The Stonevault
+  [445269] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SV" }, -- The Stonevault
 
   --                --
   -- Mage Teleports --
