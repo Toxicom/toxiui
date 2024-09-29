@@ -541,7 +541,7 @@ I.HearthstoneData = {
   [442927] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "COT" }, -- City of Threads
   [442930] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "DC" }, -- Darkflame Cleft
   [442923] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "PSF" }, -- Priory of the Sacred Flame
-  [442931] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "DAWN" }, -- The Dawnbreaker
+  [445414] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "DAWN" }, -- The Dawnbreaker
   [442925] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "ROOK" }, -- The Rookery
   [442926] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SV" }, -- The Stonevault
 
