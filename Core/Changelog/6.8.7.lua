@@ -13,6 +13,7 @@ TXUI.Changelog["6.8.7"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Add " .. F.String.ToxiUI("Notorious Thread's Hearthstone") .. " to " .. F.String.Menu.WunderBar(),
 
     "* Settings refactoring",
 
