@@ -10,6 +10,7 @@ TXUI.Changelog["6.8.7"] = {
     "* Bug fixes",
     "Fix IDs for season 1 M+ portals",
     "Enable repair mount for Cata",
+    "Fix BugGrabber disabling for " .. TXUI.Title .. " Debug mode",
 
     "* Profile updates",
 
