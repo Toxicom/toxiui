@@ -139,7 +139,7 @@ function GR:Enable()
   self:SecureHook(self.uf, "Update_StatusBar", "UpdateStatusBar")
 
   -- Register Interrupt handler
-  if E.Retail then F.EventManagerRegister(self.interruptNamespace, "PLAYER_SPECIALIZATION_CHANGED", F.CheckInterruptSpells) end
+  if TXUI.IsRetail then F.EventManagerRegister(self.interruptNamespace, "PLAYER_SPECIALIZATION_CHANGED", F.CheckInterruptSpells) end
 
   F.EventManagerRegister(self.interruptNamespace, "PLAYER_ENTERING_WORLD", F.CheckInterruptSpells)
   F.EventManagerRegister(self.interruptNamespace, "PLAYER_LEVEL_CHANGED", F.CheckInterruptSpells)

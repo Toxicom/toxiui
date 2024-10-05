@@ -83,7 +83,7 @@ function PR:ProfessionClick(prof, frame, button)
       local skillLine, name, _, _, icon, extraSpellId = self:GetProfessionInfo(profId)
       -- 182 is Herablism skillLine ID
       -- 193290 is the Herbalism Journal ID
-      if E.Retail and skillLine == 182 then extraSpellId = 193290 end
+      if TXUI.IsRetail and skillLine == 182 then extraSpellId = 193290 end
       if skillLine then
         tinsert(menuList, {
           spellID = extraSpellId or name,
@@ -115,7 +115,7 @@ end
 function PR:ProfessionOpen(prof)
   local skillLine, name, _, _, _, extraSpellId = self:GetProfessionInfo(prof)
 
-  if E.Retail then
+  if TXUI.IsRetail then
     local currBaseProfessionInfo = C_TradeSkillUI.GetBaseProfessionInfo()
     local isShown = _G["ProfessionsFrame"] and _G["ProfessionsFrame"]:IsShown()
 
@@ -160,7 +160,7 @@ function PR:OnWunderBarUpdate()
 end
 
 function PR:GetProfessions()
-  if E.Retail then
+  if TXUI.IsRetail then
     return GetProfessions()
   else
     local professions = {
@@ -222,7 +222,7 @@ do
       { spellIds = { 8613 }, skillLine = 393, texture = 134366 }, -- Skinning
     }
 
-    if not E.Classic then
+    if not TXUI.IsVanilla then
       -- We can't use F.Table.Crush here, because the tables do not have unique keys and
       -- therefore JC & Inscription override Blacksmithing & First Aid (as they're the first entries)
 
@@ -260,7 +260,7 @@ end
 function PR:GetProfessionInfo(prof)
   if not prof then return end
 
-  if E.Retail then
+  if TXUI.IsRetail then
     local skillName, texture, skillRank, skillMaxRank, _, _, skillLine = GetProfessionInfo(prof)
     return skillLine, skillName, skillRank, skillMaxRank, texture
   else

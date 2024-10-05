@@ -3,8 +3,8 @@ local LSM = E.Libs.LSM
 
 local _G = _G
 local abs = math.abs
-local C_Covenants_GetActiveCovenantID = E.Retail and C_Covenants.GetActiveCovenantID
-local C_Covenants_GetCovenantData = E.Retail and C_Covenants.GetCovenantData
+local C_Covenants_GetActiveCovenantID = TXUI.IsRetail and C_Covenants.GetActiveCovenantID
+local C_Covenants_GetCovenantData = TXUI.IsRetail and C_Covenants.GetCovenantData
 local COVENANT_COLORS = COVENANT_COLORS
 local CreateFrame = CreateFrame
 local CreateFromMixins = CreateFromMixins
@@ -608,7 +608,7 @@ end
 do
   local myCovenant
   function F.GetCachedCovenant(force)
-    if not E.Retail then return end
+    if not TXUI.IsRetail then return end
 
     if force or not myCovenant then
       local covenantData = C_Covenants_GetCovenantData(C_Covenants_GetActiveCovenantID())
@@ -618,7 +618,7 @@ do
     return myCovenant
   end
 
-  if E.Retail then F.EventManagerRegister("F_API", "COVENANT_CHOSEN", function()
+  if TXUI.IsRetail then F.EventManagerRegister("F_API", "COVENANT_CHOSEN", function()
     F.GetCachedCovenant(true)
   end) end
 end
@@ -786,7 +786,7 @@ function F.CacheHearthstoneData()
   for id, config in pairs(I.HearthstoneData) do
     if config.load == nil or config.load == true then
       if (config.type == "toy") or (config.type == "item") then
-        if E.Classic and config.type == "toy" then TXUI:ThrowError("HearthstoneData: Type toy is not valid for: " .. id) end
+        if TXUI.IsVanilla and config.type == "toy" then TXUI:ThrowError("HearthstoneData: Type toy is not valid for: " .. id) end
         local success = F.ProtectedCall(function()
           local itemMixin = CreateFromMixins(ItemMixin)
           itemMixin:SetItemID(id)
@@ -794,7 +794,7 @@ function F.CacheHearthstoneData()
             config.id = id
             config.name = itemMixin:GetItemName()
 
-            if not E.Classic and config.type == "toy" then
+            if not TXUI.IsVanilla and config.type == "toy" then
               config.known = PlayerHasToy(id)
             else
               config.known = GetItemCount(id, false, true) > 0
@@ -855,7 +855,7 @@ function F.CanInterruptEvaluation()
   for _, interruptSpellId in ipairs(spellIDs) do
     if E.myclass ~= "WARLOCK" then
       local cdStart, cdDur
-      if E.Retail then
+      if TXUI.IsRetail then
         local cd = GetSpellCooldown(interruptSpellId)
         cdStart, cdDur = cd.startTime, cd.duration
       else
@@ -866,7 +866,7 @@ function F.CanInterruptEvaluation()
       if not interruptCD or (tmpInterruptCD < interruptCD) then interruptCD = tmpInterruptCD end
     elseif FindSpellOverrideByID(119898) then -- Check if WL has the command ability
       local cdStart, cdDur
-      if E.Retail then
+      if TXUI.IsRetail then
         local cd = GetSpellCooldown(interruptSpellId)
         cdStart, cdDur = cd.startTime, cd.duration
       else
@@ -980,7 +980,7 @@ function F.ProcessMovers(dbRef)
 end
 
 function F.IsSkyriding()
-  if E.Retail then
+  if TXUI.IsRetail then
     return UnitPowerBarID("player") == I.Constants.VIGOR_BAR_ID
   else
     return false

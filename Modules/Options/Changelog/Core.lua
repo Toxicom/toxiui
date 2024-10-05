@@ -62,11 +62,11 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
     if dynamicSection ~= nil and #dynamicSection > 0 then generatedText = generatedText .. generateSectionLog(dynamicSection, "Additional") end
   end
 
-  if E.Retail then
+  if TXUI.IsRetail then
     generatedText = generatedText .. generateSectionLog(changelogRetailData, "Retail")
-  elseif E.Cata then
+  elseif TXUI.IsCata then
     generatedText = generatedText .. generateSectionLog(changelogCataData, "Cata")
-  elseif E.Classic then
+  elseif TXUI.IsVanilla then
     generatedText = generatedText .. generateSectionLog(changelogVanillaData, "Vanilla")
   end
 

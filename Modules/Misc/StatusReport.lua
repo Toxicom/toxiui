@@ -214,7 +214,7 @@ function M:StatusReportCreate()
   statusFrame.Section1 = self:StatusReportCreateSection(mainSectionWidth, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame, "TOP", -90)
   statusFrame.Section2 = self:StatusReportCreateSection(mainSectionWidth, (7 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
   statusFrame.Section3 = self:StatusReportCreateSection(mainSectionWidth, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section2, "BOTTOM", 0)
-  statusFrame.Section4 = self:StatusReportCreateSection(mainSectionWidth, ((E.Retail and 6 or 5) * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section3, "BOTTOM", 0)
+  statusFrame.Section4 = self:StatusReportCreateSection(mainSectionWidth, ((TXUI.IsRetail and 6 or 5) * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section3, "BOTTOM", 0)
   pluginFrame.SectionA = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame, "TOP", -10)
   pluginFrame.SectionP = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame.SectionA, "BOTTOM", -30)
 
@@ -222,7 +222,7 @@ function M:StatusReportCreate()
   statusFrame.Section1.Content = self:StatusReportCreateContent(5, mainSectionWidth - mainSectionPadding, statusFrame.Section1, statusFrame.Section1.Header)
   statusFrame.Section2.Content = self:StatusReportCreateContent(7, mainSectionWidth - mainSectionPadding, statusFrame.Section2, statusFrame.Section2.Header)
   statusFrame.Section3.Content = self:StatusReportCreateContent(5, mainSectionWidth - mainSectionPadding, statusFrame.Section3, statusFrame.Section3.Header)
-  statusFrame.Section4.Content = self:StatusReportCreateContent(E.Retail and 6 or 5, mainSectionWidth - mainSectionPadding, statusFrame.Section4, statusFrame.Section4.Header)
+  statusFrame.Section4.Content = self:StatusReportCreateContent(TXUI.IsRetail and 6 or 5, mainSectionWidth - mainSectionPadding, statusFrame.Section4, statusFrame.Section4.Header)
 
   -- Content lines
   statusFrame.Section3.Content.Line1.Text:SetFormattedText("Version of WoW: %s", F.String.Good(format("%s (build %s)", E.wowpatch, E.wowbuild)))
@@ -380,7 +380,7 @@ function M:StatusReportUpdate()
   -- Section #4
   do
     local Section4 = statusFrame.Section4
-    if E.Retail then
+    if TXUI.IsRetail then
       Section4.Content.Line4.Text:SetFormattedText("Specialization: %s", F.String.Good(getSpecName()))
       Section4.Content.Line5.Text:SetFormattedText("Level: %s", F.String.Good(E.mylevel))
       Section4.Content.Line6.Text:SetFormattedText("Zone: %s", F.String.Good(GetRealZoneText() or UNKNOWN))

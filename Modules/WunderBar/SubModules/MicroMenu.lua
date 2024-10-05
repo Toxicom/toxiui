@@ -38,7 +38,7 @@ local ToggleCharacter = ToggleCharacter
 local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
-local TogglePVPUI = E.Retail and TogglePVPUI or TogglePVPFrame
+local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
 local UIErrorsFrame = UIErrorsFrame
 local UnitLevel = UnitLevel
 
@@ -92,18 +92,18 @@ MM.leftButtonText = "|cffFFFFFFLeft Click:|r "
 MM.rightButtonText = "|cffFFFFFFRight Click:|r "
 
 local function ToggleGroupFinder()
-  if E.Retail then
+  if TXUI.IsRetail then
     _G.ToggleLFDParentFrame()
   else
     _G.PVEFrame_ToggleFrame()
   end
 end
 
-local lfgLevelRequirement = E.Cata and 15 or 10
+local lfgLevelRequirement = TXUI.IsCata and 15 or 10
 
 MM.microMenu = {
   ["ach"] = {
-    available = not E.Classic,
+    available = not TXUI.IsVanilla,
     name = ACHIEVEMENTS,
     macro = {
       LeftButton = SLASH_ACHIEVEMENTUI1,
@@ -131,7 +131,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHARACTER0, MM.rightButtonText .. "Toggle Narcissus" },
   },
   ["pet"] = {
-    available = not E.Classic,
+    available = not TXUI.IsVanilla,
     name = COLLECTIONS,
     click = {
       LeftButton = function()
@@ -143,20 +143,20 @@ MM.microMenu = {
     },
     keyBind = "TOGGLECOLLECTIONS",
     newbieTooltip = NEWBIE_TOOLTIP_MOUNTS_AND_PETS,
-    tooltips = { MM.leftButtonText .. "Toggle Collections", E.Retail and MM.rightButtonText .. "Random Favorite Mount" or "" },
+    tooltips = { MM.leftButtonText .. "Toggle Collections", TXUI.IsRetail and MM.rightButtonText .. "Random Favorite Mount" or "" },
   },
   ["journal"] = {
     name = ADVENTURE_JOURNAL,
-    available = not E.Classic,
+    available = not TXUI.IsVanilla,
     macro = {
       LeftButton = "/click EJMicroButton",
-      RightButton = E.Retail and "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end" or nil,
+      RightButton = TXUI.IsRetail and "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end" or nil,
     },
     keyBind = "TOGGLEENCOUNTERJOURNAL",
     newbieTooltip = NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL,
     tooltips = {
       MM.leftButtonText .. BINDING_NAME_TOGGLEENCOUNTERJOURNAL,
-      E.Retail and MM.rightButtonText .. "Show Weekly Rewards" or "",
+      TXUI.IsRetail and MM.rightButtonText .. "Show Weekly Rewards" or "",
     },
   },
   ["menu"] = {
@@ -191,7 +191,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGAMEMENU, MM.rightButtonText .. ADDONS },
   },
   ["lfg"] = {
-    available = not E.Classic and UnitLevel("player") >= lfgLevelRequirement,
+    available = not TXUI.IsVanilla and UnitLevel("player") >= lfgLevelRequirement,
     name = DUNGEONS_BUTTON,
     click = {
       LeftButton = function()
@@ -207,7 +207,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLELFGPARENT },
   },
   ["guild"] = {
-    name = E.Retail and GUILD_AND_COMMUNITIES or "Guild",
+    name = TXUI.IsRetail and GUILD_AND_COMMUNITIES or "Guild",
     info = true,
     keyBind = "TOGGLEGUILDTAB",
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGUILDTAB, MM.rightButtonText .. "Quick Menu" },
@@ -265,11 +265,11 @@ MM.microMenu = {
       end,
 
       -- On Vanilla & Cataclysm the professions are part of the spellbook
-      RightButton = E.Retail and _G.ProfessionMicroButton.OnClick or E.noop,
+      RightButton = TXUI.IsRetail and _G.ProfessionMicroButton.OnClick or E.noop,
     },
     keyBind = "TOGGLESPELLBOOK",
     newbieTooltip = NEWBIE_TOOLTIP_SPELLBOOK,
-    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLESPELLBOOK, E.Retail and MM.rightButtonText .. BINDING_NAME_TOGGLEPROFESSIONBOOK or nil },
+    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLESPELLBOOK, TXUI.IsRetail and MM.rightButtonText .. BINDING_NAME_TOGGLEPROFESSIONBOOK or nil },
   },
   ["talent"] = {
     name = TALENTS_BUTTON,
@@ -300,7 +300,7 @@ MM.microMenu = {
     click = {
       LeftButton = function()
         if not InCombatLockdown() then
-          if E.Classic then
+          if TXUI.IsVanilla then
             ToggleCharacter("HonorFrame")
           else
             TogglePVPUI()
@@ -324,7 +324,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. "Toggle Help Frame" },
   },
   ["shop"] = {
-    available = E.Retail,
+    available = TXUI.IsRetail,
     name = BLIZZARD_STORE,
     macro = {
       LeftButton = "/click StoreMicroButton",

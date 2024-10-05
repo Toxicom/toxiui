@@ -32,7 +32,7 @@ local UnitXPMax = UnitXPMax
 
 local MAX_REPUTATION_REACTION = _G.MAX_REPUTATION_REACTION
 
-if not E.Classic then IsXPUserDisabledFunction = IsXPUserDisabled end
+if not TXUI.IsVanilla then IsXPUserDisabledFunction = IsXPUserDisabled end
 
 -- Vars
 DB.const = {
@@ -77,7 +77,7 @@ function DB:OnEvent(event)
       local curValue
       local factionID
 
-      if E.Retail then
+      if TXUI.IsRetail then
         local factionData = C_Reputation_GetWatchedFactionData()
         if factionData then
           name = factionData.name
@@ -101,7 +101,7 @@ function DB:OnEvent(event)
 
       self.noData = false
 
-      if E.Retail then
+      if TXUI.IsRetail then
         if C_Reputation_IsFactionParagon(factionID) then
           local currentValue, threshold, _, hasRewardPending = C_Reputation_GetFactionParagonInfo(factionID)
           minValue, maxValue = 0, threshold
@@ -166,7 +166,7 @@ function DB:OnEvent(event)
     F.Event.ContinueOutOfCombat(function()
       self.updateExpNextOutOfCombat = false
 
-      if (not E.Classic and IsXPUserDisabledFunction()) or (IsPlayerAtEffectiveMaxLevel()) then
+      if (not TXUI.IsVanilla and IsXPUserDisabledFunction()) or (IsPlayerAtEffectiveMaxLevel()) then
         self.data.expRestPercentage = 0
         self.data.expCompletedXP = 0
         self.data.expCompletedPercentage = 0
@@ -363,7 +363,7 @@ end
 function DB:GetCompletedPercentage()
   local totalCompletedXP = 0
 
-  if E.Retail then
+  if TXUI.IsRetail then
     for i = 1, C_QuestLog_GetNumQuestLogEntries() do
       local questInfo = C_QuestLog_GetInfo(i)
       if questInfo and not questInfo.isHidden and questInfo.isOnMap and C_QuestLog_GetQuestWatchType(questInfo.questID) and C_QuestLog_ReadyForTurnIn(questInfo.questID) then
@@ -391,7 +391,8 @@ function DB:GetCompletedPercentage()
 end
 
 function DB:UpdateSmartMode(init)
-  local mode = ((self.db.mode == "auto") and (not IsPlayerAtEffectiveMaxLevel()) and (E.Classic or not IsXPUserDisabledFunction())) and self.const.mode.exp or self.const.mode.rep
+  local mode = ((self.db.mode == "auto") and (not IsPlayerAtEffectiveMaxLevel()) and (TXUI.IsVanilla or not IsXPUserDisabledFunction())) and self.const.mode.exp
+    or self.const.mode.rep
 
   if not init and (mode ~= self.mode) then
     self.mode = mode
@@ -541,5 +542,5 @@ WB:RegisterSubModule(
     "UPDATE_EXHAUSTION",
     "UPDATE_FACTION",
     "COMBAT_TEXT_UPDATE",
-  }, F.Table.If(E.Retail, { "SUPER_TRACKING_CHANGED" }))
+  }, F.Table.If(TXUI.IsRetail, { "SUPER_TRACKING_CHANGED" }))
 )

@@ -35,7 +35,7 @@ local slots = {
   [17] = _G.INVTYPE_WEAPONOFFHAND,
 }
 
-if E.Cata then slots[18] = _G.INVTYPE_RANGED end
+if TXUI.IsCata then slots[18] = _G.INVTYPE_RANGED end
 
 function DB:OnEvent(event)
   -- Update only ilvl display
@@ -69,7 +69,7 @@ function DB:OnEvent(event)
         if perc < totalDurability then totalDurability = perc end
 
         -- Add repair costs for tooltip
-        if E.Retail and E.ScanTooltip:GetTooltipData() then
+        if TXUI.IsRetail and E.ScanTooltip:GetTooltipData() then
           E.ScanTooltip:SetInventoryItem("player", index)
           E.ScanTooltip:Show()
 
@@ -82,7 +82,7 @@ function DB:OnEvent(event)
         totalRepairCost = totalRepairCost + repairCost
 
         -- Get item level if enabled (for Wrath we use UpdateAverageItemLevel)
-        if E.Retail and self.db.showItemLevel then
+        if TXUI.IsRetail and self.db.showItemLevel then
           local slotInfo = E:GetGearSlotInfo("player", index)
 
           if slotInfo == "tooSoon" then
@@ -131,7 +131,7 @@ function DB:OnEnter()
 
   if self.db.showItemLevel then
     local equippedPercent = min(1, max(1, self.avgItemLevel) / max(1, self.avgItemLevelEquipped))
-    if E.Cata then equippedPercent = 1 - equippedPercent end -- We negate for Wrath
+    if TXUI.IsCata then equippedPercent = 1 - equippedPercent end -- We negate for Wrath
     local equippedColors = { F.SlowColorGradient(equippedPercent, 1, 0.1, 0.1, 1, 1, 0.1, 0.1, 1, 0.1) }
 
     DT.tooltip:AddLine("Item Level")
@@ -246,7 +246,7 @@ function DB:UpdateFonts()
 end
 
 function DB:UpdateAverageItemLevel()
-  if E.Retail then
+  if TXUI.IsRetail then
     local avgItemLevel, avgItemLevelEquipped = GetAverageItemLevel()
 
     if avgItemLevel ~= self.avgItemLevel or avgItemLevelEquipped ~= self.avgItemLevelEquipped then
@@ -382,5 +382,5 @@ WB:RegisterSubModule(
   F.Table.Join({
     "UPDATE_INVENTORY_DURABILITY",
     "MERCHANT_SHOW",
-  }, F.Table.If(E.Retail, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(E.Cata, { "PLAYER_EQUIPMENT_CHANGED" }))
+  }, F.Table.If(TXUI.IsRetail, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(TXUI.IsCata, { "PLAYER_EQUIPMENT_CHANGED" }))
 )

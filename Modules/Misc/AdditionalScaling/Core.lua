@@ -25,7 +25,7 @@ function M:AdditionalScaling()
     M:AddCallbackOrScale("Blizzard_InspectUI", self.ScaleInspectUI)
 
     -- Retail scaling
-    if E.Retail then
+    if TXUI.IsRetail then
       M:AddCallbackOrScale("Blizzard_AuctionHouseUI", self.ScaleAuctionHouse)
 
       -- For some reason these are different, altho they function exactly the same
@@ -39,10 +39,10 @@ function M:AdditionalScaling()
     end
 
     -- Retail & Cata scaling
-    if not E.Classic then M:AddCallbackOrScale("Blizzard_Collections", self.ScaleCollections) end
+    if not TXUI.IsVanilla then M:AddCallbackOrScale("Blizzard_Collections", self.ScaleCollections) end
 
     -- Cata & Vanilla scaling
-    if not E.Retail then
+    if not TXUI.IsRetail then
       M:AddCallbackOrScale("Blizzard_TalentUI", self.ScaleTalents)
       M:AddCallbackOrScale("Blizzard_TrainerUI", self.ScaleClassTrainer)
       M:AddCallbackOrScale("Blizzard_TradeSkillUI", self.ScaleProfessions)

@@ -3,7 +3,7 @@ local WB = TXUI:GetModule("WunderBar")
 local LSM = E.Libs.LSM
 
 -- Globals
-local C_PetBattles_IsInBattle = E.Retail and C_PetBattles.IsInBattle
+local C_PetBattles_IsInBattle = TXUI.IsRetail and C_PetBattles.IsInBattle
 local CreateFrame = CreateFrame
 local InCombatLockdown = InCombatLockdown
 local IsResting = IsResting
@@ -29,7 +29,7 @@ function WB:CheckVisibility(event)
   if self.db.general.barVisibility == "RESTING_AND_MOUSEOVER" then self.db.general.barMouseOverOnly = true end
 
   -- Always hide for pokemon on retail
-  if self.isVisible and (E.Retail and C_PetBattles_IsInBattle()) then isVisible = false end
+  if self.isVisible and (TXUI.IsRetail and C_PetBattles_IsInBattle()) then isVisible = false end
 
   -- Only visible on mouseover
   if isVisible and self.db.general.barVisibility ~= "RESTING_AND_MOUSEOVER" and self.db.general.barMouseOverOnly and not self.isMouseOver then isVisible = false end

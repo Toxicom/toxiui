@@ -45,7 +45,7 @@ function HS:GetCooldownForItem(itemInfo)
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:GetCooldownForItem > Item could not be found in DB") end
 
   local _, gcd
-  if E.Retail then
+  if TXUI.IsRetail then
     gcd = GetSpellCooldown(61304)
     gcd = gcd and gcd.duration or nil
   else
@@ -58,7 +58,7 @@ function HS:GetCooldownForItem(itemInfo)
   if (itemInfo.type == "toy") or (itemInfo.type == "item") then
     startTime, duration = GetItemCooldownFunction(itemInfo.id)
   elseif itemInfo.type == "spell" then
-    if E.Retail then
+    if TXUI.IsRetail then
       local cd = GetSpellCooldown(itemInfo.id)
       startTime, duration = cd.startTime, cd.duration
     else
@@ -115,7 +115,7 @@ function HS:GetClassTeleport()
 end
 
 function HS:GetMythicPortals()
-  if not E.Retail then return nil end
+  if not TXUI.IsRetail then return nil end
 
   local portals = {}
 
@@ -304,7 +304,7 @@ function HS:UpdateTooltip()
   end
 
   -- Shift-Primary for Mythic+ Teleports
-  if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and E.Retail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
+  if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
 
   -- Shift-Secondary for Class Travel other than Mages
   if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Cast " .. self.hsClass.name) end
@@ -497,5 +497,5 @@ WB:RegisterSubModule(
   HS,
   F.Table.Join({
     "HEARTHSTONE_BOUND",
-  }, F.Table.If(E.Retail, { "COVENANT_CHOSEN" }))
+  }, F.Table.If(TXUI.IsRetail, { "COVENANT_CHOSEN" }))
 )

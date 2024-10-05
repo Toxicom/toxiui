@@ -185,7 +185,7 @@ function VB:UpdateBar()
   end
 
   -- Update Paging
-  if not E.Classic then
+  if not TXUI.IsVanilla then
     local pageState =
       format("[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s", GetOverrideBarIndex(), GetVehicleBarIndex(), GetVehicleBarIndex(), "[bonusbar:5] 11;")
     local pageAttribute = self.ab:GetPage("bar1", 1, pageState)
@@ -199,7 +199,7 @@ function VB:UpdateBar()
 
   -- Hook for animation
   self:SecureHookScript(bar, "OnShow", "OnShowEvent")
-  if E.Retail then self:SecureHookScript(bar, "OnHide", "OnHideEvent") end
+  if TXUI.IsRetail then self:SecureHookScript(bar, "OnHide", "OnHideEvent") end
 
   -- Hide
   bar:Hide()
@@ -214,7 +214,7 @@ function VB:UpdateBar()
       button:UpdateAction()
     end
 
-    if E.Retail and not self.vigorBar and self.vdb.enabled then self:CreateVigorBar() end
+    if TXUI.IsRetail and not self.vigorBar and self.vdb.enabled then self:CreateVigorBar() end
   end
 
   self:UpdateKeybinds()

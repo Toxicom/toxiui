@@ -119,9 +119,9 @@ end
 
 function F.String.RandomClassColor(msg)
   local classNames
-  if E.Classic then
+  if TXUI.IsVanilla then
     classNames = I.Strings.Classes.VANILLA
-  elseif E.Cata then
+  elseif TXUI.IsCata then
     classNames = I.Strings.Classes.CATA
   else
     classNames = I.Strings.Classes.RETAIL
@@ -200,7 +200,7 @@ function F.String.Beta(msg)
 end
 
 function F.String.Covenant(msg)
-  if not E.Retail then return F.String.ElvUI(msg) end
+  if not TXUI.IsRetail then return F.String.ElvUI(msg) end
 
   local covenantColor = COVENANT_COLORS[F.GetCachedCovenant()] or I.Strings.Branding.ColorRGBA
   return F.String.RGB(msg, covenantColor)
@@ -211,11 +211,11 @@ function F.String.WALink(class)
   local classLink = I.Strings.WALinks[class]
 
   if classLink ~= nil then
-    local base = E.Classic and I.Strings.WALinks.FORMAT_VANILLA or E.Cata and I.Strings.WALinks.FORMAT_CATA or I.Strings.WALinks.FORMAT
+    local base = TXUI.IsVanilla and I.Strings.WALinks.FORMAT_VANILLA or TXUI.IsCata and I.Strings.WALinks.FORMAT_CATA or I.Strings.WALinks.FORMAT
     return format(base, classLink)
   end
 
-  return E.Classic and I.Strings.WALinks.DEFAULT_VANILLA or I.Strings.WALinks.DEFAULT
+  return TXUI.IsVanilla and I.Strings.WALinks.DEFAULT_VANILLA or I.Strings.WALinks.DEFAULT
 end
 
 function F.String.RemoveRuneOfThePrefix(text)

@@ -304,7 +304,7 @@ function O:Plugins_AdditionalScaling()
       type = "range",
       name = "Collections",
       disabled = function()
-        return E.Classic
+        return TXUI.IsVanilla
       end,
       get = function(_)
         return E.db.TXUI.misc.scaling.collections.scale
@@ -359,7 +359,7 @@ function O:Plugins_AdditionalScaling()
   -- Retail
   do
     local retailDisabled = function()
-      return not E.Retail
+      return not TXUI.IsRetail
     end
 
     -- Retail Group
@@ -481,7 +481,7 @@ function O:Plugins_AdditionalScaling()
       type = "range",
       name = "Talents",
       disabled = function()
-        return E.Retail
+        return TXUI.IsRetail
       end,
       get = function(_)
         return E.db.TXUI.misc.scaling.talents.scale
@@ -501,7 +501,7 @@ function O:Plugins_AdditionalScaling()
       type = "range",
       name = "Taxi",
       disabled = function()
-        return E.Retail
+        return TXUI.IsRetail
       end,
       get = function(_)
         return E.db.TXUI.misc.scaling.taxi.scale

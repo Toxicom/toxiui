@@ -45,8 +45,8 @@ function O:WunderBar_SubModules_SpecSwitch()
   tab.generalGroup.args.spacer2 = ACH:Spacer(5)
 
   tab.generalGroup.args.showSpec1 = ACH:Toggle("Show Talent Spec", nil, 6)
-  tab.generalGroup.args.showSpec2 = ACH:Toggle("Show " .. (E.Retail and "Loot Spec" or "Secondary Spec"), nil, 7)
-  tab.generalGroup.args.showLoadout = ACH:Toggle("Show Loadout Name", nil, 8, nil, nil, nil, nil, nil, not E.Retail)
+  tab.generalGroup.args.showSpec2 = ACH:Toggle("Show " .. (TXUI.IsRetail and "Loot Spec" or "Secondary Spec"), nil, 7)
+  tab.generalGroup.args.showLoadout = ACH:Toggle("Show Loadout Name", nil, 8, nil, nil, nil, nil, nil, not TXUI.IsRetail)
 
   -- Info Text
   tab.infoGroup = ACH:Group("Info Text Group", nil, 2)

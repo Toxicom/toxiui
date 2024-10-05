@@ -365,7 +365,7 @@ function O:Skins_ElvUI()
   self:AddSpacer(options)
 
   -- ToxiUI Deconstruct
-  if E.Retail then
+  if TXUI.IsRetail then
     -- ToxiUI Deconstruct Group
     local deconstructGroup = self:AddInlineRequirementsDesc(options, {
       name = "Deconstruct",
@@ -543,7 +543,7 @@ function O:Skins_ElvUI()
       order = self:GetOrder(),
       type = "toggle",
       name = "Show in Vehicles",
-      desc = "Enabling this option will show the ActionBars in Vehicles" .. (E.Retail and " and/or while DragonRiding" or "") .. " regardless of the Mode you've selected.",
+      desc = "Enabling this option will show the ActionBars in Vehicles" .. (TXUI.IsRetail and " and/or while DragonRiding" or "") .. " regardless of the Mode you've selected.",
       disabled = function()
         return actionBarsAreDisabled
           or self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES

@@ -19,7 +19,7 @@ local GetCurrentTitle = GetCurrentTitle
 local GetInventoryItemID = GetInventoryItemID
 local GetItemInfo = GetItemInfo
 local GetMeleeHaste = GetMeleeHaste
-local GetSpecialization = E.Retail and GetSpecialization or GetActiveTalentGroup
+local GetSpecialization = TXUI.IsRetail and GetSpecialization or GetActiveTalentGroup
 local GetSpecializationInfo = GetSpecializationInfo
 local GetSpecializationRole = GetSpecializationRole
 local GetTitleName = GetTitleName
@@ -95,14 +95,14 @@ A.colors = {
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
-    needsEnchant = E.Cata, -- Reputation Arcanum's
+    needsEnchant = TXUI.IsCata, -- Reputation Arcanum's
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["NeckSlot"] = {
     id = 2,
     needsEnchant = false,
-    needsSocket = E.Retail,
+    needsSocket = TXUI.IsRetail,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
@@ -189,7 +189,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = E.Retail,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.RIGHT,
   },
   ["Finger1Slot"] = {
@@ -198,7 +198,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = E.Retail,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket0Slot"] = {
@@ -234,7 +234,7 @@ A.characterSlots = {
   },
 }
 
-if E.Cata then A.characterSlots["RangedSlot"] = {
+if TXUI.IsCata then A.characterSlots["RangedSlot"] = {
   id = 19,
   needsEnchant = false,
   needsSocket = false,
@@ -247,7 +247,7 @@ function A:GetPrimaryTalentIndex()
   local primaryTalentTree = GetSpecialization()
 
   if primaryTalentTree then
-    if E.Retail then
+    if TXUI.IsRetail then
       primaryTalentTreeIdx = GetSpecializationInfo(primaryTalentTree) or 0
     else
       _, primaryTalentTreeIdx = SS:GetCurrentSpecPoints(primaryTalentTree) or nil, 0
@@ -287,7 +287,7 @@ function A:CheckMessageCondition(slotOptions)
     if spec then
       local primaryStat
 
-      if E.Retail then
+      if TXUI.IsRetail then
         primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
       else
         local data = SS:GetWrathCacheForSpec(spec)
@@ -427,19 +427,19 @@ function A:UpdateItemLevel()
   local minItemLevel = C_PaperDollInfo.GetMinItemLevel()
   local displayItemLevel = max(minItemLevel or 0, avgItemLevelEquipped)
 
-  if self.db.stats.showAvgItemLevel and E.Retail then
+  if self.db.stats.showAvgItemLevel and TXUI.IsRetail then
     itemLevelText = format(format("%s / %s", self.db.stats.itemLevelFormat, self.db.stats.itemLevelFormat), displayItemLevel, avgItemLevel)
   else
     itemLevelText = format(self.db.stats.itemLevelFormat, displayItemLevel)
   end
 
   if self:UseFontGradient(self.db.stats, "itemLevel") then
-    local epicComplete = select(13, GetAchievementInfo(E.Retail and 40147 or 5372))
+    local epicComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 40147 or 5372))
 
     if epicComplete then
       self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.78, 0.13, 0.57, 0.42, 0.08, 0.82))
     else
-      local rareComplete = select(13, GetAchievementInfo(E.Retail and 40146 or 5373))
+      local rareComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 40146 or 5373))
 
       if rareComplete then
         self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.01, 0.78, 0.98, 0, 0.38, 0.90))
@@ -507,7 +507,7 @@ function A:UpdateTitle()
   self.levelText:SetText(playerLevel)
 
   local fontIcon
-  if E.Retail then
+  if TXUI.IsRetail then
     fontIcon = P.wunderbar.subModules.SpecSwitch.icons[primaryTalentTreeIdx] or P.wunderbar.subModules.SpecSwitch.icons[0]
   else
     local spec = GetSpecialization()
@@ -970,9 +970,9 @@ function A:UpdateCharacterStats()
 
   self:ClearAnimations(true)
 
-  if spec then role = E.Retail and GetSpecializationRole(spec) or GetTalentGroupRole(spec) end
+  if spec then role = TXUI.IsRetail and GetSpecializationRole(spec) or GetTalentGroupRole(spec) end
 
-  if E.Retail then
+  if TXUI.IsRetail then
     if level >= (MIN_PLAYER_LEVEL_FOR_ITEM_LEVEL_DISPLAY or 0) then
       self:CleanupCharacterStat(characterStatsPane.ItemLevelFrame)
 
@@ -996,7 +996,7 @@ function A:UpdateCharacterStats()
   end
 
   local statFrame
-  if E.Retail then
+  if TXUI.IsRetail then
     characterStatsPane.statsFramePool:ReleaseAll()
     statFrame = characterStatsPane.statsFramePool:Acquire()
   end
@@ -1029,7 +1029,7 @@ function A:UpdateCharacterStats()
         if showStat and (stat.primary and spec) then
           local primaryStat
 
-          if E.Retail then
+          if TXUI.IsRetail then
             primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
           else
             local data = SS:GetWrathCacheForSpec(spec)
@@ -1041,7 +1041,7 @@ function A:UpdateCharacterStats()
         if showStat and (stat.primaries and spec) then
           local primaryStat
 
-          if E.Retail then
+          if TXUI.IsRetail then
             primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
           else
             local data = SS:GetWrathCacheForSpec(spec)
@@ -1095,7 +1095,7 @@ function A:UpdateCharacterStats()
       -- This is not needed here, just added here to make the logic more clearer
       if showStat and (statMode == 3) then showStat = true end
 
-      if showStat and E.Retail then
+      if showStat and TXUI.IsRetail then
         statFrame.onEnterFunc = nil
         statFrame.UpdateTooltip = nil
 
@@ -1123,7 +1123,7 @@ function A:UpdateCharacterStats()
       end
     end
 
-    if E.Retail then
+    if TXUI.IsRetail then
       if numStatInCat > 0 then
         catFrame:Show()
         self:SetupFadeAnimation(catFrame, animationSlot)
@@ -1134,7 +1134,7 @@ function A:UpdateCharacterStats()
     end
   end
 
-  if E.Retail then characterStatsPane.statsFramePool:Release(statFrame) end
+  if TXUI.IsRetail then characterStatsPane.statsFramePool:Release(statFrame) end
 end
 
 function A:UpdateAttackSpeed(statFrame, unit)
@@ -1415,7 +1415,7 @@ function A:OpenCharacterStats()
 end
 
 function A:OpenCharacterArmory()
-  if E.Cata then self:OpenCharacterStats() end
+  if TXUI.IsCata then self:OpenCharacterStats() end
   self:UpdateCharacterArmory()
   -- For some reason in Cata animation doesn't happen immediately unless you hover the character frame, not sure what event we're missing
   E:Delay(0.01, function()
@@ -1544,7 +1544,7 @@ function A:Enable()
   self:RawHook(_G, "PaperDollFrame_SetAttackSpeed", "UpdateAttackSpeed", true)
 
   -- Apply our custom stat categories
-  if E.Retail then self:ApplyCustomStatCategories() end
+  if TXUI.IsRetail then self:ApplyCustomStatCategories() end
 
   -- Check ElvUI Options
   self:ElvOptionsCheck()
@@ -1581,4 +1581,4 @@ function A:Initialize()
   self.Initialized = true
 end
 
-if not E.Classic then TXUI:RegisterModule(A:GetName()) end
+if not TXUI.IsVanilla then TXUI:RegisterModule(A:GetName()) end

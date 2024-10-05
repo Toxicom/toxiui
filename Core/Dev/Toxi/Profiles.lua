@@ -22,7 +22,7 @@ function T:SetupProfile()
   E.db.TXUI.vehicleBar.enabled = true
 
   -- WunderBar: General
-  E.db.TXUI.wunderbar.general.backgroundTexture = E.Classic and "TX WorldState Score" or "WorldState Score"
+  E.db.TXUI.wunderbar.general.backgroundTexture = TXUI.IsVanilla and "TX WorldState Score" or "WorldState Score"
 
   -- WunderBar: Modules
   E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
@@ -43,14 +43,14 @@ function T:SetupProfile()
   E.db.TXUI.wunderbar.subModules.Profession.general.showIcons = true
 
   -- WunderBar: Hearthstone
-  E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = E.Retail and 209035 or 6948
+  E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 209035 or 6948
 
   -- Miscellaneous: Additional Scaling
   E.db.TXUI.misc.scaling.enabled = true
   E.db.TXUI.misc.scaling.characterFrame.scale = 1.5
   E.db.TXUI.misc.scaling.syncInspect.enabled = true
   E.db.TXUI.misc.scaling.map.scale = 1.5
-  if E.Retail then
+  if TXUI.IsRetail then
     E.db.TXUI.misc.scaling.collections.scale = 1.3
     E.db.TXUI.misc.scaling.wardrobe.scale = 1.3
   end
@@ -64,7 +64,7 @@ function T:SetupProfile()
   end
   E.db.unitframe.units.target.customTexts["!Name"].text_format = "[tx:name:abbrev:medium:split{Toxi}]"
 
-  E.db.bags.bagSize = E.Retail and 50 or 60
+  E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bagButtonSpacing = 2
   E.db.bags.split.player = true
 
@@ -76,13 +76,13 @@ function T:SetupProfile()
   E.db.bags.split.bagSpacing = 10
   E.db.bags.split.bankSpacing = 10
   E.db.bags.bank = true
-  E.db.bags.bankSize = E.Retail and 50 or 60
+  E.db.bags.bankSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bankButtonSpacing = 2
 
   if F.IsAddOnEnabled("BetterBags") or F.IsAddOnEnabled("Sorted") then E.private.bags.enable = false end
 
   -- WindTools
-  if E.Retail and F.IsAddOnEnabled("ElvUI_WindTools") then
+  if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
     E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
     E.db.WT.quest.turnIn.enable = false
   end

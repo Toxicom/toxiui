@@ -133,7 +133,7 @@ function TXUI:InitializeModules()
   end
 
   local events = { "PLAYER_ENTERING_WORLD" }
-  if E.Retail then tinsert(events, "FIRST_FRAME_RENDERED") end
+  if TXUI.IsRetail then tinsert(events, "FIRST_FRAME_RENDERED") end
 
   F.Event.ContinueAfterAllEvents(onAllEvents, F.Table.SafeUnpack(events))
 end

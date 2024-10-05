@@ -60,7 +60,7 @@ O.options = {
     order = 6,
     type = "group",
     group = "tab",
-    name = F.String.Menu.Armory() .. (E.Cata and F.String.Error(" [BETA]") or ""),
+    name = F.String.Menu.Armory() .. (TXUI.IsCata and F.String.Error(" [BETA]") or ""),
     desc = "Configure all options for the Character Sheet Armory",
     icon = I.Media.Icons.Armory,
     hidden = O.txUIDisabled,
@@ -163,7 +163,7 @@ function O:GetAllFontColorsFunc(additional)
     CUSTOM = "Custom",
   }
 
-  if E.Retail then F.Table.Join(colorSelection, {
+  if TXUI.IsRetail then F.Table.Join(colorSelection, {
     COVENANT = F.String.Covenant("Covenant Color"),
   }) end
 
