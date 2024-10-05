@@ -7,13 +7,6 @@ function O:Armory()
   -- Reset order for new page
   self:ResetOrder()
 
-  local socketItem = nil
-
-  if C_Item and C_Item.GetItemInfo then
-    local itemName = C_Item.GetItemInfo(213777)
-    if itemName then socketItem = itemName end
-  end
-
   -- Add Options for Tab
   self.options.armory.childGroups = "tab"
 
@@ -1074,7 +1067,16 @@ function O:Armory()
       enchantGroup.missingSocketText = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Shows a warning when you're missing sockets on your necklace." .. (socketItem and (" Sockets can be added with " .. F.String.ToxiUI(socketItem)) or ""),
+        desc = function()
+          local socketItem = nil
+
+          if C_Item and C_Item.GetItemInfo then
+            local itemName = C_Item.GetItemInfo(213777)
+            if itemName then socketItem = itemName end
+          end
+
+          return "Shows a warning when you're missing sockets on your necklace." .. (socketItem and (" Sockets can be added with " .. F.String.ToxiUI(socketItem)) or "")
+        end,
         name = "Missing Sockets",
         hidden = not TXUI.IsRetail,
         disabled = optionsDisabled,
