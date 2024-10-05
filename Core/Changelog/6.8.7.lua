@@ -16,6 +16,7 @@ TXUI.Changelog["6.8.7"] = {
       .. " Missing Socket option's description to update dynamically each time it shows up"
       .. F.String.Sublist("This should fix missing information on first load of the game")
       .. F.String.Sublist("If the item name is still not showing, re-hover the checkbox to show an updated description"),
+    "Fix Blizzard store error in classic era",
 
     "* Profile updates",
     F.String.Plater() .. ": Add Wither to manual debuff tracking",

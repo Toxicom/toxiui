@@ -528,9 +528,11 @@ function CR:OnInit()
   self:CreateElvUIDB()
 
   -- Create Token Ticker
-  self.tokenCallback = F.Event.GenerateClosure(C_WowTokenPublic_UpdateMarketPrice)
-  self.tokenTicker = C_Timer_NewTicker(60, self.tokenCallback)
-  self.tokenCallback()
+  if not TXUI.IsVanilla then
+    self.tokenCallback = F.Event.GenerateClosure(C_WowTokenPublic_UpdateMarketPrice)
+    self.tokenTicker = C_Timer_NewTicker(60, self.tokenCallback)
+    self.tokenCallback()
+  end
 
   self:CreateText()
   self:OnWunderBarUpdate()
