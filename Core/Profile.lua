@@ -46,7 +46,7 @@ P.general = {
 
 -- Styles
 P.styles = {
-  actionBars = TXUI.IsVanilla and "Classic" or "WeakAuras",
+  actionBars = E.Classic and "Classic" or "WeakAuras",
 }
 
 -- Themes
@@ -264,7 +264,7 @@ P.addons = {
   -- Fade Persist
   fadePersist = {
     enabled = true, -- Enabled by default
-    mode = TXUI.IsVanilla and "ELVUI" or "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
+    mode = E.Classic and "ELVUI" or "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
     showInVehicles = true,
   },
 }
@@ -403,7 +403,7 @@ P.elvUIIcons = {
   },
 
   classIcons = {
-    theme = TXUI.IsRetail and "ToxiSpecStylized" or "ToxiClasses",
+    theme = E.Retail and "ToxiSpecStylized" or "ToxiClasses",
   },
 
   deadIcons = {
@@ -517,8 +517,8 @@ P.armory = {
     showAvgItemLevel = true, -- Enabled by default
     itemLevelFormat = "%.1f",
 
-    itemLevelFont = TXUI.IsRetail and I.Fonts.TitleBlack or I.Fonts.Primary,
-    itemLevelFontSize = TXUI.IsRetail and 20 or 12,
+    itemLevelFont = E.Retail and I.Fonts.TitleBlack or I.Fonts.Primary,
+    itemLevelFontSize = E.Retail and 20 or 12,
     itemLevelFontShadow = true,
     itemLevelFontOutline = "OUTLINE",
     itemLevelFontColor = "GRADIENT", -- CLASS, TXUI, VALUE (ElvUI), CUSTOM, GRADIENT
@@ -979,7 +979,7 @@ P.wunderbar = {
 
       randomPrimaryHs = true,
       primaryHS = 6948,
-      secondaryHS = TXUI.IsRetail and 140192 or 6948,
+      secondaryHS = E.Retail and 140192 or 6948,
       additionalHS = {},
     },
     Durability = {

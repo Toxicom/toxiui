@@ -8,9 +8,9 @@ local C_Traits_GetConfigInfo = C_Traits.GetConfigInfo
 local CreateFrame = CreateFrame
 local format = string.format
 local GetActiveTalentGroup = GetActiveTalentGroup
-local GetCurrentSpecID = TXUI.IsRetail and PlayerUtil.GetCurrentSpecID or nil
+local GetCurrentSpecID = E.Retail and PlayerUtil.GetCurrentSpecID or nil
 local GetCVarBool = GetCVarBool
-local GetLastSelectedSavedConfigID = TXUI.IsRetail and C_ClassTalents.GetLastSelectedSavedConfigID or nil
+local GetLastSelectedSavedConfigID = E.Retail and C_ClassTalents.GetLastSelectedSavedConfigID or nil
 local GetLootSpecialization = GetLootSpecialization
 local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
 local GetNumTalentGroups = GetNumTalentGroups
@@ -34,7 +34,7 @@ local activeString = strjoin("", "|cff00FF00", ACTIVE_PETS, "|r")
 local inactiveString = strjoin("", "|cffFF0000", FACTION_INACTIVE, "|r")
 
 function SS:GetLoadoutName()
-  if TXUI.IsRetail then
+  if E.Retail then
     local specId = GetCurrentSpecID()
     if specId then
       local configID = GetLastSelectedSavedConfigID(specId)
@@ -128,7 +128,7 @@ function SS:SpecEnter(text, icon)
 
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Show Talent UI")
-    if TXUI.IsRetail or (TXUI.IsCata and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
+    if E.Retail or (E.Cata and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
     DT.tooltip:Show()
   end
 end
@@ -144,7 +144,7 @@ function SS:SpecClick(frame, button, ...)
   local hasDualSpec
   local activeGroup
 
-  if TXUI.IsCata then
+  if E.Cata then
     hasDualSpec = GetNumTalentGroups() == 2
     activeGroup = GetActiveTalentGroup()
   end
@@ -155,7 +155,7 @@ function SS:SpecClick(frame, button, ...)
   else
     if button == "LeftButton" then
       ToggleTalentFrame()
-    elseif TXUI.IsCata then
+    elseif E.Cata then
       if not hasDualSpec then return end
       SetActiveTalentGroup(activeGroup == 1 and 2 or 1)
     else
@@ -240,7 +240,7 @@ end
 function SS:UpdateSpecialization()
   local spec1, spec2
 
-  if TXUI.IsRetail then
+  if E.Retail then
     spec1 = GetSpecialization()
     spec2 = 0
 
@@ -510,7 +510,7 @@ function SS:OnInit()
   self.numSpecs = 2
   self.specCache = {}
 
-  if TXUI.IsRetail then
+  if E.Retail then
     local _, classId = UnitClassBase("player")
     self.numSpecs = GetNumSpecializationsForClassID(classId)
     for i = 1, self.numSpecs do
@@ -534,7 +534,7 @@ WB:RegisterSubModule(
       "PLAYER_TALENT_UPDATE",
       "ACTIVE_TALENT_GROUP_CHANGED",
     },
-    F.Table.If(TXUI.IsRetail, {
+    F.Table.If(E.Retail, {
       "PLAYER_LOOT_SPEC_UPDATED",
       "ACTIVE_COMBAT_CONFIG_CHANGED",
       "CONFIG_COMMIT_FAILED",
@@ -545,6 +545,6 @@ WB:RegisterSubModule(
       "TRAIT_CONFIG_UPDATED",
       "TRAIT_TREE_CHANGED",
     }),
-    F.Table.If(TXUI.IsCata, { "TALENT_GROUP_ROLE_CHANGED" })
+    F.Table.If(E.Cata, { "TALENT_GROUP_ROLE_CHANGED" })
   )
 )

@@ -9,7 +9,7 @@ function TXUI:DBConvert()
   local cl = self:GetModule("Changelog")
   if (db.changelog.lastDBConversion ~= nil and db.changelog.lastDBConversion ~= 0) and (not cl:IsNewer(TXUI.ReleaseVersion, db.changelog.lastDBConversion)) then return end
 
-  if TXUI.IsRetail then
+  if E.Retail then
     -- Profile Skin section convert
     if db.skins ~= nil then
       -- Dark mode moved into themes section

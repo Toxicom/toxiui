@@ -436,7 +436,7 @@ function DC:IsUsable(itemID, professionState)
       if not (itemQuality >= LE_ITEM_QUALITY_UNCOMMON and itemQuality <= LE_ITEM_QUALITY_EPIC) then return false end
 
       -- Needs to categoriesd as equipment (check comes from blizzard)
-      if TXUI.IsRetail then
+      if E.Retail then
         if not (classID == 2 or (classID == 4 and subclassID ~= 5) or (classID == 3 and subclassID == 11)) then return false end
       else
         if
@@ -489,7 +489,7 @@ function DC:IsEligibleItemFrame(itemFrame)
   local slotID = itemFrame:GetID()
   if slotID == nil then return professionState end
 
-  if TXUI.IsRetail then
+  if E.Retail then
     itemInfo = GetContainerItemInfo(bagID, slotID)
     if not itemInfo then return professionState end
 
@@ -759,7 +759,7 @@ function DC:Enable()
   self:CreateElements()
 
   self:SecureHookScript(B.BagFrame, "OnHide", "OnHideHandler")
-  if TXUI.IsRetail then
+  if E.Retail then
     TooltipDataProcessor_AddTooltipPostCall(Enum_TooltipDataType.Item, function(tooltip)
       DC:OnHoverHandler(tooltip)
     end)
@@ -815,4 +815,4 @@ function DC:Initialize()
   self.Initialized = true
 end
 
-if TXUI.IsRetail then TXUI:RegisterModule(DC:GetName()) end
+if E.Retail then TXUI:RegisterModule(DC:GetName()) end

@@ -88,7 +88,7 @@ function M:GenerateSpecIcon(dbPath)
   local iconPath = self:GetClassIconPath(dbPath or "ToxiSpecStylized")
   local iconsFont = F.GetFontPath(I.Fonts.Icons)
 
-  if TXUI.IsRetail then
+  if E.Retail then
     local _, classId = UnitClassBase("player")
     local specIndex = GetSpecialization()
     local id = GetSpecializationInfoForClassID(classId, specIndex)

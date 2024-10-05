@@ -15,7 +15,7 @@ local UnitReaction = UnitReaction
 local UnitTreatAsPlayerForDisplay = UnitTreatAsPlayerForDisplay
 
 function GR:GetHealthColor(frame, unit)
-  local isPlayer = UnitIsPlayer(unit) or (TXUI.IsRetail and UnitTreatAsPlayerForDisplay(unit))
+  local isPlayer = UnitIsPlayer(unit) or (E.Retail and UnitTreatAsPlayerForDisplay(unit))
 
   if isPlayer and not UnitIsConnected(unit) then
     return "specialColorMap", "DISCONNECTED"

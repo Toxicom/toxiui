@@ -28,5 +28,6 @@ TXUI.Changelog["6.8.7"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Use ElvUI's variables for determining game flavor",
   },
 }

@@ -64,7 +64,7 @@ function FP:Disable()
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_DISABLED")
     self.ab.fadeParent:RegisterEvent("PLAYER_REGEN_ENABLED")
     self.ab.fadeParent:RegisterEvent("PLAYER_TARGET_CHANGED")
-    if not TXUI.IsVanilla then
+    if not E.Classic then
       self.ab.fadeParent:RegisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
       self.ab.fadeParent:RegisterEvent("UPDATE_POSSESS_BAR")
     end
@@ -92,7 +92,7 @@ function FP:Enable()
   -- Don't unregister for default ElvUI mode
   if self.db.mode ~= "ELVUI" then
     self.ab.fadeParent:UnregisterEvent("PLAYER_TARGET_CHANGED")
-    if not TXUI.IsVanilla then
+    if not E.Classic then
       self.ab.fadeParent:UnregisterEvent("UPDATE_OVERRIDE_ACTIONBAR")
       self.ab.fadeParent:UnregisterEvent("UPDATE_POSSESS_BAR")
     end
@@ -124,7 +124,7 @@ function FP:Enable()
   end)
 
   -- Hook Spellbook
-  if TXUI.IsRetail then
+  if E.Retail then
     F.Event.ContinueOnAddOnLoaded("Blizzard_PlayerSpells", function()
       if not TXUI:HasRequirements(I.Requirements.FadePersist) or not (self.db and self.db.enabled) then return end
 

@@ -86,7 +86,7 @@ function O:Skins_ClassIcons()
           UggWhiteStroke = F.String.Ugg() .. " White Stroke",
         }
 
-        if TXUI.IsRetail then
+        if E.Retail then
           local retailTable = {
             ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
             ToxiSpecColored = F.String.Class("Spec") .. " " .. F.String.Rainbow("Colored"),
@@ -132,7 +132,7 @@ function O:Skins_ClassIcons()
       order = self:GetOrder(),
       type = "description",
       name = "",
-      hidden = not TXUI.IsRetail,
+      hidden = not E.Retail,
       image = function()
         return I.Media.Style.SpecIconsPreview, 512, 128
       end,

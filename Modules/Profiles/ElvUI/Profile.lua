@@ -238,7 +238,7 @@ function PF:BuildProfile()
       -- Movers: ToxiUI
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[1]),
     },
-    F.Table.If(TXUI.IsRetail, {
+    F.Table.If(E.Retail, {
       -- Movers: Bars Retail Only
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 180),
       AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 351, -324),
@@ -286,10 +286,10 @@ function PF:BuildProfile()
 
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     }),
-    F.Table.If(TXUI.IsCata, {
+    F.Table.If(E.Cata, {
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
     }),
-    F.Table.If(not TXUI.IsRetail, {
+    F.Table.If(not E.Retail, {
       MirrorTimer1Mover = F.Position("TOP", "ElvUIParent", "TOP", 0, -60),
       MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
       MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
@@ -900,7 +900,7 @@ function PF:BuildProfile()
         }),
 
         ["!Happiness"] = createCustomText({}, {
-          text_format = TXUI.IsVanilla and "[happiness:discord]" or "",
+          text_format = E.Classic and "[happiness:discord]" or "",
           xOffset = -25,
           yOffset = 0,
           justifyH = "LEFT",
@@ -948,7 +948,7 @@ function PF:BuildProfile()
       -- Disable UnitFrame Pet Debuffs
       debuffs = { enable = false },
     },
-    F.Table.If(not TXUI.IsRetail, { -- Pet
+    F.Table.If(not E.Retail, { -- Pet
       health = {
         colorHappiness = false,
       },
@@ -1468,7 +1468,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid1,
     raidFramesTable,
     {
-      visibility = TXUI.IsRetail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
+      visibility = E.Retail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
       -- UnitFrame Raid Horizontal Layout
@@ -1481,7 +1481,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid2,
     raidFramesTable,
     {
-      visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
+      visibility = E.Retail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
       -- UnitFrame Raid2 Horizontal Layout
@@ -1494,7 +1494,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid3,
     raidFramesTable,
     {
-      visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
+      visibility = E.Retail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
       -- UnitFrame Raid3 Horizontal Layout
@@ -1765,7 +1765,7 @@ function PF:BuildProfile()
         scale = F.DpiRaw(1.25),
       },
     },
-    F.Table.If(TXUI.IsCata, {
+    F.Table.If(E.Cata, {
       totemBar = {
         mouseover = true,
         keepSizeRatio = false,
@@ -1807,9 +1807,9 @@ function PF:BuildProfile()
     local tbl = F.Table.Join({}, actionbarTemplate, ...)
 
     if not tbl.visibility then
-      if TXUI.IsRetail then
+      if E.Retail then
         tbl.visibility = "[vehicleui][petbattle][overridebar] hide; show"
-      elseif TXUI.IsCata then
+      elseif E.Cata then
         tbl.visibility = "[vehicleui][overridebar] hide; show"
       else
         tbl.visibility = "[overridebar] hide; show"
@@ -1830,7 +1830,7 @@ function PF:BuildProfile()
     macroTextPosition = "BOTTOM",
     macroTextYOffset = F.Dpi(0),
 
-    visibility = TXUI.IsRetail and "[petbattle] hide; show" or "show",
+    visibility = E.Retail and "[petbattle] hide; show" or "show",
   }
 
   local createMainActionBar = function(...)
@@ -1934,10 +1934,10 @@ function PF:BuildProfile()
     hotkeyTextPosition = "TOP",
   }
 
-  if TXUI.IsRetail then
+  if E.Retail then
     pf.actionbar.barPet.visibility = "[petbattle] hide; [novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui][petbattle] hide; show"
-  elseif TXUI.IsCata then
+  elseif E.Cata then
     pf.actionbar.barPet.visibility = "[novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui] hide; show"
   else

@@ -146,7 +146,7 @@ function WB:RegisterElvUIDatatexts()
     "Versatility",
   }
 
-  if not TXUI.IsVanilla then tinsert(elvUIDataTexts, "Equipment Sets") end
+  if not E.Classic then tinsert(elvUIDataTexts, "Equipment Sets") end
 
   for _, dataTextName in ipairs(elvUIDataTexts) do
     local dt = self:GetElvUIDataText(dataTextName)

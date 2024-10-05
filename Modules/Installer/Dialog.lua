@@ -410,7 +410,7 @@ function IS:Dialog()
 
         if F.IsAddOnEnabled("WeakAuras") then
           installFrame.Desc1:SetText("This will give you links to install important WeakAuras")
-          if TXUI.IsVanilla then
+          if E.Classic then
             installFrame.Desc2:SetText(
               "Unfortunately "
                 .. F.String.Luxthos("Luxthos")
@@ -425,7 +425,7 @@ function IS:Dialog()
             )
           end
           installFrame.Option1:Show()
-          if TXUI.IsVanilla then
+          if E.Classic then
             installFrame.Option1:SetText("Wago.io Vanilla")
           else
             installFrame.Option1:SetText(F.String.Luxthos("Luxthos") .. " WA")

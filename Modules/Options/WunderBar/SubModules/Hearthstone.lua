@@ -16,7 +16,7 @@ function O:WunderBar_SubModules_Additional_Toggle(group)
     function()
       local names = {}
       for _, option in pairs(I.HearthstoneData) do
-        if option.known and not option.hearthstone and not option.class and (TXUI.IsCata or (not option.portal and not option.teleport)) then names[option.id] = option.name end
+        if option.known and not option.hearthstone and not option.class and (E.Cata or (not option.portal and not option.teleport)) then names[option.id] = option.name end
       end
       return names
     end,
@@ -107,7 +107,7 @@ function O:WunderBar_SubModules_Hearthstone()
     name = "Seasonal M+ Teleports",
     desc = "Enabling this will show only the current season's teleports in the Flyout frame",
     order = self:GetOrder(),
-    hidden = not TXUI.IsRetail,
+    hidden = not E.Retail,
     width = 1.2,
   }
 
@@ -116,7 +116,7 @@ function O:WunderBar_SubModules_Hearthstone()
     name = "Show " .. F.String.Class("Mythic+", "DEMONHUNTER") .. " labels " .. E.NewSign,
     desc = "Enabling this will show a label of the Mythic+ teleport on the button.",
     order = self:GetOrder(),
-    hidden = not TXUI.IsRetail,
+    hidden = not E.Retail,
     width = 1.2,
   }
 
@@ -145,7 +145,7 @@ function O:WunderBar_SubModules_Hearthstone()
     nil,
     nil,
     nil,
-    not TXUI.IsRetail
+    not E.Retail
   )
   local primaryHsDisabled = function()
     return E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHs

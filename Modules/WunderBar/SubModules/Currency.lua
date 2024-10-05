@@ -335,7 +335,7 @@ function CR:UpdateTooltip()
     end
   end
 
-  if TXUI.IsRetail then
+  if E.Retail then
     if addLine then DT.tooltip:AddLine(" ") end
     DT.tooltip:AddDoubleLine("WoW Token:", E:FormatMoney(C_WowTokenPublic_GetCurrentMarketPrice() or 0, style, true), 0, 0.8, 1, 1, 1, 1)
   end
@@ -347,7 +347,7 @@ function CR:UpdateTooltip()
   end
 
   -- Mobile Warbank cooldown
-  if TXUI.IsRetail then
+  if E.Retail then
     local spellName = C_Spell.GetSpellName(self.warbankId)
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("Mobile Warbank")
@@ -357,7 +357,7 @@ function CR:UpdateTooltip()
   DT.tooltip:AddLine(" ")
   DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Bags")
   DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Currency Frame")
-  if TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift + Left Click:|r Summon Mobile Warbank") end
+  if E.Retail then DT.tooltip:AddLine("|cffFFFFFFShift + Left Click:|r Summon Mobile Warbank") end
   DT.tooltip:AddLine("|cffFFFFFFCtrl + Right Click:|r Reset Session Data")
   DT.tooltip:AddLine("|cffFFFFFFShift + Right Click:|r Reset Character Data")
   DT.tooltip:Show()
@@ -454,7 +454,7 @@ function CR:CreateText()
 
   self.secureFrame = secureFrameHolder
 
-  if TXUI.IsRetail then
+  if E.Retail then
     local spellName = C_Spell.GetSpellName(self.warbankId)
     self.secureFrame:SetAttribute("shift-type1", "spell")
     self.secureFrame:SetAttribute("shift-spell1", spellName)
@@ -528,7 +528,7 @@ function CR:OnInit()
   self:CreateElvUIDB()
 
   -- Create Token Ticker
-  if not TXUI.IsVanilla then
+  if not E.Classic then
     self.tokenCallback = F.Event.GenerateClosure(C_WowTokenPublic_UpdateMarketPrice)
     self.tokenTicker = C_Timer_NewTicker(60, self.tokenCallback)
     self.tokenCallback()

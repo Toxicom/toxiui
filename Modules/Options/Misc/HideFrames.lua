@@ -55,7 +55,7 @@ function O:Plugins_HideFrames()
   self:AddSpacer(options)
 
   local retailDisabled = function()
-    return not TXUI.IsRetail
+    return not E.Retail
   end
 
   -- Retail

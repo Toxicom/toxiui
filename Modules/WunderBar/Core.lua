@@ -77,7 +77,7 @@ function WB:Disable()
   F.Event.UnregisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self)
   F.Event.UnregisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self)
 
-  if TXUI.IsRetail then
+  if E.Retail then
     F.Event.UnregisterFrameEventAndCallback("PET_BATTLE_CLOSE", self)
     F.Event.UnregisterFrameEventAndCallback("PET_BATTLE_OPENING_START", self)
   end
@@ -104,7 +104,7 @@ function WB:Enable()
   F.Event.RegisterFrameEventAndCallback("PLAYER_UPDATE_RESTING", self.CheckVisibility, self)
   F.Event.RegisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self.CheckVisibility, self)
 
-  if TXUI.IsRetail then
+  if E.Retail then
     F.Event.RegisterFrameEventAndCallback("PET_BATTLE_CLOSE", self.CheckVisibility, self)
     F.Event.RegisterFrameEventAndCallback("PET_BATTLE_OPENING_START", self.CheckVisibility, self)
   end

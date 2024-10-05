@@ -24,7 +24,7 @@ end
 
 function M:ScaleCollections()
   M:SetElementScale("collections", "CollectionsJournal")
-  if TXUI.IsRetail then M:SetElementScale("wardrobe", "WardrobeFrame") end
+  if E.Retail then M:SetElementScale("wardrobe", "WardrobeFrame") end
 end
 
 function M:ScaleItemUpgrade()
@@ -38,7 +38,7 @@ function M:ScaleCatalyst()
 end
 
 function M:ScaleProfessions()
-  if TXUI.IsRetail then
+  if E.Retail then
     E:Delay(0.01, function()
       local isHooked = M.hookedFrames["profession"] == true
       if not isHooked then
@@ -64,7 +64,7 @@ function M:ScaleClassTrainer()
 end
 
 function M:ScaleAuctionHouse()
-  if TXUI.IsRetail then
+  if E.Retail then
     M:SetElementScale("auctionHouse", "AuctionHouseFrame")
   else
     M:SetElementScale("auctionHouse", "AuctionFrame")
@@ -72,7 +72,7 @@ function M:ScaleAuctionHouse()
 end
 
 function M:ScaleRetailSpellbook()
-  if TXUI.IsRetail and not IsRetailTalentsWindowHooked then
+  if E.Retail and not IsRetailTalentsWindowHooked then
     M:HookRetailTalentsWindow()
   else
     M:SetElementScale("spellbook", "PlayerSpellsFrame")

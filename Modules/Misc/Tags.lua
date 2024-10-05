@@ -469,7 +469,7 @@ function M:Tags()
     return ColorSmartPowerTag(unit, true)
   end)
 
-  local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
+  local usingSpecIcons = E.Retail and match(iconTheme, "ToxiSpec")
 
   -- Class Icon Tag
   E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)

@@ -36,7 +36,7 @@ function O:Armory()
     }, {
       name = TXUI.Title
         .. " Armory changes the appearance of your Character sheet.\n\n"
-        .. (TXUI.IsCata and (F.String.Error("[BETA]") .. ": This module is not stable yet on Cataclysm Classic!\n\n") or ""),
+        .. (E.Cata and (F.String.Error("[BETA]") .. ": This module is not stable yet on Cataclysm Classic!\n\n") or ""),
     }, I.Requirements.Armory).args
 
     -- Enable
@@ -101,7 +101,7 @@ function O:Armory()
         type = "toggle",
         desc = "Enabling this will show the maximum possible item level you can achieve with items currently in your bags.",
         name = "Bags iLvl",
-        disabled = not TXUI.IsRetail,
+        disabled = not E.Retail,
       }
 
       -- Formats
@@ -190,7 +190,7 @@ function O:Armory()
     end
 
     -- Animations
-    if TXUI.IsRetail then
+    if E.Retail then
       -- General Group
       local animationsGroup = self:AddInlineDesc(tab, {
         name = "Animations",
@@ -1078,7 +1078,7 @@ function O:Armory()
           return "Shows a warning when you're missing sockets on your necklace." .. (socketItem and (" Sockets can be added with " .. F.String.ToxiUI(socketItem)) or "")
         end,
         name = "Missing Sockets",
-        hidden = not TXUI.IsRetail,
+        hidden = not E.Retail,
         disabled = optionsDisabled,
       }
 
@@ -1244,7 +1244,7 @@ function O:Armory()
   end
 
   -- Stats
-  if TXUI.IsRetail then
+  if E.Retail then
     -- Tab
     local tab = self:AddGroup(options, {
       name = "Attributes",
@@ -1671,7 +1671,7 @@ function O:Armory_OnlyRetailMessage()
   }
 end
 
-if not TXUI.IsVanilla then
+if not E.Classic then
   O:AddCallback("Armory")
 else
   O:AddCallback("Armory_OnlyRetailMessage")

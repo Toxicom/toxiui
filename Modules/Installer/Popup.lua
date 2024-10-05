@@ -42,7 +42,7 @@ function IS:PopupWALink()
   -- Create popup if it dosen't exist
   if not E.PopupDialogs.TXUI_WALinkDisplay then
     E.PopupDialogs.TXUI_WALinkDisplay = E.PopupDialogs.ELVUI_EDITBOX
-    if TXUI.IsVanilla then
+    if E.Classic then
       E.PopupDialogs.TXUI_WALinkDisplay["text"] = "Use the following link to get yourself a WeakAuras class package!"
     else
       E.PopupDialogs.TXUI_WALinkDisplay["text"] = "Use the following link to download " .. F.String.Luxthos("Luxthos") .. " WeakAuras!"

@@ -38,10 +38,6 @@ TXUI.MetaFlavor = GetAddOnMetadata(addonName, "X-Flavor")
 TXUI.ClientBuildVersion = select(4, GetBuildInfo())
 TXUI.Version = GetAddOnMetadata(addonName, "Version")
 
-TXUI.IsVanilla = TXUI.MetaFlavor == "Vanilla"
-TXUI.IsCata = TXUI.MetaFlavor == "Cata"
-TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
-
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
 TXUI.RetailSeason = "tww1"

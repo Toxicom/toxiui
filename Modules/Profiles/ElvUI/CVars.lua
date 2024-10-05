@@ -26,5 +26,5 @@ function PF:ElvUICVars()
   SetCVar("uiScale", E.global.general.UIScale)
   SetCVar("autoClearAFK", 1)
 
-  if TXUI.IsRetail then SetCVar("cameraDistanceMaxZoomFactor", 2.6) end
+  if E.Retail then SetCVar("cameraDistanceMaxZoomFactor", 2.6) end
 end
