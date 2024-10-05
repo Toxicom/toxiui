@@ -116,7 +116,7 @@ function DB:OnClick(...)
     if dtModule then dtModule.onClick(...) end
   end
 
-  if key == "RightButton" and TXUI.IsRetail then
+  if key == "RightButton" and (C_MountJournal and C_MountJournal.GetMountInfoByID) then
     local mountID = self.db.repairMount
     if mountID then
       local _, _, _, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
@@ -164,7 +164,7 @@ function DB:OnEnter()
 
   DT.tooltip:AddLine(" ")
   DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Character Frame")
-  if TXUI.IsRetail then
+  if C_MountJournal and C_MountJournal.GetMountInfoByID then
     local mountID = self.db.repairMount
     if mountID then
       local name, _, icon, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)

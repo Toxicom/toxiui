@@ -58,7 +58,7 @@ function O:WunderBar_SubModules_Durability()
   tab.mountGroup.args.repairMount = ACH:Select("Select Mount", nil, 2, getMounts)
   tab.mountGroup.args.repairMount.width = 2
   tab.mountGroup.args.repairMount.disabled = function()
-    return not TXUI.IsRetail or F.Table.IsEmpty(getMounts())
+    return not (C_MountJournal and C_MountJournal.GetMountInfoByID) or F.Table.IsEmpty(getMounts())
   end
   tab.mountGroup.args.repairMount.sortByValue = true
 
