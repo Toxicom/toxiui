@@ -13,6 +13,7 @@ TXUI.Changelog["6.8.7"] = {
     "Fix BugGrabber disabling for " .. TXUI.Title .. " Debug mode",
 
     "* Profile updates",
+    F.String.Plater() .. ": Add Wither to manual debuff tracking",
 
     "* Documentation",
     "Add " .. F.String.ToxiUI("Notorious Thread's Hearthstone") .. " to " .. F.String.Menu.WunderBar(),
