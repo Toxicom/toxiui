@@ -197,16 +197,13 @@ function PF:BuildProfile()
       ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 0, -defaultPadding),
       FocusPowerBarMover = F.Position("LEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 10, 0),
 
-      ElvUF_PartyMover = F.Position("LEFT", "ElvUIParent", "LEFT", 300, 0),
+      ElvUF_PartyMover = F.Position("RIGHT", "ElvUIParent", "CENTER", -700, 0),
 
       ElvUF_Raid1Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 60, 335),
       ElvUF_Raid2Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 60, 335),
       ElvUF_Raid3Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 60, 335),
 
-      -- Arena Frames
-      ArenaHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, 0),
-
-      -- Boss Frames
+      ArenaHeaderMover = F.Position("LEFT", "ElvUIParent", "CENTER", 700, 0),
       BossHeaderMover = F.Position("TOPRIGHT", "ArenaHeaderMover", "TOPRIGHT", 0, 0),
 
       ElvUF_TankMover = F.Position("TOPLEFT", "LeftChatMover", "TOPRIGHT", defaultPadding, 0),

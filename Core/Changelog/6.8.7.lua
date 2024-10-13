@@ -20,6 +20,10 @@ TXUI.Changelog["6.8.7"] = {
 
     "* Profile updates",
     F.String.Plater() .. ": Add Wither to manual debuff tracking",
+    F.String.ElvUI() --
+      .. ": Reposition party & arena frames for Ultrawide"
+      .. F.String.Sublist("The frames are now offset from the center, so they should match closer to the original design for ultrawide.")
+      .. F.String.Sublist("The position on 16:9 screens should generally be the same"),
 
     "* Documentation",
     "Add " .. F.String.ToxiUI("Notorious Thread's Hearthstone") .. " to " .. F.String.Menu.WunderBar(),
