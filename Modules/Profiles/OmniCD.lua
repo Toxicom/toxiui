@@ -9,6 +9,8 @@ function PF:BuildOmniCDProfile()
 
   local profile = db.DB.profile
 
+  local offset = F.CalculateUltrawideOffset()
+
   F.Table.Crush(
     pf,
     {
@@ -49,7 +51,7 @@ function PF:BuildOmniCDProfile()
               statusBarWidth = 426,
               manualPos = {
                 raidBar1 = {
-                  x = F.Dpi(329),
+                  x = F.Dpi(329) + offset,
                   y = F.Dpi(165),
                 },
               },
@@ -90,7 +92,7 @@ function PF:BuildOmniCDProfile()
               enabled = true,
               manualPos = {
                 raidBar2 = {
-                  x = F.Dpi(165),
+                  x = F.Dpi(165) + offset,
                   y = F.Dpi(250),
                 },
               },
@@ -114,7 +116,7 @@ function PF:BuildOmniCDProfile()
               enabled = true,
               manualPos = {
                 raidBar3 = {
-                  x = F.Dpi(790),
+                  x = F.Dpi(790) + offset,
                   y = F.Dpi(345),
                 },
               },
@@ -138,7 +140,7 @@ function PF:BuildOmniCDProfile()
               enabled = true,
               manualPos = {
                 raidBar4 = {
-                  x = F.Dpi(790),
+                  x = F.Dpi(790) + offset,
                   y = F.Dpi(425),
                 },
               },
@@ -200,7 +202,7 @@ function PF:BuildOmniCDProfile()
               statusBarWidth = F.Dpi(200),
               manualPos = {
                 raidBar0 = {
-                  x = F.Dpi(340),
+                  x = F.Dpi(340) + offset,
                   y = F.Dpi(155),
                 },
               },
@@ -229,7 +231,7 @@ function PF:BuildOmniCDProfile()
               columns = 20,
               manualPos = {
                 raidBar2 = {
-                  x = F.Dpi(265),
+                  x = F.Dpi(265) + offset,
                   y = F.Dpi(225),
                 },
               },
@@ -239,7 +241,7 @@ function PF:BuildOmniCDProfile()
             raidBar1 = {
               manualPos = {
                 raidBar1 = {
-                  x = F.Dpi(240),
+                  x = F.Dpi(240) + offset,
                   y = F.Dpi(205),
                 },
               },
@@ -304,7 +306,7 @@ function PF:BuildOmniCDProfile()
 
           manualPos = {
             raidCDBar2 = {
-              x = F.Dpi(35),
+              x = F.Dpi(35) + offset,
               y = F.Dpi(230),
             },
           },
@@ -332,7 +334,7 @@ function PF:BuildOmniCDProfile()
             raidBar1 = {
               manualPos = {
                 raidBar1 = {
-                  x = F.Dpi(165),
+                  x = F.Dpi(165) + offset,
                   y = F.Dpi(365),
                 },
               },

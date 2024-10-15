@@ -24,6 +24,7 @@ TXUI.Changelog["6.8.7"] = {
       .. ": Reposition party & arena frames for Ultrawide"
       .. F.String.Sublist("The frames are now offset from the center, so they should match closer to the original design for ultrawide.")
       .. F.String.Sublist("The position on 16:9 screens should generally be the same"),
+    F.String.OmniCD() .. ": Correct extra bars positions for Ultrawide",
 
     "* Documentation",
     "Add " .. F.String.ToxiUI("Notorious Thread's Hearthstone") .. " to " .. F.String.Menu.WunderBar(),
@@ -33,5 +34,6 @@ TXUI.Changelog["6.8.7"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Add a " .. F.String.ToxiUI("F.CalculateUltrawideOffset()") .. " function to improve ultrawide support",
   },
 }

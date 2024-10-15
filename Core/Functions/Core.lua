@@ -987,5 +987,22 @@ function F.IsSkyriding()
   end
 end
 
+-- Copied from E:IsUltrawide() with less restrictions
+function F.IsUltrawide()
+  --HQ Resolution
+  if E.physicalWidth >= 3440 and (E.physicalHeight == 1440 or E.physicalHeight == 1600) then return 2560 end --DQHD, DQHD+, WQHD & WQHD+
+
+  --Low resolution
+  if E.physicalWidth >= 2560 and (E.physicalHeight == 1080 or E.physicalHeight == 1200) then return 1920 end --WFHD, DFHD & WUXGA
+end
+
+function F.CalculateUltrawideOffset()
+  if F.IsUltrawide() then
+    return ((E.physicalWidth - F.IsUltrawide()) / 2) * F.PixelPerfect()
+  else
+    return 0
+  end
+end
+
 F.CheckInterruptSpells = F.CreateThrottleWrapper("CheckInterruptSpells", 2, F.CheckInterruptSpellsEvaluation)
 F.CanInterruptThrottled = F.CreateThrottleWrapper("CanInterrupt", 0.2, F.CanInterruptEvaluation)
