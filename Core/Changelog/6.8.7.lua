@@ -3,10 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.8.7"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
     "* Bug fixes",
     "Fix IDs for season 1 M+ portals",
     "Enable repair mount for Cata",
@@ -28,10 +24,8 @@ TXUI.Changelog["6.8.7"] = {
 
     "* Documentation",
     "Add " .. F.String.ToxiUI("Notorious Thread's Hearthstone") .. " to " .. F.String.Menu.WunderBar(),
-    "Update contributors list",
     "Added " .. F.String.ToxiUI("Wormhole Generator: Khaz Algar") .. " to " .. F.String.Menu.WunderBar() .. " hearthstones" .. F.String.Sublist("Credits to Kryonyx"),
-
-    "* Settings refactoring",
+    "Update contributors list",
 
     "* Development improvements",
     "Add a " .. F.String.ToxiUI("F.CalculateUltrawideOffset()") .. " function to improve ultrawide support",
