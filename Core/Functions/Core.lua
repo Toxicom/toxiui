@@ -168,8 +168,16 @@ function F.FontSize(value)
   return F.Clamp(value, 8, 64)
 end
 
-function F.Position(anchor1, parent, anchor2, x, y)
-  return format("%s,%s,%s,%d,%d", anchor1, parent, anchor2, F.Dpi(x), F.Dpi(y))
+function F.Position(anchor1, parent, anchor2, x, y, offset, negative)
+  local offsetX = 0
+
+  if offset then
+    offsetX = F.CalculateUltrawideOffset()
+
+    if negative then offsetX = offsetX * -1 end
+  end
+
+  return format("%s,%s,%s,%d,%d", anchor1, parent, anchor2, F.Dpi(x) + offsetX, F.Dpi(y))
 end
 
 function F.Clamp(value, s, b)
