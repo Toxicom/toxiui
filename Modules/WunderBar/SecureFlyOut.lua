@@ -13,6 +13,7 @@ local secureFlyOutButtons = {}
 function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   if secureFlyOutFrame and secureFlyOutFrame:IsShown() then
     secureFlyOutFrame:Hide()
+    self.flyoutIsOpen = false
     return
   end
 
@@ -265,5 +266,16 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     slot.FadeIn:Play()
   end
 
+  secureFlyOutFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+  secureFlyOutFrame:SetScript("OnEvent", function(frame, event)
+    if event and event == "PLAYER_REGEN_DISABLED" then
+      if frame and frame:IsShown() then
+        frame:Hide()
+        self.flyoutIsOpen = false
+      end
+    end
+  end)
+
   secureFlyOutFrame:Show()
+  self.flyoutIsOpen = true
 end

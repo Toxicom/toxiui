@@ -32,7 +32,9 @@ function WB:CheckVisibility(event)
   if self.isVisible and (TXUI.IsRetail and C_PetBattles_IsInBattle()) then isVisible = false end
 
   -- Only visible on mouseover
-  if isVisible and self.db.general.barVisibility ~= "RESTING_AND_MOUSEOVER" and self.db.general.barMouseOverOnly and not self.isMouseOver then isVisible = false end
+  if isVisible and self.db.general.barVisibility ~= "RESTING_AND_MOUSEOVER" and self.db.general.barMouseOverOnly and not self.isMouseOver and not self.flyoutIsOpen then
+    isVisible = false
+  end
 
   -- Check if not overwritten by mouseover
   if isVisible then
@@ -41,7 +43,7 @@ function WB:CheckVisibility(event)
     elseif self.db.general.barVisibility == "RESTING" then
       isVisible = IsResting()
     elseif self.db.general.barVisibility == "RESTING_AND_MOUSEOVER" then
-      isVisible = IsResting() or self.isMouseOver
+      isVisible = self.flyoutIsOpen or IsResting() or self.isMouseOver
     elseif self.db.general.barVisibility == "NO_COMBAT" then
       if event then
         if event == "PLAYER_REGEN_DISABLED" then isVisible = false end

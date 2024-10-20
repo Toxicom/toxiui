@@ -97,6 +97,7 @@ function WB:Enable()
   self.isEnabled = true
   self.isVisible = false
   self.isMouseOver = false
+  self.flyoutIsOpen = false
 
   -- Register events
   F.Event.RegisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self.CheckVisibility, self)
