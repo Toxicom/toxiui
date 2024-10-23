@@ -19,5 +19,6 @@ TXUI.Changelog["6.8.8"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Update to new " .. F.String.BigWigs() .. " API for profile importing",
   },
 }
