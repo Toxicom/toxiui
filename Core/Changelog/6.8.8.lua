@@ -15,6 +15,7 @@ TXUI.Changelog["6.8.8"] = {
     F.String.ElvUI() .. ": Change party/arena offset to use dynamic calculation" .. F.String.Sublist("This should revert the position to previous for non-ultrawide users"),
 
     "* Documentation",
+    "Update for patch 11.0.5",
 
     "* Settings refactoring",
 
