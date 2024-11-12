@@ -193,7 +193,6 @@ end
 
 function AFK:SetupFrames()
   -- Vars
-  local bottomHeight = E.physicalHeight
   local padding = 20
   self.frame = self.elvUIAfk.AFKMode
 
@@ -201,18 +200,16 @@ function AFK:SetupFrames()
   local changelogText = O:FormatChangelog(nil, nil, nil, changelog, true)
   local changelogHeader = "Latest changelog for " .. F.String.ToxiUI(CL:FormattedVersion(TXUI.Version))
 
+  -- Set frame.bottom to full screen
+  self.frame.bottom:ClearAllPoints()
+  self.frame.bottom:SetAllPoints(E.UIParent)
+
   -- Cancel ElvUI timers
   self.elvUIAfk:CancelAllTimers()
 
   -- Move the chat lower
   self.frame.chat:ClearAllPoints()
   self.frame.chat:SetPoint("BOTTOMLEFT", self.frame.bottom, "BOTTOMLEFT", padding, padding)
-
-  self.frame.bottom:SetHeight(bottomHeight)
-
-  -- Ensure frame visibility by adjusting anchors and offsets
-  self.frame.bottom:ClearAllPoints()
-  self.frame.bottom:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 0, 0)
 
   -- Bottom Frame Animation
   self.frame.bottom.anim = TXUI:CreateAnimationGroup(self.frame.bottom):CreateAnimation("Fade")
@@ -319,7 +316,7 @@ function AFK:SetupFrames()
   end
 
   -- Sush
-  F.CreateSoftShadow(self.frame.bottom, bottomHeight)
+  F.CreateSoftShadow(self.frame.bottom, E.physicalHeight)
 
   -- Hide Stuff
   self.frame.bottom.time:Kill()
