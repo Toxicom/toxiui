@@ -210,6 +210,10 @@ function AFK:SetupFrames()
 
   self.frame.bottom:SetHeight(bottomHeight)
 
+  -- Ensure frame visibility by adjusting anchors and offsets
+  self.frame.bottom:ClearAllPoints()
+  self.frame.bottom:SetPoint("TOPLEFT", UIParent, "TOPLEFT", 0, 0)
+
   -- Bottom Frame Animation
   self.frame.bottom.anim = TXUI:CreateAnimationGroup(self.frame.bottom):CreateAnimation("Fade")
   self.frame.bottom.anim:SetChange(1)
