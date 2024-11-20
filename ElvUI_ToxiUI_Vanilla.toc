@@ -6,8 +6,8 @@
 ## OptionalDeps: Details, Plater
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
-## Interface: 11504
-## X-Interface: 11504
+## Interface: 11505
+## X-Interface: 11505
 ## X-Flavor: Vanilla
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
