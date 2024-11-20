@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local IS = TXUI:GetModule("Installer")
 local PF = TXUI:GetModule("Profiles")
+local ST = TXUI:GetModule("Styles")
 
 local _G = _G
 
@@ -288,6 +289,7 @@ function IS:Dialog()
             self.reloadRequired = true
 
             self:ElvUI(function()
+              if TXUI.IsVanilla then ST:ApplyStyle("actionBars", "Classic", true) end
               installer:SetPage(Pages.Core + 1)
             end)
           end, true)

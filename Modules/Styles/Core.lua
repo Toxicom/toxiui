@@ -36,21 +36,23 @@ function ST:ApplyStyle(styleType, style, dontReload)
     return
   end
 
-  local crushFnc = TXUI.DevRelease and F.Table.CrushDebug or F.Table.Crush
+  SS:Wrap("Applying " .. style .. " style", function()
+    local crushFnc = TXUI.DevRelease and F.Table.CrushDebug or F.Table.Crush
 
-  -- Merge Tables
-  crushFnc(E.db, pf)
+    -- Merge Tables
+    crushFnc(E.db, pf)
 
-  -- Update ElvUI
-  F.Event.RunNextFrame(function()
-    F.Event.ContinueAfterElvUIUpdate(function()
-      E:StaggeredUpdateAll()
+    -- Update ElvUI
+    F.Event.RunNextFrame(function()
+      F.Event.ContinueAfterElvUIUpdate(function()
+        E:StaggeredUpdateAll()
 
-      F.Event.ContinueAfterElvUIUpdate(F.Event.GenerateClosure(self.StyleMovers, self))
-    end)
-  end, 0.2)
+        F.Event.ContinueAfterElvUIUpdate(F.Event.GenerateClosure(self.StyleMovers, self))
+      end)
+    end, 0.2)
 
-  if not dontReload then E:StaticPopup_Show("CONFIG_RL") end
+    if not dontReload then E:StaticPopup_Show("CONFIG_RL") end
+  end, true)
 end
 
 TXUI:RegisterModule(ST:GetName())

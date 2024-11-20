@@ -6,6 +6,7 @@ TXUI.Changelog["6.8.8"] = {
     "* Breaking changes",
 
     "* New features",
+    "Classic ActionBars style for Classic Era set during installation" .. F.String.Sublist("At some point this was removed, I brought it back with hopefully more stable logic"),
 
     "* Bug fixes",
     "If " .. F.String.Menu.WunderBar() .. " is set to mouseover and you have a flyout open, it will no longer fade out until you close the flyout",
