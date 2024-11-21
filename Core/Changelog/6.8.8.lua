@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.8.8"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Classic ActionBars style for Classic Era set during installation" .. F.String.Sublist("At some point this was removed, I brought it back with hopefully more stable logic"),
 
@@ -21,8 +19,6 @@ TXUI.Changelog["6.8.8"] = {
     "Update for patch 11.0.5",
     "Update for patch 1.15.5",
     F.String.MinElv("13.81"),
-
-    "* Settings refactoring",
 
     "* Development improvements",
     "Update to new " .. F.String.BigWigs() .. " API for profile importing",
