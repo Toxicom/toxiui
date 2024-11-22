@@ -13,6 +13,7 @@ P.changelog = {
   releaseVersion = 0,
   lastLayoutVersion = 0,
   lastDBConversion = 0,
+  customTextsConverted = false,
 }
 
 P.disabledAddOns = {}

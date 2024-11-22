@@ -511,7 +511,7 @@ function PF:BuildProfile()
     -- UnitFrame Player Custom Texts
     customTexts = {
       -- UnitFrame Player Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         attachTextTo = "Health",
         text_format = "[tx:name:medium]",
         xOffset = F.Dpi(5),
@@ -519,7 +519,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Player Custom Texts Level
-      ["!Level"] = createCustomText({}, {
+      ["toxiui.level"] = createCustomText({}, {
         justifyH = "LEFT",
         text_format = "[tx:level]",
         xOffset = F.Dpi(18),
@@ -527,14 +527,14 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Player Custom Texts Health
-      ["!Health"] = createCustomText({}, {
+      ["toxiui.health"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(-10),
         yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
       }),
 
-      ["!HealthSmall"] = createCustomText({}, {
+      ["toxiui.health-small"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(-10),
@@ -542,7 +542,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Player Custom Texts Power
-      ["!Power"] = createCustomText({}, {
+      ["toxiui.power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
         xOffset = F.Dpi(10),
@@ -550,7 +550,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Player Custom Texts Class Icon
-      ["!ClassIcon"] = createCustomText({}, {
+      ["toxiui.class-icon"] = createCustomText({}, {
         justifyH = "LEFT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
@@ -710,14 +710,14 @@ function PF:BuildProfile()
       -- UnitFrame Target Custom Texts
       customTexts = {
         -- UnitFrame Target Custom Texts Health
-        ["!Health"] = createCustomText({}, {
+        ["toxiui.health"] = createCustomText({}, {
           justifyH = "LEFT",
           text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
         }),
 
-        ["!HealthSmall"] = createCustomText({}, {
+        ["toxiui.health-small"] = createCustomText({}, {
           justifyH = "LEFT",
           text_format = "[tx:health:current:shortvalue]",
           xOffset = F.Dpi(10),
@@ -725,7 +725,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Target Custom Texts Name
-        ["!Name"] = createCustomText({}, {
+        ["toxiui.name"] = createCustomText({}, {
           justifyH = "RIGHT",
           text_format = "[tx:name:abbrev:medium]",
           xOffset = F.Dpi(-5),
@@ -733,7 +733,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Target Custom Texts Level
-        ["!Level"] = createCustomText({}, {
+        ["toxiui.level"] = createCustomText({}, {
           justifyH = "RIGHT",
           text_format = "[tx:level:difficulty]",
           xOffset = F.Dpi(-18),
@@ -741,7 +741,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Target Custom Texts Power
-        ["!Power"] = createCustomText({}, {
+        ["toxiui.power"] = createCustomText({}, {
           attachTextTo = "Power",
           text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(85),
@@ -749,7 +749,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Target Custom Texts Class Icon
-        ["!ClassIcon"] = createCustomText({}, {
+        ["toxiui.class-icon"] = createCustomText({}, {
           justifyH = "RIGHT",
           attachTextTo = "Health",
           text_format = "[tx:classicon]",
@@ -758,7 +758,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Target Custom Texts Classification
-        ["!Classification"] = createCustomText({}, {
+        ["toxiui.classification"] = createCustomText({}, {
           justifyH = "RIGHT",
           attachTextTo = "Health",
           text_format = "[tx:classification]",
@@ -889,14 +889,14 @@ function PF:BuildProfile()
       -- UnitFrame Pet Custom Texts
       customTexts = {
         -- UnitFrame Pet Custom Texts Name
-        ["!Name"] = createCustomText({}, {
+        ["toxiui.name"] = createCustomText({}, {
           text_format = "[tx:name:short]",
           xOffset = F.Dpi(0),
           yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(10)),
           justifyH = "CENTER",
         }),
 
-        ["!Happiness"] = createCustomText({}, {
+        ["toxiui.pet-happiness"] = createCustomText({}, {
           text_format = TXUI.IsVanilla and "[happiness:discord]" or "",
           xOffset = -25,
           yOffset = 0,
@@ -962,7 +962,7 @@ function PF:BuildProfile()
     -- UnitFrame Target-Target Custom Texts
     customTexts = {
       -- UnitFrame Target-Target Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         text_format = "[tx:name:short]",
         xOffset = F.Dpi(0),
         yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(10)),
@@ -1001,7 +1001,7 @@ function PF:BuildProfile()
     -- UnitFrame Focus Custom Texts
     customTexts = {
       -- UnitFrame Focus Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:name:medium]",
         xOffset = F.Dpi(-5),
@@ -1009,7 +1009,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Focus Custom Texts Health
-      ["!Health"] = createCustomText({}, {
+      ["toxiui.health"] = createCustomText({}, {
         justifyH = "LEFT",
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(10),
@@ -1017,7 +1017,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Focus Custom Texts Health
-      ["!HealthSmall"] = createCustomText({}, {
+      ["toxiui.health-small"] = createCustomText({}, {
         justifyH = "LEFT",
         text_format = "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(10),
@@ -1025,7 +1025,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Focus Custom Texts Power
-      ["!Power"] = createCustomText({}, {
+      ["toxiui.power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
         xOffset = F.Dpi(85),
@@ -1033,7 +1033,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Focus Custom Texts Class Icon
-      ["!ClassIcon"] = createCustomText({}, {
+      ["toxiui.class-icon"] = createCustomText({}, {
         justifyH = "RIGHT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
@@ -1148,14 +1148,14 @@ function PF:BuildProfile()
       -- UnitFrame Party Custom Texts
       customTexts = {
         -- UnitFrame Party Custom Texts Name
-        ["!Name"] = createCustomText({}, {
+        ["toxiui.name"] = createCustomText({}, {
           text_format = "[tx:name:medium]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
         }),
 
         -- UnitFrame Party Custom Texts Health
-        ["!Health"] = createCustomText({}, {
+        ["toxiui.health"] = createCustomText({}, {
           justifyH = "RIGHT",
           text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(-10),
@@ -1163,7 +1163,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Party Custom Texts Level
-        ["!Level"] = createCustomText({}, {
+        ["toxiui.level"] = createCustomText({}, {
           justifyH = "LEFT",
           text_format = "[tx:level:difficulty]",
           xOffset = F.Dpi(18),
@@ -1171,7 +1171,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Party Custom Texts Power
-        ["!Power"] = createCustomText({}, {
+        ["toxiui.power"] = createCustomText({}, {
           justifyH = "LEFT",
           attachTextTo = "Power",
           text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
@@ -1180,7 +1180,7 @@ function PF:BuildProfile()
         }),
 
         -- UnitFrame Party Custom Texts Class Icon
-        ["!ClassIcon"] = createCustomText({}, {
+        ["toxiui.class-icon"] = createCustomText({}, {
           justifyH = "LEFT",
           attachTextTo = "Health",
           text_format = "[tx:classicon]",
@@ -1307,26 +1307,26 @@ function PF:BuildProfile()
 
       -- UnitFrame Party Horizontal Layout Text
       customTexts = {
-        ["!Health"] = {
+        ["toxiui.health"] = {
           yOffset = F.Dpi(0),
         },
 
-        ["!Name"] = {
+        ["toxiui.name"] = {
           xOffset = F.Dpi(7),
           yOffset = F.Dpi(0),
         },
 
-        ["!Level"] = {
+        ["toxiui.level"] = {
           xOffset = F.Dpi(20),
           yOffset = F.Dpi(-20),
         },
 
-        ["!Power"] = {
+        ["toxiui.power"] = {
           justifyH = "RIGHT",
           xOffset = F.Dpi(-10),
         },
 
-        ["!ClassIcon"] = {
+        ["toxiui.class-icon"] = {
           enable = false,
         },
       },
@@ -1391,7 +1391,7 @@ function PF:BuildProfile()
     -- UnitFrame Raid1 Custom Texts
     customTexts = {
       -- UnitFrame Raid1 Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         attachTextTo = "Frame",
         text_format = "[tx:name:veryshort]",
         justifyH = "CENTER",
@@ -1399,7 +1399,7 @@ function PF:BuildProfile()
         yOffset = F.Dpi(0),
       }),
 
-      ["!Group"] = createCustomText({}, {
+      ["toxiui.raid-group"] = createCustomText({}, {
         attachTextTo = "Frame",
         text_format = "[group:raid]",
         justifyH = "RIGHT",
@@ -1507,7 +1507,7 @@ function PF:BuildProfile()
 
     customTexts = {
       -- UnitFrame Tank Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         attachTextTo = "Frame",
         text_format = "[tx:name:short]",
         justifyH = "CENTER",
@@ -1534,7 +1534,7 @@ function PF:BuildProfile()
 
     customTexts = {
       -- UnitFrame Assist Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         attachTextTo = "Frame",
         text_format = "[tx:name:short]",
         justifyH = "CENTER",
@@ -1562,14 +1562,14 @@ function PF:BuildProfile()
     -- UnitFrame Arena Custom Texts
     customTexts = {
       -- UnitFrame Arena Custom Texts Health
-      ["!Health"] = createCustomText({}, {
+      ["toxiui.health"] = createCustomText({}, {
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(5),
         yOffset = F.Dpi(15),
       }),
 
       -- UnitFrame Arena Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:name:medium]",
         xOffset = F.Dpi(-5),
@@ -1577,7 +1577,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Arena Custom Texts Power
-      ["!Power"] = createCustomText({}, {
+      ["toxiui.power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
         xOffset = F.Dpi(10),
@@ -1652,21 +1652,21 @@ function PF:BuildProfile()
     -- UnitFrame Boss Custom Texts
     customTexts = {
       -- UnitFrame Boss Custom Texts Health
-      ["!Health"] = createCustomText({}, {
+      ["toxiui.health"] = createCustomText({}, {
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(5),
         yOffset = F.Dpi(15),
       }),
 
       -- UnitFrame Boss Custom Texts Health
-      ["!HealthSmall"] = createCustomText({}, {
+      ["toxiui.health-small"] = createCustomText({}, {
         text_format = "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(5),
         yOffset = F.Dpi(-15),
       }),
 
       -- UnitFrame Boss Custom Texts Name
-      ["!Name"] = createCustomText({}, {
+      ["toxiui.name"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:name:abbrev:medium]",
         xOffset = F.Dpi(-5),
@@ -1674,7 +1674,7 @@ function PF:BuildProfile()
       }),
 
       -- UnitFrame Boss Custom Texts Power
-      ["!Power"] = createCustomText({}, {
+      ["toxiui.power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
         xOffset = F.Dpi(70),
@@ -2062,43 +2062,43 @@ function PF:UpdateProfileForTheme()
 
   -- Custom Text
   -- Arena
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.!Power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.toxiui.health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.toxiui.name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.toxiui.power", "text_format")
   -- Boss
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.!Power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.toxiui.health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.toxiui.name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.toxiui.power", "text_format")
   -- Focus
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!Power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui.health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui.name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui.power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui.class-icon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui.class-icon", "yOffset")
   -- Pet
-  F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.toxiui.name", "yOffset")
   -- Player
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui.health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui.name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui.class-icon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui.class-icon", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.player.raidRoleIcons", "yOffset")
   -- Party
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!Power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.!ClassIcon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui.name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui.power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui.class-icon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui.class-icon", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.party.raidRoleIcons", "yOffset")
   -- Target
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!ClassIcon", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.!Classification", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui.health", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui.name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui.power", "text_format")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui.class-icon", "xOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui.class-icon", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui.classification", "yOffset")
   F.UpdateDBFromPath(pf, "unitframe.units.target.raidRoleIcons", "yOffset")
   -- Target-Target
-  F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.!Name", "yOffset")
+  F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.toxiui.name", "yOffset")
   -- UnitFrame Heights
   F.UpdateDBFromPath(pf, "unitframe.units.pet", "height")
   F.UpdateDBFromPath(pf, "unitframe.units.player", "height")

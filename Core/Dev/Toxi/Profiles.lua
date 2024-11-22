@@ -60,9 +60,9 @@ function T:SetupProfile()
 
   -- ElvUI: UnitFrames
   for _, unit in ipairs(splitUnitframes) do
-    E.db.unitframe.units[unit].customTexts["!Name"].text_format = "[tx:name:medium:split{Toxi}]"
+    E.db.unitframe.units[unit].customTexts["toxiui.name"].text_format = "[tx:name:medium:split{Toxi}]"
   end
-  E.db.unitframe.units.target.customTexts["!Name"].text_format = "[tx:name:abbrev:medium:split{Toxi}]"
+  E.db.unitframe.units.target.customTexts["toxiui.name"].text_format = "[tx:name:abbrev:medium:split{Toxi}]"
 
   E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
   E.db.bags.bagButtonSpacing = 2

@@ -69,6 +69,36 @@ function TXUI:DBConvert()
     self:LogDebug("DBConvert > Converted Saturation Boost to new format")
   end
 
+  -- Convert custom text names
+  if not db.customTextsConverted then
+    -- Mapping of old names to new names
+    local newNames = {
+      ["!Power"] = "toxiui.power",
+      ["!Name"] = "toxiui.name",
+      ["!Level"] = "toxiui.level",
+      ["!Health"] = "toxiui.health",
+      ["!HealthSmall"] = "toxiui.health-small",
+      ["!ClassIcon"] = "toxiui.class-icon",
+      ["!Classification"] = "toxiui.classification",
+      ["!Happiness"] = "toxiui.pet-happiness",
+      ["!Group"] = "toxiui.raid-group",
+    }
+
+    for _, unitTable in pairs(E.db.unitframe.units) do
+      for key, value in pairs(unitTable.customTexts) do
+        -- Check if the key exists in the newNames mapping
+        if newNames[key] then
+          -- Add the value to the new key in the table
+          unitTable.customTexts[newNames[key]] = value
+          -- Remove the old key
+          unitTable.customTexts[key] = nil
+        end
+      end
+    end
+
+    db.customTextsConverted = true
+  end
+
   -- Print debug message
   self:LogDebug("DBConvert > DB Upgrade finished")
 
