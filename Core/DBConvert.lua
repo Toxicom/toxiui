@@ -70,8 +70,8 @@ function TXUI:DBConvert()
   end
 
   -- Convert custom text names
-  if not db.changelog.customTextsConverted then
-    local needsReload = false
+  do
+    local converted = false
     -- Mapping of old names to new names
     local newNames = {
       ["!Power"] = "toxiui.power",
@@ -94,17 +94,13 @@ function TXUI:DBConvert()
           -- Remove the old key
           unitTable.customTexts[key] = nil
 
-          -- Confirm that we've converted a key and need to reload later.
-          needsReload = true
+          -- Confirm that we've converted a key
+          converted = true
         end
       end
     end
 
-    db.changelog.customTextsConverted = true
-    if needsReload then
-      self:LogDebug("DBConvert > Converted Custom Texts to new names")
-      E:StaticPopup_Show("CONFIG_RL")
-    end
+    if converted then self:LogDebug("DBConvert > Converted Custom Texts to new names") end
   end
 
   -- Print debug message
