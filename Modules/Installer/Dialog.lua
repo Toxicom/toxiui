@@ -445,7 +445,7 @@ function IS:Dialog()
             .. "Please note that the "
             .. F.String.Luxthos("Luxthos WeakAuras")
             .. " in the image are customised! Out of the box, they will look slightly different. Visit "
-            .. F.String.ToxiUI("toxiui.com/wa")
+            .. F.String.ToxiUI(I.Strings.Branding.Links.WAGuide)
             .. " to find out how you can achieve a similar look."
         )
 
