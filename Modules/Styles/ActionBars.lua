@@ -57,7 +57,7 @@ function ST:BuildActionBarsProfile()
       },
 
       customTexts = {
-        ["toxiui.power"] = createCustomText({}, {
+        ["toxiui:power"] = createCustomText({}, {
           attachTextTo = "Power",
           text_format = F.ChooseForTheme(TXUI.IsVanilla and "[tx:smartpower]" or "[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(0),
@@ -143,7 +143,7 @@ function ST:BuildActionBarsProfile()
       },
 
       customTexts = {
-        ["toxiui.power"] = createCustomText({}, {
+        ["toxiui:power"] = createCustomText({}, {
           attachTextTo = "Power",
           text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
           xOffset = F.Dpi(85),

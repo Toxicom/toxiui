@@ -142,6 +142,9 @@ local AddOns = {
   Details = true,
   BugSack = true,
   ["!BugGrabber"] = true,
+
+  -- Dev Addons
+  DevTool = true,
 }
 
 local function LogDebugInfo()

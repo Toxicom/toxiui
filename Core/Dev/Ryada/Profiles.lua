@@ -28,7 +28,7 @@ function RY:SetupProfile()
 
   -- Disable UnitFrame Class Icons
   for _, unit in ipairs(classIconUnits) do
-    E.db.unitframe.units[unit].customTexts["toxiui.class-icon"].text_format = ""
+    E.db.unitframe.units[unit].customTexts["toxiui:class-icon"].text_format = ""
   end
 end
 

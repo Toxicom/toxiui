@@ -236,13 +236,13 @@ function PF:ElvUIFont()
       units = {
         player = {
           customTexts = customTextSize {
-            { "toxiui.name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
-            { "toxiui.health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-            { "toxiui.health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "toxiui.level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "toxiui.class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
-            TXUI.IsVanilla and { "toxiui.power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "toxiui:name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
+            { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "toxiui:health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+            { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+            { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
+            TXUI.IsVanilla and { "toxiui:power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
           buffs = {
@@ -274,13 +274,13 @@ function PF:ElvUIFont()
 
         target = {
           customTexts = customTextSize {
-            { "toxiui.name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
-            { "toxiui.health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-            { "toxiui.health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "toxiui.level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "toxiui.class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
-            { "toxiui.classification", I.Fonts.Primary, 20, "SHADOWOUTLINE", true },
+            { "toxiui:name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
+            { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "toxiui:health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+            { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+            { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
+            { "toxiui:classification", I.Fonts.Primary, 20, "SHADOWOUTLINE", true },
           },
 
           buffs = {
@@ -312,8 +312,8 @@ function PF:ElvUIFont()
 
         pet = {
           customTexts = customTextSize {
-            { "toxiui.name", I.Fonts.Title, 16, "SHADOWOUTLINE" },
-            { "toxiui.pet-happiness", I.Fonts.Title, 16, "SHADOWOUTLINE" },
+            { "toxiui:name", I.Fonts.Title, 16, "SHADOWOUTLINE" },
+            { "toxiui:pet-happiness", I.Fonts.Title, 16, "SHADOWOUTLINE" },
           },
 
           castbar = {
@@ -334,16 +334,16 @@ function PF:ElvUIFont()
         },
 
         targettarget = {
-          customTexts = customTextSize { { "toxiui.name", I.Fonts.Title, 16, "SHADOWOUTLINE" } },
+          customTexts = customTextSize { { "toxiui:name", I.Fonts.Title, 16, "SHADOWOUTLINE" } },
         },
 
         focus = {
           customTexts = customTextSize {
-            { "toxiui.name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
-            { "toxiui.health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-            { "toxiui.health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-            { "toxiui.class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
+            { "toxiui:name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
+            { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "toxiui:health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+            { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           },
 
           buffs = {
@@ -376,11 +376,11 @@ function PF:ElvUIFont()
         party = F.Table.Join(
           {
             customTexts = customTextSize {
-              { "toxiui.name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
-              { "toxiui.health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-              { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-              { "toxiui.level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-              { "toxiui.class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
+              { "toxiui:name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
+              { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+              { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+              { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+              { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             },
 
             buffs = {
@@ -401,19 +401,19 @@ function PF:ElvUIFont()
           },
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL, {
             customTexts = customTextSize {
-              { "toxiui.name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
-              { "toxiui.health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-              { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
-              { "toxiui.level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-              { "toxiui.class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
+              { "toxiui:name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
+              { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+              { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+              { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+              { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             },
           })
         ),
 
         raid1 = {
           customTexts = customTextSize {
-            { "toxiui.name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-            { "toxiui.raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+            { "toxiui:raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
           },
 
           rdebuffs = {
@@ -425,8 +425,8 @@ function PF:ElvUIFont()
 
         raid2 = {
           customTexts = customTextSize {
-            { "toxiui.name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-            { "toxiui.raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+            { "toxiui:raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
           },
 
           rdebuffs = {
@@ -438,8 +438,8 @@ function PF:ElvUIFont()
 
         raid3 = {
           customTexts = customTextSize {
-            { "toxiui.name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-            { "toxiui.raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
+            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+            { "toxiui:raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
           },
 
           rdebuffs = {
@@ -451,21 +451,21 @@ function PF:ElvUIFont()
 
         tank = {
           customTexts = customTextSize {
-            { "toxiui.name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
           },
         },
 
         assist = {
           customTexts = customTextSize {
-            { "toxiui.name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
           },
         },
 
         arena = {
           customTexts = customTextSize {
-            { "toxiui.health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-            { "toxiui.name", I.Fonts.Title, 24, "SHADOWOUTLINE" },
-            { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "toxiui:name", I.Fonts.Title, 24, "SHADOWOUTLINE" },
+            { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
           buffs = {
@@ -481,10 +481,10 @@ function PF:ElvUIFont()
 
         boss = {
           customTexts = customTextSize {
-            { "toxiui.health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-            { "toxiui.health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "toxiui.name", I.Fonts.Title, 24, "SHADOWOUTLINE" },
-            { "toxiui.power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
+            { "toxiui:health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+            { "toxiui:name", I.Fonts.Title, 24, "SHADOWOUTLINE" },
+            { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
           buffs = {

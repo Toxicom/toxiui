@@ -69,20 +69,54 @@ function TXUI:DBConvert()
     self:LogDebug("DBConvert > Converted Saturation Boost to new format")
   end
 
+  -- Convert custom text names (For those who updated in 6.8.9 beta)
+  do
+    local converted = false
+    -- Mapping of old names to new names
+    local newNames = {
+      ["toxiui.power"] = "toxiui:power",
+      ["toxiui.name"] = "toxiui:name",
+      ["toxiui.level"] = "toxiui:level",
+      ["toxiui.health"] = "toxiui:health",
+      ["toxiui.health-small"] = "toxiui:health-small",
+      ["toxiui.class-icon"] = "toxiui:class-icon",
+      ["toxiui.classification"] = "toxiui:classification",
+      ["toxiui.pet-happiness"] = "toxiui:pet-happiness",
+      ["toxiui.raid-group"] = "toxiui:raid-group",
+    }
+
+    for _, unitTable in pairs(E.db.unitframe.units) do
+      for key, value in pairs(unitTable.customTexts) do
+        -- Check if the key exists in the newNames mapping
+        if newNames[key] then
+          -- Add the value to the new key in the table
+          unitTable.customTexts[newNames[key]] = value
+          -- Remove the old key
+          unitTable.customTexts[key] = nil
+
+          -- Confirm that we've converted a key
+          converted = true
+        end
+      end
+    end
+
+    if converted then self:LogDebug("DBConvert > Converted Custom Texts to new names") end
+  end
+
   -- Convert custom text names
   do
     local converted = false
     -- Mapping of old names to new names
     local newNames = {
-      ["!Power"] = "toxiui.power",
-      ["!Name"] = "toxiui.name",
-      ["!Level"] = "toxiui.level",
-      ["!Health"] = "toxiui.health",
-      ["!HealthSmall"] = "toxiui.health-small",
-      ["!ClassIcon"] = "toxiui.class-icon",
-      ["!Classification"] = "toxiui.classification",
-      ["!Happiness"] = "toxiui.pet-happiness",
-      ["!Group"] = "toxiui.raid-group",
+      ["!Power"] = "toxiui:power",
+      ["!Name"] = "toxiui:name",
+      ["!Level"] = "toxiui:level",
+      ["!Health"] = "toxiui:health",
+      ["!HealthSmall"] = "toxiui:health-small",
+      ["!ClassIcon"] = "toxiui:class-icon",
+      ["!Classification"] = "toxiui:classification",
+      ["!Happiness"] = "toxiui:pet-happiness",
+      ["!Group"] = "toxiui:raid-group",
     }
 
     for _, unitTable in pairs(E.db.unitframe.units) do
