@@ -168,6 +168,24 @@ function O:Skins_ElvUI()
       end,
     }
 
+    gameMenuSkinGroup.showCollections = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Collections",
+      desc = "Toggling this on displays your collection information in the game menu background. Requires Show Player Info enabled.",
+      get = function()
+        return E.db.TXUI.addons.gameMenuSkin.showCollections
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuSkin.showCollections = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
+      end,
+      hidden = not TXUI.IsRetail,
+    }
+
     gameMenuSkinGroup.classColor = {
       order = self:GetOrder(),
       type = "toggle",

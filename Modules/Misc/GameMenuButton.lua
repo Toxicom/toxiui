@@ -13,7 +13,19 @@ function M:GameMenuButton()
 
   -- Background Fade
   if E.db.TXUI.addons.gameMenuSkin.enabled then
+    local collectedMounts = 0
+    if TXUI.IsRetail then
+      if E.MountIDs then
+        for _, value in pairs(E.MountIDs) do
+          local _, _, _, _, _, _, _, _, _, _, isCollected = C_MountJournal.GetMountInfoByID(value)
+          if isCollected then collectedMounts = collectedMounts + 1 end
+        end
+      end
+    end
+
     local backgroundFade = CreateFrame("Frame", nil, E.UIParent)
+    local collections
+
     backgroundFade:SetAllPoints(E.UIParent)
     backgroundFade:SetFrameStrata("HIGH")
     backgroundFade:SetFrameLevel(GameMenuFrame:GetFrameLevel() - 1)
@@ -66,6 +78,38 @@ function M:GameMenuButton()
       backgroundFade.classText:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
       backgroundFade.classText:SetTextColor(1, 1, 1, 1)
 
+      if E.db.TXUI.addons.gameMenuSkin.showCollections then
+        collections = backgroundFade:CreateFontString(nil, "OVERLAY")
+        collections:Point("TOPLEFT", 100, -100)
+        collections:SetFont(titleFont, F.FontSizeScaled(24), "OUTLINE")
+        collections:SetTextColor(1, 1, 1, 1)
+        collections:SetText(F.String.GradientClass("Collections"))
+
+        collections.mount = backgroundFade:CreateFontString(nil, "OVERLAY")
+        collections.mount:SetPoint("TOPLEFT", collections, "BOTTOMLEFT", 0, -25)
+        collections.mount:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        collections.mount:SetTextColor(1, 1, 1, 1)
+        collections.mount:SetText("Mounts: " .. F.String.ToxiUI(collectedMounts))
+
+        collections.toys = backgroundFade:CreateFontString(nil, "OVERLAY")
+        collections.toys:SetPoint("TOPLEFT", collections.mount, "BOTTOMLEFT", 0, -4)
+        collections.toys:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        collections.toys:SetTextColor(1, 1, 1, 1)
+        collections.toys:SetText("Toys: " .. F.String.ToxiUI(C_ToyBox.GetNumLearnedDisplayedToys()))
+
+        local _, petsOwned = C_PetJournal.GetNumPets()
+        collections.pets = backgroundFade:CreateFontString(nil, "OVERLAY")
+        collections.pets:SetPoint("TOPLEFT", collections.toys, "BOTTOMLEFT", 0, -4)
+        collections.pets:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        collections.pets:SetTextColor(1, 1, 1, 1)
+        collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
+
+        collections.achievs = backgroundFade:CreateFontString(nil, "OVERLAY")
+        collections.achievs:SetPoint("TOPLEFT", collections.pets, "BOTTOMLEFT", 0, -12)
+        collections.achievs:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        collections.achievs:SetTextColor(1, 1, 1, 1)
+      end
+
       -- Random tip
       if E.db.TXUI.addons.gameMenuSkin.showTips then
         backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -83,6 +127,7 @@ function M:GameMenuButton()
     backgroundFade.Animation:SetDuration(1)
 
     self.backgroundFade = backgroundFade
+    self.collections = collections
     self.backgroundFade:Hide()
   end
 
@@ -110,6 +155,8 @@ function M:GameMenuButton()
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
+
+      if self.collections then self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
 
       if self.backgroundFade.tipText then
         -- I have a suspicion that if it's defined outside it can cause gradient issues, not sure
