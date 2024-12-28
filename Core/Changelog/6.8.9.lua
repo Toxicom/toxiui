@@ -22,6 +22,7 @@ TXUI.Changelog["6.8.9"] = {
 
     "* Documentation",
     "Update links to " .. TXUI.Title .. " WeakAuras guide",
+    "Update for Patch 11.0.7",
 
     "* Settings refactoring",
 
