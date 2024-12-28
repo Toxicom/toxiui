@@ -14,7 +14,7 @@ TXUI.Changelog["6.8.9"] = {
       .. F.String.Sublist("This should have triggered the database conversion one more time"),
 
     "* New features",
-    "Collections in Game Menu Skin",
+    "Collections in Game Menu Skin" .. F.String.Sublist("Retail only"),
 
     "* Bug fixes",
 
