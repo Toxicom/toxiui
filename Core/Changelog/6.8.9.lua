@@ -20,6 +20,7 @@ TXUI.Changelog["6.8.9"] = {
 
     "* Profile updates",
     F.String.Plater() .. ": Add " .. F.String.Class("Barbed Shot", "HUNTER") .. " to manual buff tracking",
+    F.String.Plater() .. ": Add " .. F.String.Class("Explosive Shot", "HUNTER") .. " to manual buff tracking",
 
     "* Documentation",
     "Update links to " .. TXUI.Title .. " WeakAuras guide",
