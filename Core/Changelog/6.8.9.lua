@@ -12,6 +12,15 @@ TXUI.Changelog["6.8.9"] = {
       .. F.String.Sublist("Change 6.8.9 to 6.8.8")
       .. F.String.Sublist("Save the file & log back in to your character")
       .. F.String.Sublist("This should have triggered the database conversion one more time"),
+    "Remove "
+      .. F.String.ToxiUI("- Steelfish")
+      .. " font" --
+      .. F.String.Sublist("We haven't used that font since 6.3.0")
+      .. F.String.Sublist("If you're still using it, add it yourself via SharedMedia"),
+    "Remove Korean glyphs from our fonts" --
+      .. F.String.Sublist("This is a decision I've been thinking about for a long time, sorry fellow Korean players")
+      .. F.String.Sublist("Korean glyphs made the font files huge which impacted loading times severely")
+      .. F.String.Sublist("You can find old font files in GitHub"),
 
     "* New features",
     "Collections in Game Menu Skin" .. F.String.Sublist("Retail only"),
