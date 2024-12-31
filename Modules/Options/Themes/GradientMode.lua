@@ -588,7 +588,7 @@ function O:ToxiUI_Themes_GradientMode()
         order = self:GetOrder(),
         type = "range",
         name = "",
-        min = 0.15,
+        min = 0,
         max = 0.5,
         step = 0.01,
         isPercent = true,

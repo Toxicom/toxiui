@@ -37,6 +37,7 @@ TXUI.Changelog["6.8.9"] = {
     "Update for Patch 4.4.1",
 
     "* Settings refactoring",
+    "Allow Gradient mode's background brightness to go to 0",
 
     "* Development improvements",
   },
