@@ -21,6 +21,7 @@ TXUI.Changelog["6.8.9"] = {
       .. F.String.Sublist("This is a decision I've been thinking about for a long time, sorry fellow Korean players")
       .. F.String.Sublist("Korean glyphs made the font files huge which impacted loading times severely")
       .. F.String.Sublist("You can find old font files in GitHub"),
+    "No longer set " .. F.String.ToxiUI("Classic ActionBars Style") .. " on Classic Era version during the " .. TXUI.Title .. " installer, since Luxthos now has WeakAuras",
 
     "* New features",
     "Collections in Game Menu Skin" .. F.String.Sublist("Retail only"),
@@ -38,6 +39,7 @@ TXUI.Changelog["6.8.9"] = {
 
     "* Settings refactoring",
     "Allow Gradient mode's background brightness to go to 0",
+    "Add links to " .. F.String.Luxthos() .. " WeakAuras in the installer",
 
     "* Development improvements",
   },

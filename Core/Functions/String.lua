@@ -215,7 +215,7 @@ function F.String.WALink(class)
     return format(base, classLink)
   end
 
-  return TXUI.IsVanilla and I.Strings.WALinks.DEFAULT_VANILLA or I.Strings.WALinks.DEFAULT
+  return I.Strings.WALinks.DEFAULT
 end
 
 function F.String.RemoveRuneOfThePrefix(text)
