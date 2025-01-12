@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local IS = TXUI:GetModule("Installer")
 local PF = TXUI:GetModule("Profiles")
-local ST = TXUI:GetModule("Styles")
 
 local _G = _G
 
