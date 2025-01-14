@@ -367,6 +367,10 @@ function PF:BuildProfile()
       size = 2,
       speed = 0.3,
     },
+
+    classColors = {
+      ["SHAMAN"] = F.Table.HexToRGB("#006edb"),
+    },
   })
 
   -- Tooltip
@@ -1995,6 +1999,7 @@ function PF:ElvUIProfilePrivate()
       totemTracker = false,
       glossTex = "- ToxiUI", -- Secondary Texture
       normTex = "- ToxiUI",
+      classColors = TXUI.IsVanilla,
 
       minimap = {
         hideClassHallReport = false,
