@@ -25,6 +25,15 @@ TXUI.Changelog["6.8.9"] = {
 
     "* New features",
     "Collections in Game Menu Skin" .. F.String.Sublist("Retail only"),
+    "Updated "
+      .. F.String.Plater()
+      .. " design" --
+      .. F.String.Sublist("Reduced height of health & cast bars")
+      .. F.String.Sublist("Changed fonts to ToxiUI")
+      .. F.String.Sublist("Reduced health font size")
+      .. F.String.Sublist("Reduced hover target alpha")
+      .. F.String.Sublist("Change bar texture")
+      .. F.String.Sublist("Enable guild name for friendly player nameplates"),
 
     "* Bug fixes",
 
