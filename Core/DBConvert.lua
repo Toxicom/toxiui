@@ -69,7 +69,7 @@ function TXUI:DBConvert()
     self:LogDebug("DBConvert > Converted Saturation Boost to new format")
   end
 
-  -- Convert custom text names (For those who updated in 6.8.9 beta)
+  -- Convert custom text names (For those who updated in 6.9.0 beta)
   do
     local converted = false
     -- Mapping of old names to new names

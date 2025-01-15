@@ -1,6 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
-TXUI.Changelog["6.8.9"] = {
+TXUI.Changelog["6.9.0"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
@@ -8,8 +8,8 @@ TXUI.Changelog["6.8.9"] = {
     "If you're experiencing issues due to some custom texts not being converted properly, follow these steps:"
       .. F.String.Sublist("Logout from your character")
       .. F.String.Sublist("Open this file in your WoW directory: WTF/Account/<ACCOUNT_ID>/SavedVariables/ElvUI.lua")
-      .. F.String.Sublist("Find a line that says " .. F.String.ToxiUI("[\"lastDBConversion\"] = \"6.8.9\""))
-      .. F.String.Sublist("Change 6.8.9 to 6.8.8")
+      .. F.String.Sublist("Find a line that says " .. F.String.ToxiUI("[\"lastDBConversion\"] = \"6.9.0\""))
+      .. F.String.Sublist("Change 6.9.0 to 6.8.8")
       .. F.String.Sublist("Save the file & log back in to your character")
       .. F.String.Sublist("This should have triggered the database conversion one more time"),
     "Remove "
@@ -33,7 +33,8 @@ TXUI.Changelog["6.8.9"] = {
       .. F.String.Sublist("Reduced health font size")
       .. F.String.Sublist("Reduced hover target alpha")
       .. F.String.Sublist("Change bar texture")
-      .. F.String.Sublist("Enable guild name for friendly player nameplates"),
+      .. F.String.Sublist("Enable guild name for friendly player nameplates")
+      .. F.String.Sublist("Fixed scaling issue"),
 
     "* Bug fixes",
 
