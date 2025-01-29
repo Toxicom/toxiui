@@ -47,6 +47,7 @@ TXUI.Changelog["6.9.0"] = {
     "Update links to " .. TXUI.Title .. " WeakAuras guide",
     "Update for Patch 11.0.7",
     "Update for Patch 4.4.1",
+    F.String.MinElv("13.83"),
 
     "* Settings refactoring",
     "Allow Gradient mode's background brightness to go to 0",
