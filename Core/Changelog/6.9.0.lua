@@ -51,7 +51,7 @@ TXUI.Changelog["6.9.0"] = {
 
     "* Settings refactoring",
     "Allow Gradient mode's background brightness to go to 0",
-    "Add links to " .. F.String.Luxthos() .. " WeakAuras in the installer",
+    "Add links to " .. F.String.Luxthos() .. " WeakAuras in the installer for Classic Era",
 
     "* Development improvements",
   },
