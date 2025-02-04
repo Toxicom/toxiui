@@ -36,8 +36,6 @@ TXUI.Changelog["6.9.0"] = {
       .. F.String.Sublist("Enable guild name for friendly player nameplates")
       .. F.String.Sublist("Fixed scaling issue"),
 
-    "* Bug fixes",
-
     "* Profile updates",
     F.String.Plater() .. ": Add " .. F.String.Class("Barbed Shot", "HUNTER") .. " to manual buff tracking",
     F.String.Plater() .. ": Add " .. F.String.Class("Explosive Shot", "HUNTER") .. " to manual buff tracking",
@@ -52,7 +50,5 @@ TXUI.Changelog["6.9.0"] = {
     "* Settings refactoring",
     "Allow Gradient mode's background brightness to go to 0",
     "Add links to " .. F.String.Luxthos() .. " WeakAuras in the installer for Classic Era",
-
-    "* Development improvements",
   },
 }
