@@ -45,6 +45,7 @@ TXUI.Changelog["6.9.0"] = {
     "Update links to " .. TXUI.Title .. " WeakAuras guide",
     "Update for Patch 11.0.7",
     "Update for Patch 4.4.1",
+    "Update for Patch 1.15.6",
     F.String.MinElv("13.83"),
 
     "* Settings refactoring",
