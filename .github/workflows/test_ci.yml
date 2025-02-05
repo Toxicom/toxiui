@@ -39,6 +39,16 @@ jobs:
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: -m .pkgmeta-dev
+      - name: Upload artifact to GitHub
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: package
+          path: .release/*.zip
+          retention-days: 7
+          compression-level: 6  # Adjust as needed (default is 6)
+          if-no-files-found: error  # Change to `ignore` if you want to continue even if files are missing
+          overwrite: true  # Ensures the artifact is replaced instead of appending
       - name: Announce test ci result in Discord
         uses: sarisia/actions-status-discord@f268209d088ace9f9666322b04d60e013fef212d
         if: always()
