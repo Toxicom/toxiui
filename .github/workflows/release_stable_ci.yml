@@ -11,6 +11,9 @@ jobs:
     outputs:
       on_development: ${{ env.on_development }}
     steps:
+      - name: Fix path for checkout
+        description: https://github.com/rickstaa/action-contains-tag/pull/18#issuecomment-2611567270
+        run: git config --global remote.origin.followRemoteHEAD never
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
