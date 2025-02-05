@@ -14,14 +14,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: rickstaa/action-contains-tag@783e6dc3a7732633ac3199c07e77ea8d8afc4dd5
+      - uses: rickstaa/action-contains-tag@91294d45b47f5be6760e9810da405fd72bbb4472
         id: contains_tag
         with:
           frail: false
           reference: "development"
           tag: "${{ github.ref }}"
       - name: Set output for on_development
-        run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_ENV
+        run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_OUTPUT
 
 
   test-syntax:
@@ -66,7 +66,7 @@ jobs:
         if: success()
         id: vars
         run: |
-          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
       - name: Announce new stable release on Discord
         uses: sarisia/actions-status-discord@f268209d088ace9f9666322b04d60e013fef212d
         if: success()
