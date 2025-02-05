@@ -9,7 +9,7 @@ jobs:
   on-development-branch-check:
     runs-on: ubuntu-latest
     outputs:
-      on_development: ${{ steps.contains_tag.outputs.retval }}
+      on_development: ${{ env.on_development }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -20,6 +20,8 @@ jobs:
           frail: false
           reference: "development"
           tag: "${{ github.ref }}"
+      - name: Set output for on_development
+        run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_ENV
 
   test-syntax:
     if: ${{ always() }}
