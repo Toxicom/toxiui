@@ -14,12 +14,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: rickstaa/action-contains-tag@91294d45b47f5be6760e9810da405fd72bbb4472
+      - uses: rickstaa/action-contains-tag@v1.2.10
         id: contains_tag
         with:
           frail: false
-          reference: "refs/head/development"
-          tag: "${{ github.ref_name }}"
+          reference: "development"
+          tag: "${{ github.ref }}"
       - name: Set output for on_development
         run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_OUTPUT
 
