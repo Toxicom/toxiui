@@ -18,8 +18,8 @@ jobs:
         id: contains_tag
         with:
           frail: false
-          reference: "development"
-          tag: "${{ github.ref }}"
+          reference: "refs/head/development"
+          tag: "${{ github.ref_name }}"
       - name: Set output for on_development
         run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_OUTPUT
 
