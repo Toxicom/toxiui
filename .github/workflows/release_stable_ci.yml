@@ -23,7 +23,7 @@ jobs:
           reference: "development"
           tag: "${{ github.ref }}"
       - name: Set output for on_development
-        run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_OUTPUT
+        run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_ENV
 
 
   test-syntax:
@@ -68,7 +68,7 @@ jobs:
         if: success()
         id: vars
         run: |
-          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Announce new stable release on Discord
         uses: sarisia/actions-status-discord@f268209d088ace9f9666322b04d60e013fef212d
         if: success()
