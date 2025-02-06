@@ -8,7 +8,7 @@ function O:Styles_ActionBars()
   self.options.styles.args["actionBarsGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "ActionBars",
+    name = "动作条",
     args = {},
   }
 
@@ -17,11 +17,11 @@ function O:Styles_ActionBars()
 
   -- ActionBars Group Description
   self:AddInlineDesc(options, {
-    name = "Description",
+    name = "描述",
   }, {
-    name = TXUI.Title --
-      .. " offers different styles for ActionBars layouts, visibility and overall behavior."
-      .. "\n\nYour current active style: "
+    name = TXUI.Title -- 
+      .. " 提供了不同的动作条布局、可见性和整体行为的样式。"
+      .. "\n\n您当前的激活样式: "
       .. F.String.Good(E.db.TXUI.styles.actionBars),
   })
 
@@ -31,27 +31,27 @@ function O:Styles_ActionBars()
   -- WeakAuras Style
   do
     local weakAurasStyle = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " WeakAuras Style",
+      name = TXUI.Title .. " WeakAuras 样式",
     }, {
-      name = "This style is the original style of "
-        .. TXUI.Title
-        .. " where we prioritize WeakAuras for providing information, therefore the ActionBars remain hidden and shown only when necessary to reduce visual clutter.\n\n"
-        .. "With this style the ActionBars are mouseover at the bottom, right above the WunderBar.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "If you'd still like to display ActionBars while in WeakAuras style, navigate to the "
+      name = "这种样式是 " 
+        .. TXUI.Title 
+        .. " 的原始样式，我们优先考虑 WeakAuras 提供信息，因此动作条保持隐藏，仅在必要时显示以减少视觉混乱。\n\n"
+        .. "在这种样式下，动作条在底部鼠标悬停，位于 WunderBar 之上。\n\n"
+        .. F.String.ToxiUI("信息: ")
+        .. "如果您仍希望在 WeakAuras 样式下显示动作条，请导航到左侧的 "
         .. F.String.Menu.Skins()
-        .. " tab on the left and select "
+        .. " 选项卡并选择 "
         .. F.String.Class("ElvUI")
-        .. " to find ActionBars Fade settings.\n\n",
+        .. " 以找到动作条淡出设置。\n\n",
     })
 
     weakAurasStyle["args"]["enable"] = {
       order = self:GetOrder(),
       type = "execute",
-      name = F.String.Class("Apply", "MONK"),
-      desc = "Applies the original " .. TXUI.Title .. " WeakAuras style that is meant to be played with WeakAuras.",
+      name = F.String.Class("应用", "MONK"),
+      desc = "应用原始的 " .. TXUI.Title .. " WeakAuras 样式，适合与 WeakAuras 一起使用。",
       func = function()
-        SS:Wrap("Applying WeakAuras Style ..", function()
+        SS:Wrap("应用 WeakAuras 样式中 ..", function()
           ST:ApplyStyle("actionBars", "WeakAuras")
         end, true)
       end,
@@ -70,22 +70,22 @@ function O:Styles_ActionBars()
   -- Classic Style
   do
     local classicStyle = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " Classic Style",
+      name = TXUI.Title .. " 经典样式",
     }, {
-      name = "The Classic "
+      name = "经典的 "
         .. TXUI.Title
-        .. " style for users who do not like WeakAuras and prefer just ye' old reliable ActionBars.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "This style is recommended for Vanilla players, hence the naming of Classic Style ;)\n\n",
+        .. " 样式，适合不喜欢 WeakAuras 而更喜欢传统动作条的用户。\n\n"
+        .. F.String.ToxiUI("信息: ")
+        .. "这种样式推荐给怀旧服玩家，因此命名为经典样式 ;)\n\n",
     })
 
     classicStyle["args"]["enable"] = {
       order = self:GetOrder(),
       type = "execute",
-      name = F.String.Class("Apply", "MONK"),
-      desc = "Applies the Classic " .. TXUI.Title .. " ActionBars style for users that prefer playing without WeakAuras.",
+      name = F.String.Class("应用", "MONK"),
+      desc = "应用经典的 " .. TXUI.Title .. " 动作条样式，适合不使用 WeakAuras 的用户。",
       func = function()
-        SS:Wrap("Applying Classic Style ..", function()
+        SS:Wrap("应用经典样式中 ..", function()
           ST:ApplyStyle("actionBars", "Classic")
         end, true)
       end,
