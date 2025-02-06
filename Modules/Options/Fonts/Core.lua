@@ -8,7 +8,7 @@ function O:Fonts()
   local options = self.options.fonts.args
 
   options["elvui_fonts"] = {
-    name = "Font Options",
+    name = "字体选项",
     order = self:GetOrder(),
     type = "group",
     args = {},

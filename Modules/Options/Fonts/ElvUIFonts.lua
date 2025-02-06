@@ -11,18 +11,18 @@ function O:Fonts_ElvUIFonts()
   do
     -- General Group
     local generalGroup = self:AddInlineDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
-      name = "This group allows to update all fonts used in the " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Profile.\n\n" .. F.String.Error(
-        "Warning: Some fonts might still not look ideal! The results will not be ideal, but it should help you customize the fonts :)\n"
+      name = "此组允许更新 " .. TXUI.Title .. " " .. F.String.ElvUI() .. " 配置文件中使用的所有字体。\n\n" .. F.String.Error(
+        "警告：某些字体可能仍然看起来不理想！结果不会理想，但它应该可以帮助您自定义字体 :)\n"
       ),
     }).args
 
     generalGroup.applyButton = {
       order = self:GetOrder(),
       type = "execute",
-      name = F.String.Good("Apply"),
-      desc = "Applies all " .. TXUI.Title .. " font settings.",
+      name = F.String.Good("应用"),
+      desc = "应用所有 " .. TXUI.Title .. " 字体设置。",
       func = function()
         TXUI:GetModule("Profiles"):ApplyFontChange()
       end,
@@ -31,8 +31,8 @@ function O:Fonts_ElvUIFonts()
     generalGroup.resetButton = {
       order = self:GetOrder(),
       type = "execute",
-      name = F.String.Error("Reset"),
-      desc = "Resets all " .. TXUI.Title .. " font settings.",
+      name = F.String.Error("重置"),
+      desc = "重置所有 " .. TXUI.Title .. " 字体设置。",
       func = function()
         E:CopyTable(E.db.TXUI.general.fontOverride, P.general.fontOverride)
         E:CopyTable(E.db.TXUI.general.fontStyleOverride, P.general.fontStyleOverride)
@@ -48,9 +48,9 @@ function O:Fonts_ElvUIFonts()
 
   -- ElvUI Font Scale Group
   local elvuiFontScaleGroup = self:AddInlineDesc(options, {
-    name = "Font Scale",
+    name = "字体缩放",
   }, {
-    name = "This slider will scale most of " .. F.String.ElvUI("ElvUI") .. " fonts.\n",
+    name = "此滑块将缩放大多数 " .. F.String.ElvUI("ElvUI") .. " 字体。\n",
   }).args
 
   -- ElvUI Font Scale Enable
@@ -69,17 +69,17 @@ function O:Fonts_ElvUIFonts()
     end,
   }
 
-  local defaultKey = "DEFAULT"
-  local defaultFontOption = " " .. TXUI.Title .. " Default"
-  local overrideForceEnable = "ON"
-  local overrideForceDisable = "OFF"
+  local defaultKey = "默认"
+  local defaultFontOption = " " .. TXUI.Title .. " 默认"
+  local overrideForceEnable = "开启"
+  local overrideForceDisable = "关闭"
 
   local function generateFontOption(fontKey, fontName)
     -- Font Group
     local fontGroup = self:AddInlineDesc(options, {
-      name = fontName .. " Font",
+      name = fontName .. " 字体",
     }, {
-      name = F.String.Good(I.FontDescription[fontKey]) .. "\n\n" .. "Default font: " .. F.String.ToxiUI(fontKey),
+      name = F.String.Good(I.FontDescription[fontKey]) .. "\n\n" .. "默认字体: " .. F.String.ToxiUI(fontKey),
     }).args
 
     -- Fonts Font
@@ -87,8 +87,8 @@ function O:Fonts_ElvUIFonts()
       order = self:GetOrder(),
       type = "select",
       dialogControl = "LSM30_Font",
-      name = "Font",
-      desc = "Set the font.",
+      name = "字体",
+      desc = "设置字体。",
       values = self:GetAllFontsFunc {
         [defaultFontOption] = F.GetFontPath(I.Fonts.Primary),
       },
@@ -106,8 +106,8 @@ function O:Fonts_ElvUIFonts()
     fontGroup.outline = {
       order = self:GetOrder(),
       type = "select",
-      name = "Font Outline",
-      desc = "Set the font outline.",
+      name = "字体轮廓",
+      desc = "设置字体轮廓。",
       values = self:GetAllFontOutlinesFunc {
         [defaultKey] = defaultFontOption,
       },
@@ -125,13 +125,13 @@ function O:Fonts_ElvUIFonts()
     fontGroup.shadow = {
       order = self:GetOrder(),
       type = "select",
-      name = "Font Shadow",
-      desc = "Set the font shadow.",
+      name = "字体阴影",
+      desc = "设置字体阴影。",
       values = function()
         return {
           [defaultKey] = defaultFontOption,
-          [overrideForceDisable] = "Force " .. F.String.Error("Off"),
-          [overrideForceEnable] = "Force " .. F.String.Good("On"),
+          [overrideForceDisable] = "强制 " .. F.String.Error("关闭"),
+          [overrideForceEnable] = "强制 " .. F.String.Good("开启"),
         }
       end,
       get = function(_)

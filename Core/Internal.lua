@@ -31,17 +31,17 @@ I.Fonts = {
 }
 
 I.FontNames = {
-  [I.Fonts.Primary] = "Primary",
-  [I.Fonts.Title] = "Title",
-  [I.Fonts.TitleRaid] = "Title Raid",
-  [I.Fonts.TitleBlack] = "Title Black",
+  [I.Fonts.Primary] = "主要字体",
+  [I.Fonts.Title] = "标题字体",
+  [I.Fonts.TitleRaid] = "团队标题字体",
+  [I.Fonts.TitleBlack] = "黑色标题字体",
 }
 
 I.FontDescription = {
-  [I.Fonts.Primary] = "Used in the majority of the UI.",
-  [I.Fonts.Title] = "Used mostly for names.",
-  [I.Fonts.TitleRaid] = "Currently only used in BigWigs, Details & Raid Frames Group number.",
-  [I.Fonts.TitleBlack] = "Very bold font used in a couple places, like map coordinates.",
+  [I.Fonts.Primary] = "用于大部分用户界面。",
+  [I.Fonts.Title] = "主要用于名字。",
+  [I.Fonts.TitleRaid] = "目前仅用于 BigWigs、Details 和团队框架组编号。",
+  [I.Fonts.TitleBlack] = "非常粗的字体，用于一些地方，如地图坐标。",
 }
 
 I.FontOrder = {
