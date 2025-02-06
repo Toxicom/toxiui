@@ -10,6 +10,7 @@
   <Script file='Internal.lua' />
   <Script file='Profile.lua' />
   <Script file='Private.lua' />
+  <Script file='I18n.lua' />
 
   <!-- Core -->
   <Script file='Core.lua' />

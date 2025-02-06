@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
+local TXUI, F, E, I, V, P, G, I18n = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 
 local ReloadUI = ReloadUI
@@ -32,18 +32,18 @@ function O:Armory()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
       name = TXUI.Title
-        .. " Armory changes the appearance of your Character sheet.\n\n"
-        .. (TXUI.IsCata and (F.String.Error("[BETA]") .. ": This module is not stable yet on Cataclysm Classic!\n\n") or ""),
+        .. " 英雄榜 改变了你的角色面板的外观。\n\n"
+        .. (TXUI.IsCata and (F.String.Error("[测试版]") .. ": 此模块在大灾变经典版上尚不稳定！\n\n") or ""),
     }, I.Requirements.Armory).args
 
     -- Enable
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Armory.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜",
       name = function()
         return self:GetEnableName(E.db.TXUI.armory.enabled, generalGroup)
       end,
@@ -58,7 +58,7 @@ function O:Armory()
       end,
       confirm = function(_, value)
         if value == false then
-          return "To disable " .. TXUI.Title .. " Armory you must reload your UI.\n\n Are you sure?"
+          return "禁用 " .. TXUI.Title .. " 英雄榜 需要重新加载你的 UI。\n\n 你确定吗？"
         else
           return false
         end
@@ -75,7 +75,7 @@ function O:Armory()
   do
     -- Tab
     local tab = self:AddGroup(options, {
-      name = "General",
+      name = "常规",
       hidden = optionsHidden,
     }).args
 
@@ -83,7 +83,7 @@ function O:Armory()
     do
       -- Avg Item Level Group
       local itemLevelGroup = self:AddInlineDesc(tab, {
-        name = "Item Level",
+        name = "物品等级",
         get = function(info)
           return E.db.TXUI.armory.stats[info[#info]]
         end,
@@ -92,15 +92,15 @@ function O:Armory()
           F.Event.TriggerEvent("Armory.SettingsUpdate")
         end,
       }, {
-        name = "Settings for Item Level in " .. TXUI.Title .. " Armory.\n\n",
+        name = TXUI.Title .. " 英雄榜 中物品等级的设置。\n\n",
       }).args
 
       -- Show Avg Item Level of Best Items (in Bags)
       itemLevelGroup.showAvgItemLevel = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Enabling this will show the maximum possible item level you can achieve with items currently in your bags.",
-        name = "Bags iLvl",
+        desc = "启用此选项将显示你当前背包中可以达到的最高物品等级。",
+        name = "背包物品等级",
         disabled = not TXUI.IsRetail,
       }
 
@@ -108,8 +108,8 @@ function O:Armory()
       itemLevelGroup.itemLevelFormat = {
         order = self:GetOrder(),
         type = "select",
-        name = "Format",
-        desc = "Decimal format",
+        name = "格式",
+        desc = "小数格式",
         values = {
           ["%.0f"] = "42",
           ["%.1f"] = "42.0",
@@ -126,8 +126,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -135,8 +135,8 @@ function O:Armory()
       itemLevelGroup.itemLevelFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory.stats["itemLevelFontShadow"] == true)
@@ -147,8 +147,8 @@ function O:Armory()
       itemLevelGroup.itemLevelFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 100,
         step = 1,
@@ -158,18 +158,18 @@ function O:Armory()
       itemLevelGroup.itemLevelFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       itemLevelGroup.itemLevelFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
-          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("职业渐变", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -177,7 +177,7 @@ function O:Armory()
       itemLevelGroup.itemLevelFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory.stats", P.armory.stats),
         set = self:GetFontColorSetter("TXUI.armory.stats", function()
@@ -193,16 +193,16 @@ function O:Armory()
     if TXUI.IsRetail then
       -- General Group
       local animationsGroup = self:AddInlineDesc(tab, {
-        name = "Animations",
+        name = "动画",
       }, {
-        name = "Armory animations when opening the Character sheet.\n\n",
+        name = "打开角色面板时的 英雄榜 动画。\n\n",
       }).args
 
       -- Enable
       animationsGroup.animations = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggling this on enables the " .. TXUI.Title .. " Armory Animations.",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 动画。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.animations)
         end,
@@ -216,7 +216,7 @@ function O:Armory()
       animationsGroup.animationsMult = {
         order = self:GetOrder(),
         type = "range",
-        name = "Animation Speed",
+        name = "动画速度",
         min = 0.1,
         max = 2,
         step = 0.1,
@@ -235,7 +235,7 @@ function O:Armory()
     do
       -- Background Group
       local backgroundGroup = self:AddInlineDesc(tab, {
-        name = "Background",
+        name = "背景",
         get = function(info)
           return E.db.TXUI.armory.background[info[#info]]
         end,
@@ -244,14 +244,14 @@ function O:Armory()
           F.Event.TriggerEvent("Armory.SettingsUpdate")
         end,
       }, {
-        name = "Settings for the custom " .. TXUI.Title .. " Armory background.\n\n",
+        name = TXUI.Title .. " 英雄榜 自定义背景的设置。\n\n",
       }).args
 
       -- Enable
       backgroundGroup.enabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggling this on enables the " .. TXUI.Title .. " Armory background.",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 背景。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.background.enabled)
         end,
@@ -265,7 +265,7 @@ function O:Armory()
       backgroundGroup.alpha = {
         order = self:GetOrder(),
         type = "range",
-        name = "Alpha",
+        name = "透明度",
         min = 0,
         max = 1,
         step = 0.01,
@@ -277,12 +277,12 @@ function O:Armory()
       backgroundGroup.style = {
         order = self:GetOrder(),
         type = "select",
-        name = "Style",
-        desc = "Change the Background image.",
+        name = "样式",
+        desc = "更改背景图像。",
         values = {
-          [1] = "1. Priory of the Sacred Flame",
-          [2] = "2. Azj-Kahet",
-          [3] = "3. Draenor",
+          [1] = "1. 神圣火焰修道院",
+          [2] = "2. 阿兹卡赫特",
+          [3] = "3. 德拉诺",
         },
         disabled = function()
           return E.db.TXUI.armory.background.class or optionsDisabled()
@@ -292,8 +292,8 @@ function O:Armory()
       backgroundGroup.class = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Class Background " .. E.NewSign,
-        desc = "Use class specific backgrounds.",
+        name = "职业背景 " .. E.NewSign,
+        desc = "使用职业特定背景。",
         disabled = optionsDisabled,
         width = 1.2,
       }
@@ -301,8 +301,8 @@ function O:Armory()
       backgroundGroup.hideControls = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Hide controls " .. E.NewSign,
-        desc = "Hides the camera controls when hovering the character model.",
+        name = "隐藏控制 " .. E.NewSign,
+        desc = "在悬停角色模型时隐藏相机控制。",
         set = function(_, value)
           E.db.TXUI.armory.background.hideControls = value
           if value == false then E:StaticPopup_Show("CONFIG_RL") end
@@ -315,7 +315,7 @@ function O:Armory()
     do
       -- Lines Group
       local linesGroup = self:AddInlineDesc(tab, {
-        name = "Decorative Lines",
+        name = "装饰线条",
         get = function(info)
           return E.db.TXUI.armory.lines[info[#info]]
         end,
@@ -324,14 +324,14 @@ function O:Armory()
           F.Event.TriggerEvent("Armory.SettingsUpdate")
         end,
       }, {
-        name = "Settings for the custom " .. TXUI.Title .. " Armory decorative lines.\n\n",
+        name = TXUI.Title .. " 英雄榜 自定义装饰线条的设置。\n\n",
       }).args
 
       -- Enable
       linesGroup.enabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggling this on enables the " .. TXUI.Title .. " Armory decorative lines.",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 装饰线条。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.lines.enabled)
         end,
@@ -345,7 +345,7 @@ function O:Armory()
       linesGroup.alpha = {
         order = self:GetOrder(),
         type = "range",
-        name = "Alpha",
+        name = "透明度",
         min = 0,
         max = 1,
         step = 0.01,
@@ -357,7 +357,7 @@ function O:Armory()
       linesGroup.height = {
         order = self:GetOrder(),
         type = "range",
-        name = "Line Height",
+        name = "线条高度",
         min = 1,
         max = 5,
         step = 1,
@@ -367,10 +367,10 @@ function O:Armory()
       linesGroup.color = {
         order = self:GetOrder(),
         type = "select",
-        name = "Line Color",
+        name = "线条颜色",
         values = {
-          CLASS = F.String.Class("Class"),
-          GRADIENT = F.String.GradientClass("Gradient Class"),
+          CLASS = F.String.Class("职业"),
+          GRADIENT = F.String.GradientClass("渐变职业"),
         },
         disabled = optionsDisabled,
       }
@@ -381,7 +381,7 @@ function O:Armory()
   do
     -- Tab
     local tab = self:AddGroup(options, {
-      name = "Header",
+      name = "标题",
       hidden = optionsHidden,
     }).args
 
@@ -389,7 +389,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Name Text",
+        name = "名称文本",
       }).args
 
       -- Fonts Font
@@ -397,8 +397,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -406,8 +406,8 @@ function O:Armory()
       fontGroup.nameTextFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory["nameTextFontShadow"] == true)
@@ -418,8 +418,8 @@ function O:Armory()
       fontGroup.nameTextFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -429,18 +429,18 @@ function O:Armory()
       fontGroup.nameTextFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.nameTextFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
-          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("职业渐变", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -448,7 +448,7 @@ function O:Armory()
       fontGroup.nameTextFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory", P.armory),
         set = self:GetFontColorSetter("TXUI.armory", function()
@@ -466,7 +466,7 @@ function O:Armory()
       fontGroup.nameTextOffsetX = {
         order = self:GetOrder(),
         type = "range",
-        name = "X Offset",
+        name = "X 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -476,7 +476,7 @@ function O:Armory()
       fontGroup.nameTextOffsetY = {
         order = self:GetOrder(),
         type = "range",
-        name = "Y Offset",
+        name = "Y 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -487,7 +487,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Title Text",
+        name = "标题文本",
       }).args
 
       -- Fonts Font
@@ -495,8 +495,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -504,8 +504,8 @@ function O:Armory()
       fontGroup.titleTextFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory["titleTextFontShadow"] == true)
@@ -516,8 +516,8 @@ function O:Armory()
       fontGroup.titleTextFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -527,18 +527,18 @@ function O:Armory()
       fontGroup.titleTextFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.titleTextFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
-          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("职业渐变", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -546,7 +546,7 @@ function O:Armory()
       fontGroup.titleTextFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory", P.armory),
         set = self:GetFontColorSetter("TXUI.armory", function()
@@ -564,7 +564,7 @@ function O:Armory()
       fontGroup.titleTextOffsetX = {
         order = self:GetOrder(),
         type = "range",
-        name = "X Offset",
+        name = "X 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -574,7 +574,7 @@ function O:Armory()
       fontGroup.titleTextOffsetY = {
         order = self:GetOrder(),
         type = "range",
-        name = "Y Offset",
+        name = "Y 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -585,7 +585,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Level Label",
+        name = "等级标签",
       }).args
 
       -- Fonts Font
@@ -593,8 +593,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -602,8 +602,8 @@ function O:Armory()
       fontGroup.levelTitleTextFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory["levelTitleTextFontShadow"] == true)
@@ -614,8 +614,8 @@ function O:Armory()
       fontGroup.levelTitleTextFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -625,15 +625,15 @@ function O:Armory()
       fontGroup.levelTitleTextFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.levelTitleTextFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc(),
       }
 
@@ -641,7 +641,7 @@ function O:Armory()
       fontGroup.levelTitleTextFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory", P.armory),
         set = self:GetFontColorSetter("TXUI.armory", function()
@@ -658,8 +658,8 @@ function O:Armory()
       fontGroup.levelTitleTextShort = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Abbreviate Label",
-        desc = "Abbreviate the 'Level' text to 'Lv'.",
+        name = "缩写标签",
+        desc = "将“等级”文本缩写为“Lv”。",
       }
 
       -- Spacer
@@ -669,7 +669,7 @@ function O:Armory()
       fontGroup.levelTitleTextOffsetX = {
         order = self:GetOrder(),
         type = "range",
-        name = "X Offset",
+        name = "X 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -679,7 +679,7 @@ function O:Armory()
       fontGroup.levelTitleTextOffsetY = {
         order = self:GetOrder(),
         type = "range",
-        name = "Y Offset",
+        name = "Y 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -690,7 +690,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Level Value",
+        name = "等级值",
       }).args
 
       -- Fonts Font
@@ -698,8 +698,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -707,8 +707,8 @@ function O:Armory()
       fontGroup.levelTextFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory["levelTextFontShadow"] == true)
@@ -719,8 +719,8 @@ function O:Armory()
       fontGroup.levelTextFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -730,15 +730,15 @@ function O:Armory()
       fontGroup.levelTextFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.levelTextFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc(),
       }
 
@@ -746,7 +746,7 @@ function O:Armory()
       fontGroup.levelTextFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory", P.armory),
         set = self:GetFontColorSetter("TXUI.armory", function()
@@ -764,7 +764,7 @@ function O:Armory()
       fontGroup.levelTextOffsetX = {
         order = self:GetOrder(),
         type = "range",
-        name = "X Offset",
+        name = "X 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -774,7 +774,7 @@ function O:Armory()
       fontGroup.levelTextOffsetY = {
         order = self:GetOrder(),
         type = "range",
-        name = "Y Offset",
+        name = "Y 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -785,7 +785,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Class Text",
+        name = "职业文本",
       }).args
 
       -- Fonts Font
@@ -793,8 +793,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -802,8 +802,8 @@ function O:Armory()
       fontGroup.classTextFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory["classTextFontShadow"] == true)
@@ -814,8 +814,8 @@ function O:Armory()
       fontGroup.classTextFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -825,17 +825,17 @@ function O:Armory()
       fontGroup.classTextFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.classTextFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
         },
       }
 
@@ -843,7 +843,7 @@ function O:Armory()
       fontGroup.classTextFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory", P.armory),
         set = self:GetFontColorSetter("TXUI.armory", function()
@@ -861,7 +861,7 @@ function O:Armory()
       fontGroup.classTextOffsetX = {
         order = self:GetOrder(),
         type = "range",
-        name = "X Offset",
+        name = "X 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -871,7 +871,7 @@ function O:Armory()
       fontGroup.classTextOffsetY = {
         order = self:GetOrder(),
         type = "range",
-        name = "Y Offset",
+        name = "Y 偏移",
         min = -100,
         max = 100,
         step = 1,
@@ -882,15 +882,15 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Spec Icon",
+        name = "专精图标",
       }).args
 
       -- Fonts Outline
       fontGroup.specIconFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory["specIconFontShadow"] == true)
@@ -901,8 +901,8 @@ function O:Armory()
       fontGroup.specIconFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -912,17 +912,17 @@ function O:Armory()
       fontGroup.specIconFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.specIconFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
         },
       }
 
@@ -930,7 +930,7 @@ function O:Armory()
       fontGroup.specIconFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory", P.armory),
         set = self:GetFontColorSetter("TXUI.armory", function()
@@ -947,7 +947,7 @@ function O:Armory()
   do
     -- Tab
     local tab = self:AddGroup(options, {
-      name = "Item Slot",
+      name = "物品栏",
       get = function(info)
         return E.db.TXUI.armory.pageInfo[info[#info]]
       end,
@@ -962,16 +962,16 @@ function O:Armory()
     do
       -- Item Level Group
       local gradientGroup = self:AddInlineDesc(tab, {
-        name = "Item Quality Gradient",
+        name = "物品品质渐变",
       }, {
-        name = "Settings for the color coming out of your item slot.\n\n",
+        name = "设置物品栏颜色渐变。\n\n",
       }).args
 
       -- Enable
       gradientGroup.itemQualityGradientEnabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggling this on enables the Item Quality bars.",
+        desc = "启用此选项将启用物品品质条。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.pageInfo.itemQualityGradientEnabled)
         end,
@@ -985,7 +985,7 @@ function O:Armory()
       gradientGroup.itemQualityGradientWidth = {
         order = self:GetOrder(),
         type = "range",
-        name = "Width",
+        name = "宽度",
         min = 10,
         max = 120,
         step = 1,
@@ -996,7 +996,7 @@ function O:Armory()
       gradientGroup.itemQualityGradientHeight = {
         order = self:GetOrder(),
         type = "range",
-        name = "Height",
+        name = "高度",
         min = 1,
         max = 40,
         step = 1,
@@ -1007,7 +1007,7 @@ function O:Armory()
       gradientGroup.itemQualityGradientStartAlpha = {
         order = self:GetOrder(),
         type = "range",
-        name = "Start Alpha",
+        name = "起始透明度",
         min = 0,
         max = 1,
         step = 0.01,
@@ -1019,7 +1019,7 @@ function O:Armory()
       gradientGroup.itemQualityGradientEndAlpha = {
         order = self:GetOrder(),
         type = "range",
-        name = "End Alpha",
+        name = "结束透明度",
         min = 0,
         max = 1,
         step = 0.01,
@@ -1035,16 +1035,16 @@ function O:Armory()
     do
       -- Enchant Group
       local enchantGroup = self:AddInlineDesc(tab, {
-        name = "Enchant & Socket Strings",
+        name = "附魔和插槽字符串",
       }, {
-        name = "Settings for strings displaying enchant and socket info about your item.\n\n",
+        name = "设置显示物品附魔和插槽信息的字符串。\n\n",
       }).args
 
       -- Enable
       enchantGroup.enchantTextEnabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggling this on enables the " .. TXUI.Title .. " Armory Enchant strings.",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 附魔字符串。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.pageInfo.enchantTextEnabled)
         end,
@@ -1058,8 +1058,8 @@ function O:Armory()
       enchantGroup.missingEnchantText = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Shows a warning when you're missing an enchant.",
-        name = "Missing Enchants",
+        desc = "当你缺少附魔时显示警告。",
+        name = "缺少附魔",
         disabled = optionsDisabled,
       }
 
@@ -1075,9 +1075,9 @@ function O:Armory()
             if itemName then socketItem = itemName end
           end
 
-          return "Shows a warning when you're missing sockets on your necklace." .. (socketItem and (" Sockets can be added with " .. F.String.ToxiUI(socketItem)) or "")
+          return "当你的项链缺少插槽时显示警告。" .. (socketItem and (" 插槽可以通过 " .. F.String.ToxiUI(socketItem) .. " 添加") or "")
         end,
-        name = "Missing Sockets",
+        name = "缺少插槽",
         hidden = not TXUI.IsRetail,
         disabled = optionsDisabled,
       }
@@ -1086,24 +1086,24 @@ function O:Armory()
       enchantGroup.abbreviateEnchantText = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Abbreviates the enchant strings.",
-        name = "Short Enchants",
+        desc = "缩写附魔字符串。",
+        name = "短附魔",
         disabled = optionsDisabled,
       }
 
       enchantGroup.useEnchantClassColor = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Use class color for the enchant strings.",
-        name = "Class Color",
+        desc = "使用职业颜色显示附魔字符串。",
+        name = "职业颜色",
         disabled = optionsDisabled,
       }
 
       enchantGroup.moveSockets = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Move Sockets " .. E.NewSign,
-        desc = "Crops and moves sockets above enchant text.",
+        name = "移动插槽 " .. E.NewSign,
+        desc = "裁剪并将插槽移动到附魔文本上方。",
         disabled = optionsDisabled,
         set = function(_, value)
           E.db.TXUI.armory.pageInfo.moveSockets = value
@@ -1119,8 +1119,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
         disabled = optionsDisabled,
       }
@@ -1129,8 +1129,8 @@ function O:Armory()
       enchantGroup.enchantFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (self:GetEnabledState(E.db.TXUI.armory.pageInfo.enchantTextEnabled) ~= self.enabledState.YES) or (E.db.TXUI.armory.pageInfo["enchantFontShadow"] == true)
@@ -1141,8 +1141,8 @@ function O:Armory()
       enchantGroup.enchantFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -1153,8 +1153,8 @@ function O:Armory()
       enchantGroup.enchantFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
         disabled = optionsDisabled,
       }
     end
@@ -1166,16 +1166,16 @@ function O:Armory()
     do
       -- Item Level Group
       local itemLevelGroup = self:AddInlineDesc(tab, {
-        name = "Item Level",
+        name = "物品等级",
       }, {
-        name = "Settings for Item level next to your item slots.\n\n",
+        name = "设置物品栏旁边的物品等级。\n\n",
       }).args
 
       -- Enable
       itemLevelGroup.itemLevelTextEnabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggle Item level display.",
+        desc = "切换物品等级显示。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.pageInfo.itemLevelTextEnabled)
         end,
@@ -1189,8 +1189,8 @@ function O:Armory()
       itemLevelGroup.iconsEnabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggle sockets & azerite traits.",
-        name = "Sockets",
+        desc = "切换插槽和艾泽里特特质。",
+        name = "插槽",
         disabled = optionsDisabled,
       }
 
@@ -1202,8 +1202,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
         disabled = optionsDisabled,
       }
@@ -1212,8 +1212,8 @@ function O:Armory()
       itemLevelGroup.iLvLFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (self:GetEnabledState(E.db.TXUI.armory.pageInfo.itemLevelTextEnabled) ~= self.enabledState.YES) or (E.db.TXUI.armory.pageInfo["iLvLFontShadow"] == true)
@@ -1224,8 +1224,8 @@ function O:Armory()
       itemLevelGroup.iLvLFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -1236,8 +1236,8 @@ function O:Armory()
       itemLevelGroup.iLvLFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
         disabled = optionsDisabled,
       }
     end
@@ -1247,7 +1247,7 @@ function O:Armory()
   if TXUI.IsRetail then
     -- Tab
     local tab = self:AddGroup(options, {
-      name = "Attributes",
+      name = "属性",
       get = function(info)
         return E.db.TXUI.armory.stats[info[#info]]
       end,
@@ -1262,14 +1262,14 @@ function O:Armory()
     do
       -- General Group
       local backgroundGroup = self:AddInlineGroup(tab, {
-        name = "Background Bars",
+        name = "背景条",
       }).args
 
       -- Enable
       backgroundGroup.alternatingBackgroundEnabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Toggles the blue bars behind every second number.",
+        desc = "切换每隔一个数字的蓝色条。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.stats.alternatingBackgroundEnabled)
         end,
@@ -1283,7 +1283,7 @@ function O:Armory()
       backgroundGroup.alternatingBackgroundAlpha = {
         order = self:GetOrder(),
         type = "range",
-        name = "Alpha",
+        name = "透明度",
         min = 0,
         max = 1,
         step = 0.01,
@@ -1298,7 +1298,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Category Header",
+        name = "类别标题",
       }).args
 
       -- Fonts Font
@@ -1306,8 +1306,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -1315,8 +1315,8 @@ function O:Armory()
       fontGroup.headerFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory.stats["headerFontShadow"] == true)
@@ -1327,8 +1327,8 @@ function O:Armory()
       fontGroup.headerFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -1338,18 +1338,18 @@ function O:Armory()
       fontGroup.headerFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.headerFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
-          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("职业渐变", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -1357,7 +1357,7 @@ function O:Armory()
       fontGroup.headerFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory.stats", P.armory.stats),
         set = self:GetFontColorSetter("TXUI.armory.stats", function()
@@ -1375,7 +1375,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Attribute Label",
+        name = "属性标签",
       }).args
 
       -- Fonts Font
@@ -1383,8 +1383,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -1392,8 +1392,8 @@ function O:Armory()
       fontGroup.labelFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory.stats["labelFontShadow"] == true)
@@ -1404,8 +1404,8 @@ function O:Armory()
       fontGroup.labelFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -1415,18 +1415,18 @@ function O:Armory()
       fontGroup.labelFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.labelFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
-          ["CLASS_GRADIENT"] = F.String.FastGradient("Class Gradient", left.r, left.g, left.b, right.r, right.g, right.b),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
+          ["CLASS_GRADIENT"] = F.String.FastGradient("职业渐变", left.r, left.g, left.b, right.r, right.g, right.b),
         },
       }
 
@@ -1434,7 +1434,7 @@ function O:Armory()
       fontGroup.labelFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory.stats", P.armory.stats),
         set = self:GetFontColorSetter("TXUI.armory.stats", function()
@@ -1448,8 +1448,8 @@ function O:Armory()
       fontGroup.abbreviateLabels = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Short Labels " .. E.NewSign,
-        desc = "Shorten and abbreviate attribute labels.",
+        name = "短标签 " .. E.NewSign,
+        desc = "缩短和缩写属性标签。",
       }
     end
 
@@ -1459,9 +1459,9 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineDesc(tab, {
-        name = "Attribute Icons " .. E.NewSign,
+        name = "属性图标 " .. E.NewSign,
       }, {
-        name = "Show icons before the attribute labels. Only the main attributes are supported currently.\n\n",
+        name = "在属性标签前显示图标。目前仅支持主要属性。\n\n",
       }).args
 
       fontGroup.showIcons = {
@@ -1476,8 +1476,8 @@ function O:Armory()
       fontGroup.iconFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory.stats["iconFontShadow"] == true)
@@ -1488,8 +1488,8 @@ function O:Armory()
       fontGroup.iconFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -1499,15 +1499,15 @@ function O:Armory()
       fontGroup.iconFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.iconFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc(),
       }
 
@@ -1515,7 +1515,7 @@ function O:Armory()
       fontGroup.iconFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory.stats", P.armory.stats),
         set = self:GetFontColorSetter("TXUI.armory.stats", function()
@@ -1533,7 +1533,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineGroup(tab, {
-        name = "Attribute Value",
+        name = "属性值",
       }).args
 
       -- Fonts Font
@@ -1541,8 +1541,8 @@ function O:Armory()
         order = self:GetOrder(),
         type = "select",
         dialogControl = "LSM30_Font",
-        name = "Font",
-        desc = "Set the font.",
+        name = "字体",
+        desc = "设置字体。",
         values = self:GetAllFontsFunc(),
       }
 
@@ -1550,8 +1550,8 @@ function O:Armory()
       fontGroup.valueFontOutline = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Outline",
-        desc = "Set the font outline.",
+        name = "字体轮廓",
+        desc = "设置字体轮廓。",
         values = self:GetAllFontOutlinesFunc(),
         disabled = function()
           return (E.db.TXUI.armory.stats["valueFontShadow"] == true)
@@ -1562,8 +1562,8 @@ function O:Armory()
       fontGroup.valueFontSize = {
         order = self:GetOrder(),
         type = "range",
-        name = "Font Size",
-        desc = "Set the font size.",
+        name = "字体大小",
+        desc = "设置字体大小。",
         min = 1,
         max = 42,
         step = 1,
@@ -1573,17 +1573,17 @@ function O:Armory()
       fontGroup.valueFontShadow = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Font Shadow",
-        desc = "Set font drop shadow.",
+        name = "字体阴影",
+        desc = "设置字体阴影。",
       }
 
       -- Font color select
       fontGroup.valueFontColor = {
         order = self:GetOrder(),
         type = "select",
-        name = "Font Color",
+        name = "字体颜色",
         values = self:GetAllFontColorsFunc {
-          ["GRADIENT"] = F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1),
+          ["GRADIENT"] = F.String.FastGradient("渐变", 0, 0.6, 1, 0, 0.9, 1),
         },
       }
 
@@ -1591,7 +1591,7 @@ function O:Armory()
       fontGroup.valueFontCustomColor = {
         order = self:GetOrder(),
         type = "color",
-        name = "Custom Color",
+        name = "自定义颜色",
         hasAlpha = true,
         get = self:GetFontColorGetter("TXUI.armory.stats", P.armory.stats),
         set = self:GetFontColorSetter("TXUI.armory.stats", function()
@@ -1609,7 +1609,7 @@ function O:Armory()
     do
       -- Stats Mode Group
       local statsGroup = self:AddInlineGroup(tab, {
-        name = "Attribute Visibility",
+        name = "属性可见性",
       }).args
 
       -- Mode
@@ -1617,12 +1617,12 @@ function O:Armory()
         statsGroup[stat] = {
           order = self:GetOrder(),
           type = "select",
-          name = F.String.LowercaseEnum(stat),
+          name = F.String.LowercaseEnum(I18n.armory.stats.mode[stat]),
           values = {
-            [0] = "Hide",
-            [1] = "Show Only Relevant",
-            [2] = "Show Above 0",
-            [3] = "Always Show",
+            [0] = "隐藏",
+            [1] = "仅显示相关",
+            [2] = "显示大于 0",
+            [3] = "始终显示",
           },
           get = function(info)
             return E.db.TXUI.armory.stats.mode[info[#info]].mode
@@ -1646,25 +1646,17 @@ function O:Armory_OnlyRetailMessage()
 
   -- General Group
   local group = self:AddInlineDesc(options, {
-    name = "Description",
+    name = "描述",
   }, {
-    name = "Unfortunately this feature is available only for the Retail version of "
-      .. TXUI.Title
-      .. ".\n\n"
-      .. "For "
-      .. F.String.ToxiUI("Wrath of the Lich King: Classic")
-      .. " we recommend using "
-      .. F.String.WrathArmory()
-      .. " by "
-      .. F.String.Class("Repooc", "DRUID")
-      .. ".\n\n",
+    name = "不幸的是，此功能仅适用于 " .. TXUI.Title .. " 的正式版。\n\n"
+      .. "对于 " .. F.String.ToxiUI("巫妖王之怒：经典版") .. "，我们推荐使用 " .. F.String.WrathArmory() .. " 由 " .. F.String.Class("Repooc", "DRUID") .. " 制作。\n\n",
   }).args
 
   group.websiteUrl = {
     order = self:GetOrder(),
     type = "input",
     width = "full",
-    name = "Copy this URL",
+    name = "复制此 URL",
     get = function()
       return I.Strings.Branding.Links.WrathArmory
     end,

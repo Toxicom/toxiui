@@ -156,11 +156,11 @@ end
 
 function O:GetAllFontColorsFunc(additional)
   local colorSelection = {
-    NONE = "None",
-    CLASS = F.String.Class("Class Color"),
-    VALUE = F.String.ElvUIValue("ElvUI Color"),
-    TXUI = TXUI.Title .. F.String.ToxiUI(" Color"),
-    CUSTOM = "Custom",
+    NONE = "无",
+    CLASS = F.String.Class("职业颜色"),
+    VALUE = F.String.ElvUIValue("ElvUI颜色"),
+    TXUI = TXUI.Title .. F.String.ToxiUI("颜色"),
+    CUSTOM = "自定义",
   }
 
   if TXUI.IsRetail then F.Table.Join(colorSelection, {

@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
+local TXUI, F, E, I, V, P, G, I18n= unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 local ACH = LibStub("LibAceConfigHelper")
 
@@ -9,14 +9,14 @@ local LOCALIZED_CLASS_NAMES_MALE = _G.LOCALIZED_CLASS_NAMES_MALE
 local PowerBarColor = _G.PowerBarColor
 
 function O:ToxiUI_Themes_GradientMode()
-  local gradientTitle = "|cffff97f6G|r|cfff8b0f2ra|r|cfff5c6f1di|r|cfff3d9f1en|r|cffffeafdt"
+  local gradientTitle = "|cffff97f6渐|r|cfff8b0f2变|r|cfff5c6f1文|r|cfff3d9f1本|r|cffffeafd"
 
   -- Create Tab
   self.options.themes.args.gradientMode = {
     order = self:GetOrder(),
     type = "group",
     childGroups = "tab",
-    name = gradientTitle .. " Mode|r",
+    name = gradientTitle .. " 模式|r",
     get = function(info)
       return E.db.TXUI.themes.gradientMode[info[#info]]
     end,
@@ -183,11 +183,11 @@ function O:ToxiUI_Themes_GradientMode()
       end
 
       -- Reaction Name
-      local npcColorName = "Neutral"
+      local npcColorName = "中立"
       if reaction == "GOOD" then
-        npcColorName = "Friendly"
+        npcColorName = "友方"
       elseif reaction == "BAD" then
-        npcColorName = "Enemy"
+        npcColorName = "敌方"
       end
 
       -- Reaction Name
@@ -277,7 +277,7 @@ function O:ToxiUI_Themes_GradientMode()
       self:AddInlineSoloDesc(colorGroup, {
         width = 1,
         customWidth = 120,
-        name = F.String.RGB(F.String.LowercaseEnum(power), { F.CalculateMultiplierColorArray(1.35, PowerBarColor[colorIndex]) }),
+        name = F.String.RGB(F.String.LowercaseEnum(I18n.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT][power]), { F.CalculateMultiplierColorArray(1.35, PowerBarColor[colorIndex]) }),
       })
 
       -- Shift Color
@@ -370,7 +370,7 @@ function O:ToxiUI_Themes_GradientMode()
       self:AddInlineSoloDesc(stateGroup, {
         width = 1,
         customWidth = 120,
-        name = F.String.RGB(F.String.LowercaseEnum(special), nameColor),
+        name = F.String.RGB(F.String.LowercaseEnum(I18n.themes.gradientMode.specialColorMap[I.Enum.GradientMode.Color.SHIFT][special]), nameColor),
       })
 
       -- Shift Color
@@ -453,7 +453,7 @@ function O:ToxiUI_Themes_GradientMode()
         self:AddInlineSoloDesc(castGroup, {
           width = 1,
           customWidth = 120,
-          name = F.String.RGB(settingsName, P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.NORMAL][cast]),
+          name = F.String.RGB(F.String.LowercaseEnum(I18n.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.SHIFT][cast]), P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.NORMAL][cast]),
         })
 
         -- Shift Color

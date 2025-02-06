@@ -630,7 +630,7 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
       end
     elseif self.db.pageInfo.missingEnchantText and slotOptions.needsEnchant and not E.TimerunningID then
       if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
-        slotItem.enchantText:SetText(F.String.Error("Add enchant"))
+        slotItem.enchantText:SetText(F.String.Error("缺少附魔效果"))
       else
         slotItem.enchantText:SetText("")
       end
