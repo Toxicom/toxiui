@@ -24,12 +24,12 @@ function O:WunderBar_Modules_Select(group, panelName)
       values = function()
         if (panelName == "MiddlePanel") and (slot == 2) then
           return {
-            [getNameSorted("")] = "NONE",
+            [getNameSorted("")] = "无",
             [getNameSorted("Time")] = TXUI:GetModule("WunderBar").registeredModulesNames["Time"],
           }
         else
           local availableModules = {
-            [getNameSorted("")] = "NONE",
+            [getNameSorted("")] = "无",
           }
           for name, displayName in pairs(TXUI:GetModule("WunderBar").registeredModulesNames) do
             availableModules[getNameSorted(name)] = displayName
@@ -72,15 +72,15 @@ function O:WunderBar_Modules()
 
   -- Modules Description
   self:AddInlineDesc(options, {
-    name = "Description",
+    name = "描述",
   }, {
-    name = "Here you can enable and set the position of modules. There can not be duplicate modules active.\n\n"
-      .. F.String.ToxiUI("Information:")
-      .. " Module sizing is dynamically calculated, so things like bigger font sizes will show less information. Imagine the WunderBar being split into nine equal slots - modules can't exceed that width with the "
-      .. F.String.Class("Time")
-      .. " module being an exception. \n\n"
-      .. F.String.Warning("Important:")
-      .. " Some modules will increase their size automatically if they have no neighbouring Module.",
+    name = "在这里您可以启用和设置模块的位置。不能有重复的模块激活。\n\n"
+      .. F.String.ToxiUI("信息:")
+      .. " 模块大小是动态计算的，因此像更大的字体大小这样的东西会显示更少的信息。想象一下，WunderBar 被分成九个相等的槽位 - 模块不能超过该宽度，"
+      .. F.String.Class("时间")
+      .. " 模块是一个例外。\n\n"
+      .. F.String.Warning("重要:")
+      .. " 如果某些模块没有相邻的模块，它们会自动增加大小。",
   })
 
   -- Spacer
@@ -89,7 +89,7 @@ function O:WunderBar_Modules()
   -- Modules Left
   do
     local group = self:AddInlineGroup(options, {
-      name = "Modules - Left",
+      name = "模块 - 左侧",
     })
     self:WunderBar_Modules_Select(group, "LeftPanel")
   end
@@ -100,7 +100,7 @@ function O:WunderBar_Modules()
   -- Modules Middle
   do
     local group = self:AddInlineGroup(options, {
-      name = "Modules - Middle",
+      name = "模块 - 中间",
     })
     self:WunderBar_Modules_Select(group, "MiddlePanel")
   end
@@ -111,7 +111,7 @@ function O:WunderBar_Modules()
   -- Modules Right
   do
     local group = self:AddInlineGroup(options, {
-      name = "Modules - Right",
+      name = "模块 - 右侧",
     })
     self:WunderBar_Modules_Select(group, "RightPanel")
   end

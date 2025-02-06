@@ -10,9 +10,9 @@ function O:Contacts()
   do
     -- ToxiUI Website Group
     local contactsWebsite = self:AddInlineDesc(options, {
-      name = "Website",
+      name = "网站",
     }, {
-      name = "Visit the " .. TXUI.Title .. " website to find more important information!\n\n",
+      name = "访问 " .. TXUI.Title .. " 网站以获取更多重要信息！\n\n",
     }).args
 
     -- ToxiUI Website URL
@@ -46,9 +46,9 @@ function O:Contacts()
   do
     -- ToxiUI GitHub Group
     local contactsGithub = self:AddInlineDesc(options, {
-      name = "Github",
+      name = "GitHub",
     }, {
-      name = "Visit the " .. TXUI.Title .. " GitHub repository to report bugs or get the latest changes!\n\n",
+      name = "访问 " .. TXUI.Title .. " GitHub 仓库以报告错误或获取最新更改！\n\n",
     }).args
 
     -- ToxiUI Website URL
@@ -84,7 +84,7 @@ function O:Contacts()
     local contactsDiscord = self:AddInlineDesc(options, {
       name = "Discord",
     }, {
-      name = "Join the " .. TXUI.Title .. " Discord for support!\n\n",
+      name = "加入 " .. TXUI.Title .. " Discord 以获取支持！\n\n",
     }).args
 
     -- ToxiUI Discord URL
@@ -120,7 +120,7 @@ function O:Contacts()
     local contactsYoutube = self:AddInlineDesc(options, {
       name = "YouTube",
     }, {
-      name = "Visit " .. F.String.ToxiUI("Toxi's") .. " YouTube channel\n\n",
+      name = "访问 " .. F.String.ToxiUI("Toxi") .. " 的 YouTube 频道\n\n",
     }).args
 
     -- ToxiUI YouTube URL

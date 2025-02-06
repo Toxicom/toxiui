@@ -11,9 +11,9 @@ function O:WunderBar_General()
   do
     -- Wunderbar Description Group
     local wunderBarDesc = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
-      name = F.String.Menu.WunderBar() .. " - a full replacement for old XIV Databar. Displays important information and offers buttons for easier life.\n\n",
+      name = F.String.Menu.WunderBar() .. " - 旧 XIV 数据栏的完整替代品。显示重要信息并提供按钮以简化生活。\n\n",
     }, I.Requirements.WunderBar)
 
     -- Wunderbar Description Enable Toggle
@@ -42,7 +42,7 @@ function O:WunderBar_General()
   do
     -- General Group
     local generalGroup = self:AddInlineGroup(options, {
-      name = "General",
+      name = "常规",
       hidden = optionsHidden,
     })
 
@@ -50,24 +50,24 @@ function O:WunderBar_General()
     generalGroup["args"]["noCombatClick"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Block Combat Click",
-      desc = "Blocks all click events while in combat.",
+      name = "阻止战斗点击",
+      desc = "在战斗中阻止所有点击事件。",
     }
 
     -- No combat hover
     generalGroup["args"]["noCombatHover"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Block Combat Tooltip",
-      desc = "Blocks datatext tooltip from showing in combat.",
+      name = "阻止战斗提示",
+      desc = "在战斗中阻止显示数据文本提示。",
     }
 
     -- No hover
     generalGroup["args"]["noHover"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Always Hide Tooltips",
-      desc = "Blocks datatext tooltips from showing.\n\n" .. F.String.Error("Warning: This also disables 'hover' colors."),
+      name = "始终隐藏提示",
+      desc = "阻止显示数据文本提示。\n\n" .. F.String.Error("警告：这也会禁用“悬停”颜色。"),
     }
 
     -- Spacer
@@ -77,11 +77,11 @@ function O:WunderBar_General()
     generalGroup["args"]["position"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Position",
-      desc = "Choose whether to display the " .. F.String.Menu.WunderBar() .. " at the top or bottom of the screen.",
+      name = "位置",
+      desc = "选择是否在屏幕顶部或底部显示 " .. F.String.Menu.WunderBar() .. "。",
       values = {
-        TOP = "Top",
-        BOTTOM = "Bottom",
+        TOP = "顶部",
+        BOTTOM = "底部",
       },
       set = function(_, value)
         E.db.TXUI.wunderbar.general.position = value
@@ -93,12 +93,12 @@ function O:WunderBar_General()
     generalGroup["args"]["barVisibility"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Visibility",
+      name = "可见性",
       values = {
-        ALWAYS = "Always",
-        NO_COMBAT = "Hide in Combat",
-        RESTING = "Only in rested area",
-        RESTING_AND_MOUSEOVER = "Resting & Mouseover",
+        ALWAYS = "始终",
+        NO_COMBAT = "战斗中隐藏",
+        RESTING = "仅在休息区",
+        RESTING_AND_MOUSEOVER = "休息区和鼠标悬停",
       },
     }
 
@@ -106,8 +106,8 @@ function O:WunderBar_General()
     generalGroup["args"]["barMouseOverOnly"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Mouseover Only",
-      desc = "Show the bar only on mouseover.",
+      name = "仅鼠标悬停",
+      desc = "仅在鼠标悬停时显示栏。",
       disabled = function()
         return (E.db.TXUI.wunderbar.general.barVisibility == "RESTING_AND_MOUSEOVER")
       end,
@@ -120,7 +120,7 @@ function O:WunderBar_General()
     generalGroup["args"]["barHeight"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Height",
+      name = "高度",
       min = 1,
       max = 200,
       step = 1,
@@ -130,7 +130,7 @@ function O:WunderBar_General()
     generalGroup["args"]["barWidth"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Width",
+      name = "宽度",
       min = 1,
       max = E.physicalWidth,
       step = 1,
@@ -140,8 +140,8 @@ function O:WunderBar_General()
     generalGroup["args"]["barSpacing"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spacing",
-      desc = "Amount of spacing that " .. F.String.Menu.WunderBar() .. " should be offset from each side of the screen.",
+      name = "间距",
+      desc = F.String.Menu.WunderBar() .. " 应该从屏幕每侧偏移的间距量。",
       min = 1,
       max = 100,
       step = 1,
@@ -155,7 +155,7 @@ function O:WunderBar_General()
   do
     -- Font Group
     local fontGroup = self:AddInlineGroup(options, {
-      name = "Font",
+      name = "字体",
       hidden = optionsHidden,
     })
 
@@ -164,8 +164,8 @@ function O:WunderBar_General()
       order = self:GetOrder(),
       type = "select",
       dialogControl = "LSM30_Font",
-      name = "Font",
-      desc = "Set the font.",
+      name = "字体",
+      desc = "设置字体。",
       values = self:GetAllFontsFunc(),
     }
 
@@ -173,8 +173,8 @@ function O:WunderBar_General()
     fontGroup["args"]["normalFontOutline"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Font Outline",
-      desc = "Set the font outline.",
+      name = "字体轮廓",
+      desc = "设置字体轮廓。",
       values = self:GetAllFontOutlinesFunc(),
       disabled = function()
         return (E.db.TXUI.wunderbar.general["normalFontShadow"] == true)
@@ -185,8 +185,8 @@ function O:WunderBar_General()
     fontGroup["args"]["normalFontSize"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Font Size",
-      desc = "Set the font size.",
+      name = "字体大小",
+      desc = "设置字体大小。",
       min = 1,
       max = 100,
       step = 1,
@@ -196,8 +196,8 @@ function O:WunderBar_General()
     fontGroup["args"]["normalFontShadow"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Font Shadow",
-      desc = "Set font drop shadow.",
+      name = "字体阴影",
+      desc = "设置字体阴影。",
     }
   end
 
@@ -208,7 +208,7 @@ function O:WunderBar_General()
   do
     -- Color Group
     local colorGroup = self:AddInlineGroup(options, {
-      name = "Color",
+      name = "颜色",
       hidden = optionsHidden,
     })
 
@@ -216,7 +216,7 @@ function O:WunderBar_General()
     colorGroup["args"]["backgroundColor"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Background Color",
+      name = "背景颜色",
       values = self:GetAllFontColorsFunc {
         RGB = F.String.Legendary("LEGENDARY: ") .. "|cffff0000R|r|cff00ff00G|r|cff0000ffB|r ",
       } or self:GetAllFontColorsFunc(),
@@ -226,7 +226,7 @@ function O:WunderBar_General()
     colorGroup["args"]["backgroundCustomColor"] = {
       order = self:GetOrder(),
       type = "color",
-      name = "Custom Color",
+      name = "自定义颜色",
       hasAlpha = true,
       get = self:GetFontColorGetter("TXUI.wunderbar.general", P.wunderbar.general),
       set = self:GetFontColorSetter("TXUI.wunderbar.general", function()
@@ -244,7 +244,7 @@ function O:WunderBar_General()
     colorGroup["args"]["accentFontColor"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Accent Color",
+      name = "强调颜色",
       values = self:GetAllFontColorsFunc(),
     }
 
@@ -252,7 +252,7 @@ function O:WunderBar_General()
     colorGroup["args"]["accentFontCustomColor"] = {
       order = self:GetOrder(),
       type = "color",
-      name = "Custom Color",
+      name = "自定义颜色",
       hasAlpha = true,
       get = self:GetFontColorGetter("TXUI.wunderbar.general", P.wunderbar.general),
       set = self:GetFontColorSetter("TXUI.wunderbar.general", function()
@@ -270,7 +270,7 @@ function O:WunderBar_General()
     colorGroup["args"]["iconFontColor"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Icon Color",
+      name = "图标颜色",
       values = self:GetAllFontColorsFunc(),
     }
 
@@ -278,7 +278,7 @@ function O:WunderBar_General()
     colorGroup["args"]["iconFontCustomColor"] = {
       order = self:GetOrder(),
       type = "color",
-      name = "Custom Color",
+      name = "自定义颜色",
       hasAlpha = true,
       get = self:GetFontColorGetter("TXUI.wunderbar.general", P.wunderbar.general),
       set = self:GetFontColorSetter("TXUI.wunderbar.general", function()
@@ -296,7 +296,7 @@ function O:WunderBar_General()
     colorGroup["args"]["normalFontColor"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Font Color",
+      name = "字体颜色",
       values = self:GetAllFontColorsFunc(),
     }
 
@@ -304,7 +304,7 @@ function O:WunderBar_General()
     colorGroup["args"]["normalFontCustomColor"] = {
       order = self:GetOrder(),
       type = "color",
-      name = "Custom Color",
+      name = "自定义颜色",
       hasAlpha = true,
       get = self:GetFontColorGetter("TXUI.wunderbar.general", P.wunderbar.general),
       set = self:GetFontColorSetter("TXUI.wunderbar.general", function()
@@ -323,7 +323,7 @@ function O:WunderBar_General()
   do
     -- Animation Group
     local animationsGroup = self:AddInlineGroup(options, {
-      name = "Animation",
+      name = "动画",
       hidden = optionsHidden,
     })
 
@@ -345,8 +345,8 @@ function O:WunderBar_General()
     animationsGroup["args"]["animationsEvents"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Animate on Events",
-      desc = "Plays a short animation when a SubModule recives an Event",
+      name = "事件动画",
+      desc = "当子模块接收到事件时播放短动画",
       disabled = animationsDisabled,
     }
 
@@ -354,7 +354,8 @@ function O:WunderBar_General()
     animationsGroup["args"]["animationsMult"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Animation Speed",
+      name = "动画速度",
+      desc = "设置动画速度。",
       min = 0.5,
       max = 2,
       step = 0.1,
@@ -376,25 +377,26 @@ function O:WunderBar_General()
   do
     -- Background Group
     local backgroundGroup = self:AddInlineGroup(options, {
-      name = "Background",
+      name = "背景",
       hidden = optionsHidden,
     })
 
-    backgroundGroup["args"]["backgroundTexture"] = ACH:SharedMediaStatusbar("Background Texture", nil, self:GetOrder())
+    backgroundGroup["args"]["backgroundTexture"] = ACH:SharedMediaStatusbar("背景纹理", nil, self:GetOrder())
 
     -- Background Fade Toggle
     backgroundGroup["args"]["backgroundGradient"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Background Fade",
-      desc = "Fades the background near the top out.",
+      name = "背景渐变",
+      desc = "在顶部附近淡出背景。",
     }
 
     -- Background Fade Range
     backgroundGroup["args"]["backgroundGradientAlpha"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Fade Strength",
+      name = "渐变强度",
+      desc = "设置渐变强度。",
       min = 0,
       max = 1,
       step = 0.01,
@@ -409,10 +411,10 @@ function O:WunderBar_General()
   -- Flyout Backdrop
   do
     local flyoutGroup = self:AddInlineDesc(options, {
-      name = "Flyouts",
+      name = "弹出框",
       hidden = optionsHidden,
     }, {
-      name = "Control the " .. F.String.Menu.WunderBar() .. " flyouts that show up in Profession and Hearthstone modules.\n\n",
+      name = "控制 " .. F.String.Menu.WunderBar() .. " 在专业和炉石模块中显示的弹出框。\n\n",
     }).args
 
     flyoutGroup["enabled"] = {
@@ -436,8 +438,8 @@ function O:WunderBar_General()
     flyoutGroup["alpha"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Alpha",
-      desc = "Transparency of the flyout's backdrop.",
+      name = "透明度",
+      desc = "设置弹出框背景的透明度。",
       min = 0,
       max = 1,
       step = 0.05,
@@ -453,8 +455,8 @@ function O:WunderBar_General()
     flyoutGroup["classColor"] = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Class Color",
-      desc = "Enabling this will set the flyout's backdrop to your class color.",
+      name = "职业颜色",
+      desc = "启用此选项将设置弹出框背景为您的职业颜色。",
       disabled = flyoutDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
@@ -467,8 +469,8 @@ function O:WunderBar_General()
     flyoutGroup["borderSize"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Border Size",
-      desc = "Border size of the whole flyout backdrop.",
+      name = "边框大小",
+      desc = "设置整个弹出框背景的边框大小。",
       min = 1,
       max = 6,
       step = 1,
@@ -484,8 +486,8 @@ function O:WunderBar_General()
     flyoutGroup["padding"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Padding " .. E.NewSign,
-      desc = "Padding for the flyout backdrop.",
+      name = "填充 " .. E.NewSign,
+      desc = "设置弹出框背景的填充。",
       min = 0,
       max = 32,
       step = 1,
@@ -503,8 +505,8 @@ function O:WunderBar_General()
     flyoutGroup["width"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Slot Width " .. E.NewSign,
-      desc = "Size of an individual slot. Height is going to change accordingly to maintain 4:3 aspect ratio.",
+      name = "槽宽度 " .. E.NewSign,
+      desc = "设置单个槽的大小。高度将相应变化以保持 4:3 的宽高比。",
       min = 20,
       max = 80,
       step = 1,
@@ -520,8 +522,8 @@ function O:WunderBar_General()
     flyoutGroup["spacing"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spacing " .. E.NewSign,
-      desc = "Spacing between slots.",
+      name = "间距 " .. E.NewSign,
+      desc = "设置槽之间的间距。",
       min = 0,
       max = 16,
       step = 1,
@@ -538,8 +540,8 @@ function O:WunderBar_General()
       order = self:GetOrder(),
       type = "select",
       dialogControl = "LSM30_Font",
-      name = "Label Font " .. E.NewSign,
-      desc = "Set the font for M+ portal labels.",
+      name = "标签字体 " .. E.NewSign,
+      desc = "设置 M+ 传送门标签的字体。",
       values = self:GetAllFontsFunc(),
       disabled = flyoutDisabled,
       get = function(info)
@@ -553,8 +555,8 @@ function O:WunderBar_General()
     flyoutGroup["labelFontSize"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Label Font Size " .. E.NewSign,
-      desc = "Set the font size for M+ portal labels.",
+      name = "标签字体大小 " .. E.NewSign,
+      desc = "设置 M+ 传送门标签的字体大小。",
       min = 8,
       max = 64,
       step = 1,

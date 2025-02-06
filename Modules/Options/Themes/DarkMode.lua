@@ -6,7 +6,7 @@ function O:ToxiUI_Themes_DarkMode()
   self.options.themes.args.darkMode = {
     order = self:GetOrder(),
     type = "group",
-    name = "|cffbdbdbdDark Mode|r",
+    name = "|cffbdbdbd暗黑模式|r",
     get = function(info)
       return E.db.TXUI.themes.darkMode[info[#info]]
     end,
@@ -26,10 +26,10 @@ function O:ToxiUI_Themes_DarkMode()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
-      name = "We provide different themes for " .. TXUI.Title .. ", you can enable or disable them below." .. "\n\n" .. F.String.Error(
-        "Warning: Enabling one of these settings may overwrite colors or textures in ElvUI and Details, they also prevent you from changing certain settings in ElvUI!"
+      name = "我们为 " .. TXUI.Title .. " 提供了不同的主题，您可以在下面启用或禁用它们。" .. "\n\n" .. F.String.Error(
+        "警告：启用这些设置之一可能会覆盖 ElvUI 和 Details 中的颜色或纹理，它们还会阻止您更改 ElvUI 中的某些设置！"
       ) .. "\n\n",
     }, I.Requirements.DarkMode).args
 
@@ -37,8 +37,8 @@ function O:ToxiUI_Themes_DarkMode()
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the Dark theme for " .. TXUI.Title .. ".\n\n" .. F.String.Error(
-        "Warning: Enabling this setting will overwrite textures in ElvUI and Details!!"
+      desc = "启用此选项将为 " .. TXUI.Title .. " 启用暗黑主题。\n\n" .. F.String.Error(
+        "警告：启用此设置将覆盖 ElvUI 和 Details 中的纹理！"
       ),
       name = function()
         return self:GetEnableName(E.db.TXUI.themes.darkMode.enabled, generalGroup)
@@ -64,10 +64,10 @@ function O:ToxiUI_Themes_DarkMode()
   do
     -- Gradient Group
     local gradientGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Gradient name",
+      name = "渐变名称",
       hidden = optionsHidden,
     }, {
-      name = "Changes unitframe name to have gradient colors.\n\n",
+      name = "将单位框架名称更改为渐变颜色。\n\n",
     }, I.Requirements.DarkModeGradientName).args
 
     -- Gradient Toggle
@@ -77,7 +77,7 @@ function O:ToxiUI_Themes_DarkMode()
       name = function()
         return self:GetEnableName(E.db.TXUI.themes.darkMode.gradientName)
       end,
-      desc = "Toggling this on enables gradient names for " .. TXUI.Title .. " Dark Mode",
+      desc = "启用此选项将为 " .. TXUI.Title .. " 暗黑模式启用渐变名称",
       get = function()
         return E.db.TXUI.themes.darkMode.gradientName
       end,
@@ -93,8 +93,8 @@ function O:ToxiUI_Themes_DarkMode()
     gradientGroup.detailsToggle = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Details Gradient Text",
-      desc = "Toggling this on enables gradient text for Details",
+      name = "Details 渐变文本",
+      desc = "启用此选项将为 Details 启用渐变文本",
       get = function()
         return E.db.TXUI.themes.darkMode.detailsGradientText
       end,
@@ -112,18 +112,18 @@ function O:ToxiUI_Themes_DarkMode()
   do
     -- Transparency Group
     local transparencyGroup = self:AddInlineDesc(options, {
-      name = "Transparency",
+      name = "透明度",
       hidden = optionsHidden,
     }, {
-      name = "Change the backdrop transparency (alpha).",
+      name = "更改背景透明度（alpha）。",
     }).args
 
     -- Dark Mode Theme Transparency Enable
     transparencyGroup.darkModeTransparency = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Transparency",
-      desc = "Toggling this on enables the Dark theme transparency for " .. TXUI.Title,
+      name = "透明度",
+      desc = "启用此选项将为 " .. TXUI.Title .. " 启用暗黑主题透明度",
       get = function()
         return E.db.TXUI.themes.darkMode.transparency
       end,
@@ -139,7 +139,7 @@ function O:ToxiUI_Themes_DarkMode()
     transparencyGroup.transparencyAlpha = {
       order = self:GetOrder(),
       type = "range",
-      name = "Transparency Alpha",
+      name = "透明度 Alpha",
       min = 0,
       max = 0.75,
       step = 0.01,

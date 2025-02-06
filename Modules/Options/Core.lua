@@ -217,12 +217,12 @@ function O:GetEnableName(check, group)
   local enabled = self:GetEnabledState(check, group)
 
   if enabled == self.enabledState.YES then
-    return F.String.Good("Enabled")
+    return F.String.Good("启用")
   elseif enabled == self.enabledState.NO then
-    return F.String.Error("Disabled")
+    return F.String.Error("禁用")
   end
 
-  return "Disabled"
+  return "禁用"
 end
 
 function O:AddGroup(options, others)

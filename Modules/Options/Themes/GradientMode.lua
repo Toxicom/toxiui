@@ -34,16 +34,14 @@ function O:ToxiUI_Themes_GradientMode()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
-      name = "We provide different themes for "
-        .. TXUI.Title
-        .. ", you can enable or disable them below."
+      name = "我们为 " .. TXUI.Title .. " 提供了不同的主题，您可以在下面启用或禁用它们。"
         .. "\n\n"
-        .. "Some colors (like Details dark mode gradient text) will update only after a reload."
+        .. "某些颜色（如 Details 暗模式渐变文本）仅在重新加载后更新。"
         .. "\n\n"
         .. F.String.Error(
-          "Warning: Enabling one of these settings may overwrite colors or textures in ElvUI and Details, they also prevent you from changing certain settings in ElvUI!"
+          "警告：启用这些设置之一可能会覆盖 ElvUI 和 Details 中的颜色或纹理，它们还会阻止您更改 ElvUI 中的某些设置！"
         )
         .. "\n\n",
     }, I.Requirements.GradientMode).args
@@ -52,8 +50,8 @@ function O:ToxiUI_Themes_GradientMode()
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables fancy gradients for " .. TXUI.Title .. ".\n\n" .. F.String.Error(
-        "Warning: Enabling this setting will overwrite textures in ElvUI and Details!!"
+      desc = "启用此选项可为 " .. TXUI.Title .. " 启用炫酷的渐变效果。\n\n" .. F.String.Error(
+        "警告：启用此设置将覆盖 ElvUI 和 Details 中的纹理！"
       ),
       name = function()
         return self:GetEnableName(E.db.TXUI.themes.gradientMode.enabled, generalGroup)
@@ -71,19 +69,19 @@ function O:ToxiUI_Themes_GradientMode()
   do
     -- Tab
     local tab = self:AddGroup(options, {
-      name = "Class Colors",
+      name = "职业颜色",
     }).args
 
     -- Colors Group
     local colorGroup = self:AddInlineDesc(tab, {
-      name = "Class Colors",
+      name = "职业颜色",
     }, {
       name = TXUI.Title
-        .. " Gradient theme "
-        .. F.String.Class("shifts", "MONK")
-        .. " from one color to another. You can change the "
-        .. F.String.Class("shifts", "MONK")
-        .. " below.\n\n",
+        .. " 渐变主题 "
+        .. F.String.Class("从一种颜色", "MONK")
+        .. " 过渡到另一种颜色。您可以在下面更改 "
+        .. F.String.Class("过渡", "MONK")
+        .. "。\n\n",
     }).args
 
     -- Get correct classname table
@@ -160,7 +158,7 @@ function O:ToxiUI_Themes_GradientMode()
 
   -- Reaction Colors
   do
-    local name = "NPC Colors"
+    local name = "NPC 颜色"
 
     -- Tab
     local tab = self:AddGroup(options, {
@@ -171,7 +169,7 @@ function O:ToxiUI_Themes_GradientMode()
     local colorGroup = self:AddInlineDesc(tab, {
       name = name,
     }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of NPC colors.\n\n",
+      name = "在这里您可以更改 NPC 颜色的 " .. F.String.Class("渐变过渡", "MONK") .. "。\n\n",
     }).args
 
     -- Reaction Colors
@@ -256,7 +254,7 @@ function O:ToxiUI_Themes_GradientMode()
 
   -- Power Colors
   do
-    local name = "Power Colors"
+    local name = "能量颜色"
 
     -- Tab
     local tab = self:AddGroup(options, {
@@ -267,7 +265,7 @@ function O:ToxiUI_Themes_GradientMode()
     local colorGroup = self:AddInlineDesc(tab, {
       name = name,
     }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of Power colors.\n\n",
+      name = "在这里您可以更改能量颜色的 " .. F.String.Class("渐变过渡", "MONK") .. "。\n\n",
     }).args
 
     -- Power Colors
@@ -353,14 +351,14 @@ function O:ToxiUI_Themes_GradientMode()
   do
     -- Tab
     local tab = self:AddGroup(options, {
-      name = "Other Colors",
+      name = "其他颜色",
     }).args
 
     -- State Group
     local stateGroup = self:AddInlineDesc(tab, {
-      name = "State Colors",
+      name = "状态颜色",
     }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of State colors.\n\n",
+      name = "在这里您可以更改状态颜色的 " .. F.String.Class("渐变过渡", "MONK") .. "。\n\n",
     }).args
 
     -- State Colors
@@ -433,9 +431,9 @@ function O:ToxiUI_Themes_GradientMode()
 
     -- Cast Group
     local castGroup = self:AddInlineDesc(tab, {
-      name = "Castbar Colors",
+      name = "施法条颜色",
     }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of Castbar colors.\n\n",
+      name = "在这里您可以更改施法条颜色的 " .. F.String.Class("渐变过渡", "MONK") .. "。\n\n",
     }).args
 
     -- Cast Colors
@@ -516,7 +514,7 @@ function O:ToxiUI_Themes_GradientMode()
 
   -- Settings
   do
-    local name = "Settings"
+    local name = "设置"
 
     -- Tab
     local tab = self:AddGroup(options, {
@@ -527,7 +525,7 @@ function O:ToxiUI_Themes_GradientMode()
     self:AddInlineDesc(tab, {
       name = name,
     }, {
-      name = "Here you can change additional settings for the " .. gradientTitle .. " Mode|r.\n\n",
+      name = "在这里您可以更改 " .. gradientTitle .. " 模式|r 的其他设置。\n\n",
     })
 
     -- Spacer
@@ -535,26 +533,26 @@ function O:ToxiUI_Themes_GradientMode()
 
     do
       local texturesGroup = self:AddInlineDesc(tab, {
-        name = "UnitFrame Textures",
+        name = "单位框架纹理",
       }, {
-        name = "Change the textures used for UnitFrame's Health, Power and Cast status bars.",
+        name = "更改用于单位框架的生命值、能量值和施法状态条的纹理。",
       }).args
 
-      texturesGroup.health = ACH:SharedMediaStatusbar("Health Texture", "Health bar texture for UnitFrames", self:GetOrder(), 200, function()
+      texturesGroup.health = ACH:SharedMediaStatusbar("生命值纹理", "单位框架的生命值条纹理", self:GetOrder(), 200, function()
         return E.db.TXUI.themes.gradientMode.textures.health
       end, function(_, value)
         E.db.TXUI.themes.gradientMode.textures.health = value
         F.Event.TriggerEvent("ThemesGradients.TexturesUpdate")
       end)
 
-      texturesGroup.power = ACH:SharedMediaStatusbar("Power Texture", "Power bar texture for UnitFrames", self:GetOrder(), 200, function()
+      texturesGroup.power = ACH:SharedMediaStatusbar("能量值纹理", "单位框架的能量值条纹理", self:GetOrder(), 200, function()
         return E.db.TXUI.themes.gradientMode.textures.power
       end, function(_, value)
         E.db.TXUI.themes.gradientMode.textures.power = value
         F.Event.TriggerEvent("ThemesGradients.TexturesUpdate")
       end)
 
-      texturesGroup.cast = ACH:SharedMediaStatusbar("Castbar Texture", "Castbar texture for UnitFrames", self:GetOrder(), 200, function()
+      texturesGroup.cast = ACH:SharedMediaStatusbar("施法条纹理", "单位框架的施法条纹理", self:GetOrder(), 200, function()
         return E.db.TXUI.themes.gradientMode.textures.cast
       end, function(_, value)
         E.db.TXUI.themes.gradientMode.textures.cast = value
@@ -567,7 +565,7 @@ function O:ToxiUI_Themes_GradientMode()
 
     do
       local brightnessGroup = self:AddInlineDesc(tab, {
-        name = "Background Brightness",
+        name = "背景亮度",
         get = function(info)
           return E.db.TXUI.themes.gradientMode[info[#info]]
         end,
@@ -580,7 +578,7 @@ function O:ToxiUI_Themes_GradientMode()
           F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end,
       }, {
-        name = "This controls the strength of the background colors.\n\nLower value means a darker background, higher value means a lighter background.\n\n",
+        name = "此选项控制背景颜色的强度。\n\n较低的值表示较暗的背景，较高的值表示较亮的背景。\n\n",
       }).args
 
       -- Background Multiplier Size
@@ -601,17 +599,15 @@ function O:ToxiUI_Themes_GradientMode()
 
     do
       local healthGroup = self:AddInlineDesc(tab, {
-        name = "Health Color Tags",
+        name = "生命值颜色标签",
       }, {
-        name = "Colors the health value of "
-          .. TXUI.Title
-          .. " text tags used in UnitFrames.\n\n"
-          .. F.String.Error("Important: ")
-          .. "This option only works for "
+        name = "为单位框架中使用的 " .. TXUI.Title .. " 文本标签着色生命值。\n\n"
+          .. F.String.Error("重要提示：")
+          .. "此选项仅适用于 "
           .. F.String.ToxiUI("tx:health:percent")
-          .. " and "
+          .. " 和 "
           .. F.String.ToxiUI("tx:health:percent:nosign")
-          .. " tags!\n\n",
+          .. " 标签！\n\n",
       }).args
 
       healthGroup.enable = {
@@ -637,8 +633,8 @@ function O:ToxiUI_Themes_GradientMode()
       healthGroup.yellow = {
         order = self:GetOrder(),
         type = "range",
-        name = F.String.Warning("Yellow") .. " Threshold",
-        desc = "This slider determines the threshold for when the health should be colored " .. F.String.Warning("yellow"),
+        name = F.String.Warning("黄色") .. " 阈值",
+        desc = "此滑块确定何时应将生命值着色为 " .. F.String.Warning("黄色"),
         min = 35,
         max = 75,
         step = 1,
@@ -656,8 +652,8 @@ function O:ToxiUI_Themes_GradientMode()
       healthGroup.red = {
         order = self:GetOrder(),
         type = "range",
-        name = F.String.Error("Red") .. " Threshold",
-        desc = "This slider determines the threshold for when the health should be colored " .. F.String.Error("red"),
+        name = F.String.Error("红色") .. " 阈值",
+        desc = "此滑块确定何时应将生命值着色为 " .. F.String.Error("红色"),
         min = 10,
         max = 35,
         step = 1,
@@ -678,7 +674,7 @@ function O:ToxiUI_Themes_GradientMode()
 
     -- Saturation Boost
     local saturationGroup = self:AddInlineDesc(tab, {
-      name = "Saturation Boost " .. E.NewSign,
+      name = "饱和度增强 " .. E.NewSign,
       get = function(info)
         return E.db.TXUI.themes.gradientMode.saturationBoost[info[#info]]
       end,
@@ -691,7 +687,7 @@ function O:ToxiUI_Themes_GradientMode()
         F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
       end,
     }, {
-      name = "Boosts the saturation and darkens " .. gradientTitle .. " Colors|r\nFor people that like it a bit more extreme\n\n",
+      name = "增强 " .. gradientTitle .. " 颜色|r 的饱和度并使其变暗\n适合喜欢更极端效果的人\n\n",
     }).args
 
     saturationGroup.enabled = {
@@ -705,8 +701,8 @@ function O:ToxiUI_Themes_GradientMode()
     saturationGroup.shiftLight = {
       order = self:GetOrder(),
       type = "range",
-      name = "Shift Lightness",
-      desc = "Control the Lightness value of HSL for the Shift color.",
+      name = "亮度调整",
+      desc = "控制 HSL 中 Shift 颜色的亮度值。",
       min = 0.1,
       max = 2,
       step = 0.01,
@@ -715,8 +711,8 @@ function O:ToxiUI_Themes_GradientMode()
     saturationGroup.shiftSat = {
       order = self:GetOrder(),
       type = "range",
-      name = "Shift Saturation",
-      desc = "Control the Saturation value of HSL for the Shift color.",
+      name = "饱和度调整",
+      desc = "控制 HSL 中 Shift 颜色的饱和度值。",
       min = 0.1,
       max = 1,
       step = 0.01,
@@ -725,8 +721,8 @@ function O:ToxiUI_Themes_GradientMode()
     saturationGroup.normalLight = {
       order = self:GetOrder(),
       type = "range",
-      name = "Normal Lightness",
-      desc = "Control the Lightness value of HSL for the Normal color.",
+      name = "正常亮度",
+      desc = "控制 HSL 中正常颜色的亮度值。",
       min = 0.1,
       max = 2,
       step = 0.01,
@@ -735,8 +731,8 @@ function O:ToxiUI_Themes_GradientMode()
     saturationGroup.normalSat = {
       order = self:GetOrder(),
       type = "range",
-      name = "Normal Saturation",
-      desc = "Control the Saturation value of HSL for the Normal color.",
+      name = "正常饱和度",
+      desc = "控制 HSL 中正常颜色的饱和度值。",
       min = 0.1,
       max = 1,
       step = 0.01,

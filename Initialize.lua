@@ -98,11 +98,11 @@ function TXUI:Initialize()
 
   E.PopupDialogs.ELVUI_MINIMUM_VERSION_REQUIRED = {
     text = TXUI.Title
-      .. " did not load because your version of |cff1784d1ElvUI|r |cffef5350"
+      .. " 未加载，因为你的版本 |cff1784d1ElvUI|r |cffef5350"
       .. E.versionString
-      .. "|r is insufficient.\n\nPlease install |cff1784d1ElvUI|r version |cff66bb6a"
+      .. "|r 过低.\n\n请安装 |cff1784d1ElvUI|r 版本 |cff66bb6a"
       .. RequiredVersionString
-      .. "|r or higher!",
+      .. "|r 或者更高!",
     button1 = OKAY,
     showAlert = true,
   }

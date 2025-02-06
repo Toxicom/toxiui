@@ -13,27 +13,31 @@ function O:General()
     order = self:GetOrder(),
     inline = true,
     type = "group",
-    name = "Description",
+    name = "描述",
     args = {
       ["generalWelcomeDesc"] = {
         order = self:GetOrder(),
         type = "description",
         name = TXUI.Title
-          .. " is a minimalistic "
+          .. " 是一个极简主义的 "
           .. F.String.ElvUI("ElvUI")
-          .. " edit by "
-          .. F.String.Authors()
-          .. " best suited for 1440p resolution. \n\nIt is designed to be used along with "
+          .. " 修改版，由 "
+          .. F.String.Authors("Toxi")
+          .. " 制作，最适合 1440p 分辨率。\n\n它设计用于与 "
           .. F.String.Luxthos("Luxthos")
-          .. " WeakAuras.\n\n",
+          .. " WeakAuras 一起使用。\n\n"
+          .. "由 "
+          .. F.String.ElvUI("乳酸菌")
+          .. " 汉化支持。\n\n",
       },
 
       -- Status Report BUTTON
+      -- 状态报告按钮
       ["generalStatusReport"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.Class("Status Report", "MONK"),
-        desc = "Open the " .. TXUI.Title .. " Status Report window that shows necessary information for debugging. Post this when reporting bugs!",
+        name = F.String.Class("状态报告", "MONK"),
+        desc = "打开 " .. TXUI.Title .. " 状态报告窗口，显示调试所需的信息。报告错误时请发布此信息！",
         func = function()
           E:ToggleOptions()
           M:StatusReportShow()
@@ -50,24 +54,24 @@ function O:General()
     order = self:GetOrder(),
     inline = true,
     type = "group",
-    name = "Installation guide",
+    name = "安装指南",
     args = {
       -- Welcome Description
       ["generalInstallDesc"] = {
         order = self:GetOrder(),
         type = "description",
-        name = "The installation guide should pop up automatically after you login."
-          .. " \nIf you wish to re-run the installation process to update some settings please click the "
-          .. F.String.ToxiUI("Open Installer")
-          .. " button below.\n\n",
+        name = "安装指南应在您登录后自动弹出。"
+          .. " \n如果您希望重新运行安装过程以更新某些设置，请点击下面的 "
+          .. F.String.ToxiUI("打开安装程序")
+          .. " 按钮。\n\n",
       },
 
       -- Install BUTTON
       ["generalInstallButton"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.ToxiUI("Open Installer"),
-        desc = "Run the installation/update process.",
+        name = F.String.ToxiUI("打开安装程序"),
+        desc = "运行安装/更新过程。",
         func = function()
           E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
           E:ToggleOptions()
@@ -150,11 +154,11 @@ function O:General()
   addToCredits("4beb2c", "Luckyone")
 
   local creditsGroup = self:AddInlineDesc(options, {
-    name = "Credits",
+    name = "致谢",
   }, {
-    name = "Special thanks goes to these " .. F.String.ToxiUI("amazing people") .. " for their help or inspiration!" .. F.String.Error(" <3\n\n"),
+    name = "特别感谢这些 " .. F.String.ToxiUI("了不起的人") .. " 他们的帮助或灵感！" .. F.String.Error(" <3\n\n"),
   }).args
-
+  
   creditsGroup.credits = {
     order = self:GetOrder(),
     type = "description",

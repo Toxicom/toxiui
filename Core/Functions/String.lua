@@ -472,15 +472,15 @@ function F.String.GradientClass(text, class, reverse)
 end
 
 function F.String.Menu.General()
-  return F.String.FastGradientHex("General", "#fffd61", "#c79a00")
+  return F.String.FastGradientHex("常规", "#fffd61", "#c79a00")
 end
 
 function F.String.Menu.Contacts()
-  return F.String.FastGradientHex("Contacts", "#ffa270", "#c63f17")
+  return F.String.FastGradientHex("联系方式", "#ffa270", "#c63f17")
 end
 
 function F.String.Menu.Themes()
-  return F.String.FastGradientHex("Themes", "#73e8ff", "#0086c3")
+  return F.String.FastGradientHex("主题", "#73e8ff", "#0086c3")
 end
 
 function F.String.Menu.WunderBar()
@@ -488,31 +488,31 @@ function F.String.Menu.WunderBar()
 end
 
 function F.String.Menu.Armory()
-  return F.String.FastGradientHex("Armory", "#6ff9ff", "#0095a8")
+  return F.String.FastGradientHex("角色面板", "#6ff9ff", "#0095a8")
 end
 
 function F.String.Menu.Skins()
-  return F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+  return F.String.FastGradientHex("皮肤", "#ff77a9", "#b4004e")
 end
 
 function F.String.Menu.Styles()
-  return F.String.FastGradientHex("Styles", "#ff26a8", "#a10355")
+  return F.String.FastGradientHex("样式", "#ff26a8", "#a10355")
 end
 
 function F.String.Menu.Fonts()
-  return F.String.FastGradientHex("Fonts", "#df78ef", "#790e8b")
+  return F.String.FastGradientHex("字体", "#df78ef", "#790e8b")
 end
 
 function F.String.Menu.Plugins()
-  return F.String.FastGradientHex("Plugins", "#b085f5", "#4d2c91")
+  return F.String.FastGradientHex("插件", "#b085f5", "#4d2c91")
 end
 
 function F.String.Menu.Changelog()
-  return F.String.FastGradientHex("Changelog", "#8e99f3", "#26418f")
+  return F.String.FastGradientHex("更新日志", "#8e99f3", "#26418f")
 end
 
 function F.String.Menu.Reset()
-  return F.String.FastGradientHex("Reset", "#ff867c", "#b61827")
+  return F.String.FastGradientHex("重置", "#ff867c", "#b61827")
 end
 
 -- Credits to WunderUI

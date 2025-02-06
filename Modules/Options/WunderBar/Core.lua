@@ -13,8 +13,8 @@ function O:WunderBar()
   options["general"] = {
     order = 1,
     type = "group",
-    name = "General",
-    desc = "General Settings for WunderBar",
+    name = "常规",
+    desc = "WunderBar 的常规设置",
     get = function(info)
       return E.db.TXUI.wunderbar.general[info[#info]]
     end,
@@ -28,8 +28,8 @@ function O:WunderBar()
   options["modules"] = {
     order = 2,
     type = "group",
-    name = "Module Positions",
-    desc = "Placement and Selection for Modules",
+    name = "模块位置",
+    desc = "模块的放置和选择",
     hidden = wunderBarDisabled,
     args = {},
   }
@@ -38,8 +38,8 @@ function O:WunderBar()
     order = 3,
     type = "group",
     childGroups = "tree",
-    name = "Module Settings",
-    desc = "Settings for individual " .. TXUI.Title .. " modules",
+    name = "模块设置",
+    desc = TXUI.Title .. " 模块的单独设置",
     hidden = wunderBarDisabled,
     args = {},
   }

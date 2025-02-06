@@ -50,7 +50,7 @@ function M:GameMenuButton()
       backgroundFade.bottomText:Point("BOTTOM", 0, 100)
       backgroundFade.bottomText:SetFont(primaryFont, F.FontSizeScaled(14), "OUTLINE")
       backgroundFade.bottomText:SetTextColor(1, 1, 1, 0.6)
-      backgroundFade.bottomText:SetText("You can find all the relevant " .. TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
+      backgroundFade.bottomText:SetText("你可以在 " .. TXUI.Title .. " 的官方网站找到所有相关信息: " .. I.Strings.Branding.Links.Website)
 
       -- Player Name
       backgroundFade.nameText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -83,31 +83,32 @@ function M:GameMenuButton()
         collections:Point("TOPLEFT", 100, -100)
         collections:SetFont(titleFont, F.FontSizeScaled(24), "OUTLINE")
         collections:SetTextColor(1, 1, 1, 1)
-        collections:SetText(F.String.GradientClass("Collections"))
+        collections:SetText(F.String.GradientClass("收藏"))
 
         collections.mount = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.mount:SetPoint("TOPLEFT", collections, "BOTTOMLEFT", 0, -25)
         collections.mount:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.mount:SetTextColor(1, 1, 1, 1)
-        collections.mount:SetText("Mounts: " .. F.String.ToxiUI(collectedMounts))
+        collections.mount:SetText("坐骑: " .. F.String.ToxiUI(collectedMounts))
 
         collections.toys = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.toys:SetPoint("TOPLEFT", collections.mount, "BOTTOMLEFT", 0, -4)
         collections.toys:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.toys:SetTextColor(1, 1, 1, 1)
-        collections.toys:SetText("Toys: " .. F.String.ToxiUI(C_ToyBox.GetNumLearnedDisplayedToys()))
+        collections.toys:SetText("玩具: " .. F.String.ToxiUI(C_ToyBox.GetNumLearnedDisplayedToys()))
 
         local _, petsOwned = C_PetJournal.GetNumPets()
         collections.pets = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.pets:SetPoint("TOPLEFT", collections.toys, "BOTTOMLEFT", 0, -4)
         collections.pets:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.pets:SetTextColor(1, 1, 1, 1)
-        collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
+        collections.pets:SetText("宠物: " .. F.String.ToxiUI(petsOwned))
 
         collections.achievs = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.achievs:SetPoint("TOPLEFT", collections.pets, "BOTTOMLEFT", 0, -12)
         collections.achievs:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.achievs:SetTextColor(1, 1, 1, 1)
+        collections.achievs:SetText("成就点数: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
       end
 
       -- Random tip
@@ -156,7 +157,7 @@ function M:GameMenuButton()
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
 
-      if self.collections then self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
+      if self.collections then self.collections.achievs:SetText("成就点数: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
 
       if self.backgroundFade.tipText then
         -- I have a suspicion that if it's defined outside it can cause gradient issues, not sure
@@ -173,24 +174,18 @@ function M:GameMenuButton()
         local ToxiUiBirthday = monthDate == "10/18"
         local ToxiUiAge = year - 2020
         local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
-        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
+        local holidayString = holidays[monthDate] and "\n\n" .. TXUI.Title .. " 团队祝你节日快乐!" or ""
         -- let's call it an easter egg
         if ToxiBirthday then
           self.backgroundFade.tipText:SetText(
-            "Did you know that today, January 6th, is "
-              .. F.String.ToxiUI("Toxi")
-              .. "'s birthday?\n"
-              .. F.String.ToxiUI("Fun fact:")
-              .. " First version of the "
-              .. TXUI.Title
-              .. " installer was released on this day back in 2021!"
+            "你知道吗，今天是1月6日，是 " .. F.String.ToxiUI("Toxi") .. " 的生日?\n" .. F.String.ToxiUI("有趣的事实:") .. " 第一版 " .. TXUI.Title .. " 安装程序是在2021年的今天发布的!"
           )
         elseif ToxiUiBirthday then
           self.backgroundFade.tipText:SetText(
-            "Did you know that today, October 18th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
+            "你知道吗，今天是10月18日，是 " .. TXUI.Title .. " 的生日? " .. TXUI.Title .. " 现在已经 " .. ToxiUiAge .. " 岁了!"
           )
         else
-          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
+          self.backgroundFade.tipText:SetText(F.String.ToxiUI("随机提示 #" .. randomIndex .. ": ") .. randomTip .. holidayString)
         end
       end
 
