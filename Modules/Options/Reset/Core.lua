@@ -12,12 +12,12 @@ function O:Reset()
     order = self:GetOrder(),
     inline = true,
     type = "group",
-    name = "Description",
+    name = "描述",
     args = {
       ["generalWelcomeDesc"] = {
         order = self:GetOrder(),
         type = "description",
-        name = "Choose which settings of " .. TXUI.Title .. " you want to " .. F.String.Error("reset") .. " back to their default state.",
+        name = "选择你想要将 " .. TXUI.Title .. " 的哪些设置 " .. F.String.Error("重置") .. " 回默认状态。",
       },
     },
   }
@@ -32,19 +32,19 @@ function O:Reset()
       ["globalResetDesc"] = {
         order = self:GetOrder(),
         type = "description",
-        name = "This will reset only "
+        name = "这将仅重置 "
           .. TXUI.Title
-          .. " settings back to their default state. That does "
-          .. F.String.Error("NOT")
-          .. " include "
+          .. " 的设置回默认状态。这"
+          .. F.String.Error("不")
+          .. "包括 "
           .. F.String.ElvUI("ElvUI")
-          .. ", Details, Plater and so on..\n\n",
+          .. "，Details，Plater 等等。\n\n",
       },
       ["resetButton"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.Error("All Settings"),
-        desc = "Reset all " .. TXUI.Title .. " Settings.",
+        name = F.String.Error("所有设置"),
+        desc = "重置所有 " .. TXUI.Title .. " 设置。",
         func = function()
           E:ToggleOptions()
           E:StaticPopup_Show("TXUI_RESET_TXUI_PROFILE")
@@ -64,7 +64,7 @@ function O:Reset()
         order = self:GetOrder(),
         type = "execute",
         name = F.String.Error("WunderBar"),
-        desc = "Reset all " .. F.String.Error("WunderBar") .. " Settings.",
+        desc = "重置所有 " .. F.String.Error("WunderBar") .. " 设置。",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "WunderBar", nil, "wunderbar")
         end,
@@ -77,13 +77,13 @@ function O:Reset()
 
   -- Plugins
   self:AddInlineGroup(options, {
-    name = "Plugins",
+    name = "插件",
     args = {
       ["armory"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.Error("Armory"),
-        desc = "Reset all " .. F.String.Error("Armory") .. " settings.",
+        name = F.String.Error("英雄榜"),
+        desc = "重置所有 " .. F.String.Error("英雄榜") .. " 设置。",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "Armory", nil, "armory")
         end,
@@ -91,8 +91,8 @@ function O:Reset()
       ["miniMapCoords"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.Error("Minimap Coordinates"),
-        desc = "Reset all " .. F.String.Error("Minimap Coordinates") .. "settings.",
+        name = F.String.Error("小地图坐标"),
+        desc = "重置所有 " .. F.String.Error("小地图坐标") .. " 设置。",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "MiniMapCoords", nil, "miniMapCoords")
         end,
@@ -101,7 +101,7 @@ function O:Reset()
         order = self:GetOrder(),
         type = "execute",
         name = F.String.Error("VehicleBar"),
-        desc = "Reset all " .. F.String.Error("VehicleBar") .. " settings.",
+        desc = "重置所有 " .. F.String.Error("VehicleBar") .. " 设置。",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "VehicleBar", nil, "vehicleBar")
         end,
@@ -109,10 +109,10 @@ function O:Reset()
       ["additionalScaling"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.Error("Additional Scaling"),
-        desc = "Reset all " .. F.String.Error("Additional Scaling") .. " settings.",
+        name = F.String.Error("附加缩放"),
+        desc = "重置所有 " .. F.String.Error("附加缩放") .. " 设置。",
         func = function()
-          E:StaticPopup_Show("TXUI_RESET_MISC_PROFILE", "Additional Scaling", nil, "scaling")
+          E:StaticPopup_Show("TXUI_RESET_MISC_PROFILE", "附加缩放", nil, "scaling")
         end,
       },
     },
