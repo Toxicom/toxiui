@@ -1,0 +1,6 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='DeadIcons.lua' />
+  <Script file='OfflineIcons.lua' />
+  <Script file='RoleIcons.lua' />
+  <Script file='RaidIcons.lua' />
+</Ui>

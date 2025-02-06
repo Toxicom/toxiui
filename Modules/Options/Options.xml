@@ -1,0 +1,15 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='Core.lua' />
+
+  <Include file='General\General.xml' />
+  <Include file='Contacts\Contacts.xml' />
+  <Include file='Themes\Themes.xml' />
+  <Include file='WunderBar\WunderBar.xml' />
+  <Include file='Armory\Armory.xml' />
+  <Include file='Skins\Skins.xml' />
+  <Include file='Styles\Styles.xml' />
+  <Include file='Fonts\Fonts.xml' />
+  <Include file='Misc\Misc.xml' />
+  <Include file='Changelog\Changelog.xml' />
+  <Include file='Reset\Reset.xml' />
+</Ui>

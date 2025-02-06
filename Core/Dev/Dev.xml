@@ -1,0 +1,8 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <!-- Core -->
+  <Script file='Core.lua' />
+
+  <!-- Main files -->
+  <Include file='Toxi\Toxi.xml' />
+  <Include file='Ryada\Ryada.xml' />
+</Ui>

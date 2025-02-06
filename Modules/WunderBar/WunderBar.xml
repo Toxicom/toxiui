@@ -1,0 +1,12 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='Core.lua' />
+  <Script file='Animation.lua' />
+  <Script file='Functions.lua' />
+  <Script file='Modules.lua' />
+  <Script file='ElvUI.lua' />
+  <Script file='LDB.lua' />
+  <Script file='Bar.lua' />
+  <Script file='SecureFlyOut.lua' />
+
+  <Include file='SubModules\SubModules.xml' />
+</Ui>

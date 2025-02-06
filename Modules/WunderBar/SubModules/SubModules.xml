@@ -1,0 +1,13 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='Hearthstone.lua' />
+
+  <Script file='Currency.lua' />
+  <Script file='DataBar.lua' />
+  <Script file='Durability.lua' />
+  <Script file='MicroMenu.lua' />
+  <Script file='Profession.lua' />
+  <Script file='SpecSwitch.lua' />
+  <Script file='System.lua' />
+  <Script file='Time.lua' />
+  <Script file='Volume.lua' />
+</Ui>

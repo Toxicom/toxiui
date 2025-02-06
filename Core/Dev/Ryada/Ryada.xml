@@ -1,0 +1,7 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <!-- Core -->
+  <Script file='Core.lua' />
+
+  <!-- Main files -->
+  <Script file='Profiles.lua' />
+</Ui>
