@@ -82,8 +82,8 @@ function O:Reset()
       ["armory"] = {
         order = self:GetOrder(),
         type = "execute",
-        name = F.String.Error("英雄榜"),
-        desc = "重置所有 " .. F.String.Error("英雄榜") .. " 设置。",
+        name = F.String.Error("军械库"),
+        desc = "重置所有 " .. F.String.Error("军械库") .. " 设置。",
         func = function()
           E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "Armory", nil, "armory")
         end,

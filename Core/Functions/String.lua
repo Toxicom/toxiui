@@ -488,7 +488,7 @@ function F.String.Menu.WunderBar()
 end
 
 function F.String.Menu.Armory()
-  return F.String.FastGradientHex("英雄榜", "#6ff9ff", "#0095a8")
+  return F.String.FastGradientHex("军械库", "#6ff9ff", "#0095a8")
 end
 
 function F.String.Menu.Skins()

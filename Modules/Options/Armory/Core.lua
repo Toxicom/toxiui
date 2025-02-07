@@ -35,7 +35,7 @@ function O:Armory()
       name = "描述",
     }, {
       name = TXUI.Title
-        .. " 英雄榜 改变了你的角色面板的外观。\n\n"
+        .. " 军械库 改变了你的角色面板的外观。\n\n"
         .. (TXUI.IsCata and (F.String.Error("[测试版]") .. ": 此模块在大灾变经典版上尚不稳定！\n\n") or ""),
     }, I.Requirements.Armory).args
 
@@ -43,7 +43,7 @@ function O:Armory()
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 军械库",
       name = function()
         return self:GetEnableName(E.db.TXUI.armory.enabled, generalGroup)
       end,
@@ -58,7 +58,7 @@ function O:Armory()
       end,
       confirm = function(_, value)
         if value == false then
-          return "禁用 " .. TXUI.Title .. " 英雄榜 需要重新加载你的 UI。\n\n 你确定吗？"
+          return "禁用 " .. TXUI.Title .. " 军械库 需要重新加载你的 UI。\n\n 你确定吗？"
         else
           return false
         end
@@ -92,7 +92,7 @@ function O:Armory()
           F.Event.TriggerEvent("Armory.SettingsUpdate")
         end,
       }, {
-        name = TXUI.Title .. " 英雄榜 中物品等级的设置。\n\n",
+        name = TXUI.Title .. " 军械库 中物品等级的设置。\n\n",
       }).args
 
       -- Show Avg Item Level of Best Items (in Bags)
@@ -195,14 +195,14 @@ function O:Armory()
       local animationsGroup = self:AddInlineDesc(tab, {
         name = "动画",
       }, {
-        name = "打开角色面板时的 英雄榜 动画。\n\n",
+        name = "打开角色面板时的 军械库 动画。\n\n",
       }).args
 
       -- Enable
       animationsGroup.animations = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 动画。",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 军械库 动画。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.animations)
         end,
@@ -244,14 +244,14 @@ function O:Armory()
           F.Event.TriggerEvent("Armory.SettingsUpdate")
         end,
       }, {
-        name = TXUI.Title .. " 英雄榜 自定义背景的设置。\n\n",
+        name = TXUI.Title .. " 军械库 自定义背景的设置。\n\n",
       }).args
 
       -- Enable
       backgroundGroup.enabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 背景。",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 军械库 背景。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.background.enabled)
         end,
@@ -324,14 +324,14 @@ function O:Armory()
           F.Event.TriggerEvent("Armory.SettingsUpdate")
         end,
       }, {
-        name = TXUI.Title .. " 英雄榜 自定义装饰线条的设置。\n\n",
+        name = TXUI.Title .. " 军械库 自定义装饰线条的设置。\n\n",
       }).args
 
       -- Enable
       linesGroup.enabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 装饰线条。",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 军械库 装饰线条。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.lines.enabled)
         end,
@@ -1044,7 +1044,7 @@ function O:Armory()
       enchantGroup.enchantTextEnabled = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "启用此选项将启用 " .. TXUI.Title .. " 英雄榜 附魔字符串。",
+        desc = "启用此选项将启用 " .. TXUI.Title .. " 军械库 附魔字符串。",
         name = function()
           return self:GetEnableName(E.db.TXUI.armory.pageInfo.enchantTextEnabled)
         end,
