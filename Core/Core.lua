@@ -116,8 +116,8 @@ function TXUI:InitializeModules()
           local isDev = F.IsDeveloper()
           local entryName = F.GetContributorEntryName() or "Person"
           local prettyName = isDev and F.String.FastGradient(entryName, 0, 0.9, 1, 0, 0.6, 1) or F.String.FastGradient("awesome " .. entryName, 0.57, 0.92, 0.49, 0.38, 0.81, 0.43)
-          local message = isDev and ("Dev features are " .. F.String.Error("active")) or ("Debug mode is " .. F.String.Error("enabled"))
-          self:LogInfo("Initialize > Hello " .. prettyName .. "!", message)
+          local message = isDev and ("开发者功能已" .. F.String.Error("激活")) or ("调试模式已" .. F.String.Error("启用"))
+          self:LogInfo("初始化 > 你好 " .. prettyName .. "!", message)
         end
 
         -- Print all delayed messages

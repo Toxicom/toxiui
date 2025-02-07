@@ -14,7 +14,7 @@ function CL:CheckVersion()
     local newVersion = not releaseVersion or releaseVersion == 0 or self:HasUpdates(releaseVersion)
     if not newVersion then return end
 
-    self:LogDebug("Showing Update Popup", releaseVersion)
+    self:LogDebug("显示更新弹窗", releaseVersion)
     E:StaticPopup_Show("TXUI_OPEN_UPDATER")
   end
 end
@@ -29,7 +29,7 @@ function CL:CheckPrivateProfileVersion()
   local privateVersion = F.GetDBFromPath("TXUI.changelog.releaseVersion", E.private)
   if privateVersion and privateVersion ~= 0 and not self:HasUpdates(privateVersion) then return end
 
-  self:LogDebug("Showing Private Update Popup", releaseVersion, privateVersion)
+  self:LogDebug("显示私人更新弹窗", releaseVersion, privateVersion)
   E:StaticPopup_Show("TXUI_OPEN_PRIVATE_UPDATER")
 end
 
@@ -80,15 +80,18 @@ function CL:Initialize()
 
   -- Login Message
   if E.db.general.loginmessage then
-    local msg = "Hello, "
+    local msg = "你好, "
       .. UnitName("Player")
-      .. ". Welcome to "
+      .. ". 欢迎使用 "
       .. TXUI.Title
       .. " "
       .. versionString
-      .. " by "
+      .. " 由 "
       .. F.String.Authors()
-      .. ", please visit https://toxiui.com for updates. Thank you."
+      .. " 制作, "
+      .. " 由 "
+      .. F.String.ToxiUI("乳酸菌")
+      .. "提供汉化支持，请访问 https://toxiui.com 获取更新. 谢谢."
 
     -- Convert URL to clickable if chat is loaded
     if E:GetModule("Chat").Initialized then msg = select(2, E:GetModule("Chat"):FindURL("CHAT_MSG_DUMMY", msg)) end
