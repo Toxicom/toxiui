@@ -134,10 +134,10 @@ function DB:OnEnter()
     if TXUI.IsCata then equippedPercent = 1 - equippedPercent end -- We negate for Wrath
     local equippedColors = { F.SlowColorGradient(equippedPercent, 1, 0.1, 0.1, 1, 1, 0.1, 0.1, 1, 0.1) }
 
-    DT.tooltip:AddLine("Item Level")
+    DT.tooltip:AddLine("物品等级")
     DT.tooltip:AddLine(" ")
-    DT.tooltip:AddDoubleLine("Average Item Level", format("%0.2f", E:Round(self.avgItemLevel, 2)), 1, 1, 1, 0.1, 1, 0.1)
-    DT.tooltip:AddDoubleLine("Equipped Item Level", format("%0.2f", E:Round(self.avgItemLevelEquipped, 2)), 1, 1, 1, unpack(equippedColors))
+    DT.tooltip:AddDoubleLine("平均物品等级", format("%0.2f", E:Round(self.avgItemLevel, 2)), 1, 1, 1, 0.1, 1, 0.1)
+    DT.tooltip:AddDoubleLine("已装备物品等级", format("%0.2f", E:Round(self.avgItemLevelEquipped, 2)), 1, 1, 1, unpack(equippedColors))
     DT.tooltip:AddLine(" ")
   end
 
@@ -163,13 +163,13 @@ function DB:OnEnter()
   end
 
   DT.tooltip:AddLine(" ")
-  DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Character Frame")
+  DT.tooltip:AddLine("|cffFFFFFF左键点击:|r 打开角色面板")
   if C_MountJournal and C_MountJournal.GetMountInfoByID then
     local mountID = self.db.repairMount
     if mountID then
       local name, _, icon, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
       local iconStr = icon and format("|T%s:16:16:0:0:50:50:4:46:4:46|t", icon) or ""
-      if name and isUsable then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Summon " .. iconStr .. name) end
+      if name and isUsable then DT.tooltip:AddLine("|cffFFFFFF右键点击:|r 召唤 " .. iconStr .. name) end
     end
   end
 

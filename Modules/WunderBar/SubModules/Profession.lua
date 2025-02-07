@@ -131,7 +131,7 @@ function PR:ProfessionOpen(prof)
 end
 
 function PR:ProfessionTooltip()
-  DT.tooltip:AddLine("Professions")
+  DT.tooltip:AddLine("专业技能")
   DT.tooltip:AddLine(" ")
 
   for index, _ in next, self.others do
@@ -145,8 +145,8 @@ function PR:ProfessionTooltip()
   end
 
   DT.tooltip:AddLine(" ")
-  DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Toggle Profession Window")
-  DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Show all Professions")
+  DT.tooltip:AddLine("|cffFFFFFF左键点击:|r 切换专业技能窗口")
+  DT.tooltip:AddLine("|cffFFFFFF右键点击:|r 显示所有专业技能")
   DT.tooltip:Show()
 end
 

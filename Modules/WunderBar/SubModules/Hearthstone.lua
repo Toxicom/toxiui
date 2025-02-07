@@ -259,7 +259,7 @@ function HS:UpdateTooltip()
   if not self.dataLoaded then return end
 
   DT.tooltip:ClearLines()
-  DT.tooltip:SetText("Hearthstone")
+  DT.tooltip:SetText("炉石")
   DT.tooltip:AddLine(" ")
 
   self:AddHearthstoneLine(self.hsPrimary)
@@ -273,7 +273,7 @@ function HS:UpdateTooltip()
       local data = I.HearthstoneData[index]
       if data and data.known and not data.hearthstone and not data.class and not data.portal and not data.teleport then
         if not additionalAdded then
-          DT.tooltip:AddLine("Additional")
+          DT.tooltip:AddLine("额外")
           DT.tooltip:AddLine(" ")
         end
         self:AddHearthstoneLine(data)
@@ -286,7 +286,7 @@ function HS:UpdateTooltip()
 
   local classAdded = false
   if self.hsClass.name then
-    DT.tooltip:AddLine("Class")
+    DT.tooltip:AddLine("职业")
     DT.tooltip:AddLine(" ")
     self:AddHearthstoneLine(self.hsClass)
     DT.tooltip:AddLine(" ")
@@ -294,23 +294,23 @@ function HS:UpdateTooltip()
   end
 
   -- Primary
-  if self.hsPrimary and self.hsPrimary.name then DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Cast " .. self.hsPrimary.name) end
+  if self.hsPrimary and self.hsPrimary.name then DT.tooltip:AddLine("|cffFFFFFF左键点击:|r 施放 " .. self.hsPrimary.name) end
 
   -- Secondary
   if F.IsAddOnEnabled("TomeOfTeleportation") then
-    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Toggle Tome of Teleporation")
+    DT.tooltip:AddLine("|cffFFFFFF右键点击:|r 切换传送之书")
   elseif self.hsSecondary and self.hsSecondary.name then
-    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name)
+    DT.tooltip:AddLine("|cffFFFFFF右键点击:|r 施放 " .. self.hsSecondary.name)
   end
 
-  -- Shift-Primary for Mythic+ Teleports
-  if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
+  -- Shift-主要用于史诗钥石传送
+  if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-左键点击:|r 打开史诗钥石传送菜单") end
 
-  -- Shift-Secondary for Class Travel other than Mages
-  if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Cast " .. self.hsClass.name) end
+  -- Shift-次要用于非法师职业旅行
+  if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-右键点击:|r 施放 " .. self.hsClass.name) end
 
-  -- Shift-Secondary for Mages
-  if self.hasTeleports then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Open Mage Teleport Menu") end
+  -- Shift-次要用于法师
+  if self.hasTeleports then DT.tooltip:AddLine("|cffFFFFFFShift-右键点击:|r 打开法师传送菜单") end
 
   DT.tooltip:Show()
 end

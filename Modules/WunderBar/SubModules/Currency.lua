@@ -110,7 +110,7 @@ function CR:ShiftRightClick()
   local menuList = {}
 
   tinsert(menuList, {
-    text = "Delete Character",
+    text = "删除角色",
     isTitle = true,
     notCheckable = true,
   })
@@ -164,22 +164,22 @@ end
 
 function CR:UpdateTooltip()
   DT.tooltip:ClearLines()
-  DT.tooltip:AddLine(CURRENCY)
+  DT.tooltip:AddLine("货币")
   DT.tooltip:AddLine(" ")
 
   local style = "BLIZZARD"
-  DT.tooltip:AddLine("Session:")
-  DT.tooltip:AddDoubleLine("Earned:", E:FormatMoney(self.goldProfit, style, true), 1, 1, 1, 1, 1, 1)
-  DT.tooltip:AddDoubleLine("Spent:", E:FormatMoney(self.goldSpent, style, true), 1, 1, 1, 1, 1, 1)
+  DT.tooltip:AddLine("本次会话:")
+  DT.tooltip:AddDoubleLine("赚取:", E:FormatMoney(self.goldProfit, style, true), 1, 1, 1, 1, 1, 1)
+  DT.tooltip:AddDoubleLine("花费:", E:FormatMoney(self.goldSpent, style, true), 1, 1, 1, 1, 1, 1)
   if self.goldProfit < self.goldSpent then
-    DT.tooltip:AddDoubleLine("Deficit:", E:FormatMoney(self.goldProfit - self.goldSpent, style, true), 1, 0, 0, 1, 1, 1)
+    DT.tooltip:AddDoubleLine("亏损:", E:FormatMoney(self.goldProfit - self.goldSpent, style, true), 1, 0, 0, 1, 1, 1)
   elseif (self.goldProfit - self.goldSpent) > 0 then
-    DT.tooltip:AddDoubleLine("Profit:", E:FormatMoney(self.goldProfit - self.goldSpent, style, true), 0, 1, 0, 1, 1, 1)
+    DT.tooltip:AddDoubleLine("利润:", E:FormatMoney(self.goldProfit - self.goldSpent, style, true), 0, 1, 0, 1, 1, 1)
   end
   DT.tooltip:AddLine(" ")
 
   local totalGold, totalHorde, totalAlliance = 0, 0, 0
-  DT.tooltip:AddLine("Character: ")
+  DT.tooltip:AddLine("角色: ")
 
   local goldTable = {}
   for realm in pairs(_G.ElvDB.serverID[E.serverID]) do
@@ -225,20 +225,20 @@ function CR:UpdateTooltip()
   end
 
   DT.tooltip:AddLine(" ")
-  DT.tooltip:AddLine("Server: ")
+  DT.tooltip:AddLine("服务器: ")
   if totalAlliance > 0 and totalHorde > 0 then
-    if totalAlliance ~= 0 then DT.tooltip:AddDoubleLine("Alliance: ", E:FormatMoney(totalAlliance, style, true), 0, 0.376, 1, 1, 1, 1) end
-    if totalHorde ~= 0 then DT.tooltip:AddDoubleLine("Horde: ", E:FormatMoney(totalHorde, style, true), 1, 0.2, 0.2, 1, 1, 1) end
+    if totalAlliance ~= 0 then DT.tooltip:AddDoubleLine("联盟: ", E:FormatMoney(totalAlliance, style, true), 0, 0.376, 1, 1, 1, 1) end
+    if totalHorde ~= 0 then DT.tooltip:AddDoubleLine("部落: ", E:FormatMoney(totalHorde, style, true), 1, 0.2, 0.2, 1, 1, 1) end
     DT.tooltip:AddLine(" ")
   end
-  DT.tooltip:AddDoubleLine("All characters: ", E:FormatMoney(totalGold, style, true), 1, 1, 1, 1, 1, 1)
+  DT.tooltip:AddDoubleLine("所有角色: ", E:FormatMoney(totalGold, style, true), 1, 1, 1, 1, 1, 1)
 
   if C_Bank_FetchDepositedMoney then
     local warbandMoney = C_Bank_FetchDepositedMoney(2) -- 2 = account
     if warbandMoney then
-      DT.tooltip:AddDoubleLine("Warbank: ", E:FormatMoney(warbandMoney, style, true), 1, 1, 1, 1, 1, 1)
+      DT.tooltip:AddDoubleLine("战团银行: ", E:FormatMoney(warbandMoney, style, true), 1, 1, 1, 1, 1, 1)
       DT.tooltip:AddLine(" ")
-      DT.tooltip:AddDoubleLine("Total: ", E:FormatMoney(warbandMoney + totalGold, style, true), 1, 1, 1, 1, 1, 1)
+      DT.tooltip:AddDoubleLine("总计: ", E:FormatMoney(warbandMoney + totalGold, style, true), 1, 1, 1, 1, 1, 1)
     end
   end
   DT.tooltip:AddLine(" ")
@@ -337,29 +337,29 @@ function CR:UpdateTooltip()
 
   if TXUI.IsRetail then
     if addLine then DT.tooltip:AddLine(" ") end
-    DT.tooltip:AddDoubleLine("WoW Token:", E:FormatMoney(C_WowTokenPublic_GetCurrentMarketPrice() or 0, style, true), 0, 0.8, 1, 1, 1, 1)
+    DT.tooltip:AddDoubleLine("魔兽世界时光徽章:", E:FormatMoney(C_WowTokenPublic_GetCurrentMarketPrice() or 0, style, true), 0, 0.8, 1, 1, 1, 1)
   end
 
   local grayValue = E:GetModule("Bags"):GetGraysValue()
   if grayValue > 0 then
     DT.tooltip:AddLine(" ")
-    DT.tooltip:AddDoubleLine("Grays", E:FormatMoney(grayValue, style, true), nil, nil, nil, 1, 1, 1)
+    DT.tooltip:AddDoubleLine("灰色物品", E:FormatMoney(grayValue, style, true), nil, nil, nil, 1, 1, 1)
   end
 
   -- Mobile Warbank cooldown
   if TXUI.IsRetail then
     local spellName = C_Spell.GetSpellName(self.warbankId)
     DT.tooltip:AddLine(" ")
-    DT.tooltip:AddLine("Mobile Warbank")
+    DT.tooltip:AddLine("移动战团银行")
     HS:AddHearthstoneLine { id = self.warbankId, name = spellName, type = "spell" }
   end
 
   DT.tooltip:AddLine(" ")
-  DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Bags")
-  DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Currency Frame")
-  if TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift + Left Click:|r Summon Mobile Warbank") end
-  DT.tooltip:AddLine("|cffFFFFFFCtrl + Right Click:|r Reset Session Data")
-  DT.tooltip:AddLine("|cffFFFFFFShift + Right Click:|r Reset Character Data")
+  DT.tooltip:AddLine("|cffFFFFFF左键点击:|r 打开背包")
+  DT.tooltip:AddLine("|cffFFFFFF右键点击:|r 打开货币框架")
+  if TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift + 左键点击:|r 召唤移动银行") end
+  DT.tooltip:AddLine("|cffFFFFFFCtrl + 右键点击:|r 重置会话数据")
+  DT.tooltip:AddLine("|cffFFFFFFShift + 右键点击:|r 重置角色数据")
   DT.tooltip:Show()
 end
 
