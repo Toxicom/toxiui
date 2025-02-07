@@ -4,15 +4,15 @@ local YES, NO = YES, NO
 
 function TXUI:LoadStaticPopups()
   E.PopupDialogs.TXUI_RESET_TXUI_PROFILE = {
-    text = "Are you sure you want to reset "
+    text = "你确定要重置 "
       .. TXUI.Title
-      .. "?\n\nThis will reset all settings from "
+      .. "吗？\n\n这将重置所有来自 "
       .. TXUI.Title
-      .. ", but "
-      .. F.String.Error("NOT")
-      .. " your "
+      .. " 的设置，但 "
+      .. F.String.Error("不会")
+      .. " 重置你的 "
       .. F.String.ElvUI("ElvUI")
-      .. " Profile!",
+      .. " 配置文件！",
     button1 = F.String.Error(YES),
     button2 = F.String.Good(NO),
     hideOnEscape = 1,
@@ -23,7 +23,7 @@ function TXUI:LoadStaticPopups()
   }
 
   E.PopupDialogs.TXUI_RESET_MODULE_PROFILE = {
-    text = "Are you sure you want to reset " .. F.String.Error("%s") .. "?",
+    text = "你确定要重置 " .. F.String.Error("%s") .. " 吗？",
     button1 = F.String.Error(YES),
     button2 = F.String.Good(NO),
     hideOnEscape = 1,
@@ -34,7 +34,7 @@ function TXUI:LoadStaticPopups()
   }
 
   E.PopupDialogs.TXUI_RESET_MISC_PROFILE = {
-    text = "Are you sure you want to reset " .. F.String.Error("%s") .. "?",
+    text = "你确定要重置 " .. F.String.Error("%s") .. " 吗？",
     button1 = F.String.Error(YES),
     button2 = F.String.Good(NO),
     hideOnEscape = 1,

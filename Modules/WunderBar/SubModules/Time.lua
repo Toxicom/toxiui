@@ -169,7 +169,7 @@ end
 function TI:CycleInfoText(index)
   local category = self.activeInfoText[index]
   if category == "mail" then
-    self.infoText:SetText(F.String.Uppercase("You've Got Mail!"))
+    self.infoText:SetText(F.String.Uppercase("你有新的邮件!"))
   elseif category == "date" then
     local dateTime = date("*t")
     self.infoText:SetText(FormatShortDate(dateTime.day, dateTime.month, dateTime.year))

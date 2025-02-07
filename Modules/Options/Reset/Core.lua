@@ -85,7 +85,7 @@ function O:Reset()
         name = F.String.Error("军械库"),
         desc = "重置所有 " .. F.String.Error("军械库") .. " 设置。",
         func = function()
-          E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "Armory", nil, "armory")
+          E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "军械库", nil, "armory")
         end,
       },
       ["miniMapCoords"] = {
@@ -94,7 +94,7 @@ function O:Reset()
         name = F.String.Error("小地图坐标"),
         desc = "重置所有 " .. F.String.Error("小地图坐标") .. " 设置。",
         func = function()
-          E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "MiniMapCoords", nil, "miniMapCoords")
+          E:StaticPopup_Show("TXUI_RESET_MODULE_PROFILE", "小地图坐标", nil, "miniMapCoords")
         end,
       },
       ["vehicleBar"] = {

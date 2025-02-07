@@ -152,7 +152,7 @@ function IS:Dialog()
 
   -- return our Installer
   return {
-    Title = TXUI.Title .. " Installation",
+    Title = TXUI.Title .. " 安装",
     Name = TXUI.Title,
     tutorialImage = I.Media.Logos.Logo,
     Pages = {
@@ -174,43 +174,39 @@ function IS:Dialog()
         end)
 
         if F.IsAddOnEnabled("SharedMedia_ToxiUI") then
-          installFrame.SubTitle:SetText(F.String.Warning("WARNING!"))
+          installFrame.SubTitle:SetText(F.String.Warning("警告!"))
 
-          installFrame.Desc1:SetText("Oops, looks like you have " .. F.String.ToxiUI("SharedMedia: ToxiUI") .. " installed!")
-          installFrame.Desc2:SetText("Please disable " .. F.String.ToxiUI("SharedMedia: ToxiUI") .. " and reset the installation process!")
-          installFrame.Desc3:SetText("If you don't disable " .. F.String.ToxiUI("SharedMedia: ToxiUI") .. " it will cause problems!")
+          installFrame.Desc1:SetText("哎呀，看起来你安装了 " .. F.String.ToxiUI("SharedMedia: ToxiUI") .. "!")
+          installFrame.Desc2:SetText("请禁用 " .. F.String.ToxiUI("SharedMedia: ToxiUI") .. " 并重置安装过程!")
+          installFrame.Desc3:SetText("如果你不禁用 " .. F.String.ToxiUI("SharedMedia: ToxiUI") .. " 会导致问题!")
 
           installFrame.Next:Disable()
         else
-          installFrame.SubTitle:SetText(F.String.ToxiUI("Welcome") .. " to the installation for " .. TXUI.Title)
+          installFrame.SubTitle:SetText(F.String.ToxiUI("欢迎") .. " 使用 " .. TXUI.Title .. " 安装程序")
           installFrame.Desc1:SetText(
-            "This installation process will guide you through a few steps and apply the "
+            "这个安装过程将引导你完成几个步骤并应用 "
               .. TXUI.Title
-              .. " profile.\n\nPlease press the '"
-              .. F.String.Class("Install", "ROGUE")
-              .. "' button to begin the installation process."
+              .. " 配置文件。\n\n请按 '"
+              .. F.String.Class("安装", "ROGUE")
+              .. "' 按钮开始安装过程。"
           )
           installFrame.Desc2:SetText(
-            F.String.Error("Important: ")
-              .. "Most of the major "
+            F.String.Error("重要: ")
+              .. "大多数主要的 "
               .. TXUI.Title
-              .. " updates will require you to run the installation process again, meaning you will most likely lose your changes. Please make backups if necessary!"
+              .. " 更新将需要你重新运行安装过程，这意味着你很可能会丢失你的更改。请根据需要进行备份!"
           )
           installFrame.Desc3:SetText(
-            F.String.ToxiUI("Information: ")
-              .. "If you're having any issues at all, please join our "
-              .. TXUI.Title
-              .. F.String.ToxiUI(" Discord")
-              .. " server! We will be happy to help you!"
+            F.String.ToxiUI("信息: ") .. "如果你有任何问题，请加入我们的 " .. TXUI.Title .. F.String.ToxiUI(" Discord") .. " 服务器! 我们很乐意帮助你!"
           )
 
           installFrame.Option1:Show()
-          installFrame.Option1:SetText("Install")
+          installFrame.Option1:SetText("安装")
           installFrame.Option1:SetScript("OnClick", function()
             installFrame.Next:Click()
           end)
           installFrame.Option2:Show()
-          installFrame.Option2:SetText("Skip Process")
+          installFrame.Option2:SetText("跳过过程")
           installFrame.Option2:SetScript("OnClick", function()
             installFrame:Hide()
           end)
@@ -225,27 +221,27 @@ function IS:Dialog()
       -- Profile Page
       [Pages.Profile] = function()
         SetupCustomInstaller(Pages.Profile)
-        installFrame.SubTitle:SetText(F.String.ToxiUI("Profile"))
+        installFrame.SubTitle:SetText(F.String.ToxiUI("配置文件"))
 
-        installFrame.Desc1:SetText("You can either create a new profile for " .. TXUI.Title .. " or you can overwrite your current profile. We recommend creating a new one!")
-        installFrame.Desc2:SetText("Importance: " .. F.String.ToxiUI("Medium"))
+        installFrame.Desc1:SetText("你可以为 " .. TXUI.Title .. " 创建一个新配置文件，或者覆盖你当前的配置文件。我们建议创建一个新的!")
+        installFrame.Desc2:SetText("重要性: " .. F.String.ToxiUI("中等"))
 
         installFrame.Option1:Show()
-        installFrame.Option1:SetText("Create New")
+        installFrame.Option1:SetText("创建新的")
         installFrame.Option1:SetScript("OnClick", function()
           self:ElvUIProfileDialog()
         end)
 
         if E.db.layoutSet ~= nil then
-          installFrame.Desc3:SetText(F.String.Warning("Old ElvUI Layouts are not supported! Please create a new profile with the button below"))
+          installFrame.Desc3:SetText(F.String.Warning("不支持旧的 ElvUI 布局! 请使用下面的按钮创建一个新配置文件"))
           installFrame.Next:Disable()
         else
-          installFrame.Desc3:SetText("Your currently active profile is: " .. F.String.ToxiUI(E.data:GetCurrentProfile()))
+          installFrame.Desc3:SetText("你当前激活的配置文件是: " .. F.String.ToxiUI(E.data:GetCurrentProfile()))
           installFrame.Next:Enable()
 
           -- We want to show this only when it's valid
           installFrame.Option2:Show()
-          installFrame.Option2:SetText("Use current")
+          installFrame.Option2:SetText("使用当前")
           installFrame.Option2:SetScript("OnClick", function()
             installFrame.Next:Click()
           end)
@@ -255,27 +251,27 @@ function IS:Dialog()
       -- Layout Page
       [Pages.Core] = function()
         SetupCustomInstaller(Pages.Core)
-        installFrame.SubTitle:SetText(F.String.ToxiUI("Core Settings"))
+        installFrame.SubTitle:SetText(F.String.ToxiUI("核心设置"))
 
         installFrame.Desc1:SetText(
-          "This will install "
+          "这将安装 "
             .. TXUI.Title
-            .. " depending if you want a "
-            .. F.String.ToxiUI("Vertical")
-            .. " or "
-            .. F.String.Class("Horizontal", "MONK")
-            .. " layout. This will also enable core functions of ToxiUI."
+            .. " 取决于你想要一个 "
+            .. F.String.ToxiUI("垂直")
+            .. " 或 "
+            .. F.String.Class("水平", "MONK")
+            .. " 布局。这也将启用 ToxiUI 的核心功能。"
         )
-        installFrame.Desc2:SetText(F.String.Error("Important: ") .. F.String.Warning("Skipping this will result in an unfinished and broken UI!"))
+        installFrame.Desc2:SetText(F.String.Error("重要: ") .. F.String.Warning("跳过这一步将导致未完成和破损的 UI!"))
         installFrame.Desc3:SetText(
-          F.String.Error("Extremely important: ")
-            .. "Applying our "
+          F.String.Error("极其重要: ")
+            .. "应用我们的 "
             .. TXUI.Title
-            .. " profiles will, like in the majority of other UI plugins, "
-            .. F.String.Error("overwrite")
-            .. " your existing profile! Any previous changes you have made will most likely "
-            .. F.String.Error("be lost!")
-            .. " Please make backups if you're afraid to lose your current profile and proceed with caution! You have been warned."
+            .. " 配置文件将像大多数其他 UI 插件一样，"
+            .. F.String.Error("覆盖")
+            .. " 你现有的配置文件! 你之前所做的任何更改很可能会 "
+            .. F.String.Error("丢失!")
+            .. " 如果你担心丢失当前配置文件，请进行备份并谨慎操作! 你已被警告。"
         )
 
         local function installElvUI(layout)
@@ -284,7 +280,7 @@ function IS:Dialog()
 
           E.db.TXUI.installer.layout = layout
 
-          TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
+          TXUI:GetModule("SplashScreen"):Wrap("正在安装 ...", function()
             self.reloadRequired = true
 
             self:ElvUI(function()
@@ -294,13 +290,13 @@ function IS:Dialog()
         end
 
         installFrame.Option1:Show()
-        installFrame.Option1:SetText(F.String.ToxiUI("Vertical"))
+        installFrame.Option1:SetText(F.String.ToxiUI("垂直"))
         installFrame.Option1:SetScript("OnClick", function()
           installElvUI(I.Enum.Layouts.VERTICAL)
         end)
 
         installFrame.Option2:Show()
-        installFrame.Option2:SetText(F.String.Class("Horizontal", "MONK"))
+        installFrame.Option2:SetText(F.String.Class("水平", "MONK"))
         installFrame.Option2:SetScript("OnClick", function()
           installElvUI(I.Enum.Layouts.HORIZONTAL)
         end)
@@ -312,32 +308,30 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
         if F.IsAddOnEnabled("Details") then
-          installFrame.Desc1:SetText(
-            "Details is a versatile AddOn that offers a wide array of data, encompassing metrics for damage, healing, and various other performance indicators."
-          )
-          installFrame.Desc2:SetText("This is an optional AddOn requirement, but we highly recommend you install it.")
-          installFrame.Desc3:SetText("Importance: " .. F.String.Error("High"))
+          installFrame.Desc1:SetText("Details 是一个多功能插件，提供广泛的数据，包括伤害、治疗和各种其他性能指标。")
+          installFrame.Desc2:SetText("这是一个可选的插件要求，但我们强烈建议你安装它。")
+          installFrame.Desc3:SetText("重要性: " .. F.String.Error("高"))
 
           installFrame.Option1:Show()
-          installFrame.Option1:SetText("One Window")
+          installFrame.Option1:SetText("一个窗口")
           installFrame.Option1:SetScript("OnClick", function()
             PF:Details(false)
             self.reloadRequired = true
-            self:ShowStepComplete(F.String.ToxiUI("Details") .. " profile installed.")
+            self:ShowStepComplete(F.String.ToxiUI("Details") .. " 配置文件已安装。")
             installFrame.Next:Click()
           end)
 
           installFrame.Option2:Show()
-          installFrame.Option2:SetText("Two Windows")
+          installFrame.Option2:SetText("两个窗口")
           installFrame.Option2:SetScript("OnClick", function()
             PF:Details(true)
             self.reloadRequired = true
-            self:ShowStepComplete(F.String.ToxiUI("Details") .. " profile installed.")
+            self:ShowStepComplete(F.String.ToxiUI("Details") .. " 配置文件已安装。")
             installFrame.Next:Click()
           end)
         else
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have Details installed!"))
-          installFrame.Desc2:SetText("Please install Details and restart the installer!")
+          installFrame.Desc1:SetText(F.String.Warning("哎呀，看起来你没有安装 Details!"))
+          installFrame.Desc2:SetText("请安装 Details 并重新启动安装程序!")
         end
       end,
 
@@ -348,22 +342,22 @@ function IS:Dialog()
 
         if F.IsAddOnEnabled("Plater") then
           installFrame.Desc1:SetText(
-            "Plater is a nameplate addon with a extraordinary amount of settings, out of the box debuff tracking, threat coloring, support for scripting similar to WeakAuras and wago.io + the WeakAuras-Companion for Mod/Script/Profile updates."
+            "Plater 是一个名条插件，具有大量设置，开箱即用的减益追踪，威胁着色，支持类似 WeakAuras 和 wago.io 的脚本，以及 WeakAuras-Companion 用于 Mod/Script/配置文件更新。"
           )
-          installFrame.Desc2:SetText("This is an optional AddOn requirement, but we highly recommend you install it.")
-          installFrame.Desc3:SetText("Importance: " .. F.String.Error("High"))
+          installFrame.Desc2:SetText("这是一个可选的插件要求，但我们强烈建议你安装它。")
+          installFrame.Desc3:SetText("重要性: " .. F.String.Error("高"))
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("Plater")
           installFrame.Option1:SetScript("OnClick", function()
             PF:Plater()
             self.reloadRequired = true
-            self:ShowStepComplete(F.String.ToxiUI("Plater") .. " profile installed.")
+            self:ShowStepComplete(F.String.ToxiUI("Plater") .. " 配置文件已安装。")
             installFrame.Next:Click()
           end)
         else
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have Plater installed!"))
-          installFrame.Desc2:SetText("Please install Plater and restart the installer!")
+          installFrame.Desc1:SetText(F.String.Warning("哎呀，看起来你没有安装 Plater!"))
+          installFrame.Desc2:SetText("请安装 Plater 并重新启动安装程序!")
         end
       end,
 
@@ -374,32 +368,32 @@ function IS:Dialog()
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
           installFrame.Desc1:SetText(
-            "BigWigs is a boss encounter AddOn. It consists of many individual encounter scripts, or boss modules; mini AddOns that are designed to trigger alert messages, timer bars, sounds, and so forth, for one specific raid encounter."
+            "BigWigs 是一个首领战插件。它由许多单独的战斗脚本或首领模块组成；迷你插件，旨在为一个特定的团队战斗触发警报消息、计时条、声音等。"
           )
-          installFrame.Desc2:SetText("Importance: " .. F.String.Good("Low"))
+          installFrame.Desc2:SetText("重要性: " .. F.String.Good("低"))
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("BigWigs")
           installFrame.Option1:SetScript("OnClick", function()
             PF:BigWigs()
-            self:ShowStepComplete(F.String.ToxiUI("BigWigs") .. " profile installed.")
+            self:ShowStepComplete(F.String.ToxiUI("BigWigs") .. " 配置文件已安装。")
             installFrame.Next:Click()
           end)
         elseif F.IsAddOnEnabled("DBM-Core") then
           installFrame.SubTitle:SetText(F.String.ToxiUI("Deadly Boss Mods"))
 
-          installFrame.Desc1:SetText(F.String.Error("Important: ") .. "Deadly Boss Mods is no longer supported. We recommend migrating to " .. F.String.ToxiUI("BigWigs") .. ".")
+          installFrame.Desc1:SetText(F.String.Error("重要: ") .. "Deadly Boss Mods 不再支持。我们建议迁移到 " .. F.String.ToxiUI("BigWigs") .. ".")
 
           installFrame.Option1:Show()
-          installFrame.Option1:SetText("Skip this step")
+          installFrame.Option1:SetText("跳过这一步")
           installFrame.Option1:SetScript("OnClick", function()
             installFrame.Next:Click()
           end)
         else
           installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have " .. F.String.ToxiUI("BigWigs") .. " installed!"))
-          installFrame.Desc2:SetText("If you're a new player, we recommend installing " .. F.String.ToxiUI("BigWigs") .. "!")
+          installFrame.Desc1:SetText(F.String.Warning("哎呀，看起来你没有安装 " .. F.String.ToxiUI("BigWigs") .. "!"))
+          installFrame.Desc2:SetText("如果你是新玩家，我们建议安装 " .. F.String.ToxiUI("BigWigs") .. "!")
         end
       end,
 
@@ -409,10 +403,9 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("WeakAuras"))
 
         if F.IsAddOnEnabled("WeakAuras") then
-          installFrame.Desc1:SetText("This will give you links to install important WeakAuras")
+          installFrame.Desc1:SetText("这将为你提供安装重要 WeakAuras 的链接")
           installFrame.Desc2:SetText(
-            F.String.Luxthos("Luxthos")
-              .. " has WeakAuras packages for every single class and specialization combination making them very versatile and easy to use! They are also very helpful for new players!"
+            F.String.Luxthos("Luxthos") .. " 有每个职业和专精组合的 WeakAuras 包，使它们非常通用且易于使用! 它们对新玩家也非常有帮助!"
           )
           installFrame.Option1:Show()
           installFrame.Option1:SetText(F.String.Luxthos("Luxthos") .. " WA")
@@ -420,24 +413,24 @@ function IS:Dialog()
             self:PopupWALink()
           end)
         else
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have WeakAuras installed!|r"))
-          installFrame.Desc2:SetText("For full experience, we highly recommend having WeakAuras!")
+          installFrame.Desc1:SetText(F.String.Warning("哎呀，看起来你没有安装 WeakAuras!|r"))
+          installFrame.Desc2:SetText("为了获得完整体验，我们强烈建议安装 WeakAuras!")
         end
 
         installFrame.Desc3:SetText(
-          F.String.Warning("Important: ")
-            .. "Please note that the "
+          F.String.Warning("重要: ")
+            .. "请注意，图像中的 "
             .. F.String.Luxthos("Luxthos WeakAuras")
-            .. " in the image are customised! Out of the box, they will look slightly different. Visit "
+            .. " 是定制的! 开箱即用，它们看起来会略有不同。访问 "
             .. F.String.ToxiUI(I.Strings.Branding.Links.WAGuide)
-            .. " to find out how you can achieve a similar look."
+            .. " 了解如何实现类似的外观。"
         )
 
         -- If WeakAuras is disabled, show ToxiUI WA Guide as Option 1
         local buttonIndex = F.IsAddOnEnabled("WeakAuras") and 2 or 1
 
         installFrame["Option" .. buttonIndex]:Show()
-        installFrame["Option" .. buttonIndex]:SetText(TXUI.Title .. " Guide")
+        installFrame["Option" .. buttonIndex]:SetText(TXUI.Title .. " 指南")
 
         installFrame["Option" .. buttonIndex]:SetScript("OnClick", function()
           self:PopupWAGuide()
@@ -458,31 +451,29 @@ function IS:Dialog()
             button:SetText(buttonText or addonName)
             button:SetScript("OnClick", function()
               PF["Apply" .. addonName .. "Profile"]()
-              self:ShowStepComplete(F.String.ToxiUI(addonName) .. " profile installed.")
+              self:ShowStepComplete(F.String.ToxiUI(addonName) .. " 配置文件已安装。")
             end)
             AddImageScripts({ I.Media.Installer[addonName] }, buttonIndex)
             buttonIndex = buttonIndex + 1
           end
         end
 
-        installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
+        installFrame.SubTitle:SetText(F.String.ToxiUI("额外插件"))
 
-        installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.OmniCD() .. ", " .. F.String.WarpDeplete())
+        installFrame.Desc1:SetText(TXUI.Title .. " 提供常用插件的额外配置文件。")
+        installFrame.Desc2:SetText("当前支持的插件: " .. F.String.OmniCD() .. ", " .. F.String.WarpDeplete())
 
         if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") then
-          installFrame.Desc3:SetText(
-            F.String.Warning("Warning: ") .. "Looks like you don't have any of the extra AddOns installed. Don't worry, you can still fully experience " .. TXUI.Title .. "!"
-          )
+          installFrame.Desc3:SetText(F.String.Warning("警告: ") .. "看起来你没有安装任何额外插件。别担心，你仍然可以完全体验 " .. TXUI.Title .. "!")
         end
 
         if F.IsAddOnEnabled("OmniCD") then
           installFrame.Desc3:SetText(
-            F.String.Warning("Warning: ")
+            F.String.Warning("警告: ")
               .. F.String.OmniCD()
-              .. " has only the dungeons profile set up! Raid profile is default, you might wanna tweak it before going to a raid! If you have suggestions for a profile, please contact us on the "
+              .. " 只有地下城配置文件设置好了! 团队配置文件是默认的，你可能需要在进入团队之前调整它! 如果你有配置文件的建议，请在 "
               .. TXUI.Title
-              .. " Discord!"
+              .. " Discord 上联系我们!"
           )
         end
 
@@ -493,30 +484,30 @@ function IS:Dialog()
       -- Completed Page
       [Pages.Complete] = function()
         SetupCustomInstaller(Pages.Complete)
-        installFrame.SubTitle:SetText(F.String.ToxiUI("Installation Complete"))
+        installFrame.SubTitle:SetText(F.String.ToxiUI("安装完成"))
 
-        installFrame.Desc1:SetText(F.String.Good("You have completed the installation process!"))
+        installFrame.Desc1:SetText(F.String.Good("你已完成安装过程!"))
         installFrame.Desc2:SetText(
-          "Please click the button below in order to finalize the process and automatically reload your UI.\n\n"
-            .. "If you have any questions/issues please join "
+          "请点击下面的按钮以完成过程并自动重新加载你的 UI。\n\n"
+            .. "如果你有任何问题，请加入 "
             .. F.String.ToxiUI("Discord")
-            .. " for support!"
+            .. " 获取支持!"
         )
         installFrame.Desc3:SetText(
-          F.String.Error("Important: ")
+          F.String.Error("重要: ")
             .. TXUI.Title
-            .. " has a lot of settings for customisations. After you're done with the installation, please open the "
+            .. " 有很多设置用于自定义。完成安装后，请打开 "
             .. TXUI.Title
-            .. " settings and explore them! We guarantee you will find things you didn't know you were looking for!\n\n"
-            .. "To open "
+            .. " 设置并探索它们! 我们保证你会发现你不知道自己在寻找的东西!\n\n"
+            .. "要打开 "
             .. TXUI.Title
-            .. " settings, hit ESC and you will see the "
+            .. " 设置，按 ESC，你会看到 "
             .. TXUI.Title
-            .. " button there!"
+            .. " 按钮!"
         )
 
         installFrame.Option1:Show()
-        installFrame.Option1:SetText("Finish")
+        installFrame.Option1:SetText("完成")
         installFrame.Option1:SetScript("OnClick", function()
           installFrame:Hide()
         end)
@@ -528,7 +519,7 @@ function IS:Dialog()
         end)
 
         installFrame.Option3:Show()
-        installFrame.Option3:SetText(TXUI.Title .. " Web")
+        installFrame.Option3:SetText(TXUI.Title .. " 网站")
         installFrame.Option3:SetScript("OnClick", function()
           self:PopupWebsiteLink()
         end)
@@ -537,15 +528,15 @@ function IS:Dialog()
 
     -- Installation Steps
     StepTitles = {
-      [Pages.Welcome] = "Welcome -  " .. Pages.Welcome,
-      [Pages.Profile] = "Profile - " .. Pages.Profile,
-      [Pages.Core] = "Core Settings - " .. Pages.Core,
+      [Pages.Welcome] = "欢迎 -  " .. Pages.Welcome,
+      [Pages.Profile] = "配置文件 - " .. Pages.Profile,
+      [Pages.Core] = "核心设置 - " .. Pages.Core,
       [Pages.Details] = "Details - " .. Pages.Details,
       [Pages.Plater] = "Plater - " .. Pages.Plater,
       [Pages.BigWigs] = "BigWigs - " .. Pages.BigWigs,
       [Pages.WeakAuras] = "WeakAuras - " .. Pages.WeakAuras,
-      [Pages.Additional] = "Add. AddOns - " .. Pages.Additional,
-      [Pages.Complete] = "Complete - " .. Pages.Complete,
+      [Pages.Additional] = "额外插件 - " .. Pages.Additional,
+      [Pages.Complete] = "完成 - " .. Pages.Complete,
     },
 
     -- Customize colors
