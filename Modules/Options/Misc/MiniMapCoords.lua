@@ -6,7 +6,7 @@ function O:Plugins_MiniMapCoords()
   self.options.misc.args.miniMapCoords = {
     order = self:GetOrder(),
     type = "group",
-    name = "Minimap Coordinates",
+    name = "小地图坐标",
     get = function(info)
       return E.db.TXUI.miniMapCoords[info[#info]]
     end,
@@ -25,16 +25,16 @@ function O:Plugins_MiniMapCoords()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
-      name = "Coordinates displayed on your MiniMap.\n\n",
+      name = "显示在小地图上的坐标。\n\n",
     }, I.Requirements.MiniMapCoords).args
 
     -- Enable
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " MiniMapCoords.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 小地图坐标。",
       name = function()
         return self:GetEnableName(E.db.TXUI.miniMapCoords.enabled, generalGroup)
       end,
@@ -60,17 +60,17 @@ function O:Plugins_MiniMapCoords()
   do
     -- Position Group
     local positionGroup = self:AddInlineDesc(options, {
-      name = "Position",
+      name = "位置",
       hidden = optionsHidden,
     }, {
-      name = "Coordinate position relative to the minimap -- both settings at 0 would be the center.",
+      name = "相对于小地图的坐标位置 -- 两个设置都为0将是中心。",
     }).args
 
     -- Position X
     positionGroup.xOffset = {
       order = self:GetOrder(),
       type = "range",
-      name = "X Offset",
+      name = "X 偏移",
       min = -300,
       max = 300,
       step = 1,
@@ -80,7 +80,7 @@ function O:Plugins_MiniMapCoords()
     positionGroup.yOffset = {
       order = self:GetOrder(),
       type = "range",
-      name = "Y Offset",
+      name = "Y 偏移",
       min = -300,
       max = 300,
       step = 1,
@@ -94,10 +94,10 @@ function O:Plugins_MiniMapCoords()
   do
     -- Fonts Group
     local fontGroup = self:AddInlineDesc(options, {
-      name = "Font",
+      name = "字体",
       hidden = optionsHidden,
     }, {
-      name = "Font settings for Minimap Coordinates.",
+      name = "小地图坐标的字体设置。",
     }).args
 
     -- Fonts Font
@@ -105,8 +105,8 @@ function O:Plugins_MiniMapCoords()
       order = self:GetOrder(),
       type = "select",
       dialogControl = "LSM30_Font",
-      name = "Font",
-      desc = "Set the font.",
+      name = "字体",
+      desc = "设置字体。",
       values = self:GetAllFontsFunc(),
     }
 
@@ -114,8 +114,8 @@ function O:Plugins_MiniMapCoords()
     fontGroup.coordFontOutline = {
       order = self:GetOrder(),
       type = "select",
-      name = "Font Outline",
-      desc = "Set the font outline.",
+      name = "字体轮廓",
+      desc = "设置字体轮廓。",
       values = self:GetAllFontOutlinesFunc(),
       disabled = function()
         return (E.db.TXUI.miniMapCoords["coordFontShadow"] == true)
@@ -126,8 +126,8 @@ function O:Plugins_MiniMapCoords()
     fontGroup.coordFontSize = {
       order = self:GetOrder(),
       type = "range",
-      name = "Font Size",
-      desc = "Set the font size.",
+      name = "字体大小",
+      desc = "设置字体大小。",
       min = 1,
       max = 100,
       step = 1,
@@ -137,8 +137,8 @@ function O:Plugins_MiniMapCoords()
     fontGroup.coordFontShadow = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Font Shadow",
-      desc = "Set font drop shadow.",
+      name = "字体阴影",
+      desc = "设置字体阴影。",
     }
 
     -- Spacer
@@ -148,7 +148,7 @@ function O:Plugins_MiniMapCoords()
     fontGroup.coordFontColor = {
       order = self:GetOrder(),
       type = "select",
-      name = "Font Color",
+      name = "字体颜色",
       values = self:GetAllFontColorsFunc(),
     }
 
@@ -156,7 +156,7 @@ function O:Plugins_MiniMapCoords()
     fontGroup.coordFontCustomColor = {
       order = self:GetOrder(),
       type = "color",
-      name = "Custom Color",
+      name = "自定义颜色",
       hasAlpha = true,
       get = self:GetFontColorGetter("TXUI.miniMapCoords", P.miniMapCoords),
       set = self:GetFontColorSetter("TXUI.miniMapCoords", function()
@@ -175,18 +175,18 @@ function O:Plugins_MiniMapCoords()
   do
     -- Format Group
     local formatGroup = self:AddInlineDesc(options, {
-      name = "Format",
+      name = "格式",
       hidden = optionsHidden,
     }, {
-      name = "Decimal format of Minimap Coordinates",
+      name = "小地图坐标的小数格式",
     }).args
 
     -- Formats
     formatGroup.format = {
       order = self:GetOrder(),
       type = "select",
-      name = "Format",
-      desc = "Decimal format",
+      name = "格式",
+      desc = "小数格式",
       values = {
         ["%.0f"] = "42",
         ["%.1f"] = "42.0",

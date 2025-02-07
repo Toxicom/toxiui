@@ -7,7 +7,7 @@ function O:Plugins_AdditionalScaling()
   self.options.misc.args["additionalScaling"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Additional Scaling",
+    name = "额外缩放",
     args = {},
   }
 
@@ -19,18 +19,18 @@ function O:Plugins_AdditionalScaling()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
-      name = "These options allow you to apply additional scaling to UI elements that might otherwise be a little bit too small.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "After disabling the module you must reload the UI, otherwise the scaling will not reset!\n\n",
+      name = "这些选项允许您对可能有点太小的UI元素应用额外的缩放。\n\n"
+        .. F.String.ToxiUI("信息: ")
+        .. "禁用模块后，您必须重新加载UI，否则缩放将不会重置！\n\n",
     }, I.Requirements.AdditionalScaling).args
 
     -- Enable
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " " .. F.String.Scaling() .. ".\n\n",
+      desc = "启用此选项将启用" .. TXUI.Title .. " " .. F.String.Scaling() .. "。\n\n",
       name = function()
         return self:GetEnableName(E.db.TXUI.misc.scaling.enabled, generalGroup)
       end,
@@ -60,17 +60,17 @@ function O:Plugins_AdditionalScaling()
   do
     -- Character Group
     local characterGroup = self:AddInlineDesc(options, {
-      name = "Character",
+      name = "角色",
       hidden = optionsHidden,
     }, {
-      name = "Scale character specific frames.\n\n",
+      name = "缩放角色特定的框架。\n\n",
     }).args
 
     -- Character Group: Character Frame
     characterGroup.characterFrame = {
       order = self:GetOrder(),
       type = "range",
-      name = "Character Frame",
+      name = "角色框架",
       get = function(_)
         return E.db.TXUI.misc.scaling.characterFrame.scale
       end,
@@ -87,7 +87,7 @@ function O:Plugins_AdditionalScaling()
     characterGroup.dressingRoom = {
       order = self:GetOrder(),
       type = "range",
-      name = "Dressing Room",
+      name = "试衣间",
       get = function(_)
         return E.db.TXUI.misc.scaling.dressingRoom.scale
       end,
@@ -104,7 +104,7 @@ function O:Plugins_AdditionalScaling()
     characterGroup.inspectFrame = {
       order = self:GetOrder(),
       type = "range",
-      name = "Inspect Frame",
+      name = "检查框架",
       disabled = function()
         return E.db.TXUI.misc.scaling.syncInspect.enabled
       end,
@@ -124,8 +124,8 @@ function O:Plugins_AdditionalScaling()
     characterGroup.syncInspect = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on makes your inspect frame scale have the same value as the character frame scale.",
-      name = "Sync Inspect",
+      desc = "启用此选项会使您的检查框架缩放与角色框架缩放具有相同的值。",
+      name = "同步检查",
       get = function(_)
         return E.db.TXUI.misc.scaling.syncInspect.enabled
       end,
@@ -146,14 +146,14 @@ function O:Plugins_AdditionalScaling()
       name = "NPC",
       hidden = optionsHidden,
     }, {
-      name = "Scale frames related to interactions with NPCs. Yes, we know a mailbox isn't technically an NPC.\n\n",
+      name = "缩放与NPC交互相关的框架。是的，我们知道邮箱技术上不是NPC。\n\n",
     }).args
 
     -- NPC Group: Vendor
     npcGroup.vendor = {
       order = self:GetOrder(),
       type = "range",
-      name = "Vendor",
+      name = "商人",
       get = function(_)
         return E.db.TXUI.misc.scaling.vendor.scale
       end,
@@ -170,7 +170,7 @@ function O:Plugins_AdditionalScaling()
     npcGroup.classTrainer = {
       order = self:GetOrder(),
       type = "range",
-      name = "Class Trainer",
+      name = "职业训练师",
       get = function(_)
         return E.db.TXUI.misc.scaling.classTrainer.scale
       end,
@@ -187,7 +187,7 @@ function O:Plugins_AdditionalScaling()
     npcGroup.gossip = {
       order = self:GetOrder(),
       type = "range",
-      name = "Gossip",
+      name = "闲聊",
       get = function(_)
         return E.db.TXUI.misc.scaling.gossip.scale
       end,
@@ -204,7 +204,7 @@ function O:Plugins_AdditionalScaling()
     npcGroup.quest = {
       order = self:GetOrder(),
       type = "range",
-      name = "Quest",
+      name = "任务",
       get = function(_)
         return E.db.TXUI.misc.scaling.quest.scale
       end,
@@ -221,7 +221,7 @@ function O:Plugins_AdditionalScaling()
     npcGroup.mailbox = {
       order = self:GetOrder(),
       type = "range",
-      name = "Mailbox",
+      name = "邮箱",
       get = function(_)
         return E.db.TXUI.misc.scaling.mailbox.scale
       end,
@@ -237,7 +237,7 @@ function O:Plugins_AdditionalScaling()
     npcGroup.auctionHouse = {
       order = self:GetOrder(),
       type = "range",
-      name = "Auction House",
+      name = "拍卖行",
       get = function(_)
         return E.db.TXUI.misc.scaling.auctionHouse.scale
       end,
@@ -258,17 +258,17 @@ function O:Plugins_AdditionalScaling()
   do
     -- Other Group
     local otherGroup = self:AddInlineDesc(options, {
-      name = "Other",
+      name = "其他",
       hidden = optionsHidden,
     }, {
-      name = "Scale other frames.\n\n",
+      name = "缩放其他框架。\n\n",
     }).args
 
     -- Other Group: Map
     otherGroup.map = {
       order = self:GetOrder(),
       type = "range",
-      name = "Map",
+      name = "地图",
       get = function(_)
         return E.db.TXUI.misc.scaling.map.scale
       end,
@@ -285,7 +285,7 @@ function O:Plugins_AdditionalScaling()
     otherGroup.spellbook = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spellbook",
+      name = "法术书",
       get = function(_)
         return E.db.TXUI.misc.scaling.spellbook.scale
       end,
@@ -302,7 +302,7 @@ function O:Plugins_AdditionalScaling()
     otherGroup.collections = {
       order = self:GetOrder(),
       type = "range",
-      name = "Collections",
+      name = "收藏",
       disabled = function()
         return TXUI.IsVanilla
       end,
@@ -322,7 +322,7 @@ function O:Plugins_AdditionalScaling()
     otherGroup.profession = {
       order = self:GetOrder(),
       type = "range",
-      name = "Profession",
+      name = "专业",
       get = function(_)
         return E.db.TXUI.misc.scaling.profession.scale
       end,
@@ -339,7 +339,7 @@ function O:Plugins_AdditionalScaling()
     otherGroup.friends = {
       order = self:GetOrder(),
       type = "range",
-      name = "Friends",
+      name = "好友",
       get = function(_)
         return E.db.TXUI.misc.scaling.friends.scale
       end,
@@ -364,18 +364,18 @@ function O:Plugins_AdditionalScaling()
 
     -- Retail Group
     local retailGroup = self:AddInlineDesc(options, {
-      name = "Retail Only",
+      name = "仅限正式服",
       hidden = optionsHidden,
       disabled = retailDisabled,
     }, {
-      name = "Scale Retail only frames.\n\n",
+      name = "缩放仅限正式服的框架。\n\n",
     }).args
 
     -- Retail Group: Wardrobe
     retailGroup.wardrobe = {
       order = self:GetOrder(),
       type = "range",
-      name = "Wardrobe",
+      name = "衣柜",
       get = function(_)
         return E.db.TXUI.misc.scaling.wardrobe.scale
       end,
@@ -392,8 +392,8 @@ function O:Plugins_AdditionalScaling()
     retailGroup.itemUpgrade = {
       order = self:GetOrder(),
       type = "range",
-      name = "Item Upgrade",
-      desc = "Interfaces where you add an item, eg.: item upgrade frame, catalyst upgrade",
+      name = "物品升级",
+      desc = "添加物品的界面，例如：物品升级框架，催化剂升级",
       get = function(_)
         return E.db.TXUI.misc.scaling.itemUpgrade.scale
       end,
@@ -410,8 +410,8 @@ function O:Plugins_AdditionalScaling()
     retailGroup.equipmentFlyout = {
       order = self:GetOrder(),
       type = "range",
-      name = "Equipment Flyout",
-      desc = "Flyout of items for interfaces where you add an item, eg.: item upgrade frame, catalyst upgrade",
+      name = "装备弹出",
+      desc = "添加物品的界面的物品弹出，例如：物品升级框架，催化剂升级",
       get = function(_)
         return E.db.TXUI.misc.scaling.equipmentFlyout.scale
       end,
@@ -428,7 +428,7 @@ function O:Plugins_AdditionalScaling()
     retailGroup.groupFinder = {
       order = self:GetOrder(),
       type = "range",
-      name = "Group Finder",
+      name = "组队查找器",
       get = function(_)
         return E.db.TXUI.misc.scaling.groupFinder.scale
       end,
@@ -446,8 +446,8 @@ function O:Plugins_AdditionalScaling()
     retailGroup.transmog = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Transmog Frame",
-      desc = "Makes the transmogrification frame bigger.",
+      name = "幻化框架",
+      desc = "使幻化框架变大。",
       get = function(_)
         return E.db.TXUI.misc.scaling.retailTransmog.enabled
       end,
@@ -469,17 +469,17 @@ function O:Plugins_AdditionalScaling()
   do
     -- Classic Group
     local classicGroup = self:AddInlineDesc(options, {
-      name = "Classic Only",
+      name = "仅限经典服",
       hidden = optionsHidden,
     }, {
-      name = "Scale Vanilla & Cataclysm Classic only frames.\n\n",
+      name = "缩放仅限经典服的框架。\n\n",
     }).args
 
     -- Classic Group: Talents
     classicGroup.talents = {
       order = self:GetOrder(),
       type = "range",
-      name = "Talents",
+      name = "天赋",
       disabled = function()
         return TXUI.IsRetail
       end,
@@ -499,7 +499,7 @@ function O:Plugins_AdditionalScaling()
     classicGroup.taxi = {
       order = self:GetOrder(),
       type = "range",
-      name = "Taxi",
+      name = "飞行点",
       disabled = function()
         return TXUI.IsRetail
       end,

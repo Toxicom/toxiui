@@ -7,7 +7,7 @@ function O:Plugins_HideFrames()
   self.options.misc.args["hideFrames"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Hide Frames",
+    name = "隐藏框体",
     args = {},
   }
 
@@ -19,16 +19,16 @@ function O:Plugins_HideFrames()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Description",
+      name = "描述",
     }, {
-      name = "These options allow you to completely hide some frames.\n\nOnce an option is enabled, the frame will never show until disabled again.\n\n",
+      name = "这些选项允许您完全隐藏某些框体。\n\n一旦启用选项，框体将不会显示，直到再次禁用。\n\n",
     }, I.Requirements.HideFrames).args
 
     -- Enable
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Hide Frames module.\n\n",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 隐藏框体模块。\n\n",
       name = function()
         return self:GetEnableName(E.db.TXUI.misc.hide.enabled, generalGroup)
       end,
@@ -62,19 +62,19 @@ function O:Plugins_HideFrames()
   do
     -- Character Group
     local retailGroup = self:AddInlineDesc(options, {
-      name = "Retail Only",
+      name = "仅限正式服",
       hidden = optionsHidden,
       disabled = retailDisabled,
     }, {
-      name = "Hide Retail only frames.\n\n",
+      name = "隐藏仅限正式服的框体。\n\n",
     }).args
 
     -- Character Group: Sync Inspect
     retailGroup.lootFrame = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "This Loot Frame automatically shows up in raids after killing a boss, or by manually typing " .. F.String.ToxiUI("/loot") .. ".",
-      name = "Loot Frame",
+      desc = "此战利品框体会在团队副本击败首领后自动显示，或通过手动输入 " .. F.String.ToxiUI("/loot") .. " 显示。",
+      name = "战利品框体",
       get = function(_)
         return E.db.TXUI.misc.hide.lootFrame
       end,

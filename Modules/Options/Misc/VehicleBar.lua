@@ -11,7 +11,7 @@ function O:Plugins_VehicleBar()
   self.options.misc.args.vehicleBar = {
     order = self:GetOrder(),
     type = "group",
-    name = "VehicleBar " .. E.NewSign,
+    name = "载具栏 " .. E.NewSign,
     get = function(info)
       return E.db.TXUI.vehicleBar[info[#info]]
     end,
@@ -31,18 +31,18 @@ function O:Plugins_VehicleBar()
   do
     -- General Group
     local generalGroup = self:AddInlineRequirementsDesc(options, {
-      name = "General",
+      name = "常规",
     }, {
-      name = "An additional Vehicle Bar that doesn't get affected by Global Fade.\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "This feature is currently known to sometimes bug out, use it with caution.\n\n",
+      name = "一个不受全局淡出影响的额外载具栏。\n\n"
+        .. F.String.Warning("警告: ")
+        .. "此功能目前已知有时会出现问题，请谨慎使用。\n\n",
     }, I.Requirements.VehicleBar).args
 
     -- Enable
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Vehicle Bar.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 载具栏。",
       name = function()
         return self:GetEnableName(E.db.TXUI.vehicleBar.enabled, generalGroup)
       end,
@@ -62,8 +62,8 @@ function O:Plugins_VehicleBar()
     generalGroup.buttonSize = {
       order = self:GetOrder(),
       type = "range",
-      name = "Button Width",
-      desc = "Change the Vehicle Bar's Button width. The height will scale accordingly in a 4:3 aspect ratio.",
+      name = "按钮宽度",
+      desc = "更改载具栏的按钮宽度。高度将按 4:3 的宽高比进行缩放。",
       get = function()
         return E.db.TXUI.vehicleBar.buttonWidth
       end,
@@ -84,17 +84,17 @@ function O:Plugins_VehicleBar()
   do
     -- Vigor Group
     local vigorGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Skyriding Bar",
+      name = "飞行条",
       hidden = optionsDisabled,
     }, {
-      name = "A Skyriding bar displaying your current Vigor, speed percentage and also if the Thrill buff is active.\n\n",
+      name = "一个显示当前活力、速度百分比以及是否激活了刺激增益的飞行条。\n\n",
     }, I.Requirements.VehicleBar).args
 
     -- Enable
     vigorGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Skyriding Bar.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 飞行条。",
       name = function()
         return self:GetEnableName(E.db.TXUI.vehicleBar.vigorBar.enabled, vigorGroup)
       end,
@@ -115,8 +115,8 @@ function O:Plugins_VehicleBar()
     vigorGroup.thrillColor = {
       order = self:GetOrder(),
       type = "color",
-      name = "Thrill Color",
-      desc = "The color for vigor bar's speed text when you are regaining vigor.",
+      name = "刺激颜色",
+      desc = "当你恢复活力时，活力条速度文本的颜色。",
       hasAlpha = false,
       get = self:GetFontColorGetter("TXUI.vehicleBar.vigorBar", P.vehicleBar.vigorBar),
       set = self:GetFontColorSetter("TXUI.vehicleBar.vigorBar", function()
@@ -126,14 +126,14 @@ function O:Plugins_VehicleBar()
     }
 
     -- function ACH:SharedMediaStatusbar(name, desc, order, width, get, set, disabled, hidden)
-    vigorGroup.normalTexture = ACH:SharedMediaStatusbar("Normal Texture", "Vigor bar texture for Normal and Gradient Mode", self:GetOrder(), 200, function()
+    vigorGroup.normalTexture = ACH:SharedMediaStatusbar("普通纹理", "普通和渐变模式下的活力条纹理", self:GetOrder(), 200, function()
       return E.db.TXUI.vehicleBar.vigorBar.normalTexture
     end, function(_, value)
       E.db.TXUI.vehicleBar.vigorBar.normalTexture = value
       E:StaticPopup_Show("CONFIG_RL")
     end, vigorDisabled)
 
-    vigorGroup.darkTexture = ACH:SharedMediaStatusbar("Dark Texture", "Vigor bar texture for Dark Mode", self:GetOrder(), 200, function()
+    vigorGroup.darkTexture = ACH:SharedMediaStatusbar("暗黑纹理", "暗黑模式下的活力条纹理", self:GetOrder(), 200, function()
       return E.db.TXUI.vehicleBar.vigorBar.darkTexture
     end, function(_, value)
       E.db.TXUI.vehicleBar.vigorBar.darkTexture = value
@@ -148,17 +148,17 @@ function O:Plugins_VehicleBar()
   do
     -- Animations Group
     local animationsGroup = self:AddInlineDesc(options, {
-      name = "Animations",
+      name = "动画",
       hidden = optionsDisabled,
     }, {
-      name = "Vehicle Bar animations when entering or leaving a vehicle.\n\n",
+      name = "进入或离开载具时的载具栏动画。\n\n",
     }).args
 
     -- Enable
     animationsGroup.animations = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Vehicle Bar Animations.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 载具栏动画。",
       name = function()
         return self:GetEnableName(E.db.TXUI.vehicleBar.animations)
       end,
@@ -172,7 +172,7 @@ function O:Plugins_VehicleBar()
     animationsGroup.animationsMult = {
       order = self:GetOrder(),
       type = "range",
-      name = "Animation Speed",
+      name = "动画速度",
       min = 0.5,
       max = 2,
       step = 0.1,
