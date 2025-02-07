@@ -11,7 +11,7 @@ function O:WunderBar_SubModules_Currency()
   local options = self.options.wunderbar.args.submodules.args
   local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.currency = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59705) .. " ") or "") .. "Currencies", nil, self:GetOrder(), nil, function(info)
+  options.currency = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59705) .. " ") or "") .. "货币", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]] = value
@@ -28,34 +28,34 @@ function O:WunderBar_SubModules_Currency()
   end
 
   -- General
-  tab.generalGroup = ACH:Group("General", nil, 1)
+  tab.generalGroup = ACH:Group("常规", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.displayedCurrency = ACH:Select("Displayed Currency", nil, 1, function()
+  tab.generalGroup.args.displayedCurrency = ACH:Select("显示的货币", nil, 1, function()
     local list = E:CopyTable({}, DT.CurrencyList)
     list["BACKPACK"] = nil
     return list
   end)
   tab.generalGroup.args.displayedCurrency.sortByValue = true
 
-  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", nil, 2)
-  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, 3, {
+  tab.generalGroup.args.showIcon = ACH:Toggle("显示图标", nil, 2)
+  tab.generalGroup.args.iconFontSize = ACH:Range("图标大小", nil, 3, {
     min = 1,
     max = 100,
     step = 1,
   }, nil, nil, nil, iconDisabled)
 
   -- Display
-  tab.displayGroup = ACH:Group("Display", nil, 2)
+  tab.displayGroup = ACH:Group("显示", nil, 2)
   tab.displayGroup.inline = true
-  tab.displayGroup.args.showSmall = ACH:Toggle("Show Silver & Copper", nil, 1, nil, nil, nil, nil, nil, goldDisabled)
-  tab.displayGroup.args.useGoldColors = ACH:Toggle("Use colors for letters", nil, 2, nil, nil, nil, nil, nil, goldDisabled)
-  tab.displayGroup.args.showBagSpace = ACH:Toggle("Show Free Bag Space", nil, 3)
+  tab.displayGroup.args.showSmall = ACH:Toggle("显示银币和铜币", nil, 1, nil, nil, nil, nil, nil, goldDisabled)
+  tab.displayGroup.args.useGoldColors = ACH:Toggle("使用颜色显示字母", nil, 2, nil, nil, nil, nil, nil, goldDisabled)
+  tab.displayGroup.args.showBagSpace = ACH:Toggle("显示背包剩余空间", nil, 3)
 
   tab.displayGroup.args.spacer1 = ACH:Spacer(3)
 
   -- Currencies
-  tab.currencyGroup = ACH:Group("Currencies", nil, 3)
+  tab.currencyGroup = ACH:Group("货币", nil, 3)
   tab.currencyGroup.inline = true
 
   tab.currencyGroup.args.spacer1 = ACH:Spacer(0)

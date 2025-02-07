@@ -19,7 +19,7 @@ function O:WunderBar_SubModules_Durability()
     return repairMounts
   end
 
-  options.durability = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59721) .. " ") or "") .. "Durability", nil, self:GetOrder(), nil, function(info)
+  options.durability = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59721) .. " ") or "") .. "耐久度", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry][info[#info]] = value
@@ -32,11 +32,11 @@ function O:WunderBar_SubModules_Durability()
   end
 
   -- General
-  tab.generalGroup = ACH:Group("General", nil, 1)
+  tab.generalGroup = ACH:Group("常规", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", nil, 1)
-  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, 2, {
+  tab.generalGroup.args.showIcon = ACH:Toggle("显示图标", nil, 1)
+  tab.generalGroup.args.iconFontSize = ACH:Range("图标大小", nil, 2, {
     min = 1,
     max = 100,
     step = 1,
@@ -48,14 +48,14 @@ function O:WunderBar_SubModules_Durability()
     return not E.db.TXUI.wunderbar.subModules[dbEntry].showItemLevel
   end
 
-  tab.generalGroup.args.showItemLevel = ACH:Toggle("Show Item Level", nil, 4)
-  tab.generalGroup.args.itemLevelShort = ACH:Toggle("Short Item Level", nil, 5, nil, nil, nil, nil, nil, itemLevelDisabled)
+  tab.generalGroup.args.showItemLevel = ACH:Toggle("显示物品等级", nil, 4)
+  tab.generalGroup.args.itemLevelShort = ACH:Toggle("简短物品等级", nil, 5, nil, nil, nil, nil, nil, itemLevelDisabled)
 
   -- Repair Mount
-  tab.mountGroup = ACH:Group("Repair Mount", nil, 2)
+  tab.mountGroup = ACH:Group("修理坐骑", nil, 2)
   tab.mountGroup.inline = true
-  tab.mountGroup.args.description = ACH:Description("Select which repair mount will be summoned when right-clicking the module.\n\n", 1)
-  tab.mountGroup.args.repairMount = ACH:Select("Select Mount", nil, 2, getMounts)
+  tab.mountGroup.args.description = ACH:Description("选择右键点击模块时召唤的修理坐骑。\n\n", 1)
+  tab.mountGroup.args.repairMount = ACH:Select("选择坐骑", nil, 2, getMounts)
   tab.mountGroup.args.repairMount.width = 2
   tab.mountGroup.args.repairMount.disabled = function()
     return not (C_MountJournal and C_MountJournal.GetMountInfoByID) or F.Table.IsEmpty(getMounts())
@@ -63,18 +63,18 @@ function O:WunderBar_SubModules_Durability()
   tab.mountGroup.args.repairMount.sortByValue = true
 
   -- Colors
-  tab.colorGroup = ACH:Group("Colors", nil, 3)
+  tab.colorGroup = ACH:Group("颜色", nil, 3)
   tab.colorGroup.inline = true
-  tab.colorGroup.args.iconColor = ACH:Toggle("Color Icon", nil, 1, nil, nil, nil, nil, nil, iconDisabled)
-  tab.colorGroup.args.textColor = ACH:Toggle("Color Text", nil, 2)
-  tab.colorGroup.args.textColorFadeFromNormal = ACH:Toggle("Text Color as Base", nil, 3)
+  tab.colorGroup.args.iconColor = ACH:Toggle("图标颜色", nil, 1, nil, nil, nil, nil, nil, iconDisabled)
+  tab.colorGroup.args.textColor = ACH:Toggle("文字颜色", nil, 2)
+  tab.colorGroup.args.textColorFadeFromNormal = ACH:Toggle("文字颜色作为基础", nil, 3)
 
   -- Animations
-  tab.animateGroup = ACH:Group("Animations", nil, 4)
+  tab.animateGroup = ACH:Group("动画", nil, 4)
   tab.animateGroup.inline = true
 
-  tab.animateGroup.args.animateLow = ACH:Toggle("Animate Low", nil, 1)
-  tab.animateGroup.args.animateThreshold = ACH:Range("Animate Threshold", nil, 2, {
+  tab.animateGroup.args.animateLow = ACH:Toggle("低耐久动画", nil, 1)
+  tab.animateGroup.args.animateThreshold = ACH:Range("动画阈值", nil, 2, {
     min = 1,
     max = 100,
     step = 1,

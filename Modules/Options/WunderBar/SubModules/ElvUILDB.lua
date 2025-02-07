@@ -17,9 +17,9 @@ function O:WunderBar_SubModules_ElvUILDB()
   local tab = options.elvuildb.args
 
   -- General
-  tab.generalGroup = ACH:Group("General", nil, 1)
+  tab.generalGroup = ACH:Group("常规", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase", nil, 1)
-  tab.generalGroup.args.textColor = ACH:Toggle("Allow Text Color", nil, 2)
+  tab.generalGroup.args.useUppercase = ACH:Toggle("大写", nil, 1)
+  tab.generalGroup.args.textColor = ACH:Toggle("允许文字颜色", nil, 2)
 end

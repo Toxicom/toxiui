@@ -7,7 +7,7 @@ function O:WunderBar_SubModules_SpecSwitch()
   local options = self.options.wunderbar.args.submodules.args
   local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.specswitch = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59707) .. " ") or "") .. "SpecSwitch", nil, self:GetOrder(), nil, function(info)
+  options.specswitch = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59707) .. " ") or "") .. "天赋切换", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]] = value
@@ -28,11 +28,11 @@ function O:WunderBar_SubModules_SpecSwitch()
   end
 
   -- General
-  tab.generalGroup = ACH:Group("General", nil, 1)
+  tab.generalGroup = ACH:Group("常规", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.showIcons = ACH:Toggle("Show Icons", nil, 1)
-  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, 2, {
+  tab.generalGroup.args.showIcons = ACH:Toggle("显示图标", nil, 1)
+  tab.generalGroup.args.iconFontSize = ACH:Range("图标大小", nil, 2, {
     min = 1,
     max = 100,
     step = 1,
@@ -40,16 +40,16 @@ function O:WunderBar_SubModules_SpecSwitch()
 
   tab.generalGroup.args.spacer1 = ACH:Spacer(3)
 
-  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase Names", nil, 4)
+  tab.generalGroup.args.useUppercase = ACH:Toggle("大写名称", nil, 4)
 
   tab.generalGroup.args.spacer2 = ACH:Spacer(5)
 
-  tab.generalGroup.args.showSpec1 = ACH:Toggle("Show Talent Spec", nil, 6)
-  tab.generalGroup.args.showSpec2 = ACH:Toggle("Show " .. (TXUI.IsRetail and "Loot Spec" or "Secondary Spec"), nil, 7)
-  tab.generalGroup.args.showLoadout = ACH:Toggle("Show Loadout Name", nil, 8, nil, nil, nil, nil, nil, not TXUI.IsRetail)
+  tab.generalGroup.args.showSpec1 = ACH:Toggle("显示天赋专精", nil, 6)
+  tab.generalGroup.args.showSpec2 = ACH:Toggle("显示" .. (TXUI.IsRetail and "拾取专精" or "第二专精"), nil, 7)
+  tab.generalGroup.args.showLoadout = ACH:Toggle("显示配装名称", nil, 8, nil, nil, nil, nil, nil, not TXUI.IsRetail)
 
   -- Info Text
-  tab.infoGroup = ACH:Group("Info Text Group", nil, 2)
+  tab.infoGroup = ACH:Group("信息文本组", nil, 2)
   tab.infoGroup.inline = true
 
   local infoFontDisabled = function()
@@ -61,23 +61,23 @@ function O:WunderBar_SubModules_SpecSwitch()
   end
 
   tab.infoGroup.args.infoEnabled = ACH:Toggle(function()
-    return infoTextDisabled() and "Disabled" or "Enabled"
+    return infoTextDisabled() and "禁用" or "启用"
   end, nil, 1, nil, nil, nil, nil, nil, infoTextDisabledDueToSpec)
 
-  tab.infoGroup.args.infoUseAccent = ACH:Toggle("Accent Color", nil, 2, nil, nil, nil, nil, nil, infoTextDisabled)
+  tab.infoGroup.args.infoUseAccent = ACH:Toggle("强调颜色", nil, 2, nil, nil, nil, nil, nil, infoTextDisabled)
 
-  tab.infoGroup.args.infoShowIcon = ACH:Toggle("Show as Icon", nil, 3, nil, nil, nil, nil, nil, infoIconDisabled)
+  tab.infoGroup.args.infoShowIcon = ACH:Toggle("显示为图标", nil, 3, nil, nil, nil, nil, nil, infoIconDisabled)
 
   tab.infoGroup.args.spacer1 = ACH:Spacer(4)
 
-  tab.infoGroup.args.infoFont = ACH:SharedMediaFont("Font", nil, 5, nil, nil, nil, infoFontDisabled)
-  tab.infoGroup.args.infoFontSize = ACH:Range("Font Size", nil, 6, {
+  tab.infoGroup.args.infoFont = ACH:SharedMediaFont("字体", nil, 5, nil, nil, nil, infoFontDisabled)
+  tab.infoGroup.args.infoFontSize = ACH:Range("字体大小", nil, 6, {
     min = 1,
     max = 100,
     step = 1,
   }, nil, nil, nil, infoTextDisabled)
 
-  tab.infoGroup.args.infoOffset = ACH:Range("Vertical Offset", nil, 7, {
+  tab.infoGroup.args.infoOffset = ACH:Range("垂直偏移", nil, 7, {
     min = 1,
     max = 100,
     step = 1,

@@ -9,7 +9,7 @@ function O:WunderBar_SubModules_Profession()
   local options = self.options.wunderbar.args.submodules.args
   local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
-  options.profession = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59708) .. " ") or "") .. "Profession", nil, self:GetOrder(), nil, function(info)
+  options.profession = ACH:Group((isUsingToxiUIFont and (F.String.ConvertGlyph(59708) .. " ") or "") .. "专业", nil, self:GetOrder(), nil, function(info)
     return E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]]
   end, function(info, value)
     E.db.TXUI.wunderbar.subModules[dbEntry].general[info[#info]] = value
@@ -22,11 +22,11 @@ function O:WunderBar_SubModules_Profession()
   end
 
   -- General
-  tab.generalGroup = ACH:Group("General", nil, 1)
+  tab.generalGroup = ACH:Group("常规", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.showIcons = ACH:Toggle("Show Icons", nil, 1)
-  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, 2, {
+  tab.generalGroup.args.showIcons = ACH:Toggle("显示图标", nil, 1)
+  tab.generalGroup.args.iconFontSize = ACH:Range("图标大小", nil, 2, {
     min = 1,
     max = 100,
     step = 1,
@@ -34,10 +34,10 @@ function O:WunderBar_SubModules_Profession()
 
   tab.generalGroup.args.spacer1 = ACH:Spacer(3)
 
-  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase Names", nil, 4)
-  tab.generalGroup.args.abbreviate = ACH:Toggle("Abbreviate Names " .. E.NewSign, "This will abbreviate the name to custom strings, eg: 'BS', 'LW', 'Ench' etc.", 5)
+  tab.generalGroup.args.useUppercase = ACH:Toggle("名称大写", nil, 4)
+  tab.generalGroup.args.abbreviate = ACH:Toggle("缩写名称 " .. E.NewSign, "这将把名称缩写为自定义字符串，例如：'BS'，'LW'，'Ench' 等等。", 5)
   tab.generalGroup.args.abbreviate.width = 1.2
-  tab.generalGroup.args.limitChar = ACH:Range("Name Length " .. E.NewSign, "Max character length of the Profession's name", 6)
+  tab.generalGroup.args.limitChar = ACH:Range("名称长度 " .. E.NewSign, "专业名称的最大字符长度", 6)
   tab.generalGroup.args.limitChar.step = 1
   tab.generalGroup.args.limitChar.min = 1
   tab.generalGroup.args.limitChar.max = 32
@@ -55,13 +55,13 @@ function O:WunderBar_SubModules_Profession()
       local mainProfName
 
       if number == 1 then
-        mainProfName = prof1 and select(2, PR:GetProfessionInfo(prof1)) or "Profession " .. number
+        mainProfName = prof1 and select(2, PR:GetProfessionInfo(prof1)) or "专业 " .. number
       else
-        mainProfName = prof2 and select(2, PR:GetProfessionInfo(prof2)) or "Profession " .. number
+        mainProfName = prof2 and select(2, PR:GetProfessionInfo(prof2)) or "专业 " .. number
       end
 
       local values = {
-        [0] = "Hide",
+        [0] = "隐藏",
         [1] = mainProfName,
       }
 
@@ -74,10 +74,10 @@ function O:WunderBar_SubModules_Profession()
     end
   end
 
-  tab.generalGroup.args.selectedProf1 = ACH:Select("Profession 1", nil, 8, professionValues(1), nil, 2)
-  tab.generalGroup.args.selectedProf2 = ACH:Select("Profession 2", nil, 9, professionValues(2), nil, 2)
+  tab.generalGroup.args.selectedProf1 = ACH:Select("专业 1", nil, 8, professionValues(1), nil, 2)
+  tab.generalGroup.args.selectedProf2 = ACH:Select("专业 2", nil, 9, professionValues(2), nil, 2)
 
-  tab.barGroup = ACH:Group("Bars", nil, 2)
+  tab.barGroup = ACH:Group("进度条", nil, 2)
   tab.barGroup.inline = true
 
   local barsDisabled = function()
@@ -85,22 +85,22 @@ function O:WunderBar_SubModules_Profession()
   end
 
   tab.barGroup.args.showBars = ACH:Toggle(function()
-    return barsDisabled() and "Disabled" or "Enabled"
+    return barsDisabled() and "禁用" or "启用"
   end, nil, 1)
 
-  tab.barGroup.args.barHeight = ACH:Range("Bar Height", nil, 2, {
+  tab.barGroup.args.barHeight = ACH:Range("进度条高度", nil, 2, {
     min = 1,
     max = 20,
     step = 1,
   }, nil, nil, nil, barsDisabled)
 
-  tab.barGroup.args.barOffset = ACH:Range("Vertical Offset", nil, 3, {
+  tab.barGroup.args.barOffset = ACH:Range("垂直偏移", nil, 3, {
     min = -10,
     max = 10,
     step = 1,
   }, nil, nil, nil, barsDisabled)
 
-  tab.barGroup.args.barSpacing = ACH:Range("Vertical Spacing", nil, 4, {
+  tab.barGroup.args.barSpacing = ACH:Range("垂直间距", nil, 4, {
     min = 0,
     max = 10,
     step = 1,
