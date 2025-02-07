@@ -17,7 +17,7 @@ function O:Skins_ElvUI()
   self:AddInlineDesc(options, {
     name = "Description",
   }, {
-    name = TXUI.Title .. " provides additional features to " .. F.String.ElvUI("ElvUI") .. " which can be configured here.",
+    name = TXUI.Title .. " 提供了额外的功能给 " .. F.String.ElvUI("ElvUI") .. "，可以在这里配置。",
   })
 
   -- Spacer
@@ -27,7 +27,7 @@ function O:Skins_ElvUI()
   do
     -- ElvUI Theme
     local elvuiTheme = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin",
+      name = TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " 皮肤",
       get = function(info)
         return E.db.TXUI.addons.elvUITheme[info[#info]]
       end,
@@ -37,18 +37,16 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("Theme.SettingsUpdate")
       end,
     }, {
-      name = "This module applies a grain background and shadows to all "
-        .. F.String.ElvUI()
-        .. " elements.\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "This feature may increase your load times due to all the frames it has to skin. This should not however impact performance of the gameplay.\n\n",
+      name = "此模块为所有 " .. F.String.ElvUI() .. " 元素应用了颗粒背景和阴影。\n\n"
+        .. F.String.Warning("警告: ")
+        .. "此功能可能会增加加载时间，因为它需要为所有框架应用皮肤。但这不应影响游戏性能。\n\n",
     }, I.Requirements.ElvUITheme)
 
     -- ElvUI Theme Mode Enable
     elvuiTheme["args"]["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " 皮肤。",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.elvUITheme.enabled)
       end,
@@ -71,8 +69,8 @@ function O:Skins_ElvUI()
     elvuiTheme["args"]["shadowEnabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enable shadows for WeakAuras and most of ElvUI bars.",
-      name = "Soft Shadows",
+      desc = "为 WeakAuras 和大多数 ElvUI 条启用阴影。",
+      name = "柔和阴影",
       disabled = optionsDisabled,
     }
 
@@ -80,7 +78,7 @@ function O:Skins_ElvUI()
     elvuiTheme["args"]["shadowAlpha"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Shadow Opacity",
+      name = "阴影不透明度",
       min = 0.1,
       max = 1,
       step = 0.01,
@@ -94,7 +92,7 @@ function O:Skins_ElvUI()
     elvuiTheme["args"]["shadowSize"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Shadow Size",
+      name = "阴影大小",
       min = 1,
       max = 10,
       step = 1,
@@ -111,16 +109,16 @@ function O:Skins_ElvUI()
   do
     -- ToxiUI Game Menu Button Group
     local gameMenuSkinGroup = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " Game Menu Skin",
+      name = TXUI.Title .. " 游戏菜单皮肤",
     }, {
-      name = "This module skins the Game Menu (ESC) background with additional information.\n\n",
+      name = "此模块为游戏菜单 (ESC) 背景应用了额外的信息。\n\n",
     }, I.Requirements.GameMenuButton).args
 
     -- ToxiUI Game Menu Button Enable
     gameMenuSkinGroup.gameMenuSkin = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this option enables the " .. TXUI.Title .. " Game Menu (ESC) skin.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 游戏菜单 (ESC) 皮肤。",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.gameMenuSkin.enabled, gameMenuSkinGroup)
       end,
@@ -136,8 +134,8 @@ function O:Skins_ElvUI()
     gameMenuSkinGroup.showInfo = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Show Player Info",
-      desc = "Toggling this on displays player information in the game menu background. Requires Background Fade enabled.",
+      name = "显示玩家信息",
+      desc = "启用此选项将在游戏菜单背景中显示玩家信息。需要启用背景淡化。",
       get = function(_)
         return E.db.TXUI.addons.gameMenuSkin.showInfo
       end,
@@ -154,8 +152,8 @@ function O:Skins_ElvUI()
       order = self:GetOrder(),
 
       type = "toggle",
-      name = "Show Random Tips",
-      desc = "Toggling this on displays random tips in the game menu background. Requires Show Player Info enabled.",
+      name = "显示随机提示",
+      desc = "启用此选项将在游戏菜单背景中显示随机提示。需要启用显示玩家信息。",
       get = function(_)
         return E.db.TXUI.addons.gameMenuSkin.showTips
       end,
@@ -171,8 +169,8 @@ function O:Skins_ElvUI()
     gameMenuSkinGroup.showCollections = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Show Collections",
-      desc = "Toggling this on displays your collection information in the game menu background. Requires Show Player Info enabled.",
+      name = "显示收藏",
+      desc = "启用此选项将在游戏菜单背景中显示您的收藏信息。需要启用显示玩家信息。",
       get = function()
         return E.db.TXUI.addons.gameMenuSkin.showCollections
       end,
@@ -189,8 +187,8 @@ function O:Skins_ElvUI()
     gameMenuSkinGroup.classColor = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Class Color",
-      desc = "Toggling this on will enable your current class' color for the background fade",
+      name = "职业颜色",
+      desc = "启用此选项将为背景淡化启用当前职业的颜色。",
       get = function(_)
         return E.db.TXUI.addons.gameMenuSkin.classColor.enabled
       end,
@@ -205,7 +203,7 @@ function O:Skins_ElvUI()
     gameMenuSkinGroup.bgColor = {
       order = self:GetOrder(),
       type = "color",
-      name = "Background Color",
+      name = "背景颜色",
       hasAlpha = true,
       width = 1.1,
       get = self:GetFontColorGetter("TXUI.addons.gameMenuSkin", P.addons.gameMenuSkin),
@@ -218,8 +216,8 @@ function O:Skins_ElvUI()
     gameMenuSkinGroup.specIconStyle = {
       order = self:GetOrder(),
       type = "select",
-      name = "Spec Icon Style " .. E.NewSign,
-      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
+      name = "专精图标样式 " .. E.NewSign,
+      desc = "选择显示职业颜色的专精图标或样式化的专精图标。",
       width = 1.5,
       values = {
         ToxiSpecColored = TXUI.Title .. F.String.Class(" Class Colored "),
@@ -242,8 +240,8 @@ function O:Skins_ElvUI()
     gameMenuSkinGroup.specIconSize = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spec Icon Size " .. E.NewSign,
-      desc = "Change the size of the specialization icon.",
+      name = "专精图标大小 " .. E.NewSign,
+      desc = "更改专精图标的大小。",
       min = 8,
       max = 64,
       step = 1,
@@ -266,7 +264,7 @@ function O:Skins_ElvUI()
   do
     -- ElvUI AFK Mode Group
     local elvuiAfkGroup = self:AddInlineDesc(options, {
-      name = "AFK Mode",
+      name = "AFK 模式",
       get = function(info)
         return E.db.TXUI.addons.afkMode[info[#info]]
       end,
@@ -275,14 +273,14 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("AFK.DatabaseUpdate")
       end,
     }, {
-      name = "Toggling this on enables the " .. TXUI.Title .. " AFK mode.\n\n",
+      name = "启用此选项将启用 " .. TXUI.Title .. " AFK 模式。\n\n",
     }).args
 
     -- ElvUI AFK Mode Enable
     elvuiAfkGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " AFK mode.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " AFK 模式。",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.afkMode.enabled)
       end,
@@ -297,8 +295,8 @@ function O:Skins_ElvUI()
     elvuiAfkGroup.playEmotes = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this option will display random emotes on the Player model.",
-      name = "Play Emotes",
+      desc = "启用此选项将在玩家模型上显示随机表情。",
+      name = "播放表情",
       disabled = optionsDisabled,
     }
 
@@ -306,16 +304,16 @@ function O:Skins_ElvUI()
     elvuiAfkGroup.turnCamera = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this option turns the camera while the AFK Screen is active.",
-      name = "Turn Camera",
+      desc = "启用此选项将在 AFK 屏幕激活时旋转摄像头。",
+      name = "旋转摄像头",
       disabled = optionsDisabled,
     }
 
     elvuiAfkGroup.showChangelog = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this option displays the latest " .. TXUI.Title .. " changelog while the AFK screen is active.",
-      name = "Show Changelog " .. E.NewSign,
+      desc = "启用此选项将在 AFK 屏幕激活时显示最新的 " .. TXUI.Title .. " 更新日志。",
+      name = "显示更新日志 " .. E.NewSign,
       disabled = optionsDisabled,
       set = function(_, value)
         E.db.TXUI.addons.afkMode.showChangelog = value
@@ -326,8 +324,8 @@ function O:Skins_ElvUI()
     elvuiAfkGroup.showTips = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this option displays random " .. TXUI.Title .. " tips while the AFK screen is active.",
-      name = "Show Tips " .. E.NewSign,
+      desc = "启用此选项将在 AFK 屏幕激活时显示随机 " .. TXUI.Title .. " 提示。",
+      name = "显示提示 " .. E.NewSign,
       disabled = optionsDisabled,
       set = function(_, value)
         E.db.TXUI.addons.afkMode.showTips = value
@@ -338,8 +336,8 @@ function O:Skins_ElvUI()
     elvuiAfkGroup.specIconStyle = {
       order = self:GetOrder(),
       type = "select",
-      name = "Spec Icon Style " .. E.NewSign,
-      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
+      name = "专精图标样式 " .. E.NewSign,
+      desc = "选择显示职业颜色的专精图标或样式化的专精图标。",
       width = 1.5,
       values = {
         ToxiSpecColored = TXUI.Title .. F.String.Class(" Class Colored "),
@@ -362,8 +360,8 @@ function O:Skins_ElvUI()
     elvuiAfkGroup.specIconSize = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spec Icon Size " .. E.NewSign,
-      desc = "Change the size of the specialization icon.",
+      name = "专精图标大小 " .. E.NewSign,
+      desc = "更改专精图标的大小。",
       min = 8,
       max = 64,
       step = 1,
@@ -386,7 +384,7 @@ function O:Skins_ElvUI()
   if TXUI.IsRetail then
     -- ToxiUI Deconstruct Group
     local deconstructGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Deconstruct",
+      name = "分解",
       get = function(info)
         return E.db.TXUI.addons.deconstruct[info[#info]]
       end,
@@ -395,14 +393,14 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("Deconstruct.SettingsUpdate")
       end,
     }, {
-      name = "Button in your bags to easily deconstruct items: disenchanting, prospecting, milling..\n\n",
+      name = "在您的背包中添加一个按钮以轻松分解物品：分解、勘探、研磨..\n\n",
     }, I.Requirements.Deconstruct).args
 
     -- ToxiUI Deconstruct Enable
     deconstructGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggle the " .. TXUI.Title .. " Deconstruct module.",
+      desc = "启用 " .. TXUI.Title .. " 分解模块。",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.deconstruct.enabled, deconstructGroup)
       end,
@@ -423,8 +421,8 @@ function O:Skins_ElvUI()
     deconstructGroup.highlightMode = {
       order = self:GetOrder(),
       type = "select",
-      name = "Highlight Usable",
-      desc = "Highlight items in your bags that you can deconstruct.",
+      name = "高亮可用物品",
+      desc = "高亮背包中可以分解的物品。",
       values = {
         ["NONE"] = "None",
         ["DARK"] = "Dark",
@@ -436,23 +434,23 @@ function O:Skins_ElvUI()
     deconstructGroup.labelEnabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Label items when you hover over them.",
-      name = "Item Label",
+      desc = "当您悬停在物品上时标记物品。",
+      name = "物品标签",
       disabled = optionsDisabled,
     }
 
     deconstructGroup.glowEnabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Items glow when you hover over them.",
-      name = "Item Glow",
+      desc = "当您悬停在物品上时物品会发光。",
+      name = "物品发光",
       disabled = optionsDisabled,
     }
 
     deconstructGroup.glowAlpha = {
       order = self:GetOrder(),
       type = "range",
-      name = "Glow Opacity",
+      name = "发光不透明度",
       min = 0.1,
       max = 1,
       step = 0.01,
@@ -468,8 +466,8 @@ function O:Skins_ElvUI()
     deconstructGroup.animations = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Deconstruct Animations.",
-      name = "Animations",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 分解动画。",
+      name = "动画",
       disabled = optionsDisabled,
     }
 
@@ -480,7 +478,7 @@ function O:Skins_ElvUI()
     deconstructGroup.animationsMult = {
       order = self:GetOrder(),
       type = "range",
-      name = "Animation Speed",
+      name = "动画速度",
       min = 0.1,
       max = 2,
       step = 0.1,
@@ -503,20 +501,20 @@ function O:Skins_ElvUI()
   do
     -- ElvUI Global Fade Persist Group
     local elvuiFadePersistGroup = self:AddInlineRequirementsDesc(options, {
-      name = "ActionBars Fade",
+      name = "动作条淡化",
     }, {
-      name = "This option controls your ActionBars visibility.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "The \"Show in Vehicles\" option is disabled and has no effect if you have VehicleBar enabled or you have set the Mode to \"ElvUI Default\"!\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "Disabling this module will still not show Action Bars, as they are also faded out in the default ElvUI settings. We recommend using one of the available dropdown options.\n\n",
+      name = "此选项控制您的动作条的可见性。\n\n"
+        .. F.String.ToxiUI("信息: ")
+        .. "如果启用了载具条或将模式设置为“ElvUI 默认”，则“在载具中显示”选项将被禁用且无效！\n\n"
+        .. F.String.Warning("警告: ")
+        .. "禁用此模块仍然不会显示动作条，因为它们在默认的 ElvUI 设置中也被淡化。我们建议使用可用的下拉选项之一。\n\n",
     }, I.Requirements.FadePersist).args
 
     -- ElvUI Global Fade Persist Enable
     elvuiFadePersistGroup.elvuiFadePersist = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "This option controls when should your ActionBars appear.",
+      desc = "此选项控制何时显示您的动作条。",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup)
       end,
@@ -538,13 +536,13 @@ function O:Skins_ElvUI()
     elvuiFadePersistGroup.elvuiFadePersistMode = {
       order = self:GetOrder(),
       type = "select",
-      name = "Mode",
+      name = "模式",
       values = {
-        MOUSEOVER = "Mouseover Only",
-        NO_COMBAT = "Hide in Combat",
-        IN_COMBAT = "Show in Combat",
-        ELVUI = "ElvUI Default",
-        ALWAYS = "Show Always",
+        MOUSEOVER = "仅鼠标悬停",
+        NO_COMBAT = "战斗中隐藏",
+        IN_COMBAT = "战斗中显示",
+        ELVUI = "ElvUI 默认",
+        ALWAYS = "始终显示",
       },
       disabled = optionsDisabled,
       get = function(_)
@@ -560,8 +558,8 @@ function O:Skins_ElvUI()
     elvuiFadePersistGroup.showInVehicles = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Show in Vehicles",
-      desc = "Enabling this option will show the ActionBars in Vehicles" .. (TXUI.IsRetail and " and/or while DragonRiding" or "") .. " regardless of the Mode you've selected.",
+      name = "在载具中显示",
+      desc = "启用此选项将在载具中显示动作条" .. (TXUI.IsRetail and " 和/或在驭龙时" or "") .. "，无论您选择了哪种模式。",
       disabled = function()
         return actionBarsAreDisabled
           or self:GetEnabledState(E.db.TXUI.addons.fadePersist.enabled, elvuiFadePersistGroup) ~= self.enabledState.YES
@@ -584,21 +582,17 @@ function O:Skins_ElvUI()
   -- Color Modifier Keys
   do
     local colorModifiersGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Color Modifier Keys",
+      name = "颜色修饰键",
     }, {
-      name = "This option "
-        .. F.String.Class("colors")
-        .. " your modifier keys to "
-        .. F.String.Class("class")
-        .. " color.\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "This option also increases the ActionBars Keybind width to match the Button's width.\n\n",
+      name = "此选项将您的修饰键颜色更改为职业颜色。\n\n"
+        .. F.String.Warning("警告: ")
+        .. "此选项还会增加动作条键绑定的宽度以匹配按钮的宽度。\n\n",
     }, I.Requirements.ColorModifiers).args
 
     colorModifiersGroup.enable = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this colors your modifier keys.",
+      desc = "启用此选项将您的修饰键颜色更改为职业颜色。",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.colorModifiers.enabled, colorModifiersGroup)
       end,

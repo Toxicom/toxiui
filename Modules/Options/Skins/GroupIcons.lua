@@ -6,7 +6,7 @@ function O:Skins_GroupIcons()
   self.options.skins.args["groupIconsGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Group Icons",
+    name = "组图标",
     args = {},
   }
 
@@ -15,9 +15,9 @@ function O:Skins_GroupIcons()
 
   -- ElvUI Group Description
   self:AddInlineDesc(options, {
-    name = "Description",
+    name = "描述",
   }, {
-    name = TXUI.Title .. " adds custom Group Icons which can be configured here.\n",
+    name = TXUI.Title .. " 添加了自定义组图标，可以在这里配置。\n",
   })
 
   -- Spacer
@@ -27,7 +27,7 @@ function O:Skins_GroupIcons()
   do
     -- Role Icon Group
     local roleIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Role Icons",
+      name = "角色图标",
       get = function(info)
         return E.db.TXUI.elvUIIcons.roleIcons[info[#info]]
       end,
@@ -36,22 +36,15 @@ function O:Skins_GroupIcons()
         F.Event.TriggerEvent("RoleIcons.SettingsUpdate")
       end,
     }, {
-      name = "Change the Role icons of "
-        .. F.String.ElvUI("ElvUI")
-        .. " to new colorful "
-        .. TXUI.Title
-        .. " icons.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "For size and position settings, go to the unit's "
-        .. F.String.Class("Role Icon")
-        .. " settings.\n\n",
+      name = "将 " .. F.String.ElvUI("ElvUI") .. " 的角色图标更改为新的彩色 " .. TXUI.Title .. " 图标。\n\n"
+        .. F.String.ToxiUI("信息: ") .. "有关大小和位置设置，请转到单位的 " .. F.String.Class("角色图标") .. " 设置。\n\n",
     }, I.Requirements.RoleIcons)
 
     -- Enable
     roleIconGroup["args"]["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " Role Icons.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " 角色图标。",
       name = function()
         return self:GetEnableName(E.db.TXUI.elvUIIcons.roleIcons.enabled, roleIconGroup)
       end,
@@ -73,13 +66,13 @@ function O:Skins_GroupIcons()
     roleIconGroup["args"]["theme"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Style",
-      desc = "Change the icons",
+      name = "样式",
+      desc = "更改图标",
       values = {
-        ["TXUI"] = TXUI.Title .. " Colored",
-        ["TXUI_WHITE"] = TXUI.Title .. " White",
-        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
-        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
+        ["TXUI"] = TXUI.Title .. " 彩色",
+        ["TXUI_WHITE"] = TXUI.Title .. " 白色",
+        ["TXUI_MATERIAL"] = TXUI.Title .. " 材质",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " 风格化",
       },
       hidden = roleIconDisabled,
     }
@@ -92,7 +85,7 @@ function O:Skins_GroupIcons()
   do
     -- Dead Icon Group
     local deadIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Dead Icon",
+      name = "死亡图标",
       get = function(info)
         return E.db.TXUI.elvUIIcons.deadIcons[info[#info]]
       end,
@@ -101,14 +94,14 @@ function O:Skins_GroupIcons()
         F.Event.TriggerEvent("DeadIcons.SettingsUpdate")
       end,
     }, {
-      name = "Adds a 'Dead' indicator to " .. F.String.ElvUI("ElvUI") .. " with " .. TXUI.Title .. " icons.\n\n",
+      name = "为 " .. F.String.ElvUI("ElvUI") .. " 添加一个 " .. TXUI.Title .. " 的 '死亡' 指示器。\n\n",
     }, I.Requirements.RoleIcons)
 
     -- Enable
     deadIconGroup["args"]["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " 'Dead' icon.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " '死亡' 图标。",
       name = function()
         return self:GetEnableName(E.db.TXUI.elvUIIcons.deadIcons.enabled, deadIconGroup)
       end,
@@ -130,13 +123,13 @@ function O:Skins_GroupIcons()
     deadIconGroup["args"]["theme"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Style",
-      desc = "Change the icon",
+      name = "样式",
+      desc = "更改图标",
       values = {
         ["TXUI"] = TXUI.Title,
-        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
-        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
-        ["BLIZZARD"] = "Blizzard",
+        ["TXUI_MATERIAL"] = TXUI.Title .. " 材质",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " 风格化",
+        ["BLIZZARD"] = "暴雪",
       },
       hidden = deadIconDisabled,
     }
@@ -145,8 +138,8 @@ function O:Skins_GroupIcons()
     deadIconGroup["args"]["size"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Size",
-      desc = "Set the icon size.",
+      name = "大小",
+      desc = "设置图标大小。",
       min = 1,
       max = 100,
       step = 1,
@@ -157,7 +150,7 @@ function O:Skins_GroupIcons()
     deadIconGroup["args"]["xOffset"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "X Offset",
+      name = "X 偏移",
       min = -300,
       max = 300,
       step = 1,
@@ -168,7 +161,7 @@ function O:Skins_GroupIcons()
     deadIconGroup["args"]["yOffset"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Y Offset",
+      name = "Y 偏移",
       min = -300,
       max = 300,
       step = 1,
@@ -183,7 +176,7 @@ function O:Skins_GroupIcons()
   do
     -- Offline Icon Group
     local offlineIconGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Offline Icon",
+      name = "离线图标",
       get = function(info)
         return E.db.TXUI.elvUIIcons.offlineIcons[info[#info]]
       end,
@@ -192,14 +185,14 @@ function O:Skins_GroupIcons()
         F.Event.TriggerEvent("OfflineIcons.SettingsUpdate")
       end,
     }, {
-      name = "Adds a 'Offline' indicator to " .. F.String.ElvUI("ElvUI") .. " with " .. TXUI.Title .. " icons.\n\n",
+      name = "为 " .. F.String.ElvUI("ElvUI") .. " 添加一个 " .. TXUI.Title .. " 的 '离线' 指示器。\n\n",
     }, I.Requirements.RoleIcons)
 
     -- Enable
     offlineIconGroup["args"]["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Toggling this on enables the " .. TXUI.Title .. " 'Offline' icon.",
+      desc = "启用此选项将启用 " .. TXUI.Title .. " '离线' 图标。",
       name = function()
         return self:GetEnableName(E.db.TXUI.elvUIIcons.offlineIcons.enabled, offlineIconGroup)
       end,
@@ -221,16 +214,16 @@ function O:Skins_GroupIcons()
     offlineIconGroup["args"]["theme"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Style",
-      desc = "Change the icon",
+      name = "样式",
+      desc = "更改图标",
       values = {
         ["TXUI"] = TXUI.Title,
-        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
-        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
-        ["ALERT"] = "Blizzard - 'Alert'",
-        ["ARTHAS"] = "Blizzard - 'Arthas'",
-        ["PASS"] = "Blizzard - 'Pass'",
-        ["NOTREADY"] = "Blizzard - 'Not Ready'",
+        ["TXUI_MATERIAL"] = TXUI.Title .. " 材质",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " 风格化",
+        ["ALERT"] = "暴雪 - '警报'",
+        ["ARTHAS"] = "暴雪 - '阿尔萨斯'",
+        ["PASS"] = "暴雪 - '通过'",
+        ["NOTREADY"] = "暴雪 - '未准备好'",
       },
       hidden = offlineIconDisabled,
     }
@@ -239,8 +232,8 @@ function O:Skins_GroupIcons()
     offlineIconGroup["args"]["size"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Size",
-      desc = "Set the icon size.",
+      name = "大小",
+      desc = "设置图标大小。",
       min = 1,
       max = 100,
       step = 1,
@@ -251,7 +244,7 @@ function O:Skins_GroupIcons()
     offlineIconGroup["args"]["xOffset"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "X Offset",
+      name = "X 偏移",
       min = -300,
       max = 300,
       step = 1,
@@ -262,7 +255,7 @@ function O:Skins_GroupIcons()
     offlineIconGroup["args"]["yOffset"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Y Offset",
+      name = "Y 偏移",
       min = -300,
       max = 300,
       step = 1,

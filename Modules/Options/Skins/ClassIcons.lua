@@ -6,7 +6,7 @@ function O:Skins_ClassIcons()
   self.options.skins.args["classIcons"] = {
     order = self:GetOrder(),
     type = "group",
-    name = F.String.Class("Class") .. " Icons " .. E.NewSign,
+    name = F.String.Class("职业") .. " 图标 " .. E.NewSign,
     args = {},
   }
 
@@ -15,9 +15,9 @@ function O:Skins_ClassIcons()
 
   -- ElvUI Group Description
   self:AddInlineDesc(options, {
-    name = "Description",
+    name = "描述",
   }, {
-    name = TXUI.Title .. " provides Class Icons which can be configured here.",
+    name = TXUI.Title .. " 提供可以在此配置的职业图标。",
   })
 
   -- Spacer
@@ -25,13 +25,13 @@ function O:Skins_ClassIcons()
 
   do
     self:AddInlineDesc(options, {
-      name = "Spec Icons Information",
+      name = "专精图标信息",
     }, {
-      name = "Spec Icons on "
+      name = "在 "
         .. F.String.ElvUI()
-        .. " UnitFrames are available only for Retail!\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "Due to the way the API collects specialization data, sometimes it is missing, therefore occasionally no icon will be shown.\nThis is known and no fix for now until Blizzard provides a proper Specialization API for units other than the player.",
+        .. " 单位框架上的专精图标仅适用于正式服！\n\n"
+        .. F.String.Warning("警告: ")
+        .. "由于 API 收集专精数据的方式，有时会丢失数据，因此偶尔不会显示图标。\n这是已知问题，直到暴雪为玩家以外的单位提供适当的专精 API 之前，无法修复。",
     })
   end
 
@@ -39,20 +39,20 @@ function O:Skins_ClassIcons()
 
   do
     local detailsGroup = self:AddInlineDesc(options, {
-      name = "Details Icons",
+      name = "Details 图标",
     }, {
-      name = "We are unable to change "
+      name = "我们无法自动更改 "
         .. F.String.Details()
-        .. " custom icons automatically.\n\nYou need to do that yourself in "
+        .. " 自定义图标。\n\n您需要在 "
         .. F.String.ToxiUI("/details config")
-        .. " -> Bars: General -> Icons -> Texture\n\n",
+        .. " -> Bars: General -> Icons -> Texture 中自行更改\n\n",
     }).args
 
     detailsGroup.button = {
       order = self:GetOrder(),
       type = "execute",
-      name = F.String.Details("Open Details"),
-      desc = "Open the " .. F.String.Details() .. " configuration window",
+      name = F.String.Details("打开 Details"),
+      desc = "打开 " .. F.String.Details() .. " 配置窗口",
       disabled = function()
         return not F.IsAddOnEnabled("Details")
       end,
@@ -69,30 +69,30 @@ function O:Skins_ClassIcons()
 
   do
     local styleGroup = self:AddInlineDesc(options, {
-      name = "Icon Style",
+      name = "图标样式",
     }, {
-      name = "Change the style for the " .. F.String.ToxiUI("[tx:classicon]") .. " tag used in UnitFrames.\n\n",
+      name = "更改单位框架中使用的 " .. F.String.ToxiUI("[tx:classicon]") .. " 标签的样式。\n\n",
     }).args
 
     styleGroup.style = {
       order = self:GetOrder(),
       type = "select",
-      name = "Style",
+      name = "样式",
       values = function()
         local tbl = {
-          ToxiClasses = F.String.ToxiUI("Stylized"),
-          UggColored = F.String.Ugg() .. " " .. F.String.Rainbow("Colored"),
-          UggColoredStroke = F.String.Ugg() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
-          UggWhiteStroke = F.String.Ugg() .. " White Stroke",
+          ToxiClasses = F.String.ToxiUI("风格化"),
+          UggColored = F.String.Ugg() .. " " .. F.String.Rainbow("彩色"),
+          UggColoredStroke = F.String.Ugg() .. " " .. F.String.Rainbow("彩色") .. " 描边",
+          UggWhiteStroke = F.String.Ugg() .. " 白色描边",
         }
 
         if TXUI.IsRetail then
           local retailTable = {
-            ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
-            ToxiSpecColored = F.String.Class("Spec") .. " " .. F.String.Rainbow("Colored"),
-            ToxiSpecColoredStroke = F.String.Class("Spec") .. " " .. F.String.Rainbow("Colored") .. " Stroke",
-            ToxiSpecWhite = F.String.Class("Spec") .. " White",
-            ToxiSpecWhiteStroke = F.String.Class("Spec") .. " White Stroke",
+            ToxiSpecStylized = F.String.Class("专精") .. " " .. F.String.ToxiUI("风格化"),
+            ToxiSpecColored = F.String.Class("专精") .. " " .. F.String.Rainbow("彩色"),
+            ToxiSpecColoredStroke = F.String.Class("专精") .. " " .. F.String.Rainbow("彩色") .. " 描边",
+            ToxiSpecWhite = F.String.Class("专精") .. " 白色",
+            ToxiSpecWhiteStroke = F.String.Class("专精") .. " 白色描边",
           }
 
           F.Table.Crush(tbl, retailTable)
@@ -112,9 +112,9 @@ function O:Skins_ClassIcons()
 
   do
     local imageGroup = self:AddInlineDesc(options, {
-      name = "Images",
+      name = "图像",
     }, {
-      name = "See examples of all the different " .. TXUI.Title .. " icons available.\n\n",
+      name = "查看所有可用的 " .. TXUI.Title .. " 图标示例。\n\n",
     }).args
 
     imageGroup.class = {

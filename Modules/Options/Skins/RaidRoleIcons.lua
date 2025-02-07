@@ -6,7 +6,7 @@ function O:Skins_RaidRoleIcons()
   self.options.skins.args["raidRoleIconsGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Raid Role Icons",
+    name = "团队角色图标",
     args = {},
   }
 
@@ -15,16 +15,16 @@ function O:Skins_RaidRoleIcons()
 
   -- ElvUI Group Description
   self:AddInlineDesc(options, {
-    name = "Description",
+    name = "描述",
   }, {
     name = TXUI.Title
-      .. " provides custom icons for Raid Role Indicators, you can change them or revert back to Blizzard defaults below.\n\n"
-      .. F.String.ToxiUI("Information: ")
-      .. "For size and position settings, go to the unit's "
-      .. F.String.Class("Raid Role Indicator")
-      .. " settings.\n\n"
-      .. F.String.Warning("Important:")
-      .. " For changes to take effect you must reload your UI!\n",
+      .. " 提供自定义团队角色指示器图标，您可以在下面更改它们或恢复为暴雪默认图标。\n\n"
+      .. F.String.ToxiUI("信息: ")
+      .. "有关大小和位置设置，请转到单位的 "
+      .. F.String.Class("团队角色指示器")
+      .. " 设置。\n\n"
+      .. F.String.Warning("重要: ")
+      .. " 要使更改生效，您必须重新加载您的用户界面！\n",
   })
 
   -- Spacer
@@ -34,7 +34,7 @@ function O:Skins_RaidRoleIcons()
   local function createIconGroup(iconType, iconName, description, enableDesc)
     -- Icon Group
     local iconGroup = self:AddInlineRequirementsDesc(options, {
-      name = iconName .. " Icon",
+      name = iconName .. " 图标",
       get = function(info)
         return E.db.TXUI.elvUIIcons.raidIcons[iconType][info[#info]]
       end,
@@ -72,12 +72,12 @@ function O:Skins_RaidRoleIcons()
     iconGroup["args"]["theme"] = {
       order = self:GetOrder(),
       type = "select",
-      name = "Style",
-      desc = "Change the icon",
+      name = "样式",
+      desc = "更改图标",
       values = {
-        ["TXUI_MATERIAL"] = TXUI.Title .. " Material",
-        ["TXUI_STYLIZED"] = TXUI.Title .. " Stylized",
-        ["BLIZZARD"] = "Blizzard",
+        ["TXUI_MATERIAL"] = TXUI.Title .. " 材质",
+        ["TXUI_STYLIZED"] = TXUI.Title .. " 风格化",
+        ["BLIZZARD"] = "暴雪",
       },
       hidden = iconDisabled,
     }
@@ -87,11 +87,11 @@ function O:Skins_RaidRoleIcons()
   end
 
   -- Call the function for each icon group
-  createIconGroup("leader", "Raid Leader", "Changes the raid leader indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Leader Indicator")
-  createIconGroup("assist", "Raid Assist", "Changes the raid assist indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Assistant Indicator")
-  createIconGroup("looter", "Master Looter", "Changes the master looter indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Master Looter Indicator")
-  createIconGroup("mainAssist", "Main Assist", "Changes the main assist indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Assist Indicator")
-  createIconGroup("mainTank", "Main Tank", "Changes the main tank indicator icon.", "Toggling this on enables the " .. TXUI.Title .. " skin for Raid Main Tank Indicator")
+  createIconGroup("leader", "团队领袖", "更改团队领袖指示器图标。", "启用此选项将启用 " .. TXUI.Title .. " 皮肤用于团队领袖指示器")
+  createIconGroup("assist", "团队助理", "更改团队助理指示器图标。", "启用此选项将启用 " .. TXUI.Title .. " 皮肤用于团队助理指示器")
+  createIconGroup("looter", "拾取分配者", "更改拾取分配者指示器图标。", "启用此选项将启用 " .. TXUI.Title .. " 皮肤用于拾取分配者指示器")
+  createIconGroup("mainAssist", "主助理", "更改主助理指示器图标。", "启用此选项将启用 " .. TXUI.Title .. " 皮肤用于主助理指示器")
+  createIconGroup("mainTank", "主坦克", "更改主坦克指示器图标。", "启用此选项将启用 " .. TXUI.Title .. " 皮肤用于主坦克指示器")
 end
 
 O:AddCallback("Skins_RaidRoleIcons")
