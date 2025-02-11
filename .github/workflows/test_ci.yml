@@ -28,16 +28,19 @@ jobs:
         uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
         with:
           args: -q
-      - name: 打包文件
-        uses: montudor/action-zip@v1
+      - name: Draft fake release as artifact
+        uses: BigWigsMods/packager@v2
+        if: success()
+        env:
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: zip -qq -r ./ToxiUI_汉化版.zip ./Core ./Media ./Modules ./CHANGELOG.md ./LICENSE.md ./Initialize.lua ./ElvUI_ToxiUI.toc
+          args: -m .pkgmeta-dev
       - name: Upload artifact to GitHub
         uses: actions/upload-artifact@v4
         if: success()
         with:
           name: package
-          path: ./*.zip
+          path: .release/*.zip
           retention-days: 7
           compression-level: 6  # Adjust as needed (default is 6)
           if-no-files-found: error  # Change to `ignore` if you want to continue even if files are missing
