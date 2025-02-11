@@ -53,14 +53,3 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - name: Read changelog.md
-        if: success()
-        id: changelog
-        uses: juliangruber/read-file-action@8d3d3a78bf64d33fdc14d69ece95c792aec86bb9
-        with:
-          path: .release/ElvUI_ToxiUI/CHANGELOG.md
-      - name: Read release tag
-        if: success()
-        id: vars
-        run: |
-          echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV

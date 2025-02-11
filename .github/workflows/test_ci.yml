@@ -12,10 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     if: (!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]'))
     steps:
-      - name: Announce commit in Discord
-        uses: Ilshidur/action-discord@master
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.WEBHOOK_URL_GIT }}
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -32,13 +28,6 @@ jobs:
         uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
         with:
           args: -q
-      - name: Draft fake release as artifact
-        uses: Toxicom/packager@master
-        if: success()
-        env:
-          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          args: -m .pkgmeta-dev
       - name: Upload artifact to GitHub
         uses: actions/upload-artifact@v4
         if: success()
@@ -50,10 +39,3 @@ jobs:
           if-no-files-found: error  # Change to `ignore` if you want to continue even if files are missing
           overwrite: true  # Ensures the artifact is replaced instead of appending
           include-hidden-files: true
-      - name: Announce test ci result in Discord
-        uses: sarisia/actions-status-discord@f268209d088ace9f9666322b04d60e013fef212d
-        if: always()
-        with:
-          webhook: ${{ secrets.WEBHOOK_URL_GIT }}
-          username: ToxiBot - Test
-          avatar_url: "https://i.imgur.com/ib1CSUx.png"
