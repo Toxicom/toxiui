@@ -8,7 +8,7 @@ on:
       - development
 
 jobs:
-  test:
+  test_ci:
     runs-on: ubuntu-latest
     if: (!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]'))
     steps:
@@ -28,21 +28,7 @@ jobs:
         uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
         with:
           args: -q
-      - name: Draft fake release as artifact
+      - name: packager release
         uses: BigWigsMods/packager@v2
-        if: success()
-        env:
-          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
         with:
           args: -m .pkgmeta-dev
-      - name: Upload artifact to GitHub
-        uses: actions/upload-artifact@v4
-        if: success()
-        with:
-          name: package
-          path: .release/*.zip
-          retention-days: 7
-          compression-level: 6  # Adjust as needed (default is 6)
-          if-no-files-found: error  # Change to `ignore` if you want to continue even if files are missing
-          overwrite: true  # Ensures the artifact is replaced instead of appending
-          include-hidden-files: true
