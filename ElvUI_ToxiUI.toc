@@ -1,5 +1,5 @@
-## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r
-## Notes: Minimalistic ElvUI Edit by |cff18a8ffToxi|r
+## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r - 汉化版
+## Notes: 简约风格的 ElvUI 编辑，由 |cff18a8ffToxi|r 制作
 ## Author: Toxi (Toxi#21206)
 ## Version: 6.9.0
 ## RequiredDeps: ElvUI
