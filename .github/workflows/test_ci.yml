@@ -28,6 +28,10 @@ jobs:
         uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
         with:
           args: -q
+      - name: 打包文件
+        uses: montudor/action-zip@v1
+        with:
+          args: -r .release/ToxiUI_汉化版.zip .
       - name: Upload artifact to GitHub
         uses: actions/upload-artifact@v4
         if: success()
