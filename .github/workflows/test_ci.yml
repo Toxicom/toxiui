@@ -37,7 +37,7 @@ jobs:
         if: success()
         with:
           name: package
-          path: .release/*.zip
+          path: *.zip
           retention-days: 7
           compression-level: 6  # Adjust as needed (default is 6)
           if-no-files-found: error  # Change to `ignore` if you want to continue even if files are missing
