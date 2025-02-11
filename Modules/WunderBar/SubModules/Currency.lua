@@ -26,7 +26,7 @@ local ToggleCharacter = ToggleCharacter
 local tonumber = tonumber
 local unpack = unpack
 
-local CURRENCY = CURRENCY
+-- local CURRENCY = CURRENCY
 local NUM_BAG_SLOTS = NUM_BAG_SLOTS
 
 function CR:OnUpdate(elapsed)

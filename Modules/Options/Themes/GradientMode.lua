@@ -441,14 +441,14 @@ function O:ToxiUI_Themes_GradientMode()
     for cast, _ in pairs(P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.SHIFT]) do
       if (cast == "NOINTERRUPT") or (cast == "DEFAULT") then
         -- Name
-        local settingsName
+        --[[ local settingsName
         if cast == "NOINTERRUPT" then
           settingsName = "Non-interruptible"
         elseif cast == "DEFAULT" then
           settingsName = "Regular"
         else
           settingsName = F.String.LowercaseEnum(cast)
-        end
+        end ]]
 
         -- Cast Description
         self:AddInlineSoloDesc(castGroup, {
