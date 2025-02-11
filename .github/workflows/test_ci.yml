@@ -31,7 +31,7 @@ jobs:
       - name: 打包文件
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r .release/ToxiUI_汉化版.zip ./Core ./Media ./Modules ./CHANGELOG.md ./LICENSE.md ./Initialize.lua ./ElvUI_ToxiUI.toc
+          args: zip -qq -r ./ToxiUI_汉化版.zip ./Core ./Media ./Modules ./CHANGELOG.md ./LICENSE.md ./Initialize.lua ./ElvUI_ToxiUI.toc
       - name: Upload artifact to GitHub
         uses: actions/upload-artifact@v4
         if: success()
