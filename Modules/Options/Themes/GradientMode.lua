@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G, I18n= unpack((select(2, ...)))
+local TXUI, F, E, I, V, P, G, I18n = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 local ACH = LibStub("LibAceConfigHelper")
 
@@ -36,13 +36,13 @@ function O:ToxiUI_Themes_GradientMode()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "描述",
     }, {
-      name = "我们为 " .. TXUI.Title .. " 提供了不同的主题，您可以在下面启用或禁用它们。"
+      name = "我们为 "
+        .. TXUI.Title
+        .. " 提供了不同的主题，您可以在下面启用或禁用它们。"
         .. "\n\n"
         .. "某些颜色（如 Details 暗模式渐变文本）仅在重新加载后更新。"
         .. "\n\n"
-        .. F.String.Error(
-          "警告：启用这些设置之一可能会覆盖 ElvUI 和 Details 中的颜色或纹理，它们还会阻止您更改 ElvUI 中的某些设置！"
-        )
+        .. F.String.Error("警告：启用这些设置之一可能会覆盖 ElvUI 和 Details 中的颜色或纹理，它们还会阻止您更改 ElvUI 中的某些设置！")
         .. "\n\n",
     }, I.Requirements.GradientMode).args
 
@@ -76,12 +76,10 @@ function O:ToxiUI_Themes_GradientMode()
     local colorGroup = self:AddInlineDesc(tab, {
       name = "职业颜色",
     }, {
-      name = TXUI.Title
-        .. " 渐变主题 "
-        .. F.String.Class("从一种颜色", "MONK")
-        .. " 过渡到另一种颜色。您可以在下面更改 "
-        .. F.String.Class("过渡", "MONK")
-        .. "。\n\n",
+      name = TXUI.Title .. " 渐变主题 " .. F.String.Class("从一种颜色", "MONK") .. " 过渡到另一种颜色。您可以在下面更改 " .. F.String.Class(
+        "过渡",
+        "MONK"
+      ) .. "。\n\n",
     }).args
 
     -- Get correct classname table
@@ -277,7 +275,10 @@ function O:ToxiUI_Themes_GradientMode()
       self:AddInlineSoloDesc(colorGroup, {
         width = 1,
         customWidth = 120,
-        name = F.String.RGB(F.String.LowercaseEnum(I18n.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT][power]), { F.CalculateMultiplierColorArray(1.35, PowerBarColor[colorIndex]) }),
+        name = F.String.RGB(
+          F.String.LowercaseEnum(I18n.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT][power]),
+          { F.CalculateMultiplierColorArray(1.35, PowerBarColor[colorIndex]) }
+        ),
       })
 
       -- Shift Color
@@ -453,7 +454,10 @@ function O:ToxiUI_Themes_GradientMode()
         self:AddInlineSoloDesc(castGroup, {
           width = 1,
           customWidth = 120,
-          name = F.String.RGB(F.String.LowercaseEnum(I18n.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.SHIFT][cast]), P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.NORMAL][cast]),
+          name = F.String.RGB(
+            F.String.LowercaseEnum(I18n.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.SHIFT][cast]),
+            P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.NORMAL][cast]
+          ),
         })
 
         -- Shift Color
@@ -601,7 +605,9 @@ function O:ToxiUI_Themes_GradientMode()
       local healthGroup = self:AddInlineDesc(tab, {
         name = "生命值颜色标签",
       }, {
-        name = "为单位框架中使用的 " .. TXUI.Title .. " 文本标签着色生命值。\n\n"
+        name = "为单位框架中使用的 "
+          .. TXUI.Title
+          .. " 文本标签着色生命值。\n\n"
           .. F.String.Error("重要提示：")
           .. "此选项仅适用于 "
           .. F.String.ToxiUI("tx:health:percent")

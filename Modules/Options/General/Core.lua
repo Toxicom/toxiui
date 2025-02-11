@@ -60,10 +60,9 @@ function O:General()
       ["generalInstallDesc"] = {
         order = self:GetOrder(),
         type = "description",
-        name = "安装指南应在您登录后自动弹出。"
-          .. " \n如果您希望重新运行安装过程以更新某些设置，请点击下面的 "
-          .. F.String.ToxiUI("打开安装程序")
-          .. " 按钮。\n\n",
+        name = "安装指南应在您登录后自动弹出。" .. " \n如果您希望重新运行安装过程以更新某些设置，请点击下面的 " .. F.String.ToxiUI(
+          "打开安装程序"
+        ) .. " 按钮。\n\n",
       },
 
       -- Install BUTTON
@@ -158,7 +157,7 @@ function O:General()
   }, {
     name = "特别感谢这些 " .. F.String.ToxiUI("了不起的人") .. " 他们的帮助或灵感！" .. F.String.Error(" <3\n\n"),
   }).args
-  
+
   creditsGroup.credits = {
     order = self:GetOrder(),
     type = "description",

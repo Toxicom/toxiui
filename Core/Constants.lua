@@ -22,7 +22,7 @@ I.Constants.RandomTips = {
     .. " 的文章！\n\n请访问 "
     .. F.String.ToxiUI(I.Strings.Branding.Links.Website),
   -- 4
-  "有一个 " -- 
+  "有一个 " --
     .. TXUI.Title
     .. " Discord 服务器，如果你需要帮助或只是想聊天！请查看 "
     .. TXUI.Title

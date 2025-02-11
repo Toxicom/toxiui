@@ -37,9 +37,7 @@ function O:ToxiUI_Themes_DarkMode()
     generalGroup.enabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "启用此选项将为 " .. TXUI.Title .. " 启用暗黑主题。\n\n" .. F.String.Error(
-        "警告：启用此设置将覆盖 ElvUI 和 Details 中的纹理！"
-      ),
+      desc = "启用此选项将为 " .. TXUI.Title .. " 启用暗黑主题。\n\n" .. F.String.Error("警告：启用此设置将覆盖 ElvUI 和 Details 中的纹理！"),
       name = function()
         return self:GetEnableName(E.db.TXUI.themes.darkMode.enabled, generalGroup)
       end,

@@ -37,7 +37,9 @@ function O:Skins_ElvUI()
         F.Event.TriggerEvent("Theme.SettingsUpdate")
       end,
     }, {
-      name = "此模块为所有 " .. F.String.ElvUI() .. " 元素应用了颗粒背景和阴影。\n\n"
+      name = "此模块为所有 "
+        .. F.String.ElvUI()
+        .. " 元素应用了颗粒背景和阴影。\n\n"
         .. F.String.Warning("警告: ")
         .. "此功能可能会增加加载时间，因为它需要为所有框架应用皮肤。但这不应影响游戏性能。\n\n",
     }, I.Requirements.ElvUITheme)

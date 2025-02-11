@@ -1648,8 +1648,16 @@ function O:Armory_OnlyRetailMessage()
   local group = self:AddInlineDesc(options, {
     name = "描述",
   }, {
-    name = "不幸的是，此功能仅适用于 " .. TXUI.Title .. " 的正式版。\n\n"
-      .. "对于 " .. F.String.ToxiUI("巫妖王之怒：经典版") .. "，我们推荐使用 " .. F.String.WrathArmory() .. " 由 " .. F.String.Class("Repooc", "DRUID") .. " 制作。\n\n",
+    name = "不幸的是，此功能仅适用于 "
+      .. TXUI.Title
+      .. " 的正式版。\n\n"
+      .. "对于 "
+      .. F.String.ToxiUI("巫妖王之怒：经典版")
+      .. "，我们推荐使用 "
+      .. F.String.WrathArmory()
+      .. " 由 "
+      .. F.String.Class("Repooc", "DRUID")
+      .. " 制作。\n\n",
   }).args
 
   group.websiteUrl = {

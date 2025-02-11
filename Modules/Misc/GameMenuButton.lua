@@ -178,7 +178,13 @@ function M:GameMenuButton()
         -- let's call it an easter egg
         if ToxiBirthday then
           self.backgroundFade.tipText:SetText(
-            "你知道吗，今天是1月6日，是 " .. F.String.ToxiUI("Toxi") .. " 的生日?\n" .. F.String.ToxiUI("有趣的事实:") .. " 第一版 " .. TXUI.Title .. " 安装程序是在2021年的今天发布的!"
+            "你知道吗，今天是1月6日，是 "
+              .. F.String.ToxiUI("Toxi")
+              .. " 的生日?\n"
+              .. F.String.ToxiUI("有趣的事实:")
+              .. " 第一版 "
+              .. TXUI.Title
+              .. " 安装程序是在2021年的今天发布的!"
           )
         elseif ToxiUiBirthday then
           self.backgroundFade.tipText:SetText(

@@ -36,8 +36,15 @@ function O:Skins_GroupIcons()
         F.Event.TriggerEvent("RoleIcons.SettingsUpdate")
       end,
     }, {
-      name = "将 " .. F.String.ElvUI("ElvUI") .. " 的角色图标更改为新的彩色 " .. TXUI.Title .. " 图标。\n\n"
-        .. F.String.ToxiUI("信息: ") .. "有关大小和位置设置，请转到单位的 " .. F.String.Class("角色图标") .. " 设置。\n\n",
+      name = "将 "
+        .. F.String.ElvUI("ElvUI")
+        .. " 的角色图标更改为新的彩色 "
+        .. TXUI.Title
+        .. " 图标。\n\n"
+        .. F.String.ToxiUI("信息: ")
+        .. "有关大小和位置设置，请转到单位的 "
+        .. F.String.Class("角色图标")
+        .. " 设置。\n\n",
     }, I.Requirements.RoleIcons)
 
     -- Enable

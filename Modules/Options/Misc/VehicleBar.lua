@@ -33,9 +33,7 @@ function O:Plugins_VehicleBar()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "常规",
     }, {
-      name = "一个不受全局淡出影响的额外载具栏。\n\n"
-        .. F.String.Warning("警告: ")
-        .. "此功能目前已知有时会出现问题，请谨慎使用。\n\n",
+      name = "一个不受全局淡出影响的额外载具栏。\n\n" .. F.String.Warning("警告: ") .. "此功能目前已知有时会出现问题，请谨慎使用。\n\n",
     }, I.Requirements.VehicleBar).args
 
     -- Enable

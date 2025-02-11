@@ -19,7 +19,7 @@ function O:Styles_ActionBars()
   self:AddInlineDesc(options, {
     name = "描述",
   }, {
-    name = TXUI.Title -- 
+    name = TXUI.Title --
       .. " 提供了不同的动作条布局、可见性和整体行为的样式。"
       .. "\n\n您当前的激活样式: "
       .. F.String.Good(E.db.TXUI.styles.actionBars),
@@ -33,8 +33,8 @@ function O:Styles_ActionBars()
     local weakAurasStyle = self:AddInlineRequirementsDesc(options, {
       name = TXUI.Title .. " WeakAuras 样式",
     }, {
-      name = "这种样式是 " 
-        .. TXUI.Title 
+      name = "这种样式是 "
+        .. TXUI.Title
         .. " 的原始样式，我们优先考虑 WeakAuras 提供信息，因此动作条保持隐藏，仅在必要时显示以减少视觉混乱。\n\n"
         .. "在这种样式下，动作条在底部鼠标悬停，位于 WunderBar 之上。\n\n"
         .. F.String.ToxiUI("信息: ")
