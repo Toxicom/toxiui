@@ -14,6 +14,7 @@ TXUI.Changelog["6.9.1"] = {
     "* Documentation",
     "Update for Patch 11.0",
     F.String.MinElv("13.85"),
+    "Update colored currencies for season 2 of TWW",
 
     "* Settings refactoring",
 
