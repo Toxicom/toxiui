@@ -15,6 +15,7 @@
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 ## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick
+## Group: ElvUI
 
 
 Initialize.lua

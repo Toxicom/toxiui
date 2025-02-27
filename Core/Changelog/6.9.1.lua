@@ -16,6 +16,7 @@ TXUI.Changelog["6.9.1"] = {
     F.String.MinElv("13.85"),
     "Update colored currencies for season 2 of TWW",
     "Update default displayed currencies",
+    "Add " .. TXUI.Title .. " under " .. F.String.ElvUI() .. " group in the AddOns list",
 
     "* Settings refactoring",
 
