@@ -517,7 +517,7 @@ I.HearthstoneData = {
   [354464] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "MISTS" }, -- Mists of Tirna Scithe
   [354465] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "HOA" }, -- Halls of Atonement
   [354466] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SOA" }, -- Spires of Ascension
-  [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "TOP" }, -- Theater of Pain
+  [354467] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "TOP" }, -- Theater of Pain
   [354468] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "DOS" }, -- De Other Side
   [354469] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SD" }, -- Sanguine Depths
   [367416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "TVM" }, -- Tazavesh, the Veiled Market
@@ -525,7 +525,7 @@ I.HearthstoneData = {
   [373191] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SOD" }, -- Sanctum of Domination
   [373192] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "SotFO" }, -- Sepulcher of the First Ones
   [373262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "KZ" }, -- Karazhan
-  [373274] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl", ["label"] = "MG" }, -- Mechagon
+  [373274] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "MG" }, -- Mechagon
 
   -- Dragonflight
   [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "ULD" }, -- Uldaman: Legacy of Tyr
@@ -540,12 +540,12 @@ I.HearthstoneData = {
 
   -- The War Within
   [445417] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "ARAK" }, -- Ara-Kara, City of Echoes
-  [442932] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "CM" }, -- Cinderbrew Meadery
+  [442932] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "CM" }, -- Cinderbrew Meadery
   [445416] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "COT" }, -- City of Threads
-  [442930] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "DC" }, -- Darkflame Cleft
-  [442923] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "PSF" }, -- Priory of the Sacred Flame
+  [442930] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "DC" }, -- Darkflame Cleft
+  [442923] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "PSF" }, -- Priory of the Sacred Flame
   [445414] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "DAWN" }, -- The Dawnbreaker
-  [442925] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww", ["label"] = "ROOK" }, -- The Rookery
+  [442925] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "ROOK" }, -- The Rookery
   [445269] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SV" }, -- The Stonevault
 
   --                --

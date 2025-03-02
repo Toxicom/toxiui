@@ -22,6 +22,7 @@ TXUI.Changelog["6.9.1"] = {
     "Update colored currencies for season 2 of TWW",
     "Update default displayed currencies",
     "Add " .. TXUI.Title .. " under " .. F.String.ElvUI() .. " group in the AddOns list",
+    "Update most M+ portals for " .. F.String.Menu.WunderBar(),
 
     "* Settings refactoring",
     "Bring back the old " .. F.String.Plater() .. " profile" .. F.String.Sublist("Do note that it will never be updated"),
