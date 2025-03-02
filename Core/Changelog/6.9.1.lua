@@ -20,7 +20,9 @@ TXUI.Changelog["6.9.1"] = {
     "Add " .. TXUI.Title .. " under " .. F.String.ElvUI() .. " group in the AddOns list",
 
     "* Settings refactoring",
+    "Bring back the old " .. F.String.Plater() .. " profile" .. F.String.Sublist("Do note that it will never be updated"),
 
     "* Development improvements",
+    "Extract import strings for Details & Plater to a separate file for easier managing",
   },
 }

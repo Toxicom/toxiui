@@ -5,6 +5,7 @@
   <Script file='ElvUI\CVars.lua' />
   <Script file='ElvUI\Profile.lua' />
   <Script file='ElvUI\Fonts.lua' />
+  <Script file='ImportStrings.lua' />
   <Script file='AddOnSkins.lua' />
   <Script file='BigWigs.lua' />
   <Script file='Details.lua' />

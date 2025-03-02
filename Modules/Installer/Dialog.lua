@@ -129,7 +129,7 @@ function IS:Dialog()
     elseif page == Pages.Details then
       AddImageScripts { I.Media.Installer.DetailsOne, I.Media.Installer.DetailsTwo }
     elseif page == Pages.Plater then
-      AddImageScripts { I.Media.Installer.Plater }
+      AddImageScripts { I.Media.Installer.PlaterNew, I.Media.Installer.PlaterOld }
     elseif page == Pages.BigWigs then
       AddImageScripts { I.Media.Installer.BigWigs }
     elseif page == Pages.WeakAuras then
@@ -350,15 +350,32 @@ function IS:Dialog()
           installFrame.Desc1:SetText(
             "Plater is a nameplate addon with a extraordinary amount of settings, out of the box debuff tracking, threat coloring, support for scripting similar to WeakAuras and wago.io + the WeakAuras-Companion for Mod/Script/Profile updates."
           )
-          installFrame.Desc2:SetText("This is an optional AddOn requirement, but we highly recommend you install it.")
+          installFrame.Desc2:SetText(
+            F.String.Warning("Note: ")
+              .. "The "
+              .. F.String.Error("[OUTDATED]")
+              .. " profile is from before "
+              .. TXUI.Title
+              .. " 6.9.0 and it will never be updated again. Use it with your own caution."
+          )
           installFrame.Desc3:SetText("Importance: " .. F.String.Error("High"))
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("Plater")
           installFrame.Option1:SetScript("OnClick", function()
-            PF:Plater()
+            PF:Plater("new")
             self.reloadRequired = true
             self:ShowStepComplete(F.String.ToxiUI("Plater") .. " profile installed.")
+            installFrame.Next:Click()
+          end)
+
+          installFrame.Option2:Show()
+          installFrame.Option2:SetText("Plater" .. F.String.Error(" [OUTDATED]"))
+          installFrame.Option2:SetWidth(installFrame.Option2:GetWidth() * 1.5)
+          installFrame.Option2:SetScript("OnClick", function()
+            PF:Plater("old")
+            self.reloadRequired = true
+            self:ShowStepComplete(F.String.ToxiUI("Plater") .. F.String.Error(" [OUTDATED]") .. " profile installed.")
             installFrame.Next:Click()
           end)
         else
