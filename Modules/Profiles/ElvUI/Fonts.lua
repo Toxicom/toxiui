@@ -107,7 +107,7 @@ function PF:ElvUIFont()
 
       minimap = {
         locationFont = F.FontOverride(I.Fonts.Primary),
-        locationFontSize = F.FontSizeScaled(22),
+        locationFontSize = F.FontSizeScaled(16),
         locationFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
         icons = {

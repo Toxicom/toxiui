@@ -11,9 +11,10 @@ TXUI.Changelog["6.9.1"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    TXUI.Title .. ": Enable Time module's resting animation by default",
     F.String.Plater() .. ": Add " .. F.String.Class("Black Arrow", "HUNTER") .. " to manual buff  tracking",
     F.String.ElvUI() .. ": Use the new absorb tag for " .. F.String.ToxiUI("toxiui:health-small") .. " custom texts",
-    TXUI.Title .. ": Enable Time module's resting animation by default",
+    F.String.ElvUI() .. ": Reduce minimap location text font size",
 
     "* Documentation",
     "Update for Patch 11.0",
