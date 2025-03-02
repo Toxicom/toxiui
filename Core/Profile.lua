@@ -821,7 +821,7 @@ P.wunderbar = {
       twentyFour = GetCurrentRegion() ~= 1, -- sets 24h for everyone, except US
       timeFormat = "HH:MM", -- valid are HH:MM, H:MM, H:M
 
-      showRestingAnimation = false,
+      showRestingAnimation = true,
       experimentalDynamicSize = false,
 
       textOffset = 1,
