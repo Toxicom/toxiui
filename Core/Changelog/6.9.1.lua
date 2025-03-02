@@ -10,6 +10,7 @@ TXUI.Changelog["6.9.1"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.Plater() .. ": Add " .. F.String.Class("Black Arrow", "HUNTER") .. " to manual buff  tracking",
 
     "* Documentation",
     "Update for Patch 11.0",
