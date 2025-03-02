@@ -354,6 +354,24 @@ function M:Tags()
     end
   end)
 
+  E:AddTag("tx:health:current:shortvalue:absorb", "UNIT_HEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
+    if status then
+      return status
+    else
+      local min, max = UnitHealth(unit), UnitHealthMax(unit)
+      local absorb = UnitGetTotalAbsorbs(unit)
+      if absorb ~= 0 then absorb = E:ShortValue(absorb) end
+      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+      local healthStr = health .. ((absorb and absorb ~= 0) and (" + " .. absorb) or "")
+
+      if not dm.isEnabled then return healthStr end
+
+      local reverseGradient = reverseUnitsTable[unit]
+      return FormatColorTag(healthStr, unit, not reverseGradient)
+    end
+  end)
+
   E:AddTag("tx:health:full:nosign", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
     local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
     if status then
@@ -688,6 +706,11 @@ function M:Tags()
     E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
     E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
     E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
+    E:AddTagInfo(
+      "tx:health:current:shortvalue:absorb",
+      TagNames.HEALTH,
+      "Shortvalue of the unit's current health with absorb value (e.g. 81k + 20k). Also adds " .. TXUI.Title .. " colors."
+    )
 
     E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
     E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")
@@ -753,6 +776,7 @@ function M:Tags()
       ["tx:health:percent:nosign"] = true,
       ["tx:health:percent"] = true,
       ["tx:health:current:shortvalue"] = true,
+      ["tx:health:current:shortvalue:absorb"] = true,
 
       ["tx:name:veryshort"] = true,
       ["tx:name:short"] = true,

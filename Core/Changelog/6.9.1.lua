@@ -6,11 +6,13 @@ TXUI.Changelog["6.9.1"] = {
     "* Breaking changes",
 
     "* New features",
+    F.String.ToxiUI("[tx:health:current:shortvalue:absorb]") .. " tag" .. F.String.Sublist("Check Available Tags for more information"),
 
     "* Bug fixes",
 
     "* Profile updates",
     F.String.Plater() .. ": Add " .. F.String.Class("Black Arrow", "HUNTER") .. " to manual buff  tracking",
+    F.String.ElvUI() .. ": Use the new absorb tag for " .. F.String.ToxiUI("toxiui:health-small") .. " custom texts",
 
     "* Documentation",
     "Update for Patch 11.0",
