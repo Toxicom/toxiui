@@ -35,7 +35,7 @@ local inactiveString = strjoin("", "|cffFF0000", FACTION_INACTIVE, "|r")
 
 function SS:GetLoadoutName()
   if TXUI.IsRetail then
-    local specId = GetCurrentSpecID()
+    local specId = GetCurrentSpecID and GetCurrentSpecID() or nil
     if specId then
       local configID = GetLastSelectedSavedConfigID(specId)
       if configID then
