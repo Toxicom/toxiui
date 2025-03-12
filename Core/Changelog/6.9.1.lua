@@ -20,7 +20,7 @@ TXUI.Changelog["6.9.1"] = {
     F.String.ElvUI() .. ": Reduce minimap location text font size",
 
     "* Documentation",
-    "Update for Patch 11.0",
+    "Update for Patch 11.1.0",
     F.String.MinElv("13.85"),
     "Update colored currencies for season 2 of TWW",
     "Update default displayed currencies",
