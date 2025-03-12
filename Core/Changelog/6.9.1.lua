@@ -14,6 +14,7 @@ TXUI.Changelog["6.9.1"] = {
     TXUI.Title .. ": Enable Time module's resting animation by default",
     F.String.Plater() .. ": Add " .. F.String.Class("Black Arrow", "HUNTER") .. " to manual buff  tracking",
     F.String.Plater() .. ": Remove Hide Nameplates script",
+    F.String.Plater() .. ": Increase Aura Timer & Aura Stack font sizes",
     F.String.ElvUI() .. ": Use the new absorb tag for " .. F.String.ToxiUI("toxiui:health-small") .. " custom texts",
     F.String.ElvUI() .. ": Reduce minimap location text font size",
 
