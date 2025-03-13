@@ -648,6 +648,14 @@ function PF:ElvUIFontPrivates()
       -- Blizzard
       dmgfont = F.FontOverride(I.Fonts.TitleBlack),
       namefont = F.FontOverride(I.Fonts.Primary),
+
+      -- Blizzard Nameplates
+      nameplateFont = F.FontOverride(I.Fonts.Primary),
+      nameplateFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+      nameplateFontSize = F.FontSizeScaled(10),
+      nameplateLargeFont = F.FontOverride(I.Fonts.Primary),
+      nameplateLargeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+      nameplateLargeFontSize = F.FontSizeScaled(12),
     },
   })
 

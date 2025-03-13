@@ -17,7 +17,7 @@ TXUI.Changelog["6.9.1"] = {
     F.String.Plater() .. ": Remove Hide Nameplates script",
     F.String.Plater() .. ": Update Buff visuals" .. F.String.Sublist("Now it should match more closely to what we have for ElvUI UnitFrame debuffs for consistency"),
     F.String.Plater() .. ": Increase update interval to default 0.25" .. F.String.Sublist("Should increase performance with lots of nameplates on the screen"),
-    F.String.Plater() .. ": Update Blizzard nameplate fonts to " .. TXUI.Title,
+    F.String.Plater() .. ": Update Blizzard nameplate fonts to " .. TXUI.Title .. F.String.Sublist("This setting currently is being overwritten by ElvUI, which we also updated"),
     F.String.Plater() .. ": Hide Blizzard Health Bars" .. F.String.Sublist("Can be re-enabled in /plater -> General"),
     F.String.Plater() .. ": Auto-enable friendly nameplates in dungeons" .. F.String.Sublist("Can be disabled in /plater -> Auto"),
     F.String.Plater() .. ": Add pandemic pixel glow script" .. F.String.Sublist("Not all debuffs are added") .. F.String.Sublist(
@@ -25,6 +25,7 @@ TXUI.Changelog["6.9.1"] = {
     ),
     F.String.ElvUI() .. ": Use the new absorb tag for " .. F.String.ToxiUI("toxiui:health-small") .. " custom texts",
     F.String.ElvUI() .. ": Reduce minimap location text font size",
+    F.String.ElvUI() .. ": Update Blizzard nameplate fonts to " .. TXUI.Title,
 
     "* Documentation",
     "Update for Patch 11.1.0",
