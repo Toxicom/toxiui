@@ -642,7 +642,7 @@ function PF:ElvUIFontPrivates()
     general = {
       -- General
       chatBubbleFont = F.FontOverride(I.Fonts.Primary),
-      chatBubbleFontSize = F.FontSizeScaled(14),
+      chatBubbleFontSize = F.FontSizeScaled(10),
       chatBubbleFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
       -- Blizzard
