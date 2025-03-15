@@ -58,6 +58,12 @@ function PF:ElvUIFont()
           outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
         },
 
+        objective = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOW"),
+        },
+
         questsmall = {
           enable = true,
           font = F.FontOverride(I.Fonts.Primary),
