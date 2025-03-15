@@ -3,12 +3,8 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["6.9.1"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     F.String.ToxiUI("[tx:health:current:shortvalue:absorb]") .. " tag" .. F.String.Sublist("Check Available Tags for more information"),
-
-    "* Bug fixes",
 
     "* Profile updates",
     TXUI.Title .. ": Enable Time module's resting animation by default",
