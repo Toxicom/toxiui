@@ -22,6 +22,7 @@ TXUI.Changelog["6.9.1"] = {
     F.String.Plater() .. ": Add pandemic pixel glow script" .. F.String.Sublist("Not all debuffs are added") .. F.String.Sublist(
       "Can add debuffs in /plater -> Scripting -> Pandemic Glow (Pixel)"
     ),
+    F.String.Plater() .. ": Disable Boss Mods icons on nameplates",
     F.String.ElvUI() .. ": Use the new absorb tag for " .. F.String.ToxiUI("toxiui:health-small") .. " custom texts",
     F.String.ElvUI() .. ": Reduce minimap location text font size",
     F.String.ElvUI() .. ": Update Blizzard nameplate fonts to " .. TXUI.Title,
