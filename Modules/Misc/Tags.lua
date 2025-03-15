@@ -370,7 +370,7 @@ function M:Tags()
       local reverseGradient = reverseUnitsTable[unit]
       return FormatColorTag(healthStr, unit, not reverseGradient)
     end
-  end)
+  end, not TXUI.IsRetail)
 
   E:AddTag("tx:health:full:nosign", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
     local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
@@ -706,11 +706,13 @@ function M:Tags()
     E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
     E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
     E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
-    E:AddTagInfo(
-      "tx:health:current:shortvalue:absorb",
-      TagNames.HEALTH,
-      "Shortvalue of the unit's current health with absorb value (e.g. 81k + 20k). Also adds " .. TXUI.Title .. " colors."
-    )
+    if TXUI.IsRetail then
+      E:AddTagInfo(
+        "tx:health:current:shortvalue:absorb",
+        TagNames.HEALTH,
+        "Shortvalue of the unit's current health with absorb value (e.g. 81k + 20k). Also adds " .. TXUI.Title .. " colors."
+      )
+    end
 
     E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
     E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")

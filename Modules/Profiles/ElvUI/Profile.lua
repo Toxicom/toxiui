@@ -540,7 +540,7 @@ function PF:BuildProfile()
 
       ["toxiui:health-small"] = createCustomText({}, {
         justifyH = "RIGHT",
-        text_format = "[tx:health:current:shortvalue:absorb]",
+        text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(-10),
         yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-15)),
       }),
@@ -723,7 +723,7 @@ function PF:BuildProfile()
 
         ["toxiui:health-small"] = createCustomText({}, {
           justifyH = "LEFT",
-          text_format = "[tx:health:current:shortvalue:absorb]",
+          text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
           xOffset = F.Dpi(10),
           yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-15)),
         }),
@@ -1023,7 +1023,7 @@ function PF:BuildProfile()
       -- UnitFrame Focus Custom Texts Health
       ["toxiui:health-small"] = createCustomText({}, {
         justifyH = "LEFT",
-        text_format = "[tx:health:current:shortvalue:absorb]",
+        text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(10),
         yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-20)),
       }),
@@ -1664,7 +1664,7 @@ function PF:BuildProfile()
 
       -- UnitFrame Boss Custom Texts Health
       ["toxiui:health-small"] = createCustomText({}, {
-        text_format = "[tx:health:current:shortvalue:absorb]",
+        text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(5),
         yOffset = F.Dpi(-15),
       }),
