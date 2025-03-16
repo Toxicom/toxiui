@@ -1201,3 +1201,7 @@ P.wunderbar = {
     },
   },
 }
+
+P.performance = {
+  profiler = true,
+}

@@ -126,6 +126,16 @@ O.options = {
     hidden = O.txUIDisabled,
     args = {},
   },
+  performance = {
+    order = 13,
+    type = "group",
+    group = "tab",
+    name = F.String.Menu.Performance(),
+    desc = "Performance related options",
+    icon = I.Media.Icons.Performance,
+    hidden = not TXUI.IsRetail,
+    args = {},
+  },
 }
 
 -- Error handler

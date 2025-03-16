@@ -515,6 +515,10 @@ function F.String.Menu.Reset()
   return F.String.FastGradientHex("Reset", "#ff867c", "#b61827")
 end
 
+function F.String.Menu.Performance()
+  return F.String.FastGradientHex("Performance", "#00ff31", "#00ffdc")
+end
+
 -- Credits to WunderUI
 function F.String.ConvertGlyph(unicode)
   if unicode <= 0x7F then return char(unicode) end

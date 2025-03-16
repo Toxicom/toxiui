@@ -6,6 +6,7 @@ TXUI.Changelog["6.9.3"] = {
     "* Breaking changes",
 
     "* New features",
+    F.String.Menu.Performance() .. " tab",
 
     "* Bug fixes",
 
