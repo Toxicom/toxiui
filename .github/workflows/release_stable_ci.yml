@@ -85,7 +85,7 @@ jobs:
 
             :hearts: Thank you all for getting this release ready! :hearts:
 
-            :floppy_disk: Download down below :point_down: or soon:tm: on CurseForge, Wago or WoWInterface
+            :floppy_disk: Download soon:tm: on CurseForge, Wago or WoWInterface
             :information_source: Best way to manage your AddOns is via https://wowup.io
       - name: Upload release file to Discord
         uses: nocturlab/upload-to-discord@master
