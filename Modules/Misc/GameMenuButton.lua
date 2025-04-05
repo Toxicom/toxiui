@@ -108,6 +108,22 @@ function M:GameMenuButton()
         collections.achievs:SetPoint("TOPLEFT", collections.pets, "BOTTOMLEFT", 0, -12)
         collections.achievs:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.achievs:SetTextColor(1, 1, 1, 1)
+
+        -- Mythic+ Keystone
+        if UnitLevel("player") >= GetMaxLevelForExpansionLevel(GetExpansionLevel()) then
+          local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
+          local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
+          collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
+          collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
+          collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+          collections.keystone:SetTextColor(1, 1, 1, 1)
+          if keystoneMapID and keystoneMapID > 0 then
+            local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
+            collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI(keystoneDungeonName .. " (+" .. keystoneLevel .. ")"))
+          else
+            collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI("None"))
+          end
+        end
       end
 
       -- Random tip
