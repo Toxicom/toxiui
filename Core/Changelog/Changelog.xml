@@ -93,4 +93,5 @@
   <Script file='6.9.1.lua' />
   <Script file='6.9.2.lua' />
   <Script file='6.9.3.lua' />
+  <Script file='6.9.4.lua' />
 </Ui>
