@@ -118,30 +118,31 @@ function M:GameMenuButton()
           keystoneFrame:RegisterEvent("CHALLENGE_MODE_START")
           keystoneFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 
-          local function UpdateKeystoneDisplay()
+          local function UpdateKeystoneText()
             -- Only show it if player is max level
             if UnitLevel("player") >= GetMaxLevelForExpansionLevel(GetExpansionLevel()) then
               local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
               local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
-              collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
-              collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
-              collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-              collections.keystone:SetTextColor(1, 1, 1, 1)
 
-              -- Set the keystone text
+              if not collections.keystone then
+                collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
+                collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
+                collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+                collections.keystone:SetTextColor(1, 1, 1, 1)
+              end
+
               if keystoneMapID and keystoneMapID > 0 then
                 local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
                 collections.keystone:SetText("M+ Keystone: " ..
-                  F.String.ToxiUI(keystoneDungeonName .. " (+" .. keystoneLevel .. ")"))
+                  F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
               else
-                collections.keystone:SetText("M+ Keystone: " ..
-                  F.String.ToxiUI("None"))
+                collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI("None"))
               end
             end
           end
-          
+
           keystoneFrame:SetScript("OnEvent", function(_, event, ...)
-            UpdateKeystoneDisplay()
+            UpdateKeystoneText()
           end)
         end
         
