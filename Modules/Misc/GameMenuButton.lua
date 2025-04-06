@@ -110,20 +110,41 @@ function M:GameMenuButton()
         collections.achievs:SetTextColor(1, 1, 1, 1)
 
         -- Mythic+ Keystone
-        if UnitLevel("player") >= GetMaxLevelForExpansionLevel(GetExpansionLevel()) then
-          local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
-          local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
-          collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
-          collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
-          collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-          collections.keystone:SetTextColor(1, 1, 1, 1)
-          if keystoneMapID and keystoneMapID > 0 then
-            local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
-            collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI(keystoneDungeonName .. " (+" .. keystoneLevel .. ")"))
-          else
-            collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI("None"))
+        if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
+          local keystoneFrame = CreateFrame("Frame")
+          keystoneFrame:RegisterEvent("BAG_UPDATE")
+          keystoneFrame:RegisterEvent("CHALLENGE_MODE_COMPLETED")
+          keystoneFrame:RegisterEvent("CHALLENGE_MODE_RESET")
+          keystoneFrame:RegisterEvent("CHALLENGE_MODE_START")
+          keystoneFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+
+          local function UpdateKeystoneDisplay()
+            -- Only show it if player is max level
+            if UnitLevel("player") >= GetMaxLevelForExpansionLevel(GetExpansionLevel()) then
+              local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
+              local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
+              collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
+              collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
+              collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+              collections.keystone:SetTextColor(1, 1, 1, 1)
+
+              -- Set the keystone text
+              if keystoneMapID and keystoneMapID > 0 then
+                local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
+                collections.keystone:SetText("M+ Keystone: " ..
+                  F.String.ToxiUI(keystoneDungeonName .. " (+" .. keystoneLevel .. ")"))
+              else
+                collections.keystone:SetText("M+ Keystone: " ..
+                  F.String.ToxiUI("None"))
+              end
+            end
           end
+          
+          keystoneFrame:SetScript("OnEvent", function(_, event, ...)
+            UpdateKeystoneDisplay()
+          end)
         end
+        
       end
 
       -- Random tip
