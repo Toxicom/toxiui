@@ -12,6 +12,7 @@ TXUI.Changelog["6.9.4"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Add Explosive Hearthstone to " .. F.String.Menu.WunderBar(),
 
     "* Settings refactoring",
 
