@@ -50,7 +50,8 @@ function M:GameMenuButton()
       backgroundFade.bottomText:Point("BOTTOM", 0, 100)
       backgroundFade.bottomText:SetFont(primaryFont, F.FontSizeScaled(14), "OUTLINE")
       backgroundFade.bottomText:SetTextColor(1, 1, 1, 0.6)
-      backgroundFade.bottomText:SetText("You can find all the relevant " .. TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
+      backgroundFade.bottomText:SetText("You can find all the relevant " ..
+        TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
 
       -- Player Name
       backgroundFade.nameText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -85,18 +86,21 @@ function M:GameMenuButton()
         collections:SetTextColor(1, 1, 1, 1)
         collections:SetText(F.String.GradientClass("Collections"))
 
+        -- Mounts
         collections.mount = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.mount:SetPoint("TOPLEFT", collections, "BOTTOMLEFT", 0, -25)
         collections.mount:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.mount:SetTextColor(1, 1, 1, 1)
         collections.mount:SetText("Mounts: " .. F.String.ToxiUI(collectedMounts))
 
+        -- Toys
         collections.toys = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.toys:SetPoint("TOPLEFT", collections.mount, "BOTTOMLEFT", 0, -4)
         collections.toys:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.toys:SetTextColor(1, 1, 1, 1)
         collections.toys:SetText("Toys: " .. F.String.ToxiUI(C_ToyBox.GetNumLearnedDisplayedToys()))
 
+        -- Pets
         local _, petsOwned = C_PetJournal.GetNumPets()
         collections.pets = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.pets:SetPoint("TOPLEFT", collections.toys, "BOTTOMLEFT", 0, -4)
@@ -104,48 +108,19 @@ function M:GameMenuButton()
         collections.pets:SetTextColor(1, 1, 1, 1)
         collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
 
+        -- Achievements
         collections.achievs = backgroundFade:CreateFontString(nil, "OVERLAY")
         collections.achievs:SetPoint("TOPLEFT", collections.pets, "BOTTOMLEFT", 0, -12)
         collections.achievs:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
         collections.achievs:SetTextColor(1, 1, 1, 1)
 
         -- Mythic+ Keystone
-        if WOW_PROJECT_ID == WOW_PROJECT_MAINLINE then
-          local keystoneFrame = CreateFrame("Frame")
-          keystoneFrame:RegisterEvent("BAG_UPDATE")
-          keystoneFrame:RegisterEvent("CHALLENGE_MODE_COMPLETED")
-          keystoneFrame:RegisterEvent("CHALLENGE_MODE_RESET")
-          keystoneFrame:RegisterEvent("CHALLENGE_MODE_START")
-          keystoneFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
-
-          local function UpdateKeystoneText()
-            -- Only show it if player is max level
-            if UnitLevel("player") >= GetMaxLevelForExpansionLevel(GetExpansionLevel()) then
-              local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
-              local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
-
-              if not collections.keystone then
-                collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
-                collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
-                collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-                collections.keystone:SetTextColor(1, 1, 1, 1)
-              end
-
-              if keystoneMapID and keystoneMapID > 0 then
-                local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
-                collections.keystone:SetText("M+ Keystone: " ..
-                  F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
-              else
-                collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI("None"))
-              end
-            end
-          end
-
-          keystoneFrame:SetScript("OnEvent", function(_, event, ...)
-            UpdateKeystoneText()
-          end)
+        if TXUI.IsRetail then
+          collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
+          collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
+          collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+          collections.keystone:SetTextColor(1, 1, 1, 1)
         end
-        
       end
 
       -- Random tip
@@ -188,13 +163,30 @@ function M:GameMenuButton()
         self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuSkin.specIconSize), "")
         self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
 
-        self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
+        self.backgroundFade.guildText:SetText(guildName and
+          F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
         self.backgroundFade.specIcon:SetText(specIcon)
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
 
-      if self.collections then self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
+      if self.collections then
+        self.collections.achievs:SetText("Achievement Points: " ..
+          F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
+
+        -- Update keystone text
+        if self.collections.keystone and UnitLevel("player") >= GetMaxLevelForExpansionLevel(GetExpansionLevel()) then
+          local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
+          local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
+          if keystoneMapID and keystoneMapID > 0 then
+            local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
+            self.collections.keystone:SetText("M+ Keystone: " ..
+              F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
+          else
+            self.collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI("None"))
+          end
+        end
+      end
 
       if self.backgroundFade.tipText then
         -- I have a suspicion that if it's defined outside it can cause gradient issues, not sure
@@ -206,29 +198,32 @@ function M:GameMenuButton()
         local randomTip = randomTips[randomIndex]
 
         local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
-        local year = date("%Y") -- yyyy eg 2023
+        local year = date("%Y")         -- yyyy eg 2023
         local ToxiBirthday = monthDate == "01/06"
         local ToxiUiBirthday = monthDate == "10/18"
         local ToxiUiAge = year - 2020
         local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
-        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
+        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or
+            ""
         -- let's call it an easter egg
         if ToxiBirthday then
           self.backgroundFade.tipText:SetText(
             "Did you know that today, January 6th, is "
-              .. F.String.ToxiUI("Toxi")
-              .. "'s birthday?\n"
-              .. F.String.ToxiUI("Fun fact:")
-              .. " First version of the "
-              .. TXUI.Title
-              .. " installer was released on this day back in 2021!"
+            .. F.String.ToxiUI("Toxi")
+            .. "'s birthday?\n"
+            .. F.String.ToxiUI("Fun fact:")
+            .. " First version of the "
+            .. TXUI.Title
+            .. " installer was released on this day back in 2021!"
           )
         elseif ToxiUiBirthday then
           self.backgroundFade.tipText:SetText(
-            "Did you know that today, October 18th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
+            "Did you know that today, October 18th, is " ..
+            TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
           )
         else
-          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
+          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") ..
+            randomTip .. holidayString)
         end
       end
 
