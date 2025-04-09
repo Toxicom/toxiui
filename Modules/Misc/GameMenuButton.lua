@@ -172,7 +172,7 @@ function M:GameMenuButton()
         self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
 
         -- Update keystone text
-        if self.collections.keystone and UnitLevel("player") >= GetMaxLevelForExpansionLevel(GetExpansionLevel()) then
+        if self.collections.keystone and UnitLevel("player") >= I.MaxLevelTable[TXUI.MetaFlavor] then
           local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
           local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
           if keystoneMapID and keystoneMapID > 0 then
