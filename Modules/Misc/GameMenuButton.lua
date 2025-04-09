@@ -25,6 +25,7 @@ function M:GameMenuButton()
 
     local backgroundFade = CreateFrame("Frame", nil, E.UIParent)
     local collections
+    local mythic
 
     backgroundFade:SetAllPoints(E.UIParent)
     backgroundFade:SetFrameStrata("HIGH")
@@ -40,11 +41,11 @@ function M:GameMenuButton()
     backgroundFade.logo:SetTexture(I.Media.Logos.Logo)
     backgroundFade.logo:Point("TOP", 0, -100)
 
+    local primaryFont = F.GetFontPath(I.Fonts.Primary)
+    local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
+
     -- Player information texts
     if E.db.TXUI.addons.gameMenuSkin.showInfo then
-      local primaryFont = F.GetFontPath(I.Fonts.Primary)
-      local titleFont = F.GetFontPath(I.Fonts.TitleRaid)
-
       -- Bottom text promotion
       backgroundFade.bottomText = backgroundFade:CreateFontString(nil, "OVERLAY")
       backgroundFade.bottomText:Point("BOTTOM", 0, 100)
@@ -66,7 +67,7 @@ function M:GameMenuButton()
       backgroundFade.guildText:SetTextColor(1, 1, 1, 1)
 
       backgroundFade.specIcon = backgroundFade:CreateFontString(nil, "OVERLAY")
-      backgroundFade.specIcon:SetPoint("TOP", backgroundFade.guildText, "BOTTOM", 0, -25)
+      backgroundFade.specIcon:SetPoint("TOP", backgroundFade.guildText, "BOTTOM", 0, -24)
 
       backgroundFade.levelText = backgroundFade:CreateFontString(nil, "OVERLAY")
       backgroundFade.levelText:SetPoint("RIGHT", backgroundFade.specIcon, "LEFT", -4, 0)
@@ -77,60 +78,75 @@ function M:GameMenuButton()
       backgroundFade.classText:SetPoint("LEFT", backgroundFade.specIcon, "RIGHT", 4, 0)
       backgroundFade.classText:SetFont(primaryFont, F.FontSizeScaled(20), "OUTLINE")
       backgroundFade.classText:SetTextColor(1, 1, 1, 1)
+    end
 
+    -- Random tip
+    if E.db.TXUI.addons.gameMenuSkin.showTips then
+      backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
+      if backgroundFade.specIcon then
+        backgroundFade.tipText:SetPoint("TOP", backgroundFade.specIcon, "BOTTOM", 0, -24)
+      else
+        backgroundFade.tipText:SetPoint("TOP", backgroundFade.logo, "BOTTOM", 0, -30)
+      end
+      backgroundFade.tipText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+      backgroundFade.tipText:SetTextColor(1, 1, 1, 1)
+
+      backgroundFade.tipText:SetWidth(700)
+    end
+
+    if E.db.TXUI.addons.gameMenuSkin.showCollections then
+      collections = backgroundFade:CreateFontString(nil, "OVERLAY")
+      collections:Point("TOPLEFT", 100, -100)
+      collections:SetFont(titleFont, F.FontSizeScaled(24), "OUTLINE")
+      collections:SetTextColor(1, 1, 1, 1)
+      collections:SetText(F.String.GradientClass("Collections"))
+
+      -- Mounts
+      collections.mount = backgroundFade:CreateFontString(nil, "OVERLAY")
+      collections.mount:SetPoint("TOPLEFT", collections, "BOTTOMLEFT", 0, -24)
+      collections.mount:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+      collections.mount:SetTextColor(1, 1, 1, 1)
+      collections.mount:SetText("Mounts: " .. F.String.ToxiUI(collectedMounts))
+
+      -- Toys
+      collections.toys = backgroundFade:CreateFontString(nil, "OVERLAY")
+      collections.toys:SetPoint("TOPLEFT", collections.mount, "BOTTOMLEFT", 0, -4)
+      collections.toys:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+      collections.toys:SetTextColor(1, 1, 1, 1)
+      collections.toys:SetText("Toys: " .. F.String.ToxiUI(C_ToyBox.GetNumLearnedDisplayedToys()))
+
+      -- Pets
+      local _, petsOwned = C_PetJournal.GetNumPets()
+      collections.pets = backgroundFade:CreateFontString(nil, "OVERLAY")
+      collections.pets:SetPoint("TOPLEFT", collections.toys, "BOTTOMLEFT", 0, -4)
+      collections.pets:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+      collections.pets:SetTextColor(1, 1, 1, 1)
+      collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
+
+      -- Achievements
+      collections.achievs = backgroundFade:CreateFontString(nil, "OVERLAY")
+      collections.achievs:SetPoint("TOPLEFT", collections.pets, "BOTTOMLEFT", 0, -12)
+      collections.achievs:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+      collections.achievs:SetTextColor(1, 1, 1, 1)
+    end
+
+    if E.db.TXUI.addons.gameMenuSkin.showMythic and UnitLevel("player") >= I.MaxLevelTable[TXUI.MetaFlavor] then
+      mythic = backgroundFade:CreateFontString(nil, "OVERLAY")
       if E.db.TXUI.addons.gameMenuSkin.showCollections then
-        collections = backgroundFade:CreateFontString(nil, "OVERLAY")
-        collections:Point("TOPLEFT", 100, -100)
-        collections:SetFont(titleFont, F.FontSizeScaled(24), "OUTLINE")
-        collections:SetTextColor(1, 1, 1, 1)
-        collections:SetText(F.String.GradientClass("Collections"))
-
-        -- Mounts
-        collections.mount = backgroundFade:CreateFontString(nil, "OVERLAY")
-        collections.mount:SetPoint("TOPLEFT", collections, "BOTTOMLEFT", 0, -25)
-        collections.mount:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-        collections.mount:SetTextColor(1, 1, 1, 1)
-        collections.mount:SetText("Mounts: " .. F.String.ToxiUI(collectedMounts))
-
-        -- Toys
-        collections.toys = backgroundFade:CreateFontString(nil, "OVERLAY")
-        collections.toys:SetPoint("TOPLEFT", collections.mount, "BOTTOMLEFT", 0, -4)
-        collections.toys:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-        collections.toys:SetTextColor(1, 1, 1, 1)
-        collections.toys:SetText("Toys: " .. F.String.ToxiUI(C_ToyBox.GetNumLearnedDisplayedToys()))
-
-        -- Pets
-        local _, petsOwned = C_PetJournal.GetNumPets()
-        collections.pets = backgroundFade:CreateFontString(nil, "OVERLAY")
-        collections.pets:SetPoint("TOPLEFT", collections.toys, "BOTTOMLEFT", 0, -4)
-        collections.pets:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-        collections.pets:SetTextColor(1, 1, 1, 1)
-        collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
-
-        -- Achievements
-        collections.achievs = backgroundFade:CreateFontString(nil, "OVERLAY")
-        collections.achievs:SetPoint("TOPLEFT", collections.pets, "BOTTOMLEFT", 0, -12)
-        collections.achievs:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-        collections.achievs:SetTextColor(1, 1, 1, 1)
-
-        -- Mythic+ Keystone
-        if TXUI.IsRetail then
-          collections.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
-          collections.keystone:SetPoint("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -4)
-          collections.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-          collections.keystone:SetTextColor(1, 1, 1, 1)
-        end
+        -- Last item of collections
+        mythic:Point("TOPLEFT", collections.achievs, "BOTTOMLEFT", 0, -48)
+      else
+        mythic:Point("TOPLEFT", 100, -100)
       end
+      mythic:SetFont(titleFont, F.FontSizeScaled(24), "OUTLINE")
+      mythic:SetTextColor(1, 1, 1, 1)
+      mythic:SetText(F.String.GradientClass("Mythic+"))
 
-      -- Random tip
-      if E.db.TXUI.addons.gameMenuSkin.showTips then
-        backgroundFade.tipText = backgroundFade:CreateFontString(nil, "OVERLAY")
-        backgroundFade.tipText:SetPoint("TOP", backgroundFade.specIcon, "BOTTOM", 0, -25)
-        backgroundFade.tipText:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-        backgroundFade.tipText:SetTextColor(1, 1, 1, 1)
-
-        backgroundFade.tipText:SetWidth(700)
-      end
+      -- Mythic+ Keystone
+      mythic.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
+      mythic.keystone:SetPoint("TOPLEFT", mythic, "BOTTOMLEFT", 0, -24)
+      mythic.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+      mythic.keystone:SetTextColor(1, 1, 1, 1)
     end
 
     backgroundFade.Animation = TXUI:CreateAnimationGroup(backgroundFade):CreateAnimation("Fade")
@@ -140,6 +156,7 @@ function M:GameMenuButton()
 
     self.backgroundFade = backgroundFade
     self.collections = collections
+    self.mythic = mythic
     self.backgroundFade:Hide()
   end
 
@@ -168,19 +185,18 @@ function M:GameMenuButton()
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
 
-      if self.collections then
-        self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
+      if self.collections then self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
 
+      if self.mythic then
         -- Update keystone text
-        if self.collections.keystone and UnitLevel("player") >= I.MaxLevelTable[TXUI.MetaFlavor] then
-          local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
-          local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
-          if keystoneMapID and keystoneMapID > 0 then
-            local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
-            self.collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
-          else
-            self.collections.keystone:SetText("M+ Keystone: " .. F.String.ToxiUI("None"))
-          end
+        local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
+        local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
+        local keystoneTextPrefix = "Current Keystone: "
+        if keystoneMapID and keystoneMapID > 0 then
+          local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
+          self.mythic.keystone:SetText(keystoneTextPrefix .. F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
+        else
+          self.mythic.keystone:SetText(keystoneTextPrefix .. F.String.ToxiUI("N/A"))
         end
       end
 

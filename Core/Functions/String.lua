@@ -492,7 +492,7 @@ function F.String.Menu.Armory()
 end
 
 function F.String.Menu.Skins()
-  return F.String.FastGradientHex("Skins", "#ff77a9", "#b4004e")
+  return F.String.FastGradientHex("Skins", "#ff77a9", "#bf66ff")
 end
 
 function F.String.Menu.Styles()

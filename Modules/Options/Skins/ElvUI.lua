@@ -107,161 +107,6 @@ function O:Skins_ElvUI()
   -- Spacer
   self:AddSpacer(options)
 
-  -- ToxiUI Game Menu Button
-  do
-    -- ToxiUI Game Menu Button Group
-    local gameMenuSkinGroup = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " Game Menu Skin",
-    }, {
-      name = "This module skins the Game Menu (ESC) background with additional information.\n\n",
-    }, I.Requirements.GameMenuButton).args
-
-    -- ToxiUI Game Menu Button Enable
-    gameMenuSkinGroup.gameMenuSkin = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Enabling this option enables the " .. TXUI.Title .. " Game Menu (ESC) skin.",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.addons.gameMenuSkin.enabled, gameMenuSkinGroup)
-      end,
-      get = function(_)
-        return E.db.TXUI.addons.gameMenuSkin.enabled
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }
-
-    gameMenuSkinGroup.showInfo = {
-      order = self:GetOrder(),
-      type = "toggle",
-      name = "Show Player Info",
-      desc = "Toggling this on displays player information in the game menu background. Requires Background Fade enabled.",
-      get = function(_)
-        return E.db.TXUI.addons.gameMenuSkin.showInfo
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.showInfo = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled
-      end,
-    }
-
-    gameMenuSkinGroup.showTips = {
-      order = self:GetOrder(),
-
-      type = "toggle",
-      name = "Show Random Tips",
-      desc = "Toggling this on displays random tips in the game menu background. Requires Show Player Info enabled.",
-      get = function(_)
-        return E.db.TXUI.addons.gameMenuSkin.showTips
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.showTips = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
-      end,
-    }
-
-    gameMenuSkinGroup.showCollections = {
-      order = self:GetOrder(),
-      type = "toggle",
-      name = "Show Collections",
-      desc = "Toggling this on displays your collection information in the game menu background. Requires Show Player Info enabled.",
-      get = function()
-        return E.db.TXUI.addons.gameMenuSkin.showCollections
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.showCollections = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
-      end,
-      hidden = not TXUI.IsRetail,
-    }
-
-    gameMenuSkinGroup.classColor = {
-      order = self:GetOrder(),
-      type = "toggle",
-      name = "Class Color",
-      desc = "Toggling this on will enable your current class' color for the background fade",
-      get = function(_)
-        return E.db.TXUI.addons.gameMenuSkin.classColor.enabled
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.classColor.enabled = value
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled
-      end,
-    }
-
-    gameMenuSkinGroup.bgColor = {
-      order = self:GetOrder(),
-      type = "color",
-      name = "Background Color",
-      hasAlpha = true,
-      width = 1.1,
-      get = self:GetFontColorGetter("TXUI.addons.gameMenuSkin", P.addons.gameMenuSkin),
-      set = self:GetFontColorSetter("TXUI.addons.gameMenuSkin"),
-      disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled
-      end,
-    }
-
-    gameMenuSkinGroup.specIconStyle = {
-      order = self:GetOrder(),
-      type = "select",
-      name = "Spec Icon Style " .. E.NewSign,
-      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
-      width = 1.5,
-      values = {
-        ToxiSpecColored = TXUI.Title .. F.String.Class(" Class Colored "),
-        ToxiSpecColoredStroke = TXUI.Title .. F.String.Class(" Class Colored ") .. F.String.ToxiUI("[STROKE]"),
-        ToxiSpecStylized = TXUI.Title .. " Stylized",
-        ToxiSpecWhite = TXUI.Title .. " White",
-        ToxiSpecWhiteStroke = TXUI.Title .. " White " .. F.String.ToxiUI("[STROKE]"),
-      },
-      get = function()
-        return E.db.TXUI.addons.gameMenuSkin.specIconStyle
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.specIconStyle = value
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
-      end,
-    }
-
-    gameMenuSkinGroup.specIconSize = {
-      order = self:GetOrder(),
-      type = "range",
-      name = "Spec Icon Size " .. E.NewSign,
-      desc = "Change the size of the specialization icon.",
-      min = 8,
-      max = 64,
-      step = 1,
-      get = function()
-        return E.db.TXUI.addons.gameMenuSkin.specIconSize
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.specIconSize = value
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
-      end,
-    }
-  end
-
-  -- Spacer
-  self:AddSpacer(options)
-
   -- ElvUI AFK Mode
   do
     -- ElvUI AFK Mode Group
@@ -315,7 +160,7 @@ function O:Skins_ElvUI()
       order = self:GetOrder(),
       type = "toggle",
       desc = "Enabling this option displays the latest " .. TXUI.Title .. " changelog while the AFK screen is active.",
-      name = "Show Changelog " .. E.NewSign,
+      name = "Show Changelog",
       disabled = optionsDisabled,
       set = function(_, value)
         E.db.TXUI.addons.afkMode.showChangelog = value
@@ -327,7 +172,7 @@ function O:Skins_ElvUI()
       order = self:GetOrder(),
       type = "toggle",
       desc = "Enabling this option displays random " .. TXUI.Title .. " tips while the AFK screen is active.",
-      name = "Show Tips " .. E.NewSign,
+      name = "Show Tips",
       disabled = optionsDisabled,
       set = function(_, value)
         E.db.TXUI.addons.afkMode.showTips = value
@@ -338,7 +183,7 @@ function O:Skins_ElvUI()
     elvuiAfkGroup.specIconStyle = {
       order = self:GetOrder(),
       type = "select",
-      name = "Spec Icon Style " .. E.NewSign,
+      name = "Spec Icon Style",
       desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
       width = 1.5,
       values = {
@@ -362,7 +207,7 @@ function O:Skins_ElvUI()
     elvuiAfkGroup.specIconSize = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spec Icon Size " .. E.NewSign,
+      name = "Spec Icon Size",
       desc = "Change the size of the specialization icon.",
       min = 8,
       max = 64,
