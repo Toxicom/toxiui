@@ -6,6 +6,7 @@ TXUI.Changelog["6.9.4"] = {
     "* Breaking changes",
 
     "* New features",
+    "M+ Keystone displayed in Game Menu Skin" .. F.String.Sublist("Credits to Kryonyx"),
 
     "* Bug fixes",
 
