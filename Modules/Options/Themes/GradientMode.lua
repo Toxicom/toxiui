@@ -678,7 +678,7 @@ function O:ToxiUI_Themes_GradientMode()
 
     -- Saturation Boost
     local saturationGroup = self:AddInlineDesc(tab, {
-      name = "Saturation Boost " .. E.NewSign,
+      name = "Saturation Boost",
       get = function(info)
         return E.db.TXUI.themes.gradientMode.saturationBoost[info[#info]]
       end,

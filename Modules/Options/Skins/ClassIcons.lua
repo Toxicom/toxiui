@@ -6,7 +6,7 @@ function O:Skins_ClassIcons()
   self.options.skins.args["classIcons"] = {
     order = self:GetOrder(),
     type = "group",
-    name = F.String.Class("Class") .. " Icons " .. E.NewSign,
+    name = F.String.Class("Class") .. " Icons",
     args = {},
   }
 

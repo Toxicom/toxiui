@@ -113,7 +113,7 @@ function O:WunderBar_SubModules_Hearthstone()
 
   tab.generalGroup.args.showLabels = {
     type = "toggle",
-    name = "Show " .. F.String.Class("Mythic+", "DEMONHUNTER") .. " labels " .. E.NewSign,
+    name = "Show " .. F.String.Class("Mythic+", "DEMONHUNTER") .. " labels",
     desc = "Enabling this will show a label of the Mythic+ teleport on the button.",
     order = self:GetOrder(),
     hidden = not TXUI.IsRetail,
@@ -122,7 +122,7 @@ function O:WunderBar_SubModules_Hearthstone()
 
   tab.generalGroup.args.showMageLabels = {
     type = "toggle",
-    name = "Show " .. F.String.Class("Mage", "MAGE") .. " labels " .. E.NewSign,
+    name = "Show " .. F.String.Class("Mage", "MAGE") .. " labels",
     desc = "Enabling this will show a label of the Mage teleport & portal on the button.",
     order = self:GetOrder(),
     disabled = function()

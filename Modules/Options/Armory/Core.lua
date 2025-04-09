@@ -292,7 +292,7 @@ function O:Armory()
       backgroundGroup.class = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Class Background " .. E.NewSign,
+        name = "Class Background",
         desc = "Use class specific backgrounds.",
         disabled = optionsDisabled,
         width = 1.2,
@@ -301,7 +301,7 @@ function O:Armory()
       backgroundGroup.hideControls = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Hide controls " .. E.NewSign,
+        name = "Hide controls",
         desc = "Hides the camera controls when hovering the character model.",
         set = function(_, value)
           E.db.TXUI.armory.background.hideControls = value
@@ -1102,7 +1102,7 @@ function O:Armory()
       enchantGroup.moveSockets = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Move Sockets " .. E.NewSign,
+        name = "Move Sockets",
         desc = "Crops and moves sockets above enchant text.",
         disabled = optionsDisabled,
         set = function(_, value)
@@ -1448,7 +1448,7 @@ function O:Armory()
       fontGroup.abbreviateLabels = {
         order = self:GetOrder(),
         type = "toggle",
-        name = "Short Labels " .. E.NewSign,
+        name = "Short Labels",
         desc = "Shorten and abbreviate attribute labels.",
       }
     end
@@ -1459,7 +1459,7 @@ function O:Armory()
     do
       -- Font Group
       local fontGroup = self:AddInlineDesc(tab, {
-        name = "Attribute Icons " .. E.NewSign,
+        name = "Attribute Icons",
       }, {
         name = "Show icons before the attribute labels. Only the main attributes are supported currently.\n\n",
       }).args

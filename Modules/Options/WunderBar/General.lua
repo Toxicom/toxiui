@@ -484,7 +484,7 @@ function O:WunderBar_General()
     flyoutGroup["padding"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Padding " .. E.NewSign,
+      name = "Padding",
       desc = "Padding for the flyout backdrop.",
       min = 0,
       max = 32,
@@ -503,7 +503,7 @@ function O:WunderBar_General()
     flyoutGroup["width"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Slot Width " .. E.NewSign,
+      name = "Slot Width",
       desc = "Size of an individual slot. Height is going to change accordingly to maintain 4:3 aspect ratio.",
       min = 20,
       max = 80,
@@ -520,7 +520,7 @@ function O:WunderBar_General()
     flyoutGroup["spacing"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Spacing " .. E.NewSign,
+      name = "Spacing",
       desc = "Spacing between slots.",
       min = 0,
       max = 16,
@@ -538,7 +538,7 @@ function O:WunderBar_General()
       order = self:GetOrder(),
       type = "select",
       dialogControl = "LSM30_Font",
-      name = "Label Font " .. E.NewSign,
+      name = "Label Font",
       desc = "Set the font for M+ portal labels.",
       values = self:GetAllFontsFunc(),
       disabled = flyoutDisabled,
@@ -553,7 +553,7 @@ function O:WunderBar_General()
     flyoutGroup["labelFontSize"] = {
       order = self:GetOrder(),
       type = "range",
-      name = "Label Font Size " .. E.NewSign,
+      name = "Label Font Size",
       desc = "Set the font size for M+ portal labels.",
       min = 8,
       max = 64,

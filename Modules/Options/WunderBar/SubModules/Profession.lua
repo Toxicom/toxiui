@@ -35,9 +35,9 @@ function O:WunderBar_SubModules_Profession()
   tab.generalGroup.args.spacer1 = ACH:Spacer(3)
 
   tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase Names", nil, 4)
-  tab.generalGroup.args.abbreviate = ACH:Toggle("Abbreviate Names " .. E.NewSign, "This will abbreviate the name to custom strings, eg: 'BS', 'LW', 'Ench' etc.", 5)
+  tab.generalGroup.args.abbreviate = ACH:Toggle("Abbreviate Names", "This will abbreviate the name to custom strings, eg: 'BS', 'LW', 'Ench' etc.", 5)
   tab.generalGroup.args.abbreviate.width = 1.2
-  tab.generalGroup.args.limitChar = ACH:Range("Name Length " .. E.NewSign, "Max character length of the Profession's name", 6)
+  tab.generalGroup.args.limitChar = ACH:Range("Name Length", "Max character length of the Profession's name", 6)
   tab.generalGroup.args.limitChar.step = 1
   tab.generalGroup.args.limitChar.min = 1
   tab.generalGroup.args.limitChar.max = 32

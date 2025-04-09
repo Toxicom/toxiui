@@ -11,7 +11,7 @@ function O:Plugins_VehicleBar()
   self.options.misc.args.vehicleBar = {
     order = self:GetOrder(),
     type = "group",
-    name = "VehicleBar " .. E.NewSign,
+    name = "VehicleBar",
     get = function(info)
       return E.db.TXUI.vehicleBar[info[#info]]
     end,
