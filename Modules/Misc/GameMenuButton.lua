@@ -220,15 +220,12 @@ function M:GameMenuButton()
       if self.mythic then
         -- Update M+ history
         local history = C_MythicPlus.GetRunHistory(false)
-
-        table.sort(history, function(a, b)
-          return a.completedTimestamp > b.completedTimestamp
-        end)
+        local total = #history
 
         for i = 1, 4 do -- this could be configurable
           local historyFrame = self.mythic["history" .. i]
           if historyFrame then
-            local historyRun = history[i]
+            local historyRun = history[total - i + 1]
             local historyText
             local historyTextPrefix = i .. ": "
             if historyRun then
