@@ -144,33 +144,26 @@ function M:GameMenuButton()
       mythic:SetText(F.String.GradientClass("Mythic+"))
 
       -- Mythic+ history
-      mythic.history1 = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.history1:SetPoint("TOPLEFT", mythic, "BOTTOMLEFT", 0, -24)
-      mythic.history1:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-      mythic.history1:SetTextColor(1, 1, 1, 1)
-      mythic.history1:SetText("1: " .. F.String.ToxiUI("N/A"))
+      local historyLimit = E.db.TXUI.addons.gameMenuSkin.historyLimit
 
-      mythic.history2 = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.history2:SetPoint("TOPLEFT", mythic.history1, "BOTTOMLEFT", 0, -4)
-      mythic.history2:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-      mythic.history2:SetTextColor(1, 1, 1, 1)
-      mythic.history2:SetText("2: " .. F.String.ToxiUI("N/A"))
+      for i = 1, historyLimit do
+        local id = "history" .. i
+        mythic[id] = backgroundFade:CreateFontString(nil, "OVERLAY")
+        mythic[id]:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        mythic[id]:SetTextColor(1, 1, 1, 1)
 
-      mythic.history3 = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.history3:SetPoint("TOPLEFT", mythic.history2, "BOTTOMLEFT", 0, -4)
-      mythic.history3:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-      mythic.history3:SetTextColor(1, 1, 1, 1)
-      mythic.history3:SetText("3: " .. F.String.ToxiUI("N/A"))
+        if i == 1 then
+          mythic[id]:SetPoint("TOPLEFT", mythic, "BOTTOMLEFT", 0, -24)
+        else
+          mythic[id]:SetPoint("TOPLEFT", mythic["history" .. (i - 1)], "BOTTOMLEFT", 0, -4)
+        end
+      end
 
-      mythic.history4 = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.history4:SetPoint("TOPLEFT", mythic.history3, "BOTTOMLEFT", 0, -4)
-      mythic.history4:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-      mythic.history4:SetTextColor(1, 1, 1, 1)
-      mythic.history4:SetText("4: " .. F.String.ToxiUI("N/A"))
+
 
       -- Mythic+ keystone
       mythic.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.keystone:SetPoint("TOPLEFT", mythic.history4, "BOTTOMLEFT", 0, -12)
+      mythic.keystone:SetPoint("TOPLEFT", mythic["history" .. historyLimit], "BOTTOMLEFT", 0, -12)
       mythic.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
       mythic.keystone:SetTextColor(1, 1, 1, 1)
     end
@@ -221,8 +214,9 @@ function M:GameMenuButton()
         -- Update M+ history
         local history = C_MythicPlus.GetRunHistory(false, true)
         local total = #history
+        local historyLimit = E.db.TXUI.addons.gameMenuSkin.historyLimit
 
-        for i = 1, 4 do -- this could be configurable
+        for i = 1, historyLimit do -- this could be configurable
           local historyFrame = self.mythic["history" .. i]
           if historyFrame then
             local historyRun = history[total - i + 1]
