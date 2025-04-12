@@ -219,7 +219,7 @@ function M:GameMenuButton()
 
       if self.mythic then
         -- Update M+ history
-        local history = C_MythicPlus.GetRunHistory(false)
+        local history = C_MythicPlus.GetRunHistory(false, true)
         local total = #history
 
         for i = 1, 4 do -- this could be configurable
@@ -230,9 +230,11 @@ function M:GameMenuButton()
             local historyTextPrefix = i .. ": "
             if historyRun then
               local historyDungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID)
-              historyText = ("%s (+%d)"):format(historyDungeonName, historyRun.level)
+              historyText = historyRun.completed and
+                  F.String.Good(("%s (+%d)"):format(historyDungeonName, historyRun.level)) or
+                  F.String.Error(("%s (+%d)"):format(historyDungeonName, historyRun.level))
             else
-              historyText = "N/A"
+              historyText = F.String.ToxiUI("N/A")
             end
 
             historyFrame:SetText(historyTextPrefix .. F.String.ToxiUI(historyText))
