@@ -9,6 +9,7 @@ TXUI.Changelog["6.9.4"] = {
     "M+ Keystone displayed in Game Menu Skin" .. F.String.Sublist("Credits to Kryonyx"),
 
     "* Bug fixes",
+    "Improve fallback colors for F.Color.SetGradient",
 
     "* Profile updates",
 
