@@ -147,15 +147,14 @@ function M:GameMenuButton()
       local historyLimit = E.db.TXUI.addons.gameMenuSkin.historyLimit
 
       for i = 1, historyLimit do
-        local id = "history" .. i
-        mythic[id] = backgroundFade:CreateFontString(nil, "OVERLAY")
-        mythic[id]:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
-        mythic[id]:SetTextColor(1, 1, 1, 1)
+        mythic["history" .. i] = backgroundFade:CreateFontString(nil, "OVERLAY")
+        mythic["history" .. i]:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        mythic["history" .. i]:SetTextColor(1, 1, 1, 1)
 
         if i == 1 then
-          mythic[id]:SetPoint("TOPLEFT", mythic, "BOTTOMLEFT", 0, -24)
+          mythic["history" .. i]:SetPoint("TOPLEFT", mythic, "BOTTOMLEFT", 0, -24)
         else
-          mythic[id]:SetPoint("TOPLEFT", mythic["history" .. (i - 1)], "BOTTOMLEFT", 0, -4)
+          mythic["history" .. i]:SetPoint("TOPLEFT", mythic["history" .. (i - 1)], "BOTTOMLEFT", 0, -4)
         end
       end
 
@@ -213,13 +212,12 @@ function M:GameMenuButton()
       if self.mythic then
         -- Update M+ history
         local history = C_MythicPlus.GetRunHistory(false, true)
-        local total = #history
         local historyLimit = E.db.TXUI.addons.gameMenuSkin.historyLimit
 
-        for i = 1, historyLimit do -- this could be configurable
+        for i = 1, historyLimit do
           local historyFrame = self.mythic["history" .. i]
           if historyFrame then
-            local historyRun = history[total - i + 1]
+            local historyRun = history[#history - i + 1]
             local historyText
             local historyTextPrefix = i .. ": "
             if historyRun then
