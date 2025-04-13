@@ -13,14 +13,10 @@ end
 function F.Color.SetGradient(obj, orientation, minColor, maxColor)
   if not obj then return end
 
-  local min = CreateColor(0, 0, 0, 1)
-  local max = CreateColor(1, 1, 1, 1)
+  if not minColor.r or not minColor.g or not minColor.b then return end
+  if not maxColor.r or not maxColor.g or not maxColor.b then return end
 
-  if minColor.r and minColor.g and minColor.b then min = minColor end
-
-  if maxColor.r and maxColor.g and maxColor.b then max = maxColor end
-
-  obj:SetGradient(orientation, min, max)
+  obj:SetGradient(orientation, minColor, maxColor)
 end
 
 function F.Color.SetGradientRGB(obj, orientation, r1, g1, b1, a1, r2, g2, b2, a2)
@@ -51,6 +47,9 @@ function F.Color.SlowCalculateBackground(colorArray)
 end
 
 function F.Color.UpdateGradient(obj, perc, minColor, maxColor)
+  if not minColor.r or not minColor.g or not minColor.b then return end
+  if not maxColor.r or not maxColor.g or not maxColor.b then return end
+
   if perc >= 1 then
     local r, g, b = maxColor:GetRGBA()
     obj:SetRGBA(r, g, b, 1)
