@@ -20,6 +20,7 @@ TXUI.Changelog["6.9.4"] = {
     "Add Explosive Hearthstone to " .. F.String.Menu.WunderBar(),
     F.String.MinElv("13.88"),
     "Update for Classic Era 1.15.7",
+    "Update for Classic 4.4.2",
 
     "* Settings refactoring",
     "Refactor Game Menu Skin settings" .. F.String.Sublist("It is still in the " .. F.String.Menu.Skins() .. " tab, but separate from the ElvUI tab"),
