@@ -258,7 +258,7 @@ P.addons = {
     showTips = true,
     showCollections = TXUI.IsRetail,
     showMythic = TXUI.IsRetail,
-    historyLimit = 4,
+    mythicHistoryLimit = 4,
 
     specIconStyle = "ToxiSpecStylized",
     specIconSize = 20,
