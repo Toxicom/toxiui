@@ -51,7 +51,8 @@ function M:GameMenuButton()
       backgroundFade.bottomText:Point("BOTTOM", 0, 100)
       backgroundFade.bottomText:SetFont(primaryFont, F.FontSizeScaled(14), "OUTLINE")
       backgroundFade.bottomText:SetTextColor(1, 1, 1, 0.6)
-      backgroundFade.bottomText:SetText("You can find all the relevant " .. TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
+      backgroundFade.bottomText:SetText("You can find all the relevant " ..
+        TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
 
       -- Player Name
       backgroundFade.nameText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -142,9 +143,26 @@ function M:GameMenuButton()
       mythic:SetTextColor(1, 1, 1, 1)
       mythic:SetText(F.String.GradientClass("Mythic+"))
 
-      -- Mythic+ Keystone
+      -- Mythic+ history
+      local historyLimit = E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit
+
+      for i = 1, historyLimit do
+        mythic["history" .. i] = backgroundFade:CreateFontString(nil, "OVERLAY")
+        mythic["history" .. i]:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        mythic["history" .. i]:SetTextColor(1, 1, 1, 1)
+
+        if i == 1 then
+          mythic["history" .. i]:SetPoint("TOPLEFT", mythic, "BOTTOMLEFT", 0, -24)
+        else
+          mythic["history" .. i]:SetPoint("TOPLEFT", mythic["history" .. (i - 1)], "BOTTOMLEFT", 0, -4)
+        end
+      end
+
+
+
+      -- Mythic+ keystone
       mythic.keystone = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.keystone:SetPoint("TOPLEFT", mythic, "BOTTOMLEFT", 0, -24)
+      mythic.keystone:SetPoint("TOPLEFT", mythic["history" .. historyLimit], "BOTTOMLEFT", 0, -12)
       mythic.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
       mythic.keystone:SetTextColor(1, 1, 1, 1)
     end
@@ -179,22 +197,49 @@ function M:GameMenuButton()
         self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuSkin.specIconSize), "")
         self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
 
-        self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
+        self.backgroundFade.guildText:SetText(guildName and
+          F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
         self.backgroundFade.specIcon:SetText(specIcon)
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
 
-      if self.collections then self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
+      if self.collections then
+        self.collections.achievs:SetText("Achievement Points: " ..
+          F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
+      end
 
       if self.mythic then
+        -- Update M+ history
+        local history = C_MythicPlus.GetRunHistory(false, true)
+        local historyLimit = E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit
+
+        for i = 1, historyLimit do
+          local historyFrame = self.mythic["history" .. i]
+          if historyFrame then
+            local historyRun = history[#history - i + 1]
+            local historyText
+            local historyTextPrefix = i .. ". "
+            if historyRun then
+              local historyDungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID)
+              historyText = (historyRun.completed and F.String.Good or F.String.Error)(("%s (+%d)"):format(
+                historyDungeonName, historyRun.level))
+            else
+              historyText = F.String.ToxiUI("N/A")
+            end
+
+            historyFrame:SetText(historyTextPrefix .. F.String.ToxiUI(historyText))
+          end
+        end
+
         -- Update keystone text
         local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
         local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
         local keystoneTextPrefix = "Current Keystone: "
         if keystoneMapID and keystoneMapID > 0 then
           local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
-          self.mythic.keystone:SetText(keystoneTextPrefix .. F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
+          self.mythic.keystone:SetText(keystoneTextPrefix ..
+            F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
         else
           self.mythic.keystone:SetText(keystoneTextPrefix .. F.String.ToxiUI("N/A"))
         end
@@ -210,29 +255,32 @@ function M:GameMenuButton()
         local randomTip = randomTips[randomIndex]
 
         local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
-        local year = date("%Y") -- yyyy eg 2023
+        local year = date("%Y")         -- yyyy eg 2023
         local ToxiBirthday = monthDate == "01/06"
         local ToxiUiBirthday = monthDate == "10/18"
         local ToxiUiAge = year - 2020
         local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
-        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
+        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or
+            ""
         -- let's call it an easter egg
         if ToxiBirthday then
           self.backgroundFade.tipText:SetText(
             "Did you know that today, January 6th, is "
-              .. F.String.ToxiUI("Toxi")
-              .. "'s birthday?\n"
-              .. F.String.ToxiUI("Fun fact:")
-              .. " First version of the "
-              .. TXUI.Title
-              .. " installer was released on this day back in 2021!"
+            .. F.String.ToxiUI("Toxi")
+            .. "'s birthday?\n"
+            .. F.String.ToxiUI("Fun fact:")
+            .. " First version of the "
+            .. TXUI.Title
+            .. " installer was released on this day back in 2021!"
           )
         elseif ToxiUiBirthday then
           self.backgroundFade.tipText:SetText(
-            "Did you know that today, October 18th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
+            "Did you know that today, October 18th, is " ..
+            TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
           )
         else
-          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
+          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") ..
+            randomTip .. holidayString)
         end
       end
 
