@@ -144,7 +144,7 @@ function M:GameMenuButton()
       mythic:SetText(F.String.GradientClass("Mythic+"))
 
       -- Mythic+ history
-      local historyLimit = E.db.TXUI.addons.gameMenuSkin.historyLimit
+      local historyLimit = E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit
 
       for i = 1, historyLimit do
         mythic["history" .. i] = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -212,19 +212,18 @@ function M:GameMenuButton()
       if self.mythic then
         -- Update M+ history
         local history = C_MythicPlus.GetRunHistory(false, true)
-        local historyLimit = E.db.TXUI.addons.gameMenuSkin.historyLimit
+        local historyLimit = E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit
 
         for i = 1, historyLimit do
           local historyFrame = self.mythic["history" .. i]
           if historyFrame then
             local historyRun = history[#history - i + 1]
             local historyText
-            local historyTextPrefix = i .. ": "
+            local historyTextPrefix = i .. ". "
             if historyRun then
               local historyDungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID)
-              historyText = historyRun.completed and
-                  F.String.Good(("%s (+%d)"):format(historyDungeonName, historyRun.level)) or
-                  F.String.Error(("%s (+%d)"):format(historyDungeonName, historyRun.level))
+              historyText = (historyRun.completed and F.String.Good or F.String.Error)(("%s (+%d)"):format(
+                historyDungeonName, historyRun.level))
             else
               historyText = F.String.ToxiUI("N/A")
             end
