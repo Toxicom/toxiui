@@ -1,6 +1,5 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
-local ACR = LibStub("AceConfigRegistry-3.0")
 
 function O:Skins_ElvUI()
   -- Create Tab
@@ -18,8 +17,7 @@ function O:Skins_ElvUI()
     local mainGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = TXUI.Title ..
-          " provides a skin for the Game Menu (ESC) that applies a background and additional information, all of which can be configured here.\n\n",
+      name = TXUI.Title .. " provides a skin for the Game Menu (ESC) that applies a background and additional information, all of which can be configured here.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     -- ToxiUI Game Menu Button Enable
@@ -46,10 +44,9 @@ function O:Skins_ElvUI()
     local backgroundGroup = self:AddInlineRequirementsDesc(options, {
       name = "Background",
     }, {
-      name = "Customize the color of the Game Menu Skin's background.\n\nThe " ..
-          F.String.ToxiUI("Class Color") .. " option will override the " .. F.String.ToxiUI(
-            "Background Color"
-          ) .. " option, but you can still use it to control the alpha of the background.\n\n",
+      name = "Customize the color of the Game Menu Skin's background.\n\nThe " .. F.String.ToxiUI("Class Color") .. " option will override the " .. F.String.ToxiUI(
+        "Background Color"
+      ) .. " option, but you can still use it to control the alpha of the background.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     local optionsDisabled = function()
@@ -88,8 +85,7 @@ function O:Skins_ElvUI()
     local infoGroup = self:AddInlineRequirementsDesc(options, {
       name = "Information Sections",
     }, {
-      name = TXUI.Title ..
-          " Game Menu Skin provides various useful information about your current session. You can choose what to display here.\n\n",
+      name = TXUI.Title .. " Game Menu Skin provides various useful information about your current session. You can choose what to display here.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     local optionsDisabled = function()
@@ -153,7 +149,6 @@ function O:Skins_ElvUI()
       end,
       set = function(_, value)
         E.db.TXUI.addons.gameMenuSkin.showMythic = value
-        ACR:NotifyChange("ToxiUI")
         E:StaticPopup_Show("CONFIG_RL")
       end,
       disabled = optionsDisabled,
@@ -165,7 +160,7 @@ function O:Skins_ElvUI()
       type = "range",
       name = "History Limit",
       desc = "Number of Mythic+ dungeons shown in the history list.",
-      min = 1,
+      min = 0,
       max = 10,
       step = 1,
       get = function()
@@ -173,12 +168,9 @@ function O:Skins_ElvUI()
       end,
       set = function(_, value)
         E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit = value
-        ACR:NotifyChange("ToxiUI")
-        E:StaticPopup_Show("CONFIG_RL")
       end,
       disabled = function()
-        return optionsDisabled()
-            or not E.db.TXUI.addons.gameMenuSkin.showMythic
+        return optionsDisabled() or not E.db.TXUI.addons.gameMenuSkin.showMythic
       end,
       hidden = not TXUI.IsRetail,
     }
