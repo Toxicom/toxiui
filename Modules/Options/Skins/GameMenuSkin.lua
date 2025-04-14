@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local ACR = LibStub("AceConfigRegistry-3.0")
 
 function O:Skins_ElvUI()
   -- Create Tab
@@ -152,13 +153,14 @@ function O:Skins_ElvUI()
       end,
       set = function(_, value)
         E.db.TXUI.addons.gameMenuSkin.showMythic = value
+        ACR:NotifyChange("ToxiUI")
         E:StaticPopup_Show("CONFIG_RL")
       end,
       disabled = optionsDisabled,
       hidden = not TXUI.IsRetail,
     }
 
-    infoGroup.historyLimit = {
+    infoGroup.mythicHistoryLimit = {
       order = self:GetOrder(),
       type = "range",
       name = "History Limit",
@@ -167,12 +169,17 @@ function O:Skins_ElvUI()
       max = 10,
       step = 1,
       get = function()
-        return E.db.TXUI.addons.gameMenuSkin.historyLimit
+        return E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit
       end,
       set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.historyLimit = value
+        E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit = value
+        ACR:NotifyChange("ToxiUI")
+        E:StaticPopup_Show("CONFIG_RL")
       end,
-      disabled = optionsDisabled and not E.db.TXUI.addons.gameMenuSkin.showMythic,
+      disabled = function()
+        return optionsDisabled()
+            or not E.db.TXUI.addons.gameMenuSkin.showMythic
+      end,
       hidden = not TXUI.IsRetail,
     }
   end
