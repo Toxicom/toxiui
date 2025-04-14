@@ -13,6 +13,7 @@ function O:Skins_ElvUI()
   -- Options
   local options = self.options.skins.args["gameMenuSkinGroup"]["args"]
 
+  -- Main Group
   do
     local mainGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
@@ -40,6 +41,7 @@ function O:Skins_ElvUI()
 
   self:AddSpacer(options)
 
+  -- Background
   do
     local backgroundGroup = self:AddInlineRequirementsDesc(options, {
       name = "Background",
@@ -81,11 +83,12 @@ function O:Skins_ElvUI()
 
   self:AddSpacer(options)
 
+  -- Information Sections
   do
     local infoGroup = self:AddInlineRequirementsDesc(options, {
       name = "Information Sections",
     }, {
-      name = TXUI.Title .. " Game Menu Skin provides various useful information about your current session. You can choose what to display here.\n\n",
+      name = "Display various useful information about your character.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     local optionsDisabled = function()
@@ -138,46 +141,11 @@ function O:Skins_ElvUI()
       disabled = optionsDisabled,
       hidden = not TXUI.IsRetail,
     }
-
-    infoGroup.showMythic = {
-      order = self:GetOrder(),
-      type = "toggle",
-      name = "Show Mythic+",
-      desc = "Toggling this on displays your Mythic+ information in the game menu background.",
-      get = function()
-        return E.db.TXUI.addons.gameMenuSkin.showMythic
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.showMythic = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-      disabled = optionsDisabled,
-      hidden = not TXUI.IsRetail,
-    }
-
-    infoGroup.mythicHistoryLimit = {
-      order = self:GetOrder(),
-      type = "range",
-      name = "History Limit",
-      desc = "Number of Mythic+ dungeons shown in the history list.",
-      min = 0,
-      max = 10,
-      step = 1,
-      get = function()
-        return E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit = value
-      end,
-      disabled = function()
-        return optionsDisabled() or not E.db.TXUI.addons.gameMenuSkin.showMythic
-      end,
-      hidden = not TXUI.IsRetail,
-    }
   end
 
   self:AddSpacer(options)
 
+  -- Specialization Icons
   do
     local iconGroup = self:AddInlineRequirementsDesc(options, {
       name = "Specialization Icon",
@@ -226,6 +194,56 @@ function O:Skins_ElvUI()
         E.db.TXUI.addons.gameMenuSkin.specIconSize = value
       end,
       disabled = optionsDisabled,
+    }
+  end
+
+  self:AddSpacer(options)
+
+  -- Mythic+ Section
+  do
+    local mythicGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Mythic+ Section",
+      hidden = not TXUI.IsRetail,
+    }, {
+      name = "Display your character's Mythic+ information.\n\n",
+    }, I.Requirements.GameMenuButton).args
+
+    local optionsDisabled = function()
+      return not E.db.TXUI.addons.gameMenuSkin.enabled
+    end
+
+    mythicGroup.showMythic = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Mythic+",
+      desc = "Toggling this on displays your Mythic+ information in the game menu background.",
+      get = function()
+        return E.db.TXUI.addons.gameMenuSkin.showMythic
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuSkin.showMythic = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      disabled = optionsDisabled,
+    }
+
+    mythicGroup.mythicHistoryLimit = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "History Limit",
+      desc = "Number of Mythic+ dungeons shown in the latest runs.",
+      min = 0,
+      max = 10,
+      step = 1,
+      get = function()
+        return E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit = value
+      end,
+      disabled = function()
+        return optionsDisabled() or not E.db.TXUI.addons.gameMenuSkin.showMythic
+      end,
     }
   end
 end
