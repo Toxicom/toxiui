@@ -208,10 +208,6 @@ function O:Skins_ElvUI()
       name = "Display your character's Mythic+ information.\n\n",
     }, I.Requirements.GameMenuButton).args
 
-    local optionsDisabled = function()
-      return not E.db.TXUI.addons.gameMenuSkin.enabled
-    end
-
     mythicGroup.showMythic = {
       order = self:GetOrder(),
       type = "toggle",
@@ -222,6 +218,27 @@ function O:Skins_ElvUI()
       end,
       set = function(_, value)
         E.db.TXUI.addons.gameMenuSkin.showMythic = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      disabled = function()
+        return not E.db.TXUI.addons.gameMenuSkin.enabled
+      end,
+    }
+
+    local optionsDisabled = function()
+      return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showMythic
+    end
+
+    mythicGroup.showScore = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Score",
+      desc = "Toggling this on displays your Mythic+ Score in the game menu background.",
+      get = function()
+        return E.db.TXUI.addons.gameMenuSkin.showMythicScore
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuSkin.showMythicScore = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
       disabled = optionsDisabled,
@@ -241,9 +258,7 @@ function O:Skins_ElvUI()
       set = function(_, value)
         E.db.TXUI.addons.gameMenuSkin.mythicHistoryLimit = value
       end,
-      disabled = function()
-        return optionsDisabled() or not E.db.TXUI.addons.gameMenuSkin.showMythic
-      end,
+      disabled = optionsDisabled,
     }
   end
 end

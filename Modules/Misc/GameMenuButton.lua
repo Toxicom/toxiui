@@ -156,9 +156,17 @@ function M:GameMenuButton()
       mythic.keystone:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
       mythic.keystone:SetTextColor(1, 1, 1, 1)
 
+      -- Mythic+ score
+      if self.gamemenudb.showMythicScore then
+        mythic.score = backgroundFade:CreateFontString(nil, "OVERLAY")
+        mythic.score:SetPoint("TOPLEFT", mythic.keystone, "BOTTOMLEFT", 0, m(-1))
+        mythic.score:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
+        mythic.score:SetTextColor(1, 1, 1, 1)
+      end
+
       -- Mythic+ history
       mythic.latestRuns = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.latestRuns:SetPoint("TOPLEFT", mythic.keystone, "BOTTOMLEFT", 0, m(-4))
+      mythic.latestRuns:SetPoint("TOPLEFT", self.gamemenudb.showMythicScore and mythic.score or mythic.keystone, "BOTTOMLEFT", 0, m(-4))
       mythic.latestRuns:SetFont(titleFont, F.FontSizeScaled(18), "OUTLINE")
 
       -- 10 = max history limit
@@ -214,35 +222,68 @@ function M:GameMenuButton()
       if self.collections then self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
 
       if self.mythic then
-        -- Update M+ history
-        local history = C_MythicPlus.GetRunHistory(false, true)
-        local historyLimit = self.gamemenudb.mythicHistoryLimit
+        -- Update keystone text
+        do
+          local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
+          local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
+          local keystoneTextPrefix = "Current Keystone: "
 
-        for i = 1, 10 do
-          local historyFrame = self.mythic["history" .. i]
-          if historyFrame then
-            local historyRun = history[#history - i + 1]
-            if historyRun and i <= historyLimit then
-              if i == 1 then self.mythic.latestRuns:SetText(F.String.GradientClass("Latest runs")) end
+          local text
 
-              local historyDungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID)
-              local output = ("%s (+%d)"):format(historyDungeonName, historyRun.level)
-              historyFrame:SetText(historyRun.completed and F.String.Good(output) or F.String.Error(output))
-            else
-              historyFrame:SetText("")
+          if keystoneMapID and keystoneMapID > 0 then
+            local dungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID) or "Unknown"
+            local colorObj = C_ChallengeMode.GetKeystoneLevelRarityColor(keystoneLevel)
+            local levelText = "+" .. keystoneLevel
+
+            -- Safely get hex color
+            local levelColored = levelText
+            if colorObj and colorObj.GenerateHexColor then levelColored = F.String.Color(levelText, colorObj:GenerateHexColor()) end
+
+            text = keystoneTextPrefix .. F.String.ToxiUI(dungeonName .. " (" .. levelColored .. ")")
+          else
+            text = keystoneTextPrefix .. F.String.ToxiUI("N/A")
+          end
+
+          self.mythic.keystone:SetText(text)
+        end
+
+        -- Update Mythic+ score
+        do
+          if self.gamemenudb.showMythicScore then
+            local info = C_PlayerInfo.GetPlayerMythicPlusRatingSummary("player")
+            if info.currentSeasonScore then
+              local prefix = "M+ Score: "
+              local score = info.currentSeasonScore
+              if score > 0 then
+                local color = C_ChallengeMode.GetDungeonScoreRarityColor(score)
+                self.mythic.score:SetText(prefix .. F.String.Color(score, color:GenerateHexColor()))
+              else
+                self.mythic.score:SetText(prefix .. F.String.ToxiUI("N/A"))
+              end
             end
           end
         end
 
-        -- Update keystone text
-        local keystoneMapID = C_MythicPlus.GetOwnedKeystoneChallengeMapID()
-        local keystoneLevel = C_MythicPlus.GetOwnedKeystoneLevel()
-        local keystoneTextPrefix = "Current Keystone: "
-        if keystoneMapID and keystoneMapID > 0 then
-          local keystoneDungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID)
-          self.mythic.keystone:SetText(keystoneTextPrefix .. F.String.ToxiUI(("%s (+%d)"):format(keystoneDungeonName, keystoneLevel)))
-        else
-          self.mythic.keystone:SetText(keystoneTextPrefix .. F.String.ToxiUI("N/A"))
+        -- Update M+ history
+        do
+          local history = C_MythicPlus.GetRunHistory(false, true)
+          local historyLimit = self.gamemenudb.mythicHistoryLimit
+
+          for i = 1, 10 do
+            local historyFrame = self.mythic["history" .. i]
+            if historyFrame then
+              local historyRun = history[#history - i + 1]
+              if historyRun and i <= historyLimit then
+                if i == 1 then self.mythic.latestRuns:SetText(F.String.GradientClass("Latest runs")) end
+
+                local historyDungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID)
+                local output = ("%s (+%d)"):format(historyDungeonName, historyRun.level)
+                historyFrame:SetText(historyRun.completed and F.String.Good(output) or F.String.Error(output))
+              else
+                historyFrame:SetText("")
+              end
+            end
+          end
         end
       end
 
