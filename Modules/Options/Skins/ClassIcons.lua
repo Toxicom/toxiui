@@ -110,6 +110,9 @@ function O:Skins_ClassIcons()
     }
   end
 
+  -- Spacer
+  self:AddSpacer(options)
+
   do
     local imageGroup = self:AddInlineDesc(options, {
       name = "Images",

@@ -24,7 +24,9 @@ TXUI.Changelog["6.9.4"] = {
 
     "* Settings refactoring",
     "Refactor Game Menu Skin settings" .. F.String.Sublist("It is still in the " .. F.String.Menu.Skins() .. " tab, but separate from the ElvUI tab"),
+    "Refactor Action Bars Skin settings" .. F.String.Sublist("It is still in the " .. F.String.Menu.Skins() .. " tab, but separate from the ElvUI tab"),
     "Remove most NewSign icons" .. F.String.Sublist("The icon dictates what to display when clicking ElvUI's 'Whats New' button in the top-right"),
+    "Update some descriptions to be more clear",
 
     "* Development improvements",
   },
