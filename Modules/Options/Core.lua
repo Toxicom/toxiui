@@ -133,7 +133,7 @@ O.options = {
     name = F.String.Menu.Performance(),
     desc = "Performance related options",
     icon = I.Media.Icons.Performance,
-    hidden = not TXUI.IsRetail,
+    hidden = true,
     args = {},
   },
 }

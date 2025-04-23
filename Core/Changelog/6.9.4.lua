@@ -4,6 +4,7 @@ TXUI.Changelog["6.9.4"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove " .. F.String.Menu.Performance() .. " tab" .. F.String.Sublist("Blizzard locked the profiler CVar"),
 
     "* New features",
     "M+ Keystone displayed in Game Menu Skin" .. F.String.Sublist("Credits to Kryonyx"),

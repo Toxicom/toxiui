@@ -3,7 +3,6 @@
 
   <Include file='General\General.xml' />
   <Include file='Contacts\Contacts.xml' />
-  <Include file='Performance\Performance.xml' />
   <Include file='Themes\Themes.xml' />
   <Include file='WunderBar\WunderBar.xml' />
   <Include file='Armory\Armory.xml' />
