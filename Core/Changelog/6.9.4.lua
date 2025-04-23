@@ -19,7 +19,7 @@ TXUI.Changelog["6.9.4"] = {
 
     "* Documentation",
     "Add Explosive Hearthstone to " .. F.String.Menu.WunderBar(),
-    F.String.MinElv("13.88"),
+    F.String.MinElv("13.89"),
     "Update for Retail 11.1.5",
     "Update for Classic Era 1.15.7",
     "Update for Classic 4.4.2",
