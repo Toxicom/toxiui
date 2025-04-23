@@ -14,6 +14,7 @@ TXUI.Changelog["6.9.4"] = {
     "* Bug fixes",
     "Improve safety checks for F.Color.SetGradient",
     "Improve safety checks for F.Color.UpdateGradient",
+    "Force close Flyout frame after loading screen",
 
     "* Profile updates",
 

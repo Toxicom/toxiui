@@ -267,8 +267,9 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   end
 
   secureFlyOutFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
+  secureFlyOutFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
   secureFlyOutFrame:SetScript("OnEvent", function(frame, event)
-    if event and event == "PLAYER_REGEN_DISABLED" then
+    if event and (event == "PLAYER_REGEN_DISABLED" or event == "PLAYER_ENTERING_WORLD") then
       if frame and frame:IsShown() then
         frame:Hide()
         self.flyoutIsOpen = false
