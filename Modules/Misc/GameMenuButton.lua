@@ -279,9 +279,7 @@ function M:GameMenuButton()
                 local colorObj = C_ChallengeMode.GetKeystoneLevelRarityColor(historyRun.level)
                 local levelText = "+" .. historyRun.level
                 local levelColored = levelText
-                if colorObj and colorObj.GenerateHexColor then
-                  levelColored = F.String.Color(levelText, colorObj:GenerateHexColor())
-                end
+                if colorObj and colorObj.GenerateHexColor then levelColored = F.String.Color(levelText, colorObj:GenerateHexColor()) end
                 local output = ("%s (%s)"):format(historyDungeonName, levelColored)
                 historyFrame:SetText(historyRun.completed and F.String.Good(output) or F.String.Error(output))
               else
