@@ -268,7 +268,6 @@ function M:GameMenuButton()
         do
           local history = C_MythicPlus.GetRunHistory(false, true)
           local historyLimit = self.gamemenudb.mythicHistoryLimit
-
           for i = 1, 10 do
             local historyFrame = self.mythic["history" .. i]
             if historyFrame then
@@ -276,8 +275,14 @@ function M:GameMenuButton()
               if historyRun and i <= historyLimit then
                 if i == 1 then self.mythic.latestRuns:SetText(F.String.GradientClass("Latest runs")) end
 
-                local historyDungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID)
-                local output = ("%s (+%d)"):format(historyDungeonName, historyRun.level)
+                local historyDungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID) or "Unknown"
+                local colorObj = C_ChallengeMode.GetKeystoneLevelRarityColor(historyRun.level)
+                local levelText = "+" .. historyRun.level
+                local levelColored = levelText
+                if colorObj and colorObj.GenerateHexColor then
+                  levelColored = F.String.Color(levelText, colorObj:GenerateHexColor())
+                end
+                local output = ("%s (%s)"):format(historyDungeonName, levelColored)
                 historyFrame:SetText(historyRun.completed and F.String.Good(output) or F.String.Error(output))
               else
                 historyFrame:SetText("")
