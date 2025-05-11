@@ -143,6 +143,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
       self:SecureHookScript(slot, "OnClick", function()
         secureFlyOutFrame:Hide()
+        self.flyoutIsOpen = false
       end)
 
       F.CreateSoftShadow(slot, 4)
