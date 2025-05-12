@@ -17,8 +17,6 @@ TXUI.Changelog["6.9.4"] = {
     "Force close Flyout frame after loading screen",
     "Force close Flyout frame on slot click",
 
-    "* Profile updates",
-
     "* Documentation",
     "Add Explosive Hearthstone to " .. F.String.Menu.WunderBar(),
     F.String.MinElv("13.90"),
@@ -31,7 +29,5 @@ TXUI.Changelog["6.9.4"] = {
     "Refactor Action Bars Skin settings" .. F.String.Sublist("It is still in the " .. F.String.Menu.Skins() .. " tab, but separate from the ElvUI tab"),
     "Remove most NewSign icons" .. F.String.Sublist("The icon dictates what to display when clicking ElvUI's 'Whats New' button in the top-right"),
     "Update some descriptions to be more clear",
-
-    "* Development improvements",
   },
 }
