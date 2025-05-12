@@ -244,6 +244,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
   if totalSlots == 0 then
     secureFlyOutFrame:Hide()
+    self.flyoutIsOpen = false
     return
   end
 
