@@ -11,7 +11,7 @@ function M:WeakAuraAnchorLoad()
   frame:SetFrameStrata("BACKGROUND")
   frame:SetSize(F.Dpi(300), F.Dpi(100))
 
-  E:CreateMover(frame, "ToxiUIWAAnchorMover", TXUI.Title .. " WA Anchor")
+  E:CreateMover(frame, "ToxiUIWAAnchorMover", TXUI.Title .. " WA Anchor", nil, nil, nil, "ALL,TXUI")
 end
 
 -- Created dummy WeakAura Anchor, for use by advanced users

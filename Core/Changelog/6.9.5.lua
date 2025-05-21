@@ -15,6 +15,7 @@ TXUI.Changelog["6.9.5"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Add " .. TXUI.Title .. " category to ElvUI movers dropdown filters",
 
     "* Development improvements",
   },

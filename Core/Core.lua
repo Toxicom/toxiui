@@ -111,6 +111,8 @@ function TXUI:InitializeModules()
         -- Mark TXUI has entered world
         self.DelayedWorldEntered = true
 
+        E:ConfigMode_AddGroup("TXUI", TXUI.Title)
+
         -- Show Dev Mode or Tester Message
         if self.DevRelease then
           local isDev = F.IsDeveloper()
