@@ -11,7 +11,6 @@ function RIF:Create()
   local frame = CreateFrame("Frame", "ToxiUI_RaidInfoFrame", E.UIParent, "BackdropTemplate")
   local point, anchor, attachTo, x, y = strsplit(",", F.Position(strsplit(",", self.db.position)))
   frame:SetPoint(point, anchor, attachTo, x, y)
-  frame:Hide()
 
   E:CreateMover(frame, "ToxiUIRaidInfoFrame", TXUI.Title .. " Raid Info Frame", nil, nil, nil, "ALL,TXUI", nil, "TXUI,misc,raidInfo")
 
@@ -42,6 +41,7 @@ function RIF:Create()
   frame.dpsText:SetText("14")
 
   -- Finalize
+  frame:Hide()
   self.frame = frame
 
   self:UpdateIcons()
