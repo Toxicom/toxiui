@@ -124,12 +124,10 @@ function M:GameMenuButton()
       collections.toys:SetText("Toys: " .. F.String.ToxiUI(C_ToyBox.GetNumLearnedDisplayedToys()))
 
       -- Pets
-      local _, petsOwned = C_PetJournal.GetNumPets()
       collections.pets = backgroundFade:CreateFontString(nil, "OVERLAY")
       collections.pets:SetPoint("TOPLEFT", collections.toys, "BOTTOMLEFT", 0, m(-1))
       collections.pets:SetFont(primaryFont, F.FontSizeScaled(16), "OUTLINE")
       collections.pets:SetTextColor(1, 1, 1, 1)
-      collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
 
       -- Achievements
       collections.achievs = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -219,7 +217,11 @@ function M:GameMenuButton()
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
       end
 
-      if self.collections then self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ","))) end
+      if self.collections then
+        local _, petsOwned = C_PetJournal.GetNumPets()
+        self.collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
+        self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
+      end
 
       if self.mythic then
         -- Update keystone text

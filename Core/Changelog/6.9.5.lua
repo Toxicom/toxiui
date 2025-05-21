@@ -8,6 +8,7 @@ TXUI.Changelog["6.9.5"] = {
     "* New features",
 
     "* Bug fixes",
+    "Update Pets collection text in Game Menu Skin when opening the menu",
 
     "* Profile updates",
 
