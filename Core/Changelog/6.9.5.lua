@@ -6,6 +6,7 @@ TXUI.Changelog["6.9.5"] = {
     "* Breaking changes",
 
     "* New features",
+    "Raid Info Frame",
 
     "* Bug fixes",
     "Update Pets collection text in Game Menu Skin when opening the menu",
@@ -15,6 +16,7 @@ TXUI.Changelog["6.9.5"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Add " .. TXUI.Title .. " category to ElvUI movers dropdown filters",
 
     "* Development improvements",
   },

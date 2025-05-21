@@ -371,6 +371,15 @@ P.misc = {
     enabled = false,
     lootFrame = false,
   },
+
+  raidInfo = {
+    enabled = true,
+    position = "TOP,ElvUIParent,TOP,0,0",
+    size = 16,
+    spacing = 4,
+    padding = 6,
+    backdropColor = { r = 0, g = 0, b = 0, a = 0.5 },
+  },
 }
 
 -- ElvUI Icons
