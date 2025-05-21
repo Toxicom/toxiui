@@ -170,6 +170,7 @@ I.Requirements = {
   ["ColorModifiers"] = {
     I.Enum.Requirements.ELTRUISM_COLOR_MODIFIERS_DISABLED,
   },
+  ["RaidInfoFrame"] = {},
 }
 
 -- Controls Settings about the Fancy Gradient Theme

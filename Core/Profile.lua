@@ -371,6 +371,11 @@ P.misc = {
     enabled = false,
     lootFrame = false,
   },
+
+  raidInfo = {
+    enabled = true,
+    position = "CENTER,ElvUIParent,CENTER,0,0",
+  },
 }
 
 -- ElvUI Icons
