@@ -7,7 +7,7 @@ function O:Plugins_RaidInfoFrame()
   self.options.misc.args["raidInfo"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Raid Info Frame",
+    name = "Raid Info Frame " .. E.NewSign,
     args = {},
   }
 
@@ -20,7 +20,12 @@ function O:Plugins_RaidInfoFrame()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = "These options allow you to customize the Raid Info Frame, which shows how many tanks, healers, and DPS are currently in your raid.\n\n",
+      name = TXUI.Title
+        .. " provides a Raid Info Frame that shows a list of players per role in your raid."
+        .. "\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "You can move it in ElvUI Movers."
+        .. "\n\n",
     }, I.Requirements.RaidInfoFrame).args
 
     -- Enable toggle
@@ -67,7 +72,7 @@ function O:Plugins_RaidInfoFrame()
       name = "Customization",
       hidden = optionsHidden,
     }, {
-      name = "Adjust the appearance of the Raid Info Frame.",
+      name = "Adjust the appearance of the Raid Info Frame.\n\n",
     }).args
 
     -- Size
@@ -93,7 +98,7 @@ function O:Plugins_RaidInfoFrame()
       order = self:GetOrder(),
       type = "range",
       name = "Padding",
-      desc = "Set the horizontal padding inside the frame.",
+      desc = "Set the outside padding of the frame.",
       min = 0,
       max = 32,
       step = 1,

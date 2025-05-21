@@ -6,9 +6,11 @@ local RIF = TXUI:NewModule("RaidInfoFrame")
 -- -----------------------------------------------
 function RIF:Create()
   if self.frame then return end
+  local primaryFont = F.GetFontPath(I.Fonts.Primary)
 
   local frame = CreateFrame("Frame", "ToxiUI_RaidInfoFrame", E.UIParent, "BackdropTemplate")
-  frame:SetPoint("TOPLEFT", E.UIParent, "TOPLEFT", 10, -10)
+  local point, anchor, attachTo, x, y = strsplit(",", F.Position(strsplit(",", self.db.position)))
+  frame:SetPoint(point, anchor, attachTo, x, y)
   frame:Hide()
 
   E:CreateMover(frame, "ToxiUIRaidInfoFrame", TXUI.Title .. " Raid Info Frame", nil, nil, nil, "ALL,TXUI", nil, "TXUI,misc,raidInfo")
@@ -22,34 +24,35 @@ function RIF:Create()
   frame:SetBackdropBorderColor(0, 0, 0, 1)
 
   -- Tank
-  self.tankIcon = frame:CreateTexture(nil, "ARTWORK")
-  self.tankText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-  self.tankText:SetText("2")
+  frame.tankIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.tankText = frame:CreateFontString(nil, "OVERLAY")
+  frame.tankText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
+  frame.tankText:SetText("2")
 
   -- Healer
-  self.healIcon = frame:CreateTexture(nil, "ARTWORK")
-  self.healText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-  self.healText:SetText("4")
+  frame.healIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.healText = frame:CreateFontString(nil, "OVERLAY")
+  frame.healText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
+  frame.healText:SetText("4")
 
   -- DPS
-  self.dpsIcon = frame:CreateTexture(nil, "ARTWORK")
-  self.dpsText = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-  self.dpsText:SetText("14")
+  frame.dpsIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.dpsText = frame:CreateFontString(nil, "OVERLAY")
+  frame.dpsText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
+  frame.dpsText:SetText("14")
 
-  -- Assign the frame reference
+  -- Finalize
   self.frame = frame
 
-  -- Initial setup
   self:UpdateIcons()
   self:UpdateSize()
   self:UpdateSpacing()
   self:UpdateBackdrop()
   self:Update()
 
-  -- Events
-  self.frame:RegisterEvent("GROUP_ROSTER_UPDATE")
-  self.frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-  self.frame:SetScript("OnEvent", function()
+  frame:RegisterEvent("GROUP_ROSTER_UPDATE")
+  frame:RegisterEvent("PLAYER_ENTERING_WORLD")
+  frame:SetScript("OnEvent", function()
     self:Update()
   end)
 end
@@ -60,9 +63,9 @@ end
 function RIF:UpdateIcons()
   local theme = E.db.TXUI.elvUIIcons.roleIcons.theme
 
-  if self.tankIcon then self.tankIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.TANK)) end
-  if self.healIcon then self.healIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.HEALER)) end
-  if self.dpsIcon then self.dpsIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.DAMAGER)) end
+  if self.frame.tankIcon then self.frame.tankIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.TANK)) end
+  if self.frame.healIcon then self.frame.healIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.HEALER)) end
+  if self.frame.dpsIcon then self.frame.dpsIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.DAMAGER)) end
 end
 
 -- -----------------------------------------------
@@ -72,13 +75,13 @@ function RIF:UpdateSize()
   local size = self.db.size
   local font = F.GetFontPath(I.Fonts.Primary)
 
-  self.tankIcon:SetSize(size, size)
-  self.healIcon:SetSize(size, size)
-  self.dpsIcon:SetSize(size, size)
+  self.frame.tankIcon:SetSize(size, size)
+  self.frame.healIcon:SetSize(size, size)
+  self.frame.dpsIcon:SetSize(size, size)
 
-  self.tankText:SetFont(font, size, "OUTLINE")
-  self.healText:SetFont(font, size, "OUTLINE")
-  self.dpsText:SetFont(font, size, "OUTLINE")
+  self.frame.tankText:SetFont(font, size, "OUTLINE")
+  self.frame.healText:SetFont(font, size, "OUTLINE")
+  self.frame.dpsText:SetFont(font, size, "OUTLINE")
 
   self:UpdateLayout()
 end
@@ -90,14 +93,14 @@ function RIF:UpdateSpacing()
   local spacing = self.db.spacing
   local padding = self.db.padding
 
-  self.tankIcon:SetPoint("LEFT", self.frame, "LEFT", padding, 0)
-  self.tankText:SetPoint("LEFT", self.tankIcon, "RIGHT", spacing, 0)
+  self.frame.tankIcon:SetPoint("LEFT", self.frame, "LEFT", padding, 0)
+  self.frame.tankText:SetPoint("LEFT", self.frame.tankIcon, "RIGHT", spacing, 0)
 
-  self.healIcon:SetPoint("LEFT", self.tankText, "RIGHT", spacing, 0)
-  self.healText:SetPoint("LEFT", self.healIcon, "RIGHT", spacing, 0)
+  self.frame.healIcon:SetPoint("LEFT", self.frame.tankText, "RIGHT", spacing, 0)
+  self.frame.healText:SetPoint("LEFT", self.frame.healIcon, "RIGHT", spacing, 0)
 
-  self.dpsIcon:SetPoint("LEFT", self.healText, "RIGHT", spacing, 0)
-  self.dpsText:SetPoint("LEFT", self.dpsIcon, "RIGHT", spacing, 0)
+  self.frame.dpsIcon:SetPoint("LEFT", self.frame.healText, "RIGHT", spacing, 0)
+  self.frame.dpsText:SetPoint("LEFT", self.frame.dpsIcon, "RIGHT", spacing, 0)
 
   self:UpdateLayout()
 end
@@ -120,15 +123,15 @@ function RIF:UpdateLayout()
 
   local width = size
     + spacing
-    + self.tankText:GetStringWidth()
+    + self.frame.tankText:GetStringWidth()
     + spacing
     + size
     + spacing
-    + self.healText:GetStringWidth()
+    + self.frame.healText:GetStringWidth()
     + spacing
     + size
     + spacing
-    + self.dpsText:GetStringWidth()
+    + self.frame.dpsText:GetStringWidth()
 
   local height = size + (padding * 2)
 
@@ -170,9 +173,9 @@ function RIF:Update()
       end
     end
 
-    self.tankText:SetText(tank)
-    self.healText:SetText(heal)
-    self.dpsText:SetText(dps)
+    self.frame.tankText:SetText(tank)
+    self.frame.healText:SetText(heal)
+    self.frame.dpsText:SetText(dps)
 
     self:UpdateLayout()
   else

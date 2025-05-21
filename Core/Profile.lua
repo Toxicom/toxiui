@@ -374,7 +374,7 @@ P.misc = {
 
   raidInfo = {
     enabled = true,
-    position = "CENTER,ElvUIParent,CENTER,0,0",
+    position = "TOP,ElvUIParent,TOP,0,0",
     size = 16,
     spacing = 4,
     padding = 6,
