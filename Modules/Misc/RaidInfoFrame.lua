@@ -44,6 +44,31 @@ function RIF:Create()
   frame:Hide()
   self.frame = frame
 
+  frame:EnableMouse(true)
+
+  frame:SetScript("OnEnter", function()
+    GameTooltip:SetOwner(frame, "ANCHOR_TOP")
+    GameTooltip:AddLine(TXUI.Title .. " Raid Info Frame", 1, 1, 1)
+    GameTooltip:AddLine(" ")
+    GameTooltip:AddLine("Displays the current count of Tanks, Healers, and DPS in your raid group.", nil, nil, nil, true)
+    GameTooltip:AddLine(" ")
+    GameTooltip:AddLine("|cffFFFFFFLeft Click:|r Toggle Raid Frame")
+    GameTooltip:AddLine("|cffFFFFFFRight Click:|r Toggle Settings")
+    GameTooltip:Show()
+  end)
+
+  frame:SetScript("OnLeave", function()
+    GameTooltip:Hide()
+  end)
+
+  frame:SetScript("OnMouseUp", function(_, button)
+    if button == "LeftButton" then
+      ToggleRaidFrame()
+    elseif button == "RightButton" then
+      E:ToggleOptions("TXUI,misc,raidInfo")
+    end
+  end)
+
   self:UpdateIcons()
   self:UpdateSize()
   self:UpdateSpacing()
