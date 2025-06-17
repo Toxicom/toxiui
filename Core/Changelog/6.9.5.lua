@@ -4,6 +4,7 @@ TXUI.Changelog["6.9.5"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Scale 4k resolutions to 150% instead of 200% to mimic 1440p layout",
 
     "* New features",
     "Raid Info Frame",
