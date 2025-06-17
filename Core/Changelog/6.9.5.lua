@@ -22,6 +22,7 @@ TXUI.Changelog["6.9.5"] = {
     F.String.Plater() .. ": Add " .. F.String.Class("Sigil of Silence", "DEMONHUNTER") .. " to Special Auras tracking",
 
     "* Documentation",
+    F.String.MinElv("13.91"),
 
     "* Settings refactoring",
     "Add " .. TXUI.Title .. " category to ElvUI movers dropdown filters",
