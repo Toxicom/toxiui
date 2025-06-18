@@ -23,6 +23,7 @@ TXUI.Changelog["6.9.5"] = {
 
     "* Documentation",
     F.String.MinElv("13.91"),
+    "Update for Patch 11.1.7",
 
     "* Settings refactoring",
     "Add " .. TXUI.Title .. " category to ElvUI movers dropdown filters",
