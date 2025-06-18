@@ -211,7 +211,7 @@ function M:StatusReportCreate()
   local sideSectionWidth = 280
 
   -- Sections
-  statusFrame.Section1 = self:StatusReportCreateSection(mainSectionWidth, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame, "TOP", -90)
+  statusFrame.Section1 = self:StatusReportCreateSection(mainSectionWidth, (6 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame, "TOP", -90)
   statusFrame.Section2 = self:StatusReportCreateSection(mainSectionWidth, (7 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
   statusFrame.Section3 = self:StatusReportCreateSection(mainSectionWidth, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section2, "BOTTOM", 0)
   statusFrame.Section4 = self:StatusReportCreateSection(mainSectionWidth, ((TXUI.IsRetail and 6 or 5) * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section3, "BOTTOM", 0)
@@ -219,7 +219,7 @@ function M:StatusReportCreate()
   pluginFrame.SectionP = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame.SectionA, "BOTTOM", -30)
 
   -- Section content
-  statusFrame.Section1.Content = self:StatusReportCreateContent(5, mainSectionWidth - mainSectionPadding, statusFrame.Section1, statusFrame.Section1.Header)
+  statusFrame.Section1.Content = self:StatusReportCreateContent(6, mainSectionWidth - mainSectionPadding, statusFrame.Section1, statusFrame.Section1.Header)
   statusFrame.Section2.Content = self:StatusReportCreateContent(7, mainSectionWidth - mainSectionPadding, statusFrame.Section2, statusFrame.Section2.Header)
   statusFrame.Section3.Content = self:StatusReportCreateContent(5, mainSectionWidth - mainSectionPadding, statusFrame.Section3, statusFrame.Section3.Header)
   statusFrame.Section4.Content = self:StatusReportCreateContent(TXUI.IsRetail and 6 or 5, mainSectionWidth - mainSectionPadding, statusFrame.Section4, statusFrame.Section4.Header)
@@ -272,11 +272,12 @@ function M:StatusReportUpdate()
   end
 
   statusFrame.Section1.Content.Line4.Text:SetFormattedText("Pixel Perfect Scale: %s", F.String.Good(E:PixelBestSize()))
+  statusFrame.Section1.Content.Line5.Text:SetFormattedText("ToxiUI Perfect Scale: %s", F.String.Good(F.PixelPerfect()))
 
   do
     local uiScale = E.global.general.UIScale
-    local uiScaleString = uiScale == E:PixelBestSize() and F.String.Good(uiScale) or F.String.Error(uiScale)
-    statusFrame.Section1.Content.Line5.Text:SetFormattedText("UI Scale Is: %s", uiScaleString)
+    local uiScaleString = uiScale == F.PixelPerfect() and F.String.Good(uiScale) or F.String.Error(uiScale)
+    statusFrame.Section1.Content.Line6.Text:SetFormattedText("UI Scale Is: %s", uiScaleString)
   end
 
   -- Section #2
