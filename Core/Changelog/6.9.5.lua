@@ -28,7 +28,5 @@ TXUI.Changelog["6.9.5"] = {
     "* Settings refactoring",
     "Add " .. TXUI.Title .. " category to ElvUI movers dropdown filters",
     "Add " .. F.String.ToxiUI("ToxiUI Perfect Scale") .. " to Status Report window, indicating what UI scale the " .. TXUI.Title .. " installer would set",
-
-    "* Development improvements",
   },
 }
