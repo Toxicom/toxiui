@@ -8,6 +8,7 @@ TXUI.Changelog["6.9.6"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix Plater import string for non-retail clients",
 
     "* Profile updates",
 
