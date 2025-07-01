@@ -44,7 +44,7 @@ I.Strings.ChangelogText = {
 I.Strings.WALinks = {
   ["DEFAULT"] = "https://www.luxthos.com/",
   ["FORMAT"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-the-war-within/",
-  ["FORMAT_CATA"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-cataclysm/",
+  ["FORMAT_MISTS"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-mists-of-pandaria/",
   ["FORMAT_VANILLA"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-classic-era-hardcore/",
   ["WARRIOR"] = "warrior",
   ["HUNTER"] = "hunter",
@@ -151,7 +151,7 @@ I.Strings.Classes = {
     "WARLOCK",
     "DRUID",
   },
-  CATA = {
+  MISTS = {
     "WARRIOR",
     "PALADIN",
     "HUNTER",
@@ -163,6 +163,8 @@ I.Strings.Classes = {
     "DRUID",
     -- Wrath only
     "DEATHKNIGHT",
+    -- Mists Only
+    "MONK",
   },
   RETAIL = {
     "WARRIOR",

@@ -38,10 +38,10 @@ function M:AdditionalScaling()
       M:SetElementScale("groupFinder", "PVEFrame")
     end
 
-    -- Retail & Cata scaling
+    -- Retail & Mists scaling
     if not TXUI.IsVanilla then M:AddCallbackOrScale("Blizzard_Collections", self.ScaleCollections) end
 
-    -- Cata & Vanilla scaling
+    -- Mists & Vanilla scaling
     if not TXUI.IsRetail then
       M:AddCallbackOrScale("Blizzard_TalentUI", self.ScaleTalents)
       M:AddCallbackOrScale("Blizzard_TrainerUI", self.ScaleClassTrainer)

@@ -32,7 +32,7 @@ I.Constants.RandomTips = {
   -- 5
   "The same "
     .. TXUI.Title
-    .. " AddOn can be installed on all three versions: Retail, Cataclysm Classic & Vanilla",
+    .. " AddOn can be installed on all three versions: Retail, Mists of Pandaria Classic & Vanilla",
   -- 6
   "The first version of "
     .. TXUI.Title

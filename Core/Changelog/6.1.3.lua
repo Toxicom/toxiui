@@ -13,13 +13,10 @@ TXUI.Changelog["6.1.3"] = {
 
     "* Bug fixes",
     "Fix raid frames visibility.",
+    "Fixes for Wrath Ulduar patch API changes",
 
     "* Documentation",
     "Add '" .. F.String.ToxiUI("Title Raid") .. "' to Fonts module.",
     "Add descriptions to each font in the Fonts module.",
-  },
-
-  CHANGES_CATA = {
-    "Fixes for Wrath Ulduar patch API changes",
   },
 }

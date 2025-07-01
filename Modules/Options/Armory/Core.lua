@@ -36,7 +36,7 @@ function O:Armory()
     }, {
       name = TXUI.Title
         .. " Armory changes the appearance of your Character sheet.\n\n"
-        .. (TXUI.IsCata and (F.String.Error("[BETA]") .. ": This module is not stable yet on Cataclysm Classic!\n\n") or ""),
+        .. (TXUI.IsMists and (F.String.Error("[BETA]") .. ": This module is not stable yet on Mists of Pandaria Classic!\n\n") or ""),
     }, I.Requirements.Armory).args
 
     -- Enable

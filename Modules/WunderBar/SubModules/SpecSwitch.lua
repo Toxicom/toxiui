@@ -128,7 +128,7 @@ function SS:SpecEnter(text, icon)
 
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Show Talent UI")
-    if TXUI.IsRetail or (TXUI.IsCata and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
+    if TXUI.IsRetail or (TXUI.IsMists and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
     DT.tooltip:Show()
   end
 end
@@ -144,7 +144,7 @@ function SS:SpecClick(frame, button, ...)
   local hasDualSpec
   local activeGroup
 
-  if TXUI.IsCata then
+  if TXUI.IsMists then
     hasDualSpec = GetNumTalentGroups() == 2
     activeGroup = GetActiveTalentGroup()
   end
@@ -155,7 +155,7 @@ function SS:SpecClick(frame, button, ...)
   else
     if button == "LeftButton" then
       ToggleTalentFrame()
-    elseif TXUI.IsCata then
+    elseif TXUI.IsMists then
       if not hasDualSpec then return end
       SetActiveTalentGroup(activeGroup == 1 and 2 or 1)
     else
@@ -545,6 +545,6 @@ WB:RegisterSubModule(
       "TRAIT_CONFIG_UPDATED",
       "TRAIT_TREE_CHANGED",
     }),
-    F.Table.If(TXUI.IsCata, { "TALENT_GROUP_ROLE_CHANGED" })
+    F.Table.If(TXUI.IsMists, { "TALENT_GROUP_ROLE_CHANGED" })
   )
 )

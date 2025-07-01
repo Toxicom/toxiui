@@ -99,7 +99,7 @@ local function ToggleGroupFinder()
   end
 end
 
-local lfgLevelRequirement = TXUI.IsCata and 15 or 10
+local lfgLevelRequirement = TXUI.IsMists and 15 or 10
 
 MM.microMenu = {
   ["ach"] = {
@@ -264,7 +264,7 @@ MM.microMenu = {
         end
       end,
 
-      -- On Vanilla & Cataclysm the professions are part of the spellbook
+      -- On Vanilla & Mists of Pandaria the professions are part of the spellbook
       RightButton = TXUI.IsRetail and _G.ProfessionMicroButton.OnClick or E.noop,
     },
     keyBind = "TOGGLESPELLBOOK",
@@ -677,7 +677,7 @@ function MM:CreateButtons()
     frame.infoText = frame:CreateFontString(nil, "OVERLAY")
     frame.icon = frame:CreateFontString(nil, "OVERLAY")
     frame.icon:SetPoint("CENTER")
-    -- Not working in Cata? Maybe not needed at all?
+    -- Not working in Mists of Pandaria? Maybe not needed at all?
     -- frame.icon:SetJustifyH("BOTTOM")
 
     self.frameNames[name] = frame

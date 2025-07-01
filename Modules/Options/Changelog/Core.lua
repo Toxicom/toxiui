@@ -10,7 +10,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
   -- Get the changes from the last changelog
   local changelogGeneralData = changelog.CHANGES
   local changelogRetailData = changelog.CHANGES_RETAIL
-  local changelogCataData = changelog.CHANGES_CATA
+  local changelogMistsData = changelog.CHANGES_MISTS
   local changelogVanillaData = changelog.CHANGES_VANILLA
 
   if (changelog.HOTFIX == true) and not changelogGeneralData then changelogGeneralData = { "* General", I.Strings.ChangelogText[I.Enum.ChangelogType.HOTFIX] } end
@@ -64,8 +64,8 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
 
   if TXUI.IsRetail then
     generatedText = generatedText .. generateSectionLog(changelogRetailData, "Retail")
-  elseif TXUI.IsCata then
-    generatedText = generatedText .. generateSectionLog(changelogCataData, "Cata")
+  elseif TXUI.IsMists then
+    generatedText = generatedText .. generateSectionLog(changelogMistsData, "Mists")
   elseif TXUI.IsVanilla then
     generatedText = generatedText .. generateSectionLog(changelogVanillaData, "Vanilla")
   end

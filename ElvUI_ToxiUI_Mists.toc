@@ -1,4 +1,4 @@
-## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r |cffe35f00Cataclysm|r
+## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r |cff00A86BMists of Pandaria|r
 ## Notes: Minimalistic ElvUI Edit by |cff18a8ffToxi|r
 ## Author: Toxi (Toxi#21206)
 ## Version: 6.9.6
@@ -6,9 +6,9 @@
 ## OptionalDeps: Details, Plater
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
-## Interface: 40402
-## X-Interface: 40402
-## X-Flavor: Cata
+## Interface: 50500
+## X-Interface: 50500
+## X-Flavor: Mists
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
 ## X-ElvUIVersion: 13.91
