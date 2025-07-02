@@ -283,7 +283,7 @@ function PF:BuildProfile()
 
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     }),
-    F.Table.If(TXUI.IsCata, {
+    F.Table.If(TXUI.IsMists, {
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
     }),
     F.Table.If(not TXUI.IsRetail, {
@@ -1766,7 +1766,7 @@ function PF:BuildProfile()
         scale = F.DpiRaw(1.25),
       },
     },
-    F.Table.If(TXUI.IsCata, {
+    F.Table.If(TXUI.IsMists, {
       totemBar = {
         mouseover = true,
         keepSizeRatio = false,
@@ -1810,7 +1810,7 @@ function PF:BuildProfile()
     if not tbl.visibility then
       if TXUI.IsRetail then
         tbl.visibility = "[vehicleui][petbattle][overridebar] hide; show"
-      elseif TXUI.IsCata then
+      elseif TXUI.IsMists then
         tbl.visibility = "[vehicleui][overridebar] hide; show"
       else
         tbl.visibility = "[overridebar] hide; show"
@@ -1938,7 +1938,7 @@ function PF:BuildProfile()
   if TXUI.IsRetail then
     pf.actionbar.barPet.visibility = "[petbattle] hide; [novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui][petbattle] hide; show"
-  elseif TXUI.IsCata then
+  elseif TXUI.IsMists then
     pf.actionbar.barPet.visibility = "[novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui] hide; show"
   else

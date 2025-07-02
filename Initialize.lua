@@ -39,7 +39,7 @@ TXUI.ClientBuildVersion = select(4, GetBuildInfo())
 TXUI.Version = GetAddOnMetadata(addonName, "Version")
 
 TXUI.IsVanilla = TXUI.MetaFlavor == "Vanilla"
-TXUI.IsCata = TXUI.MetaFlavor == "Cata"
+TXUI.IsMists = TXUI.MetaFlavor == "Mists"
 TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
 
 -- M+ season for Retail, eg.: df3
@@ -63,7 +63,7 @@ function TXUI:Initialize()
   -- Set correct flavor
   local flavorMap = {
     ["Vanilla"] = I.Enum.Flavor.VANILLA,
-    ["Cata"] = I.Enum.Flavor.CATA,
+    ["Mists"] = I.Enum.Flavor.MISTS,
     ["Mainline"] = I.Enum.Flavor.RETAIL,
   }
 
@@ -115,15 +115,15 @@ function TXUI:Initialize()
     return
   end
 
-  -- Check for non Cata, non Retail and non Vanilla
-  if not self.IsRetail and not self.IsCata and not self.IsVanilla then return end
+  -- Check for non Mists, non Retail and non Vanilla
+  if not self.IsRetail and not self.IsMists and not self.IsVanilla then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
 
   -- Set the correct tables for Flavor
-  if self.IsCata then
-    I.HearthstoneData = I.HearthstoneData_Cata
+  if self.IsMists then
+    I.HearthstoneData = I.HearthstoneData_Mists
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 

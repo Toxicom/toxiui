@@ -95,7 +95,7 @@ A.colors = {
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
-    needsEnchant = TXUI.IsCata, -- Reputation Arcanum's
+    needsEnchant = TXUI.IsMists, -- Reputation Arcanum's
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
@@ -234,7 +234,7 @@ A.characterSlots = {
   },
 }
 
-if TXUI.IsCata then A.characterSlots["RangedSlot"] = {
+if TXUI.IsMists then A.characterSlots["RangedSlot"] = {
   id = 19,
   needsEnchant = false,
   needsSocket = false,
@@ -1415,9 +1415,9 @@ function A:OpenCharacterStats()
 end
 
 function A:OpenCharacterArmory()
-  if TXUI.IsCata then self:OpenCharacterStats() end
+  if TXUI.IsMists then self:OpenCharacterStats() end
   self:UpdateCharacterArmory()
-  -- For some reason in Cata animation doesn't happen immediately unless you hover the character frame, not sure what event we're missing
+  -- For some reason in Mists animation doesn't happen immediately unless you hover the character frame, not sure what event we're missing
   E:Delay(0.01, function()
     self:PlayAnimations()
   end)

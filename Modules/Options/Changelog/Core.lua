@@ -9,9 +9,6 @@ local type = type
 function O:FormatChangelog(options, version, changelogIndex, changelog, returnText)
   -- Get the changes from the last changelog
   local changelogGeneralData = changelog.CHANGES
-  local changelogRetailData = changelog.CHANGES_RETAIL
-  local changelogCataData = changelog.CHANGES_CATA
-  local changelogVanillaData = changelog.CHANGES_VANILLA
 
   if (changelog.HOTFIX == true) and not changelogGeneralData then changelogGeneralData = { "* General", I.Strings.ChangelogText[I.Enum.ChangelogType.HOTFIX] } end
 
@@ -60,14 +57,6 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
   if changelog.DYNAMIC then
     local dynamicSection = changelog.DYNAMIC()
     if dynamicSection ~= nil and #dynamicSection > 0 then generatedText = generatedText .. generateSectionLog(dynamicSection, "Additional") end
-  end
-
-  if TXUI.IsRetail then
-    generatedText = generatedText .. generateSectionLog(changelogRetailData, "Retail")
-  elseif TXUI.IsCata then
-    generatedText = generatedText .. generateSectionLog(changelogCataData, "Cata")
-  elseif TXUI.IsVanilla then
-    generatedText = generatedText .. generateSectionLog(changelogVanillaData, "Vanilla")
   end
 
   -- Get a pretty version number

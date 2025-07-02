@@ -87,4 +87,4 @@ I.Enum.ChangelogType = F.Enum { "UPDATE", "HOTFIX" }
 I.Enum.Developers = F.Enum { "TOXI", "RYADA", "RHAP", "JAKE" }
 
 -- Client Flavors
-I.Enum.Flavor = F.Enum { "VANILLA", "CATA", "RETAIL" }
+I.Enum.Flavor = F.Enum { "VANILLA", "MISTS", "RETAIL" }
