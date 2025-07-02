@@ -1041,6 +1041,7 @@ globals = {
   "C_StorePublic.IsEnabled",
   "C_StorePublic",
   "C_Spell",
+  "C_SpecializationInfo",
   "C_TalkingHead.GetConversationsDeferred",
   "C_TalkingHead.GetCurrentLineAnimationInfo",
   "C_TalkingHead.GetCurrentLineInfo",
