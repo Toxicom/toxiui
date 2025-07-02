@@ -16,6 +16,7 @@ local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
 local GetNumTalentGroups = GetNumTalentGroups
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
+local C_SpecializationInfo = C_SpecializationInfo
 local GetTalentGroupRole = GetTalentGroupRole
 local GetTalentTabInfo = GetTalentTabInfo
 local ipairs = ipairs

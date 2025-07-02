@@ -22,6 +22,8 @@ local GetMeleeHaste = GetMeleeHaste
 local GetSpecialization = TXUI.IsRetail and GetSpecialization or GetActiveTalentGroup
 local GetSpecializationInfo = GetSpecializationInfo
 local GetSpecializationRole = GetSpecializationRole
+local C_SpecializationInfo = C_SpecializationInfo
+
 local GetTitleName = GetTitleName
 local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs

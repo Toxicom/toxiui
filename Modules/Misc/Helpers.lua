@@ -3,6 +3,7 @@ local M = TXUI:GetModule("Misc")
 local SS = TXUI:GetModule("WunderBar"):GetModule("SpecSwitch")
 
 local format = string.format
+local C_SpecializationInfo = C_SpecializationInfo
 
 function M:GetCoordinates(col, row)
   local width = 64
