@@ -45,11 +45,11 @@ function HS:GetCooldownForItem(itemInfo)
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:GetCooldownForItem > Item could not be found in DB") end
 
   local _, gcd
-  if TXUI.IsRetail then
+  if TXUI.IsVanilla then
+    _, gcd = GetSpellCooldown(61304)
+  else
     gcd = GetSpellCooldown(61304)
     gcd = gcd and gcd.duration or nil
-  else
-    _, gcd = GetSpellCooldown(61304)
   end
   if gcd == nil then return self:LogDebug("HS:GetCooldownForItem > GetSpellCooldown returned nil for gcd") end
 
@@ -58,11 +58,11 @@ function HS:GetCooldownForItem(itemInfo)
   if (itemInfo.type == "toy") or (itemInfo.type == "item") then
     startTime, duration = GetItemCooldownFunction(itemInfo.id)
   elseif itemInfo.type == "spell" then
-    if TXUI.IsRetail then
+    if TXUI.IsVanilla then
+      startTime, duration = GetSpellCooldown(itemInfo.id)
+    else
       local cd = GetSpellCooldown(itemInfo.id)
       startTime, duration = cd.startTime, cd.duration
-    else
-      startTime, duration = GetSpellCooldown(itemInfo.id)
     end
   end
 
