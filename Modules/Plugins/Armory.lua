@@ -44,11 +44,15 @@ local unpack = unpack
 local wipe = wipe
 
 local primaryStatTable = {
-  ["MageArcane"] = "INTELLIGENCE",
-  ["MageFire"] = "INTELLIGENCE",
-  ["MageFrost"] = "INTELLIGENCE",
+  [1] = "STRENGTH",
+  [2] = "AGILITY",
+  [4] = "INTELLECT",
 
-  ["PaladinHoly"] = "INTELLIGENCE",
+  ["MageArcane"] = "INTELLECT",
+  ["MageFire"] = "INTELLECT",
+  ["MageFrost"] = "INTELLECT",
+
+  ["PaladinHoly"] = "INTELLECT",
   ["PaladinProtection"] = "STRENGTH",
   ["PaladinCombat"] = "STRENGTH",
 
@@ -56,9 +60,9 @@ local primaryStatTable = {
   ["WarriorFury"] = "STRENGTH",
   ["WarriorProtection"] = "STRENGTH",
 
-  ["DruidBalance"] = "INTELLIGENCE",
+  ["DruidBalance"] = "INTELLECT",
   ["DruidFeralCombat"] = "AGILITY",
-  ["DruidRestoration"] = "INTELLIGENCE",
+  ["DruidRestoration"] = "INTELLECT",
 
   ["DeathKnightBlood"] = "STRENGTH",
   ["DeathKnightFrost"] = "STRENGTH",
@@ -68,21 +72,21 @@ local primaryStatTable = {
   ["HunterMarksmanship"] = "AGILITY",
   ["HunterSurvival"] = "AGILITY",
 
-  ["PriestDiscipline"] = "INTELLIGENCE",
-  ["PriestHoly"] = "INTELLIGENCE",
-  ["PriestShadow"] = "INTELLIGENCE",
+  ["PriestDiscipline"] = "INTELLECT",
+  ["PriestHoly"] = "INTELLECT",
+  ["PriestShadow"] = "INTELLECT",
 
   ["RogueAssassination"] = "AGILITY",
   ["RogueCombat"] = "AGILITY",
   ["RogueSubtlety"] = "AGILITY",
 
-  ["ShamanElementalCombat"] = "INTELLIGENCE",
+  ["ShamanElementalCombat"] = "INTELLECT",
   ["ShamanEnhancement"] = "AGILITY",
-  ["ShamanRestoration"] = "INTELLIGENCE",
+  ["ShamanRestoration"] = "INTELLECT",
 
-  ["WarlockCurses"] = "INTELLIGENCE",
-  ["WarlockSummoning"] = "INTELLIGENCE",
-  ["WarlockDestruction"] = "INTELLIGENCE",
+  ["WarlockCurses"] = "INTELLECT",
+  ["WarlockSummoning"] = "INTELLECT",
+  ["WarlockDestruction"] = "INTELLECT",
 }
 
 -- Vars
@@ -249,6 +253,9 @@ function A:GetPrimaryTalentIndex()
   if primaryTalentTree then
     if TXUI.IsRetail then
       primaryTalentTreeIdx = GetSpecializationInfo(primaryTalentTree) or 0
+    elseif TXUI.IsMists then
+      local specIndex = C_SpecializationInfo.GetSpecialization()
+      if specIndex then primaryTalentTreeIdx = select(1, GetTalentTabInfo(specIndex)) or 0 end
     else
       _, primaryTalentTreeIdx = SS:GetCurrentSpecPoints(primaryTalentTree) or nil, 0
     end
@@ -289,6 +296,10 @@ function A:CheckMessageCondition(slotOptions)
 
       if TXUI.IsRetail then
         primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
+      elseif TXUI.IsMists then
+        local specIndex = C_SpecializationInfo.GetSpecialization()
+        local primaryStatID = select(6, C_SpecializationInfo.GetSpecializationInfo(specIndex))
+        primaryStat = primaryStatTable[primaryStatID]
       else
         local data = SS:GetWrathCacheForSpec(spec)
         primaryStat = primaryStatTable[data.id]
@@ -507,12 +518,12 @@ function A:UpdateTitle()
   self.levelText:SetText(playerLevel)
 
   local fontIcon
-  if TXUI.IsRetail then
-    fontIcon = P.wunderbar.subModules.SpecSwitch.icons[primaryTalentTreeIdx] or P.wunderbar.subModules.SpecSwitch.icons[0]
-  else
+  if TXUI.IsVanilla then
     local spec = GetSpecialization()
     local data = SS:GetWrathCacheForSpec(spec)
     fontIcon = P.wunderbar.subModules.SpecSwitch.icons[data.id] or P.wunderbar.subModules.SpecSwitch.icons[0]
+  else
+    fontIcon = P.wunderbar.subModules.SpecSwitch.icons[primaryTalentTreeIdx] or P.wunderbar.subModules.SpecSwitch.icons[0]
   end
 
   if self:UseFontGradient(self.db, "specIcon") then
@@ -970,7 +981,7 @@ function A:UpdateCharacterStats()
 
   self:ClearAnimations(true)
 
-  if spec then role = TXUI.IsRetail and GetSpecializationRole(spec) or GetTalentGroupRole(spec) end
+  if spec then role = TXUI.IsVanilla and GetTalentGroupRole(spec) or GetSpecializationRole(spec) end
 
   if TXUI.IsRetail then
     if level >= (MIN_PLAYER_LEVEL_FOR_ITEM_LEVEL_DISPLAY or 0) then
@@ -1031,6 +1042,10 @@ function A:UpdateCharacterStats()
 
           if TXUI.IsRetail then
             primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
+          elseif TXUI.IsMists then
+            local specIndex = C_SpecializationInfo.GetSpecialization()
+            local primaryStatID = select(6, C_SpecializationInfo.GetSpecializationInfo(specIndex))
+            primaryStat = primaryStatTable[primaryStatID]
           else
             local data = SS:GetWrathCacheForSpec(spec)
             primaryStat = primaryStatTable[data.id]
@@ -1043,6 +1058,10 @@ function A:UpdateCharacterStats()
 
           if TXUI.IsRetail then
             primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
+          elseif TXUI.IsMists then
+            local specIndex = C_SpecializationInfo.GetSpecialization()
+            local primaryStatID = select(6, C_SpecializationInfo.GetSpecializationInfo(specIndex))
+            primaryStat = primaryStatTable[primaryStatID]
           else
             local data = SS:GetWrathCacheForSpec(spec)
             primaryStat = primaryStatTable[data.id]

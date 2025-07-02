@@ -128,7 +128,7 @@ function SS:SpecEnter(text, icon)
 
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Show Talent UI")
-    if TXUI.IsRetail or (TXUI.IsMists and GetNumTalentGroups() == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
+    if TXUI.IsRetail or (TXUI.IsMists and GetNumSpecGroups(true) == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
     DT.tooltip:Show()
   end
 end
@@ -145,8 +145,8 @@ function SS:SpecClick(frame, button, ...)
   local activeGroup
 
   if TXUI.IsMists then
-    hasDualSpec = GetNumTalentGroups() == 2
-    activeGroup = GetActiveTalentGroup()
+    hasDualSpec = GetNumSpecGroups(true) == 2
+    activeGroup = C_SpecializationInfo.GetActiveSpecGroup()
   end
 
   if dtModule then
@@ -240,8 +240,15 @@ end
 function SS:UpdateSpecialization()
   local spec1, spec2
 
-  if TXUI.IsRetail then
-    spec1 = GetSpecialization()
+  if TXUI.IsVanilla then
+    spec1 = GetActiveTalentGroup()
+    spec2 = GetNumTalentGroups() == 2 and (spec1 == 2 and 1 or 2) or nil
+    self.specCache = {}
+
+    if spec1 then self.specCache[spec1] = self:GetWrathCacheForSpec(spec1) end
+    if spec2 then self.specCache[spec2] = self:GetWrathCacheForSpec(spec2) end
+  else
+    spec1 = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization() or GetSpecialization()
     spec2 = 0
 
     local lootSpec = GetLootSpecialization()
@@ -253,13 +260,6 @@ function SS:UpdateSpecialization()
         end
       end
     end
-  else
-    spec1 = GetActiveTalentGroup()
-    spec2 = GetNumTalentGroups() == 2 and (spec1 == 2 and 1 or 2) or nil
-    self.specCache = {}
-
-    if spec1 then self.specCache[spec1] = self:GetWrathCacheForSpec(spec1) end
-    if spec2 then self.specCache[spec2] = self:GetWrathCacheForSpec(spec2) end
   end
 
   self.spec1 = nil
@@ -517,6 +517,15 @@ function SS:OnInit()
       local id, name = GetSpecializationInfoForClassID(classId, i)
       if id then self.specCache[i] = { id = id, name = name } end
     end
+  elseif TXUI.IsMists then
+    self.numSpecs = GetNumSpecializations()
+    for i = 1, self.numSpecs do
+      local id, name = GetTalentTabInfo(i)
+      if id and name then self.specCache[i] = {
+        id = id,
+        name = name,
+      } end
+    end
   end
 
   self:CreateSwitch()
@@ -545,6 +554,6 @@ WB:RegisterSubModule(
       "TRAIT_CONFIG_UPDATED",
       "TRAIT_TREE_CHANGED",
     }),
-    F.Table.If(TXUI.IsMists, { "TALENT_GROUP_ROLE_CHANGED" })
+    F.Table.If(TXUI.IsMists, { "TALENT_GROUP_ROLE_CHANGED", "PLAYER_LOOT_SPEC_UPDATED" })
   )
 )

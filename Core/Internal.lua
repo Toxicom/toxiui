@@ -652,44 +652,44 @@ I.HearthstoneData_Mists = {
   [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
 
   -- Hearthstone: Mage
-  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "SW" }, -- Portal: Stormwind
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "SW" }, -- Teleport: Stormwind
 
-  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "ORG" }, -- Portal: Orgrimmar
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "ORG" }, -- Teleport: Orgrimmar
 
-  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Dalaran (Northrend)
-  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Dalaran (Northrend)
+  [53142] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "WotLK" }, -- Portal: Dalaran (Northrend)
+  [53140] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "WotLK" }, -- Teleport: Dalaran (Northrend)
 
-  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Alliance
-  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Alliance
+  [33691] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "TBC" }, -- Portal: Shattrath - Alliance
+  [33690] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "TBC" }, -- Teleport: Shattrath - Alliance
 
-  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Shattrath - Horde
-  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Shattrath - Horde
+  [35717] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "TBC" }, -- Portal: Shattrath - Horde
+  [35715] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "TBC" }, -- Teleport: Shattrath - Horde
 
-  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Theramore - Alliance
-  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Theramore - Alliance
+  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "THER" }, -- Portal: Theramore - Alliance
+  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "THER" }, -- Teleport: Theramore - Alliance
 
-  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stonard - Horde
-  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stonard - Horde
+  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "STON" }, -- Portal: Stonard - Horde
+  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "STON" }, -- Teleport: Stonard - Horde
 
-  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "DARN" }, -- Portal: Darnassus
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "DARN" }, -- Teleport: Darnassus
 
-  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
-  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "TB" }, -- Portal: Thunder Bluff
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "TB" }, -- Teleport: Thunder Bluff
 
-  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "UC" }, -- Portal: Undercity
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "UC" }, -- Teleport: Undercity
 
-  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "IF" }, -- Portal: Ironforge
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "IF" }, -- Teleport: Ironforge
 
-  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Silvermoon
-  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Silvermoon
+  [32267] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "SM" }, -- Portal: Silvermoon
+  [32272] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "SM" }, -- Teleport: Silvermoon
 
-  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Exodar
-  [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Exodar
+  [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "EXO" }, -- Portal: Exodar
+  [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "EXO" }, -- Teleport: Exodar
 }
 
 I.HearthstoneData_Vanilla = {
@@ -702,23 +702,23 @@ I.HearthstoneData_Vanilla = {
   [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
 
   -- Hearthstone: Mage
-  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Stormwind
-  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Stormwind
+  [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "SW" }, -- Portal: Stormwind
+  [3561] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "SW" }, -- Teleport: Stormwind
 
-  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Orgrimmar
-  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Orgrimmar
+  [11417] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "ORG" }, -- Portal: Orgrimmar
+  [3567] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "ORG" }, -- Teleport: Orgrimmar
 
-  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Darnassus
-  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Darnassus
+  [11419] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "DARN" }, -- Portal: Darnassus
+  [3565] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "DARN" }, -- Teleport: Darnassus
 
-  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Thunder Bluff
-  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Thunder Bluff
+  [11420] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "TB" }, -- Portal: Thunder Bluff
+  [3566] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "TB" }, -- Teleport: Thunder Bluff
 
-  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Undercity
-  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Undercity
+  [11418] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "UC" }, -- Portal: Undercity
+  [3563] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "UC" }, -- Teleport: Undercity
 
-  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true }, -- Portal: Ironforge
-  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true }, -- Teleport: Ironforge
+  [11416] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "IF" }, -- Portal: Ironforge
+  [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "IF" }, -- Teleport: Ironforge
 }
 
 -- Data for which class or spec has which interrupt spell

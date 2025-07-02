@@ -98,6 +98,15 @@ function M:GenerateSpecIcon(dbPath)
     else
       specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
     end
+  elseif TXUI.IsMists then
+    local specIndex = C_SpecializationInfo.GetSpecialization()
+    local specId = C_SpecializationInfo.GetSpecializationInfo(specIndex)
+
+    if specId and M.SpecIcons[specId] then
+      specIcon = format(iconPath, M.SpecIcons[specId])
+    else
+      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+    end
   else
     local spec
     local talents = GetActiveTalentGroup()
