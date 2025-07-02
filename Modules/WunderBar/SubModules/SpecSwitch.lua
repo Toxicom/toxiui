@@ -249,7 +249,7 @@ function SS:UpdateSpecialization()
     if spec1 then self.specCache[spec1] = self:GetWrathCacheForSpec(spec1) end
     if spec2 then self.specCache[spec2] = self:GetWrathCacheForSpec(spec2) end
   else
-    spec1 = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization() or GetSpecialization()
+    spec1 = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization and C_SpecializationInfo.GetSpecialization() or GetSpecialization()
     spec2 = 0
 
     local lootSpec = GetLootSpecialization()
