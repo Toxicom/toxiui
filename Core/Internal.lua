@@ -269,6 +269,21 @@ I.ElvUIIcons = {
         HEALER = "WhiteHeal",
         DAMAGER = "WhiteDPS",
       },
+      ["raid1"] = {
+        TANK = "WhiteTank",
+        HEALER = "WhiteHeal",
+        DAMAGER = "WhiteDPS",
+      },
+      ["raid2"] = {
+        TANK = "WhiteTank",
+        HEALER = "WhiteHeal",
+        DAMAGER = "WhiteDPS",
+      },
+      ["raid3"] = {
+        TANK = "WhiteTank",
+        HEALER = "WhiteHeal",
+        DAMAGER = "WhiteDPS",
+      },
     },
 
     ["TXUI_MATERIAL"] = {
