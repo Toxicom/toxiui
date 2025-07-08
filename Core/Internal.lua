@@ -568,7 +568,7 @@ I.HearthstoneData = {
   [445441] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "DFC" }, -- Darkflame Cleft
   [445444] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww3", ["label"] = "PSF" }, -- Priory of the Sacred Flame
   [1216786] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww3", ["label"] = "FLOOD" }, -- Operation: Floodgate
-  [1237215] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww3", ["label"] = "EDA" },   -- Eco-Dome Al'dani
+  [1237215] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww3", ["label"] = "EDA" }, -- Eco-Dome Al'dani
 
   --                --
   -- Mage Teleports --
