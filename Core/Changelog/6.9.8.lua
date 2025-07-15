@@ -9,6 +9,7 @@ TXUI.Changelog["6.9.8"] = {
 
     "* Bug fixes",
     "Fix the '" .. TXUI.Title .. " White' Role Icons throwing an error",
+    "Hide " .. F.String.Menu.WunderBar() .. " in Pet Battles for Mists of Pandaria Classic",
 
     "* Profile updates",
 
