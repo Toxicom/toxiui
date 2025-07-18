@@ -18,5 +18,6 @@ TXUI.Changelog["6.9.9"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Simplify logic for checking loaded addons",
   },
 }

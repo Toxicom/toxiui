@@ -11,7 +11,6 @@ local CreateFromMixins = CreateFromMixins
 local error = error
 local FindSpellOverrideByID = FindSpellOverrideByID
 local format = string.format
-local GetAddOnEnableState = (C_AddOns and C_AddOns.GetAddOnEnableState) or GetAddOnEnableState
 local GetItemCount = GetItemCount
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
@@ -20,7 +19,7 @@ local GetTime = GetTime
 local gmatch = string.gmatch
 local gsub = string.gsub
 local ipairs = ipairs
-local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local IsSpellKnownOrOverridesKnown = IsSpellKnownOrOverridesKnown
 local ItemMixin = ItemMixin
 local match = string.match
@@ -85,7 +84,7 @@ function F.ResetMiscProfile(profile)
 end
 
 function F.IsAddOnEnabled(addon)
-  return (C_AddOns and GetAddOnEnableState(addon, E.myname) or GetAddOnEnableState(E.myname, addon)) == 2 and IsAddOnLoaded(addon)
+  return IsAddOnLoaded(addon)
 end
 
 function F.Enum(tbl)
