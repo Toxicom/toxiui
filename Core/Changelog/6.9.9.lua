@@ -11,6 +11,7 @@ TXUI.Changelog["6.9.9"] = {
 
     "* Profile updates",
     F.String.Plater() .. ": Update interrupt color mod",
+    F.String.Plater() .. ": Update NPC colors" .. F.String.Sublist("No longer using Continuity's M+ Mod") .. F.String.Sublist("Instead using Fatpala's Reloe color scheme"),
 
     "* Documentation",
     F.String.MinElv("13.94"),
