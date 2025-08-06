@@ -9,6 +9,7 @@ TXUI.Changelog["6.9.9"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix updated E:CropRatio function",
 
     "* Profile updates",
     F.String.Plater() .. ": Update interrupt color mod",

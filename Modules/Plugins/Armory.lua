@@ -660,7 +660,7 @@ function A:UpdatePageInfo(_, _, which)
           local socket = slotFrame["textureSlot" .. i]
           local socketWidth, socketHeight = 16, 8
           socket:SetSize(socketWidth, socketHeight)
-          local left, right, top, bottom = E:CropRatio(socket)
+          local left, right, top, bottom = E:CropRatio(socketWidth, socketHeight)
           socket:SetTexCoord(left, right, top, bottom)
           socket:ClearAllPoints()
 

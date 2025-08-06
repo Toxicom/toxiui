@@ -181,7 +181,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     slot:SetPushedTexture(texture)
     slot:SetDisabledTexture(texture)
 
-    local left, right, top, bottom = E:CropRatio(slot)
+    local left, right, top, bottom = E:CropRatio(slot:GetWidth(), slot:GetHeight())
     local normalTexture, pushedTexture, disabledTexture = slot:GetNormalTexture(), slot:GetPushedTexture(), slot:GetDisabledTexture()
     normalTexture:SetTexCoord(left, right, top, bottom)
     normalTexture:SetInside()
