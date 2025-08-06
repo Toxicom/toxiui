@@ -190,7 +190,6 @@ A.characterSlots = {
 
 function A:GetPrimaryTalentIndex()
   local primaryTalentTreeIdx = 0
-  local _
   local primaryTalentTree = GetSpecialization()
 
   if primaryTalentTree then primaryTalentTreeIdx = GetSpecializationInfo(primaryTalentTree) or 0 end
