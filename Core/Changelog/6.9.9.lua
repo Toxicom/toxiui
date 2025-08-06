@@ -14,7 +14,8 @@ TXUI.Changelog["6.9.9"] = {
     F.String.Plater() .. ": Update NPC colors" .. F.String.Sublist("No longer using Continuity's M+ Mod") .. F.String.Sublist("Instead using Fatpala's Reloe color scheme"),
 
     "* Documentation",
-    F.String.MinElv("13.94"),
+    F.String.MinElv("13.95"),
+    F.String.Menu.WunderBar() .. ": Update M+ Portals for TWW S3",
 
     "* Settings refactoring",
 
