@@ -141,10 +141,10 @@ function CR:RightClick()
 end
 
 local currencyColorTable = {
-  [3110] = { color = _G.LEGENDARY_ORANGE_COLOR:GenerateHexColor(), weight = 10 }, -- Gilded Undermine Crest
-  [3109] = { color = _G.EPIC_PURPLE_COLOR:GenerateHexColor(), weight = 9 }, --        Runed Undermine Crest
-  [3108] = { color = _G.RARE_BLUE_COLOR:GenerateHexColor(), weight = 8 }, --         Carved Undermine Crest
-  [3107] = { color = _G.UNCOMMON_GREEN_COLOR:GenerateHexColor(), weight = 7 }, -- Weathered Undermine Crest
+  [3290] = { color = _G.LEGENDARY_ORANGE_COLOR:GenerateHexColor(), weight = 10 }, -- Gilded Ethereal Crest
+  [3289] = { color = _G.EPIC_PURPLE_COLOR:GenerateHexColor(), weight = 9 }, --        Runed Ethereal Crest
+  [3287] = { color = _G.RARE_BLUE_COLOR:GenerateHexColor(), weight = 8 }, --         Carved Ethereal Crest
+  [3285] = { color = _G.UNCOMMON_GREEN_COLOR:GenerateHexColor(), weight = 7 }, -- Weathered Ethereal Crest
   [3008] = { color = _G.HEIRLOOM_BLUE_COLOR:GenerateHexColor(), weight = 6 }, --                Valorstones
   [3028] = { color = _G.ARTIFACT_GOLD_COLOR:GenerateHexColor(), weight = 5 }, --        Restored Coffer Key
 }
