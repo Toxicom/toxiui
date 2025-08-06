@@ -6,8 +6,6 @@ TXUI.Changelog["6.9.9"] = {
     "* Breaking changes",
     "Disable " .. TXUI.Title .. " " .. F.String.Menu.Armory() .. " for Mists of Pandaria: Classic",
 
-    "* New features",
-
     "* Bug fixes",
     "Fix updated E:CropRatio function",
 
@@ -18,8 +16,6 @@ TXUI.Changelog["6.9.9"] = {
     "* Documentation",
     F.String.MinElv("13.95"),
     F.String.Menu.WunderBar() .. ": Update M+ Portals for TWW S3",
-
-    "* Settings refactoring",
 
     "* Development improvements",
     "Simplify logic for checking loaded addons",
