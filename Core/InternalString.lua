@@ -99,7 +99,7 @@ I.Strings.Branding = {
     WAGuide = "https://toxiui.com/resources/guide/weakauras-guide/",
     Youtube = "https://www.youtube.com/@ToxiTV",
     Github = "https://github.com/toxicom/toxiui",
-    WrathArmory = "https://www.curseforge.com/wow/addons/wratharmory-elvui-plugin",
+    ReforgedArmory = "https://www.curseforge.com/wow/addons/reforgedarmory-elvui-plugin",
   },
 }
 

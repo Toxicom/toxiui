@@ -4,6 +4,7 @@ TXUI.Changelog["6.9.9"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Disable " .. TXUI.Title .. " " .. F.String.Menu.Armory() .. " for Mists of Pandaria: Classic",
 
     "* New features",
 

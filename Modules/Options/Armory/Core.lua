@@ -34,9 +34,7 @@ function O:Armory()
     local generalGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = TXUI.Title
-        .. " Armory changes the appearance of your Character sheet.\n\n"
-        .. (TXUI.IsMists and (F.String.Error("[BETA]") .. ": This module is not stable yet on Mists of Pandaria Classic!\n\n") or ""),
+      name = TXUI.Title .. " Armory changes the appearance of your Character sheet.\n\n",
     }, I.Requirements.Armory).args
 
     -- Enable
@@ -1652,9 +1650,9 @@ function O:Armory_OnlyRetailMessage()
       .. TXUI.Title
       .. ".\n\n"
       .. "For "
-      .. F.String.ToxiUI("Wrath of the Lich King: Classic")
+      .. F.String.ToxiUI("Mists of Pandaria: Classic")
       .. " we recommend using "
-      .. F.String.WrathArmory()
+      .. F.String.ReforgedArmory()
       .. " by "
       .. F.String.Class("Repooc", "DRUID")
       .. ".\n\n",
@@ -1666,12 +1664,12 @@ function O:Armory_OnlyRetailMessage()
     width = "full",
     name = "Copy this URL",
     get = function()
-      return I.Strings.Branding.Links.WrathArmory
+      return I.Strings.Branding.Links.ReforgedArmory
     end,
   }
 end
 
-if not TXUI.IsVanilla then
+if TXUI.IsRetail then
   O:AddCallback("Armory")
 else
   O:AddCallback("Armory_OnlyRetailMessage")

@@ -174,8 +174,8 @@ function F.String.Scaling()
   return F.String.ToxiUI("Additional Scaling") .. " module"
 end
 
-function F.String.WrathArmory()
-  return F.String.Class("Wrath", "MAGE") .. F.String.Class("Armory", "ROGUE")
+function F.String.ReforgedArmory()
+  return F.String.Class("Reforged", "MONK") .. F.String.Class("Armory", "ROGUE")
 end
 
 function F.String.MinElv(ver)

@@ -606,40 +606,6 @@ function PF:ElvUIFont()
       },
     })
   end
-
-  if F.IsAddOnEnabled("ElvUI_WrathArmory") then
-    F.Table.Crush(E.db.wratharmory, {
-      character = {
-        avgItemLevel = {
-          font = F.FontOverride(I.Fonts.TitleBlack),
-        },
-
-        enchant = {
-          font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(14),
-        },
-
-        itemLevel = {
-          font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(16),
-        },
-      },
-
-      inspect = {
-        avgItemLevel = {
-          font = F.FontOverride(I.Fonts.TitleBlack),
-        },
-
-        enchant = {
-          font = F.FontOverride(I.Fonts.Primary),
-        },
-
-        itemLevel = {
-          font = F.FontOverride(I.Fonts.Primary),
-        },
-      },
-    })
-  end
 end
 
 function PF:ElvUIFontPrivates()

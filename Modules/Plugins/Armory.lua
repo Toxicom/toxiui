@@ -1,16 +1,11 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local A = TXUI:NewModule("Armory", "AceHook-3.0", "AceEvent-3.0", "AceTimer-3.0")
-local SS = TXUI:GetModule("WunderBar"):GetModule("SpecSwitch")
 
 -- Globals
 local _G = _G
 local BreakUpLargeNumbers = BreakUpLargeNumbers
 local C_PaperDollInfo = _G.C_PaperDollInfo
 local CreateFrame = CreateFrame
-local CharacterFrameExpandButton = CharacterFrameExpandButton
-local CharacterStatsPane = CharacterStatsPane
-local PaperDollFrame = PaperDollFrame
-local PetPaperDollFrame = PetPaperDollFrame
 local EFFECTIVE_LEVEL_FORMAT = _G.EFFECTIVE_LEVEL_FORMAT
 local format = string.format
 local GetAchievementInfo = GetAchievementInfo
@@ -19,10 +14,9 @@ local GetCurrentTitle = GetCurrentTitle
 local GetInventoryItemID = GetInventoryItemID
 local GetItemInfo = GetItemInfo
 local GetMeleeHaste = GetMeleeHaste
-local GetSpecialization = TXUI.IsRetail and GetSpecialization or GetActiveTalentGroup
+local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
 local GetSpecializationRole = GetSpecializationRole
-local C_SpecializationInfo = C_SpecializationInfo
 
 local GetTitleName = GetTitleName
 local InCombatLockdown = InCombatLockdown
@@ -45,52 +39,6 @@ local UnitSex = UnitSex
 local unpack = unpack
 local wipe = wipe
 
-local primaryStatTable = {
-  [1] = "STRENGTH",
-  [2] = "AGILITY",
-  [4] = "INTELLECT",
-
-  ["MageArcane"] = "INTELLECT",
-  ["MageFire"] = "INTELLECT",
-  ["MageFrost"] = "INTELLECT",
-
-  ["PaladinHoly"] = "INTELLECT",
-  ["PaladinProtection"] = "STRENGTH",
-  ["PaladinCombat"] = "STRENGTH",
-
-  ["WarriorArms"] = "STRENGTH",
-  ["WarriorFury"] = "STRENGTH",
-  ["WarriorProtection"] = "STRENGTH",
-
-  ["DruidBalance"] = "INTELLECT",
-  ["DruidFeralCombat"] = "AGILITY",
-  ["DruidRestoration"] = "INTELLECT",
-
-  ["DeathKnightBlood"] = "STRENGTH",
-  ["DeathKnightFrost"] = "STRENGTH",
-  ["DeathKnightUnholy"] = "STRENGTH",
-
-  ["HunterBeastMastery"] = "AGILITY",
-  ["HunterMarksmanship"] = "AGILITY",
-  ["HunterSurvival"] = "AGILITY",
-
-  ["PriestDiscipline"] = "INTELLECT",
-  ["PriestHoly"] = "INTELLECT",
-  ["PriestShadow"] = "INTELLECT",
-
-  ["RogueAssassination"] = "AGILITY",
-  ["RogueCombat"] = "AGILITY",
-  ["RogueSubtlety"] = "AGILITY",
-
-  ["ShamanElementalCombat"] = "INTELLECT",
-  ["ShamanEnhancement"] = "AGILITY",
-  ["ShamanRestoration"] = "INTELLECT",
-
-  ["WarlockCurses"] = "INTELLECT",
-  ["WarlockSummoning"] = "INTELLECT",
-  ["WarlockDestruction"] = "INTELLECT",
-}
-
 -- Vars
 A.enumDirection = F.Enum { "LEFT", "RIGHT", "BOTTOM" }
 A.colors = {
@@ -101,7 +49,7 @@ A.colors = {
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
-    needsEnchant = TXUI.IsMists, -- Reputation Arcanum's
+    needsEnchant = false,
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
@@ -240,28 +188,12 @@ A.characterSlots = {
   },
 }
 
-if TXUI.IsMists then A.characterSlots["RangedSlot"] = {
-  id = 19,
-  needsEnchant = false,
-  needsSocket = false,
-  direction = A.enumDirection.LEFT,
-} end
-
 function A:GetPrimaryTalentIndex()
   local primaryTalentTreeIdx = 0
   local _
   local primaryTalentTree = GetSpecialization()
 
-  if primaryTalentTree then
-    if TXUI.IsRetail then
-      primaryTalentTreeIdx = GetSpecializationInfo(primaryTalentTree) or 0
-    elseif TXUI.IsMists then
-      local specIndex = C_SpecializationInfo.GetSpecialization()
-      if specIndex then primaryTalentTreeIdx = select(1, GetTalentTabInfo(specIndex)) or 0 end
-    else
-      _, primaryTalentTreeIdx = SS:GetCurrentSpecPoints(primaryTalentTree) or nil, 0
-    end
-  end
+  if primaryTalentTree then primaryTalentTreeIdx = GetSpecializationInfo(primaryTalentTree) or 0 end
 
   return primaryTalentTreeIdx
 end
@@ -294,18 +226,8 @@ function A:CheckMessageCondition(slotOptions)
     enchantNeeded = false
     local spec = GetSpecialization()
     if spec then
-      local primaryStat
+      local primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
 
-      if TXUI.IsRetail then
-        primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
-      elseif TXUI.IsMists then
-        local specIndex = C_SpecializationInfo.GetSpecialization()
-        local primaryStatID = select(6, C_SpecializationInfo.GetSpecializationInfo(specIndex))
-        primaryStat = primaryStatTable[primaryStatID]
-      else
-        local data = SS:GetWrathCacheForSpec(spec)
-        primaryStat = primaryStatTable[data.id]
-      end
       enchantNeeded = (conditions.primary == primaryStat)
     end
   end
@@ -519,14 +441,7 @@ function A:UpdateTitle()
   end
   self.levelText:SetText(playerLevel)
 
-  local fontIcon
-  if TXUI.IsVanilla then
-    local spec = GetSpecialization()
-    local data = SS:GetWrathCacheForSpec(spec)
-    fontIcon = P.wunderbar.subModules.SpecSwitch.icons[data.id] or P.wunderbar.subModules.SpecSwitch.icons[0]
-  else
-    fontIcon = P.wunderbar.subModules.SpecSwitch.icons[primaryTalentTreeIdx] or P.wunderbar.subModules.SpecSwitch.icons[0]
-  end
+  local fontIcon = P.wunderbar.subModules.SpecSwitch.icons[primaryTalentTreeIdx] or P.wunderbar.subModules.SpecSwitch.icons[0]
 
   if self:UseFontGradient(self.db, "specIcon") then
     self.specIcon:SetText(F.String.RGB(fontIcon, classColorNormal))
@@ -983,7 +898,7 @@ function A:UpdateCharacterStats()
 
   self:ClearAnimations(true)
 
-  if spec then role = TXUI.IsVanilla and GetTalentGroupRole(spec) or GetSpecializationRole(spec) end
+  if spec then role = GetSpecializationRole(spec) end
 
   if TXUI.IsRetail then
     if level >= (MIN_PLAYER_LEVEL_FOR_ITEM_LEVEL_DISPLAY or 0) then
@@ -1040,34 +955,14 @@ function A:UpdateCharacterStats()
       -- Mode 1 - Smart
       if showStat and (statMode == 1) then
         if showStat and (stat.primary and spec) then
-          local primaryStat
+          local primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
 
-          if TXUI.IsRetail then
-            primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
-          elseif TXUI.IsMists then
-            local specIndex = C_SpecializationInfo.GetSpecialization()
-            local primaryStatID = select(6, C_SpecializationInfo.GetSpecializationInfo(specIndex))
-            primaryStat = primaryStatTable[primaryStatID]
-          else
-            local data = SS:GetWrathCacheForSpec(spec)
-            primaryStat = primaryStatTable[data.id]
-          end
           if stat.primary ~= primaryStat then showStat = false end
         end
 
         if showStat and (stat.primaries and spec) then
-          local primaryStat
+          local primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
 
-          if TXUI.IsRetail then
-            primaryStat = select(6, GetSpecializationInfo(spec, nil, nil, nil, UnitSex("player")))
-          elseif TXUI.IsMists then
-            local specIndex = C_SpecializationInfo.GetSpecialization()
-            local primaryStatID = select(6, C_SpecializationInfo.GetSpecializationInfo(specIndex))
-            primaryStat = primaryStatTable[primaryStatID]
-          else
-            local data = SS:GetWrathCacheForSpec(spec)
-            primaryStat = primaryStatTable[data.id]
-          end
           local foundPrimary = false
 
           for _, primary in pairs(stat.primaries) do
@@ -1431,12 +1326,7 @@ function A:UpdateCharacterArmory()
   if self.frame:IsShown() then E:GetModule("Misc"):UpdateCharacterInfo() end
 end
 
-function A:OpenCharacterStats()
-  if (PaperDollFrame:IsVisible() or PetPaperDollFrame:IsVisible()) and CharacterFrameExpandButton and not CharacterStatsPane:IsShown() then CharacterFrameExpandButton:Click() end
-end
-
 function A:OpenCharacterArmory()
-  if TXUI.IsMists then self:OpenCharacterStats() end
   self:UpdateCharacterArmory()
   -- For some reason in Mists animation doesn't happen immediately unless you hover the character frame, not sure what event we're missing
   E:Delay(0.01, function()
@@ -1565,7 +1455,7 @@ function A:Enable()
   self:RawHook(_G, "PaperDollFrame_SetAttackSpeed", "UpdateAttackSpeed", true)
 
   -- Apply our custom stat categories
-  if TXUI.IsRetail then self:ApplyCustomStatCategories() end
+  self:ApplyCustomStatCategories()
 
   -- Check ElvUI Options
   self:ElvOptionsCheck()
@@ -1602,4 +1492,4 @@ function A:Initialize()
   self.Initialized = true
 end
 
-if not TXUI.IsVanilla then TXUI:RegisterModule(A:GetName()) end
+if TXUI.IsRetail then TXUI:RegisterModule(A:GetName()) end
