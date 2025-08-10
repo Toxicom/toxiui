@@ -6,23 +6,19 @@ local format = string.format
 local pairs = pairs
 local sort = table.sort
 
-local function parseVersion(v)
-  -- strict semver: digits.digits.digits
-  local M, m, p = v:match("^(%d+)%.(%d+)%.(%d+)$")
-  if not M then
-    -- legacy 3-digit form like "690" or "691" (if that's a thing for you)
-    M, m, p = v:match("^(%d)(%d)(%d)$")
+local function parseVersion(a)
+  local _, _, aMajor, aMinor, aPatch = find(a, "(%d+).(%d+).(%d+)")
+  if aMajor == nil then -- convert legacy number to semver
+    _, _, aMajor, aMinor, aPatch = find(a, "(%d)(%d)(%d)")
   end
-  -- convert to numbers; default to 0 if missing
-  return tonumber(M) or 0, tonumber(m) or 0, tonumber(p) or 0
+  return aMajor, aMinor, aPatch
 end
 
+-- Semver compare if new version
 function CL:IsNewer(a, b)
-  local aM, am, ap = parseVersion(a)
-  local bM, bm, bp = parseVersion(b)
-  if aM ~= bM then return aM > bM end
-  if am ~= bm then return am > bm end
-  return ap > bp
+  local aMajor, aMinor, aPatch = parseVersion(a)
+  local bMajor, bMinor, bPatch = parseVersion(b)
+  return (aMajor > bMajor) or (aMajor == bMajor and (aMinor > bMinor or (aMinor == bMinor and aPatch > bPatch)))
 end
 
 -- Semver compare if same version
