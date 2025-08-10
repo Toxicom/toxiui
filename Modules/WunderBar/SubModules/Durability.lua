@@ -35,8 +35,6 @@ local slots = {
   [17] = _G.INVTYPE_WEAPONOFFHAND,
 }
 
-if TXUI.IsMists then slots[18] = _G.INVTYPE_RANGED end
-
 function DB:OnEvent(event)
   -- Update only ilvl display
   if event == "PLAYER_AVG_ITEM_LEVEL_UPDATE" then
@@ -131,7 +129,6 @@ function DB:OnEnter()
 
   if self.db.showItemLevel then
     local equippedPercent = min(1, max(1, self.avgItemLevel) / max(1, self.avgItemLevelEquipped))
-    if TXUI.IsMists then equippedPercent = 1 - equippedPercent end -- We negate for Wrath
     local equippedColors = { F.SlowColorGradient(equippedPercent, 1, 0.1, 0.1, 1, 1, 0.1, 0.1, 1, 0.1) }
 
     DT.tooltip:AddLine("Item Level")
@@ -246,7 +243,7 @@ function DB:UpdateFonts()
 end
 
 function DB:UpdateAverageItemLevel()
-  if TXUI.IsRetail then
+  if TXUI.IsRetail or TXUI.IsMists then
     local avgItemLevel, avgItemLevelEquipped = GetAverageItemLevel()
 
     if avgItemLevel ~= self.avgItemLevel or avgItemLevelEquipped ~= self.avgItemLevelEquipped then

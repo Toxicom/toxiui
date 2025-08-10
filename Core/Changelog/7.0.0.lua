@@ -8,6 +8,7 @@ TXUI.Changelog["7.0.0"] = {
     "* New features",
 
     "* Bug fixes",
+    "Update " .. F.String.Menu.WunderBar() .. " Durability Module's logic for Mists of Pandaria Classic",
 
     "* Profile updates",
 
