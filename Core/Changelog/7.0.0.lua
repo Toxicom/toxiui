@@ -14,6 +14,7 @@ TXUI.Changelog["7.0.0"] = {
 
     "* Documentation",
     "Update " .. F.String.Menu.WunderBar() .. " Currency Module's currencies for TWW S3",
+    "Add Vale of Eternal Blossoms mage portals to " .. F.String.Menu.WunderBar() .. " in Mists of Pandaria Classic",
 
     "* Settings refactoring",
 

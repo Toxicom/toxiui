@@ -706,6 +706,11 @@ I.HearthstoneData_Mists = {
 
   [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "EXO" }, -- Portal: Exodar
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "EXO" }, -- Teleport: Exodar
+
+  [132621] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "MOP" }, -- Teleport: Vale of Eternal Blossoms (Alliance)
+  [132627] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "MOP" }, -- Teleport: Vale of Eternal Blossoms (Horde)
+  [132620] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "MOP" }, -- Portal: Vale of Eternal Blossoms (Alliance)
+  [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "MOP" }, -- Portal: Vale of Eternal Blossoms (Horde)
 }
 
 I.HearthstoneData_Vanilla = {
