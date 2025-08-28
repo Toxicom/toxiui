@@ -12,6 +12,7 @@ TXUI.Changelog["7.0.1"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Add Cosmic Hearthstone to " .. F.String.Menu.WunderBar(),
 
     "* Settings refactoring",
 
