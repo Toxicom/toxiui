@@ -13,6 +13,7 @@ TXUI.Changelog["7.0.1"] = {
 
     "* Documentation",
     "Add Cosmic Hearthstone to " .. F.String.Menu.WunderBar(),
+    F.String.MinElv("13.97"),
 
     "* Settings refactoring",
 
