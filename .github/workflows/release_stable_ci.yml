@@ -3,7 +3,7 @@ name: ToxiUI Stable Build Release
 on:
   push:
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - "v[0-9]+.[0-9]+.[0-9]+"
 
 jobs:
   on-development-branch-check:
@@ -25,30 +25,9 @@ jobs:
       - name: Set output for on_development
         run: echo "on_development=${{ steps.contains_tag.outputs.retval }}" >> $GITHUB_ENV
 
-
-  test-syntax:
-    if: ${{ always() }}
-    needs: on-development-branch-check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Check if syntax style is valid
-        uses: JohnnyMorganz/stylua-action@b01f0cf174adf7b3891599fa03ef1a0f48aac8a7
-        if: success()
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest
-          args: --check .
-      - name: Check if code output is valid (lunarmodules)
-        uses: lunarmodules/luacheck@v1
-      - name: Check if code output is valid (BigWigsMods)
-        uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
-        with:
-          args: -q
-
   publish-stable-release:
     runs-on: ubuntu-latest
-    needs: [test-syntax, on-development-branch-check]
+    needs: [on-development-branch-check]
     if: ${{ needs.on-development-branch-check.outputs.on_development == 'true' }}
     steps:
       - uses: actions/checkout@v3

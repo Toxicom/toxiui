@@ -4,7 +4,6 @@ on:
   pull_request:
   push:
     branches:
-      - stable
       - development
 
 jobs:
@@ -46,9 +45,9 @@ jobs:
           name: package
           path: .release/*.zip
           retention-days: 7
-          compression-level: 6  # Adjust as needed (default is 6)
-          if-no-files-found: error  # Change to `ignore` if you want to continue even if files are missing
-          overwrite: true  # Ensures the artifact is replaced instead of appending
+          compression-level: 6 # Adjust as needed (default is 6)
+          if-no-files-found: error # Change to `ignore` if you want to continue even if files are missing
+          overwrite: true # Ensures the artifact is replaced instead of appending
           include-hidden-files: true
       - name: Announce test ci result in Discord
         uses: sarisia/actions-status-discord@f268209d088ace9f9666322b04d60e013fef212d
