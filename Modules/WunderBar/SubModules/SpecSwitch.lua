@@ -4,6 +4,7 @@ local SS = WB:NewModule("SpecSwitch")
 local DT = E:GetModule("DataTexts")
 
 local _G = _G
+local C_SpecializationInfo = C_SpecializationInfo
 local C_Traits_GetConfigInfo = C_Traits.GetConfigInfo
 local CreateFrame = CreateFrame
 local format = string.format
@@ -16,9 +17,9 @@ local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
 local GetNumTalentGroups = GetNumTalentGroups
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
-local C_SpecializationInfo = C_SpecializationInfo
 local GetTalentGroupRole = GetTalentGroupRole
 local GetTalentTabInfo = GetTalentTabInfo
+local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
 local SetActiveTalentGroup = SetActiveTalentGroup
 local strjoin = strjoin
@@ -284,8 +285,12 @@ end
 
 function SS:UpdatePosition()
   if not self.spec1 and not self.spec2 then return end
-
   if not self.Module then return end
+
+  if InCombatLockdown() then
+    self.needsPositionUpdate = true
+    return
+  end
 
   local anchorPoint = WB:GetGrowDirection(self.Module, true)
   local maxWidth = WB:GetMaxWidth(self.Module)
@@ -394,7 +399,11 @@ function SS:UpdateElement(spec, frame, icon, text, isSecondary)
   local loadoutName = SS:GetLoadoutName()
 
   if info and info.name then
-    frame:Show()
+    if not InCombatLockdown() then
+      frame:Show()
+    else
+      self.needsVisibilityUpdate = true
+    end
 
     if loadoutName and not isSecondary and self.db.general.showLoadout then
       text:SetText(self.db.general.useUppercase and F.String.Uppercase(loadoutName) or loadoutName)
@@ -416,14 +425,20 @@ function SS:UpdateElement(spec, frame, icon, text, isSecondary)
       icon:Hide()
     end
   else
-    frame:Hide()
+    if not InCombatLockdown() then
+      frame:Hide()
+    else
+      self.needsVisibilityUpdate = true
+    end
   end
 end
 
 function SS:UpdateElements()
   self:UpdateElement(self.spec1, self.spec1Frame, self.spec1Icon, self.spec1Text)
   self:UpdateElement(self.spec2, self.spec2Frame, self.spec2Icon, self.spec2Text, true)
-  self.forceHideSpec2 = false
+
+  -- Reset forceHideSpec2 only if safe to reposition
+  if not InCombatLockdown() then self.forceHideSpec2 = false end
 end
 
 function SS:UpdateSwitch()
@@ -491,11 +506,22 @@ function SS:CreateSwitch()
   self.infoText = infoText
 end
 
+function SS:OnCombatEnd()
+  if self.needsPositionUpdate then
+    self.needsPositionUpdate = false
+    self:UpdatePosition()
+  end
+  if self.needsVisibilityUpdate then
+    self.needsVisibilityUpdate = false
+    self:UpdateElements()
+  end
+end
+
 function SS:OnInit()
   -- Get our settings DB
   self.db = WB:GetSubModuleDB(self:GetName())
 
-  -- Reuqest to extend
+  -- Request to extend
   WB:RequestToExtend(self.Module)
 
   -- Don't init second time
@@ -522,15 +548,14 @@ function SS:OnInit()
     self.numSpecs = GetNumSpecializations()
     for i = 1, self.numSpecs do
       local id, name = GetTalentTabInfo(i)
-      if id and name then self.specCache[i] = {
-        id = id,
-        name = name,
-      } end
+      if id and name then self.specCache[i] = { id = id, name = name } end
     end
   end
 
   self:CreateSwitch()
   self:OnWunderBarUpdate()
+
+  F.Event.RegisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self.OnCombatEnd, self)
 
   -- We are done, hooray!
   self.Initialized = true

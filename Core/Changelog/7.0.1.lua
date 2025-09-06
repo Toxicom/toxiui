@@ -8,6 +8,7 @@ TXUI.Changelog["7.0.1"] = {
     "* New features",
 
     "* Bug fixes",
+    "Potentially fix " .. F.String.Menu.WunderBar() .. "'s SpecSwitch taint error" .. F.String.Sublist("Credits to dsypher2"),
 
     "* Profile updates",
     F.String.Plater() .. ": Update npc colors for season 3",
