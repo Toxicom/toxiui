@@ -3,10 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["7.0.1"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
     "* Bug fixes",
     "Potentially fix " .. F.String.Menu.WunderBar() .. "'s SpecSwitch taint error" .. F.String.Sublist("Credits to dsypher2"),
 
@@ -16,9 +12,5 @@ TXUI.Changelog["7.0.1"] = {
     "* Documentation",
     "Add Cosmic Hearthstone to " .. F.String.Menu.WunderBar(),
     F.String.MinElv("13.97"),
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
