@@ -441,6 +441,7 @@ I.HearthstoneData = {
   [228940] = { ["type"] = "toy", ["hearthstone"] = true }, -- Notorious Thread's Hearthstone
   [236687] = { ["type"] = "toy", ["hearthstone"] = true }, -- Explosive Hearthstone
   [246565] = { ["type"] = "toy", ["hearthstone"] = true }, -- Cosmic Hearthstone
+  [245970] = { ["type"] = "toy", ["hearthstone"] = true }, -- P.O.S.T. Master's Express Hearthstone
 
   -- Engineering Items/Toys --
   [18984] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dimensional Ripper - Everlook
