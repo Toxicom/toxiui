@@ -7,7 +7,7 @@ function O:Plugins_RaidInfoFrame()
   self.options.misc.args["raidInfo"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Raid Info Frame " .. E.NewSign,
+    name = "Raid Info Frame",
     args = {},
   }
 

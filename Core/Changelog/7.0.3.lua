@@ -6,6 +6,7 @@ TXUI.Changelog["7.0.3"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add options to toggle Keybind & Macro texts on Vehicle Bar buttons",
 
     "* Bug fixes",
 

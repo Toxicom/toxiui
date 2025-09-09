@@ -6,7 +6,7 @@ function O:Skins_ElvUI()
   self.options.skins.args["gameMenuSkinGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Game Menu Skin " .. E.NewSign,
+    name = "Game Menu Skin",
     args = {},
   }
 

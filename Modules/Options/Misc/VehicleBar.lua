@@ -58,8 +58,21 @@ function O:Plugins_VehicleBar()
     optionsDisabled = function()
       return isVehicleBarDisabled() or self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
     end
+  end
 
-    generalGroup.buttonSize = {
+  self:AddSpacer(options)
+
+  -- Buttons
+  do
+    -- Button Group
+    local buttonGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Buttons",
+      hidden = optionsDisabled,
+    }, {
+      name = "Settings for the Action Bar Buttons of the Vehicle Bar.\n\n",
+    }, I.Requirements.VehicleBar).args
+
+    buttonGroup.buttonSize = {
       order = self:GetOrder(),
       type = "range",
       name = "Button Width",
@@ -74,7 +87,34 @@ function O:Plugins_VehicleBar()
       min = 24,
       max = 64,
       step = 4,
-      disabled = optionsDisabled,
+    }
+
+    buttonGroup.showKeybinds = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Keybinds " .. E.NewSign,
+      desc = "Toggle whether to show keybinds of an action bar button on the Vehicle Bar.",
+      get = function()
+        return E.db.TXUI.vehicleBar.showKeybinds
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.showKeybinds = value
+        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+      end,
+    }
+
+    buttonGroup.showMacro = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Macro Text " .. E.NewSign,
+      desc = "Toggle whether to show macro text of an action bar button on the Vehicle Bar.",
+      get = function()
+        return E.db.TXUI.vehicleBar.showMacro
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.showMacro = value
+        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+      end,
     }
   end
 
@@ -105,7 +145,6 @@ function O:Plugins_VehicleBar()
         E.db.TXUI.vehicleBar.vigorBar.enabled = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
-      disabled = optionsDisabled,
     }
 
     vigorDisabled = function()

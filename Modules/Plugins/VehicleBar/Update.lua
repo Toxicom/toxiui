@@ -45,11 +45,12 @@ end
 
 function VB:UpdateKeybinds()
   for i, button in ipairs(self.bar.buttons) do
+    -- Keybinds handling
     local buttonIndex = (i == 8) and 12 or i
     local actionButton = _G["ActionButton" .. buttonIndex]
     if actionButton then
       local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
-      if keybind then
+      if keybind and self.db.showKeybinds then
         button.HotKey:SetTextColor(1, 1, 1)
         button.HotKey:SetText(self:FormatKeybind(keybind))
         -- stop truncating keybinds (thx Repooc =])
@@ -57,6 +58,15 @@ function VB:UpdateKeybinds()
         button.HotKey:Show()
       else
         button.HotKey:Hide()
+      end
+    end
+
+    -- Macro Text handling
+    if button.Name then
+      if self.db.showMacro then
+        button.Name:Show()
+      else
+        button.Name:Hide()
       end
     end
   end

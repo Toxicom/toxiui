@@ -479,6 +479,9 @@ P.vehicleBar = {
   animations = true,
   animationsMult = 1, -- Animation speed, higher than 1 => slower, lower than 1 => faster
 
+  showKeybinds = true,
+  showMacro = true,
+
   position = "BOTTOM,ElvUIParent,BOTTOM,0,210",
 
   vigorBar = {
