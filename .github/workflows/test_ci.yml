@@ -27,28 +27,28 @@ jobs:
           args: --check .
       - name: Check if code output is valid (lunarmodules)
         uses: lunarmodules/luacheck@v1
-      - name: Check if code output is valid (BigWigsMods)
-        uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
-        with:
-          args: -q
-      - name: Draft fake release as artifact
-        uses: Toxicom/packager@master
-        if: success()
-        env:
-          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          args: -m .pkgmeta-dev
-      - name: Upload artifact to GitHub
-        uses: actions/upload-artifact@v4
-        if: success()
-        with:
-          name: package
-          path: .release/*.zip
-          retention-days: 7
-          compression-level: 6 # Adjust as needed (default is 6)
-          if-no-files-found: error # Change to `ignore` if you want to continue even if files are missing
-          overwrite: true # Ensures the artifact is replaced instead of appending
-          include-hidden-files: true
+      # - name: Check if code output is valid (BigWigsMods)
+      #   uses: BigWigsMods/actions/luacheck@02ca6f20cba2493dbf714924fcc9ccbb7235bd00
+      #   with:
+      #     args: -q
+      # - name: Draft fake release as artifact
+      #   uses: Toxicom/packager@master
+      #   if: success()
+      #   env:
+      #     GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     args: -m .pkgmeta-dev
+      # - name: Upload artifact to GitHub
+      #   uses: actions/upload-artifact@v4
+      #   if: success()
+      #   with:
+      #     name: package
+      #     path: .release/*.zip
+      #     retention-days: 7
+      #     compression-level: 6 # Adjust as needed (default is 6)
+      #     if-no-files-found: error # Change to `ignore` if you want to continue even if files are missing
+      #     overwrite: true # Ensures the artifact is replaced instead of appending
+      #     include-hidden-files: true
       - name: Announce test ci result in Discord
         uses: sarisia/actions-status-discord@f268209d088ace9f9666322b04d60e013fef212d
         if: always()
