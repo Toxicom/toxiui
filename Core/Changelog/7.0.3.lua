@@ -13,6 +13,7 @@ TXUI.Changelog["7.0.3"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Update .toc for Mists of Pandaria Classic",
 
     "* Settings refactoring",
 
