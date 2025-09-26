@@ -812,6 +812,11 @@ function PF:BuildProfile()
         height = F.Dpi(27),
       },
 
+      -- New "Custom" tab introduced in ElvUI 14.00
+      auras = {
+        enable = false,
+      },
+
       -- UnitFrame Target raidicon (Target Marker Icon)
       raidicon = {
         size = F.Dpi(24),

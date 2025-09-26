@@ -11,7 +11,9 @@ TXUI.Changelog["7.0.3"] = {
     "* Bug fixes",
 
     "* Profile updates",
-    "Update ElvUI filter names to account for 14.0 changes",
+    "Update ElvUI filter names to account for 14.00 changes",
+    "Disable new \"Custom\" auras on Target UnitFrame"
+      .. F.String.Sublist("The same information is already provided via Plater's \"Buff Special\", so repeated information seems redundant."),
 
     "* Documentation",
     "Update .toc for Mists of Pandaria Classic",
