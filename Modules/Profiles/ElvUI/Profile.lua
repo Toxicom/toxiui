@@ -776,7 +776,7 @@ function PF:BuildProfile()
         anchorPoint = "TOPRIGHT",
         growthX = "LEFT",
         perrow = 7,
-        priority = "Blacklist,Personal,Boss,nonPersonal,CastByUnit",
+        priority = "Blacklist,Personal,Boss,NonPersonal,CastByUnit",
         spacing = 0,
         xOffset = 0,
         yOffset = F.Dpi(60),
@@ -1052,7 +1052,7 @@ function PF:BuildProfile()
       anchorPoint = "TOPLEFT",
       maxDuration = 0,
       perrow = 5,
-      priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,nonPersonal",
+      priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,NonPersonal",
       sizeOverride = F.Dpi(24),
 
       -- Stack Counter
@@ -1068,7 +1068,7 @@ function PF:BuildProfile()
     debuffs = {
       durationPosition = "CENTER",
       maxDuration = 0,
-      priority = "Blacklist,Personal,nonPersonal",
+      priority = "Blacklist,Personal,NonPersonal",
       spacing = F.Dpi(0),
       xOffset = F.Dpi(-3),
       yOffset = F.Dpi(25),

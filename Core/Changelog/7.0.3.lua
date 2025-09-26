@@ -11,6 +11,7 @@ TXUI.Changelog["7.0.3"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Update ElvUI filter names to account for 14.0 changes",
 
     "* Documentation",
     "Update .toc for Mists of Pandaria Classic",
