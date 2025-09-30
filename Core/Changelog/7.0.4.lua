@@ -8,6 +8,7 @@ TXUI.Changelog["7.0.4"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix " .. F.String.Plater() .. " NPC Colors not importing correctly",
 
     "* Profile updates",
 
@@ -16,5 +17,6 @@ TXUI.Changelog["7.0.4"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Refactor code on how we import a " .. F.String.Plater() .. " profile",
   },
 }

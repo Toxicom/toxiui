@@ -6,7 +6,6 @@ local _G = _G
 function PF:Plater(version)
   -- Globals
   local Plater = _G.Plater
-  local DF = _G.DetailsFramework
 
   -- Overwrite plater function to supress popups on profile change
   if not self:IsHooked(Plater, "RefreshConfigProfileChanged") then self:RawHook(Plater, "RefreshConfigProfileChanged", function()
@@ -28,34 +27,13 @@ function PF:Plater(version)
   end
 
   local importString = version == "new" and PF.ImportStrings.PlaterNew or PF.ImportStrings.PlaterOld
-
-  -- Decompres data
-  local profile = Plater.DecompressData(importString, "print")
-
-  -- Set profile to Toxi
-  Plater.db:SetProfile(I.ProfileNames.Default)
-
-  -- Reset previous profile
-  Plater.db:ResetProfile(false, true)
-
-  -- Deep copy new profile over
-  DF.table.copy(Plater.db.profile, profile)
-
-  -- Restore cvars from new profile
-  Plater.RestoreProfileCVars()
-
-  -- Don't poison the cache with Wotlk/Retail data
-  _G.PlaterDB.captured_casts = {}
-  _G.PlaterDB.captured_spells = {}
+  Plater.ImportAndSwitchProfile(I.ProfileNames.Default, importString, true, true, true, true)
 
   -- Unook plater function to supress popups on profile change
   if self:IsHooked(Plater, "RefreshConfigProfileChanged") then self:Unhook(Plater, "RefreshConfigProfileChanged") end
 
   -- Unook plater function to supress popups on profile creation
   if self:IsHooked(Plater, "OnProfileCreated") then self:Unhook(Plater, "OnProfileCreated") end
-
-  -- Apply privates, not needed cause done already
-  -- self:Plater_Private()
 end
 
 function PF:Plater_Private()
