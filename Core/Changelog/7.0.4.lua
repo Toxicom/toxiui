@@ -14,6 +14,7 @@ TXUI.Changelog["7.0.4"] = {
 
     "* Documentation",
     F.String.MinElv("14.02"),
+    "Update .toc for Patch 11.2.5",
 
     "* Settings refactoring",
 
