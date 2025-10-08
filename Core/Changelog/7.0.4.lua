@@ -11,6 +11,7 @@ TXUI.Changelog["7.0.4"] = {
     "Fix " .. F.String.Plater() .. " NPC Colors not importing correctly",
 
     "* Profile updates",
+    "Disable " .. F.String.ElvUI() .. " Chat during Layout installation if Chattynator is enabled",
 
     "* Documentation",
     F.String.MinElv("14.02"),

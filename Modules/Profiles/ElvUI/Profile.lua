@@ -1989,11 +1989,17 @@ end
 
 function PF:ElvUIProfilePrivate()
   local isBagsEnabled = true
+  local isChatEnabled = true
 
   local BAG_ADDONS = { "Bagnon", "BetterBags", "Baggins", "Sorted", "Inventorian", "Baganator", "ArkInventory", "OneBag3", "Combuctor" }
+  local CHAT_ADDONS = { "Chattynator" }
 
   for _, addon in ipairs(BAG_ADDONS) do
     if F.IsAddOnEnabled(addon) then isBagsEnabled = false end
+  end
+
+  for _, addon in ipairs(CHAT_ADDONS) do
+    if F.IsAddOnEnabled(addon) then isChatEnabled = false end
   end
 
   F.Table.Crush(E.private, {
@@ -2019,7 +2025,7 @@ function PF:ElvUIProfilePrivate()
 
     -- Chat
     chat = {
-      enable = true,
+      enable = isChatEnabled,
     },
 
     bags = {
