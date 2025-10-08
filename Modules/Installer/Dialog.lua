@@ -123,7 +123,7 @@ function IS:Dialog()
 
     -- Custom handling for each page
     if page == Pages.Welcome then
-      AddImageScripts { "skip", "skip", I.Media.Installer.DiscordBanner }
+      AddImageScripts { "skip", I.Media.Installer.TurboMode, I.Media.Installer.DiscordBanner }
     elseif page == Pages.Core then
       AddImageScripts { I.Media.Installer.Vertical, I.Media.Installer.Horizontal }
     elseif page == Pages.Details then
@@ -210,9 +210,18 @@ function IS:Dialog()
             installFrame.Next:Click()
           end)
           installFrame.Option2:Show()
-          installFrame.Option2:SetText("Skip Process")
+          installFrame.Option2:SetText(F.String.Error("Turbo Mode"))
           installFrame.Option2:SetScript("OnClick", function()
-            installFrame:Hide()
+            -- Set ToxiUI profile
+            E.data:SetProfile(I.ProfileNames.Default)
+            -- Set Vertical layout
+            E.db.TXUI.installer.layout = I.Enum.Layouts.VERTICAL
+            -- Install profiles
+            IS:ElvUI()
+            if F.IsAddOnEnabled("Details") then PF:Details(false) end
+            if F.IsAddOnEnabled("Plater") then PF:Plater("new") end
+            PF:BigWigs()
+            ReloadUI()
           end)
           installFrame.Option3:Show()
           installFrame.Option3:SetText("Discord")

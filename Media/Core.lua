@@ -156,6 +156,7 @@ F.AddMedia("installer", "Horizontal")
 F.AddMedia("installer", "DiscordBanner")
 F.AddMedia("installer", "WAGuide")
 F.AddMedia("installer", "WebPreview")
+F.AddMedia("installer", "TurboMode")
 
 -- -----
 --   STYLE THUBMNAILS

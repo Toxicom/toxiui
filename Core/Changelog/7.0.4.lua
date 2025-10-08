@@ -6,6 +6,9 @@ TXUI.Changelog["7.0.4"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add " .. F.String.Error("Turbo Mode") .. " to the installer." .. F.String.Sublist(
+      "It is a very dangerous button that installs all of ToxiUI essential profiles in one click without asking you anything."
+    ) .. F.String.Sublist("It will overwrite shit. Use at your own discretion!"),
 
     "* Bug fixes",
     "Fix " .. F.String.Plater() .. " NPC Colors not importing correctly",
