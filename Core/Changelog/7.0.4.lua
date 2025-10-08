@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["7.0.4"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add " .. F.String.Error("Turbo Mode") .. " to the installer." .. F.String.Sublist(
       "It is a very dangerous button that installs all of ToxiUI essential profiles in one click without asking you anything."
@@ -19,8 +17,6 @@ TXUI.Changelog["7.0.4"] = {
     "* Documentation",
     F.String.MinElv("14.02"),
     "Update .toc for Patch 11.2.5",
-
-    "* Settings refactoring",
 
     "* Development improvements",
     "Refactor code on how we import a " .. F.String.Plater() .. " profile",

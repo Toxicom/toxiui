@@ -1,16 +1,24 @@
-# ToxiUI v7.0.3 - 2025-09-26
+# ToxiUI v7.0.4 - 2025-10-08
 
 ## 🚀 New Features
 
-- Add options to toggle Keybind & Macro texts on Vehicle Bar buttons.
+- Add **Turbo Mode** to the installer
+  - It is a very dangerous button that installs all of ToxiUI essential profiles in one click without asking you anything.
+  - It will overwrite shit. Use at your own discretion!
+
+## 🐛 Bug Fixes
+
+- Fix **Plater** NPC Colors not importing correctly
 
 ## 🧩 Profile Updates
 
-- Update ElvUI filter names to account for 14.00 changes.
-- Disable new "Custom" auras on Target UnitFrame
-  - The same information is already provided via Plater's "Buff Special", so repeated information seems redundant.
+- Disable **ElvUI** Chat during Layout installation if Chattynator is enabled
 
 ## 📘 Documentation
 
-- Update .toc for Mists of Pandaria Classic.
-- Increase minimum required ElvUI version to 14.00
+- Update `.toc` for Patch 11.2.5
+- Increase minimum required **ElvUI** version to `14.02`
+
+## 🧰 Development Improvements
+
+- Refactor code on how we import a **Plater** profile
