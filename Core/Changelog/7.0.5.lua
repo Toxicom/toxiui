@@ -10,6 +10,7 @@ TXUI.Changelog["7.0.5"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.Plater() .. ": Add Legion Remix Empowered buffs to both Automatic and Manual tracking",
 
     "* Documentation",
 
