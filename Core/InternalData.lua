@@ -15,10 +15,11 @@ I.Data.Contributor = {
         ["Toxisin-Ravencrest"] = true, -- Rogue
         ["Toxivoid-Ravencrest"] = true, -- Priest
         ["Tòxicom-Ravencrest"] = true, -- Demon Hunter
-        ["Tøxicom-Ravencrest"] = true, -- Shaman
+        ["Toxistorm-Ravencrest"] = true, -- Shaman
         ["Tøxii-Ravencrest"] = true, -- Hunter
         ["Toxilich-Ravencrest"] = true, -- Death Knight
         ["Toxivoker-Ravencrest"] = true, -- Evoker
+        ["Toximoon-Ravencrest"] = true, -- Druid
 
         -- TarrenMill
         ["Toxiholy-TarrenMill"] = true,

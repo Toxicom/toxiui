@@ -9,7 +9,7 @@ local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "
 local splitUnitframes = { "player", "party", "focus", "targettarget", "pet" }
 
 function T:SetupCvars()
-  if E.TimerunningID and UnitLevel("player") < 70 then
+  if E.TimerunningID and UnitLevel("player") < 80 then
     return
   else
     -- CVars
@@ -84,7 +84,7 @@ function T:SetupProfile()
   -- WindTools
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
     E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
-    E.db.WT.quest.turnIn.enable = false
+    E.db.WT.quest.turnIn.enable = true
   end
 end
 
