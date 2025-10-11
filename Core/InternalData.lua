@@ -14,7 +14,7 @@ I.Data.Contributor = {
         ["Toxilock-Ravencrest"] = true, -- Warlock
         ["Toxisin-Ravencrest"] = true, -- Rogue
         ["Toxivoid-Ravencrest"] = true, -- Priest
-        ["Tòxicom-Ravencrest"] = true, -- Demon Hunter
+        ["Toxipain-Ravencrest"] = true, -- Demon Hunter
         ["Toxistorm-Ravencrest"] = true, -- Shaman
         ["Tøxii-Ravencrest"] = true, -- Hunter
         ["Toxilich-Ravencrest"] = true, -- Death Knight
@@ -345,9 +345,6 @@ I.Data.Contributor = {
         ["Nekroirek-BurningLegion"] = true,
         ["Gothy-BurningLegion"] = true,
         ["Houphria-BurningLegion"] = true,
-
-        -- Седогрив
-        ["Ортетамин-Седогрив"] = true,
       },
     },
   },
