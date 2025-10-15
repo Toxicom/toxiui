@@ -9,12 +9,12 @@ local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "
 local splitUnitframes = { "player", "party", "focus", "targettarget", "pet" }
 
 function T:SetupCvars()
-  if E.TimerunningID and UnitLevel("player") < 80 then
-    return
-  else
-    -- CVars
-    SetCVar("autoLootDefault", 1)
-  end
+  -- if E.TimerunningID and UnitLevel("player") < 80 then
+  -- return
+  -- else
+  -- CVars
+  SetCVar("autoLootDefault", 1)
+  -- end
 end
 
 function T:SetupProfile()
@@ -63,23 +63,6 @@ function T:SetupProfile()
     E.db.unitframe.units[unit].customTexts["toxiui:name"].text_format = "[tx:name:medium:split{Toxi}]"
   end
   E.db.unitframe.units.target.customTexts["toxiui:name"].text_format = "[tx:name:abbrev:medium:split{Toxi}]"
-
-  E.db.bags.bagSize = TXUI.IsRetail and 50 or 60
-  E.db.bags.bagButtonSpacing = 2
-  E.db.bags.split.player = true
-
-  -- Enable split for bags 1 - 11
-  for i = 1, 11 do
-    E.db.bags.split["bag" .. i] = true
-  end
-
-  E.db.bags.split.bagSpacing = 10
-  E.db.bags.split.bankSpacing = 10
-  E.db.bags.bank = true
-  E.db.bags.bankSize = TXUI.IsRetail and 50 or 60
-  E.db.bags.bankButtonSpacing = 2
-
-  if F.IsAddOnEnabled("BetterBags") or F.IsAddOnEnabled("Sorted") then E.private.bags.enable = false end
 
   -- WindTools
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
