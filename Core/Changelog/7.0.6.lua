@@ -1,6 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
-TXUI.Changelog["7.0.5"] = {
+TXUI.Changelog["7.0.6"] = {
   HOTFIX = true,
   CHANGES = {
     "* Profile updates",

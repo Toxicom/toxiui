@@ -1,24 +1,11 @@
-# ToxiUI v7.0.4 - 2025-10-08
-
-## 🚀 New Features
-
-- Add **Turbo Mode** to the installer
-  - It is a very dangerous button that installs all of ToxiUI essential profiles in one click without asking you anything.
-  - It will overwrite shit. Use at your own discretion!
-
-## 🐛 Bug Fixes
-
-- Fix **Plater** NPC Colors not importing correctly
+# ToxiUI v7.0.6 - 2025-10-21
 
 ## 🧩 Profile Updates
 
-- Disable **ElvUI** Chat during Layout installation if Chattynator is enabled
+- **Plater**: Add Legion Remix Empowered buffs to both Automatic and Manual tracking
+- **Plater**: Add **Force Threat Colors** mod to override M+ colors when you have aggro
+- **Plater**: Re-add **Sigil of Silence** _(Demon Hunter)_ to Buff Special
 
-## 📘 Documentation
+---
 
-- Update `.toc` for Patch 11.2.5
-- Increase minimum required **ElvUI** version to `14.02`
-
-## 🧰 Development Improvements
-
-- Refactor code on how we import a **Plater** profile
+Version `7.0.6` is identical to `7.0.5` because forgot to update the changelog for previous version -\_-
