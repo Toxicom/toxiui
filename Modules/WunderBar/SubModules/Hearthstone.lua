@@ -45,8 +45,7 @@ function HS:GetCooldownForItem(itemInfo)
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:GetCooldownForItem > Item could not be found in DB") end
 
   local gcd = GetSpellCooldown(61304)
-  local gcdDur = 0
-  gcdDur = gcd and gcd.duration or 1500
+  local gcdDur = gcd and gcd.duration or 1500
   if gcdDur == nil then return self:LogDebug("HS:GetCooldownForItem > GetSpellCooldown returned nil for gcd") end
 
   local startTime, duration
