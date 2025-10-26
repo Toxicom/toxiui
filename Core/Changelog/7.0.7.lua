@@ -8,6 +8,7 @@ TXUI.Changelog["7.0.7"] = {
     "* New features",
 
     "* Bug fixes",
+    "Half-baked patch fixes for Classic Era",
 
     "* Profile updates",
 

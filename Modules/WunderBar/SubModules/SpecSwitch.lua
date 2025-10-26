@@ -8,7 +8,7 @@ local C_SpecializationInfo = C_SpecializationInfo
 local C_Traits_GetConfigInfo = C_Traits.GetConfigInfo
 local CreateFrame = CreateFrame
 local format = string.format
-local GetActiveTalentGroup = GetActiveTalentGroup
+local GetActiveSpecGroup = C_SpecializationInfo.GetActiveSpecGroup
 local GetCurrentSpecID = TXUI.IsRetail and PlayerUtil.GetCurrentSpecID or nil
 local GetCVarBool = GetCVarBool
 local GetLastSelectedSavedConfigID = TXUI.IsRetail and C_ClassTalents.GetLastSelectedSavedConfigID or nil
@@ -17,8 +17,7 @@ local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
 local GetNumTalentGroups = GetNumTalentGroups
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
-local GetTalentGroupRole = GetTalentGroupRole
-local GetTalentTabInfo = GetTalentTabInfo
+local GetTalentTabInfo = C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo or GetTalentTabInfo
 local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
 local SetActiveTalentGroup = SetActiveTalentGroup
@@ -197,9 +196,11 @@ end
 function SS:GetCurrentSpecPoints(spec)
   local points = {}
   local highPointsSpentIndex = nil
+  local returnRole
 
   for treeIndex = 1, 3 do
-    local _, name, _, _, pointsSpent, _, previewPointsSpent, _ = GetTalentTabInfo(treeIndex, false, false, spec)
+    local _, name, _, _, role, _, pointsSpent, _, previewPointsSpent, _ = GetTalentTabInfo(treeIndex, false, false, spec)
+    returnRole = role
     if name then
       local displayPointsSpent = pointsSpent + previewPointsSpent
       points[treeIndex] = displayPointsSpent
@@ -209,20 +210,19 @@ function SS:GetCurrentSpecPoints(spec)
     end
   end
 
-  return points, highPointsSpentIndex
+  return points, highPointsSpentIndex, returnRole
 end
 
 function SS:GetWrathCacheForSpec(spec)
-  local points, highPointsSpentIndex = SS:GetCurrentSpecPoints(spec)
+  local points, highPointsSpentIndex, role = SS:GetCurrentSpecPoints(spec)
 
-  local role = GetTalentGroupRole(spec)
   if not role or role == "NONE" then role = "DAMAGER" end
 
   if highPointsSpentIndex ~= nil then
-    local _, name, _, icon, _, stringId = select(1, GetTalentTabInfo(highPointsSpentIndex, false, false, spec))
+    local specId, name, _, icon = GetTalentTabInfo(highPointsSpentIndex, false, false, spec)
 
     if name then return {
-      id = stringId,
+      id = specId,
       icon = icon,
       name = name,
       role = role,
@@ -243,7 +243,7 @@ function SS:UpdateSpecialization()
   local spec1, spec2
 
   if TXUI.IsVanilla then
-    spec1 = GetActiveTalentGroup()
+    spec1 = GetActiveSpecGroup()
     spec2 = GetNumTalentGroups() == 2 and (spec1 == 2 and 1 or 2) or nil
     self.specCache = {}
 

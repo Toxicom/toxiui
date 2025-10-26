@@ -44,32 +44,24 @@ function HS:GetCooldownForItem(itemInfo)
 
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:GetCooldownForItem > Item could not be found in DB") end
 
-  local _, gcd
-  if TXUI.IsVanilla then
-    _, gcd = GetSpellCooldown(61304)
-  else
-    gcd = GetSpellCooldown(61304)
-    gcd = gcd and gcd.duration or nil
-  end
-  if gcd == nil then return self:LogDebug("HS:GetCooldownForItem > GetSpellCooldown returned nil for gcd") end
+  local gcd = GetSpellCooldown(61304)
+  local gcdDur = 0
+  gcdDur = gcd and gcd.duration or 1500
+  if gcdDur == nil then return self:LogDebug("HS:GetCooldownForItem > GetSpellCooldown returned nil for gcd") end
 
   local startTime, duration
 
   if (itemInfo.type == "toy") or (itemInfo.type == "item") then
     startTime, duration = GetItemCooldownFunction(itemInfo.id)
   elseif itemInfo.type == "spell" then
-    if TXUI.IsVanilla then
-      startTime, duration = GetSpellCooldown(itemInfo.id)
-    else
-      local cd = GetSpellCooldown(itemInfo.id)
-      startTime, duration = cd.startTime, cd.duration
-    end
+    local cd = GetSpellCooldown(itemInfo.id)
+    startTime, duration = cd.startTime, cd.duration
   end
 
   if startTime == nil or duration == nil then return self:LogDebug("HS:GetCooldownForItem > GetItemCooldown returned nil for item") end
 
   local cooldownTime = startTime + duration - GetTime()
-  local ready = (duration - gcd <= 0) or cooldownTime <= 0
+  local ready = (duration - gcdDur <= 0) or cooldownTime <= 0
 
   if not ready then
     local min = floor(cooldownTime / 60)

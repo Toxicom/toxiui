@@ -1,11 +1,9 @@
-# ToxiUI v7.0.6 - 2025-10-21
+# ToxiUI v7.0.7 - 2025-10-26
 
-## 🧩 Profile Updates
+## 🐛 Bug Fixes
 
-- **Plater**: Add Legion Remix Empowered buffs to both Automatic and Manual tracking
-- **Plater**: Add **Force Threat Colors** mod to override M+ colors when you have aggro
-- **Plater**: Re-add **Sigil of Silence** _(Demon Hunter)_ to Buff Special
+- Half-baked patch fixes for Classic Era
 
----
+## 📘 Documentation
 
-Version `7.0.6` is identical to `7.0.5` because forgot to update the changelog for previous version -\_-
+- Update `.toc` for Classic Era patch 1.15.8
