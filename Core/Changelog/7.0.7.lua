@@ -15,6 +15,7 @@ TXUI.Changelog["7.0.7"] = {
     "* Documentation",
     "Update .toc for Classic Era patch 1.15.8",
     "Update .toc for Mists of Pandaria patch 5.5.2",
+    F.String.MinElv("14.03"),
 
     "* Settings refactoring",
 
