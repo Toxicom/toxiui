@@ -2,7 +2,6 @@
   <Script file='Core.lua' />
   <Script file='Helpers.lua' />
 
-  <Script file='Create.lua' />
   <Script file='Animation.lua' />
   <Script file='Update.lua' />
 </Ui>

@@ -986,14 +986,6 @@ function F.ProcessMovers(dbRef)
   end
 end
 
-function F.IsSkyriding()
-  if TXUI.IsRetail then
-    return UnitPowerBarID("player") == I.Constants.VIGOR_BAR_ID
-  else
-    return false
-  end
-end
-
 -- Copied from E:IsUltrawide() with less restrictions
 function F.IsUltrawide()
   --HQ Resolution

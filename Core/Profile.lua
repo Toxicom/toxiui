@@ -483,13 +483,6 @@ P.vehicleBar = {
   showMacro = true,
 
   position = "BOTTOM,ElvUIParent,BOTTOM,0,210",
-
-  vigorBar = {
-    enabled = true,
-    thrillColor = F.Table.HexToRGB("#00caff"),
-    normalTexture = "- ToxiUI",
-    darkTexture = "- Tx Half",
-  },
 }
 
 -- MiniMapCoords

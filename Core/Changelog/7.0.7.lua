@@ -4,6 +4,7 @@ TXUI.Changelog["7.0.7"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove the " .. TXUI.Title .. " Vigor Bar & Speed Text" .. F.String.Sublist("Vigor no longer exists, instead skyriding spells have charges with cooldown"),
 
     "* New features",
 

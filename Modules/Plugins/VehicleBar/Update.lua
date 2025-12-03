@@ -8,40 +8,6 @@ local format = string.format
 local pairs = pairs
 local ipairs = ipairs
 local strsplit = strsplit
-local C_PlayerInfo = C_PlayerInfo
-local Round = Round
-local BASE_MOVEMENT_SPEED = BASE_MOVEMENT_SPEED
-
-function VB:UpdateVigorSegments()
-  local widgetInfo = self:GetWidgetInfo()
-
-  if not widgetInfo then return end
-
-  local currentVigor = widgetInfo.numFullFrames
-  local partialFill = widgetInfo.fillValue / widgetInfo.fillMax
-
-  for i, segment in ipairs(self.vigorBar.segments) do
-    if i <= currentVigor then
-      segment:SetValue(1)
-      segment:Show()
-    elseif i == currentVigor + 1 then
-      segment:SetValue(partialFill)
-      segment:Show()
-    else
-      segment:SetValue(0)
-      segment:Show()
-    end
-  end
-end
-
-function VB:UpdateSpeedText()
-  if VB:IsVigorAvailable() and not self.vigorBar then return end
-  local isGliding, _, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
-  local base = isGliding and forwardSpeed or GetUnitSpeed("player")
-  local movespeed = Round(base / BASE_MOVEMENT_SPEED * 100)
-
-  self.vigorBar.speedText:SetText(self:ColorSpeedText(format("%d%%", movespeed)))
-end
 
 function VB:UpdateKeybinds()
   for i, button in ipairs(self.bar.buttons) do
@@ -70,36 +36,6 @@ function VB:UpdateKeybinds()
       end
     end
   end
-end
-
-function VB:UpdateVigorBar()
-  if F.Table.IsEmpty(self.vigorBar.segments) then self:CreateVigorSegments() end
-
-  -- Check if bar width has changed
-  local currentBarWidth = self.bar:GetWidth()
-  if currentBarWidth ~= self.previousBarWidth then
-    -- Update the width of the vigorBar to match the width of self.bar
-    local width = currentBarWidth - self.spacing
-    self.vigorBar:SetWidth(width)
-
-    -- Store the new width
-    self.previousBarWidth = currentBarWidth
-  end
-
-  local widgetInfo = self:GetWidgetInfo()
-
-  if widgetInfo and widgetInfo.numTotalFrames then
-    local maxVigor = widgetInfo.numTotalFrames
-
-    -- Calculate the new segment width based on the updated vigorBar width
-    local segmentWidth = (self.vigorBar:GetWidth() / maxVigor) - (self.spacing * 2)
-
-    for _, segment in ipairs(self.vigorBar.segments) do
-      segment:SetWidth(segmentWidth) -- Update the width of each segment
-    end
-  end
-
-  self:UpdateVigorSegments()
 end
 
 function VB:UpdateBar()
@@ -209,7 +145,6 @@ function VB:UpdateBar()
 
   -- Hook for animation
   self:SecureHookScript(bar, "OnShow", "OnShowEvent")
-  if TXUI.IsRetail then self:SecureHookScript(bar, "OnHide", "OnHideEvent") end
 
   -- Hide
   bar:Hide()
@@ -223,8 +158,6 @@ function VB:UpdateBar()
     for _, button in pairs(bar.buttons) do
       button:UpdateAction()
     end
-
-    if TXUI.IsRetail and not self.vigorBar and self.vdb.enabled then self:CreateVigorBar() end
   end
 
   self:UpdateKeybinds()

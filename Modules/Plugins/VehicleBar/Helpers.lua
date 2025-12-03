@@ -3,26 +3,8 @@ local VB = TXUI:GetModule("VehicleBar")
 local CM = TXUI:GetModule("ColorModifiers")
 
 local C_UnitAuras = C_UnitAuras
-local C_UIWidgetManager = C_UIWidgetManager
 local sub = string.utf8sub
 local len = strlenutf8
-
-function VB:IsVigorAvailable()
-  return F.IsSkyriding()
-end
-
-function VB:GetWidgetInfo()
-  local widgetSetID = C_UIWidgetManager.GetPowerBarWidgetSetID()
-  local widgets = C_UIWidgetManager.GetAllWidgetsBySetID(widgetSetID)
-
-  local widgetInfo = nil
-  for _, w in pairs(widgets) do
-    local tempInfo = C_UIWidgetManager.GetFillUpFramesWidgetVisualizationInfo(w.widgetID)
-    if tempInfo and tempInfo.shownState == 1 then widgetInfo = tempInfo end
-  end
-
-  return widgetInfo
-end
 
 -- Taken from ElvUI, see AB:FixKeybindText
 function VB:FixKeybindText(text)
@@ -60,16 +42,5 @@ function VB:FormatKeybind(keybind)
     return text
   else
     return text
-  end
-end
-
-function VB:ColorSpeedText(msg)
-  local thrillActive = C_UnitAuras.GetPlayerAuraBySpellID(377234)
-  if thrillActive then
-    local r, g, b = self.vdb.thrillColor.r, self.vdb.thrillColor.g, self.vdb.thrillColor.b
-
-    return F.String.Color(msg, F.String.FastRGB(r, g, b))
-  else
-    return msg
   end
 end

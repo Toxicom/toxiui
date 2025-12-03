@@ -12,20 +12,6 @@ function VB:StopAllAnimations()
       button:SetAlpha(1)
     end
   end
-
-  if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
-    for _, segment in ipairs(self.vigorBar.segments) do
-      if segment.FadeIn and (segment.FadeIn:IsPlaying()) then
-        segment.FadeIn:Stop()
-        segment:SetAlpha(1)
-      end
-    end
-
-    if self.vigorBar.speedText.FadeIn and (self.vigorBar.speedText.FadeIn:IsPlaying()) then
-      self.vigorBar.speedText.FadeIn:Stop()
-      self.vigorBar.speedText:SetAlpha(1)
-    end
-  end
 end
 
 function VB:SetupButtonAnim(button, index)
