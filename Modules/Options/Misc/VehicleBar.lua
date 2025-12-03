@@ -1,6 +1,5 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
-local ACH = LibStub("LibAceConfigHelper")
 
 function O:Plugins_VehicleBar()
   local isVehicleBarDisabled = function()

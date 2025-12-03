@@ -2,7 +2,6 @@ local TXUI, F, E, I, V, P, G, L = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
 local CM = TXUI:GetModule("ColorModifiers")
 
-local C_UnitAuras = C_UnitAuras
 local sub = string.utf8sub
 local len = strlenutf8
 
