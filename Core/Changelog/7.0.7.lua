@@ -7,6 +7,9 @@ TXUI.Changelog["7.0.7"] = {
     "Remove the " .. TXUI.Title .. " Vigor Bar & Speed Text" .. F.String.Sublist("Vigor no longer exists, instead skyriding spells have charges with cooldown"),
 
     "* New features",
+    "Add " .. F.String.ToxiUI("Housing Dashboard") .. " button to the " .. F.String.Menu.WunderBar() .. " Menu" .. F.String.Sublist(
+      "Credits to " .. F.String.Color("Jake", "0070de") .. "!"
+    ),
 
     "* Bug fixes",
     "Half-baked patch fixes for Classic Era",

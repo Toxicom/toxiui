@@ -64,11 +64,12 @@ local CHARACTER_BUTTON = CHARACTER_BUTTON
 local CHAT = CHAT
 local COLLECTIONS = COLLECTIONS
 local DUNGEONS_BUTTON = DUNGEONS_BUTTON
+local ERR_HOUSING_ACTION_UNAVAILABLE = ERR_HOUSING_ACTION_UNAVAILABLE
 local ERR_NOT_IN_COMBAT = ERR_NOT_IN_COMBAT
 local GUILD_AND_COMMUNITIES = GUILD_AND_COMMUNITIES
 local HELP_BUTTON = HELP_BUTTON
 local HOUSING_MICRO_BUTTON = HOUSING_MICRO_BUTTON
-local TOGGLEHOUSINGDASHBOARD = TOGGLEHOUSINGDASHBOARD
+local HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP = HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP
 local MAINMENU_BUTTON = MAINMENU_BUTTON
 local NEWBIE_TOOLTIP_ACHIEVEMENT = NEWBIE_TOOLTIP_ACHIEVEMENT
 local NEWBIE_TOOLTIP_CHARACTER = NEWBIE_TOOLTIP_CHARACTER
@@ -349,7 +350,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHATTAB },
   },
   ["housing"] = {
-    available = TXUI.IsRetail,
+    available = TXUI.IsRetail and not PlayerIsTimerunning(),
     name = HOUSING_MICRO_BUTTON,
     click = {
       LeftButton = function()
@@ -357,8 +358,12 @@ MM.microMenu = {
       end,
     },
     keyBind = "TOGGLEHOUSINGDASHBOARD",
-    newbieTooltip = NEWBIE_TOOLTIP_HOUSING,
-    tooltips = { MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD} ,
+    newbieTooltip = function()
+      if not C_Housing.IsHousingServiceEnabled() then return ERR_HOUSING_ACTION_UNAVAILABLE end
+      if C_PlayerInfo.IsPlayerNPERestricted() then return HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP end
+      return NEWBIE_TOOLTIP_HOUSING
+    end,
+    tooltips = { MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD },
   },
   ["txui"] = {
     special = true,
@@ -391,10 +396,10 @@ MM.microMenuOrder = {
   "ach",
   "quest",
   "lfg",
+  "housing",
   "journal",
   "pvp",
   "pet",
-  "housing",
   "shop",
   "help",
   "txui",
@@ -567,7 +572,11 @@ function MM:ButtonEnter(button)
 
       if button.info.newbieTooltip and self.db.general.newbieToolips then
         DT.tooltip:AddLine(" ")
-        DT.tooltip:AddLine(button.info.newbieTooltip, nil, nil, nil, true)
+
+        local tip = button.info.newbieTooltip
+        if type(tip) == "function" then tip = tip() end
+
+        DT.tooltip:AddLine(tip, nil, nil, nil, true)
       end
     end
 

@@ -1,13 +1,14 @@
-# ToxiUI v7.0.7 - 2025-12-03
+# ToxiUI v7.0.7 - 2025-12-04
 
-## 🚀 New Features
-
-- Add **Housing Dashboard** to the WunderBar MicroMenu
-  
 ## ‼️ Breaking Changes
 
 - Remove the **ToxiUI Vigor Bar & Speed Text**
   - Vigor no longer exists; skyriding spells now have charges with cooldowns.
+
+## 🚀 New Features
+
+- Add **Housing Dashboard** button to the **WunderBar Menu**
+  - Credits to **Jake**!
 
 ## 🐛 Bug Fixes
 

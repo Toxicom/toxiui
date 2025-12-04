@@ -1200,7 +1200,7 @@ P.wunderbar = {
         },
         housing = {
           enabled = true,
-          icon = F.String.ConvertGlyph(59719),
+          icon = F.String.ConvertGlyph(59741),
         },
         txui = {
           enabled = true,
