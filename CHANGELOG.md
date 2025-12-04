@@ -1,5 +1,9 @@
 # ToxiUI v7.0.7 - 2025-12-03
 
+## 🚀 New Features
+
+- Add **Housing Dashboard** to the WunderBar MicroMenu
+  
 ## ‼️ Breaking Changes
 
 - Remove the **ToxiUI Vigor Bar & Speed Text**
