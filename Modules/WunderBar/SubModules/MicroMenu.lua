@@ -403,13 +403,8 @@ MM.microMenuOrder = {
 function MM:UpdateIcons()
   for i, _ in ipairs(self.frames) do
     local frame = self.frames[i]
-    if frame.id == "housing" then
-      self:LogDebug(frame)
-    end
     local settings = self.db.icons[frame.id]
-    if frame.id == "housing" then
-      self:LogDebug(settings)
-    end
+
     if settings.enabled then
       -- Button
       frame:SetSize(self.db.general.iconFontSize, self.db.general.iconFontSize)
