@@ -12,11 +12,11 @@
 
 ## 🐛 Bug Fixes
 
-- Half-baked patch fixes for Classic Era
+- Half-baked patch fixes for **Classic Era**
 
 ## 📘 Documentation
 
-- Update `.toc` for Classic Era patch 1.15.8
-- Update `.toc` for Mists of Pandaria patch 5.5.2
-- Update `.toc` for The War Within patch 11.2.7
+- Update `.toc` for **Classic Era** patch 1.15.8
+- Update `.toc` for **Mists of Pandaria** patch 5.5.2
+- Update `.toc` for **The War Within** patch 11.2.7
 - Increase minimum required **ElvUI** version to `14.04`
