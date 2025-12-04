@@ -363,7 +363,7 @@ MM.microMenu = {
       if C_PlayerInfo.IsPlayerNPERestricted() then return HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP end
       return NEWBIE_TOOLTIP_HOUSING
     end,
-    tooltips = { MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD },
+    tooltips = { BINDING_NAME_TOGGLEHOUSINGDASHBOARD and MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD or "" },
   },
   ["txui"] = {
     special = true,
