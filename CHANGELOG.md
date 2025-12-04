@@ -19,4 +19,4 @@
 - Update `.toc` for Classic Era patch 1.15.8
 - Update `.toc` for Mists of Pandaria patch 5.5.2
 - Update `.toc` for The War Within patch 11.2.7
-- Increase minimum required **ElvUI** version to `14.03`
+- Increase minimum required **ElvUI** version to `14.04`
