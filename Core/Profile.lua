@@ -1198,6 +1198,10 @@ P.wunderbar = {
           enabled = false,
           icon = F.String.ConvertGlyph(59719),
         },
+        housing = {
+          enabled = true,
+          icon = F.String.ConvertGlyph(59719),
+        },
         txui = {
           enabled = true,
           icon = F.String.ConvertGlyph(59687),
