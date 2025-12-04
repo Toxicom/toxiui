@@ -36,7 +36,6 @@ local tinsert = table.insert
 local ToggleChannelFrame = ToggleChannelFrame
 local ToggleCharacter = ToggleCharacter
 local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
-local ToggleHousingDashboard = _G.HousingFramesUtil.ToggleHousingDashboard
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
@@ -58,6 +57,7 @@ local BINDING_NAME_TOGGLEQUESTLOG = BINDING_NAME_TOGGLEQUESTLOG
 local BINDING_NAME_TOGGLESOCIAL = BINDING_NAME_TOGGLESOCIAL
 local BINDING_NAME_TOGGLESPELLBOOK = BINDING_NAME_TOGGLESPELLBOOK
 local BINDING_NAME_TOGGLETALENTS = BINDING_NAME_TOGGLETALENTS
+local BINDING_NAME_TOGGLEHOUSINGDASHBOARD = BINDING_NAME_TOGGLEHOUSINGDASHBOARD
 local BLIZZARD_STORE = BLIZZARD_STORE
 local BNET_CLIENT_WOW = BNET_CLIENT_WOW
 local CHARACTER_BUTTON = CHARACTER_BUTTON
@@ -67,7 +67,8 @@ local DUNGEONS_BUTTON = DUNGEONS_BUTTON
 local ERR_NOT_IN_COMBAT = ERR_NOT_IN_COMBAT
 local GUILD_AND_COMMUNITIES = GUILD_AND_COMMUNITIES
 local HELP_BUTTON = HELP_BUTTON
-local HOUSING = HOUSING
+local HOUSING_MICRO_BUTTON = HOUSING_MICRO_BUTTON
+local TOGGLEHOUSINGDASHBOARD = TOGGLEHOUSINGDASHBOARD
 local MAINMENU_BUTTON = MAINMENU_BUTTON
 local NEWBIE_TOOLTIP_ACHIEVEMENT = NEWBIE_TOOLTIP_ACHIEVEMENT
 local NEWBIE_TOOLTIP_CHARACTER = NEWBIE_TOOLTIP_CHARACTER
@@ -348,15 +349,16 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHATTAB },
   },
   ["housing"] = {
-    name = HOUSING,
+    available = TXUI.IsRetail,
+    name = HOUSING_MICRO_BUTTON,
     click = {
       LeftButton = function()
-        ToggleHousingDashboard()
+        _G.HousingFramesUtil.ToggleHousingDashboard()
       end,
     },
-    keyBind = "TOGGLEHOUSINGTAB",
+    keyBind = "TOGGLEHOUSINGDASHBOARD",
     newbieTooltip = NEWBIE_TOOLTIP_HOUSING,
-    tooltips = { MM.leftButtonText .. "Toggle "} ,
+    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD} ,
   },
   ["txui"] = {
     special = true,
