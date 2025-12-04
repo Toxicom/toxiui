@@ -36,6 +36,7 @@ local tinsert = table.insert
 local ToggleChannelFrame = ToggleChannelFrame
 local ToggleCharacter = ToggleCharacter
 local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
+local ToggleHousingDashboard = _G.HousingFramesUtil.ToggleHousingDashboard
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
@@ -66,10 +67,12 @@ local DUNGEONS_BUTTON = DUNGEONS_BUTTON
 local ERR_NOT_IN_COMBAT = ERR_NOT_IN_COMBAT
 local GUILD_AND_COMMUNITIES = GUILD_AND_COMMUNITIES
 local HELP_BUTTON = HELP_BUTTON
+local HOUSING = HOUSING
 local MAINMENU_BUTTON = MAINMENU_BUTTON
 local NEWBIE_TOOLTIP_ACHIEVEMENT = NEWBIE_TOOLTIP_ACHIEVEMENT
 local NEWBIE_TOOLTIP_CHARACTER = NEWBIE_TOOLTIP_CHARACTER
 local NEWBIE_TOOLTIP_CHATMENU = NEWBIE_TOOLTIP_CHATMENU
+local NEWBIE_TOOLTIP_HOUSING = NEWBIE_TOOLTIP_HOUSING
 local NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL = NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL
 local NEWBIE_TOOLTIP_HELP = NEWBIE_TOOLTIP_HELP
 local NEWBIE_TOOLTIP_LFGPARENT = NEWBIE_TOOLTIP_LFGPARENT
@@ -344,6 +347,17 @@ MM.microMenu = {
     newbieTooltip = NEWBIE_TOOLTIP_CHATMENU,
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHATTAB },
   },
+  ["housing"] = {
+    name = HOUSING,
+    click = {
+      LeftButton = function()
+        ToggleHousingDashboard()
+      end,
+    },
+    keyBind = "TOGGLEHOUSINGTAB",
+    newbieTooltip = NEWBIE_TOOLTIP_HOUSING,
+    tooltips = { MM.leftButtonText .. "Toggle "} ,
+  },
   ["txui"] = {
     special = true,
     name = TXUI.Title,
@@ -378,6 +392,7 @@ MM.microMenuOrder = {
   "journal",
   "pvp",
   "pet",
+  "housing",
   "shop",
   "help",
   "txui",
@@ -386,8 +401,13 @@ MM.microMenuOrder = {
 function MM:UpdateIcons()
   for i, _ in ipairs(self.frames) do
     local frame = self.frames[i]
+    if frame.id == "housing" then
+      self:LogDebug(frame)
+    end
     local settings = self.db.icons[frame.id]
-
+    if frame.id == "housing" then
+      self:LogDebug(settings)
+    end
     if settings.enabled then
       -- Button
       frame:SetSize(self.db.general.iconFontSize, self.db.general.iconFontSize)
