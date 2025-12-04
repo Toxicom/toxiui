@@ -358,7 +358,7 @@ MM.microMenu = {
     },
     keyBind = "TOGGLEHOUSINGDASHBOARD",
     newbieTooltip = NEWBIE_TOOLTIP_HOUSING,
-    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD} ,
+    tooltips = { MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD} ,
   },
   ["txui"] = {
     special = true,
