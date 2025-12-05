@@ -22,7 +22,6 @@ local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
 local SetActiveTalentGroup = SetActiveTalentGroup
 local strjoin = strjoin
-local tinsert = table.insert
 local ToggleTalentFrame = ToggleTalentFrame
 local UnitClassBase = UnitClassBase
 local unpack = unpack
