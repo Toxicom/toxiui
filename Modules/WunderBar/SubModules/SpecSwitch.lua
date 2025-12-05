@@ -160,23 +160,7 @@ function SS:SpecClick(frame, button, ...)
       if not hasDualSpec then return end
       SetActiveTalentGroup(activeGroup == 1 and 2 or 1)
     else
-      local menuList = {}
-
-      for i, info in ipairs(self.specCache) do
-        if info and info.name then
-          tinsert(menuList, {
-            spellID = info.name,
-            icon = info.icon,
-            type = "function",
-            func = function()
-              SetActiveTalentGroup(i)
-            end,
-          })
-        end
-      end
-
-      local flyoutDirection = E.db.TXUI.wunderbar.general.position == "TOP" and "DOWN" or "UP"
-      WB:ShowSecureFlyOut(frame, flyoutDirection, menuList)
+      return
     end
   end
 end
