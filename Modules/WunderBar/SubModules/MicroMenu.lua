@@ -356,6 +356,9 @@ MM.microMenu = {
       LeftButton = function()
         _G.HousingFramesUtil.ToggleHousingDashboard()
       end,
+      RightButton = function()
+        F.Housing:TeleportHome()
+      end,
     },
     keyBind = "TOGGLEHOUSINGDASHBOARD",
     newbieTooltip = function()
@@ -363,7 +366,10 @@ MM.microMenu = {
       if C_PlayerInfo.IsPlayerNPERestricted() then return HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP end
       return NEWBIE_TOOLTIP_HOUSING
     end,
-    tooltips = { BINDING_NAME_TOGGLEHOUSINGDASHBOARD and MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD or "" },
+    tooltips = {
+      BINDING_NAME_TOGGLEHOUSINGDASHBOARD and MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD or "",
+      MM.rightButtonText .. F.Housing:GetTeleportHomeName(),
+    },
   },
   ["txui"] = {
     special = true,

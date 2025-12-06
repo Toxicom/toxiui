@@ -75,6 +75,11 @@ function HS:AddHearthstoneLine(itemInfo)
   -- Check if everything is loaded
   if not self.dataLoaded then return end
 
+  if itemInfo and itemInfo.spellID then
+    itemInfo.id = itemInfo.spellID
+    itemInfo.type = "spell"
+  end
+
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:AddHearthstoneLine > Item could not be found in DB") end
 
   local name = format(itemInfo.name)
@@ -243,6 +248,15 @@ function HS:UpdateSelected()
       self:GetMagePortals()
     end)
   end
+
+  if TXUI.IsRetail then
+    if C_Housing.IsHousingServiceEnabled() then
+      self.secureFrame:SetAttribute("ctrl-type1", "function")
+      self.secureFrame:SetAttribute("ctrl-_function1", function()
+        F.Housing:TeleportHome()
+      end)
+    end
+  end
 end
 
 function HS:UpdateTooltip()
@@ -255,6 +269,14 @@ function HS:UpdateTooltip()
 
   self:AddHearthstoneLine(self.hsPrimary)
   if self.hsPrimary ~= self.hsSecondary and not F.IsAddOnEnabled("TomeOfTeleportation") then self:AddHearthstoneLine(self.hsSecondary) end
+  if TXUI.IsRetail then
+    if C_Housing.IsHousingServiceEnabled() then
+      local teleportSpellId = 1233637
+      local teleportSpell = C_Spell.GetSpellInfo(teleportSpellId)
+
+      self:AddHearthstoneLine(teleportSpell)
+    end
+  end
 
   DT.tooltip:AddLine(" ")
 
@@ -302,6 +324,11 @@ function HS:UpdateTooltip()
 
   -- Shift-Secondary for Mages
   if self.hasTeleports then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Open Mage Teleport Menu") end
+
+  -- Ctrl-Primary for Housing
+  if TXUI.IsRetail then
+    if C_Housing.IsHousingServiceEnabled() then DT.tooltip:AddLine("|cffFFFFFFCtrl-Left Click:|r " .. F.Housing:GetTeleportHomeName()) end
+  end
 
   DT.tooltip:Show()
 end
