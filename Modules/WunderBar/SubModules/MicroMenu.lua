@@ -357,7 +357,8 @@ MM.microMenu = {
         _G.HousingFramesUtil.ToggleHousingDashboard()
       end,
       RightButton = function()
-        F.Housing:TeleportHome()
+        -- Default to First bought house?
+        F.Housing:TeleportHome(F.Housing.PlayerHouses[1])
       end,
     },
     keyBind = "TOGGLEHOUSINGDASHBOARD",

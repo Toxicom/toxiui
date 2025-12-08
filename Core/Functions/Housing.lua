@@ -2,8 +2,19 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 F.Housing = {
   houseInfo = nil, -- cache
+  PlayerHouses = nil,
 }
 
+F.Housing.NeighborhoodMapIndex = {
+    [2352] = 1, --Alliance, Founder's Point
+    [2351] = 2, --Horde, Razorwind Shores
+};
+
+F.Event.RegisterFrameEventAndCallback("PLAYER_HOUSE_LIST_UPDATED", function(_, houseInfos)
+  F.Housing.PlayerHouses = houseInfos
+end, "housing")
+
+    
 function F.Housing:RefreshHouseInfo()
   self.houseInfo = C_Housing.GetCurrentHouseInfo()
   return self.houseInfo
@@ -18,15 +29,9 @@ function F.Housing:GetHouseInfo()
 end
 
 -- Teleport function
-function F.Housing:TeleportHome()
+function F.Housing:TeleportHome(house)
   if not TXUI.IsRetail then
     TXUI:LogDebug("F.Housing.TeleportHome() is Retail only.")
-    return
-  end
-
-  local info = self:GetHouseInfo()
-  if not info then
-    TXUI:LogDebug("F.Housing.TeleportHome >> houseInfo unavailable.")
     return
   end
 
@@ -36,7 +41,19 @@ function F.Housing:TeleportHome()
   --     return
   -- end
 
-  C_Housing.TeleportHome(info.neighborhoodGUID, info.houseGUID, info.plotID)
+  TXUI:LogDebug(house)
+  TXUI.LogDebug("Teleporting to " .. house.houseName)
+  C_Housing.TeleportHome(house.neighborhoodGUID, house.houseGUID, house.plotID)
+end
+
+function F.Housing:GetFactionFromMapIndex(mapIndex)
+  if mapIndex == 1 then
+    return "A"
+  elseif mapIndex == 2 then
+    return "H"
+  else
+    return "???"
+  end
 end
 
 -- Get the name for TeleportHome function
@@ -46,8 +63,7 @@ function F.Housing:GetTeleportHomeName()
     return
   end
 
-  local info = self:GetHouseInfo()
-  if not info then return "DEBUG: No House Info" end
+  if not F.Housing.PlayerHouses then return "DEBUG: No House Info" end
 
   -- if C_HousingNeighborhood.CanReturnAfterVisitingHouse() then
   --   return "Return To Previous Location"

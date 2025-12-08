@@ -22,3 +22,4 @@ Initialize.lua
 Core\Core.xml
 Media\Media.xml
 Modules\Modules.xml
+Core\Functions\Housing.lua

@@ -164,6 +164,26 @@ function HS:GetMagePortals()
   WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, teleportList, portalList)
 end
 
+function HS:GetHouseTeleports()
+  local playerHousingList = {}
+
+  for _, house in F.Table.Sort(F.Housing.PlayerHouses) do
+    local uiMapID = C_Housing.GetUIMapIDForNeighborhood(house.neighborhoodGUID)
+    local mapIndex = uiMapID and F.Housing.NeighborhoodMapIndex[uiMapID] or 1;
+
+    tinsert(playerHousingList, {
+      spellID = 1233637,
+      type = "function",
+      label = F.Housing:GetFaction(mapIndex),
+      func = function()
+        F.Housing:TeleportHome(house)
+      end
+    })
+
+  end
+  WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, playerHousingList)
+end
+
 function HS:UpdateSelected()
   -- Check if everything is loaded
   if not self.dataLoaded then return end
@@ -253,7 +273,7 @@ function HS:UpdateSelected()
     if C_Housing.IsHousingServiceEnabled() then
       self.secureFrame:SetAttribute("ctrl-type1", "function")
       self.secureFrame:SetAttribute("ctrl-_function1", function()
-        F.Housing:TeleportHome()
+        self:GetHouseTeleports()
       end)
     end
   end
@@ -269,14 +289,6 @@ function HS:UpdateTooltip()
 
   self:AddHearthstoneLine(self.hsPrimary)
   if self.hsPrimary ~= self.hsSecondary and not F.IsAddOnEnabled("TomeOfTeleportation") then self:AddHearthstoneLine(self.hsSecondary) end
-  if TXUI.IsRetail then
-    if C_Housing.IsHousingServiceEnabled() then
-      local teleportSpellId = 1233637
-      local teleportSpell = C_Spell.GetSpellInfo(teleportSpellId)
-
-      self:AddHearthstoneLine(teleportSpell)
-    end
-  end
 
   DT.tooltip:AddLine(" ")
 
