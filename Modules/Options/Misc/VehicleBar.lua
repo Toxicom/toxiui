@@ -123,7 +123,7 @@ function O:Plugins_VehicleBar()
   do
     -- Vigor Group
     local vigorGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Skyriding Bar",
+      name = "Skyriding Bar " .. E.NewSign,
       hidden = optionsDisabled,
     }, {
       name = "A Skyriding bar displaying your current Skyward Ascent spell charges.\n\n",
