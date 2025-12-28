@@ -152,7 +152,6 @@ function VB:Initialize()
   self.combatLock = false
   self.ab = E:GetModule("ActionBars")
   self.vigorBar = nil
-  self.previousBarWidth = nil
   self.spacing = 2
 
   -- Register for updates

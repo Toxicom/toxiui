@@ -16,10 +16,10 @@ function VB:CreateVigorBar()
   -- Register for spell charge updates
   vigorBar:UnregisterAllEvents()
   vigorBar:RegisterEvent("SPELL_UPDATE_CHARGES")
-  vigorBar:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
   vigorBar:SetScript("OnEvent", function(_, event)
-    if (event == "SPELL_UPDATE_CHARGES" or event == "UNIT_SPELLCAST_SUCCEEDED") and self:IsVigorAvailable() and self.vigorBar then
-      self:UpdateVigorBar()
+    if event == "SPELL_UPDATE_CHARGES" and self:IsVigorAvailable() and self.vigorBar then
+      -- Only update segment values, don't recreate
+      self:UpdateVigorSegments()
     end
   end)
 

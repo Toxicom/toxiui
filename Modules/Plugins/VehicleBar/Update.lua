@@ -50,7 +50,7 @@ function VB:UpdateVigorSegments()
 end
 
 function VB:UpdateVigorBar()
-  -- Always recreate segments when settings change to ensure colors are updated
+  -- Always recreate segments when settings change to ensure colors/textures are updated
   if not F.Table.IsEmpty(self.vigorBar.segments) then
     for _, segment in ipairs(self.vigorBar.segments) do
       segment:Kill()
@@ -58,31 +58,15 @@ function VB:UpdateVigorBar()
     self.vigorBar.segments = {}
   end
 
-  self:CreateVigorSegments()
-
+  -- Update vigor bar size before creating segments
   local height = self.vdb.height or 10
-
-  -- Update vigor bar size
-  local currentBarWidth = self.bar:GetWidth()
-  local width = currentBarWidth - self.spacing
+  local width = self.bar:GetWidth() - self.spacing
   self.vigorBar:SetSize(width, height)
 
-  -- Store the new width
-  self.previousBarWidth = currentBarWidth
+  -- Create segments (they will be sized correctly based on vigorBar width)
+  self:CreateVigorSegments()
 
-  local chargeInfo = self:GetSpellChargeInfo()
-
-  if chargeInfo and chargeInfo.maxCharges then
-    local maxCharges = chargeInfo.maxCharges
-
-    -- Calculate the new segment width based on the updated vigorBar width
-    local segmentWidth = (self.vigorBar:GetWidth() / maxCharges) - (self.spacing * 2)
-
-    for _, segment in ipairs(self.vigorBar.segments) do
-      segment:SetSize(segmentWidth, height)
-    end
-  end
-
+  -- Update segment display
   self:UpdateVigorSegments()
 end
 
