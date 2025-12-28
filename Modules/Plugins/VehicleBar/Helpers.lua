@@ -14,6 +14,16 @@ function VB:GetSpellChargeInfo()
   return chargeInfo
 end
 
+function VB:ColorSpeedText(msg)
+  local thrillActive = C_UnitAuras.GetPlayerAuraBySpellID(I.Constants.THRILL_OF_THE_SKIES_SPELL_ID)
+  if thrillActive then
+    local r, g, b = self.vdb.thrillColor.r, self.vdb.thrillColor.g, self.vdb.thrillColor.b
+    return F.String.Color(msg, F.String.FastRGB(r, g, b))
+  else
+    return msg
+  end
+end
+
 -- Taken from ElvUI, see AB:FixKeybindText
 function VB:FixKeybindText(text)
   if text and text ~= _G.RANGE_INDICATOR then

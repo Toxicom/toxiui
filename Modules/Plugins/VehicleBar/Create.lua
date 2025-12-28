@@ -5,11 +5,28 @@ local LSM = E.Libs.LSM
 local tinsert = table.insert
 
 function VB:CreateVigorBar()
-  local vigorBar = CreateFrame("Frame", "CustomVigorBar", UIParent)
+  local vigorBar = CreateFrame("Frame", "ToxiUI_VigorBar", UIParent)
   local width = self.bar:GetWidth()
   local height = self.vdb.height or 10
   vigorBar:SetSize(width - self.spacing, height)
   vigorBar:SetPoint("BOTTOM", self.bar, "TOP", 0, self.spacing * 3)
+
+  -- Create a separate frame for speed text with higher frame level
+  local speedTextFrame = CreateFrame("Frame", "ToxiUI_VigorBar_SpeedTextFrame", vigorBar)
+  speedTextFrame:SetAllPoints(vigorBar)
+  speedTextFrame:SetFrameLevel(vigorBar:GetFrameLevel() + 10)
+
+  -- Create speed text on the higher-level frame
+  vigorBar.speedText = speedTextFrame:CreateFontString(nil, "OVERLAY")
+  vigorBar.speedText:SetFont(F.GetFontPath(self.vdb.speedTextFont), F.FontSizeScaled(self.vdb.speedTextFontSize), "OUTLINE")
+  vigorBar.speedText:SetPoint("BOTTOM", vigorBar, "TOP", 0, self.vdb.speedTextOffsetY)
+  vigorBar.speedText:SetText("0%")
+
+  if self.vdb.showSpeedText then
+    vigorBar.speedText:Show()
+  else
+    vigorBar.speedText:Hide()
+  end
 
   vigorBar:Hide()
 
@@ -23,10 +40,11 @@ function VB:CreateVigorBar()
     end
   end)
 
-  -- OnUpdate for smooth recharge animation
+  -- OnUpdate for smooth recharge animation and speed text
   vigorBar:SetScript("OnUpdate", function()
     if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then
       self:UpdateVigorSegments()
+      self:UpdateSpeedText()
     end
   end)
 
@@ -74,7 +92,7 @@ function VB:CreateVigorSegments()
   local normalTexture = LSM:Fetch("statusbar", self.vdb.normalTexture)
 
   for i = 1, maxCharges do
-    local segment = CreateFrame("StatusBar", nil, self.vigorBar)
+    local segment = CreateFrame("StatusBar", "ToxiUI_VigorBar_Segment" .. i, self.vigorBar)
     segment:SetSize(segmentWidth, height)
 
     if E.db.TXUI.themes.darkMode.enabled then

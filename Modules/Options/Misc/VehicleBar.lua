@@ -150,6 +150,13 @@ function O:Plugins_VehicleBar()
       return isVehicleBarDisabled() or self:GetEnabledState(E.db.TXUI.vehicleBar.vigorBar.enabled, vigorGroup) ~= self.enabledState.YES
     end
 
+    self:AddSpacer(vigorGroup)
+
+    -- Bar Settings
+    vigorGroup.barHeader = ACH:Header("Bar Settings", self:GetOrder())
+
+    self:AddSpacer(vigorGroup)
+
     vigorGroup.height = {
       order = self:GetOrder(),
       type = "range",
@@ -182,6 +189,13 @@ function O:Plugins_VehicleBar()
       F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
     end, vigorDisabled)
 
+    self:AddSpacer(vigorGroup)
+
+    -- Color Settings
+    vigorGroup.colorHeader = ACH:Header("Color Settings", self:GetOrder())
+
+    self:AddSpacer(vigorGroup)
+
     vigorGroup.useCustomColor = {
       order = self:GetOrder(),
       type = "toggle",
@@ -206,14 +220,11 @@ function O:Plugins_VehicleBar()
       type = "color",
       name = "Left Color",
       desc = "Choose the left gradient color for the Skyriding Bar.",
-      get = function()
-        local c = E.db.TXUI.vehicleBar.vigorBar.customColorLeft
-        return c.r, c.g, c.b
-      end,
-      set = function(_, r, g, b)
-        E.db.TXUI.vehicleBar.vigorBar.customColorLeft = { r = r, g = g, b = b }
+      hasAlpha = false,
+      get = self:GetFontColorGetter("TXUI.vehicleBar.vigorBar", P.vehicleBar.vigorBar),
+      set = self:GetFontColorSetter("TXUI.vehicleBar.vigorBar", function()
         F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
-      end,
+      end),
       disabled = customColorDisabled,
     }
 
@@ -222,15 +233,94 @@ function O:Plugins_VehicleBar()
       type = "color",
       name = "Right Color",
       desc = "Choose the right gradient color for the Skyriding Bar.",
+      hasAlpha = false,
+      get = self:GetFontColorGetter("TXUI.vehicleBar.vigorBar", P.vehicleBar.vigorBar),
+      set = self:GetFontColorSetter("TXUI.vehicleBar.vigorBar", function()
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end),
+      disabled = customColorDisabled,
+    }
+
+    self:AddSpacer(vigorGroup)
+
+    -- Speed Text Settings
+    vigorGroup.speedTextHeader = ACH:Header("Speed Text Settings", self:GetOrder())
+
+    self:AddSpacer(vigorGroup)
+
+    vigorGroup.showSpeedText = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Speed Text",
+      desc = "Display movement speed percentage above the Skyriding Bar.",
       get = function()
-        local c = E.db.TXUI.vehicleBar.vigorBar.customColorRight
-        return c.r, c.g, c.b
+        return E.db.TXUI.vehicleBar.vigorBar.showSpeedText
       end,
-      set = function(_, r, g, b)
-        E.db.TXUI.vehicleBar.vigorBar.customColorRight = { r = r, g = g, b = b }
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.showSpeedText = value
         F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
       end,
-      disabled = customColorDisabled,
+      disabled = vigorDisabled,
+    }
+
+    local speedTextDisabled = function()
+      return vigorDisabled() or not E.db.TXUI.vehicleBar.vigorBar.showSpeedText
+    end
+
+    vigorGroup.thrillColor = {
+      order = self:GetOrder(),
+      type = "color",
+      name = "Thrill Color",
+      desc = "Choose the color for the speed text when the Thrill of the Skies buff is active.",
+      hasAlpha = false,
+      get = self:GetFontColorGetter("TXUI.vehicleBar.vigorBar", P.vehicleBar.vigorBar),
+      set = self:GetFontColorSetter("TXUI.vehicleBar.vigorBar", function()
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end),
+      disabled = speedTextDisabled,
+    }
+
+    vigorGroup.speedTextFont = ACH:SharedMediaFont("Font", "Choose the font for the speed text displayed above the Skyriding Bar.", self:GetOrder(), 200, function()
+      return E.db.TXUI.vehicleBar.vigorBar.speedTextFont
+    end, function(_, value)
+      E.db.TXUI.vehicleBar.vigorBar.speedTextFont = value
+      F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+    end, speedTextDisabled)
+
+    vigorGroup.speedTextFontSize = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Font Size",
+      desc = "Change the font size for the speed text displayed above the Skyriding Bar.",
+      get = function()
+        return E.db.TXUI.vehicleBar.vigorBar.speedTextFontSize
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.speedTextFontSize = value
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end,
+      min = 12,
+      max = 48,
+      step = 1,
+      disabled = speedTextDisabled,
+    }
+
+    vigorGroup.speedTextOffsetY = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Y Offset",
+      desc = "Adjust the vertical position of the speed text relative to the Skyriding Bar.",
+      get = function()
+        return E.db.TXUI.vehicleBar.vigorBar.speedTextOffsetY
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.speedTextOffsetY = value
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end,
+      min = -10,
+      max = 10,
+      step = 1,
+      disabled = speedTextDisabled,
     }
   end
 

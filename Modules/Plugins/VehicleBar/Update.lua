@@ -49,6 +49,16 @@ function VB:UpdateVigorSegments()
   end
 end
 
+function VB:UpdateSpeedText()
+  if not self.vigorBar or not self:IsVigorAvailable() then return end
+
+  local isGliding, _, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
+  local base = isGliding and forwardSpeed or GetUnitSpeed("player")
+  local movespeed = Round(base / BASE_MOVEMENT_SPEED * 100)
+
+  self.vigorBar.speedText:SetText(self:ColorSpeedText(format("%d%%", movespeed)))
+end
+
 function VB:UpdateVigorBar()
   -- Always recreate segments when settings change to ensure colors/textures are updated
   if not F.Table.IsEmpty(self.vigorBar.segments) then
@@ -62,6 +72,18 @@ function VB:UpdateVigorBar()
   local height = self.vdb.height or 10
   local width = self.bar:GetWidth() - self.spacing
   self.vigorBar:SetSize(width, height)
+
+  -- Update speed text font and position
+  self.vigorBar.speedText:SetFont(F.GetFontPath(self.vdb.speedTextFont), F.FontSizeScaled(self.vdb.speedTextFontSize), "OUTLINE")
+  self.vigorBar.speedText:ClearAllPoints()
+  self.vigorBar.speedText:SetPoint("BOTTOM", self.vigorBar, "TOP", 0, self.vdb.speedTextOffsetY)
+
+  -- Show or hide speed text
+  if self.vdb.showSpeedText then
+    self.vigorBar.speedText:Show()
+  else
+    self.vigorBar.speedText:Hide()
+  end
 
   -- Create segments (they will be sized correctly based on vigorBar width)
   self:CreateVigorSegments()
@@ -105,7 +127,7 @@ function VB:UpdateBar()
 
   -- Create or get bar
   local init = self.bar == nil
-  local bar = self.bar or CreateFrame("Frame", "TXUIVehicleBar", E.UIParent, "SecureHandlerStateTemplate")
+  local bar = self.bar or CreateFrame("Frame", "ToxiUI_VehicleBar", E.UIParent, "SecureHandlerStateTemplate")
 
   -- Default position
   local point, anchor, attachTo, x, y = strsplit(",", F.Position(strsplit(",", self.db.position)))
@@ -150,7 +172,7 @@ function VB:UpdateBar()
       local buttonIndex = (i == 8) and 12 or i
 
       -- Create button
-      local button = LAB:CreateButton(buttonIndex, "TXUIVehicleBarButton" .. buttonIndex, bar, nil)
+      local button = LAB:CreateButton(buttonIndex, "ToxiUI_VehicleBarButton" .. buttonIndex, bar, nil)
 
       -- Set state aka actions
       button:SetState(0, "action", buttonIndex)

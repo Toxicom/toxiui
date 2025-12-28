@@ -492,6 +492,11 @@ P.vehicleBar = {
     useCustomColor = false,
     customColorLeft = { r = 0.208, g = 0.424, b = 1 },
     customColorRight = { r = 0, g = 0.835, b = 1 },
+    thrillColor = F.Table.HexToRGB("#00caff"),
+    showSpeedText = true,
+    speedTextFont = I.Fonts.Primary,
+    speedTextFontSize = 20,
+    speedTextOffsetY = -5,
   },
 }
 
