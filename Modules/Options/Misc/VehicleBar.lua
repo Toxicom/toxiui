@@ -172,14 +172,14 @@ function O:Plugins_VehicleBar()
       return E.db.TXUI.vehicleBar.vigorBar.normalTexture
     end, function(_, value)
       E.db.TXUI.vehicleBar.vigorBar.normalTexture = value
-      E:StaticPopup_Show("CONFIG_RL")
+      F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
     end, vigorDisabled)
 
     vigorGroup.darkTexture = ACH:SharedMediaStatusbar("Dark Texture", "Vigor bar texture for Dark Mode", self:GetOrder(), 200, function()
       return E.db.TXUI.vehicleBar.vigorBar.darkTexture
     end, function(_, value)
       E.db.TXUI.vehicleBar.vigorBar.darkTexture = value
-      E:StaticPopup_Show("CONFIG_RL")
+      F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
     end, vigorDisabled)
 
     vigorGroup.useCustomColor = {
