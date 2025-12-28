@@ -489,6 +489,9 @@ P.vehicleBar = {
     height = 10,
     normalTexture = "- ToxiUI",
     darkTexture = "- Tx Half",
+    useCustomColor = false,
+    customColorLeft = { r = 0.208, g = 0.424, b = 1 },
+    customColorRight = { r = 0, g = 0.835, b = 1 },
   },
 }
 

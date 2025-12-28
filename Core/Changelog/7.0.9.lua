@@ -14,7 +14,8 @@ TXUI.Changelog["7.0.9"] = {
       .. " Vehicle Bar"
       .. F.String.Sublist("Now uses spell charges from Skyward Ascent instead of the old vigor bar")
       .. F.String.Sublist("Displays current spell charges with smooth animations")
-      .. F.String.Sublist("Configurable textures for Normal, Gradient and Dark modes"),
+      .. F.String.Sublist("Configurable textures for Normal, Gradient and Dark modes")
+      .. F.String.Sublist("Custom gradient color options (defaults to class color gradient)"),
 
     "* Bug fixes",
     "Remove right-click from SpecSwitch module in Classic Era",

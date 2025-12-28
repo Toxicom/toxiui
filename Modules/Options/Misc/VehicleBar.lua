@@ -181,6 +181,57 @@ function O:Plugins_VehicleBar()
       E.db.TXUI.vehicleBar.vigorBar.darkTexture = value
       E:StaticPopup_Show("CONFIG_RL")
     end, vigorDisabled)
+
+    vigorGroup.useCustomColor = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Use Custom Colors",
+      desc = "Enable custom gradient colors instead of class colors for the Skyriding Bar.",
+      get = function()
+        return E.db.TXUI.vehicleBar.vigorBar.useCustomColor
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.useCustomColor = value
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end,
+      disabled = vigorDisabled,
+    }
+
+    local customColorDisabled = function()
+      return vigorDisabled() or not E.db.TXUI.vehicleBar.vigorBar.useCustomColor
+    end
+
+    vigorGroup.customColorLeft = {
+      order = self:GetOrder(),
+      type = "color",
+      name = "Left Color",
+      desc = "Choose the left gradient color for the Skyriding Bar.",
+      get = function()
+        local c = E.db.TXUI.vehicleBar.vigorBar.customColorLeft
+        return c.r, c.g, c.b
+      end,
+      set = function(_, r, g, b)
+        E.db.TXUI.vehicleBar.vigorBar.customColorLeft = { r = r, g = g, b = b }
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end,
+      disabled = customColorDisabled,
+    }
+
+    vigorGroup.customColorRight = {
+      order = self:GetOrder(),
+      type = "color",
+      name = "Right Color",
+      desc = "Choose the right gradient color for the Skyriding Bar.",
+      get = function()
+        local c = E.db.TXUI.vehicleBar.vigorBar.customColorRight
+        return c.r, c.g, c.b
+      end,
+      set = function(_, r, g, b)
+        E.db.TXUI.vehicleBar.vigorBar.customColorRight = { r = r, g = g, b = b }
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end,
+      disabled = customColorDisabled,
+    }
   end
 
   -- Spacer

@@ -52,7 +52,13 @@ function VB:CreateVigorSegments()
 
   local leftColor, rightColor
 
-  if E.db.TXUI.themes.gradientMode.enabled then
+  -- Check if custom colors are enabled
+  if self.vdb.useCustomColor then
+    local customLeft = self.vdb.customColorLeft
+    local customRight = self.vdb.customColorRight
+    leftColor = CreateColor(customLeft.r, customLeft.g, customLeft.b, 1)
+    rightColor = CreateColor(customRight.r, customRight.g, customRight.b, 1)
+  elseif E.db.TXUI.themes.gradientMode.enabled then
     local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
 
     local left = colorMap[1][E.myclass]
@@ -83,13 +89,12 @@ function VB:CreateVigorSegments()
     segment.classColor = { r = r, g = g, b = b }
     segment.leftColor = leftColor
     segment.rightColor = rightColor
-    segment.isGradientMode = E.db.TXUI.themes.gradientMode.enabled
 
     -- Set initial color (will be updated in UpdateVigorSegments)
-    segment:SetStatusBarColor(r, g, b)
-
-    if E.db.TXUI.themes.gradientMode.enabled and leftColor and rightColor then
+    if leftColor and rightColor then
       segment:GetStatusBarTexture():SetGradient("HORIZONTAL", leftColor, rightColor)
+    else
+      segment:SetStatusBarColor(r, g, b)
     end
 
     -- Background

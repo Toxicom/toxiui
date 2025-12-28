@@ -28,9 +28,9 @@ function VB:UpdateVigorSegments()
 
   for i, segment in ipairs(self.vigorBar.segments) do
     if i <= currentCharges then
-      -- Full charge - use class color
+      -- Full charge - use gradient colors
       segment:SetValue(1)
-      if segment.isGradientMode and segment.leftColor and segment.rightColor then
+      if segment.leftColor and segment.rightColor then
         segment:GetStatusBarTexture():SetGradient("HORIZONTAL", segment.leftColor, segment.rightColor)
       else
         segment:SetStatusBarColor(segment.classColor.r, segment.classColor.g, segment.classColor.b)
@@ -50,7 +50,15 @@ function VB:UpdateVigorSegments()
 end
 
 function VB:UpdateVigorBar()
-  if F.Table.IsEmpty(self.vigorBar.segments) then self:CreateVigorSegments() end
+  -- Always recreate segments when settings change to ensure colors are updated
+  if not F.Table.IsEmpty(self.vigorBar.segments) then
+    for _, segment in ipairs(self.vigorBar.segments) do
+      segment:Kill()
+    end
+    self.vigorBar.segments = {}
+  end
+
+  self:CreateVigorSegments()
 
   local height = self.vdb.height or 10
 
