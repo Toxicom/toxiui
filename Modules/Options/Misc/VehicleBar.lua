@@ -81,7 +81,7 @@ function O:Plugins_VehicleBar()
       end,
       set = function(_, value)
         E.db.TXUI.vehicleBar.buttonWidth = value
-        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
       end,
       min = 24,
       max = 64,
@@ -98,7 +98,7 @@ function O:Plugins_VehicleBar()
       end,
       set = function(_, value)
         E.db.TXUI.vehicleBar.showKeybinds = value
-        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
       end,
     }
 
@@ -112,7 +112,7 @@ function O:Plugins_VehicleBar()
       end,
       set = function(_, value)
         E.db.TXUI.vehicleBar.showMacro = value
-        F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
       end,
     }
   end

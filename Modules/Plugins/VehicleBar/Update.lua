@@ -233,7 +233,13 @@ function VB:UpdateBar()
   end
 
   -- Update vigor bar if it exists (for settings changes)
-  if TXUI.IsRetail and self.vigorBar and self.vdb.enabled then self:UpdateVigorBar() end
+  if TXUI.IsRetail and self.vigorBar and self.vdb.enabled then
+    self:UpdateVigorBar()
+    -- Show vigor bar if the vehicle bar is currently shown and we're skyriding
+    if self.bar:IsShown() and self:IsVigorAvailable() then
+      self.vigorBar:Show()
+    end
+  end
 
   self:UpdateKeybinds()
 end
