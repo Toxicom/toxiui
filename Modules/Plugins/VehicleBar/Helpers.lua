@@ -5,6 +5,15 @@ local CM = TXUI:GetModule("ColorModifiers")
 local sub = string.utf8sub
 local len = strlenutf8
 
+function VB:IsVigorAvailable()
+  return F.IsSkyriding()
+end
+
+function VB:GetSpellChargeInfo()
+  local chargeInfo = C_Spell.GetSpellCharges(I.Constants.SKYWARD_ASCENT_SPELL_ID)
+  return chargeInfo
+end
+
 -- Taken from ElvUI, see AB:FixKeybindText
 function VB:FixKeybindText(text)
   if text and text ~= _G.RANGE_INDICATOR then

@@ -2,6 +2,8 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 I.Constants = {}
 
+I.Constants.SKYWARD_ASCENT_SPELL_ID = 372610
+
 I.Constants.RandomTips = {
   -- 1
   TXUI.Title

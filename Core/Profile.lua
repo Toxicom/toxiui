@@ -483,6 +483,13 @@ P.vehicleBar = {
   showMacro = true,
 
   position = "BOTTOM,ElvUIParent,BOTTOM,0,210",
+
+  vigorBar = {
+    enabled = true,
+    height = 10,
+    normalTexture = "- ToxiUI",
+    darkTexture = "- Tx Half",
+  },
 }
 
 -- MiniMapCoords

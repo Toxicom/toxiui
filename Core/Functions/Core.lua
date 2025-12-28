@@ -986,6 +986,15 @@ function F.ProcessMovers(dbRef)
   end
 end
 
+function F.IsSkyriding()
+  if TXUI.IsRetail then
+    local spellInfo = C_Spell.GetSpellInfo(I.Constants.SKYWARD_ASCENT_SPELL_ID)
+    return spellInfo and IsPlayerSpell(I.Constants.SKYWARD_ASCENT_SPELL_ID)
+  else
+    return false
+  end
+end
+
 -- Copied from E:IsUltrawide() with less restrictions
 function F.IsUltrawide()
   --HQ Resolution

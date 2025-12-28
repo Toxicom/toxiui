@@ -9,6 +9,75 @@ local pairs = pairs
 local ipairs = ipairs
 local strsplit = strsplit
 
+function VB:UpdateVigorSegments()
+  local chargeInfo = self:GetSpellChargeInfo()
+
+  if not chargeInfo then return end
+
+  local currentCharges = chargeInfo.currentCharges
+  local maxCharges = chargeInfo.maxCharges
+
+  -- Calculate fractional charge progress
+  local fractionalCharge = 0
+  if currentCharges < maxCharges and chargeInfo.cooldownStartTime and chargeInfo.cooldownDuration then
+    local elapsed = GetTime() - chargeInfo.cooldownStartTime
+    fractionalCharge = elapsed / chargeInfo.cooldownDuration
+  end
+
+  local grayColor = 0.5 -- Gray color for recharging segments
+
+  for i, segment in ipairs(self.vigorBar.segments) do
+    if i <= currentCharges then
+      -- Full charge - use class color
+      segment:SetValue(1)
+      if segment.isGradientMode and segment.leftColor and segment.rightColor then
+        segment:GetStatusBarTexture():SetGradient("HORIZONTAL", segment.leftColor, segment.rightColor)
+      else
+        segment:SetStatusBarColor(segment.classColor.r, segment.classColor.g, segment.classColor.b)
+      end
+      segment:Show()
+    elseif i == currentCharges + 1 and fractionalCharge > 0 then
+      -- Recharging - use gray color
+      segment:SetValue(fractionalCharge)
+      segment:SetStatusBarColor(grayColor, grayColor, grayColor)
+      segment:Show()
+    else
+      -- Empty - hide
+      segment:SetValue(0)
+      segment:Show()
+    end
+  end
+end
+
+function VB:UpdateVigorBar()
+  if F.Table.IsEmpty(self.vigorBar.segments) then self:CreateVigorSegments() end
+
+  local height = self.vdb.height or 10
+
+  -- Update vigor bar size
+  local currentBarWidth = self.bar:GetWidth()
+  local width = currentBarWidth - self.spacing
+  self.vigorBar:SetSize(width, height)
+
+  -- Store the new width
+  self.previousBarWidth = currentBarWidth
+
+  local chargeInfo = self:GetSpellChargeInfo()
+
+  if chargeInfo and chargeInfo.maxCharges then
+    local maxCharges = chargeInfo.maxCharges
+
+    -- Calculate the new segment width based on the updated vigorBar width
+    local segmentWidth = (self.vigorBar:GetWidth() / maxCharges) - (self.spacing * 2)
+
+    for _, segment in ipairs(self.vigorBar.segments) do
+      segment:SetSize(segmentWidth, height)
+    end
+  end
+
+  self:UpdateVigorSegments()
+end
+
 function VB:UpdateKeybinds()
   for i, button in ipairs(self.bar.buttons) do
     -- Keybinds handling
@@ -143,14 +212,15 @@ function VB:UpdateBar()
   self.ab:UpdateButtonConfig("bar1", "ACTIONBUTTON")
   self.ab:PositionAndSizeBar("bar1")
 
-  -- Hook for animation
-  self:SecureHookScript(bar, "OnShow", "OnShowEvent")
-
   -- Hide
   bar:Hide()
 
   -- Only run after first creation
   if init then
+    -- Hook for animation (only hook once during initialization)
+    self:SecureHookScript(bar, "OnShow", "OnShowEvent")
+    if TXUI.IsRetail then self:SecureHookScript(bar, "OnHide", "OnHideEvent") end
+
     -- Create Mover
     E:CreateMover(bar, "ToxiUIVehicleBar", TXUI.Title .. " Vehicle Bar", nil, nil, nil, "ALL,TXUI", nil, "TXUI,misc,vehicleBar")
 
@@ -158,7 +228,12 @@ function VB:UpdateBar()
     for _, button in pairs(bar.buttons) do
       button:UpdateAction()
     end
+
+    if TXUI.IsRetail and not self.vigorBar and self.vdb.enabled then self:CreateVigorBar() end
   end
+
+  -- Update vigor bar if it exists (for settings changes)
+  if TXUI.IsRetail and self.vigorBar and self.vdb.enabled then self:UpdateVigorBar() end
 
   self:UpdateKeybinds()
 end

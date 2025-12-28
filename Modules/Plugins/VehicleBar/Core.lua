@@ -12,11 +12,34 @@ local UnregisterStateDriver = UnregisterStateDriver
 function VB:OnShowEvent()
   self:StopAllAnimations()
 
+  if self.vigorBar and self:IsVigorAvailable() then
+    local widgetInfo = self:GetSpellChargeInfo()
+    if self.vigorBar.segments and widgetInfo then
+      -- Check if we have the correct amount of segments. If not, recreate the segments.
+      if #self.vigorBar.segments < widgetInfo.maxCharges then
+        -- Clear existing segments
+        for _, segment in ipairs(self.vigorBar.segments) do
+          segment:Kill()
+        end
+        self.vigorBar.segments = {} -- Clear the table
+
+        -- Create new segments
+        self:CreateVigorSegments()
+      end
+    end
+  end
+
   local animationsAllowed = self.db.animations and (not InCombatLockdown()) and not self.combatLock
 
   if animationsAllowed then
     for i, button in ipairs(self.bar.buttons) do
       self:SetupButtonAnim(button, i)
+    end
+
+    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
+      for i, segment in ipairs(self.vigorBar.segments) do
+        self:SetupButtonAnim(segment, i)
+      end
     end
   end
 
@@ -29,8 +52,27 @@ function VB:OnShowEvent()
     end
   end
 
+  if self:IsVigorAvailable() and self.vigorBar and self.vigorBar.segments then
+    for _, segment in ipairs(self.vigorBar.segments) do
+      if animationsAllowed then
+        segment:SetAlpha(0)
+        segment.FadeIn:Play()
+      else
+        segment:SetAlpha(1)
+      end
+    end
+  end
+
+  -- Show the custom vigor bar when the vehicle bar is shown
+  if self:IsVigorAvailable() and self.vigorBar then self.vigorBar:Show() end
+
   -- Update keybinds when the bar is shown
   self:UpdateKeybinds()
+end
+
+function VB:OnHideEvent()
+  -- Hide the custom vigor bar when the vehicle bar is hidden
+  if self.vigorBar then self.vigorBar:Hide() end
 end
 
 function VB:OnCombatEvent(toggle)
@@ -51,6 +93,8 @@ function VB:Disable()
     RegisterStateDriver(self.ab["handledBars"]["bar1"], "visibility", E.db.actionbar["bar1"].visibility)
 
     self.bar:Hide()
+
+    if self.vigorBar then self.vigorBar:Hide() end
   end
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self)
@@ -92,6 +136,7 @@ function VB:DatabaseUpdate()
 
   -- Set db
   self.db = F.GetDBFromPath("TXUI.vehicleBar")
+  self.vdb = F.GetDBFromPath("TXUI.vehicleBar.vigorBar")
 
   -- Enable only out of combat
   F.Event.ContinueOutOfCombat(function()
@@ -106,6 +151,7 @@ function VB:Initialize()
   -- Vars
   self.combatLock = false
   self.ab = E:GetModule("ActionBars")
+  self.vigorBar = nil
   self.previousBarWidth = nil
   self.spacing = 2
 

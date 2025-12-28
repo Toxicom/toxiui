@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local ACH = LibStub("LibAceConfigHelper")
 
 function O:Plugins_VehicleBar()
   local isVehicleBarDisabled = function()
@@ -114,6 +115,72 @@ function O:Plugins_VehicleBar()
         F.Event.TriggerEvent("VehicleBar.DatabaseUpdate")
       end,
     }
+  end
+
+  self:AddSpacer(options)
+
+  -- Vigor Bar
+  do
+    -- Vigor Group
+    local vigorGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Skyriding Bar",
+      hidden = optionsDisabled,
+    }, {
+      name = "A Skyriding bar displaying your current Skyward Ascent spell charges.\n\n",
+    }, I.Requirements.VehicleBar).args
+
+    -- Enable
+    vigorGroup.enabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " Skyriding Bar.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.vehicleBar.vigorBar.enabled, vigorGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.vehicleBar.vigorBar.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    local vigorDisabled = function()
+      return isVehicleBarDisabled() or self:GetEnabledState(E.db.TXUI.vehicleBar.vigorBar.enabled, vigorGroup) ~= self.enabledState.YES
+    end
+
+    vigorGroup.height = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Bar Height",
+      desc = "Change the Skyriding Bar's height.",
+      get = function()
+        return E.db.TXUI.vehicleBar.vigorBar.height
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.height = value
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end,
+      min = 4,
+      max = 20,
+      step = 1,
+      disabled = vigorDisabled,
+    }
+
+    vigorGroup.normalTexture = ACH:SharedMediaStatusbar("Normal Texture", "Vigor bar texture for Normal and Gradient Mode", self:GetOrder(), 200, function()
+      return E.db.TXUI.vehicleBar.vigorBar.normalTexture
+    end, function(_, value)
+      E.db.TXUI.vehicleBar.vigorBar.normalTexture = value
+      E:StaticPopup_Show("CONFIG_RL")
+    end, vigorDisabled)
+
+    vigorGroup.darkTexture = ACH:SharedMediaStatusbar("Dark Texture", "Vigor bar texture for Dark Mode", self:GetOrder(), 200, function()
+      return E.db.TXUI.vehicleBar.vigorBar.darkTexture
+    end, function(_, value)
+      E.db.TXUI.vehicleBar.vigorBar.darkTexture = value
+      E:StaticPopup_Show("CONFIG_RL")
+    end, vigorDisabled)
   end
 
   -- Spacer
