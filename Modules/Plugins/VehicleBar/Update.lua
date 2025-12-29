@@ -188,6 +188,9 @@ function VB:UpdateBar()
       button:SetCheckedTexture("")
       button.MasqueSkinned = true -- Ugly fix for smaller cooldowns, not actually using Masque
 
+      -- Always show grid for empty buttons
+      button.config.showGrid = true
+
       -- Adjust the count position
       button.Count:ClearAllPoints()
       button.Count:SetPoint("BOTTOMLEFT", button, "BOTTOMLEFT", self.spacing, self.spacing)
