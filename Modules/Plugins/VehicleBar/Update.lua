@@ -128,10 +128,11 @@ function VB:UpdateBar()
   -- Create or get bar
   local init = self.bar == nil
   local bar = self.bar or CreateFrame("Frame", "ToxiUI_VehicleBar", E.UIParent, "SecureHandlerStateTemplate")
-
-  -- Default position
-  local point, anchor, attachTo, x, y = strsplit(",", F.Position(strsplit(",", self.db.position)))
-  bar:SetPoint(point, anchor, attachTo, x, y)
+  -- Default position (only on initial creation)
+  if init then
+    local point, anchor, attachTo, x, y = strsplit(",", F.Position(strsplit(",", self.db.position)))
+    bar:SetPoint(point, anchor, attachTo, x, y)
+  end
 
   -- Set bar vars
   self.bar = bar
