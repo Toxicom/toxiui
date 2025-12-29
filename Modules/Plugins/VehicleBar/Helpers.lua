@@ -6,7 +6,12 @@ local sub = string.utf8sub
 local len = strlenutf8
 
 function VB:IsVigorAvailable()
-  return F.IsSkyriding()
+  -- Check if player has the skyriding spell AND currently has vigor charges available
+  if not F.IsSkyriding() then return false end
+
+  -- If we can get spell charge info, we're actively skyriding
+  local chargeInfo = C_Spell.GetSpellCharges(I.Constants.SKYWARD_ASCENT_SPELL_ID)
+  return chargeInfo ~= nil
 end
 
 function VB:GetSpellChargeInfo()

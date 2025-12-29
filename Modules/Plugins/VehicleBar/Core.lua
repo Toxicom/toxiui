@@ -94,7 +94,14 @@ function VB:Disable()
 
     self.bar:Hide()
 
-    if self.vigorBar then self.vigorBar:Hide() end
+    if self.vigorBar then
+      self.vigorBar:Hide()
+      -- Cancel speed text ticker if it exists
+      if self.vigorBar.speedTextTicker then
+        self.vigorBar.speedTextTicker:Cancel()
+        self.vigorBar.speedTextTicker = nil
+      end
+    end
   end
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self)

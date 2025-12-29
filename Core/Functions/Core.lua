@@ -988,8 +988,9 @@ end
 
 function F.IsSkyriding()
   if TXUI.IsRetail then
-    local spellInfo = C_Spell.GetSpellInfo(I.Constants.SKYWARD_ASCENT_SPELL_ID)
-    return spellInfo and IsPlayerSpell(I.Constants.SKYWARD_ASCENT_SPELL_ID)
+    -- Use GetGlidingInfo to check if player is in a Dragonriding zone on an applicable mount
+    local _, canGlide = C_PlayerInfo.GetGlidingInfo()
+    return canGlide == true
   else
     return false
   end

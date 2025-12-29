@@ -85,6 +85,16 @@ function VB:UpdateVigorBar()
     self.vigorBar.speedText:Hide()
   end
 
+  -- Recreate speed text ticker if update rate changed
+  if self.vigorBar.speedTextTicker then
+    self.vigorBar.speedTextTicker:Cancel()
+  end
+  self.vigorBar.speedTextTicker = C_Timer.NewTicker(self.vdb.speedTextUpdateRate, function()
+    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then
+      self:UpdateSpeedText()
+    end
+  end)
+
   -- Create segments (they will be sized correctly based on vigorBar width)
   self:CreateVigorSegments()
 
