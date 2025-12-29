@@ -50,9 +50,7 @@ function VB:CreateVigorBar()
 
   -- Use C_Timer for speed text updates (more efficient than OnUpdate throttling)
   vigorBar.speedTextTicker = C_Timer.NewTicker(self.vdb.speedTextUpdateRate, function()
-    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then
-      self:UpdateSpeedText()
-    end
+    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then self:UpdateSpeedText() end
   end)
 
   self.vigorBar = vigorBar
