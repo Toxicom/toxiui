@@ -322,6 +322,24 @@ function O:Plugins_VehicleBar()
       step = 1,
       disabled = speedTextDisabled,
     }
+
+    vigorGroup.speedTextUpdateRate = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Update Rate",
+      desc = "How often the speed text updates (in seconds). Lower values update more frequently but use more resources.",
+      get = function()
+        return E.db.TXUI.vehicleBar.vigorBar.speedTextUpdateRate
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.vigorBar.speedTextUpdateRate = value
+        F.Event.TriggerEvent("VehicleBar.SettingsUpdate")
+      end,
+      min = 0.05,
+      max = 1,
+      step = 0.05,
+      disabled = speedTextDisabled,
+    }
   end
 
   -- Spacer

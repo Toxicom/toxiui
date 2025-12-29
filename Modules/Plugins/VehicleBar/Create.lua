@@ -41,10 +41,18 @@ function VB:CreateVigorBar()
   end)
 
   -- OnUpdate for smooth recharge animation and speed text
-  vigorBar:SetScript("OnUpdate", function()
+  local speedTextThrottle = 0
+  vigorBar:SetScript("OnUpdate", function(_, elapsed)
     if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then
+      -- Update vigor segments every frame for smooth animation
       self:UpdateVigorSegments()
-      self:UpdateSpeedText()
+
+      -- Update speed text based on configured update rate
+      speedTextThrottle = speedTextThrottle + elapsed
+      if speedTextThrottle > self.vdb.speedTextUpdateRate then
+        speedTextThrottle = 0
+        self:UpdateSpeedText()
+      end
     end
   end)
 

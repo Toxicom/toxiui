@@ -497,6 +497,7 @@ P.vehicleBar = {
     speedTextFont = I.Fonts.Primary,
     speedTextFontSize = 20,
     speedTextOffsetY = -5,
+    speedTextUpdateRate = 0.1,
   },
 }
 
