@@ -356,9 +356,6 @@ MM.microMenu = {
       LeftButton = function()
         _G.HousingFramesUtil.ToggleHousingDashboard()
       end,
-      RightButton = function()
-        F.Housing:TeleportHome()
-      end,
     },
     keyBind = "TOGGLEHOUSINGDASHBOARD",
     newbieTooltip = function()
@@ -368,7 +365,6 @@ MM.microMenu = {
     end,
     tooltips = {
       BINDING_NAME_TOGGLEHOUSINGDASHBOARD and MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD or "",
-      MM.rightButtonText .. F.Housing:GetTeleportHomeName(),
     },
   },
   ["txui"] = {

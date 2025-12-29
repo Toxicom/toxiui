@@ -6,9 +6,6 @@ TXUI.Changelog["7.0.9"] = {
     "* Breaking changes",
 
     "* New features",
-    "Add " .. F.String.ToxiUI("Teleport Home") .. " functions to Hearthstone and MicroMenu modules in " .. F.String.Menu.WunderBar() .. F.String.Sublist(
-      "Currently, the \"Return To Previous Location\" functionality is being tainted, so it's not possible to implement."
-    ),
     "Bring back Skyriding Bar for "
       .. TXUI.Title
       .. " Vehicle Bar"
