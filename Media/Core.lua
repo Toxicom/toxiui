@@ -108,6 +108,8 @@ F.AddMedia("state", "MaterialLeader")
 F.AddMedia("state", "MaterialLooter")
 F.AddMedia("state", "MaterialMainAssist")
 F.AddMedia("state", "MaterialMainTank")
+F.AddMedia("state", "MaterialStar")
+F.AddMedia("state", "MaterialPerson")
 
 -- Stylized Icons
 F.AddMedia("state", "StylizedDC") -- icons8.com

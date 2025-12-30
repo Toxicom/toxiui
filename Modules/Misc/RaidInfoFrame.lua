@@ -53,32 +53,35 @@ function RIF:Create()
 
   -- Tank
   frame.tankIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.tankIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, "MaterialTank"))
   frame.tankText = frame:CreateFontString(nil, "OVERLAY")
   frame.tankText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
   frame.tankText:SetText("2")
 
   -- Healer
   frame.healIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.healIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, "MaterialHeal"))
   frame.healText = frame:CreateFontString(nil, "OVERLAY")
   frame.healText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
   frame.healText:SetText("4")
 
   -- DPS
   frame.dpsIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.dpsIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, "MaterialDPS"))
   frame.dpsText = frame:CreateFontString(nil, "OVERLAY")
   frame.dpsText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
   frame.dpsText:SetText("14")
 
   -- Difficulty
   frame.difficultyIcon = frame:CreateTexture(nil, "ARTWORK")
-  frame.difficultyIcon:SetTexture(F.GetMedia(I.Media.StateIcons, "StylizedDead"))
+  frame.difficultyIcon:SetTexture(F.GetMedia(I.Media.StateIcons, "MaterialStar"))
   frame.difficultyText = frame:CreateFontString(nil, "OVERLAY")
   frame.difficultyText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
   frame.difficultyText:SetText("")
 
   -- Total
   frame.totalIcon = frame:CreateTexture(nil, "ARTWORK")
-  frame.totalIcon:SetTexture(F.GetMedia(I.Media.StateIcons, "StylizedLeader"))
+  frame.totalIcon:SetTexture(F.GetMedia(I.Media.StateIcons, "MaterialPerson"))
   frame.totalText = frame:CreateFontString(nil, "OVERLAY")
   frame.totalText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
   frame.totalText:SetText("0")
@@ -88,7 +91,6 @@ function RIF:Create()
   self.frame = frame
 
   self:CreateTooltip()
-  self:UpdateIcons()
   self:UpdateSize()
   self:UpdateSpacing()
   self:UpdateBackdrop()
@@ -101,17 +103,6 @@ function RIF:Create()
   frame:SetScript("OnEvent", function()
     self:Update()
   end)
-end
-
--- -----------------------------------------------
--- Update Role Icon Textures
--- -----------------------------------------------
-function RIF:UpdateIcons()
-  local theme = E.db.TXUI.elvUIIcons.roleIcons.theme
-
-  if self.frame.tankIcon then self.frame.tankIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.TANK)) end
-  if self.frame.healIcon then self.frame.healIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.HEALER)) end
-  if self.frame.dpsIcon then self.frame.dpsIcon:SetTexture(F.GetMedia(I.Media.RoleIcons, I.ElvUIIcons.Role[theme].raid1.DAMAGER)) end
 end
 
 -- -----------------------------------------------
