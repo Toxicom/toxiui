@@ -75,6 +75,36 @@ function O:Plugins_RaidInfoFrame()
       name = "Adjust the appearance of the Raid Info Frame.\n\n",
     }).args
 
+    -- Show Difficulty
+    customizationGroup.showDifficulty = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Difficulty " .. E.NewSign,
+      desc = "Show the raid difficulty indicator (M, HC, NM, LFR) on the left side.",
+      get = function()
+        return E.db.TXUI.misc.raidInfo.showDifficulty
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.raidInfo.showDifficulty = value
+        RIF:UpdateDifficultyVisibility()
+      end,
+    }
+
+    -- Show Total
+    customizationGroup.showTotal = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Total " .. E.NewSign,
+      desc = "Show the total player count on the right side.",
+      get = function()
+        return E.db.TXUI.misc.raidInfo.showTotal
+      end,
+      set = function(_, value)
+        E.db.TXUI.misc.raidInfo.showTotal = value
+        RIF:UpdateTotalVisibility()
+      end,
+    }
+
     -- Size
     customizationGroup.size = {
       order = self:GetOrder(),

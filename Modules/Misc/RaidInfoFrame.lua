@@ -69,6 +69,20 @@ function RIF:Create()
   frame.dpsText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
   frame.dpsText:SetText("14")
 
+  -- Difficulty
+  frame.difficultyIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.difficultyIcon:SetTexture(F.GetMedia(I.Media.StateIcons, "StylizedDead"))
+  frame.difficultyText = frame:CreateFontString(nil, "OVERLAY")
+  frame.difficultyText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
+  frame.difficultyText:SetText("")
+
+  -- Total
+  frame.totalIcon = frame:CreateTexture(nil, "ARTWORK")
+  frame.totalIcon:SetTexture(F.GetMedia(I.Media.StateIcons, "StylizedLeader"))
+  frame.totalText = frame:CreateFontString(nil, "OVERLAY")
+  frame.totalText:SetFont(primaryFont, F.FontSizeScaled(self.db.size), "OUTLINE")
+  frame.totalText:SetText("0")
+
   -- Finalize
   frame:Hide()
   self.frame = frame
@@ -78,6 +92,8 @@ function RIF:Create()
   self:UpdateSize()
   self:UpdateSpacing()
   self:UpdateBackdrop()
+  self:UpdateDifficultyVisibility()
+  self:UpdateTotalVisibility()
   self:Update()
 
   frame:RegisterEvent("GROUP_ROSTER_UPDATE")
@@ -105,13 +121,17 @@ function RIF:UpdateSize()
   local size = self.db.size
   local font = F.GetFontPath(I.Fonts.Primary)
 
+  self.frame.difficultyIcon:SetSize(size, size)
   self.frame.tankIcon:SetSize(size, size)
   self.frame.healIcon:SetSize(size, size)
   self.frame.dpsIcon:SetSize(size, size)
+  self.frame.totalIcon:SetSize(size, size)
 
+  self.frame.difficultyText:SetFont(font, size, "OUTLINE")
   self.frame.tankText:SetFont(font, size, "OUTLINE")
   self.frame.healText:SetFont(font, size, "OUTLINE")
   self.frame.dpsText:SetFont(font, size, "OUTLINE")
+  self.frame.totalText:SetFont(font, size, "OUTLINE")
 
   self:UpdateLayout()
 end
@@ -123,7 +143,28 @@ function RIF:UpdateSpacing()
   local spacing = self.db.spacing
   local padding = self.db.padding
 
-  self.frame.tankIcon:SetPoint("LEFT", self.frame, "LEFT", padding, 0)
+  -- Clear all points first
+  self.frame.difficultyIcon:ClearAllPoints()
+  self.frame.difficultyText:ClearAllPoints()
+  self.frame.tankIcon:ClearAllPoints()
+  self.frame.tankText:ClearAllPoints()
+  self.frame.healIcon:ClearAllPoints()
+  self.frame.healText:ClearAllPoints()
+  self.frame.dpsIcon:ClearAllPoints()
+  self.frame.dpsText:ClearAllPoints()
+  self.frame.totalIcon:ClearAllPoints()
+  self.frame.totalText:ClearAllPoints()
+
+  -- Difficulty (left side)
+  self.frame.difficultyIcon:SetPoint("LEFT", self.frame, "LEFT", padding, 0)
+  self.frame.difficultyText:SetPoint("LEFT", self.frame.difficultyIcon, "RIGHT", spacing, 0)
+
+  -- Tank icon anchors to difficulty text if shown, otherwise to frame
+  if self.db.showDifficulty then
+    self.frame.tankIcon:SetPoint("LEFT", self.frame.difficultyText, "RIGHT", spacing * 2, 0)
+  else
+    self.frame.tankIcon:SetPoint("LEFT", self.frame, "LEFT", padding, 0)
+  end
   self.frame.tankText:SetPoint("LEFT", self.frame.tankIcon, "RIGHT", spacing, 0)
 
   self.frame.healIcon:SetPoint("LEFT", self.frame.tankText, "RIGHT", spacing, 0)
@@ -131,6 +172,9 @@ function RIF:UpdateSpacing()
 
   self.frame.dpsIcon:SetPoint("LEFT", self.frame.healText, "RIGHT", spacing, 0)
   self.frame.dpsText:SetPoint("LEFT", self.frame.dpsIcon, "RIGHT", spacing, 0)
+
+  self.frame.totalIcon:SetPoint("LEFT", self.frame.dpsText, "RIGHT", spacing * 2, 0)
+  self.frame.totalText:SetPoint("LEFT", self.frame.totalIcon, "RIGHT", spacing, 0)
 
   self:UpdateLayout()
 end
@@ -151,17 +195,18 @@ function RIF:UpdateLayout()
   local spacing = self.db.spacing
   local padding = self.db.padding
 
-  local width = size
-    + spacing
-    + self.frame.tankText:GetStringWidth()
-    + spacing
-    + size
-    + spacing
-    + self.frame.healText:GetStringWidth()
-    + spacing
-    + size
-    + spacing
-    + self.frame.dpsText:GetStringWidth()
+  local width = 0
+
+  -- Difficulty (left side)
+  if self.db.showDifficulty and self.frame.difficultyText:GetText() ~= "" then width = width + size + spacing + self.frame.difficultyText:GetStringWidth() + (spacing * 2) end
+
+  -- Role icons and counts
+  width = width + size + spacing + self.frame.tankText:GetStringWidth()
+  width = width + spacing + size + spacing + self.frame.healText:GetStringWidth()
+  width = width + spacing + size + spacing + self.frame.dpsText:GetStringWidth()
+
+  -- Total (right side)
+  if self.db.showTotal and self.frame.totalText:GetText() ~= "" then width = width + (spacing * 2) + size + spacing + self.frame.totalText:GetStringWidth() end
 
   local height = size + (padding * 2)
 
@@ -175,8 +220,86 @@ function RIF:ToggleFrame()
   if self.frame:IsShown() then
     self.frame:Hide()
   else
+    -- Show preview with sample data
     self.frame:Show()
+    self.frame.tankText:SetText("2")
+    self.frame.healText:SetText("4")
+    self.frame.dpsText:SetText("14")
+    self.frame.totalText:SetText("20")
+
+    -- Update difficulty
+    local diffText, diffColor = self:GetDifficultyInfo()
+    if diffText and diffColor then
+      self.frame.difficultyText:SetText(diffText)
+      self.frame.difficultyText:SetTextColor(diffColor[1], diffColor[2], diffColor[3], 1)
+    else
+      self.frame.difficultyText:SetText("NM")
+      self.frame.difficultyText:SetTextColor(_G.UNCOMMON_GREEN_COLOR:GetRGB())
+    end
+
+    self:UpdateLayout()
   end
+end
+
+-- -----------------------------------------------
+-- Update Difficulty Visibility
+-- -----------------------------------------------
+function RIF:UpdateDifficultyVisibility()
+  if not self.frame then return end
+
+  local show = self.db.showDifficulty
+  if show then
+    self.frame.difficultyIcon:Show()
+    self.frame.difficultyText:Show()
+  else
+    self.frame.difficultyIcon:Hide()
+    self.frame.difficultyText:Hide()
+  end
+
+  -- Update spacing to reposition elements
+  self:UpdateSpacing()
+end
+
+-- -----------------------------------------------
+-- Update Total Visibility
+-- -----------------------------------------------
+function RIF:UpdateTotalVisibility()
+  if not self.frame then return end
+
+  local show = self.db.showTotal
+  if show then
+    self.frame.totalIcon:Show()
+    self.frame.totalText:Show()
+  else
+    self.frame.totalIcon:Hide()
+    self.frame.totalText:Hide()
+  end
+
+  -- Update spacing to reposition elements
+  self:UpdateSpacing()
+end
+
+-- -----------------------------------------------
+-- Get Raid Difficulty Info
+-- -----------------------------------------------
+function RIF:GetDifficultyInfo()
+  local difficulty = GetRaidDifficultyID()
+
+  -- Mythic
+  if difficulty == 16 then
+    return "M", { _G.EPIC_PURPLE_COLOR:GetRGB() }
+  -- Heroic
+  elseif difficulty == 15 then
+    return "HC", { _G.RARE_BLUE_COLOR:GetRGB() }
+  -- Normal
+  elseif difficulty == 14 then
+    return "NM", { _G.UNCOMMON_GREEN_COLOR:GetRGB() }
+  -- LFR
+  elseif difficulty == 17 then
+    return "LFR", { _G.HEIRLOOM_BLUE_COLOR:GetRGB() }
+  end
+
+  return nil, nil
 end
 
 -- -----------------------------------------------
@@ -185,11 +308,26 @@ end
 function RIF:Update()
   if not self.frame then return end
 
+  -- Update visibility based on settings
+  self:UpdateDifficultyVisibility()
+  self:UpdateTotalVisibility()
+
+  -- Update difficulty (always check, even outside raid)
+  local diffText, diffColor = self:GetDifficultyInfo()
+  if diffText and diffColor and self.db.showDifficulty then
+    self.frame.difficultyText:SetText(diffText)
+    self.frame.difficultyText:SetTextColor(diffColor[1], diffColor[2], diffColor[3], 1)
+  else
+    self.frame.difficultyText:SetText("")
+  end
+
   if IsInRaid() then
     self.frame:Show()
 
     local tank, heal, dps = 0, 0, 0
-    for i = 1, GetNumGroupMembers() do
+    local total = GetNumGroupMembers()
+
+    for i = 1, total do
       local unit = "raid" .. i
       if UnitExists(unit) then
         local role = UnitGroupRolesAssigned(unit)
@@ -206,6 +344,12 @@ function RIF:Update()
     self.frame.tankText:SetText(tank)
     self.frame.healText:SetText(heal)
     self.frame.dpsText:SetText(dps)
+
+    if self.db.showTotal then
+      self.frame.totalText:SetText(total)
+    else
+      self.frame.totalText:SetText("")
+    end
 
     self:UpdateLayout()
   else

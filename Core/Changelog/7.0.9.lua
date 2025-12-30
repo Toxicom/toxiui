@@ -14,6 +14,7 @@ TXUI.Changelog["7.0.9"] = {
       .. F.String.Sublist("Configurable textures for Normal, Gradient and Dark modes")
       .. F.String.Sublist("Custom gradient color options (defaults to class color gradient)")
       .. F.String.Sublist("Speed Text has more customization options"),
+    "Difficulty display and Total player count in Raid Info Frame",
 
     "* Bug fixes",
     "Remove right-click from SpecSwitch module in Classic Era",
