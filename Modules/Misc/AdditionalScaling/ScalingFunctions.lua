@@ -2,9 +2,16 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 
 local _G = _G
+local InCombatLockdown = InCombatLockdown
 local IsRetailTalentsWindowHooked = false
 
 function M:SetElementScale(dbName, blizzName)
+  -- Don't scale frames during combat to avoid taint
+  if InCombatLockdown() then
+    TXUI:LogDebug("AdditionalScaling > Skipping scaling of " .. F.String.ToxiUI(blizzName) .. " during combat")
+    return
+  end
+
   local option
 
   if E and E.db and E.db.TXUI and E.db.TXUI.misc and E.db.TXUI.misc.scaling and E.db.TXUI.misc.scaling[dbName] then
@@ -40,6 +47,9 @@ end
 function M:ScaleProfessions()
   if TXUI.IsRetail then
     E:Delay(0.01, function()
+      -- Don't hook frames during combat to avoid taint
+      if InCombatLockdown() then return end
+
       local isHooked = M.hookedFrames["profession"] == true
       if not isHooked then
         -- Scale initially
@@ -87,6 +97,9 @@ function M:ScaleInspectUI()
 end
 
 function M:HookRetailTalentsWindow()
+  -- Don't hook frames during combat to avoid taint
+  if InCombatLockdown() then return end
+
   _G.PlayerSpellsFrame:HookScript("OnShow", function()
     M:ScaleRetailSpellbook()
   end)

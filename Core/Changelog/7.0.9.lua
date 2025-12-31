@@ -19,6 +19,7 @@ TXUI.Changelog["7.0.9"] = {
     "* Bug fixes",
     "Remove right-click from SpecSwitch module in Classic Era",
     "Potentially fix disappearing Vehicle Bar empty buttons",
+    "Add InCombatLockdown protection for Additional Scaling modules",
 
     "* Profile updates",
 
