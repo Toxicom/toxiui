@@ -71,7 +71,12 @@ function T:SetupProfile()
   end
 end
 
+function T:SetupPrivate()
+  if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then E.private["WT"]["misc"]["moveFrames"]["rememberPositions"] = true end
+end
+
 T:AddCallback("SetupCvars")
 T:AddCallback("SetupProfile")
+T:AddCallback("SetupPrivate")
 
 --@end-do-not-package@
