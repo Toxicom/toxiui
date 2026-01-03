@@ -1144,6 +1144,8 @@ function PF:BuildProfile()
       width = F.Dpi(200),
       height = F.Dpi(30),
 
+      visibility = "[@raid1,exists][@party1,noexists] hide;show",
+
       -- UnitFrame Party Options
       groupBy = "ROLE",
       growthDirection = "DOWN_LEFT",
