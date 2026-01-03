@@ -22,6 +22,7 @@ TXUI.Changelog["7.0.9"] = {
     "Add InCombatLockdown protection for Additional Scaling modules",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Adjust Raid 1 visibility state",
 
     "* Documentation",
     "Update for Mists of Pandaria 5.5.3",

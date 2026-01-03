@@ -241,7 +241,6 @@ function PF:BuildProfile()
       AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 351, -324),
       ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -280, 317),
       HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -573, -422),
-      WTRaidMarkerBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -325, -4),
       WTExtraItemsBar1Mover = F.Position("BOTTOMRIGHT", "RightChatMover", "BOTTOMLEFT", -defaultPadding, 0),
 
       -- Movers: ActionBars Retail Only
@@ -1474,7 +1473,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid1,
     raidFramesTable,
     {
-      visibility = TXUI.IsRetail and "[@raid6,noexists][@raid21,exists] hide;show" or "[@raid6,noexists][@raid11,exists] hide;show",
+      visibility = TXUI.IsRetail and "[@raid1,noexists][@raid21,exists] hide;show" or "[@raid1,noexists][@raid11,exists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
       -- UnitFrame Raid Horizontal Layout
