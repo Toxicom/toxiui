@@ -127,9 +127,15 @@ MM.microMenu = {
           UIErrorsFrame:AddMessage(E.InfoColor .. ERR_NOT_IN_COMBAT)
         end
       end,
-    },
-    macro = {
-      RightButton = "/narci",
+      RightButton = function()
+        if F.IsAddOnEnabled("Narcissus") then
+          if not InCombatLockdown() then
+            Narci_Open()
+          else
+            UIErrorsFrame:AddMessage(E.InfoColor .. ERR_NOT_IN_COMBAT)
+          end
+        end
+      end,
     },
     keyBind = "TOGGLECHARACTER0",
     newbieTooltip = NEWBIE_TOOLTIP_CHARACTER,

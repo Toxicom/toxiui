@@ -19513,7 +19513,8 @@
     "ZOOM_OUT",
     "ZOOM_OUT_BUTTON_TEXT",
     "_RECORDING_WARNING_CORRUPTED",
-    "C_Container"
+    "C_Container",
+        "Narci_Open"
   ],
   "diagnostics.disable": ["deprecated", "inject-field", "undefined-field"]
 }

@@ -20,6 +20,7 @@ TXUI.Changelog["7.0.9"] = {
     "Remove right-click from SpecSwitch module in Classic Era",
     "Potentially fix disappearing Vehicle Bar empty buttons",
     "Add InCombatLockdown protection for Additional Scaling modules",
+    "Fix " .. F.String.Menu.WunderBar() .. " MicroMenu's Character info right-click",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Adjust Raid 1 visibility state",
