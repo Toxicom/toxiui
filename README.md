@@ -1,3 +1,5 @@
+![](https://dcbadge.limes.pink/api/server/r85TGUU7zA)
+
 ![Gameplay video](https://media.forgecdn.net/attachments/description/676447/description_79cd99f7-eac7-4849-b97c-427f1c7140b6.png)
 
 [![Video thumbnail](https://img.youtube.com/vi/jizdfGCNxmU/maxresdefault.jpg)](https://www.youtube.com/watch?v=jizdfGCNxmU)
