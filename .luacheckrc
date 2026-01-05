@@ -19547,4 +19547,5 @@ globals = {
   "ZOOM_OUT",
   "ZOOM_OUT_BUTTON_TEXT",
   "_RECORDING_WARNING_CORRUPTED",
+  "Narci_Open",
 }
