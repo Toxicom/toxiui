@@ -1,4 +1,13 @@
-[![](https://dcbadge.limes.pink/api/server/r85TGUU7zA)](https://discord.gg/r85TGUU7zA)
+[![Discord](https://img.shields.io/discord/769550106948141086?style=for-the-badge&logo=discord&label=ToxiUI&color=18a8ff)](https://discord.gg/r85TGUU7zA)
+
+
+[![CurseForge Downloads](https://img.shields.io/curseforge/dt/676447?style=for-the-badge)](https://www.curseforge.com/wow/addons/toxiui)
+[![CurseForge Game Versions](https://img.shields.io/curseforge/game-versions/676447?style=for-the-badge)](https://www.curseforge.com/wow/addons/toxiui)
+[![CurseForge Version](https://img.shields.io/curseforge/v/676447?style=for-the-badge)](https://www.curseforge.com/wow/addons/toxiui)
+
+[![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/c/toxiui)
+[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/toxiui)
+[![Ko-Fi](https://img.shields.io/badge/%E2%9D%A4%EF%B8%8FDonate-Ko--Fi-red?style=for-the-badge&logo=heart)](https://ko-fi.com/toxiui)
 
 ![Gameplay video](https://media.forgecdn.net/attachments/description/676447/description_79cd99f7-eac7-4849-b97c-427f1c7140b6.png)
 
