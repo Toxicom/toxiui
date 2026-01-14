@@ -10,6 +10,7 @@ TXUI.Changelog["7.1.1"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Move WTRaidMarkersBarAnchor mover position when Chattynator is enabled.",
 
     "* Documentation",
 

@@ -249,7 +249,7 @@ function PF:BuildProfile()
       ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 630, 200),
 
       -- Movers: Chat
-      WTRaidMarkersBarAnchor = F.Position("BOTTOMLEFT", "LeftChatMover", "TOPLEFT", 0, defaultPadding),
+      WTRaidMarkersBarAnchor = F.Position("BOTTOMLEFT", "LeftChatMover", "TOPLEFT", 0, F.IsAddOnEnabled("Chattynator") and defaultPadding + 60 or defaultPadding),
 
       -- Movers: Misc Retail Only
       LevelUpBossBannerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -170),
