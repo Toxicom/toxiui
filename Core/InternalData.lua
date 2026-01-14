@@ -36,6 +36,7 @@ I.Data.Contributor = {
         ["Toximeta-TarrenMill"] = true,
         ["Toxihunt-TarrenMill"] = true,
         ["Toxistorm-TarrenMill"] = true,
+        ["Toxizen-TarrenMill"] = true,
       },
 
       [I.Enum.Flavor.MISTS] = {
