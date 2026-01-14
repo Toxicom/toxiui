@@ -905,7 +905,7 @@ function PF:BuildProfile()
         }),
 
         ["toxiui:pet-happiness"] = createCustomText({}, {
-          text_format = TXUI.IsVanilla and "[happiness:discord]" or "",
+          text_format = (TXUI.IsVanilla or TXUI.IsTBC) and "[happiness:discord]" or "",
           xOffset = -25,
           yOffset = 0,
           justifyH = "LEFT",

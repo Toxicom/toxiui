@@ -225,7 +225,7 @@ end
 function SS:UpdateSpecialization()
   local spec1, spec2
 
-  if TXUI.IsVanilla then
+  if TXUI.IsVanilla or TXUI.IsTBC then
     spec1 = GetActiveSpecGroup()
     spec2 = GetNumTalentGroups() == 2 and (spec1 == 2 and 1 or 2) or nil
     self.specCache = {}

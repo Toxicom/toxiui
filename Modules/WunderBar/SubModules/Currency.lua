@@ -528,7 +528,7 @@ function CR:OnInit()
   self:CreateElvUIDB()
 
   -- Create Token Ticker
-  if not TXUI.IsVanilla then
+  if not TXUI.IsVanilla and not TXUI.IsTBC then
     self.tokenCallback = F.Event.GenerateClosure(C_WowTokenPublic_UpdateMarketPrice)
     self.tokenTicker = C_Timer_NewTicker(60, self.tokenCallback)
     self.tokenCallback()

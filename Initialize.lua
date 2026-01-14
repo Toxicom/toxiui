@@ -41,6 +41,7 @@ TXUI.Version = GetAddOnMetadata(addonName, "Version")
 TXUI.IsVanilla = TXUI.MetaFlavor == "Vanilla"
 TXUI.IsMists = TXUI.MetaFlavor == "Mists"
 TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
+TXUI.IsTBC = TXUI.MetaFlavor == "TBC"
 
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
@@ -65,7 +66,10 @@ function TXUI:Initialize()
     ["Vanilla"] = I.Enum.Flavor.VANILLA,
     ["Mists"] = I.Enum.Flavor.MISTS,
     ["Mainline"] = I.Enum.Flavor.RETAIL,
+    ["TBC"] = I.Enum.Flavor.TBC,
   }
+
+  print("initializing", self.MetaFlavor)
 
   self.Flavor = flavorMap[self.MetaFlavor] or I.Enum.Flavor.RETAIL
 
@@ -115,8 +119,8 @@ function TXUI:Initialize()
     return
   end
 
-  -- Check for non Mists, non Retail and non Vanilla
-  if not self.IsRetail and not self.IsMists and not self.IsVanilla then return end
+  -- Check for non Mists, non Retail, non Vanilla, and non TBC
+  if not self.IsRetail and not self.IsMists and not self.IsVanilla and not self.IsTBC then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
@@ -129,6 +133,11 @@ function TXUI:Initialize()
 
   if self.IsVanilla then
     I.HearthstoneData = I.HearthstoneData_Vanilla
+    I.InterruptSpellMap = I.InterruptSpellMap_Empty
+  end
+
+  if self.IsTBC then
+    I.HearthstoneData = I.HearthstoneData_TBC
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 

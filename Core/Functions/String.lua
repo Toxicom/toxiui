@@ -123,7 +123,7 @@ end
 
 function F.String.RandomClassColor(msg)
   local classNames
-  if TXUI.IsVanilla then
+  if TXUI.IsVanilla or TXUI.IsTBC then
     classNames = I.Strings.Classes.VANILLA
   elseif TXUI.IsMists then
     classNames = I.Strings.Classes.MISTS
@@ -215,7 +215,7 @@ function F.String.WALink(class)
   local classLink = I.Strings.WALinks[class]
 
   if classLink ~= nil then
-    local base = TXUI.IsVanilla and I.Strings.WALinks.FORMAT_VANILLA or TXUI.IsMists and I.Strings.WALinks.FORMAT_MISTS or I.Strings.WALinks.FORMAT
+    local base = (TXUI.IsVanilla or TXUI.IsTBC) and I.Strings.WALinks.FORMAT_VANILLA or TXUI.IsMists and I.Strings.WALinks.FORMAT_MISTS or I.Strings.WALinks.FORMAT
     return format(base, classLink)
   end
 

@@ -108,7 +108,7 @@ local lfgLevelRequirement = TXUI.IsMists and 15 or 10
 
 MM.microMenu = {
   ["ach"] = {
-    available = not TXUI.IsVanilla,
+    available = not TXUI.IsVanilla and not TXUI.IsTBC,
     name = ACHIEVEMENTS,
     macro = {
       LeftButton = SLASH_ACHIEVEMENTUI1,
@@ -142,7 +142,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLECHARACTER0, MM.rightButtonText .. "Toggle Narcissus" },
   },
   ["pet"] = {
-    available = not TXUI.IsVanilla,
+    available = not TXUI.IsVanilla and not TXUI.IsTBC,
     name = COLLECTIONS,
     click = {
       LeftButton = function()
@@ -158,7 +158,7 @@ MM.microMenu = {
   },
   ["journal"] = {
     name = ADVENTURE_JOURNAL,
-    available = not TXUI.IsVanilla,
+    available = not TXUI.IsVanilla and not TXUI.IsTBC,
     macro = {
       LeftButton = "/click EJMicroButton",
       RightButton = TXUI.IsRetail and "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end" or nil,
@@ -202,7 +202,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGAMEMENU, MM.rightButtonText .. ADDONS },
   },
   ["lfg"] = {
-    available = not TXUI.IsVanilla and UnitLevel("player") >= lfgLevelRequirement,
+    available = not TXUI.IsVanilla and not TXUI.IsTBC and UnitLevel("player") >= lfgLevelRequirement,
     name = DUNGEONS_BUTTON,
     click = {
       LeftButton = function()
@@ -311,7 +311,7 @@ MM.microMenu = {
     click = {
       LeftButton = function()
         if not InCombatLockdown() then
-          if TXUI.IsVanilla then
+          if TXUI.IsVanilla or TXUI.IsTBC then
             ToggleCharacter("HonorFrame")
           else
             TogglePVPUI()

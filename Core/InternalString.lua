@@ -46,6 +46,7 @@ I.Strings.WALinks = {
   ["FORMAT"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-the-war-within/",
   ["FORMAT_MISTS"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-mists-of-pandaria/",
   ["FORMAT_VANILLA"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-classic-era-hardcore/",
+  ["FORMAT_TBC"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-classic-era-hardcore/",
   ["WARRIOR"] = "warrior",
   ["HUNTER"] = "hunter",
   ["MAGE"] = "mage",
