@@ -69,8 +69,6 @@ function TXUI:Initialize()
     ["TBC"] = I.Enum.Flavor.TBC,
   }
 
-  print("initializing", self.MetaFlavor)
-
   self.Flavor = flavorMap[self.MetaFlavor] or I.Enum.Flavor.RETAIL
 
   -- Call pre init for ourselfs
