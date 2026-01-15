@@ -134,7 +134,7 @@ function TXUI:InitializeModules()
     end)
   end
 
-  local events = { "PLAYER_LOGIN" }
+  local events = { "PLAYER_ENTERING_WORLD", "FIRST_FRAME_RENDERED" }
 
   F.Event.ContinueAfterAllEvents(onAllEvents, F.Table.SafeUnpack(events))
 end

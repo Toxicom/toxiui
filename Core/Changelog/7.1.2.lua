@@ -9,7 +9,6 @@ TXUI.Changelog["7.1.2"] = {
 
     "* Bug fixes",
     "Remove duplicate event registration for gradient updates",
-    "Use PLAYER_LOGIN instead of PLAYER_ENTERING_WORLD event for initialization",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Disable Objective Tracker Auto Hide",
