@@ -144,7 +144,6 @@ function GR:Enable()
   F.EventManagerRegister(self.interruptNamespace, "PLAYER_ENTERING_WORLD", F.CheckInterruptSpells)
   F.EventManagerRegister(self.interruptNamespace, "PLAYER_LEVEL_CHANGED", F.CheckInterruptSpells)
   F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_TAB", F.CheckInterruptSpells)
-  F.EventManagerRegister(self.interruptNamespace, "PLAYER_ENTERING_WORLD", F.CheckInterruptSpells)
 
   -- Update!
   self.uf:Update_AllFrames()
