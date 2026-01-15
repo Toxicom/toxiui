@@ -268,6 +268,17 @@ I.Data.Contributor = {
         ["Torwald-ShatteredHalls"] = true,
       },
     },
+
+    -- Joined Jan 15, 2026
+    ["Aspry"] = {
+      [I.Enum.Flavor.TBC] = {
+        -- Spineshatter
+        ["Schokibunker-Spineshatter"] = true,
+        ["Kyenra-Spineshatter"] = true,
+        ["Rindwahn-Spineshatter"] = true,
+        ["Aethina-Spineshatter"] = true,
+      },
+    },
   },
 
   -- BETA => Orange Badge (beta testers)
