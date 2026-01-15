@@ -12,7 +12,6 @@ local C_QuestLog_GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local C_QuestLog_GetQuestWatchType = C_QuestLog.GetQuestWatchType
 local C_QuestLog_ReadyForTurnIn = C_QuestLog.ReadyForTurnIn
 local C_Reputation_GetFactionParagonInfo = C_Reputation.GetFactionParagonInfo
-local C_Reputation_GetWatchedFactionData = C_Reputation.GetWatchedFactionData
 local C_Reputation_IsFactionParagon = C_Reputation.IsFactionParagon
 local C_Reputation_IsMajorFaction = C_Reputation.IsMajorFaction
 local CreateFrame = CreateFrame
@@ -77,8 +76,8 @@ function DB:OnEvent(event)
       local curValue
       local factionID
 
-      if TXUI.IsRetail then
-        local factionData = C_Reputation_GetWatchedFactionData()
+      if C_Reputation and C_Reputation.GetWatchedFactionData then
+        local factionData = C_Reputation.GetWatchedFactionData()
         if factionData then
           name = factionData.name
           reaction = factionData.reaction

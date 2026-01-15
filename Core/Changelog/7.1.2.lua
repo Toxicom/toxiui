@@ -9,6 +9,7 @@ TXUI.Changelog["7.1.2"] = {
 
     "* Bug fixes",
     "Remove duplicate event registration for gradient updates",
+    "Fix " .. F.String.Menu.WunderBar() .. " DataBar reputation mode",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Disable Objective Tracker Auto Hide",
