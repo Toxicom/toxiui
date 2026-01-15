@@ -307,7 +307,8 @@ function PF:BuildProfile()
     talkingHeadFrameScale = F.DpiRaw(1),
 
     -- General Quest Tracker
-    objectiveFrameAutoHideInKeystone = true,
+    objectiveFrameAutoHide = false,
+    objectiveFrameAutoHideInKeystone = false,
     objectiveFrameHeight = F.Dpi(500),
 
     -- General Colors

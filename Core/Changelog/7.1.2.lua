@@ -10,6 +10,7 @@ TXUI.Changelog["7.1.2"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Disable Objective Tracker Auto Hide",
 
     "* Documentation",
 
