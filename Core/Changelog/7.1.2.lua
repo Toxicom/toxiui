@@ -20,5 +20,8 @@ TXUI.Changelog["7.1.2"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Refactor " .. F.String.Menu.WunderBar() .. " DataBar module to use safe API calls" .. F.String.Sublist(
+      "Whenever non-retail versions introduce Retail features, they should just work without breaking the module."
+    ),
   },
 }

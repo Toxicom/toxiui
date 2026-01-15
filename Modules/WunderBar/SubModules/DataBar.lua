@@ -5,15 +5,10 @@ local DT = E:GetModule("DataTexts")
 
 -- Globals
 local abs = math.abs
-local C_GossipInfo_GetFriendshipReputation = C_GossipInfo and C_GossipInfo.GetFriendshipReputation
-local C_MajorFactions_GetMajorFactionData = C_MajorFactions and C_MajorFactions.GetMajorFactionData
 local C_QuestLog_GetInfo = C_QuestLog.GetInfo
 local C_QuestLog_GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
 local C_QuestLog_GetQuestWatchType = C_QuestLog.GetQuestWatchType
 local C_QuestLog_ReadyForTurnIn = C_QuestLog.ReadyForTurnIn
-local C_Reputation_GetFactionParagonInfo = C_Reputation.GetFactionParagonInfo
-local C_Reputation_IsFactionParagon = C_Reputation.IsFactionParagon
-local C_Reputation_IsMajorFaction = C_Reputation.IsMajorFaction
 local CreateFrame = CreateFrame
 local format = string.format
 local GetCVarBool = GetCVarBool
@@ -100,18 +95,18 @@ function DB:OnEvent(event)
 
       self.noData = false
 
-      if TXUI.IsRetail then
-        if C_Reputation_IsFactionParagon(factionID) then
-          local currentValue, threshold, _, hasRewardPending = C_Reputation_GetFactionParagonInfo(factionID)
+      if C_Reputation then
+        if C_Reputation.IsFactionParagon and C_Reputation.IsFactionParagon(factionID) then
+          local currentValue, threshold, _, hasRewardPending = C_Reputation.GetFactionParagonInfo(factionID)
           minValue, maxValue = 0, threshold
           curValue = currentValue % threshold
           if hasRewardPending then curValue = curValue + threshold end
-        elseif C_Reputation_IsMajorFaction(factionID) then
-          local majorFactionData = C_MajorFactions_GetMajorFactionData(factionID)
-          minValue, maxValue = 0, majorFactionData.renownLevelThreshold
-        else
-          local reputationInfo = C_GossipInfo_GetFriendshipReputation(factionID)
-          local friendshipID = reputationInfo.friendshipFactionID
+        elseif C_Reputation.IsMajorFaction and C_Reputation.IsMajorFaction(factionID) then
+          local majorFactionData = C_MajorFactions.GetMajorFactionData(factionID)
+          minValue, maxValue = 0, majorFactionData and majorFactionData.renownLevelThreshold or 1
+        elseif C_GossipInfo and C_GossipInfo.GetFriendshipReputation then
+          local reputationInfo = C_GossipInfo.GetFriendshipReputation(factionID)
+          local friendshipID = reputationInfo and reputationInfo.friendshipFactionID or 0
 
           if friendshipID > 0 then
             if reputationInfo.nextThreshold then
