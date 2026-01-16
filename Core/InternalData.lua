@@ -273,10 +273,15 @@ I.Data.Contributor = {
     ["Aspry"] = {
       [I.Enum.Flavor.TBC] = {
         -- Spineshatter
-        ["Schokibunker-Spineshatter"] = true,
         ["Kyenra-Spineshatter"] = true,
         ["Rindwahn-Spineshatter"] = true,
+        ["Souldots-Spineshatter"] = true,
+        ["Poîson-Spineshatter"] = true,
         ["Aethina-Spineshatter"] = true,
+        ["Aspry-Spineshatter"] = true,
+        ["Schokibunker-Spineshatter"] = true,
+        ["Maggilar-Spineshatter"] = true,
+        ["Hotterstar-Spineshatter"] = true,
       },
     },
   },
