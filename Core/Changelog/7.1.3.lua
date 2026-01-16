@@ -6,6 +6,12 @@ TXUI.Changelog["7.1.3"] = {
     "* Breaking changes",
 
     "* New features",
+    "Animations plugin"
+      .. F.String.Warning(" [Retail only]") --
+      .. F.String.Sublist("Animate the opening of Blizzard frames")
+      .. F.String.Sublist("Enabled by default")
+      .. F.String.Sublist("Can be configured per-frame in Animations settings")
+      .. F.String.Sublist(TXUI.Title .. " Settings -> Plugins -> Animations"),
 
     "* Bug fixes",
 

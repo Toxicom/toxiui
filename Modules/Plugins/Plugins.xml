@@ -1,4 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='Animations.lua' />
   <Script file='Armory.lua' />
   <Script file='MiniMapCoords.lua' />
 

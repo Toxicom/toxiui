@@ -780,6 +780,107 @@ P.armory = {
   classTextFontCustomColor = F.Table.HexToRGB("#d6ba00ff"),
 }
 
+-- Animations (Retail-only)
+P.animations = {
+  enabled = true, -- Enabled by default
+
+  animationsMult = 1, -- Animation speed multiplier, higher than 1 => slower, lower than 1 => faster
+
+  -- Default frame settings
+  frames = {
+    characterFrame = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    dressingRoom = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    inspectFrame = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    friendsFrame = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    groupFinder = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    collectionsJournal = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    encounterJournal = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    map = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    spellbook = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    professionsBook = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    professions = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    auctionHouse = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    mailbox = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    merchant = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    gossip = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    achievementFrame = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    wardrobe = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    weeklyRewards = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+  },
+}
+
 -- Wunderbar
 P.wunderbar = {
   general = {

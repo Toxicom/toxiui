@@ -2,6 +2,7 @@
   <Script file='Core.lua' />
 
   <Script file='AdditionalScaling.lua' />
+  <Script file='Animations.lua' />
   <Script file='MiniMapCoords.lua' />
   <Script file='HideFrames.lua' />
   <Script file='RaidInfoFrame.lua' />
