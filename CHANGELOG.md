@@ -1,16 +1,13 @@
-# ToxiUI v7.1.2 - 2026-01-15
+# ToxiUI v7.1.3 - 2026-01-16
 
-## 🐛 Bug Fixes
+## 🚀 New Features
 
-- Remove duplicate event registration for gradient updates
-- Fix **WunderBar** DataBar reputation mode
+- **Animations** plugin _(Retail only)_
+  - Animate the opening of Blizzard frames
+  - Enabled by default
+  - Can be configured per-frame in Animations settings
+  - _ToxiUI Settings → Plugins → Animations_
 
-## 🧩 Profile Updates
+## 📘 Documentation
 
-- **ElvUI**: Disable Objective Tracker Auto Hide
-- **Plater**: Disable the new Unit Type coloring
-
-## 🧰 Development Improvements
-
-- Refactor **WunderBar** DataBar module to use safe API calls
-  - Whenever non-retail versions introduce Retail features, they should work without breaking the module.
+- Increase minimum required **ElvUI** version to `14.07`
