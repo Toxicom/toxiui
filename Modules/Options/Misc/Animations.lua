@@ -145,11 +145,13 @@ function O:Plugins_Animations()
       hidden = optionsDisabled,
     }, {
       name = "Easing functions control the acceleration of animations:\n\n"
-        .. F.String.ToxiUI("Direction:") .. "\n"
+        .. F.String.ToxiUI("Direction:")
+        .. "\n"
         .. "  In - Starts slow, accelerates toward the end\n"
         .. "  Out - Starts fast, decelerates toward the end\n"
         .. "  In-Out - Slow at both ends, fast in the middle\n\n"
-        .. F.String.ToxiUI("Types:") .. "\n"
+        .. F.String.ToxiUI("Types:")
+        .. "\n"
         .. "  Linear - Constant speed, no acceleration\n"
         .. "  Quadratic - Gentle curve (power of 2)\n"
         .. "  Cubic - Moderate curve (power of 3)\n"
@@ -157,7 +159,8 @@ function O:Plugins_Animations()
         .. "  Sinusoidal - Smooth wave-like curve\n"
         .. "  Exponential - Very sharp acceleration\n"
         .. "  Circular - Based on circular arc\n\n"
-        .. F.String.Good("Recommended:") .. " Out-Cubic provides a natural feel for UI animations.\n\n",
+        .. F.String.Good("Recommended:")
+        .. " Out-Cubic provides a natural feel for UI animations.\n\n",
     })
   end
 
