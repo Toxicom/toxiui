@@ -22,6 +22,7 @@ AN.FrameMap = {
   mailbox = "MailFrame",
   merchant = "MerchantFrame",
   gossip = "GossipFrame",
+  quest = "QuestFrame",
   achievementFrame = "AchievementFrame",
   wardrobe = "WardrobeFrame",
   weeklyRewards = "WeeklyRewardsFrame",

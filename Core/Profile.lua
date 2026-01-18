@@ -863,6 +863,11 @@ P.animations = {
       duration = 0.3,
       easing = "out-cubic",
     },
+    quest = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
     achievementFrame = {
       enabled = true,
       duration = 0.3,

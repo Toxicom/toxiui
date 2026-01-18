@@ -45,6 +45,7 @@ local frameDisplayNames = {
   mailbox = "Mailbox",
   merchant = "Merchant",
   gossip = "Gossip",
+  quest = "Quest Dialog",
   achievementFrame = "Achievements",
   wardrobe = "Wardrobe",
   weeklyRewards = "Great Vault",
