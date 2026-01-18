@@ -28,7 +28,7 @@ local easingTypeValues = {
   ["out-circular"] = "Out Circular",
 }
 
--- Frame display names (Retail-only module)
+-- Frame display names
 local frameDisplayNames = {
   characterFrame = "Character Frame",
   dressingRoom = "Dressing Room",
@@ -46,9 +46,11 @@ local frameDisplayNames = {
   merchant = "Merchant",
   gossip = "Gossip",
   quest = "Quest Dialog",
+  questLog = "Quest Log",
   achievementFrame = "Achievements",
   wardrobe = "Wardrobe",
   weeklyRewards = "Great Vault",
+  talents = "Talents",
 }
 
 function O:Plugins_Animations()
@@ -176,75 +178,81 @@ function O:Plugins_Animations()
       name = "Configure animations for individual frames. Enable or disable animations and choose the animation style for each frame.\n\n",
     }).args
 
+    -- Get the Animations module to check FrameMap
+    local AN = TXUI:GetModule("Animations")
+
     -- Create settings for each frame
     for frameKey, displayName in pairs(frameDisplayNames) do
-      local frameGroup = {
-        order = self:GetOrder(),
-        type = "group",
-        name = displayName,
-        inline = true,
-        hidden = optionsDisabled,
-        args = {},
-      }
+      -- Skip frames that don't exist for this game version
+      if AN.FrameMap[frameKey] then
+        local frameGroup = {
+          order = self:GetOrder(),
+          type = "group",
+          name = displayName,
+          inline = true,
+          hidden = optionsDisabled,
+          args = {},
+        }
 
-      -- Enable toggle for this frame
-      frameGroup.args.enabled = {
-        order = 1,
-        type = "toggle",
-        name = "Enable",
-        desc = "Enable animation for " .. displayName,
-        get = function()
-          return E.db.TXUI.animations.frames[frameKey].enabled
-        end,
-        set = function(_, value)
-          E.db.TXUI.animations.frames[frameKey].enabled = value
-          F.Event.TriggerEvent("Animations.DatabaseUpdate")
-        end,
-      }
+        -- Enable toggle for this frame
+        frameGroup.args.enabled = {
+          order = 1,
+          type = "toggle",
+          name = "Enable",
+          desc = "Enable animation for " .. displayName,
+          get = function()
+            return E.db.TXUI.animations.frames[frameKey].enabled
+          end,
+          set = function(_, value)
+            E.db.TXUI.animations.frames[frameKey].enabled = value
+            F.Event.TriggerEvent("Animations.DatabaseUpdate")
+          end,
+        }
 
-      local frameDisabled = function()
-        return optionsDisabled() or not E.db.TXUI.animations.frames[frameKey].enabled
+        local frameDisabled = function()
+          return optionsDisabled() or not E.db.TXUI.animations.frames[frameKey].enabled
+        end
+
+        -- Duration slider
+        frameGroup.args.duration = {
+          order = 2,
+          type = "range",
+          name = "Duration",
+          desc = "Animation duration in seconds",
+          min = 0.1,
+          max = 1,
+          step = 0.05,
+          get = function()
+            return E.db.TXUI.animations.frames[frameKey].duration
+          end,
+          set = function(_, value)
+            E.db.TXUI.animations.frames[frameKey].duration = value
+            F.Event.TriggerEvent("Animations.SettingsUpdate")
+          end,
+          disabled = frameDisabled,
+        }
+
+        -- Easing type dropdown
+        frameGroup.args.easing = {
+          order = 3,
+          type = "select",
+          name = "Easing",
+          desc = "Choose the easing function for the animation",
+          values = easingTypeValues,
+          get = function()
+            return E.db.TXUI.animations.frames[frameKey].easing
+          end,
+          set = function(_, value)
+            E.db.TXUI.animations.frames[frameKey].easing = value
+            F.Event.TriggerEvent("Animations.SettingsUpdate")
+          end,
+          disabled = frameDisabled,
+        }
+
+        framesGroup[frameKey] = frameGroup
       end
-
-      -- Duration slider
-      frameGroup.args.duration = {
-        order = 2,
-        type = "range",
-        name = "Duration",
-        desc = "Animation duration in seconds",
-        min = 0.1,
-        max = 1,
-        step = 0.05,
-        get = function()
-          return E.db.TXUI.animations.frames[frameKey].duration
-        end,
-        set = function(_, value)
-          E.db.TXUI.animations.frames[frameKey].duration = value
-          F.Event.TriggerEvent("Animations.SettingsUpdate")
-        end,
-        disabled = frameDisabled,
-      }
-
-      -- Easing type dropdown
-      frameGroup.args.easing = {
-        order = 3,
-        type = "select",
-        name = "Easing",
-        desc = "Choose the easing function for the animation",
-        values = easingTypeValues,
-        get = function()
-          return E.db.TXUI.animations.frames[frameKey].easing
-        end,
-        set = function(_, value)
-          E.db.TXUI.animations.frames[frameKey].easing = value
-          F.Event.TriggerEvent("Animations.SettingsUpdate")
-        end,
-        disabled = frameDisabled,
-      }
-
-      framesGroup[frameKey] = frameGroup
     end
   end
 end
 
-if TXUI.IsRetail then O:AddCallback("Plugins_Animations") end
+O:AddCallback("Plugins_Animations")

@@ -5,27 +5,28 @@ local AN = TXUI:NewModule("Animations", "AceHook-3.0", "AceEvent-3.0")
 local pairs = pairs
 
 -- Frame mappings: key = settings key, value = global frame name
--- Note: This module is Retail-only
 AN.FrameMap = {
   characterFrame = "CharacterFrame",
   dressingRoom = "DressUpFrame",
   inspectFrame = "InspectFrame",
   friendsFrame = "FriendsFrame",
-  groupFinder = "PVEFrame",
-  collectionsJournal = "CollectionsJournal",
-  encounterJournal = "EncounterJournal",
+  groupFinder = TXUI.IsRetail and "PVEFrame" or nil,
+  collectionsJournal = TXUI.IsRetail and "CollectionsJournal" or nil,
+  encounterJournal = TXUI.IsRetail and "EncounterJournal" or nil,
   map = "WorldMapFrame",
-  spellbook = "PlayerSpellsFrame",
-  professionsBook = "ProfessionsBookFrame",
-  professions = "ProfessionsFrame",
+  spellbook = TXUI.IsRetail and "PlayerSpellsFrame" or "SpellBookFrame",
+  professionsBook = TXUI.IsRetail and "ProfessionsBookFrame" or nil,
+  professions = TXUI.IsRetail and "ProfessionsFrame" or "TradeSkillFrame",
   auctionHouse = "AuctionHouseFrame",
   mailbox = "MailFrame",
   merchant = "MerchantFrame",
   gossip = "GossipFrame",
   quest = "QuestFrame",
+  questLog = (not TXUI.IsRetail) and "QuestLogFrame" or nil,
   achievementFrame = "AchievementFrame",
-  wardrobe = "WardrobeFrame",
-  weeklyRewards = "WeeklyRewardsFrame",
+  wardrobe = TXUI.IsRetail and "WardrobeFrame" or nil,
+  weeklyRewards = TXUI.IsRetail and "WeeklyRewardsFrame" or nil,
+  talents = (not TXUI.IsRetail) and "PlayerTalentFrame" or nil,
 }
 
 function AN:GetFrameSettings(frameKey)
@@ -183,4 +184,4 @@ function AN:Initialize()
   self.Initialized = true
 end
 
-if TXUI.IsRetail then TXUI:RegisterModule(AN:GetName()) end
+TXUI:RegisterModule(AN:GetName())

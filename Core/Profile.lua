@@ -868,6 +868,11 @@ P.animations = {
       duration = 0.3,
       easing = "out-cubic",
     },
+    questLog = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
     achievementFrame = {
       enabled = true,
       duration = 0.3,
@@ -879,6 +884,11 @@ P.animations = {
       easing = "out-cubic",
     },
     weeklyRewards = {
+      enabled = true,
+      duration = 0.3,
+      easing = "out-cubic",
+    },
+    talents = {
       enabled = true,
       duration = 0.3,
       easing = "out-cubic",
