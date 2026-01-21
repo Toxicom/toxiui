@@ -14,6 +14,7 @@ local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
 local Abbrev = E.TagFunctions.Abbrev
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
+local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
 
 local utf8len = string.utf8len
 local utf8sub = string.utf8sub
@@ -281,6 +282,8 @@ function M:Tags()
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
+    if TXUI.IsMidnight then return format("%d", UnitHealthPercent(unit, true, ScaleTo100)) end
+
     local max = UnitHealthMax(unit)
     if max == 0 then
       return 0
@@ -355,6 +358,8 @@ function M:Tags()
   end)
 
   E:AddTag("tx:health:current:shortvalue:absorb", "UNIT_HEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
+    if TXUI.IsMidnight then return UnitHealth(unit) end
+
     local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
     if status then
       return status
@@ -417,6 +422,8 @@ function M:Tags()
 
   -- ToxiUI: Power Tags
   local function ColorSmartPowerTag(unit, percentSign, full)
+    if TXUI.IsMidnight then return UnitPower(unit) end
+
     local max = UnitPowerMax(unit)
 
     if max == 0 then return end

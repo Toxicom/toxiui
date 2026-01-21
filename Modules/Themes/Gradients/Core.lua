@@ -200,4 +200,4 @@ function GR:Initialize()
   self.Initialized = true
 end
 
-TXUI:RegisterModule(GR:GetName())
+if not TXUI.IsMidnight then TXUI:RegisterModule(GR:GetName()) end

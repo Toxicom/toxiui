@@ -188,4 +188,4 @@ function SD:Initialize()
   self.Initialized = true
 end
 
-TXUI:RegisterModule(SD:GetName())
+if not TXUI.IsMidnight then TXUI:RegisterModule(SD:GetName()) end
