@@ -48,11 +48,6 @@ function TXUI:SetupDevRelease()
 end
 
 function TXUI:InitializeModules()
-  if not TXUI.IsMidnight then
-    -- Update cooldown text settings
-    E:UpdateCooldownSettings("all")
-  end
-
   -- Dev first, to enable easy overrides
   if self.DevRelease then
     local module = self:GetModule("Dev")
