@@ -154,10 +154,10 @@ end
 function DT:SetTextureHealComm(_, frame)
   if not self.isTransparencyEnabled or not self.db or not self.db.enabled then return end
 
-  frame.myBar:SetStatusBarTexture(E.media.blankTex)
-  frame.otherBar:SetStatusBarTexture(E.media.blankTex)
-  frame.absorbBar:SetStatusBarTexture(E.media.blankTex)
-  frame.healAbsorbBar:SetStatusBarTexture(E.media.blankTex)
+  frame.healingPlayer:SetStatusBarTexture(E.media.blankTex)
+  frame.healingOther:SetStatusBarTexture(E.media.blankTex)
+  frame.damageAbsorb:SetStatusBarTexture(E.media.blankTex)
+  frame.healAbsorb:SetStatusBarTexture(E.media.blankTex)
 end
 
 function DT:SettingsUpdate()

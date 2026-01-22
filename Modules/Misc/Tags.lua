@@ -167,7 +167,6 @@ function M:Tags()
   end
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")
-  local gm = TXUI:GetModule("ThemesGradients")
 
   local function FormatColorTag(str, unit, reverse)
     -- i don't fucking know, i don't see this string anywhere but otherwise get Lua errors
@@ -179,8 +178,7 @@ function M:Tags()
         return SetGradientColorMapString(str, unitClass, reverse)
       else
         local cs = ElvUF.colors.class[unitClass]
-        ---@diagnostic disable-next-line: ambiguity-1
-        return (cs and "|cff" .. F.String.FastRGB(cs[1], cs[2], cs[3]) .. str) or "|cffcccccc" .. str
+        return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. str) or ("|cffcccccc" .. str)
       end
     else
       if E.db.TXUI.themes.darkMode.gradientName then
@@ -196,8 +194,7 @@ function M:Tags()
         end
       else
         local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-        ---@diagnostic disable-next-line: ambiguity-1
-        return (cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. str) or "|cffcccccc" .. str
+        return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. str) or ("|cffcccccc" .. str)
       end
     end
   end
@@ -311,24 +308,12 @@ function M:Tags()
 
     local reverseGradient = not reverseUnitsTable[unit]
 
-    local colorHealth = E.db.TXUI.themes.gradientMode.colorHealth
     if percentSign then percentHealthStr = percentHealthStr .. "%" end
 
     -- Return different coloring for Dark Mode
     if dm.isEnabled then
       return FormatColorTag(percentHealthStr, unit, reverseGradient)
     -- If not gradient mode, or the option is disabled, return early an uncolored string
-    elseif not gm.isEnabled or not colorHealth or not colorHealth.enabled then
-      return percentHealthStr
-    end
-
-    local yellow = colorHealth.yellowThreshold
-    local red = colorHealth.redThreshold
-
-    if percentHealth <= yellow and percentHealth > red then
-      return F.String.GradientClass(percentHealthStr, "ROGUE", reverseGradient)
-    elseif percentHealth <= red then
-      return F.String.GradientClass(percentHealthStr, "DEATHKNIGHT", reverseGradient)
     else
       return percentHealthStr
     end
@@ -358,17 +343,14 @@ function M:Tags()
   end)
 
   E:AddTag("tx:health:current:shortvalue:absorb", "UNIT_HEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    if TXUI.IsMidnight then return UnitHealth(unit) end
-
     local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
     if status then
       return status
     else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
+      local min = UnitHealth(unit)
       local absorb = UnitGetTotalAbsorbs(unit)
-      if absorb ~= 0 then absorb = E:ShortValue(absorb) end
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
-      local healthStr = health .. ((absorb and absorb ~= 0) and (" + " .. absorb) or "")
+
+      local healthStr = string.format("%s + %s", min, absorb)
 
       if not dm.isEnabled then return healthStr end
 
@@ -451,17 +433,14 @@ function M:Tags()
 
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    local max = UnitPowerMax(unit)
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
+    local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
-    if not dm.isEnabled then
-      if max ~= 0 then return power end
-    end
+    if not dm.isEnabled then return power end
 
     local powerStr = tostring(power)
 
     local reverseGradient = reverseUnitsTable[unit]
-    if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
+    return FormatColorTag(powerStr, unit, reverseGradient)
   end)
 
   -- Smart Power Percent No Sign Tag
