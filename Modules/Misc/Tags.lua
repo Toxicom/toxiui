@@ -8,6 +8,7 @@ local select = select
 local floor = math.floor
 local format = string.format
 local match = string.match
+local strfind = strfind
 local uppercase = string.upper
 local UnitIsPlayer = UnitIsPlayer
 local UnitReaction = UnitReaction
@@ -73,6 +74,25 @@ local reverseUnitsTable = {
   ["boss7"] = true,
   ["boss8"] = true,
 }
+
+-- Event strings
+local NAME_EVENTS = "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT"
+local HEALTH_EVENTS = "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED"
+local POWER_EVENTS = "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER"
+local LEVEL_EVENTS = "UNIT_LEVEL PLAYER_LEVEL_UP"
+
+-- Helper: Get unit status (dead/ghost/offline)
+local function GetUnitStatus(unit)
+  if not UnitIsFeignDeath(unit) and UnitIsDead(unit) then return L["Dead"] end
+  if UnitIsGhost(unit) then return L["Ghost"] end
+  if not UnitIsConnected(unit) then return L["Offline"] end
+end
+
+-- Helper: Convert level to string with "??" fallback
+local function GetLevelString(level)
+  if level == -1 or not level or level == "" then return "??" end
+  return tostring(level)
+end
 
 function M:ReplaceAndColorRest(name, strMatch, colorFunc)
   if strMatch and strMatch ~= "" then
@@ -201,7 +221,7 @@ function M:Tags()
   -- Name tags
   local nameLength = { veryshort = 5, short = 10, medium = 15, long = 20 }
   for textFormat, length in pairs(nameLength) do
-    E:AddTag(format("tx:name:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_FACTION", function(unit)
+    E:AddTag(format("tx:name:%s", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -213,7 +233,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:%s:uppercase", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_FACTION", function(unit)
+    E:AddTag(format("tx:name:%s:uppercase", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -226,7 +246,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:abbrev:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+    E:AddTag(format("tx:name:abbrev:%s", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -239,7 +259,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:abbrev:%s:uppercase", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+    E:AddTag(format("tx:name:abbrev:%s:uppercase", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -254,7 +274,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, strMatch)
+    E:AddTag(format("tx:name:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -264,7 +284,7 @@ function M:Tags()
       return self:SplitAndColorName(name, unit, strMatch, unitClass)
     end)
 
-    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, strMatch)
+    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -289,8 +309,7 @@ function M:Tags()
   end
 
   local function ColorHealthTag(unit, percentSign)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-
+    local status = GetUnitStatus(unit)
     if status then return status end
 
     local percentHealth = GetHealthPercentage(unit)
@@ -313,36 +332,31 @@ function M:Tags()
     return ColorHealthTag(unit)
   end)
 
-  E:AddTag("tx:health:current:shortvalue", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+  E:AddTag("tx:health:current:shortvalue", HEALTH_EVENTS, function(unit)
+    local status = GetUnitStatus(unit)
+    if status then return status end
 
-      if not dm.isEnabled then return health end
+    local min, max = UnitHealth(unit), UnitHealthMax(unit)
+    local health = E:GetFormattedText("CURRENT", min, max, nil, true)
 
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(health, unit, not reverseGradient)
-    end
+    if not dm.isEnabled then return health end
+
+    local reverseGradient = reverseUnitsTable[unit]
+    return FormatColorTag(health, unit, not reverseGradient)
   end)
 
-  E:AddTag("tx:health:current:shortvalue:absorb", "UNIT_HEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min = UnitHealth(unit)
-      local absorb = UnitGetTotalAbsorbs(unit)
+  E:AddTag("tx:health:current:shortvalue:absorb", HEALTH_EVENTS .. " UNIT_ABSORB_AMOUNT_CHANGED", function(unit)
+    local status = GetUnitStatus(unit)
+    if status then return status end
 
-      local healthStr = string.format("%s + %s", min, absorb)
+    local min = UnitHealth(unit)
+    local absorb = UnitGetTotalAbsorbs(unit)
+    local healthStr = format("%s + %s", min, absorb)
 
-      if not dm.isEnabled then return healthStr end
+    if not dm.isEnabled then return healthStr end
 
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(healthStr, unit, not reverseGradient)
-    end
+    local reverseGradient = reverseUnitsTable[unit]
+    return FormatColorTag(healthStr, unit, not reverseGradient)
   end, not TXUI.IsRetail)
 
   -- ToxiUI: Power Tags
@@ -375,7 +389,7 @@ function M:Tags()
   end
 
   -- Power Percent No Sign Tag
-  E:AddTag("tx:power:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+  E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
     local reverseGradient = reverseUnitsTable[unit]
 
     if TXUI.IsMidnight then
@@ -401,16 +415,16 @@ function M:Tags()
   end)
 
   -- Smart Power Percent No Sign Tag
-  E:AddTag("tx:smartpower:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+  E:AddTag("tx:smartpower:percent:nosign", POWER_EVENTS, function(unit)
     return ColorSmartPowerTag(unit)
   end)
 
-  E:AddTag("tx:smartpower", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+  E:AddTag("tx:smartpower", POWER_EVENTS, function(unit)
     return ColorSmartPowerTag(unit, false, true)
   end)
 
   -- Smart Power Percent Tag
-  E:AddTag("tx:smartpower:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
+  E:AddTag("tx:smartpower:percent", POWER_EVENTS, function(unit)
     return ColorSmartPowerTag(unit, true)
   end)
 
@@ -443,21 +457,13 @@ function M:Tags()
   end)
 
   -- Level Tag
-  E:AddTag("tx:level", "UNIT_LEVEL PLAYER_LEVEL_UP", function(unit)
+  E:AddTag("tx:level", LEVEL_EVENTS, function(unit)
     local level = UnitLevel(unit)
 
     -- Do not show level for max level units
     if level >= I.MaxLevelTable[TXUI.MetaFlavor] then return end
 
-    -- Handle unknown or missing level
-    local levelStr
-    if level == -1 or not level or level == "" then
-      levelStr = "??"
-    else
-      levelStr = tostring(level)
-    end
-
-    local levelDisplayStr = "Lv " .. levelStr
+    local levelDisplayStr = "Lv " .. GetLevelString(level)
 
     if not dm.isEnabled then return levelDisplayStr end
 
@@ -466,24 +472,15 @@ function M:Tags()
   end)
 
   -- Level Difficulty Tag
-  E:AddTag("tx:level:difficulty", "UNIT_LEVEL PLAYER_LEVEL_UP", function(unit)
+  E:AddTag("tx:level:difficulty", LEVEL_EVENTS, function(unit)
     local level = UnitLevel(unit)
+    local levelStr = GetLevelString(level)
 
-    -- Handle unknown or missing level
-    local levelStr
-    if level == -1 or not level or level == "" then
-      levelStr = "??"
-    else
-      levelStr = tostring(level)
-    end
-
-    local color
     local hex
-
     if levelStr == "??" then
-      hex = "6e6e6e" -- #6e6e6e
+      hex = "6e6e6e"
     else
-      color = GetCreatureDifficultyColor(level)
+      local color = GetCreatureDifficultyColor(level)
       hex = E:RGBToHex(color.r, color.g, color.b, "")
     end
 
@@ -493,7 +490,7 @@ function M:Tags()
 
     local reverseGradient = reverseUnitsTable[unit]
     -- After reload without a target FormatColorTag returns nil so we have to fallback to "Lv"
-    return (FormatColorTag("Lv ", unit, reverseGradient) or "Lv") .. coloredLvl
+    return (FormatColorTag("Lv ", unit, reverseGradient) or "Lv ") .. coloredLvl
   end)
 
   -- Credits to ElvUI [classification:icon]
