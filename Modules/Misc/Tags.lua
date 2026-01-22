@@ -433,14 +433,29 @@ function M:Tags()
 
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
+    if TXUI.IsMidnight then
+      local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
-    if not dm.isEnabled then return power end
+      if not dm.isEnabled then
+        return power
+      else
+        local reverseGradient = reverseUnitsTable[unit]
+        return FormatColorTag(power, unit, reverseGradient)
+      end
+    else
+      local max = UnitPowerMax(unit)
+      local power = floor(UnitPower(unit) / max * 100 + 0.5)
 
-    local powerStr = tostring(power)
+      if not dm.isEnabled then
+        if max ~= 0 then return power end
+      end
 
-    local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(powerStr, unit, reverseGradient)
+      local powerStr = tostring(power)
+
+      local reverseGradient = reverseUnitsTable[unit]
+
+      if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
+    end
   end)
 
   -- Smart Power Percent No Sign Tag
