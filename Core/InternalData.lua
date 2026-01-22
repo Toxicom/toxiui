@@ -80,6 +80,9 @@ I.Data.Contributor = {
         ["Toxilock-Thunderstrike"] = true,
         ["Toxishot-Thunderstrike"] = true,
         ["Toxisin-Thunderstrike"] = true,
+
+        -- Spineshatter
+        ["Toximoon-Spineshatter"] = true,
       },
 
       [I.Enum.Flavor.VANILLA] = {
