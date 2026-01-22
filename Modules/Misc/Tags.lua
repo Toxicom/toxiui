@@ -2,7 +2,6 @@ local TXUI, F, E, I, V, L, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
--- local LOR = LibStub:GetLibrary("LibOpenRaid-1.0", true)
 
 local ipairs = ipairs
 local select = select
@@ -289,15 +288,6 @@ function M:Tags()
     end
   end
 
-  local function ConstructFullHealthStr(reverseGradient, health, percentHealth)
-    if not reverseGradient then
-      -- TODO: fix this to be an actual | sign instead of l (letter L)
-      return health .. " l " .. percentHealth
-    else
-      return percentHealth .. " l " .. health
-    end
-  end
-
   local function ColorHealthTag(unit, percentSign)
     local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
 
@@ -321,10 +311,6 @@ function M:Tags()
 
   E:AddTag("tx:health:percent:nosign", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
     return ColorHealthTag(unit)
-  end)
-
-  E:AddTag("tx:health:percent", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
-    return ColorHealthTag(unit, true)
   end)
 
   E:AddTag("tx:health:current:shortvalue", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
@@ -358,49 +344,6 @@ function M:Tags()
       return FormatColorTag(healthStr, unit, not reverseGradient)
     end
   end, not TXUI.IsRetail)
-
-  E:AddTag("tx:health:full:nosign", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
-
-      local percentHealth = GetHealthPercentage(unit)
-      local percentHealthStr = tostring(percentHealth)
-      local reverseGradient = reverseUnitsTable[unit]
-
-      local finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
-
-      if not dm.isEnabled then return finalHealth end
-
-      return FormatColorTag(finalHealth, unit, not reverseGradient)
-    end
-  end)
-
-  E:AddTag("tx:health:full", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
-
-      local percentHealth = GetHealthPercentage(unit)
-
-      local percentHealthStr = tostring(percentHealth)
-      -- append % sign
-      percentHealthStr = percentHealthStr .. "%"
-      local reverseGradient = reverseUnitsTable[unit]
-
-      local finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
-
-      if not dm.isEnabled then return finalHealth end
-
-      return FormatColorTag(finalHealth, unit, not reverseGradient)
-    end
-  end)
 
   -- ToxiUI: Power Tags
   local function ColorSmartPowerTag(unit, percentSign, full)
@@ -466,22 +409,6 @@ function M:Tags()
     return ColorSmartPowerTag(unit, false, true)
   end)
 
-  -- Power Percent Tag
-  E:AddTag("tx:power:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    local max = UnitPowerMax(unit)
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
-    local powerStr = tostring(power)
-    -- append % sign
-    powerStr = powerStr .. "%"
-
-    if not dm.isEnabled then
-      if max ~= 0 then return powerStr end
-    end
-
-    local reverseGradient = reverseUnitsTable[unit]
-    if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
-  end)
-
   -- Smart Power Percent Tag
   E:AddTag("tx:smartpower:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
     return ColorSmartPowerTag(unit, true)
@@ -498,15 +425,9 @@ function M:Tags()
       if usingSpecIcons then
         local specIcon = ""
         local specId = nil
-        -- LibOpenRaid seems to be bugged right now and doesn't correctly update specialization
-        -- local info = LOR and LOR.GetUnitInfo(unit) or nil
 
-        -- if info and info.specId ~= 0 then
-        --   specId = info.specId
-        -- else
         local info = E:GetUnitSpecInfo(unit)
         if info and info.id then specId = info.id end
-        -- end
 
         if iconsDb and specId then
           icon = M.SpecIcons[specId]
@@ -704,7 +625,6 @@ function M:Tags()
   -- Tag info: Health
   do
     E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
-    E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
     E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
     if TXUI.IsRetail then
       E:AddTagInfo(
@@ -713,9 +633,6 @@ function M:Tags()
         "Shortvalue of the unit's current health with absorb value (e.g. 81k + 20k). Also adds " .. TXUI.Title .. " colors."
       )
     end
-
-    E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
-    E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")
   end
 
   -- Tag info: Power
@@ -738,12 +655,6 @@ function M:Tags()
         .. " when "
         .. F.String.Class("MANA", "MAGE")
         .. " <= 20"
-    )
-
-    E:AddTagInfo(
-      "tx:power:percent",
-      TagNames.POWER,
-      "Displays percentage Power of unit without decimals. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
     )
 
     E:AddTagInfo(
@@ -773,10 +684,7 @@ function M:Tags()
       ["tx:level"] = true,
       ["tx:level:difficulty"] = true,
       ["tx:classicon"] = true,
-      ["tx:health:full"] = true,
-      ["tx:health:full:nosign"] = true,
       ["tx:health:percent:nosign"] = true,
-      ["tx:health:percent"] = true,
       ["tx:health:current:shortvalue"] = true,
       ["tx:health:current:shortvalue:absorb"] = true,
 
@@ -810,7 +718,6 @@ function M:Tags()
       ["tx:name:abbrev:medium:uppercase"] = true,
       ["tx:name:abbrev:long:uppercase"] = true,
 
-      ["tx:power:percent"] = true,
       ["tx:power:percent:nosign"] = true,
       ["tx:smartpower"] = true,
       ["tx:smartpower:percent"] = true,
