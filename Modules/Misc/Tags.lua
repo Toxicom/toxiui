@@ -1,20 +1,31 @@
+---@diagnostic disable: redundant-parameter
 local TXUI, F, E, I, V, L, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
 
-local ipairs = ipairs
-local select = select
+local Abbrev = E.TagFunctions.Abbrev
+local AbbreviateNumbers = AbbreviateNumbers
 local floor = math.floor
 local format = string.format
-local match = string.match
-local strfind = strfind
-local uppercase = string.upper
-local UnitIsPlayer = UnitIsPlayer
-local UnitReaction = UnitReaction
-local Abbrev = E.TagFunctions.Abbrev
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
+local ipairs = ipairs
+local match = string.match
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
+local select = select
+local strfind = strfind
+local UnitClassification = UnitClassification
+local UnitHealth = UnitHealth
+local UnitHealthMax = UnitHealthMax
+local UnitHealthPercent = UnitHealthPercent
+local UnitIsPlayer = UnitIsPlayer
+local UnitLevel = UnitLevel
+local UnitPower = UnitPower
+local UnitPowerMax = UnitPowerMax
+local UnitPowerPercent = UnitPowerPercent
+local UnitPowerType = UnitPowerType
+local UnitReaction = UnitReaction
+local uppercase = string.upper
 
 local utf8len = string.utf8len
 local utf8sub = string.utf8sub
@@ -336,27 +347,31 @@ function M:Tags()
     local status = GetUnitStatus(unit)
     if status then return status end
 
-    local min, max = UnitHealth(unit), UnitHealthMax(unit)
-    local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+    local health = UnitHealth(unit)
+    local healthStr = AbbreviateNumbers(health, E.Abbreviate.short)
 
-    if not dm.isEnabled then return health end
+    if not dm.isEnabled then return healthStr end
 
     local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(health, unit, not reverseGradient)
+    return FormatColorTag(healthStr, unit, not reverseGradient)
   end)
 
   E:AddTag("tx:health:current:shortvalue:absorb", HEALTH_EVENTS .. " UNIT_ABSORB_AMOUNT_CHANGED", function(unit)
     local status = GetUnitStatus(unit)
     if status then return status end
 
-    local min = UnitHealth(unit)
-    local absorb = UnitGetTotalAbsorbs(unit)
-    local healthStr = format("%s + %s", min, absorb)
+    local health = UnitHealth(unit)
+    local healthStr = AbbreviateNumbers(health, E.Abbreviate.short)
 
-    if not dm.isEnabled then return healthStr end
+    local absorb = UnitGetTotalAbsorbs(unit)
+    local absorbStr = AbbreviateNumbers(absorb, E.Abbreviate.short)
+
+    local ret = format("%s + %s", healthStr, absorbStr)
+
+    if not dm.isEnabled then return ret end
 
     local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(healthStr, unit, not reverseGradient)
+    return FormatColorTag(ret, unit, not reverseGradient)
   end, not TXUI.IsRetail)
 
   -- ToxiUI: Power Tags
