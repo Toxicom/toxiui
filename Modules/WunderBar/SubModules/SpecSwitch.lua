@@ -110,8 +110,8 @@ function SS:SpecEnter(text, icon)
           " ",
           addTexture(info.icon),
           format(displayString, info.name),
-          format(displayString, "-"),
-          _G[info.role],
+          info.role and format(displayString, "-") or "",
+          info.role and _G[info.role] or "",
           format(displayString, "-"),
           (i == self.spec1 and activeString or inactiveString)
         )
@@ -202,15 +202,18 @@ function SS:GetWrathCacheForSpec(spec)
   if not role or role == "NONE" then role = "DAMAGER" end
 
   if highPointsSpentIndex ~= nil then
-    local specId, name, _, icon = GetTalentTabInfo(highPointsSpentIndex, false, false, spec)
+    local specId, name, _, icon, _, _, _, background = GetTalentTabInfo(highPointsSpentIndex, false, false, spec)
 
-    if name then return {
-      id = specId,
-      icon = icon,
-      name = name,
-      role = role,
-      points = ("%s / %s / %s"):format(unpack(points)),
-    } end
+    if name then
+      return {
+        id = specId,
+        background = background,
+        icon = icon,
+        name = name,
+        role = role,
+        points = ("%s / %s / %s"):format(unpack(points)),
+      }
+    end
   end
 
   return {
@@ -395,7 +398,7 @@ function SS:UpdateElement(spec, frame, icon, text, isSecondary)
     end
 
     if self.db.general.showIcons then
-      local iconTexture = self.db.icons[info.id or spec]
+      local iconTexture = self.db.icons[info.background or info.id or spec]
 
       if not iconTexture then
         iconTexture = self.db.icons[0]
