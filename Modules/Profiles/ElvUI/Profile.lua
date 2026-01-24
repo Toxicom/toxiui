@@ -519,7 +519,7 @@ function PF:BuildProfile()
         attachTextTo = "Health",
         text_format = "[tx:name:medium:split]",
         xOffset = F.Dpi(5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+        yOffset = F.Dpi(27),
       }),
 
       -- UnitFrame Player Custom Texts Level
@@ -535,20 +535,20 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(-10),
-        yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+        yOffset = F.Dpi(15),
       }),
 
       ["toxiui:health-small"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(-10),
-        yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-15)),
+        yOffset = F.Dpi(-15),
       }),
 
       -- UnitFrame Player Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
-        text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+        text_format = "[tx:power:percent:nosign]",
         xOffset = F.Dpi(10),
         yOffset = F.Dpi(0),
       }),
@@ -558,8 +558,8 @@ function PF:BuildProfile()
         justifyH = "LEFT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
-        xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
-        yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+        xOffset = F.Dpi(5),
+        yOffset = F.Dpi(0),
       }),
     },
 
@@ -622,7 +622,7 @@ function PF:BuildProfile()
       enable = true,
       scale = 2,
       xOffset = F.Dpi(5),
-      yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(15)),
+      yOffset = F.Dpi(21),
     },
 
     partyIndicator = {
@@ -718,14 +718,14 @@ function PF:BuildProfile()
           justifyH = "LEFT",
           text_format = "[tx:health:percent:nosign]",
           xOffset = F.Dpi(10),
-          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(15)),
+          yOffset = F.Dpi(15),
         }),
 
         ["toxiui:health-small"] = createCustomText({}, {
           justifyH = "LEFT",
           text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
           xOffset = F.Dpi(10),
-          yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-15)),
+          yOffset = F.Dpi(-15),
         }),
 
         -- UnitFrame Target Custom Texts Name
@@ -733,7 +733,7 @@ function PF:BuildProfile()
           justifyH = "RIGHT",
           text_format = "[tx:name:abbrev:medium:split]",
           xOffset = F.Dpi(-5),
-          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+          yOffset = F.Dpi(27),
         }),
 
         -- UnitFrame Target Custom Texts Level
@@ -747,7 +747,7 @@ function PF:BuildProfile()
         -- UnitFrame Target Custom Texts Power
         ["toxiui:power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+          text_format = "[tx:power:percent:nosign]",
           xOffset = F.Dpi(85),
           yOffset = F.Dpi(0),
         }),
@@ -757,8 +757,8 @@ function PF:BuildProfile()
           justifyH = "RIGHT",
           attachTextTo = "Health",
           text_format = "[tx:classicon]",
-          xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(10)),
-          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+          xOffset = F.Dpi(-5),
+          yOffset = F.Dpi(0),
         }),
 
         -- UnitFrame Target Custom Texts Classification
@@ -767,7 +767,7 @@ function PF:BuildProfile()
           attachTextTo = "Health",
           text_format = "[tx:classification]",
           xOffset = F.Dpi(15),
-          yOffset = F.ChooseForTheme(F.Dpi(25), F.Dpi(0)),
+          yOffset = F.Dpi(25),
         }),
       },
 
@@ -830,7 +830,7 @@ function PF:BuildProfile()
         scale = 2,
         position = "TOPRIGHT",
         xOffset = F.Dpi(-5),
-        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(15)),
+        yOffset = F.Dpi(21),
       },
 
       -- UnitFrame Target Castbar
@@ -901,7 +901,7 @@ function PF:BuildProfile()
         ["toxiui:name"] = createCustomText({}, {
           text_format = "[tx:name:short:split]",
           xOffset = F.Dpi(0),
-          yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(10)),
+          yOffset = F.Dpi(15),
           justifyH = "CENTER",
         }),
 
@@ -974,7 +974,7 @@ function PF:BuildProfile()
       ["toxiui:name"] = createCustomText({}, {
         text_format = "[tx:name:short:split]",
         xOffset = F.Dpi(0),
-        yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(10)),
+        yOffset = F.Dpi(15),
         justifyH = "CENTER",
       }),
     },
@@ -1014,7 +1014,7 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         text_format = "[tx:name:medium:split]",
         xOffset = F.Dpi(-5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(20)),
+        yOffset = F.Dpi(27),
       }),
 
       -- UnitFrame Focus Custom Texts Health
@@ -1022,7 +1022,7 @@ function PF:BuildProfile()
         justifyH = "LEFT",
         text_format = "[tx:health:percent:nosign]",
         xOffset = F.Dpi(10),
-        yOffset = F.ChooseForTheme(F.Dpi(15), F.Dpi(20)),
+        yOffset = F.Dpi(15),
       }),
 
       -- UnitFrame Focus Custom Texts Health
@@ -1030,13 +1030,13 @@ function PF:BuildProfile()
         justifyH = "LEFT",
         text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(10),
-        yOffset = F.ChooseForTheme(F.Dpi(-15), F.Dpi(-20)),
+        yOffset = F.Dpi(-15),
       }),
 
       -- UnitFrame Focus Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
-        text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+        text_format = "[tx:power:percent:nosign]",
         xOffset = F.Dpi(85),
         yOffset = F.Dpi(0),
       }),
@@ -1046,8 +1046,8 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
-        xOffset = F.ChooseForTheme(F.Dpi(-5), F.Dpi(10)),
-        yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+        xOffset = F.Dpi(-5),
+        yOffset = F.Dpi(0),
       }),
     },
 
@@ -1162,7 +1162,7 @@ function PF:BuildProfile()
         ["toxiui:name"] = createCustomText({}, {
           text_format = "[tx:name:medium:split]",
           xOffset = F.Dpi(10),
-          yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+          yOffset = F.Dpi(27),
         }),
 
         -- UnitFrame Party Custom Texts Health
@@ -1185,7 +1185,7 @@ function PF:BuildProfile()
         ["toxiui:power"] = createCustomText({}, {
           justifyH = "LEFT",
           attachTextTo = "Power",
-          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+          text_format = "[tx:power:percent:nosign]",
           xOffset = F.Dpi(10),
           yOffset = F.Dpi(0),
         }),
@@ -1195,8 +1195,8 @@ function PF:BuildProfile()
           justifyH = "LEFT",
           attachTextTo = "Health",
           text_format = "[tx:classicon]",
-          xOffset = F.ChooseForTheme(F.Dpi(5), F.Dpi(-10)),
-          yOffset = F.ChooseForTheme(F.Dpi(0), F.Dpi(-16)),
+          xOffset = F.Dpi(5),
+          yOffset = F.Dpi(0),
         }),
       },
 
@@ -1266,7 +1266,7 @@ function PF:BuildProfile()
         scale = 2,
         position = "TOPLEFT",
         xOffset = F.Dpi(10),
-        yOffset = F.ChooseForTheme(F.Dpi(21), F.Dpi(15)),
+        yOffset = F.Dpi(21),
       },
 
       -- UnitFrame Party Raid Debuffs
@@ -1584,13 +1584,13 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         text_format = "[tx:name:medium:split]",
         xOffset = F.Dpi(-5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+        yOffset = F.Dpi(27),
       }),
 
       -- UnitFrame Arena Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
-        text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+        text_format = "[tx:power:percent:nosign]",
         xOffset = F.Dpi(10),
         yOffset = F.Dpi(0),
       }),
@@ -1681,13 +1681,13 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         text_format = "[tx:name:abbrev:medium:split]",
         xOffset = F.Dpi(-5),
-        yOffset = F.ChooseForTheme(F.Dpi(27), F.Dpi(15)),
+        yOffset = F.Dpi(27),
       }),
 
       -- UnitFrame Boss Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
-        text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
+        text_format = "[tx:power:percent:nosign]",
         xOffset = F.Dpi(70),
         yOffset = F.Dpi(0),
       }),
