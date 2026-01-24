@@ -429,20 +429,6 @@ function M:Tags()
     end
   end)
 
-  -- Smart Power Percent No Sign Tag
-  E:AddTag("tx:smartpower:percent:nosign", POWER_EVENTS, function(unit)
-    return ColorSmartPowerTag(unit)
-  end)
-
-  E:AddTag("tx:smartpower", POWER_EVENTS, function(unit)
-    return ColorSmartPowerTag(unit, false, true)
-  end)
-
-  -- Smart Power Percent Tag
-  E:AddTag("tx:smartpower:percent", POWER_EVENTS, function(unit)
-    return ColorSmartPowerTag(unit, true)
-  end)
-
   local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
 
   -- Class Icon Tag
@@ -654,40 +640,6 @@ function M:Tags()
       TagNames.POWER,
       "Displays percentage Power of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
     )
-
-    E:AddTagInfo(
-      "tx:smartpower:percent:nosign",
-      TagNames.POWER,
-      "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to "
-        .. F.String.Warning("yellow")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 50, and to "
-        .. F.String.Error("red")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 20"
-    )
-
-    E:AddTagInfo(
-      "tx:smartpower:percent",
-      TagNames.POWER,
-      "Displays percentage Smart Power of unit without decimals. Smart Power changes color to "
-        .. F.String.Warning("yellow")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 50, and to "
-        .. F.String.Error("red")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 20"
-    )
-
-    E:AddTagInfo(
-      "tx:smartpower",
-      TagNames.POWER,
-      "Displays raw power value for mana users, otherwise percentage. No percentage sign and no decimals. Changes color when mana gets low."
-    )
   end
 
   -- Requires ElvUI 13.67 or later
@@ -731,9 +683,6 @@ function M:Tags()
       ["tx:name:abbrev:long:uppercase"] = true,
 
       ["tx:power:percent:nosign"] = true,
-      ["tx:smartpower"] = true,
-      ["tx:smartpower:percent"] = true,
-      ["tx:smartpower:percent:nosign"] = true,
     }
 
     F.Table.Crush(UF.overrideTags, overrideTags)
