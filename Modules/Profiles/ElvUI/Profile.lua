@@ -2078,50 +2078,6 @@ end
 function PF:UpdateProfileForTheme()
   local pf = self:BuildProfile()
 
-  -- Custom Text
-  -- Arena
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.toxiui:health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.toxiui:name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.arena.customTexts.toxiui:power", "text_format")
-  -- Boss
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.toxiui:health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.toxiui:name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.boss.customTexts.toxiui:power", "text_format")
-  -- Focus
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui:health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui:name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui:power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui:class-icon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.focus.customTexts.toxiui:class-icon", "yOffset")
-  -- Pet
-  F.UpdateDBFromPath(pf, "unitframe.units.pet.customTexts.toxiui:name", "yOffset")
-  -- Player
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui:health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui:name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui:class-icon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.customTexts.toxiui:class-icon", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.player.raidRoleIcons", "yOffset")
-  -- Party
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui:name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui:power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui:class-icon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.customTexts.toxiui:class-icon", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.party.raidRoleIcons", "yOffset")
-  -- Target
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui:health", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui:name", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui:power", "text_format")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui:class-icon", "xOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui:class-icon", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.customTexts.toxiui:classification", "yOffset")
-  F.UpdateDBFromPath(pf, "unitframe.units.target.raidRoleIcons", "yOffset")
-  -- Target-Target
-  F.UpdateDBFromPath(pf, "unitframe.units.targettarget.customTexts.toxiui:name", "yOffset")
-  -- UnitFrame Heights
-  F.UpdateDBFromPath(pf, "unitframe.units.pet", "height")
-  F.UpdateDBFromPath(pf, "unitframe.units.player", "height")
-  F.UpdateDBFromPath(pf, "unitframe.units.target", "height")
-  F.UpdateDBFromPath(pf, "unitframe.units.targettarget", "height")
   -- UnitFrame Color Options
   F.UpdateDBFromPath(pf, "unitframe.colors", "customhealthbackdrop")
   F.UpdateDBFromPath(pf, "unitframe.colors", "healthclass")
