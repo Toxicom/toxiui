@@ -83,6 +83,8 @@ I.Data.Contributor = {
 
         -- Spineshatter
         ["Toximoon-Spineshatter"] = true,
+        ["Toxisin-Spineshatter"] = true,
+        ["Toxibow-Spineshatter"] = true,
       },
 
       [I.Enum.Flavor.VANILLA] = {
