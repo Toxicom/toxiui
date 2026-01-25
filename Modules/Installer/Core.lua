@@ -72,9 +72,6 @@ end
 
 -- Layout Settings
 function IS:ElvUI(callback)
-  -- Preserve user's action bar style setting before profile merge resets it
-  local savedActionBarStyle = E.db.TXUI and E.db.TXUI.styles and E.db.TXUI.styles.actionBars
-
   -- Set right versions, we do this here cause of IsTXUIProfile checks
   E.db.TXUI.changelog.lastLayoutVersion = TXUI.ReleaseVersion
   E.db.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
@@ -112,13 +109,6 @@ function IS:ElvUI(callback)
 
   -- Apply chat font, dosen't needed if PF:ElvUIChat is called
   PF:ElvUIChatFont()
-
-  -- Reapply saved action bar style BEFORE ExecuteElvUIUpdate so movers are processed correctly
-  -- Only if it differs from the default (which MergeElvUIProfile already sets)
-  if savedActionBarStyle and savedActionBarStyle ~= "" and savedActionBarStyle ~= P.styles.actionBars then
-    local ST = TXUI:GetModule("Styles")
-    ST:ApplyStyle("actionBars", savedActionBarStyle, true)
-  end
 
   -- Execute full ElvUI Update
   PF:ExecuteElvUIUpdate(function()
