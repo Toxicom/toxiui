@@ -1,4 +1,4 @@
-# ToxiUI v7.2.0-beta.2 - 2026-01-25
+# ToxiUI v7.2.0 - 2026-01-25
 
 ## ‼️ Breaking Changes
 
@@ -41,7 +41,7 @@
 
 ## 📘 Documentation
 
-- Increase minimum required **ElvUI** version to `14.07`
+- Increase minimum required **ElvUI** version to `15.00`
 - Update Random Tips
 - Update for **Midnight** patch 12.0.0
 

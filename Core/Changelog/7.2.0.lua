@@ -38,11 +38,9 @@ TXUI.Changelog["7.2.0"] = {
     ),
 
     "* Documentation",
-    F.String.MinElv("14.07"),
+    F.String.MinElv("15.00"),
     "Update Random Tips",
     "Update for Midnight 12.0.0",
-
-    "* Settings refactoring",
 
     "* Development improvements",
     "Stabler installer Turbo Mode",
