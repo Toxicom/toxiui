@@ -385,9 +385,9 @@ function PF:BuildProfile()
       bags = whiteText,
       bossbutton = whiteText,
       global = whiteText,
-      nameplates = whiteText,
+      nameplates = { reverse = true, colors = { text = F.Table.HexToRGB("#ffffff") } },
       totemtracker = whiteText,
-      unitframe = whiteText,
+      unitframe = { reverse = true, colors = { text = F.Table.HexToRGB("#ffffff") } },
       zonebutton = whiteText,
       auras = {
         colors = { text = F.Table.CurrentClassColor() },
