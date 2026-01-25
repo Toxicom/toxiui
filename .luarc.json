@@ -19517,7 +19517,8 @@
     "Narci_Open",
     "CurveConstants",
     "UnitHealthPercent",
-    "UnitPowerPercent"
+    "UnitPowerPercent",
+    "AbbreviateNumbers"
   ],
   "diagnostics.disable": ["deprecated", "inject-field", "undefined-field"]
 }

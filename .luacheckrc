@@ -19551,4 +19551,5 @@ globals = {
   "CurveConstants",
   "UnitHealthPercent",
   "UnitPowerPercent",
+  "AbbreviateNumbers",
 }

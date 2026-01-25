@@ -23,7 +23,6 @@ local UnitLevel = UnitLevel
 local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
-local UnitPowerType = UnitPowerType
 local UnitReaction = UnitReaction
 local uppercase = string.upper
 
@@ -373,35 +372,6 @@ function M:Tags()
     local reverseGradient = reverseUnitsTable[unit]
     return FormatColorTag(ret, unit, not reverseGradient)
   end, not TXUI.IsRetail)
-
-  -- ToxiUI: Power Tags
-  local function ColorSmartPowerTag(unit, percentSign, full)
-    if TXUI.IsMidnight then return UnitPower(unit) end
-
-    local max = UnitPowerMax(unit)
-
-    if max == 0 then return end
-
-    local _, powerType = UnitPowerType(unit)
-
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
-    local powerStr = tostring(power)
-    local reverseGradient = reverseUnitsTable[unit]
-
-    if percentSign then powerStr = powerStr .. "%" end
-
-    if powerType ~= "MANA" then return powerStr end
-
-    if full then powerStr = tostring(UnitPower(unit)) end
-
-    if power <= 50 and power > 20 then
-      return F.String.GradientClass(powerStr, "ROGUE", reverseGradient)
-    elseif power <= 20 then
-      return F.String.GradientClass(powerStr, "DEATHKNIGHT", reverseGradient)
-    else
-      return powerStr
-    end
-  end
 
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
