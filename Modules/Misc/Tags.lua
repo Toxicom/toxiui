@@ -81,52 +81,6 @@ local function GetLevelString(level)
   return tostring(level)
 end
 
-function M:ReplaceAndColorRest(name, strMatch, colorFunc)
-  if strMatch and strMatch ~= "" then
-    -- Convert both strings to lowercase for case-insensitive matching
-    local lowerName = name:lower()
-    local lowerMatch = strMatch:lower()
-
-    -- Find the start position of the match
-    local startPos, endPos = lowerName:find(lowerMatch, 1, true)
-
-    if startPos then
-      -- Keep the matched string white
-      local whiteMatch = "|cffffffff" .. name:sub(startPos, endPos) .. "|r"
-      local nameBefore = name:sub(1, startPos - 1)
-      local nameAfter = name:sub(endPos + 1)
-
-      -- Color the rest of the string
-      local coloredNameBefore = colorFunc(nameBefore)
-      local coloredNameAfter = colorFunc(nameAfter)
-
-      return coloredNameBefore .. whiteMatch .. coloredNameAfter
-    end
-  end
-
-  -- If no match is found, split the name and color the second half
-  local spaceCount = select(2, name:gsub(" ", ""))
-  local splitPoint = floor(utf8len(name) / 2) + spaceCount
-  local nameHighlight = utf8sub(name, 1, splitPoint)
-  local nameRest = utf8sub(name, splitPoint + 1)
-  return nameHighlight .. colorFunc(nameRest)
-end
-
-function M:SplitAndColorName(name, unit, strMatch, class)
-  -- Define the color function for class or reaction coloring
-  local function colorFunc(text)
-    if UnitIsPlayer(unit) then
-      return F.String.Class(text, class)
-    else
-      local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-      return cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. text or "|cffcccccc" .. text
-    end
-  end
-
-  -- Replace and color the non-matched part or split and color if no match
-  return self:ReplaceAndColorRest(name, strMatch, colorFunc)
-end
-
 function M:Tags()
   local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
