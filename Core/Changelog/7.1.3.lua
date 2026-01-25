@@ -25,6 +25,7 @@ TXUI.Changelog["7.1.3"] = {
     F.String.ElvUI() .. ": Updated profile for new cooldown settings",
     F.String.ElvUI() .. ": Updated which text tags are being used",
     F.String.ElvUI() .. ": Use 3:2 aspect ratio for action bars and auras instead of 4:3",
+    F.String.ElvUI() .. ": UnitFrame Class backdrop for Dark Mode",
 
     "* Documentation",
     F.String.MinElv("14.07"),
