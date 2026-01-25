@@ -4,7 +4,6 @@ local M = TXUI:GetModule("Misc")
 local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
 
-local Abbrev = E.TagFunctions.Abbrev
 local AbbreviateNumbers = AbbreviateNumbers
 local floor = math.floor
 local format = string.format
@@ -13,7 +12,6 @@ local ipairs = ipairs
 local match = string.match
 local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
 local select = select
-local strfind = strfind
 local UnitClassification = UnitClassification
 local UnitHealth = UnitHealth
 local UnitHealthMax = UnitHealthMax
@@ -24,7 +22,6 @@ local UnitPower = UnitPower
 local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
 local UnitReaction = UnitReaction
-local uppercase = string.upper
 
 local utf8len = string.utf8len
 local utf8sub = string.utf8sub
@@ -157,7 +154,7 @@ function M:Tags()
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")
 
-  local function FormatColorTag(str, unit, reverse)
+  local function FormatColorTag(str, unit)
     -- i don't fucking know, i don't see this string anywhere but otherwise get Lua errors
     if not str then return "Missing string, very bad!" end
 
@@ -178,8 +175,7 @@ function M:Tags()
 
     if not dm.isEnabled then return name end
 
-    local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(name, unit, reverseGradient)
+    return FormatColorTag(name, unit)
   end)
 
   -- ToxiUI: Health Tags
@@ -201,13 +197,11 @@ function M:Tags()
     local percentHealth = GetHealthPercentage(unit)
     local percentHealthStr = tostring(percentHealth)
 
-    local reverseGradient = not reverseUnitsTable[unit]
-
     if percentSign then percentHealthStr = percentHealthStr .. "%" end
 
     -- Return different coloring for Dark Mode
     if dm.isEnabled then
-      return FormatColorTag(percentHealthStr, unit, reverseGradient)
+      return FormatColorTag(percentHealthStr, unit)
     -- If not gradient mode, or the option is disabled, return early an uncolored string
     else
       return percentHealthStr
@@ -227,8 +221,7 @@ function M:Tags()
 
     if not dm.isEnabled then return healthStr end
 
-    local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(healthStr, unit, not reverseGradient)
+    return FormatColorTag(healthStr, unit)
   end)
 
   E:AddTag("tx:health:current:shortvalue:absorb", HEALTH_EVENTS .. " UNIT_ABSORB_AMOUNT_CHANGED", function(unit)
@@ -245,21 +238,18 @@ function M:Tags()
 
     if not dm.isEnabled then return ret end
 
-    local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(ret, unit, not reverseGradient)
+    return FormatColorTag(ret, unit)
   end, not TXUI.IsRetail)
 
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
-    local reverseGradient = reverseUnitsTable[unit]
-
     if TXUI.IsMidnight then
       local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
       if not dm.isEnabled then
         return power
       else
-        return FormatColorTag(power, unit, reverseGradient)
+        return FormatColorTag(power, unit)
       end
     else
       local max = UnitPowerMax(unit)
@@ -271,7 +261,7 @@ function M:Tags()
 
       local powerStr = tostring(power)
 
-      if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
+      if max ~= 0 then return FormatColorTag(powerStr, unit) end
     end
   end)
 
@@ -281,7 +271,7 @@ function M:Tags()
     if not dm.isEnabled then
       return power
     else
-      return FormatColorTag(power, unit, reverseUnitsTable[unit])
+      return FormatColorTag(power, unit)
     end
   end)
 
@@ -324,8 +314,7 @@ function M:Tags()
 
     if not dm.isEnabled then return levelDisplayStr end
 
-    local reverseGradient = reverseUnitsTable[unit]
-    return FormatColorTag(levelDisplayStr, unit, reverseGradient)
+    return FormatColorTag(levelDisplayStr, unit)
   end)
 
   -- Level Difficulty Tag
@@ -345,9 +334,8 @@ function M:Tags()
 
     if not dm.isEnabled then return "Lv " .. coloredLvl end
 
-    local reverseGradient = reverseUnitsTable[unit]
     -- After reload without a target FormatColorTag returns nil so we have to fallback to "Lv"
-    return (FormatColorTag("Lv ", unit, reverseGradient) or "Lv ") .. coloredLvl
+    return (FormatColorTag("Lv ", unit) or "Lv ") .. coloredLvl
   end)
 
   -- Credits to ElvUI [classification:icon]
