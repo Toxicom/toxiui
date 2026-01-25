@@ -68,7 +68,7 @@ function DT:PostUpdateColor(health, unit, r, g, b)
       end
 
       if classColor then
-        health.backdrop:SetBackdropColor(classColor[1] * health.bg.multiplier, classColor[2] * health.bg.multiplier, classColor[3] * health.bg.multiplier, self.transparencyAlpha)
+        health.backdrop:SetBackdropColor(classColor.r * health.bg.multiplier, classColor.g * health.bg.multiplier, classColor.b * health.bg.multiplier, self.transparencyAlpha)
       end
     else
       health.backdrop:SetBackdropColor(r * health.bg.multiplier, g * health.bg.multiplier, b * health.bg.multiplier, self.transparencyAlpha)
