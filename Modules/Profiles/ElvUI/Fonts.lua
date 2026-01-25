@@ -226,6 +226,133 @@ function PF:ElvUIFont()
       },
     },
 
+    nameplates = {
+      units = {
+        ["ENEMY_NPC"] = {
+          auras = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          buffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          castbar = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 10,
+          },
+          debuffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          health = {
+            text = {
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = 14,
+            },
+          },
+          name = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 12,
+            format = "[name]",
+          },
+        },
+
+        ["FRIENDLY_NPC"] = {
+          auras = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          buffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          castbar = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 10,
+          },
+          debuffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          health = {
+            text = {
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = 14,
+            },
+          },
+          name = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 12,
+            format = "[name]",
+          },
+        },
+
+        ["ENEMY_PLAYER"] = {
+          auras = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          buffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          castbar = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 10,
+          },
+          debuffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          health = {
+            text = {
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = 14,
+            },
+          },
+          name = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 12,
+            format = "[name]",
+          },
+        },
+
+        ["FRIENDLY_PLAYER"] = {
+          auras = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          buffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          castbar = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 10,
+          },
+          debuffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+          health = {
+            text = {
+              font = F.FontOverride(I.Fonts.Primary),
+              fontSize = 14,
+            },
+          },
+          name = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 12,
+            format = "[name]",
+          },
+        },
+
+        ["TARGET"] = {
+          arrow = "Arrow0",
+          arrowScale = 0.2,
+          arrowSpacing = 4,
+          glowStyle = "style4",
+        },
+      },
+    },
+
     -- UnitFrames
     unitframe = {
       font = F.FontOverride(I.Fonts.Primary),

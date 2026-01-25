@@ -84,6 +84,7 @@ function PF:BuildProfile()
     },
     general = {},
     movers = {},
+    nameplates = {},
     tooltip = {},
     unitframe = {
       colors = {},
@@ -501,6 +502,220 @@ function PF:BuildProfile()
     -- ElvUI_RatioMinimapAuras
     keepSizeRatio = false,
     height = F.Dpi(27),
+  })
+
+  -- Nameplates
+  F.Table.Crush(pf.nameplates, {
+    statusbar = "- ToxiUI",
+
+    units = {
+      ["ENEMY_NPC"] = {
+        auras = {
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = 15,
+        },
+        buffs = {
+          anchorPoint = "TOPRIGHT",
+          attachTo = "DEBUFFS",
+          growthX = "LEFT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          yOffset = 8,
+        },
+        castbar = {
+          anchorPoint = "BOTTOM",
+          iconOffsetX = 2,
+          iconOffsetY = -2,
+          iconSize = 24,
+          showIcon = false,
+          textYOffset = -2,
+          timeYOffset = -2,
+          yOffset = 8,
+        },
+        debuffs = {
+          anchorPoint = "TOPLEFT",
+          growthX = "RIGHT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = -1,
+          yOffset = 5,
+        },
+        health = {
+          text = {
+            position = "TOPRIGHT",
+            yOffset = -10,
+          },
+          width = 150,
+        },
+        level = {
+          enable = false,
+        },
+        name = {
+          yOffset = -10,
+        },
+      },
+
+      ["FRIENDLY_NPC"] = {
+        auras = {
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = 15,
+        },
+        buffs = {
+          anchorPoint = "TOPRIGHT",
+          attachTo = "DEBUFFS",
+          growthX = "LEFT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          yOffset = 8,
+        },
+        castbar = {
+          anchorPoint = "BOTTOM",
+          iconOffsetX = 2,
+          iconOffsetY = -2,
+          iconSize = 24,
+          showIcon = false,
+          textYOffset = -2,
+          timeYOffset = -2,
+          yOffset = 8,
+        },
+        debuffs = {
+          anchorPoint = "TOPLEFT",
+          growthX = "RIGHT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = -1,
+          yOffset = 5,
+        },
+        health = {
+          text = {
+            position = "TOPRIGHT",
+            yOffset = -10,
+          },
+          width = 150,
+        },
+        level = {
+          enable = false,
+        },
+        name = {
+          yOffset = -10,
+        },
+      },
+
+      ["ENEMY_PLAYER"] = {
+        auras = {
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = 15,
+        },
+        buffs = {
+          anchorPoint = "TOPRIGHT",
+          attachTo = "DEBUFFS",
+          growthX = "LEFT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          yOffset = 8,
+        },
+        castbar = {
+          anchorPoint = "BOTTOM",
+          iconOffsetX = 2,
+          iconOffsetY = -2,
+          iconSize = 24,
+          showIcon = false,
+          textYOffset = -2,
+          timeYOffset = -2,
+          yOffset = 8,
+        },
+        debuffs = {
+          anchorPoint = "TOPLEFT",
+          growthX = "RIGHT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = -1,
+          yOffset = 5,
+        },
+        health = {
+          text = {
+            position = "TOPRIGHT",
+            yOffset = -10,
+          },
+          width = 150,
+        },
+        level = {
+          enable = false,
+        },
+        name = {
+          yOffset = -10,
+        },
+      },
+
+      ["FRIENDLY_PLAYER"] = {
+        auras = {
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = 15,
+        },
+        buffs = {
+          anchorPoint = "TOPRIGHT",
+          attachTo = "DEBUFFS",
+          growthX = "LEFT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          yOffset = 8,
+        },
+        castbar = {
+          anchorPoint = "BOTTOM",
+          iconOffsetX = 2,
+          iconOffsetY = -2,
+          iconSize = 24,
+          showIcon = false,
+          textYOffset = -2,
+          timeYOffset = -2,
+          yOffset = 8,
+        },
+        debuffs = {
+          anchorPoint = "TOPLEFT",
+          growthX = "RIGHT",
+          height = 20,
+          keepSizeRatio = false,
+          size = 30,
+          xOffset = -1,
+          yOffset = 5,
+        },
+        health = {
+          text = {
+            position = "TOPRIGHT",
+            yOffset = -10,
+          },
+          width = 150,
+        },
+        level = {
+          enable = false,
+        },
+        name = {
+          yOffset = -10,
+        },
+      },
+
+      ["TARGET"] = {
+        arrow = "Arrow0",
+        arrowScale = 0.2,
+        arrowSpacing = 4,
+        glowStyle = "style4",
+      },
+    },
   })
 
   -- UnitFrames General
@@ -2049,7 +2264,7 @@ function PF:ElvUIProfilePrivate()
 
     -- NamePlates ElvUI
     nameplates = {
-      enable = false,
+      enable = true,
     },
 
     -- Chat

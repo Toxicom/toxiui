@@ -15,6 +15,7 @@ TXUI.Changelog["7.2.0"] = {
       .. F.String.Sublist("Can be configured per-frame in Animations settings")
       .. F.String.Sublist(TXUI.Title .. " Settings -> Plugins -> Animations"),
     "Smooth Bars toggles section" .. F.String.Sublist("Skins -> ElvUI -> Smooth Bars"),
+    "Profile for " .. F.String.ElvUI() .. " Nameplates",
 
     "* Bug fixes",
     "Fixed Dark Mode's transparency issue with class color backdrop",
