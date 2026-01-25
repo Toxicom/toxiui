@@ -352,6 +352,12 @@ function PF:ElvUIFont()
             fontSize = 12,
             format = "[classcolor][name]",
           },
+          title = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 10,
+            format = "[classcolor][guild:brackets]",
+          },
         },
 
         ["TARGET"] = {

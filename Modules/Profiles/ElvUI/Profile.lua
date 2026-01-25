@@ -672,6 +672,8 @@ function PF:BuildProfile()
       },
 
       ["FRIENDLY_PLAYER"] = {
+        nameOnly = true,
+
         auras = {
           height = 20,
           keepSizeRatio = false,
@@ -722,6 +724,9 @@ function PF:BuildProfile()
         raidTargetIndicator = {
           size = 16,
           xOffset = -15,
+        },
+        title = {
+          ["enable"] = true,
         },
       },
 
