@@ -381,10 +381,10 @@ function PF:BuildProfile()
   -- Cooldown
   do
     local cd = {}
-    for _, key in ipairs({ "actionbar", "aurabars", "auraindicator", "auras", "bags", "bossbutton", "global", "nameplates", "totemtracker", "unitframe", "zonebutton" }) do
+    for _, key in ipairs { "actionbar", "aurabars", "auraindicator", "auras", "bags", "bossbutton", "global", "nameplates", "totemtracker", "unitframe", "zonebutton" } do
       cd[key] = {
         colors = {
-          text = F.Table.CurrentClassColor(),
+          text = F.Table.HexToRGB("#ffffff"),
         },
       }
     end
