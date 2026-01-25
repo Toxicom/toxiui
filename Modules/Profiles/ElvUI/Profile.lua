@@ -30,7 +30,7 @@ function PF:BuildColorsProfile()
     useDeadBackdrop = true,
     transparentPower = false,
     healthclass = F.ChooseForTheme(true, false),
-    customhealthbackdrop = F.ChooseForTheme(false, true),
+    customhealthbackdrop = false,
     castClassColor = true,
 
     -- UnitFrames Colors heal prediction
