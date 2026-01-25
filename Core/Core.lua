@@ -48,9 +48,6 @@ function TXUI:SetupDevRelease()
 end
 
 function TXUI:InitializeModules()
-  -- Update cooldown text settings
-  E:UpdateCooldownSettings("all")
-
   -- Dev first, to enable easy overrides
   if self.DevRelease then
     local module = self:GetModule("Dev")

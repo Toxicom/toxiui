@@ -200,4 +200,4 @@ function GR:Initialize()
   self.Initialized = true
 end
 
-TXUI:RegisterModule(GR:GetName())
+-- TXUI:RegisterModule(GR:GetName())

@@ -1,19 +1,30 @@
+---@diagnostic disable: redundant-parameter
 local TXUI, F, E, I, V, L, P, G = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
--- local LOR = LibStub:GetLibrary("LibOpenRaid-1.0", true)
 
-local ipairs = ipairs
-local select = select
+local Abbrev = E.TagFunctions.Abbrev
+local AbbreviateNumbers = AbbreviateNumbers
 local floor = math.floor
 local format = string.format
-local match = string.match
-local uppercase = string.upper
-local UnitIsPlayer = UnitIsPlayer
-local UnitReaction = UnitReaction
-local Abbrev = E.TagFunctions.Abbrev
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
+local ipairs = ipairs
+local match = string.match
+local ScaleTo100 = CurveConstants and CurveConstants.ScaleTo100
+local select = select
+local strfind = strfind
+local UnitClassification = UnitClassification
+local UnitHealth = UnitHealth
+local UnitHealthMax = UnitHealthMax
+local UnitHealthPercent = UnitHealthPercent
+local UnitIsPlayer = UnitIsPlayer
+local UnitLevel = UnitLevel
+local UnitPower = UnitPower
+local UnitPowerMax = UnitPowerMax
+local UnitPowerPercent = UnitPowerPercent
+local UnitReaction = UnitReaction
+local uppercase = string.upper
 
 local utf8len = string.utf8len
 local utf8sub = string.utf8sub
@@ -73,6 +84,25 @@ local reverseUnitsTable = {
   ["boss7"] = true,
   ["boss8"] = true,
 }
+
+-- Event strings
+local NAME_EVENTS = "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT"
+local HEALTH_EVENTS = "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED"
+local POWER_EVENTS = "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER"
+local LEVEL_EVENTS = "UNIT_LEVEL PLAYER_LEVEL_UP"
+
+-- Helper: Get unit status (dead/ghost/offline)
+local function GetUnitStatus(unit)
+  if not UnitIsFeignDeath(unit) and UnitIsDead(unit) then return L["Dead"] end
+  if UnitIsGhost(unit) then return L["Ghost"] end
+  if not UnitIsConnected(unit) then return L["Offline"] end
+end
+
+-- Helper: Convert level to string with "??" fallback
+local function GetLevelString(level)
+  if level == -1 or not level or level == "" then return "??" end
+  return tostring(level)
+end
 
 function M:ReplaceAndColorRest(name, strMatch, colorFunc)
   if strMatch and strMatch ~= "" then
@@ -166,7 +196,6 @@ function M:Tags()
   end
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")
-  local gm = TXUI:GetModule("ThemesGradients")
 
   local function FormatColorTag(str, unit, reverse)
     -- i don't fucking know, i don't see this string anywhere but otherwise get Lua errors
@@ -178,8 +207,7 @@ function M:Tags()
         return SetGradientColorMapString(str, unitClass, reverse)
       else
         local cs = ElvUF.colors.class[unitClass]
-        ---@diagnostic disable-next-line: ambiguity-1
-        return (cs and "|cff" .. F.String.FastRGB(cs[1], cs[2], cs[3]) .. str) or "|cffcccccc" .. str
+        return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. str) or ("|cffcccccc" .. str)
       end
     else
       if E.db.TXUI.themes.darkMode.gradientName then
@@ -195,8 +223,7 @@ function M:Tags()
         end
       else
         local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-        ---@diagnostic disable-next-line: ambiguity-1
-        return (cr and "|cff" .. F.String.FastRGB(cr[1], cr[2], cr[3]) .. str) or "|cffcccccc" .. str
+        return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. str) or ("|cffcccccc" .. str)
       end
     end
   end
@@ -204,7 +231,7 @@ function M:Tags()
   -- Name tags
   local nameLength = { veryshort = 5, short = 10, medium = 15, long = 20 }
   for textFormat, length in pairs(nameLength) do
-    E:AddTag(format("tx:name:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_FACTION", function(unit)
+    E:AddTag(format("tx:name:%s", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -216,7 +243,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:%s:uppercase", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT UNIT_FACTION", function(unit)
+    E:AddTag(format("tx:name:%s:uppercase", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -229,7 +256,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:abbrev:%s", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+    E:AddTag(format("tx:name:abbrev:%s", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -242,7 +269,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:abbrev:%s:uppercase", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit)
+    E:AddTag(format("tx:name:abbrev:%s:uppercase", textFormat), NAME_EVENTS, function(unit)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -257,7 +284,7 @@ function M:Tags()
       return FormatColorTag(name, unit, reverseGradient)
     end)
 
-    E:AddTag(format("tx:name:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, strMatch)
+    E:AddTag(format("tx:name:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -267,7 +294,7 @@ function M:Tags()
       return self:SplitAndColorName(name, unit, strMatch, unitClass)
     end)
 
-    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT", function(unit, _, strMatch)
+    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
       local name = UnitName(unit)
       if not name then return "missing name wtf" end
 
@@ -281,6 +308,8 @@ function M:Tags()
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
+    if TXUI.IsMidnight then return format("%d", UnitHealthPercent(unit, true, ScaleTo100)) end
+
     local max = UnitHealthMax(unit)
     if max == 0 then
       return 0
@@ -289,18 +318,8 @@ function M:Tags()
     end
   end
 
-  local function ConstructFullHealthStr(reverseGradient, health, percentHealth)
-    if not reverseGradient then
-      -- TODO: fix this to be an actual | sign instead of l (letter L)
-      return health .. " l " .. percentHealth
-    else
-      return percentHealth .. " l " .. health
-    end
-  end
-
   local function ColorHealthTag(unit, percentSign)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-
+    local status = GetUnitStatus(unit)
     if status then return status end
 
     local percentHealth = GetHealthPercentage(unit)
@@ -308,24 +327,12 @@ function M:Tags()
 
     local reverseGradient = not reverseUnitsTable[unit]
 
-    local colorHealth = E.db.TXUI.themes.gradientMode.colorHealth
     if percentSign then percentHealthStr = percentHealthStr .. "%" end
 
     -- Return different coloring for Dark Mode
     if dm.isEnabled then
       return FormatColorTag(percentHealthStr, unit, reverseGradient)
     -- If not gradient mode, or the option is disabled, return early an uncolored string
-    elseif not gm.isEnabled or not colorHealth or not colorHealth.enabled then
-      return percentHealthStr
-    end
-
-    local yellow = colorHealth.yellowThreshold
-    local red = colorHealth.redThreshold
-
-    if percentHealth <= yellow and percentHealth > red then
-      return F.String.GradientClass(percentHealthStr, "ROGUE", reverseGradient)
-    elseif percentHealth <= red then
-      return F.String.GradientClass(percentHealthStr, "DEATHKNIGHT", reverseGradient)
     else
       return percentHealthStr
     end
@@ -335,156 +342,61 @@ function M:Tags()
     return ColorHealthTag(unit)
   end)
 
-  E:AddTag("tx:health:percent", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
-    return ColorHealthTag(unit, true)
+  E:AddTag("tx:health:current:shortvalue", HEALTH_EVENTS, function(unit)
+    local status = GetUnitStatus(unit)
+    if status then return status end
+
+    local health = UnitHealth(unit)
+    local healthStr = AbbreviateNumbers(health, E.Abbreviate.short)
+
+    if not dm.isEnabled then return healthStr end
+
+    local reverseGradient = reverseUnitsTable[unit]
+    return FormatColorTag(healthStr, unit, not reverseGradient)
   end)
 
-  E:AddTag("tx:health:current:shortvalue", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
+  E:AddTag("tx:health:current:shortvalue:absorb", HEALTH_EVENTS .. " UNIT_ABSORB_AMOUNT_CHANGED", function(unit)
+    local status = GetUnitStatus(unit)
+    if status then return status end
 
-      if not dm.isEnabled then return health end
+    local health = UnitHealth(unit)
+    local healthStr = AbbreviateNumbers(health, E.Abbreviate.short)
 
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(health, unit, not reverseGradient)
-    end
-  end)
+    local absorb = UnitGetTotalAbsorbs(unit)
+    local absorbStr = AbbreviateNumbers(absorb, E.Abbreviate.short)
 
-  E:AddTag("tx:health:current:shortvalue:absorb", "UNIT_HEALTH UNIT_ABSORB_AMOUNT_CHANGED UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
-      local absorb = UnitGetTotalAbsorbs(unit)
-      if absorb ~= 0 then absorb = E:ShortValue(absorb) end
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
-      local healthStr = health .. ((absorb and absorb ~= 0) and (" + " .. absorb) or "")
+    local ret = format("%s + %s", healthStr, absorbStr)
 
-      if not dm.isEnabled then return healthStr end
+    if not dm.isEnabled then return ret end
 
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(healthStr, unit, not reverseGradient)
-    end
+    local reverseGradient = reverseUnitsTable[unit]
+    return FormatColorTag(ret, unit, not reverseGradient)
   end, not TXUI.IsRetail)
 
-  E:AddTag("tx:health:full:nosign", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
-
-      local percentHealth = GetHealthPercentage(unit)
-      local percentHealthStr = tostring(percentHealth)
-      local reverseGradient = reverseUnitsTable[unit]
-
-      local finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
-
-      if not dm.isEnabled then return finalHealth end
-
-      return FormatColorTag(finalHealth, unit, not reverseGradient)
-    end
-  end)
-
-  E:AddTag("tx:health:full", "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED", function(unit)
-    local status = not UnitIsFeignDeath(unit) and UnitIsDead(unit) and L["Dead"] or UnitIsGhost(unit) and L["Ghost"] or not UnitIsConnected(unit) and L["Offline"]
-    if status then
-      return status
-    else
-      local min, max = UnitHealth(unit), UnitHealthMax(unit)
-      local health = E:GetFormattedText("CURRENT", min, max, nil, true)
-
-      local percentHealth = GetHealthPercentage(unit)
-
-      local percentHealthStr = tostring(percentHealth)
-      -- append % sign
-      percentHealthStr = percentHealthStr .. "%"
-      local reverseGradient = reverseUnitsTable[unit]
-
-      local finalHealth = ConstructFullHealthStr(reverseGradient, health, percentHealthStr)
-
-      if not dm.isEnabled then return finalHealth end
-
-      return FormatColorTag(finalHealth, unit, not reverseGradient)
-    end
-  end)
-
-  -- ToxiUI: Power Tags
-  local function ColorSmartPowerTag(unit, percentSign, full)
-    local max = UnitPowerMax(unit)
-
-    if max == 0 then return end
-
-    local _, powerType = UnitPowerType(unit)
-
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
-    local powerStr = tostring(power)
-    local reverseGradient = reverseUnitsTable[unit]
-
-    if percentSign then powerStr = powerStr .. "%" end
-
-    if powerType ~= "MANA" then return powerStr end
-
-    if full then powerStr = tostring(UnitPower(unit)) end
-
-    if power <= 50 and power > 20 then
-      return F.String.GradientClass(powerStr, "ROGUE", reverseGradient)
-    elseif power <= 20 then
-      return F.String.GradientClass(powerStr, "DEATHKNIGHT", reverseGradient)
-    else
-      return powerStr
-    end
-  end
-
   -- Power Percent No Sign Tag
-  E:AddTag("tx:power:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    local max = UnitPowerMax(unit)
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
-
-    if not dm.isEnabled then
-      if max ~= 0 then return power end
-    end
-
-    local powerStr = tostring(power)
-
+  E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
     local reverseGradient = reverseUnitsTable[unit]
-    if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
-  end)
 
-  -- Smart Power Percent No Sign Tag
-  E:AddTag("tx:smartpower:percent:nosign", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    return ColorSmartPowerTag(unit)
-  end)
+    if TXUI.IsMidnight then
+      local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
-  E:AddTag("tx:smartpower", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    return ColorSmartPowerTag(unit, false, true)
-  end)
+      if not dm.isEnabled then
+        return power
+      else
+        return FormatColorTag(power, unit, reverseGradient)
+      end
+    else
+      local max = UnitPowerMax(unit)
+      local power = floor(UnitPower(unit) / max * 100 + 0.5)
 
-  -- Power Percent Tag
-  E:AddTag("tx:power:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    local max = UnitPowerMax(unit)
-    local power = floor(UnitPower(unit) / max * 100 + 0.5)
-    local powerStr = tostring(power)
-    -- append % sign
-    powerStr = powerStr .. "%"
+      if not dm.isEnabled then
+        if max ~= 0 then return power end
+      end
 
-    if not dm.isEnabled then
-      if max ~= 0 then return powerStr end
+      local powerStr = tostring(power)
+
+      if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
     end
-
-    local reverseGradient = reverseUnitsTable[unit]
-    if max ~= 0 then return FormatColorTag(powerStr, unit, reverseGradient) end
-  end)
-
-  -- Smart Power Percent Tag
-  E:AddTag("tx:smartpower:percent", "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER", function(unit)
-    return ColorSmartPowerTag(unit, true)
   end)
 
   local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
@@ -498,15 +410,9 @@ function M:Tags()
       if usingSpecIcons then
         local specIcon = ""
         local specId = nil
-        -- LibOpenRaid seems to be bugged right now and doesn't correctly update specialization
-        -- local info = LOR and LOR.GetUnitInfo(unit) or nil
 
-        -- if info and info.specId ~= 0 then
-        --   specId = info.specId
-        -- else
         local info = E:GetUnitSpecInfo(unit)
         if info and info.id then specId = info.id end
-        -- end
 
         if iconsDb and specId then
           icon = M.SpecIcons[specId]
@@ -522,21 +428,13 @@ function M:Tags()
   end)
 
   -- Level Tag
-  E:AddTag("tx:level", "UNIT_LEVEL PLAYER_LEVEL_UP", function(unit)
+  E:AddTag("tx:level", LEVEL_EVENTS, function(unit)
     local level = UnitLevel(unit)
 
     -- Do not show level for max level units
     if level >= I.MaxLevelTable[TXUI.MetaFlavor] then return end
 
-    -- Handle unknown or missing level
-    local levelStr
-    if level == -1 or not level or level == "" then
-      levelStr = "??"
-    else
-      levelStr = tostring(level)
-    end
-
-    local levelDisplayStr = "Lv " .. levelStr
+    local levelDisplayStr = "Lv " .. GetLevelString(level)
 
     if not dm.isEnabled then return levelDisplayStr end
 
@@ -545,24 +443,15 @@ function M:Tags()
   end)
 
   -- Level Difficulty Tag
-  E:AddTag("tx:level:difficulty", "UNIT_LEVEL PLAYER_LEVEL_UP", function(unit)
+  E:AddTag("tx:level:difficulty", LEVEL_EVENTS, function(unit)
     local level = UnitLevel(unit)
+    local levelStr = GetLevelString(level)
 
-    -- Handle unknown or missing level
-    local levelStr
-    if level == -1 or not level or level == "" then
-      levelStr = "??"
-    else
-      levelStr = tostring(level)
-    end
-
-    local color
     local hex
-
     if levelStr == "??" then
-      hex = "6e6e6e" -- #6e6e6e
+      hex = "6e6e6e"
     else
-      color = GetCreatureDifficultyColor(level)
+      local color = GetCreatureDifficultyColor(level)
       hex = E:RGBToHex(color.r, color.g, color.b, "")
     end
 
@@ -572,7 +461,7 @@ function M:Tags()
 
     local reverseGradient = reverseUnitsTable[unit]
     -- After reload without a target FormatColorTag returns nil so we have to fallback to "Lv"
-    return (FormatColorTag("Lv ", unit, reverseGradient) or "Lv") .. coloredLvl
+    return (FormatColorTag("Lv ", unit, reverseGradient) or "Lv ") .. coloredLvl
   end)
 
   -- Credits to ElvUI [classification:icon]
@@ -704,7 +593,6 @@ function M:Tags()
   -- Tag info: Health
   do
     E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
-    E:AddTagInfo("tx:health:percent", TagNames.HEALTH, "Displays percentage HP of unit without decimals. Also adds " .. TXUI.Title .. " colors.")
     E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
     if TXUI.IsRetail then
       E:AddTagInfo(
@@ -713,9 +601,6 @@ function M:Tags()
         "Shortvalue of the unit's current health with absorb value (e.g. 81k + 20k). Also adds " .. TXUI.Title .. " colors."
       )
     end
-
-    E:AddTagInfo("tx:health:full:nosign", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100) with " .. TXUI.Title .. " colors and no % sign.")
-    E:AddTagInfo("tx:health:full", TagNames.HEALTH, "Displays full HP for Old layout style (e.g. 81k | 100%) with " .. TXUI.Title .. " colors.")
   end
 
   -- Tag info: Power
@@ -725,46 +610,6 @@ function M:Tags()
       TagNames.POWER,
       "Displays percentage Power of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
     )
-
-    E:AddTagInfo(
-      "tx:smartpower:percent:nosign",
-      TagNames.POWER,
-      "Displays percentage Smart Power of unit without decimals or the % sign. Smart Power changes color to "
-        .. F.String.Warning("yellow")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 50, and to "
-        .. F.String.Error("red")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 20"
-    )
-
-    E:AddTagInfo(
-      "tx:power:percent",
-      TagNames.POWER,
-      "Displays percentage Power of unit without decimals. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
-    )
-
-    E:AddTagInfo(
-      "tx:smartpower:percent",
-      TagNames.POWER,
-      "Displays percentage Smart Power of unit without decimals. Smart Power changes color to "
-        .. F.String.Warning("yellow")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 50, and to "
-        .. F.String.Error("red")
-        .. " when "
-        .. F.String.Class("MANA", "MAGE")
-        .. " <= 20"
-    )
-
-    E:AddTagInfo(
-      "tx:smartpower",
-      TagNames.POWER,
-      "Displays raw power value for mana users, otherwise percentage. No percentage sign and no decimals. Changes color when mana gets low."
-    )
   end
 
   -- Requires ElvUI 13.67 or later
@@ -773,10 +618,7 @@ function M:Tags()
       ["tx:level"] = true,
       ["tx:level:difficulty"] = true,
       ["tx:classicon"] = true,
-      ["tx:health:full"] = true,
-      ["tx:health:full:nosign"] = true,
       ["tx:health:percent:nosign"] = true,
-      ["tx:health:percent"] = true,
       ["tx:health:current:shortvalue"] = true,
       ["tx:health:current:shortvalue:absorb"] = true,
 
@@ -810,11 +652,7 @@ function M:Tags()
       ["tx:name:abbrev:medium:uppercase"] = true,
       ["tx:name:abbrev:long:uppercase"] = true,
 
-      ["tx:power:percent"] = true,
       ["tx:power:percent:nosign"] = true,
-      ["tx:smartpower"] = true,
-      ["tx:smartpower:percent"] = true,
-      ["tx:smartpower:percent:nosign"] = true,
     }
 
     F.Table.Crush(UF.overrideTags, overrideTags)

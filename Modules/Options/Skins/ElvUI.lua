@@ -342,6 +342,219 @@ function O:Skins_ElvUI()
     -- Spacer
     self:AddSpacer(options)
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- SmoothBars Toggle
+  do
+    -- Unit definitions by group
+    local personalUnits = { "player", "target", "focus", "pet", "targettarget" }
+    local groupUnits = { "party" }
+    local raidUnits = { "raid1", "raid2", "raid3" }
+    local allUnits = F.Table.Join(personalUnits, groupUnits, raidUnits)
+
+    -- Display names for units
+    local unitDisplayNames = {
+      player = "Player",
+      target = "Target",
+      focus = "Focus",
+      pet = "Pet",
+      targettarget = "TargetTarget",
+      party = "Party",
+      raid1 = "Raid 1",
+      raid2 = "Raid 2",
+      raid3 = "Raid 3",
+    }
+
+    -- Helper to get smoothbars status
+    local function getSmoothbarsStatus(unit, barType)
+      local unitDB = E.db.unitframe.units[unit]
+      if unitDB and unitDB[barType] then return unitDB[barType].smoothbars end
+      return false
+    end
+
+    -- Helper to set smoothbars
+    local function setSmoothbars(unit, barType, value)
+      if not E.db.unitframe.units[unit] then return end
+      if not E.db.unitframe.units[unit][barType] then E.db.unitframe.units[unit][barType] = {} end
+      E.db.unitframe.units[unit][barType].smoothbars = value
+    end
+
+    -- Helper to check if all units in a group have smoothbars enabled for both health and power
+    local function getGroupAllStatus(units)
+      for _, unit in ipairs(units) do
+        if not getSmoothbarsStatus(unit, "health") or not getSmoothbarsStatus(unit, "power") then return false end
+      end
+      return true
+    end
+
+    -- Helper to set all units in a group for both health and power
+    local function setGroupAllSmoothbars(units, value)
+      for _, unit in ipairs(units) do
+        setSmoothbars(unit, "health", value)
+        setSmoothbars(unit, "power", value)
+      end
+    end
+
+    -- Helper to get status text
+    local function getStatusText(enabled)
+      if enabled then
+        return F.String.Good("Enabled")
+      else
+        return F.String.Error("Disabled")
+      end
+    end
+
+    -- Helper to create unit toggle
+    local function createUnitToggle(group, unit, barType)
+      local key = unit .. barType:gsub("^%l", string.upper)
+      group[key] = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = function()
+          local status = getSmoothbarsStatus(unit, barType)
+          return unitDisplayNames[unit] .. " " .. barType:gsub("^%l", string.upper) .. " - " .. getStatusText(status)
+        end,
+        desc = "Toggle smooth bars for " .. unitDisplayNames[unit] .. " " .. barType .. " bar.",
+        get = function()
+          return getSmoothbarsStatus(unit, barType)
+        end,
+        set = function(_, value)
+          setSmoothbars(unit, barType, value)
+        end,
+      }
+    end
+
+    -- SmoothBars Group
+    local smoothBarsGroup = self:AddInlineDesc(options, {
+      name = "Smooth Bars " .. E.NewSign,
+    }, {
+      name = "Quick toggles to enable or disable smooth bar animations for health and power bars across different unit frames.\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "These settings directly modify ElvUI's UnitFrame database settings. It is NOT a custom feature for smooth bars.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "These changes may impact performance on lower-end systems when enabled for multiple unit frames simultaneously.\n\n",
+    }).args
+
+    -- All Units Toggle Header
+    smoothBarsGroup.allHeader = {
+      order = self:GetOrder(),
+      type = "header",
+      name = "All Units",
+    }
+
+    -- All Toggle
+    smoothBarsGroup.allToggle = {
+      order = self:GetOrder(),
+      type = "toggle",
+      width = "full",
+      name = function()
+        local status = getGroupAllStatus(allUnits)
+        return "Toggle All Smooth Bars - " .. getStatusText(status)
+      end,
+      desc = "Toggle smooth bars for ALL health and power bars.",
+      get = function()
+        return getGroupAllStatus(allUnits)
+      end,
+      set = function(_, value)
+        setGroupAllSmoothbars(allUnits, value)
+      end,
+    }
+
+    -- Personal Units Header
+    smoothBarsGroup.personalHeader = {
+      order = self:GetOrder(),
+      type = "header",
+      name = "Personal",
+    }
+
+    -- Personal All Toggle
+    smoothBarsGroup.personalAllToggle = {
+      order = self:GetOrder(),
+      type = "toggle",
+      width = "full",
+      name = function()
+        local status = getGroupAllStatus(personalUnits)
+        return "All Personal - " .. getStatusText(status)
+      end,
+      desc = "Toggle smooth bars for all personal unit health and power bars.",
+      get = function()
+        return getGroupAllStatus(personalUnits)
+      end,
+      set = function(_, value)
+        setGroupAllSmoothbars(personalUnits, value)
+      end,
+    }
+
+    -- Individual personal unit toggles
+    for _, unit in ipairs(personalUnits) do
+      createUnitToggle(smoothBarsGroup, unit, "health")
+      createUnitToggle(smoothBarsGroup, unit, "power")
+    end
+
+    -- Group Units Header
+    smoothBarsGroup.groupHeader = {
+      order = self:GetOrder(),
+      type = "header",
+      name = "Group",
+    }
+
+    -- Group All Toggle
+    smoothBarsGroup.groupAllToggle = {
+      order = self:GetOrder(),
+      type = "toggle",
+      width = "full",
+      name = function()
+        local status = getGroupAllStatus(groupUnits)
+        return "All Group - " .. getStatusText(status)
+      end,
+      desc = "Toggle smooth bars for all group unit health and power bars.",
+      get = function()
+        return getGroupAllStatus(groupUnits)
+      end,
+      set = function(_, value)
+        setGroupAllSmoothbars(groupUnits, value)
+      end,
+    }
+
+    -- Individual group unit toggles
+    for _, unit in ipairs(groupUnits) do
+      createUnitToggle(smoothBarsGroup, unit, "health")
+      createUnitToggle(smoothBarsGroup, unit, "power")
+    end
+
+    -- Raid Units Header
+    smoothBarsGroup.raidHeader = {
+      order = self:GetOrder(),
+      type = "header",
+      name = "Raid",
+    }
+
+    -- Raid All Toggle
+    smoothBarsGroup.raidAllToggle = {
+      order = self:GetOrder(),
+      type = "toggle",
+      width = "full",
+      name = function()
+        local status = getGroupAllStatus(raidUnits)
+        return "All Raid - " .. getStatusText(status)
+      end,
+      desc = "Toggle smooth bars for all raid unit health and power bars.",
+      get = function()
+        return getGroupAllStatus(raidUnits)
+      end,
+      set = function(_, value)
+        setGroupAllSmoothbars(raidUnits, value)
+      end,
+    }
+
+    -- Individual raid unit toggles
+    for _, unit in ipairs(raidUnits) do
+      createUnitToggle(smoothBarsGroup, unit, "health")
+      createUnitToggle(smoothBarsGroup, unit, "power")
+    end
+  end
 end
 
 O:AddCallback("Skins_ElvUI")

@@ -68,7 +68,7 @@ function DT:PostUpdateColor(health, unit, r, g, b)
       end
 
       if classColor then
-        health.backdrop:SetBackdropColor(classColor[1] * health.bg.multiplier, classColor[2] * health.bg.multiplier, classColor[3] * health.bg.multiplier, self.transparencyAlpha)
+        health.backdrop:SetBackdropColor(classColor.r * health.bg.multiplier, classColor.g * health.bg.multiplier, classColor.b * health.bg.multiplier, self.transparencyAlpha)
       end
     else
       health.backdrop:SetBackdropColor(r * health.bg.multiplier, g * health.bg.multiplier, b * health.bg.multiplier, self.transparencyAlpha)
@@ -154,10 +154,10 @@ end
 function DT:SetTextureHealComm(_, frame)
   if not self.isTransparencyEnabled or not self.db or not self.db.enabled then return end
 
-  frame.myBar:SetStatusBarTexture(E.media.blankTex)
-  frame.otherBar:SetStatusBarTexture(E.media.blankTex)
-  frame.absorbBar:SetStatusBarTexture(E.media.blankTex)
-  frame.healAbsorbBar:SetStatusBarTexture(E.media.blankTex)
+  frame.healingPlayer:SetStatusBarTexture(E.media.blankTex)
+  frame.healingOther:SetStatusBarTexture(E.media.blankTex)
+  frame.damageAbsorb:SetStatusBarTexture(E.media.blankTex)
+  frame.healAbsorb:SetStatusBarTexture(E.media.blankTex)
 end
 
 function DT:SettingsUpdate()

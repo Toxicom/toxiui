@@ -137,6 +137,11 @@ function TXUI:DBConvert()
     if converted then self:LogDebug("DBConvert > Converted Custom Texts to new names") end
   end
 
+  do
+    if db.themes.gradientMode.enabled then db.themes.darkMode.enabled = false end
+    self:LogDebug("DBConvert > Disabled Gradient Mode")
+  end
+
   -- Print debug message
   self:LogDebug("DBConvert > DB Upgrade finished")
 

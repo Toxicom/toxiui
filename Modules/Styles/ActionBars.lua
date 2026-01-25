@@ -45,14 +45,14 @@ function ST:BuildActionBarsProfile()
         autoHide = false,
         detachFromFrame = true,
         text_format = "",
-        detachedWidth = F.Dpi(248),
+        detachedWidth = F.Dpi(243),
         height = 10,
       },
 
       classbar = {
         enable = true,
         detachFromFrame = true,
-        detachedWidth = F.Dpi(248),
+        detachedWidth = F.Dpi(243),
         height = 10,
       },
 
@@ -74,7 +74,7 @@ function ST:BuildActionBarsProfile()
     F.Table.Crush(pf.actionbar, {
       bar1 = {
         buttonSize = F.Dpi(40),
-        buttonHeight = F.Dpi(30),
+        buttonHeight = F.Dpi(27),
       },
 
       bar3 = {
@@ -159,7 +159,7 @@ function ST:BuildActionBarsProfile()
     F.Table.Crush(pf.actionbar, {
       bar1 = {
         buttonSize = F.Dpi(32),
-        buttonHeight = F.Dpi(24),
+        buttonHeight = F.Dpi(21),
       },
 
       bar3 = {

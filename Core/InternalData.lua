@@ -78,6 +78,13 @@ I.Data.Contributor = {
       [I.Enum.Flavor.TBC] = {
         -- Thunderstrike
         ["Toxilock-Thunderstrike"] = true,
+        ["Toxishot-Thunderstrike"] = true,
+        ["Toxisin-Thunderstrike"] = true,
+
+        -- Spineshatter
+        ["Toximoon-Spineshatter"] = true,
+        ["Toxisin-Spineshatter"] = true,
+        ["Toxibow-Spineshatter"] = true,
       },
 
       [I.Enum.Flavor.VANILLA] = {

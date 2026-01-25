@@ -59,7 +59,7 @@ P.themes = {
     detailsGradientText = true,
   },
   gradientMode = {
-    enabled = true, -- Enabled by default
+    enabled = false, -- Enabled by default
 
     textures = {
       health = "- ToxiUI",
@@ -71,12 +71,6 @@ P.themes = {
 
     interruptCDEnabled = false,
     interruptSoonEnabled = false,
-
-    colorHealth = {
-      enabled = true,
-      yellowThreshold = 75,
-      redThreshold = 35,
-    },
 
     saturationBoost = {
       enabled = false,

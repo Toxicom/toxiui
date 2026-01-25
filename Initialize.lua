@@ -41,6 +41,8 @@ TXUI.Version = GetAddOnMetadata(addonName, "Version")
 TXUI.IsVanilla = TXUI.MetaFlavor == "Vanilla"
 TXUI.IsMists = TXUI.MetaFlavor == "Mists"
 TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
+-- Identical to Retail. Need this so I can revisit code that's been disabled for Midnight
+TXUI.IsMidnight = TXUI.MetaFlavor == "Mainline"
 TXUI.IsTBC = TXUI.MetaFlavor == "TBC"
 
 -- M+ season for Retail, eg.: df3
