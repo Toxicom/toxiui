@@ -553,6 +553,10 @@ function PF:BuildProfile()
         name = {
           yOffset = -10,
         },
+        raidTargetIndicator = {
+          size = 16,
+          xOffset = -15,
+        },
       },
 
       ["FRIENDLY_NPC"] = {
@@ -607,6 +611,10 @@ function PF:BuildProfile()
           enable = true,
           yOffset = -10,
         },
+        raidTargetIndicator = {
+          size = 16,
+          xOffset = -15,
+        },
       },
 
       ["ENEMY_PLAYER"] = {
@@ -657,6 +665,10 @@ function PF:BuildProfile()
         name = {
           yOffset = -10,
         },
+        raidTargetIndicator = {
+          size = 16,
+          xOffset = -15,
+        },
       },
 
       ["FRIENDLY_PLAYER"] = {
@@ -706,6 +718,10 @@ function PF:BuildProfile()
         },
         name = {
           yOffset = -10,
+        },
+        raidTargetIndicator = {
+          size = 16,
+          xOffset = -15,
         },
       },
 
