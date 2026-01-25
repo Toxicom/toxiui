@@ -366,9 +366,8 @@ function PF:ElvUIFont()
             { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
             { "toxiui:health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
-            { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+            { "toxiui:power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" },
             { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
-            (TXUI.IsVanilla or TXUI.IsTBC) and { "toxiui:power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" } or { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
           buffs = {

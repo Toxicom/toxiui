@@ -33,6 +33,9 @@ TXUI.Changelog["7.2.0"] = {
     F.String.ElvUI() .. ": Updated which text tags are being used",
     F.String.ElvUI() .. ": Use 3:2 aspect ratio for action bars and auras instead of 4:3",
     F.String.ElvUI() .. ": UnitFrame Class backdrop for Dark Mode",
+    F.String.ElvUI() .. ": By default show Power & Class bars with new position" .. F.String.Sublist(
+      "Classic action bars style now no longer repositions power & class bars, as they are now in the same position by default."
+    ),
 
     "* Documentation",
     F.String.MinElv("14.07"),

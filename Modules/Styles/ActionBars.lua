@@ -13,21 +13,6 @@ function ST:BuildActionBarsProfile()
   local IsHorizontalLayout = E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL
   local defaultPadding = 4
 
-  local customTextTemplate = {
-    -- Options
-    enable = true,
-    attachTextTo = "Health",
-    justifyH = "LEFT",
-
-    -- Offset
-    xOffset = F.Dpi(-10),
-    yOffset = F.Dpi(27),
-  }
-
-  local createCustomText = function(db, ...)
-    return F.Table.Join(db or {}, customTextTemplate, ...)
-  end
-
   if style == "Classic" then
     -- ToxiUI specifics
     F.Table.Crush(pf.TXUI, {
@@ -35,38 +20,6 @@ function ST:BuildActionBarsProfile()
         fadePersist = {
           mode = "ELVUI",
         },
-      },
-    })
-
-    -- UnitFrame Player
-    F.Table.Crush(pf.unitframe.units.player, {
-      power = {
-        enable = true,
-        autoHide = false,
-        detachFromFrame = true,
-        text_format = "",
-        detachedWidth = F.Dpi(243),
-        height = 10,
-      },
-
-      classbar = {
-        enable = true,
-        detachFromFrame = true,
-        detachedWidth = F.Dpi(243),
-        height = 10,
-      },
-
-      customTexts = {
-        ["toxiui:power"] = createCustomText({}, {
-          attachTextTo = "Power",
-          text_format = (TXUI.IsVanilla or TXUI.IsTBC) and "[tx:power]" or "[tx:power:percent:nosign]",
-          xOffset = 0,
-          yOffset = 10,
-          justifyH = "CENTER",
-          font = F.FontOverride(I.Fonts.TitleBlack),
-          size = F.FontSizeScaled(24),
-          fontOutline = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
-        }),
       },
     })
 
@@ -92,9 +45,6 @@ function ST:BuildActionBarsProfile()
     F.Table.Crush(
       pf.movers,
       {
-        PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 372),
-        ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
-
         ElvAB_1 = F.Position("TOP", "PlayerPowerBarMover", "BOTTOM", 0, -defaultPadding),
         ElvAB_6 = F.Position("TOPRIGHT", "ElvAB_1", "BOTTOM", -defaultPadding / 2, -defaultPadding), -- left
         ElvAB_5 = F.Position("TOPLEFT", "ElvAB_1", "BOTTOM", defaultPadding / 2, -defaultPadding), -- right
@@ -103,8 +53,6 @@ function ST:BuildActionBarsProfile()
         ShiftAB = F.Position("BOTTOM", "ElvAB_3", "TOPRIGHT", 0, defaultPadding),
       },
       F.Table.If(IsHorizontalLayout, {
-        PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
-        ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
         ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding / 2, 45), -- left
         ElvAB_5 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
@@ -127,31 +75,6 @@ function ST:BuildActionBarsProfile()
         fadePersist = {
           mode = "MOUSEOVER",
         },
-      },
-    })
-
-    -- UnitFrame Player
-    F.Table.Crush(pf.unitframe.units.player, {
-      power = {
-        enable = false,
-        detachedWidth = F.Dpi(120),
-        autoHide = true,
-      },
-
-      classbar = {
-        enable = false,
-      },
-
-      customTexts = {
-        ["toxiui:power"] = createCustomText({}, {
-          attachTextTo = "Power",
-          text_format = F.ChooseForTheme("[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
-          xOffset = F.Dpi(85),
-          yOffset = F.Dpi(0),
-          font = F.FontOverride(I.Fonts.Primary),
-          size = F.FontSizeScaled(20),
-          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-        }),
       },
     })
 

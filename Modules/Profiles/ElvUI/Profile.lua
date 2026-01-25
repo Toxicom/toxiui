@@ -181,7 +181,8 @@ function PF:BuildProfile()
       -- Movers: UnitFrames
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 350),
       ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
-      PlayerPowerBarMover = F.Position("RIGHT", "ElvUF_Player", "BOTTOMRIGHT", -10, 0),
+      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 372),
+      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 350),
       ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
@@ -262,7 +263,9 @@ function PF:BuildProfile()
       -- Horizontal Layout
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 326, 518),
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 565, 235),
-      ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -280, 347),
+
+      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
+      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 420),
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 420),
@@ -782,9 +785,10 @@ function PF:BuildProfile()
       -- UnitFrame Player Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
-        text_format = "[tx:power:percent:nosign]",
-        xOffset = F.Dpi(10),
-        yOffset = F.Dpi(0),
+        text_format = (TXUI.IsVanilla or TXUI.IsTBC) and "[tx:power]" or "[tx:power:percent:nosign]",
+        xOffset = 0,
+        yOffset = 10,
+        justifyH = "CENTER",
       }),
 
       -- UnitFrame Player Custom Texts Class Icon
@@ -886,11 +890,19 @@ function PF:BuildProfile()
     },
 
     power = {
-      enable = false, -- Disabled by default
+      enable = true,
       detachFromFrame = true,
-      autoHide = true,
-      detachedWidth = F.Dpi(120),
+      autoHide = false,
+      detachedWidth = F.Dpi(243),
       text_format = "",
+      height = 10,
+    },
+
+    classbar = {
+      enable = true,
+      detachFromFrame = true,
+      detachedWidth = F.Dpi(243),
+      height = 10,
     },
 
     -- UnitFrame Player Castbar
@@ -922,8 +934,6 @@ function PF:BuildProfile()
 
     -- Disable UnitFrame Player aurabar
     aurabar = { enable = false },
-    -- Disable UnitFrame Player classbar
-    classbar = { enable = false },
     -- Disable UnitFrame Player health text
     health = { text_format = "" },
     -- Disable UnitFrame Target name text
