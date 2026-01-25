@@ -173,15 +173,6 @@ function PF:ElvUIFont()
       countFontSize = F.FontSizeScaled(20),
       countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
-      cooldown = {
-        fonts = {
-          enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(16),
-          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-        },
-      },
-
       bagBar = {
         font = F.FontOverride(I.Fonts.Primary),
         fontSize = F.FontSizeScaled(14),
@@ -198,6 +189,17 @@ function PF:ElvUIFont()
       tabFontSize = F.FontSizeScaled(14, 13),
       tabFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
     },
+
+    cooldown = (function()
+      local cd = {}
+      for _, key in ipairs({ "actionbar", "aurabars", "auraindicator", "auras", "bags", "bossbutton", "global", "nameplates", "totemtracker", "unitframe", "zonebutton" }) do
+        cd[key] = {
+          font = F.FontOverride(I.Fonts.Primary),
+          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        }
+      end
+      return cd
+    end)(),
 
     -- Auras
     auras = {
@@ -229,15 +231,6 @@ function PF:ElvUIFont()
       font = F.FontOverride(I.Fonts.Primary),
       fontSize = F.FontSizeScaled(16),
       fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-
-      cooldown = {
-        fonts = {
-          enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(16),
-          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-        },
-      },
 
       units = {
         player = {
@@ -530,25 +523,6 @@ function PF:ElvUIFont()
       font = F.FontOverride(I.Fonts.Primary),
       fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       fontSize = F.FontSizeScaled(18),
-
-      cooldown = {
-        fonts = {
-          enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          fontSize = F.FontSizeScaled(16),
-          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-        },
-      },
-    },
-
-    -- Cooldowns
-    cooldown = {
-      fonts = {
-        enable = true,
-        font = F.FontOverride(I.Fonts.Primary),
-        fontSize = F.FontSizeScaled(16),
-        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-      },
     },
   })
 

@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
+local ipairs = ipairs
 local next = next
 
 function PF:BuildColorsProfile()
@@ -376,6 +377,19 @@ function PF:BuildProfile()
       ["SHAMAN"] = F.Table.HexToRGB("#006edb"),
     },
   })
+
+  -- Cooldown
+  do
+    local cd = {}
+    for _, key in ipairs({ "actionbar", "aurabars", "auraindicator", "auras", "bags", "bossbutton", "global", "nameplates", "totemtracker", "unitframe", "zonebutton" }) do
+      cd[key] = {
+        colors = {
+          text = F.Table.CurrentClassColor(),
+        },
+      }
+    end
+    F.Table.Crush(pf.cooldown, cd)
+  end
 
   -- Tooltip
   F.Table.Crush(pf.tooltip, {
