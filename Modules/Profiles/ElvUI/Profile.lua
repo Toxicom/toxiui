@@ -360,12 +360,16 @@ function PF:BuildProfile()
       size = 24,
     },
 
+    -- Default ElvUI
     customGlow = {
-      useColor = true,
-      color = I.Strings.Branding.ColorRGBA,
-      lines = 8,
-      size = 2,
+      style = "Pixel Glow",
+      color = { r = 0.95, g = 0.95, b = 0, a = 0.9 },
+      startAnimation = true,
+      useColor = false,
+      duration = 1,
       speed = 0.3,
+      lines = 8,
+      size = 1,
     },
 
     classColors = {
