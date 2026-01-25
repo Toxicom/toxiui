@@ -432,7 +432,9 @@ function O:Skins_ElvUI()
     }, {
       name = "Quick toggles to enable or disable smooth bar animations for health and power bars across different unit frames.\n\n"
         .. F.String.ToxiUI("Information: ")
-        .. "These settings directly modify ElvUI's UnitFrame database settings. It is NOT a custom feature for smooth bars.\n\n",
+        .. "These settings directly modify ElvUI's UnitFrame database settings. It is NOT a custom feature for smooth bars.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "These changes may impact performance on lower-end systems when enabled for multiple unit frames simultaneously.\n\n",
     }).args
 
     -- All Units Toggle Header
