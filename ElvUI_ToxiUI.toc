@@ -3,7 +3,7 @@
 ## Author: Toxi (Toxi#21206)
 ## Version: 7.2.0
 ## RequiredDeps: ElvUI
-## OptionalDeps: Details, Plater
+## OptionalDeps: Details
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
 ## Interface: 120000

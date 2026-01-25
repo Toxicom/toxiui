@@ -138,9 +138,6 @@ function PF:BuildProfile()
     }
   end
 
-  -- Special Case: ToxiUIWAAnchor
-  local WAAnchorY = { 329, 399 }
-
   local defaultPadding = 4
   local IsHorizontalLayout = E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL
 
@@ -233,9 +230,6 @@ function PF:BuildProfile()
       TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -35),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
       QueueStatusMover = F.Position("BOTTOMRIGHT", "MinimapMover", "BOTTOMRIGHT", -defaultPadding * 2, defaultPadding * 2),
-
-      -- Movers: ToxiUI
-      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[1]),
     },
     F.Table.If(TXUI.IsRetail, {
       -- Movers: Bars Retail Only
@@ -281,8 +275,6 @@ function PF:BuildProfile()
       ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
 
       ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 565, 235),
-
-      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     }),
     F.Table.If(TXUI.IsMists, {
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),

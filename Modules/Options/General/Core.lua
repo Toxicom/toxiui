@@ -18,14 +18,7 @@ function O:General()
       ["generalWelcomeDesc"] = {
         order = self:GetOrder(),
         type = "description",
-        name = TXUI.Title
-          .. " is a minimalistic "
-          .. F.String.ElvUI("ElvUI")
-          .. " edit by "
-          .. F.String.Authors()
-          .. " best suited for 1440p resolution. \n\nIt is designed to be used along with "
-          .. F.String.Luxthos("Luxthos")
-          .. " WeakAuras.\n\n",
+        name = TXUI.Title .. " is a minimalistic " .. F.String.ElvUI("ElvUI") .. " edit by " .. F.String.Authors() .. " best suited for 1440p resolution.\n\n",
       },
 
       -- Status Report BUTTON

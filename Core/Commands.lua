@@ -39,9 +39,6 @@ function TXUI:HandleDevProfiles(arg1)
   elseif arg1 == "details" then
     self:LogInfo("Applying Details Profile ...")
     TXUI:GetModule("Profiles"):Details()
-  elseif arg1 == "plater" then
-    self:LogInfo("Applying Plater Profile ...")
-    TXUI:GetModule("Profiles"):Plater()
   elseif arg1 == "bw" then
     self:LogInfo("Applying BigWigs Profile ...")
     TXUI:GetModule("Profiles"):BigWigs()

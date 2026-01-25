@@ -375,7 +375,7 @@ function M:StatusReportUpdate()
   do
     wipe(addOnData)
 
-    for _, addOn in ipairs { "ElvUI", "Details", "Plater", "BigWigs", "WeakAuras", "WarpDeplete", "OmniCD", "BugGrabber", "BugSack" } do
+    for _, addOn in ipairs { "ElvUI", "Details", "BigWigs", "WarpDeplete", "OmniCD", "BugGrabber", "BugSack" } do
       if F.IsAddOnEnabled(addOn) then
         local data = {}
         local name = GetAddOnMetadata(addOn, "Title")

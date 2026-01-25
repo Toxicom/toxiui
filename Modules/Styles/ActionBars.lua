@@ -120,7 +120,7 @@ function ST:BuildActionBarsProfile()
     )
   end
 
-  if style == "WeakAuras" then
+  if style == "cdm" then
     -- ToxiUI specifics
     F.Table.Crush(pf.TXUI, {
       addons = {

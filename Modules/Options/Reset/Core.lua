@@ -38,7 +38,7 @@ function O:Reset()
           .. F.String.Error("NOT")
           .. " include "
           .. F.String.ElvUI("ElvUI")
-          .. ", Details, Plater and so on..\n\n",
+          .. ", Details etc..\n\n",
       },
       ["resetButton"] = {
         order = self:GetOrder(),

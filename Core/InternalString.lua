@@ -41,27 +41,6 @@ I.Strings.ChangelogText = {
   [I.Enum.ChangelogType.HOTFIX] = "Hotfix - no notes.",
 }
 
-I.Strings.WALinks = {
-  ["DEFAULT"] = "https://www.luxthos.com/",
-  ["FORMAT"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-the-war-within/",
-  ["FORMAT_MISTS"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-mists-of-pandaria/",
-  ["FORMAT_VANILLA"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-classic-era-hardcore/",
-  ["FORMAT_TBC"] = "https://www.luxthos.com/%s-weakauras-for-world-of-warcraft-classic-era-hardcore/",
-  ["WARRIOR"] = "warrior",
-  ["HUNTER"] = "hunter",
-  ["MAGE"] = "mage",
-  ["ROGUE"] = "rogue",
-  ["PRIEST"] = "priest",
-  ["WARLOCK"] = "warlock",
-  ["PALADIN"] = "paladin",
-  ["DRUID"] = "druid",
-  ["SHAMAN"] = "shaman",
-  ["MONK"] = "monk",
-  ["DEMONHUNTER"] = "demon-hunter",
-  ["DEATHKNIGHT"] = "death-knight",
-  ["EVOKER"] = "evoker",
-}
-
 I.Strings.Colors = {
   [I.Enum.Colors.TXUI] = "18a8ff", -- #18a8ff
   [I.Enum.Colors.PLATER] = "ff66a1", -- #ff66a1
@@ -97,7 +76,6 @@ I.Strings.Branding = {
   Links = {
     Website = "https://toxiui.com",
     Discord = "https://discord.gg/r85TGUU7zA",
-    WAGuide = "https://toxiui.com/resources/guide/weakauras-guide/",
     Youtube = "https://www.youtube.com/@ToxiTV",
     Github = "https://github.com/toxicom/toxiui",
     ReforgedArmory = "https://www.curseforge.com/wow/addons/reforgedarmory-elvui-plugin",

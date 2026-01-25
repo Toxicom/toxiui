@@ -210,18 +210,6 @@ function F.String.Covenant(msg)
   return F.String.RGB(msg, covenantColor)
 end
 
-function F.String.WALink(class)
-  class = class or E.myclass
-  local classLink = I.Strings.WALinks[class]
-
-  if classLink ~= nil then
-    local base = (TXUI.IsVanilla or TXUI.IsTBC) and I.Strings.WALinks.FORMAT_VANILLA or TXUI.IsMists and I.Strings.WALinks.FORMAT_MISTS or I.Strings.WALinks.FORMAT
-    return format(base, classLink)
-  end
-
-  return I.Strings.WALinks.DEFAULT
-end
-
 function F.String.RemoveRuneOfThePrefix(text)
   return text:gsub(".* the ", ""):gsub(".* of ", "")
 end

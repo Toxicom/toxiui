@@ -8,11 +8,6 @@ function IS:HideAnnoyances()
   -- if an elvui installation is up, hide it
   local ElvUIInstallFrame = _G["ElvUIInstallFrame"]
   if ElvUIInstallFrame and ElvUIInstallFrame:IsShown() then ElvUIInstallFrame:Hide() end
-
-  -- Hide PLATER addon compatible popup
-  E:StaticPopup_Hide("INCOMPATIBLE_ADDON")
-  E:StaticPopup_Hide("DISABLE_INCOMPATIBLE_ADDON")
-  E:StaticPopup_Hide("SCRIPT_PROFILE")
 end
 
 local Pages = {
@@ -20,11 +15,9 @@ local Pages = {
   Profile = 2,
   Core = 3,
   Details = 4,
-  Plater = 5,
-  BigWigs = 6,
-  WeakAuras = 7,
-  Additional = 8,
-  Complete = 9,
+  -- BigWigs = 5,
+  Additional = 5,
+  Complete = 6,
 }
 
 local function SetupAnimations(obj, duration)
@@ -128,12 +121,8 @@ function IS:Dialog()
       AddImageScripts { I.Media.Installer.Vertical, I.Media.Installer.Horizontal }
     elseif page == Pages.Details then
       AddImageScripts { I.Media.Installer.DetailsOne, I.Media.Installer.DetailsTwo }
-    elseif page == Pages.Plater then
-      AddImageScripts { I.Media.Installer.PlaterNew, I.Media.Installer.PlaterOld }
     elseif page == Pages.BigWigs then
       AddImageScripts { I.Media.Installer.BigWigs }
-    elseif page == Pages.WeakAuras then
-      AddImageScripts { I.Media.Installer.WeakAuras, I.Media.Installer.WAGuide }
     elseif page == Pages.Complete then
       AddImageScripts { "skip", I.Media.Installer.DiscordBanner, I.Media.Installer.WebPreview }
     end
@@ -229,7 +218,6 @@ function IS:Dialog()
               self:ElvUI(function()
                 -- Install addon profiles after ElvUI completes
                 if F.IsAddOnEnabled("Details") then PF:Details(false) end
-                if F.IsAddOnEnabled("Plater") then PF:Plater("new") end
                 if F.IsAddOnEnabled("BigWigs") then PF:BigWigs() end
 
                 -- Install additional addon profiles
@@ -368,125 +356,41 @@ function IS:Dialog()
         end
       end,
 
-      -- Plater Page
-      [Pages.Plater] = function()
-        SetupCustomInstaller(Pages.Plater)
-        installFrame.SubTitle:SetText(F.String.ToxiUI("Plater"))
-
-        if F.IsAddOnEnabled("Plater") then
-          installFrame.Desc1:SetText(
-            "Plater is a nameplate addon with a extraordinary amount of settings, out of the box debuff tracking, threat coloring, support for scripting similar to WeakAuras and wago.io + the WeakAuras-Companion for Mod/Script/Profile updates."
-          )
-          installFrame.Desc2:SetText(
-            F.String.Warning("Note: ")
-              .. "The "
-              .. F.String.Error("[OUTDATED]")
-              .. " profile is from before "
-              .. TXUI.Title
-              .. " 6.9.0 and it will never be updated again. Use it with your own caution."
-          )
-          installFrame.Desc3:SetText("Importance: " .. F.String.Error("High"))
-
-          installFrame.Option1:Show()
-          installFrame.Option1:SetText("Plater")
-          installFrame.Option1:SetScript("OnClick", function()
-            PF:Plater("new")
-            self.reloadRequired = true
-            self:ShowStepComplete(F.String.ToxiUI("Plater") .. " profile installed.")
-            installFrame.Next:Click()
-          end)
-
-          installFrame.Option2:Show()
-          installFrame.Option2:SetText("Plater" .. F.String.Error(" [OUTDATED]"))
-          installFrame.Option2:SetWidth(installFrame.Option2:GetWidth() * 1.5)
-          installFrame.Option2:SetScript("OnClick", function()
-            PF:Plater("old")
-            self.reloadRequired = true
-            self:ShowStepComplete(F.String.ToxiUI("Plater") .. F.String.Error(" [OUTDATED]") .. " profile installed.")
-            installFrame.Next:Click()
-          end)
-        else
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have Plater installed!"))
-          installFrame.Desc2:SetText("Please install Plater and restart the installer!")
-        end
-      end,
-
       -- Boss Mod Page
-      [Pages.BigWigs] = function()
-        SetupCustomInstaller(Pages.BigWigs)
-        if F.IsAddOnEnabled("BigWigs") then
-          installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
+      -- [Pages.BigWigs] = function()
+      --   SetupCustomInstaller(Pages.BigWigs)
+      --   if F.IsAddOnEnabled("BigWigs") then
+      --     installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
-          installFrame.Desc1:SetText(
-            "BigWigs is a boss encounter AddOn. It consists of many individual encounter scripts, or boss modules; mini AddOns that are designed to trigger alert messages, timer bars, sounds, and so forth, for one specific raid encounter."
-          )
-          installFrame.Desc2:SetText("Importance: " .. F.String.Good("Low"))
+      --     installFrame.Desc1:SetText(
+      --       "BigWigs is a boss encounter AddOn. It consists of many individual encounter scripts, or boss modules; mini AddOns that are designed to trigger alert messages, timer bars, sounds, and so forth, for one specific raid encounter."
+      --     )
+      --     installFrame.Desc2:SetText("Importance: " .. F.String.Good("Low"))
 
-          installFrame.Option1:Show()
-          installFrame.Option1:SetText("BigWigs")
-          installFrame.Option1:SetScript("OnClick", function()
-            PF:BigWigs()
-            self:ShowStepComplete(F.String.ToxiUI("BigWigs") .. " profile installed.")
-            installFrame.Next:Click()
-          end)
-        elseif F.IsAddOnEnabled("DBM-Core") then
-          installFrame.SubTitle:SetText(F.String.ToxiUI("Deadly Boss Mods"))
+      --     installFrame.Option1:Show()
+      --     installFrame.Option1:SetText("BigWigs")
+      --     installFrame.Option1:SetScript("OnClick", function()
+      --       PF:BigWigs()
+      --       self:ShowStepComplete(F.String.ToxiUI("BigWigs") .. " profile installed.")
+      --       installFrame.Next:Click()
+      --     end)
+      --   elseif F.IsAddOnEnabled("DBM-Core") then
+      --     installFrame.SubTitle:SetText(F.String.ToxiUI("Deadly Boss Mods"))
 
-          installFrame.Desc1:SetText(F.String.Error("Important: ") .. "Deadly Boss Mods is no longer supported. We recommend migrating to " .. F.String.ToxiUI("BigWigs") .. ".")
+      --     installFrame.Desc1:SetText(F.String.Error("Important: ") .. "Deadly Boss Mods is no longer supported. We recommend migrating to " .. F.String.ToxiUI("BigWigs") .. ".")
 
-          installFrame.Option1:Show()
-          installFrame.Option1:SetText("Skip this step")
-          installFrame.Option1:SetScript("OnClick", function()
-            installFrame.Next:Click()
-          end)
-        else
-          installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
+      --     installFrame.Option1:Show()
+      --     installFrame.Option1:SetText("Skip this step")
+      --     installFrame.Option1:SetScript("OnClick", function()
+      --       installFrame.Next:Click()
+      --     end)
+      --   else
+      --     installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
 
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have " .. F.String.ToxiUI("BigWigs") .. " installed!"))
-          installFrame.Desc2:SetText("If you're a new player, we recommend installing " .. F.String.ToxiUI("BigWigs") .. "!")
-        end
-      end,
-
-      -- WeakAuras recommendations
-      [Pages.WeakAuras] = function()
-        SetupCustomInstaller(Pages.WeakAuras)
-        installFrame.SubTitle:SetText(F.String.ToxiUI("WeakAuras"))
-
-        if F.IsAddOnEnabled("WeakAuras") then
-          installFrame.Desc1:SetText("This will give you links to install important WeakAuras")
-          installFrame.Desc2:SetText(
-            F.String.Luxthos("Luxthos")
-              .. " has WeakAuras packages for every single class and specialization combination making them very versatile and easy to use! They are also very helpful for new players!"
-          )
-          installFrame.Option1:Show()
-          installFrame.Option1:SetText(F.String.Luxthos("Luxthos") .. " WA")
-          installFrame.Option1:SetScript("OnClick", function()
-            self:PopupWALink()
-          end)
-        else
-          installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have WeakAuras installed!|r"))
-          installFrame.Desc2:SetText("For full experience, we highly recommend having WeakAuras!")
-        end
-
-        installFrame.Desc3:SetText(
-          F.String.Warning("Important: ")
-            .. "Please note that the "
-            .. F.String.Luxthos("Luxthos WeakAuras")
-            .. " in the image are customised! Out of the box, they will look slightly different. Visit "
-            .. F.String.ToxiUI(I.Strings.Branding.Links.WAGuide)
-            .. " to find out how you can achieve a similar look."
-        )
-
-        -- If WeakAuras is disabled, show ToxiUI WA Guide as Option 1
-        local buttonIndex = F.IsAddOnEnabled("WeakAuras") and 2 or 1
-
-        installFrame["Option" .. buttonIndex]:Show()
-        installFrame["Option" .. buttonIndex]:SetText(TXUI.Title .. " Guide")
-
-        installFrame["Option" .. buttonIndex]:SetScript("OnClick", function()
-          self:PopupWAGuide()
-        end)
-      end,
+      --     installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have " .. F.String.ToxiUI("BigWigs") .. " installed!"))
+      --     installFrame.Desc2:SetText("If you're a new player, we recommend installing " .. F.String.ToxiUI("BigWigs") .. "!")
+      --   end
+      -- end,
 
       [Pages.Additional] = function()
         SetupCustomInstaller(Pages.Additional)
@@ -585,9 +489,7 @@ function IS:Dialog()
       [Pages.Profile] = "Profile - " .. Pages.Profile,
       [Pages.Core] = "Core Settings - " .. Pages.Core,
       [Pages.Details] = "Details - " .. Pages.Details,
-      [Pages.Plater] = "Plater - " .. Pages.Plater,
-      [Pages.BigWigs] = "BigWigs - " .. Pages.BigWigs,
-      [Pages.WeakAuras] = "WeakAuras - " .. Pages.WeakAuras,
+      -- [Pages.BigWigs] = "BigWigs - " .. Pages.BigWigs,
       [Pages.Additional] = "Add. AddOns - " .. Pages.Additional,
       [Pages.Complete] = "Complete - " .. Pages.Complete,
     },

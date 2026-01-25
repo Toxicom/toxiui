@@ -46,7 +46,7 @@ P.general = {
 
 -- Styles
 P.styles = {
-  actionBars = "WeakAuras",
+  actionBars = "cdm",
 }
 
 -- Themes

@@ -250,11 +250,6 @@ function PF:ElvUIAdditionalPrivate()
           enable = false,
         },
 
-        -- Skins: Addons
-        addons = {
-          weakAuras = false,
-        },
-
         -- Skins: Widgets
         widgets = {
           button = {

@@ -1,6 +1,5 @@
 [![Discord](https://img.shields.io/discord/769550106948141086?style=for-the-badge&logo=discord&label=ToxiUI&color=18a8ff)](https://discord.gg/r85TGUU7zA)
 
-
 [![CurseForge Downloads](https://img.shields.io/curseforge/dt/676447?style=for-the-badge)](https://www.curseforge.com/wow/addons/toxiui)
 [![CurseForge Game Versions](https://img.shields.io/curseforge/game-versions/676447?style=for-the-badge)](https://www.curseforge.com/wow/addons/toxiui)
 [![CurseForge Version](https://img.shields.io/curseforge/v/676447?style=for-the-badge)](https://www.curseforge.com/wow/addons/toxiui)
@@ -15,98 +14,94 @@
 
 ###### Click the image above to see the video
 
- 
-
 ![Features](https://media.forgecdn.net/attachments/description/676447/description_241dfa18-3e41-4400-99a9-cc1eedeb24d9.png)
 
-*   Three themes to choose from: Gradient Mode, Dark Mode & default
-*   Beautiful Armory packed with information
-*   Elegant WunderBar to have all the important information at your fingertips
-*   Unique hand-made specialization icons
-*   Custom text tags
-*   Game Menu Skin to personalize your gameplay and provide useful information
-*   Enhanced custom installer
-*   Active Discord community
-*   …and more!
+- Three themes to choose from: Gradient Mode, Dark Mode & default
+- Beautiful Armory packed with information
+- Elegant WunderBar to have all the important information at your fingertips
+- Unique hand-made specialization icons
+- Custom text tags
+- Game Menu Skin to personalize your gameplay and provide useful information
+- Enhanced custom installer
+- Active Discord community
+- …and more!
 
 ![Requirements](https://media.forgecdn.net/attachments/description/676447/description_63516ad4-2c2e-4383-b5c8-29f43db86c80.png)
 
-Required AddOns:
-----------------
+## Required AddOns:
 
-*   [ElvUI](https://www.tukui.org/download.php?ui=elvui)
+- [ElvUI](https://www.tukui.org/download.php?ui=elvui)
 
-Recommended AddOns:
--------------------
+## Recommended AddOns:
 
-*   [Details! Damage Meter](https://www.curseforge.com/wow/addons/details)
-*   [Plater](https://www.curseforge.com/wow/addons/plater-nameplates)
-*   [Weak Auras](https://www.curseforge.com/wow/addons/weakauras-2)
-*   [ElvUI WindTools](https://www.curseforge.com/wow/addons/elvui-windtools) _(Retail only)_
+- [Details! Damage Meter](https://www.curseforge.com/wow/addons/details)
+- [ElvUI WindTools](https://www.curseforge.com/wow/addons/elvui-windtools) _(Retail only)_
 
-Additional supported AddOns:
-----------------------------
+## Additional supported AddOns:
 
-*   [BigWigs](https://www.curseforge.com/wow/addons/big-wigs)
-*   [OmniCD - Party Cooldown Tracker](https://www.curseforge.com/wow/addons/omnicd)
-*   [WarpDeplete (Retail only)](https://www.curseforge.com/wow/addons/warpdeplete)
-*   [Ratio Minimap Auras](https://www.curseforge.com/wow/addons/elvui-ratiominimapauras)
+- [BigWigs](https://www.curseforge.com/wow/addons/big-wigs)
+- [OmniCD - Party Cooldown Tracker](https://www.curseforge.com/wow/addons/omnicd)
+- [WarpDeplete (Retail only)](https://www.curseforge.com/wow/addons/warpdeplete)
+- [Ratio Minimap Auras](https://www.curseforge.com/wow/addons/elvui-ratiominimapauras)
 
 ![Installation](https://media.forgecdn.net/attachments/description/676447/description_eef9d427-56cd-4167-a38e-59f260b92ac1.png)
 
-*   Make a backup of your WTF folder _(it is recommended to install ToxiUI on a clean profile)_
-*   Install the required addons
-*   Enter game & make sure that all of the AddOns are loaded correctly
-*   Once you load up your character, the ToxiUI installer will pop-up
-*   Simply **follow** the installers **instructions very closely**
-*   If you have any problems or issues at any step, please visit our discord server for support!
+- Make a backup of your WTF folder _(it is recommended to install ToxiUI on a clean profile)_
+- Install the required addons
+- Enter game & make sure that all of the AddOns are loaded correctly
+- Once you load up your character, the ToxiUI installer will pop-up
+- Simply **follow** the installers **instructions very closely**
+- If you have any problems or issues at any step, please visit our discord server for support!
 
 [![Installation video guide](https://img.youtube.com/vi/C0YpDaEHvWU/maxresdefault.jpg)](https://www.youtube.com/watch?v=C0YpDaEHvWU)
 
 ###### Click the image above to see the video
 
- 
+## ![Credits](https://media.forgecdn.net/attachments/description/676447/description_d643a212-3ccc-47e5-b892-363771a6ac65.png)
 
-![Credits](https://media.forgecdn.net/attachments/description/676447/description_d643a212-3ccc-47e5-b892-363771a6ac65.png)
---------------------------------------------------------------------------------------------------------------------------
-
-*   Nawuko for developing the initial ToxiUI codebase
-*   Ryada, Wolen and others for contributing to the project staying alive
-*   Hekili for help with coding the first version of installer framework
-*   Releaf for those lovely WunderBar icons
-*   v0dKa for supporting heavily in the early days - real MVP
-*   Redtuzk & his team for the inspiration
-*   ElvUI discord for continuous help and support
-*   PayPal & Patreon supporters! You guys rock!
+- Nawuko for developing the initial ToxiUI codebase
+- Ryada, Wolen and others for contributing to the project staying alive
+- Hekili for help with coding the first version of installer framework
+- Releaf for those lovely WunderBar icons
+- v0dKa for supporting heavily in the early days - real MVP
+- Redtuzk & his team for the inspiration
+- ElvUI discord for continuous help and support
+- PayPal & Patreon supporters! You guys rock!
 
 ![Discord](https://media.forgecdn.net/attachments/description/676447/description_9d2a48cc-2282-4076-8652-49eb0a8d7f03.png)
 
-*   If you're having any problems or just wanna chat with us, please join our [discord server](https://discord.gg/r85TGUU7zA)
+- If you're having any problems or just wanna chat with us, please join our [discord server](https://discord.gg/r85TGUU7zA)
 
 ## How to keep up to date with repo
+
 ### Windows OS
+
 1. Clone the repository
 2. `git checkout development`
 3. Create a [symlink directory junction](https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/)
-    1. Open up Command Prompt **as administator**
-    2. `mklink /J <new path> <old path>`
+   1. Open up Command Prompt **as administator**
+   2. `mklink /J <new path> <old path>`
 
 #### Example:
+
 ```sh
 mklink /J "D:\Games\World of Warcraft\_retail_\Interface\AddOns\ElvUI_ToxiUI\" C:\Users\Toxi\Documents\GitHub\toxiui
 ```
 
-
 ## Development workflow
+
 ### Use the `development` branch
+
 The `stable` branch should be updated only every big (non-beta) release, so that we have a reference.
 
 ⚠️ **2023-07-15:** Moving the release CI to `development` branch. `stable` will only be used as a reference point, but even then not sure if needed with the amount of commits we have nowadays.
 
 ### Pull requests only
+
 ⛔️ Please do not push code to the `stable` or `development` branches and only use Pull Requests.
 
 ### Commit messages
+
 ![Emoji Log Extension](https://i.imgur.com/wfC95MH.png)
 
 We use a [VSCode](https://code.visualstudio.com/) extension called **Emoji Log** for commit messages.
@@ -117,15 +112,16 @@ This is so that [#📦git-feed](https://discord.com/channels/769550106948141086/
 🔗 https://marketplace.visualstudio.com/items?itemName=ahmadawais.emoji-log-vscode
 
 ### Code formatting
+
 Please install the stylua extension and setup to format on save
 
 ```json
 // settings.json
 {
-    "editor.formatOnSave": true,
-    "[lua]": {
-        "editor.defaultFormatter": "JohnnyMorganz.stylua"
-    },
+  "editor.formatOnSave": true,
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  }
 }
 ```
 

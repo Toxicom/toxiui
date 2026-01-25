@@ -71,7 +71,7 @@ function O:Skins_ElvUI()
     elvuiTheme["args"]["shadowEnabled"] = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enable shadows for WeakAuras and most of ElvUI bars.",
+      desc = "Enable shadows for most of ElvUI frames.",
       name = "Soft Shadows",
       disabled = optionsDisabled,
     }

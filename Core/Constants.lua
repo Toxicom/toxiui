@@ -61,7 +61,7 @@ I.Constants.RandomTips = {
   -- 10
   "To easily manage your AddOns all in one client, we recommend using the CurseForge version of " .. F.String.ToxiUI("WowUp.io"),
   -- 11
-  "Keeping your ActionBars hidden and relying on WeakAuras will improve your gameplay and remove unnecessary clutter from your screen!",
+  "Keeping your ActionBars hidden and relying on the Cooldown Manager will improve your gameplay and remove unnecessary clutter from your screen!",
   -- 12
   "All UnitFrame texts are Custom Texts. To edit them go to ElvUI UnitFrame settings -> Select which unit -> Custom Texts.\n"
     .. F.String.Class("Class Icons")

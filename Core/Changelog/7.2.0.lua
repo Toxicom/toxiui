@@ -7,6 +7,11 @@ TXUI.Changelog["7.2.0"] = {
     "Remove Gradient Mode" .. F.String.Sublist("Gradient Mode might return in a future release, uncertain for now."),
     "Remove and refactor a lot of the Text Tags",
     "This patch is major, therefore you will be forced to run the installer again",
+    "Remove " .. F.String.Plater() .. " profile" .. F.String.Sublist(
+      "With scripting and modding being limited by Blizzard, we no longer see the upside of using Plater vs ElvUI Nameplates."
+    ),
+    "Remove WeakAuraAnchor module and related code",
+    "Remove all mentions of WeakAuras" .. F.String.Sublist("RIP"),
 
     "* New features",
     "Animations plugin" --
