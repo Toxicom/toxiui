@@ -428,7 +428,7 @@ function O:Skins_ElvUI()
 
     -- SmoothBars Group
     local smoothBarsGroup = self:AddInlineDesc(options, {
-      name = "Smooth Bars",
+      name = "Smooth Bars " .. E.NewSign,
     }, {
       name = "Quick toggles to enable or disable smooth bar animations for health and power bars across different unit frames.\n\n"
         .. F.String.ToxiUI("Information: ")
