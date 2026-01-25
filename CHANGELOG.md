@@ -1,11 +1,16 @@
-# ToxiUI v7.2.0-beta.1 - 2026-01-15
+# ToxiUI v7.2.0-beta.2 - 2026-01-25
 
 ## ‼️ Breaking Changes
 
 - Remove **Gradient Mode**
   - Gradient Mode might return in a future release; uncertain for now.
 - Remove and refactor a large number of Text Tags
-- This patch is major, therefore you will be forced to run the installer again
+- This is a **major patch** — you will be forced to run the installer again
+- Remove **Plater** profile
+  - With scripting and modding being limited by Blizzard, we no longer see the upside of using Plater over ElvUI Nameplates.
+- Remove **WeakAuraAnchor** module and related code
+- Remove all mentions of **WeakAuras**
+  - RIP
 
 ## 🚀 New Features
 
@@ -16,6 +21,7 @@
   - _ToxiUI Settings → Plugins → Animations_
 - **Smooth Bars** toggles section
   - _Skins → ElvUI → Smooth Bars_
+- Profile for **ElvUI Nameplates**
 
 ## 🐛 Bug Fixes
 
@@ -29,7 +35,9 @@
 - **ElvUI**: Update profile for new cooldown settings
 - **ElvUI**: Update which Text Tags are used
 - **ElvUI**: Switch action bars and auras to a 3:2 aspect ratio (from 4:3)
-- **ElvUI**: UnitFrame class backdrop for Dark Mode
+- **ElvUI**: Add UnitFrame class backdrop for Dark Mode
+- **ElvUI**: Show Power & Class bars by default with new positioning
+  - Classic action bars style no longer repositions Power & Class bars, as they now share the default position.
 
 ## 📘 Documentation
 
