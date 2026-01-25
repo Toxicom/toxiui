@@ -282,7 +282,13 @@ function PF:ElvUIFont()
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = 12,
-            format = "[name]",
+            format = "[reactioncolor][name]",
+          },
+          title = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = 10,
+            format = "[reactioncolor][npctitle:brackets]",
           },
         },
 
@@ -311,7 +317,7 @@ function PF:ElvUIFont()
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = 12,
-            format = "[name]",
+            format = "[classcolor][name]",
           },
         },
 
@@ -340,7 +346,7 @@ function PF:ElvUIFont()
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = 12,
-            format = "[name]",
+            format = "[classcolor][name]",
           },
         },
 

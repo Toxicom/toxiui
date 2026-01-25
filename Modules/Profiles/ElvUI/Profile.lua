@@ -501,6 +501,7 @@ function PF:BuildProfile()
 
   -- Nameplates
   F.Table.Crush(pf.nameplates, {
+    highlight = false,
     statusbar = "- ToxiUI",
 
     units = {
@@ -600,6 +601,10 @@ function PF:BuildProfile()
           enable = false,
         },
         name = {
+          yOffset = -10,
+        },
+        title = {
+          enable = true,
           yOffset = -10,
         },
       },
