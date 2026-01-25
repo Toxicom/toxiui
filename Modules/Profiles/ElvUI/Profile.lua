@@ -380,15 +380,24 @@ function PF:BuildProfile()
 
   -- Cooldown
   do
-    local cd = {}
-    for _, key in ipairs { "actionbar", "aurabars", "auraindicator", "auras", "bags", "bossbutton", "global", "nameplates", "totemtracker", "unitframe", "zonebutton" } do
-      cd[key] = {
-        colors = {
-          text = F.Table.HexToRGB("#ffffff"),
-        },
-      }
-    end
-    F.Table.Crush(pf.cooldown, cd)
+    local whiteText = { colors = { text = F.Table.HexToRGB("#ffffff") } }
+
+    F.Table.Crush(pf.cooldown, {
+      actionbar = whiteText,
+      aurabars = whiteText,
+      auraindicator = whiteText,
+      bags = whiteText,
+      bossbutton = whiteText,
+      global = whiteText,
+      nameplates = whiteText,
+      totemtracker = whiteText,
+      unitframe = whiteText,
+      zonebutton = whiteText,
+      auras = {
+        colors = { text = F.Table.CurrentClassColor() },
+        offsetY = -10,
+      },
+    })
   end
 
   -- Tooltip
