@@ -212,7 +212,7 @@ function M:StatusReportCreate()
 
   -- Sections
   statusFrame.Section1 = self:StatusReportCreateSection(mainSectionWidth, (6 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame, "TOP", -90)
-  statusFrame.Section2 = self:StatusReportCreateSection(mainSectionWidth, (7 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
+  statusFrame.Section2 = self:StatusReportCreateSection(mainSectionWidth, (4 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
   statusFrame.Section3 = self:StatusReportCreateSection(mainSectionWidth, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section2, "BOTTOM", 0)
   statusFrame.Section4 = self:StatusReportCreateSection(mainSectionWidth, ((TXUI.IsRetail and 6 or 5) * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section3, "BOTTOM", 0)
   pluginFrame.SectionA = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame, "TOP", -10)
@@ -220,7 +220,7 @@ function M:StatusReportCreate()
 
   -- Section content
   statusFrame.Section1.Content = self:StatusReportCreateContent(6, mainSectionWidth - mainSectionPadding, statusFrame.Section1, statusFrame.Section1.Header)
-  statusFrame.Section2.Content = self:StatusReportCreateContent(7, mainSectionWidth - mainSectionPadding, statusFrame.Section2, statusFrame.Section2.Header)
+  statusFrame.Section2.Content = self:StatusReportCreateContent(4, mainSectionWidth - mainSectionPadding, statusFrame.Section2, statusFrame.Section2.Header)
   statusFrame.Section3.Content = self:StatusReportCreateContent(5, mainSectionWidth - mainSectionPadding, statusFrame.Section3, statusFrame.Section3.Header)
   statusFrame.Section4.Content = self:StatusReportCreateContent(TXUI.IsRetail and 6 or 5, mainSectionWidth - mainSectionPadding, statusFrame.Section4, statusFrame.Section4.Header)
 
@@ -293,17 +293,17 @@ function M:StatusReportUpdate()
     end
 
     -- Gradient Mode
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.GradientMode)
+    -- do
+    --   local requirements = TXUI:CheckRequirements(I.Requirements.GradientMode)
 
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.themes.gradientMode.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
+    --   if requirements ~= true then
+    --     text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
+    --   else
+    --     text = ((E.db.TXUI.themes.gradientMode.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
+    --   end
 
-      Section2.Content.Line2.Text:SetFormattedText("Gradient Mode: %s", text)
-    end
+    --   Section2.Content.Line2.Text:SetFormattedText("Gradient Mode: %s", text)
+    -- end
 
     -- Dark Mode
     do
@@ -315,7 +315,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.themes.darkMode.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line3.Text:SetFormattedText("Dark Mode: %s", text)
+      Section2.Content.Line2.Text:SetFormattedText("Dark Mode: %s", text)
     end
 
     -- Dark Mode Transparency
@@ -328,33 +328,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.themes.darkMode.transparency == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line4.Text:SetFormattedText("DM Transparency: %s", text)
-    end
-
-    -- Dark Mode Gradient Names
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.DarkModeGradientName)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.themes.darkMode.gradientName == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line5.Text:SetFormattedText("DM Gradients: %s", text)
-    end
-
-    -- Details Gradient Text
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.DarkModeGradientName)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.themes.darkMode.detailsGradientText == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line6.Text:SetFormattedText("Details Gradients: %s", text)
+      Section2.Content.Line3.Text:SetFormattedText("DM Transparency: %s", text)
     end
 
     -- WunderBar
@@ -367,7 +341,7 @@ function M:StatusReportUpdate()
         text = ((E.db.TXUI.wunderbar.general.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
       end
 
-      Section2.Content.Line7.Text:SetFormattedText("WunderBar: %s", text)
+      Section2.Content.Line4.Text:SetFormattedText("WunderBar: %s", text)
     end
   end
 

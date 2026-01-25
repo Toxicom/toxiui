@@ -155,46 +155,6 @@ function M:Tags()
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
   local iconPath = self:GetClassIconPath(iconTheme)
 
-  local function SetGradientColorMapString(name, unitClass, reverseGradient)
-    if not name or name == "" then return end
-    if not unitClass or unitClass == "" then return name end
-    local classColorMap = E.db.TXUI.themes.gradientMode.classColorMap
-    local reactionColorMap = E.db.TXUI.themes.gradientMode.reactionColorMap
-
-    local colorMap = {}
-    F.Table.Crush(colorMap, classColorMap, reactionColorMap)
-
-    local left = colorMap[1][unitClass] -- Left (player UF)
-    local right = colorMap[2][unitClass] -- Right (player UF)
-
-    local r1, g1, b1
-    local r2, g2, b2
-
-    if E.db.TXUI.themes.gradientMode.saturationBoost then
-      local db = F.GetDBFromPath("TXUI.themes.gradientMode")
-      -- mod values taken from F.Color.GenerateCache()
-      -- maybe can use instead F.Color.GetMap??
-      local modS1, modL1 = db.saturationBoost.shiftSat, db.saturationBoost.shiftLight
-      local modS2, modL2 = db.saturationBoost.normalSat, db.saturationBoost.normalLight
-
-      local h1, s1, l1 = F.ConvertToHSL(left.r, left.g, left.b)
-      local h2, s2, l2 = F.ConvertToHSL(right.r, right.g, right.b)
-
-      r1, g1, b1 = F.ConvertToRGB(F.ClampToHSL(h1, s1 * modS1, l1 * modL1))
-      r2, g2, b2 = F.ConvertToRGB(F.ClampToHSL(h2, s2 * modS2, l2 * modL2))
-    else
-      r1, g1, b1 = left.r, left.g, left.b
-      r2, g2, b2 = right.r, right.g, right.b
-    end
-
-    -- Reverse color for target frame etc
-    if reverseGradient then
-      return E:TextGradient(name, r2, g2, b2, r1, g1, b1)
-    else
-      return E:TextGradient(name, r1, g1, b1, r2, g2, b2)
-    end
-  end
-
   local dm = TXUI:GetModule("ThemesDarkTransparency")
 
   local function FormatColorTag(str, unit, reverse)
@@ -203,108 +163,24 @@ function M:Tags()
 
     if UnitIsPlayer(unit) then
       local _, unitClass = UnitClass(unit)
-      if E.db.TXUI.themes.darkMode.gradientName then
-        return SetGradientColorMapString(str, unitClass, reverse)
-      else
-        local cs = ElvUF.colors.class[unitClass]
-        return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. str) or ("|cffcccccc" .. str)
-      end
+      local cs = ElvUF.colors.class[unitClass]
+      return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. str) or ("|cffcccccc" .. str)
     else
-      if E.db.TXUI.themes.darkMode.gradientName then
-        local reaction = UnitReaction(unit, "player")
-        if reaction then
-          if reaction >= 5 then
-            return SetGradientColorMapString(str, "GOOD", reverse)
-          elseif reaction == 4 then
-            return SetGradientColorMapString(str, "NEUTRAL", reverse)
-          elseif reaction <= 3 and reaction > 0 then
-            return SetGradientColorMapString(str, "BAD", reverse)
-          end
-        end
-      else
-        local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-        return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. str) or ("|cffcccccc" .. str)
-      end
+      local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
+      return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. str) or ("|cffcccccc" .. str)
     end
   end
 
   -- Name tags
-  local nameLength = { veryshort = 5, short = 10, medium = 15, long = 20 }
-  for textFormat, length in pairs(nameLength) do
-    E:AddTag(format("tx:name:%s", textFormat), NAME_EVENTS, function(unit)
-      local name = UnitName(unit)
-      if not name then return "missing name wtf" end
+  E:AddTag("tx:name", NAME_EVENTS, function(unit)
+    local name = UnitName(unit)
+    if not name then return "missing name wtf" end
 
-      name = E:ShortenString(name, length)
+    if not dm.isEnabled then return name end
 
-      if not dm.isEnabled then return name end
-
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(name, unit, reverseGradient)
-    end)
-
-    E:AddTag(format("tx:name:%s:uppercase", textFormat), NAME_EVENTS, function(unit)
-      local name = UnitName(unit)
-      if not name then return "missing name wtf" end
-
-      name = uppercase(name)
-      name = E:ShortenString(name, length)
-
-      if not dm.isEnabled then return name end
-
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(name, unit, reverseGradient)
-    end)
-
-    E:AddTag(format("tx:name:abbrev:%s", textFormat), NAME_EVENTS, function(unit)
-      local name = UnitName(unit)
-      if not name then return "missing name wtf" end
-
-      if strfind(name, "%s") then name = Abbrev(name) end
-      name = E:ShortenString(name, length)
-
-      if not dm.isEnabled then return name end
-
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(name, unit, reverseGradient)
-    end)
-
-    E:AddTag(format("tx:name:abbrev:%s:uppercase", textFormat), NAME_EVENTS, function(unit)
-      local name = UnitName(unit)
-      if not name then return "missing name wtf" end
-
-      name = uppercase(name)
-
-      if strfind(name, "%s") then name = Abbrev(name) end
-      name = E:ShortenString(name, length)
-
-      if not dm.isEnabled then return name end
-
-      local reverseGradient = reverseUnitsTable[unit]
-      return FormatColorTag(name, unit, reverseGradient)
-    end)
-
-    E:AddTag(format("tx:name:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
-      local name = UnitName(unit)
-      if not name then return "missing name wtf" end
-
-      name = E:ShortenString(name, length)
-      local _, unitClass = UnitClass(unit)
-
-      return self:SplitAndColorName(name, unit, strMatch, unitClass)
-    end)
-
-    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
-      local name = UnitName(unit)
-      if not name then return "missing name wtf" end
-
-      if strfind(name, "%s") then name = Abbrev(name) end
-      name = E:ShortenString(name, length)
-      local _, unitClass = UnitClass(unit)
-
-      return self:SplitAndColorName(name, unit, strMatch, unitClass)
-    end)
-  end
+    local reverseGradient = reverseUnitsTable[unit]
+    return FormatColorTag(name, unit, reverseGradient)
+  end)
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
@@ -526,78 +402,7 @@ function M:Tags()
 
   -- Tag info: Names
   do
-    -- Tag categories and their descriptions
-    local tagCategories = {
-      { modifier = "", description = F.String.ToxiUI("[BASIC]") .. " Displays the name of the unit with " },
-      {
-        modifier = "abbrev:",
-        description = F.String.ToxiUI("[BASIC / ABBREV]") .. " Displays the name of the unit with abbreviation and ",
-        uppercaseDesc = F.String.ToxiUI("[UPPERCASE / ABREV]") .. " Displays the name of the unit in UPPERCASE with abbreviation and ",
-      },
-    }
-
-    -- Lengths and their descriptions
-    local lengths = {
-      { name = "veryshort", limit = 5 },
-      { name = "short", limit = 10 },
-      { name = "medium", limit = 15 },
-      { name = "long", limit = 20 },
-    }
-
-    -- Uppercase modifier
-    local uppercaseModifier = ":uppercase"
-
-    -- Loop to generate tags
-    for _, category in ipairs(tagCategories) do
-      for _, length in ipairs(lengths) do
-        -- Regular tags
-        local tagName = "tx:name:" .. category.modifier .. length.name
-        local description = category.description .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
-        E:AddTagInfo(tagName, TagNames.NAMES, description)
-
-        -- Uppercase tags, if applicable
-        if category.modifier == "abbrev:" then
-          -- For abbreviated tags, include uppercase modifier after length
-          tagName = tagName .. uppercaseModifier
-          description = category.uppercaseDesc .. TXUI.Title .. " colors. (limited to " .. length.limit .. " letters)"
-          E:AddTagInfo(tagName, TagNames.NAMES, description)
-        else
-          -- For non-abbreviated tags, add uppercase versions
-          local uppercaseTagName = "tx:name:" .. length.name .. uppercaseModifier
-          local uppercaseDescription = F.String.ToxiUI("[UPPERCASE]")
-            .. " Displays the name of the unit in UPPERCASE with "
-            .. TXUI.Title
-            .. " colors. (limited to "
-            .. length.limit
-            .. " letters)"
-          E:AddTagInfo(uppercaseTagName, TagNames.NAMES, uppercaseDescription)
-        end
-      end
-    end
-
-    -- Tag info: Names Split
-    for _, length in ipairs(lengths) do
-      E:AddTagInfo(
-        format("tx:name:%s:split", length.name),
-        TagNames.NAMES,
-        F.String.ToxiUI("[SPLIT]")
-          .. " Displays the name of the unit split in |cffffffffwhite|r and "
-          .. F.String.Class("class")
-          .. " color. Can use |cfff4f4f4{stringMatch}|r to split. (limited to "
-          .. length.limit
-          .. " letters)"
-      )
-      E:AddTagInfo(
-        format("tx:name:abbrev:%s:split", length.name),
-        TagNames.NAMES,
-        F.String.ToxiUI("[SPLIT / ABBREV]")
-          .. " Displays the name of the unit with abbreviation split in |cffffffffwhite|r and "
-          .. F.String.Class("class")
-          .. " color. Can use |cfff4f4f4{stringMatch}|r to split. (limited to "
-          .. length.limit
-          .. " letters)"
-      )
-    end
+    E:AddTagInfo("tx:name", TagNames.NAMES, "Displays unit's name with " .. TXUI.Title .. " colors.")
   end
 
   -- Tag info: Health
@@ -633,35 +438,7 @@ function M:Tags()
       ["tx:health:current:shortvalue"] = true,
       ["tx:health:current:shortvalue:absorb"] = true,
 
-      ["tx:name:veryshort"] = true,
-      ["tx:name:short"] = true,
-      ["tx:name:medium"] = true,
-      ["tx:name:long"] = true,
-
-      ["tx:name:veryshort:split"] = true,
-      ["tx:name:short:split"] = true,
-      ["tx:name:medium:split"] = true,
-      ["tx:name:long:split"] = true,
-
-      ["tx:name:abbrev:veryshort"] = true,
-      ["tx:name:abbrev:short"] = true,
-      ["tx:name:abbrev:medium"] = true,
-      ["tx:name:abbrev:long"] = true,
-
-      ["tx:name:abbrev:veryshort:split"] = true,
-      ["tx:name:abbrev:short:split"] = true,
-      ["tx:name:abbrev:medium:split"] = true,
-      ["tx:name:abbrev:long:split"] = true,
-
-      ["tx:name:veryshort:uppercase"] = true,
-      ["tx:name:short:uppercase"] = true,
-      ["tx:name:medium:uppercase"] = true,
-      ["tx:name:long:uppercase"] = true,
-
-      ["tx:name:abbrev:veryshort:uppercase"] = true,
-      ["tx:name:abbrev:short:uppercase"] = true,
-      ["tx:name:abbrev:medium:uppercase"] = true,
-      ["tx:name:abbrev:long:uppercase"] = true,
+      ["tx:name"] = true,
 
       ["tx:power:percent:nosign"] = true,
     }

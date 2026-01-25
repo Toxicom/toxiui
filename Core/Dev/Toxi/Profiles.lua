@@ -58,12 +58,6 @@ function T:SetupProfile()
   -- ElvUI
   E.db.general.taintLog = false
 
-  -- ElvUI: UnitFrames
-  for _, unit in ipairs(splitUnitframes) do
-    E.db.unitframe.units[unit].customTexts["toxiui:name"].text_format = "[tx:name:medium:split{Toxi}]"
-  end
-  E.db.unitframe.units.target.customTexts["toxiui:name"].text_format = "[tx:name:abbrev:medium:split{Toxi}]"
-
   -- WindTools
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
     E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
