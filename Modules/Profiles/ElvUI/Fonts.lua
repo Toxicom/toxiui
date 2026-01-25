@@ -284,13 +284,13 @@ function PF:ElvUIFont()
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = 12,
-            format = "[reactioncolor][name]",
+            format = "|cff85d92b[name]|r",
           },
           title = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = 10,
-            format = "[reactioncolor][npctitle:brackets]",
+            format = "|cff85d92b[npctitle:brackets]|r",
           },
         },
 
