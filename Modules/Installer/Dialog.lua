@@ -212,16 +212,34 @@ function IS:Dialog()
           installFrame.Option2:Show()
           installFrame.Option2:SetText(F.String.Error("Turbo Mode"))
           installFrame.Option2:SetScript("OnClick", function()
+            -- Prevent concurrent profile updates
+            if TXUI.PreventProfileUpdates then return end
+            TXUI.PreventProfileUpdates = true
+
             -- Set ToxiUI profile
             E.data:SetProfile(I.ProfileNames.Default)
             -- Set Vertical layout
             E.db.TXUI.installer.layout = I.Enum.Layouts.VERTICAL
-            -- Install profiles
-            IS:ElvUI()
-            if F.IsAddOnEnabled("Details") then PF:Details(false) end
-            if F.IsAddOnEnabled("Plater") then PF:Plater("new") end
-            PF:BigWigs()
-            ReloadUI()
+
+            -- Show splash screen and install profiles
+            TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
+              self.reloadRequired = true
+
+              -- Install ElvUI profiles with callback to continue after async completion
+              self:ElvUI(function()
+                -- Install addon profiles after ElvUI completes
+                if F.IsAddOnEnabled("Details") then PF:Details(false) end
+                if F.IsAddOnEnabled("Plater") then PF:Plater("new") end
+                if F.IsAddOnEnabled("BigWigs") then PF:BigWigs() end
+
+                -- Install additional addon profiles
+                if F.IsAddOnEnabled("OmniCD") then PF:ApplyOmniCDProfile() end
+                if F.IsAddOnEnabled("WarpDeplete") then PF:ApplyWarpDepleteProfile() end
+
+                -- Show reload popup (direct ReloadUI is blocked in protected context)
+                E:StaticPopup_Show("CONFIG_RL")
+              end)
+            end, true) -- manualHide = true, ReloadUI will handle cleanup
           end)
           installFrame.Option3:Show()
           installFrame.Option3:SetText("Discord")
