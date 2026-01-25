@@ -62,26 +62,6 @@ function M:TagsUpdate()
   end
 end
 
--- Table for referencing which gradients should be reversed
-local reverseUnitsTable = {
-  ["target"] = true,
-  ["targettarget"] = true,
-  ["focus"] = true,
-  ["arena1"] = true,
-  ["arena2"] = true,
-  ["arena3"] = true,
-  ["arena4"] = true,
-  ["arena5"] = true,
-  ["boss1"] = true,
-  ["boss2"] = true,
-  ["boss3"] = true,
-  ["boss4"] = true,
-  ["boss5"] = true,
-  ["boss6"] = true,
-  ["boss7"] = true,
-  ["boss8"] = true,
-}
-
 -- Event strings
 local NAME_EVENTS = "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT"
 local HEALTH_EVENTS = "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED"
