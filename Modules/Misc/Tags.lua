@@ -23,9 +23,6 @@ local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
 local UnitReaction = UnitReaction
 
-local utf8len = string.utf8len
-local utf8sub = string.utf8sub
-
 function M:_TagsUpdate()
   if not F.IsTXUIProfile() then return end
 
