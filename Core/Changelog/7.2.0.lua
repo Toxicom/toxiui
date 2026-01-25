@@ -1,11 +1,12 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
-TXUI.Changelog["7.1.3"] = {
-  HOTFIX = true,
+TXUI.Changelog["7.2.0"] = {
+  HOTFIX = false,
   CHANGES = {
     "* Breaking changes",
     "Remove Gradient Mode" .. F.String.Sublist("Gradient Mode might return in a future release, uncertain for now."),
     "Remove and refactor a lot of the Text Tags",
+    "This patch is major, therefore you will be forced to run the installer again",
 
     "* New features",
     "Animations plugin" --
