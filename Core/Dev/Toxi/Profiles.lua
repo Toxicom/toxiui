@@ -6,7 +6,6 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 
 local SetCVar = SetCVar
 local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet", "lfg" }
-local splitUnitframes = { "player", "party", "focus", "targettarget", "pet" }
 
 function T:SetupCvars()
   -- if E.TimerunningID and UnitLevel("player") < 80 then
