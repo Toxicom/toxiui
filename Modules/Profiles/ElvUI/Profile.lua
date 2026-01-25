@@ -22,10 +22,10 @@ function PF:BuildColorsProfile()
     disconnected = F.Table.HexToRGB("#ff9387"),
     health = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#1d1d1d")),
     health_backdrop = F.ChooseForTheme(F.Table.HexToRGB("#000000"), F.Table.HexToRGB("#505050")),
-    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#ff0015"), F.Table.HexToRGB("#9c0c00")),
+    health_backdrop_dead = F.ChooseForTheme(F.Table.HexToRGB("#61000e"), F.Table.HexToRGB("#9c0c00")),
 
     -- UnitFrames Colors Options
-    classbackdrop = true,
+    classbackdrop = F.ChooseForTheme(false, true),
     colorhealthbyvalue = false,
     useDeadBackdrop = true,
     transparentPower = false,
@@ -2328,7 +2328,7 @@ function PF:UpdateProfileForTheme()
   local pf = self:BuildProfile()
 
   -- UnitFrame Color Options
-  F.UpdateDBFromPath(pf, "unitframe.colors", "customhealthbackdrop")
+  F.UpdateDBFromPath(pf, "unitframe.colors", "classbackdrop")
   F.UpdateDBFromPath(pf, "unitframe.colors", "healthclass")
   -- UnitFrame Colors
   F.UpdateDBFromPathRGB(pf, "unitframe.colors.health")

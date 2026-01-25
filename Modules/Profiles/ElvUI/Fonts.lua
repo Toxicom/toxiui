@@ -247,6 +247,7 @@ function PF:ElvUIFont()
             text = {
               font = F.FontOverride(I.Fonts.Primary),
               fontSize = 14,
+              format = "[perhp]",
             },
           },
           name = {
@@ -276,6 +277,7 @@ function PF:ElvUIFont()
             text = {
               font = F.FontOverride(I.Fonts.Primary),
               fontSize = 14,
+              format = "[perhp]",
             },
           },
           name = {
@@ -311,6 +313,7 @@ function PF:ElvUIFont()
             text = {
               font = F.FontOverride(I.Fonts.Primary),
               fontSize = 14,
+              format = "[perhp]",
             },
           },
           name = {
@@ -340,6 +343,7 @@ function PF:ElvUIFont()
             text = {
               font = F.FontOverride(I.Fonts.Primary),
               fontSize = 14,
+              format = "[perhp]",
             },
           },
           name = {
