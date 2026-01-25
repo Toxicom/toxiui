@@ -399,6 +399,16 @@ function M:Tags()
     end
   end)
 
+  E:AddTag("tx:power", POWER_EVENTS, function(unit)
+    local power = UnitPower(unit)
+
+    if not dm.isEnabled then
+      return power
+    else
+      return FormatColorTag(power, unit, reverseUnitsTable[unit])
+    end
+  end)
+
   local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
 
   -- Class Icon Tag
@@ -610,6 +620,7 @@ function M:Tags()
       TagNames.POWER,
       "Displays percentage Power of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
     )
+    E:AddTagInfo("tx:power", TagNames.POWER, "Displays current Power of unit. Also adds " .. TXUI.Title .. " colors.")
   end
 
   -- Requires ElvUI 13.67 or later

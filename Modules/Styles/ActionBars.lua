@@ -59,9 +59,9 @@ function ST:BuildActionBarsProfile()
       customTexts = {
         ["toxiui:power"] = createCustomText({}, {
           attachTextTo = "Power",
-          text_format = F.ChooseForTheme((TXUI.IsVanilla or TXUI.IsTBC) and "[tx:smartpower]" or "[tx:smartpower:percent:nosign]", "[tx:power:percent:nosign]"),
-          xOffset = F.Dpi(0),
-          yOffset = F.Dpi(5),
+          text_format = (TXUI.IsVanilla or TXUI.IsTBC) and "[tx:power]" or "[tx:power:percent:nosign]",
+          xOffset = 0,
+          yOffset = 10,
           justifyH = "CENTER",
           font = F.FontOverride(I.Fonts.TitleBlack),
           size = F.FontSizeScaled(24),
