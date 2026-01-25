@@ -74,7 +74,7 @@ function ST:BuildActionBarsProfile()
     F.Table.Crush(pf.actionbar, {
       bar1 = {
         buttonSize = F.Dpi(40),
-        buttonHeight = F.Dpi(30),
+        buttonHeight = F.Dpi(27),
       },
 
       bar3 = {
@@ -159,7 +159,7 @@ function ST:BuildActionBarsProfile()
     F.Table.Crush(pf.actionbar, {
       bar1 = {
         buttonSize = F.Dpi(32),
-        buttonHeight = F.Dpi(24),
+        buttonHeight = F.Dpi(21),
       },
 
       bar3 = {

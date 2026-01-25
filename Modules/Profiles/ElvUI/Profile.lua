@@ -478,7 +478,7 @@ function PF:BuildProfile()
 
     -- ElvUI_RatioMinimapAuras
     keepSizeRatio = false,
-    height = F.Dpi(24),
+    height = F.Dpi(21),
   })
 
   -- Auras Debuffs
@@ -491,7 +491,7 @@ function PF:BuildProfile()
 
     -- ElvUI_RatioMinimapAuras
     keepSizeRatio = false,
-    height = F.Dpi(30),
+    height = F.Dpi(27),
   })
 
   -- UnitFrames General
@@ -600,7 +600,7 @@ function PF:BuildProfile()
 
       keepSizeRatio = false,
       sizeOverride = F.Dpi(36),
-      height = F.Dpi(27),
+      height = F.Dpi(24),
     },
 
     -- UnitFrame Player Fader
@@ -805,7 +805,7 @@ function PF:BuildProfile()
 
         keepSizeRatio = false,
         sizeOverride = F.Dpi(36),
-        height = F.Dpi(27),
+        height = F.Dpi(24),
       },
 
       -- UnitFrame Target Debuffs
@@ -827,7 +827,7 @@ function PF:BuildProfile()
 
         keepSizeRatio = false,
         sizeOverride = F.Dpi(36),
-        height = F.Dpi(27),
+        height = F.Dpi(24),
       },
 
       -- New "Custom" tab introduced in ElvUI 14.00
@@ -1102,7 +1102,7 @@ function PF:BuildProfile()
 
       keepSizeRatio = false,
       sizeOverride = F.Dpi(24),
-      height = F.Dpi(18),
+      height = F.Dpi(16),
     },
 
     -- UnitFrame Focus raidicon (Target Marker Icon)
@@ -1238,7 +1238,7 @@ function PF:BuildProfile()
 
         keepSizeRatio = false,
         sizeOverride = F.Dpi(32),
-        height = F.Dpi(24),
+        height = F.Dpi(21),
       },
 
       -- UnitFrame Party Debuffs
@@ -1257,7 +1257,7 @@ function PF:BuildProfile()
 
         keepSizeRatio = false,
         sizeOverride = F.Dpi(32),
-        height = F.Dpi(24),
+        height = F.Dpi(21),
       },
 
       -- UnitFrame Party Heal Prediction
@@ -1624,7 +1624,7 @@ function PF:BuildProfile()
 
       keepSizeRatio = false,
       sizeOverride = F.Dpi(24),
-      height = F.Dpi(18),
+      height = F.Dpi(16),
     },
 
     -- UnitFrame Arena Debuffs
@@ -1638,7 +1638,7 @@ function PF:BuildProfile()
 
       keepSizeRatio = false,
       sizeOverride = F.Dpi(24),
-      height = F.Dpi(18),
+      height = F.Dpi(16),
     },
 
     -- UnitFrame Arena Trinket
@@ -1722,7 +1722,7 @@ function PF:BuildProfile()
 
       keepSizeRatio = false,
       sizeOverride = F.Dpi(24),
-      height = F.Dpi(18),
+      height = F.Dpi(16),
     },
 
     -- UnitFrame Boss Debuffs
@@ -1736,7 +1736,7 @@ function PF:BuildProfile()
 
       keepSizeRatio = false,
       sizeOverride = F.Dpi(24),
-      height = F.Dpi(18),
+      height = F.Dpi(16),
     },
 
     -- UnitFrame Boss Castbar
@@ -1798,10 +1798,10 @@ function PF:BuildProfile()
         flyoutDirection = "UP",
 
         buttonSize = F.Dpi(32), -- Width
-        buttonHeight = F.Dpi(24),
+        buttonHeight = F.Dpi(21),
 
         flyoutSize = F.Dpi(32), -- Width
-        flyoutHeight = F.Dpi(24),
+        flyoutHeight = F.Dpi(21),
 
         spacing = F.Dpi(1),
         flyoutSpacing = F.Dpi(1),
@@ -1820,7 +1820,7 @@ function PF:BuildProfile()
 
     buttons = 12,
     buttonSize = F.Dpi(32), -- Width
-    buttonHeight = F.Dpi(24),
+    buttonHeight = F.Dpi(21),
     buttonsPerRow = 6,
 
     hotkeytext = true,
@@ -1867,7 +1867,7 @@ function PF:BuildProfile()
   pf.actionbar.bar1 = createMainActionBar {
     enabled = true,
     buttonSize = F.Dpi(32),
-    buttonHeight = F.Dpi(24),
+    buttonHeight = F.Dpi(21),
   }
 
   -- ActionBar Bar2
@@ -1939,7 +1939,7 @@ function PF:BuildProfile()
     backdropSpacing = F.Dpi(1),
 
     buttonSize = F.Dpi(24),
-    buttonHeight = F.Dpi(18),
+    buttonHeight = F.Dpi(16),
     buttonSpacing = F.Dpi(1),
     buttonsPerRow = 10,
 
