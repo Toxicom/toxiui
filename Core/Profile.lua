@@ -264,6 +264,11 @@ P.addons = {
     mode = "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
     showInVehicles = true,
   },
+
+  -- Cooldown Manager
+  cooldownManager = {
+    fading = false, -- Disabled by default
+  },
 }
 
 P.misc = {

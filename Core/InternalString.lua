@@ -25,6 +25,8 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.AB_BUDDY_DISABLED] = "You can't use this module because ElvUI_ActionBarBuddy is enabled. Please disable it to unlock this option.",
   [I.Enum.Requirements.ELTRUISM_COLOR_MODIFIERS_DISABLED] = "You can't use this module because a similar module is currently turned on in EltruismUI. Please disable it to unlock this option.",
   [I.Enum.Requirements.ELTRUISM_DISABLED] = "You can't use this module because EltruismUI is enabled. Please disable it to unlock this option.",
+  [I.Enum.Requirements.BETTER_COOLDOWN_MANAGER_DISABLED] = "You can't use this module because BetterCooldownManager is enabled. Please disable it to unlock this option.",
+  [I.Enum.Requirements.COOLDOWN_MANAGER_CENTERED_DISABLED] = "You can't use this module because CooldownManagerCentered is enabled. Please disable it to unlock this option.",
 }
 
 I.Strings.RequirementsDebug = {

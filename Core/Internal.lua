@@ -167,6 +167,10 @@ I.Requirements = {
   },
   ["RaidInfoFrame"] = {},
   ["Animations"] = {},
+  ["CooldownManager"] = {
+    I.Enum.Requirements.BETTER_COOLDOWN_MANAGER_DISABLED,
+    I.Enum.Requirements.COOLDOWN_MANAGER_CENTERED_DISABLED,
+  },
 }
 
 -- Controls Settings about the Fancy Gradient Theme

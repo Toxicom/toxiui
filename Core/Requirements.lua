@@ -115,6 +115,10 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       if F.IsAddOnEnabled("ElvUI_EltreumUI") and F.GetDBFromPath("ElvUI_EltreumUI.skins.colormodkey") then return requirement end
     elseif requirement == I.Enum.Requirements.ELTRUISM_DISABLED then
       if F.IsAddOnEnabled("ElvUI_EltreumUI") then return requirement end
+    elseif requirement == I.Enum.Requirements.BETTER_COOLDOWN_MANAGER_DISABLED then
+      if F.IsAddOnEnabled("BetterCooldownManager") then return requirement end
+    elseif requirement == I.Enum.Requirements.COOLDOWN_MANAGER_CENTERED_DISABLED then
+      if F.IsAddOnEnabled("CooldownManagerCentered") then return requirement end
     end
   end
 
