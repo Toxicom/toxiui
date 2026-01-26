@@ -37,16 +37,59 @@ function CM:SetParent()
   end
 end
 
+function CM:SyncBarsWidth()
+  local essentialViewer = _G["EssentialCooldownViewer"]
+  if not essentialViewer then return end
+
+  local width = essentialViewer:GetWidth()
+  if not width or width <= 0 then return end
+
+  -- Update ElvUI player power and classbar detached width
+  local playerDB = E.db.unitframe.units.player
+  if playerDB then
+    if playerDB.power then playerDB.power.detachedWidth = width end
+    if playerDB.classbar then playerDB.classbar.detachedWidth = width end
+
+    -- Update the unitframe to apply changes
+    local uf = E:GetModule("UnitFrames")
+    if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+  end
+end
+
+function CM:EnableDynamicBarsWidth()
+  if not self.Initialized then return end
+
+  -- Sync initially
+  self:SyncBarsWidth()
+
+  -- Register for CooldownViewerSettings changes via EventRegistry
+  if EventRegistry then
+    EventRegistry:RegisterCallback("CooldownViewerSettings.OnDataChanged", self.SyncBarsWidth, self)
+    self.dynamicBarsWidthRegistered = true
+  end
+end
+
+function CM:DisableDynamicBarsWidth()
+  if not self.Initialized then return end
+
+  -- Unregister from EventRegistry
+  if EventRegistry and self.dynamicBarsWidthRegistered then
+    EventRegistry:UnregisterCallback("CooldownViewerSettings.OnDataChanged", self)
+    self.dynamicBarsWidthRegistered = false
+  end
+end
+
 function CM:Disable()
   if not self.Initialized then return end
 
   self:UnhookAll()
+  self:DisableDynamicBarsWidth()
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self)
   F.Event.UnregisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self)
 end
 
-function CM:Enable()
+function CM:EnableFading()
   if not self.Initialized then return end
 
   local playerFrame = _G["ElvUF_Player"]
@@ -65,15 +108,15 @@ function CM:Enable()
   end) end
 end
 
-function CM:EnableAfterUnitsLoaded()
+function CM:EnableFadingAfterUnitsLoaded()
   -- Get Frameworks
   local uf = E:GetModule("UnitFrames")
 
   -- Enable after units are loaded
   if uf.unitstoload ~= nil then
-    self:SecureHook(uf, "LoadUnits", "Enable")
+    self:SecureHook(uf, "LoadUnits", "EnableFading")
   else
-    self:Enable()
+    self:EnableFading()
   end
 end
 
@@ -85,8 +128,15 @@ function CM:DatabaseUpdate()
     -- Disable only out of combat
     self:Disable()
 
-    -- Enable only out of combat
-    if TXUI:HasRequirements(I.Requirements.CooldownManager) and (self.db and self.db.fading) then self:EnableAfterUnitsLoaded() end
+    -- Check requirements
+    if not TXUI:HasRequirements(I.Requirements.CooldownManager) then return end
+    if not self.db then return end
+
+    -- Enable fading if enabled
+    if self.db.fading then self:EnableFadingAfterUnitsLoaded() end
+
+    -- Enable dynamic bars width if enabled
+    if self.db.dynamicBarsWidth then self:EnableDynamicBarsWidth() end
   end)
 end
 

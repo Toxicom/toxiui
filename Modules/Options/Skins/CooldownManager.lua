@@ -50,6 +50,38 @@ function O:Skins_CooldownManager()
       end,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Dynamic Bars Width
+  do
+    local dynamicGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Dynamic Bars Width",
+    }, {
+      name = "This option syncs the width of the Player Power Bar and Class Bar "
+        .. F.String.ToxiUI("(detached)")
+        .. " with the Essential Cooldown Viewer width.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "This requires a UI reload to take effect.\n\n",
+    }, I.Requirements.CooldownManager).args
+
+    dynamicGroup.dynamicBarsWidth = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enabling this syncs the detached power/class bar width with the Cooldown Manager.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.cooldownManager.dynamicBarsWidth, dynamicGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.dynamicBarsWidth
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.dynamicBarsWidth = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
 end
 
 if TXUI.IsRetail then O:AddCallback("Skins_CooldownManager") end

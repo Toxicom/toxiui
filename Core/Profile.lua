@@ -268,6 +268,7 @@ P.addons = {
   -- Cooldown Manager
   cooldownManager = {
     fading = false, -- Disabled by default
+    dynamicBarsWidth = false, -- Disabled by default
   },
 }
 
