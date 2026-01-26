@@ -10,6 +10,7 @@ TXUI.Changelog["7.2.1"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ToxiUI() .. ": Use 3:2 aspect ratio for Vehicle Bar buttons",
     F.String.ElvUI() .. ": Fix position of Class Bar for Retail",
 
     "* Documentation",
