@@ -100,8 +100,6 @@ function ST:BuildActionBarsProfile()
     F.Table.Crush(
       pf.movers,
       {
-        PlayerPowerBarMover = F.Position("RIGHT", "ElvUF_PlayerMover", "BOTTOMRIGHT", -10, 0),
-
         ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 45),
         ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Close Left
         ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Close Right

@@ -8,6 +8,7 @@ TXUI.Changelog["7.2.2"] = {
     "* New features",
 
     "* Bug fixes",
+    "Fix CDM style yeeting the power bar",
 
     "* Profile updates",
 
