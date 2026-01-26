@@ -52,4 +52,4 @@ function O:Skins_CooldownManager()
   end
 end
 
-O:AddCallback("Skins_CooldownManager")
+if TXUI.IsRetail then O:AddCallback("Skins_CooldownManager") end

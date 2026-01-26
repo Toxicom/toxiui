@@ -107,4 +107,4 @@ function CM:Initialize()
   self.Initialized = true
 end
 
-TXUI:RegisterModule(CM:GetName())
+if TXUI.IsRetail then TXUI:RegisterModule(CM:GetName()) end
