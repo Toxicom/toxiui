@@ -242,8 +242,10 @@ function IS:Dialog()
         SetupCustomInstaller(Pages.Profile)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Profile"))
 
-        installFrame.Desc1:SetText("You can either create a new profile for " .. TXUI.Title .. " or you can overwrite your current profile. We recommend creating a new one!")
-        installFrame.Desc2:SetText("Importance: " .. F.String.ToxiUI("Medium"))
+        installFrame.Desc1:SetText(
+          "You can either create a new profile for " .. TXUI.Title .. " or you can " .. F.String.Error("overwrite your current profile") .. ". We recommend creating a new one!"
+        )
+        installFrame.Desc2:SetText("Importance: " .. F.String.Error("High"))
 
         installFrame.Option1:Show()
         installFrame.Option1:SetText("Create New")
