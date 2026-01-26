@@ -236,7 +236,6 @@ function PF:BuildProfile()
       -- Movers: Bars Retail Only
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 180),
       AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 351, -324),
-      ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -280, 317),
       HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -573, -422),
       WTExtraItemsBar1Mover = F.Position("BOTTOMRIGHT", "RightChatMover", "BOTTOMLEFT", -defaultPadding, 0),
 
