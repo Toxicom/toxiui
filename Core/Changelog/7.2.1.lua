@@ -11,8 +11,9 @@ TXUI.Changelog["7.2.1"] = {
 
     "* Profile updates",
     TXUI.Title .. ": Use 3:2 aspect ratio for Vehicle Bar buttons",
-    TXUI.Title .. ": Display soul shards for tx:power:percent:nosign tag on Retail",
+    TXUI.Title .. ": Display soul shards for tx:power tag on Retail",
     F.String.ElvUI() .. ": Fix position of Class Bar for Retail",
+    F.String.ElvUI() .. ": Use raw power tag instead of percentage for player power bar",
 
     "* Documentation",
 

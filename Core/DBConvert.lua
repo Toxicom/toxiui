@@ -142,6 +142,15 @@ function TXUI:DBConvert()
     self:LogDebug("DBConvert > Disabled Gradient Mode")
   end
 
+  -- Convert player toxiui:power text_format from percent to raw value
+  do
+    local playerPower = E.db.unitframe.units.player.customTexts["toxiui:power"]
+    if playerPower and playerPower.text_format == "[tx:power:percent:nosign]" then
+      playerPower.text_format = "[tx:power]"
+      self:LogDebug("DBConvert > Converted player toxiui:power text_format to tx:power")
+    end
+  end
+
   -- Print debug message
   self:LogDebug("DBConvert > DB Upgrade finished")
 

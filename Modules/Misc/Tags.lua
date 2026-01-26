@@ -175,13 +175,7 @@ function M:Tags()
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
     if TXUI.IsMidnight then
-      local power
-
-      if E.myclass == "WARLOCK" then
-        power = UnitPower(unit, Enum.PowerType.SoulShards)
-      else
-        power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
-      end
+      local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
       if not dm.isEnabled then
         return power
@@ -203,12 +197,17 @@ function M:Tags()
   end)
 
   E:AddTag("tx:power", POWER_EVENTS, function(unit)
-    local power = UnitPower(unit)
-
-    if not dm.isEnabled then
-      return power
+    local power
+    if TXUI.IsMidnight and E.myclass == "WARLOCK" and unit == "player" then
+      power = UnitPower(unit, Enum.PowerType.SoulShards)
     else
+      power = UnitPower(unit)
+    end
+
+    if dm.isEnabled then
       return FormatColorTag(power, unit)
+    else
+      return power
     end
   end)
 

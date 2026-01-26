@@ -810,7 +810,7 @@ function PF:BuildProfile()
       -- UnitFrame Player Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
-        text_format = (TXUI.IsVanilla or TXUI.IsTBC) and "[tx:power]" or "[tx:power:percent:nosign]",
+        text_format = "[tx:power]",
         xOffset = 0,
         yOffset = 10,
         justifyH = "CENTER",
