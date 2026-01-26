@@ -6,6 +6,7 @@ TXUI.Changelog["7.2.1"] = {
     "* Breaking changes",
 
     "* New features",
+    "Return ToxiUI WA Anchor for non-Retail versions",
 
     "* Bug fixes",
 
