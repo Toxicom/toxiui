@@ -20,6 +20,7 @@ I.Data.Contributor = {
         ["Toxilich-Ravencrest"] = true, -- Death Knight
         ["Toxivoker-Ravencrest"] = true, -- Evoker
         ["Toximoon-Ravencrest"] = true, -- Druid
+        ["Ciortavicius-Ravencrest"] = true, -- Druid
 
         -- TarrenMill
         ["Toxiholy-TarrenMill"] = true,
