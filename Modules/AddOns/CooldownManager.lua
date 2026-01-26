@@ -60,11 +60,9 @@ function CM:Enable()
   F.Event.RegisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self.SetParent, self)
 
   -- Hook SetAlpha to also toggle visibility when fading
-  if not self:IsHooked(playerFrame, "SetAlpha") then
-    self:SecureHook(playerFrame, "SetAlpha", function(_, alpha)
-      self:SetCooldownFramesVisibility(alpha > 0.1)
-    end)
-  end
+  if not self:IsHooked(playerFrame, "SetAlpha") then self:SecureHook(playerFrame, "SetAlpha", function(_, alpha)
+    self:SetCooldownFramesVisibility(alpha > 0.1)
+  end) end
 end
 
 function CM:EnableAfterUnitsLoaded()
@@ -88,9 +86,7 @@ function CM:DatabaseUpdate()
     self:Disable()
 
     -- Enable only out of combat
-    if TXUI:HasRequirements(I.Requirements.CooldownManager) and (self.db and self.db.fading) then
-      self:EnableAfterUnitsLoaded()
-    end
+    if TXUI:HasRequirements(I.Requirements.CooldownManager) and (self.db and self.db.fading) then self:EnableAfterUnitsLoaded() end
   end)
 end
 
