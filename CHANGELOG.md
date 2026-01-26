@@ -1,12 +1,13 @@
-# ToxiUI v7.2.1 - 2026-01-26
+# ToxiUI v7.2.2-beta.1 - 2026-01-26
 
 ## 🚀 New Features
 
-- Return **ToxiUI WeakAura Anchor** for non-Retail versions
+- Cooldown Manager fading option
 
-## 🧩 Profile Updates
+## 🐛 Bug Fixes
 
-- **ToxiUI**: Use 3:2 aspect ratio for Vehicle Bar buttons
-- **ToxiUI**: Display Soul Shards for `tx:power` tag on Retail
-- **ElvUI**: Fix position of Class Bar for Retail
-- **ElvUI**: Use raw power tag instead of percentage for the player power bar
+- Fix CDM style yeeting the power bar
+
+## ♻️ Settings Refactoring
+
+- Update **ToxiUI** installer description for the profile step to highlight the risk of overwriting an existing profile
