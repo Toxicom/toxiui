@@ -7,6 +7,7 @@ local EventRegistry = EventRegistry
 local frameNames = {
   "EssentialCooldownViewer",
   "UtilityCooldownViewer",
+  "BuffIconCooldownViewer",
 }
 
 function CM:SetCooldownFramesVisibility(enabled)
