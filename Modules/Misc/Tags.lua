@@ -196,15 +196,12 @@ function M:Tags()
     end
   end)
 
-  local function GetCurrentSpecID() end
-
   E:AddTag("tx:power", POWER_EVENTS, function(unit)
-    local power
+    local power = UnitPower(unit)
+
     if TXUI.IsMidnight then
       if E.myclass == "WARLOCK" and unit == "player" then power = UnitPower(unit, Enum.PowerType.SoulShards) end
       if E.myclass == "MAGE" and unit == "player" and PlayerUtil.GetCurrentSpecID() ~= 62 then return end -- Mana is not shown for frost and fire mages in Midnight
-
-      power = UnitPower(unit)
     end
 
     if dm.isEnabled then
