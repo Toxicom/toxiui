@@ -14,6 +14,7 @@ TXUI.Changelog["7.2.2"] = {
     "Add Stonard and Theramore portals to TBC " .. F.String.Menu.WunderBar() .. " Hearthstone module",
 
     "* Profile updates",
+    TXUI.Title .. ": Do not display mana text for Frost and Fire Mages in Midnight",
     F.String.ElvUI() .. ": Style CDM cooldown text",
 
     "* Documentation",
