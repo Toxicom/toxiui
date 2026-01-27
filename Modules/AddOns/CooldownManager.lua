@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local CM = TXUI:NewModule("CooldownManager", "AceHook-3.0")
 
 local _G = _G
+local EventRegistry = EventRegistry
 
 local frameNames = {
   "EssentialCooldownViewer",
