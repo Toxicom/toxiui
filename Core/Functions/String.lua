@@ -110,6 +110,22 @@ function F.String.ElvUI(msg)
   return F.String.Color(msg, I.Enum.Colors.ELVUI)
 end
 
+function F.String.Retail()
+  return F.String.Color("[Retail]", "00ccff") .. " "
+end
+
+function F.String.Classic()
+  return F.String.Color("[Mists]", "00ff96") .. " "
+end
+
+function F.String.Anniversary()
+  return F.String.Color("[TBC]", "9eff00") .. " "
+end
+
+function F.String.Era()
+  return F.String.Color("[Classic]", "ffcc00") .. " "
+end
+
 function F.String.ElvUIValue(msg)
   return F.String.RGB(msg, E.media.rgbvaluecolor)
 end

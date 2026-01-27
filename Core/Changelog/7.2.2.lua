@@ -7,16 +7,16 @@ TXUI.Changelog["7.2.2"] = {
     "Remove Wardrobe frame from Animations and Scaling modules" .. F.String.Sublist("It's already covered by the Collections Journal frame."),
 
     "* New features",
-    "[Retail] Cooldown Manager fading option",
-    "[Retail] Cooldown Manager dynamic bars width option",
+    F.String.Retail() .. "Cooldown Manager fading option",
+    F.String.Retail() .. "Cooldown Manager dynamic bars width option",
 
     "* Bug fixes",
-    "Fix CDM style yeeting the power bar",
-    "[TBC] Add Stonard and Theramore portals to " .. F.String.Menu.WunderBar() .. " Hearthstone module",
+    "Fix CDM Action Bars Style yeeting the power bar",
+    F.String.Anniversary() .. "Add Stonard and Theramore portals to " .. F.String.Menu.WunderBar() .. " Hearthstone module",
 
     "* Profile updates",
-    "[Retail] " .. TXUI.Title .. ": Do not display mana text for Frost and Fire Mages in Midnight",
-    "[Retail] " .. F.String.ElvUI() .. ": Style CDM cooldown text",
+    F.String.Retail() .. TXUI.Title .. ": Do not display mana text for Frost and Fire Mages in Midnight",
+    F.String.Retail() .. F.String.ElvUI() .. ": Style CDM cooldown text",
 
     "* Documentation",
     "Add " .. F.String.Rare("Liue") .. " to contributors list",
