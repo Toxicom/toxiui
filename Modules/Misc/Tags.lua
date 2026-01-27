@@ -349,7 +349,14 @@ function M:Tags()
       TagNames.POWER,
       "Displays percentage Power of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors and does not display when Power is at 0."
     )
-    E:AddTagInfo("tx:power", TagNames.POWER, "Displays current Power of unit. Also adds " .. TXUI.Title .. " colors.")
+    E:AddTagInfo(
+      "tx:power",
+      TagNames.POWER,
+      "Displays current Power of unit. Also adds "
+        .. TXUI.Title
+        .. " colors."
+        .. (TXUI.IsRetail and " Displays Soul Shards for " .. F.String.Class("Warlock", "WARLOCK") .. " and hides mana for non-Arcane " .. F.String.Class("Mages", "MAGE") or "")
+    )
   end
 
   -- Requires ElvUI 13.67 or later
