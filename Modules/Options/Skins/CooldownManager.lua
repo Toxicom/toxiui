@@ -33,7 +33,7 @@ function O:Skins_CooldownManager()
       name = "Fading",
     }, {
       name = "This option makes your Cooldown Manager bars "
-        .. F.String.ToxiUI("(EssentialCooldownViewer, UtilityCooldownViewer)")
+        .. F.String.ToxiUI("(EssentialCooldownViewer, UtilityCooldownViewer, BuffIconCooldownViewer)")
         .. " fade together with your Player UnitFrame.\n\n"
         .. F.String.Warning("Warning: ")
         .. "This requires a UI reload to take effect.\n\n",
