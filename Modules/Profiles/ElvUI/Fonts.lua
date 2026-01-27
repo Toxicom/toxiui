@@ -192,12 +192,17 @@ function PF:ElvUIFont()
 
     cooldown = (function()
       local cd = {}
-      for _, key in ipairs { "actionbar", "aurabars", "auraindicator", "auras", "bags", "bossbutton", "global", "nameplates", "totemtracker", "unitframe", "zonebutton" } do
+      for _, key in ipairs { "actionbar", "aurabars", "auraindicator", "auras", "bags", "bossbutton", "cdmanager", "global", "nameplates", "totemtracker", "unitframe", "zonebutton" } do
         cd[key] = {
           font = F.FontOverride(I.Fonts.Primary),
           fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          fontSize = F.FontSizeScaled(16),
         }
       end
+
+      -- Override cdmanager with larger font size
+      cd.cdmanager.fontSize = F.FontSizeScaled(20)
+
       return cd
     end)(),
 

@@ -396,6 +396,7 @@ function PF:BuildProfile()
       totemtracker = whiteText,
       unitframe = { reverse = true, colors = { text = F.Table.HexToRGB("#ffffff") } },
       zonebutton = whiteText,
+      cdmanager = whiteText,
       auras = {
         colors = { text = F.Table.CurrentClassColor() },
         offsetY = -10,

@@ -14,6 +14,7 @@ TXUI.Changelog["7.2.2"] = {
     "Add Stonard and Theramore portals to TBC " .. F.String.Menu.WunderBar() .. " Hearthstone module",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Style CDM cooldown text",
 
     "* Documentation",
     "Add " .. F.String.Rare("Liue") .. " to contributors list",
