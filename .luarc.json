@@ -19518,7 +19518,8 @@
     "CurveConstants",
     "UnitHealthPercent",
     "UnitPowerPercent",
-    "AbbreviateNumbers"
+    "AbbreviateNumbers",
+    "EventRegistry"
   ],
   "diagnostics.disable": ["deprecated", "inject-field", "undefined-field"]
 }

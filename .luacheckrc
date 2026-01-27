@@ -19552,4 +19552,5 @@ globals = {
   "UnitHealthPercent",
   "UnitPowerPercent",
   "AbbreviateNumbers",
+  "EventRegistry",
 }
