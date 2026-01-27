@@ -11,6 +11,7 @@ TXUI.Changelog["7.2.2"] = {
 
     "* Bug fixes",
     "Fix CDM style yeeting the power bar",
+    "Add Stonard and Theramore portals to TBC " .. F.String.Menu.WunderBar() .. " Hearthstone module",
 
     "* Profile updates",
 

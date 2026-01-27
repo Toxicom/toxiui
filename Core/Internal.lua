@@ -784,6 +784,12 @@ I.HearthstoneData_TBC = {
 
   [32266] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "EXO" }, -- Portal: Exodar
   [32271] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "EXO" }, -- Teleport: Exodar
+
+  [49360] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "THER" }, -- Portal: Theramore - Alliance
+  [49359] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "THER" }, -- Teleport: Theramore - Alliance
+
+  [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "STON" }, -- Portal: Stonard - Horde
+  [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "STON" }, -- Teleport: Stonard - Horde
 }
 
 -- Data for which class or spec has which interrupt spell
