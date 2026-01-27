@@ -16,7 +16,12 @@ function O:Skins_CooldownManager()
   self:AddInlineDesc(options, {
     name = "Description",
   }, {
-    name = TXUI.Title .. " provides additional features for " .. F.String.ToxiUI("Blizzard Cooldown Manager") .. " which can be configured here.\n\n",
+    name = TXUI.Title --
+      .. " provides additional features for "
+      .. F.String.ToxiUI("Blizzard Cooldown Manager")
+      .. " which can be configured here.\n\n"
+      .. F.String.Warning("Warning: ")
+      .. "This is still experimental and might be removed in the future.\n\n",
   })
 
   -- Spacer
