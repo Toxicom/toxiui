@@ -4,6 +4,7 @@ TXUI.Changelog["7.2.2"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove Wardrobe frame from Animations and Scaling modules" .. F.String.Sublist("It's already covered by the Collections Journal frame."),
 
     "* New features",
     "Cooldown Manager fading option",

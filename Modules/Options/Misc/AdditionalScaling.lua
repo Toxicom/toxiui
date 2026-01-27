@@ -371,23 +371,6 @@ function O:Plugins_AdditionalScaling()
       name = "Scale Retail only frames.\n\n",
     }).args
 
-    -- Retail Group: Wardrobe
-    retailGroup.wardrobe = {
-      order = self:GetOrder(),
-      type = "range",
-      name = "Wardrobe",
-      get = function(_)
-        return E.db.TXUI.misc.scaling.wardrobe.scale
-      end,
-      set = function(_, value)
-        E.db.TXUI.misc.scaling.wardrobe.scale = value
-        Misc:AdditionalScaling()
-      end,
-      min = 0.5,
-      max = 2,
-      step = 0.05,
-    }
-
     -- Retail Group: Item Upgrade Frame
     retailGroup.itemUpgrade = {
       order = self:GetOrder(),
@@ -439,26 +422,6 @@ function O:Plugins_AdditionalScaling()
       min = 0.5,
       max = 3,
       step = 0.05,
-    }
-
-    self:AddSpacer(retailGroup)
-
-    retailGroup.transmog = {
-      order = self:GetOrder(),
-      type = "toggle",
-      name = "Transmog Frame",
-      desc = "Makes the transmogrification frame bigger.",
-      get = function(_)
-        return E.db.TXUI.misc.scaling.retailTransmog.enabled
-      end,
-      set = function(_, value)
-        E.db.TXUI.misc.scaling.retailTransmog.enabed = value
-        if value then
-          Misc:AdditionalScaling()
-        else
-          E:StaticPopup_Show("CONFIG_RL")
-        end
-      end,
     }
   end
 

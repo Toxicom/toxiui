@@ -48,7 +48,6 @@ local frameDisplayNames = {
   quest = "Quest Dialog",
   questLog = "Quest Log",
   achievementFrame = "Achievements",
-  wardrobe = "Wardrobe",
   weeklyRewards = "Great Vault",
   talents = "Talents",
 }

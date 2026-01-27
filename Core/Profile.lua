@@ -296,10 +296,6 @@ P.misc = {
       scale = 1,
     },
 
-    wardrobe = {
-      scale = 1,
-    },
-
     itemUpgrade = {
       scale = 1,
     },
@@ -872,11 +868,6 @@ P.animations = {
       easing = "out-cubic",
     },
     achievementFrame = {
-      enabled = true,
-      duration = 0.3,
-      easing = "out-cubic",
-    },
-    wardrobe = {
       enabled = true,
       duration = 0.3,
       easing = "out-cubic",

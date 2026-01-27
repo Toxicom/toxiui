@@ -32,7 +32,6 @@ function M:AdditionalScaling()
       M:AddCallbackOrScale("Blizzard_ItemUpgradeUI", self.ScaleItemUpgrade)
       M:AddCallbackOrScale("Blizzard_ItemInteractionUI", self.ScaleCatalyst)
 
-      M:AddCallbackOrScale("Blizzard_Collections", self.AdjustTransmogFrame)
       M:AddCallbackOrScale("Blizzard_PlayerSpells", self.ScaleRetailSpellbook)
       M:AddCallbackOrScale("Blizzard_Professions", self.ScaleProfessions)
       M:SetElementScale("groupFinder", "PVEFrame")

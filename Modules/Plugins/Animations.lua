@@ -24,7 +24,6 @@ AN.FrameMap = {
   quest = "QuestFrame",
   questLog = (not TXUI.IsRetail) and "QuestLogFrame" or nil,
   achievementFrame = "AchievementFrame",
-  wardrobe = TXUI.IsRetail and "WardrobeFrame" or nil,
   weeklyRewards = TXUI.IsRetail and "WeeklyRewardsFrame" or nil,
   talents = (not TXUI.IsRetail) and "PlayerTalentFrame" or nil,
 }

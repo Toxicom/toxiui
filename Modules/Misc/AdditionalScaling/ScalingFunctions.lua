@@ -25,7 +25,6 @@ end
 
 function M:ScaleCollections()
   M:SetElementScale("collections", "CollectionsJournal")
-  if TXUI.IsRetail then M:SetElementScale("wardrobe", "WardrobeFrame") end
 end
 
 function M:ScaleItemUpgrade()
@@ -102,48 +101,4 @@ end
 
 function M:ScaleTalents()
   M:SetElementScale("talents", "PlayerTalentFrame")
-end
-
--- Credits to Kayr
-function M:AdjustTransmogFrame()
-  if not E.db.TXUI.misc.scaling.retailTransmog.enabled then return end
-
-  local wardrobeFrame = _G["WardrobeFrame"]
-  local transmogFrame = _G["WardrobeTransmogFrame"]
-
-  local width = 1200
-  local initialWidth = wardrobeFrame:GetWidth()
-  local updatedWidth = width - initialWidth
-  wardrobeFrame:SetWidth(width)
-
-  local initialTransmogWidth = transmogFrame:GetWidth()
-  local updatedTransmogWidth = initialTransmogWidth + updatedWidth
-  transmogFrame:SetWidth(updatedTransmogWidth)
-
-  -- Calculate inset width only once
-  local modelScene = transmogFrame.ModelScene
-  local insetWidth = E:Round(initialTransmogWidth - modelScene:GetWidth(), 0)
-  transmogFrame.Inset.BG:SetWidth(transmogFrame.Inset.BG:GetWidth() - insetWidth)
-  modelScene:SetWidth(transmogFrame:GetWidth() - insetWidth)
-  modelScene:SetScript("OnShow", function()
-    E:Delay(0.01, function()
-      modelScene.activeCamera.maxZoomDistance = 6
-    end)
-  end)
-
-  -- Move Slots
-  transmogFrame.HeadButton:SetPoint("TOPLEFT", 20, -60)
-  transmogFrame.HandsButton:SetPoint("TOPRIGHT", -20, -60)
-
-  local mainHand = transmogFrame.MainHandButton
-  local mainHandEnch = transmogFrame.MainHandEnchantButton
-  local offHand = transmogFrame.SecondaryHandButton
-  local offHandEnch = transmogFrame.SecondaryHandEnchantButton
-
-  mainHand:SetPoint("BOTTOM", -30, 25)
-  mainHandEnch:SetPoint("CENTER", mainHand, "BOTTOM", 0, -5)
-  offHand:SetPoint("BOTTOM", 30, 25)
-  offHandEnch:SetPoint("CENTER", offHand, "BOTTOM", 0, -5)
-
-  transmogFrame.ToggleSecondaryAppearanceCheckbox:SetPoint("BOTTOMLEFT", transmogFrame, "BOTTOMRIGHT", 20, 20)
 end
