@@ -6,7 +6,7 @@ function O:Skins_CooldownManager()
   self.options.skins.args["cooldownManagerGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Cooldown Manager",
+    name = "Cooldown Manager " .. E.NewSign,
     args = {},
   }
 
