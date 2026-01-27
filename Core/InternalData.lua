@@ -297,6 +297,40 @@ I.Data.Contributor = {
         ["Hotterstar-Spineshatter"] = true,
       },
     },
+
+    ["Liue"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Draenor
+        ["Niato-Draenor"] = true,
+        ["Lilithye-Draenor"] = true,
+        ["Jicae-Draenor"] = true,
+        ["Scilia-Draenor"] = true,
+
+        -- Silvermoon
+        ["Liue-Silvermoon"] = true,
+        ["Faelya-Silvermoon"] = true,
+        ["Siladre-Silvermoon"] = true,
+        ["Dalitea-Silvermoon"] = true,
+        ["Yitsa-Silvermoon"] = true,
+        ["Ridelle-Silvermoon"] = true,
+        ["Eynia-Silvermoon"] = true,
+        ["Inydae-Silvermoon"] = true,
+        ["Niato-Silvermoon"] = true,
+        ["Ajisa-Silvermoon"] = true,
+        ["Eliare-Silvermoon"] = true,
+        ["Lilithye-Silvermoon"] = true,
+      },
+
+      [I.Enum.Flavor.MISTS] = {
+        -- Hoptallus
+        ["Scilia-Hoptallus"] = true,
+
+        -- MirageRaceway
+        ["Liue-MirageRaceway"] = true,
+        ["Ridelle-MirageRaceway"] = true,
+        ["Niato-MirageRaceway"] = true,
+      },
+    },
   },
 
   -- BETA => Orange Badge (beta testers)
