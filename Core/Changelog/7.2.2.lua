@@ -17,7 +17,13 @@ TXUI.Changelog["7.2.2"] = {
     "Crop Vehicle Bar buttons so they're not squished",
 
     "* Profile updates",
-    F.String.Retail() .. TXUI.Title .. ": Do not display mana text for Frost and Fire Mages in Midnight",
+    F.String.Retail()
+      .. TXUI.Title
+      .. ": Edit shown power text for certain classes and specs."
+      .. F.String.Sublist("This change does not require you to re-run the installer")
+      .. F.String.Sublist("Hide Frost and Fire Mage power text")
+      .. F.String.Sublist("Hide Enhancement Shaman power text")
+      .. F.String.Sublist("Display Holy Power for Paladins"),
     F.String.Retail() .. F.String.ElvUI() .. ": Style CDM cooldown text",
     F.String.ElvUI() .. ": Use responsive values for Nameplate settings" .. F.String.Sublist(
       "This means that for resolutions other than 0.5333333 the nameplates should have better sizing."
@@ -29,7 +35,5 @@ TXUI.Changelog["7.2.2"] = {
 
     "* Settings refactoring",
     "Update " .. TXUI.Title .. " installer description for profile step to highlight risk of overwriting existing profile",
-
-    "* Development improvements",
   },
 }
