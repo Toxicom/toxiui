@@ -670,4 +670,4 @@ function O:ToxiUI_Themes_GradientMode()
   end
 end
 
--- O:AddCallback("ToxiUI_Themes_GradientMode")
+O:AddCallback("ToxiUI_Themes_GradientMode")

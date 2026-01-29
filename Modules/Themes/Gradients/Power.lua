@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local GR = TXUI:GetModule("ThemesGradients")
 
-local abs = math.abs
 local ALTERNATE_POWER_INDEX = _G.Enum.PowerType.Alternate or 10
 local select = select
 local UnitPowerType = UnitPowerType
@@ -20,9 +19,9 @@ function GR:PostUpdatePowerColor(frame, unit, eR, eG, eB)
   frame.fadeMode = I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.HORIZONTAL]
   frame.fadeDirection = I.Enum.GradientMode.Direction.LEFT
 
-  local valuePercentage = frame.cur and ((frame.cur - frame.min) / (frame.max - frame.min)) or 0
-  local valueChanged = frame.currentPercent == nil or (abs(frame.currentPercent - valuePercentage) > 0.05)
-  if valueChanged then frame.currentPercent = valuePercentage end
+  -- Power values are secret in Midnight, use fixed percentage
+  local valueChanged = frame.currentPercent == nil
+  if valueChanged then frame.currentPercent = 1 end
 
   local colorFunc = F.Event.GenerateClosure(self.GetPowerColor, self, frame, unit)
   self:SetGradientColors(frame, valueChanged, eR, eG, eB, false, colorFunc)

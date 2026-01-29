@@ -55,8 +55,6 @@ function GR:UpdateStatusBarFrame(frame)
       self:SecureHook(frame.Castbar, "PostCastStart", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
       self:SecureHook(frame.Castbar, "PostCastFail", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, true))
       self:SecureHook(frame.Castbar, "PostCastInterruptible", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
-      self:SecureHook(frame.Castbar, "SetValue", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
-      self:SecureHook(frame.Castbar, "SetMinMaxValues", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
     end
   end
 
@@ -64,7 +62,7 @@ function GR:UpdateStatusBarFrame(frame)
   if frame.Power then
     local powerTexture = LSM:Fetch("statusbar", self.db.textures.power)
     frame.Power:SetStatusBarTexture(powerTexture)
-    frame.Power.BG:SetTexture(powerTexture)
+    frame.Power.bg:SetTexture(powerTexture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
@@ -200,4 +198,4 @@ function GR:Initialize()
   self.Initialized = true
 end
 
--- TXUI:RegisterModule(GR:GetName())
+TXUI:RegisterModule(GR:GetName())
