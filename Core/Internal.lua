@@ -746,6 +746,7 @@ I.HearthstoneData_Vanilla = {
 
 I.HearthstoneData_TBC = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
+  [260221] = { ["type"] = "item", ["hearthstone"] = true }, -- Naaru's Embrace
 
   -- Hearthstone: Druid
   [18960] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Teleport: Moonglade
