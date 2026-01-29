@@ -20,6 +20,7 @@ TXUI.Changelog["7.2.2"] = {
 
     "* Documentation",
     "Add " .. F.String.Rare("Liue") .. " to contributors list",
+    F.String.MinElv("15.02"),
 
     "* Settings refactoring",
     "Update " .. TXUI.Title .. " installer description for profile step to highlight risk of overwriting existing profile",
