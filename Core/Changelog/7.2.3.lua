@@ -6,10 +6,12 @@ TXUI.Changelog["7.2.3"] = {
     "* Breaking changes",
 
     "* New features",
+    "tx:classicon:reverse tag",
 
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Use the new reverse class icon tag for Target and Focus UnitFrames.",
 
     "* Documentation",
 

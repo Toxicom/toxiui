@@ -84,6 +84,11 @@ function M:GetClassIconPath(theme)
   return [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\]] .. theme .. [[:32:32:0:0:512:512:%s|t]]
 end
 
+function M:ReverseIconCoords(coords)
+  local x1, x2, y1, y2 = strsplit(":", coords)
+  return format("%s:%s:%s:%s", x2, x1, y1, y2)
+end
+
 function M:GenerateSpecIcon(dbPath)
   local specIcon
   local iconPath = self:GetClassIconPath(dbPath or "ToxiSpecStylized")

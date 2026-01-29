@@ -1038,7 +1038,7 @@ function PF:BuildProfile()
         ["toxiui:class-icon"] = createCustomText({}, {
           justifyH = "RIGHT",
           attachTextTo = "Health",
-          text_format = "[tx:classicon]",
+          text_format = "[tx:classicon:reverse]",
           xOffset = F.Dpi(-5),
           yOffset = F.Dpi(0),
         }),
@@ -1327,7 +1327,7 @@ function PF:BuildProfile()
       ["toxiui:class-icon"] = createCustomText({}, {
         justifyH = "RIGHT",
         attachTextTo = "Health",
-        text_format = "[tx:classicon]",
+        text_format = "[tx:classicon:reverse]",
         xOffset = F.Dpi(-5),
         yOffset = F.Dpi(0),
       }),

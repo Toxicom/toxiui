@@ -227,31 +227,41 @@ function M:Tags()
 
   local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
 
-  -- Class Icon Tag
-  E:AddTag("tx:classicon", "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)
-    if UnitIsPlayer(unit) then
-      local _, class = UnitClass(unit)
-      local icon = M.ClassIcons[class]
+  -- Class Icon Tags (normal and reversed/mirrored)
+  for _, reverse in ipairs { false, true } do
+    local tagName = reverse and "tx:classicon:reverse" or "tx:classicon"
 
-      if usingSpecIcons then
-        local specIcon = ""
-        local specId = nil
+    E:AddTag(tagName, "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)
+      if UnitIsPlayer(unit) then
+        local _, class = UnitClass(unit)
+        local icon = M.ClassIcons[class]
 
-        local info = E:GetUnitSpecInfo(unit)
-        if info and info.id then specId = info.id end
+        if usingSpecIcons then
+          local specIcon = ""
+          local specId = nil
 
-        if iconsDb and specId then
-          icon = M.SpecIcons[specId]
+          local info = E:GetUnitSpecInfo(unit)
+          if info and info.id then specId = info.id end
 
-          if icon then specIcon = format(iconPath, icon) end
+          if iconsDb and specId then
+            icon = M.SpecIcons[specId]
+
+            if icon then
+              local coords = reverse and M:ReverseIconCoords(icon) or icon
+              specIcon = format(iconPath, coords)
+            end
+          end
+
+          return specIcon
         end
 
-        return specIcon
+        if icon then
+          local coords = reverse and M:ReverseIconCoords(icon) or icon
+          return format(iconPath, coords)
+        end
       end
-
-      if icon then return format(iconPath, icon) end
-    end
-  end)
+    end)
+  end
 
   -- Level Tag
   E:AddTag("tx:level", LEVEL_EVENTS, function(unit)
@@ -317,6 +327,20 @@ function M:Tags()
       "Displays " .. TXUI.Title .. " class icon. The class icon style can be customized in " .. TXUI.Title .. " settings -> " .. F.String.Menu.Skins() .. " -> " .. F.String.ElvUI()
     )
 
+    -- Class Icon (Reversed/Mirrored)
+    E:AddTagInfo(
+      "tx:classicon:reverse",
+      TagNames.GENERAL,
+      "Displays "
+        .. TXUI.Title
+        .. " class icon reversed/mirrored. The class icon style can be customized in "
+        .. TXUI.Title
+        .. " settings -> "
+        .. F.String.Menu.Skins()
+        .. " -> "
+        .. F.String.ElvUI()
+    )
+
     -- Level
     E:AddTagInfo("tx:level", TagNames.GENERAL, "Displays unit's level with " .. TXUI.Title .. " colors (e.g. Lv 42). Hides when the unit is max level.")
 
@@ -379,6 +403,7 @@ function M:Tags()
       ["tx:level"] = true,
       ["tx:level:difficulty"] = true,
       ["tx:classicon"] = true,
+      ["tx:classicon:reverse"] = true,
       ["tx:health:percent:nosign"] = true,
       ["tx:health:current:shortvalue"] = true,
       ["tx:health:current:shortvalue:absorb"] = true,
