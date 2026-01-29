@@ -35,5 +35,10 @@ TXUI.Changelog["7.2.2"] = {
 
     "* Settings refactoring",
     "Update " .. TXUI.Title .. " installer description for profile step to highlight risk of overwriting existing profile",
+
+    "* Development improvements",
+    "Defer gradient mode initialization to the next frame after initial load" --
+      .. F.String.Sublist("This should help avoid 'script ran too long' issues")
+      .. F.String.Sublist("This does cause a micro-stutter on load, but it's better than the module breaking entirely"),
   },
 }
