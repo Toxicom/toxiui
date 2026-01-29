@@ -2,7 +2,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local SD = TXUI:NewModule("SkinsDetailsGradients", "AceHook-3.0")
 
 -- Globals
-local abs = math.abs
 local ipairs = ipairs
 
 -- Vars
@@ -45,10 +44,9 @@ function SD:RefreshRow(frame, _, dR, dG, dB)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
   if not frame or not frame.textura then return self:LogDebug("Row is empty", frame) end
 
-  local statusMin, statusMax = frame.statusbar:GetMinMaxValues()
-  local valuePercentage = (frame.statusbar:GetValue() - statusMin) / (statusMax - statusMin)
-  local valueChanged = frame.currentPercent == nil or (abs(frame.currentPercent - valuePercentage) > 0.05)
-  if valueChanged then frame.currentPercent = valuePercentage end
+  -- Status bar values are secret in Midnight, use fixed percentage
+  local valueChanged = frame.currentPercent == nil
+  if valueChanged then frame.currentPercent = 1 end
 
   -- if not self.updateCache[frame] then
   -- https://discord.com/channels/769550106948141086/769550106948141088/1163948358331813959
@@ -188,4 +186,4 @@ function SD:Initialize()
   self.Initialized = true
 end
 
-if not TXUI.IsMidnight then TXUI:RegisterModule(SD:GetName()) end
+TXUI:RegisterModule(SD:GetName())

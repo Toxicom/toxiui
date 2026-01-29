@@ -2,8 +2,14 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local GR = TXUI:GetModule("ThemesGradients")
 
 local CreateColor = CreateColor
+local type = type
 
 function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorFunc)
+  -- Handle color table passed as first argument (ElvUI sometimes passes {r, g, b} instead of r, g, b)
+  if type(eR) == "table" then
+    eR, eG, eB = eR.r, eR.g, eR.b
+  end
+
   if frame.currentColor == nil then
     frame.currentColor = eB ~= nil and CreateColor(eR, eG, eB, 1) or CreateColor(0, 0, 0, 1)
     colorChanged = true
@@ -69,7 +75,7 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
   end
 
   local statusBar = frame.textura or frame:GetStatusBarTexture()
-  local statusBarBG = frame.background or frame.bg or frame.BG
+  local statusBarBG = frame.background or frame.bg
 
   if frame.fadeDirection == I.Enum.GradientMode.Direction.LEFT then
     F.Color.SetGradient(statusBar, frame.fadeMode, frame.shiftColor, frame.normalColorFade)

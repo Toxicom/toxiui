@@ -13,7 +13,8 @@ function GR:GetCastbarColor(frame, unit, castFailed, duration, maxDuration)
   local interruptCD
   local canInterruptInTime = false
   local hasInterruptCD = false
-  local canInterrupt = not frame.notInterruptible
+  -- notInterruptible is secret in Midnight, cannot check it at all
+  local canInterrupt = true
   local channeling = frame.channeling
 
   if unit and (self.db.interruptCDEnabled or self.db.interruptSoonEnabled) then
@@ -75,11 +76,10 @@ function GR:PostUpdateCastColor(frame, castFailed)
   local custom = customColor and customColor.enable and customColor
   frame.classColorFallback = (custom and custom.useClassColor) or (not custom and self.uf.db.colors.castClassColor)
 
-  local duration, maxDuration = (frame.duration or 0), (frame.max or 1)
-  local valuePercentage = castFailed and 1 or (duration / maxDuration)
-  local valueChanged = castFailed or (frame.currentPercent == nil or (abs(frame.currentPercent - valuePercentage) > 0.05))
-  if valueChanged then frame.currentPercent = valuePercentage end
+  -- Cast duration is secret in Midnight, use fixed percentage
+  local valueChanged = frame.currentPercent == nil
+  if valueChanged then frame.currentPercent = 1 end
 
-  local colorFunc = F.Event.GenerateClosure(self.GetCastbarColor, self, frame, unit, castFailed, duration, maxDuration)
+  local colorFunc = F.Event.GenerateClosure(self.GetCastbarColor, self, frame, unit, castFailed, 0, 1)
   self:SetGradientColors(frame, valueChanged, eR, eG, eB, (self.db.interruptCDEnabled or self.db.interruptSoonEnabled), colorFunc)
 end

@@ -64,7 +64,7 @@ function GR:UpdateStatusBarFrame(frame)
   if frame.Power then
     local powerTexture = LSM:Fetch("statusbar", self.db.textures.power)
     frame.Power:SetStatusBarTexture(powerTexture)
-    frame.Power.BG:SetTexture(powerTexture)
+    frame.Power.bg:SetTexture(powerTexture)
 
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
@@ -200,4 +200,4 @@ function GR:Initialize()
   self.Initialized = true
 end
 
--- TXUI:RegisterModule(GR:GetName())
+TXUI:RegisterModule(GR:GetName())

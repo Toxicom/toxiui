@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local GR = TXUI:GetModule("ThemesGradients")
 
-local abs = math.abs
 local select = select
 local UnitClass = UnitClass
 local UnitIsCharmed = UnitIsCharmed
@@ -43,9 +42,9 @@ function GR:PostUpdateHealthColor(frame, unit, eR, eG, eB)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
   if not unit then return end
 
-  local valuePercentage = (frame.cur or 0) / ((frame.max and frame.max > 0) and frame.max or 1)
-  local valueChanged = frame.currentPercent == nil or (abs(frame.currentPercent - valuePercentage) > 0.05)
-  if valueChanged then frame.currentPercent = valuePercentage end
+  -- Health values are secret in Midnight, use fixed percentage
+  local valueChanged = frame.currentPercent == nil
+  if valueChanged then frame.currentPercent = 1 end
 
   local colorChanged = false
   local unitDead = unit and UnitIsDeadOrGhost(unit)
