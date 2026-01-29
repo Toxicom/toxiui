@@ -212,8 +212,11 @@ function VB:UpdateBar()
   bar:SetHeight((size / 3 * 2))
 
   -- Update button position and size
+  local buttonWidth, buttonHeight = size, size / 3 * 2
+  local left, right, top, bottom = E:CropRatio(buttonWidth, buttonHeight)
+
   for i, button in ipairs(bar.buttons) do
-    button:SetSize(size, size / 3 * 2)
+    button:SetSize(buttonWidth, buttonHeight)
     button:ClearAllPoints()
 
     if i == 1 then
@@ -221,6 +224,9 @@ function VB:UpdateBar()
     else
       button:SetPoint("LEFT", bar.buttons[i - 1], "RIGHT", self.spacing, 0)
     end
+
+    -- Crop the icon so it's not squished
+    button.icon:SetTexCoord(left, right, top, bottom)
   end
 
   -- Update Paging

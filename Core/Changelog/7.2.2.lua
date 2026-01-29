@@ -13,6 +13,7 @@ TXUI.Changelog["7.2.2"] = {
     "* Bug fixes",
     "Fix CDM Action Bars Style yeeting the power bar",
     F.String.Anniversary() .. "Add Stonard and Theramore portals to " .. F.String.Menu.WunderBar() .. " Hearthstone module",
+    "Crop Vehicle Bar buttons so they're not squished",
 
     "* Profile updates",
     F.String.Retail() .. TXUI.Title .. ": Do not display mana text for Frost and Fire Mages in Midnight",
