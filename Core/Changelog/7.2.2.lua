@@ -9,6 +9,7 @@ TXUI.Changelog["7.2.2"] = {
     "* New features",
     F.String.Retail() .. "Cooldown Manager fading option",
     F.String.Retail() .. "Cooldown Manager dynamic bars width option",
+    "Bring back " .. TXUI.Title .. " Gradient Mode." .. F.String.Error(" [WIP]"),
 
     "* Bug fixes",
     "Fix CDM Action Bars Style yeeting the power bar",
@@ -18,6 +19,9 @@ TXUI.Changelog["7.2.2"] = {
     "* Profile updates",
     F.String.Retail() .. TXUI.Title .. ": Do not display mana text for Frost and Fire Mages in Midnight",
     F.String.Retail() .. F.String.ElvUI() .. ": Style CDM cooldown text",
+    F.String.ElvUI() .. ": Use responsive values for Nameplate settings" .. F.String.Sublist(
+      "This means that for resolutions other than 0.5333333 the nameplates should have better sizing."
+    ),
 
     "* Documentation",
     "Add " .. F.String.Rare("Liue") .. " to contributors list",

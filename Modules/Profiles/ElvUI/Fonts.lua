@@ -243,7 +243,7 @@ function PF:ElvUIFont()
           castbar = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 10,
+            fontSize = F.FontSizeScaled(10),
           },
           debuffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
@@ -251,14 +251,14 @@ function PF:ElvUIFont()
           health = {
             text = {
               font = F.FontOverride(I.Fonts.Primary),
-              fontSize = 14,
+              fontSize = F.FontSizeScaled(14),
               format = "[perhp]",
             },
           },
           name = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 12,
+            fontSize = F.FontSizeScaled(12),
             format = "[name]",
           },
         },
@@ -273,7 +273,7 @@ function PF:ElvUIFont()
           castbar = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 10,
+            fontSize = F.FontSizeScaled(10),
           },
           debuffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
@@ -281,20 +281,20 @@ function PF:ElvUIFont()
           health = {
             text = {
               font = F.FontOverride(I.Fonts.Primary),
-              fontSize = 14,
+              fontSize = F.FontSizeScaled(14),
               format = "[perhp]",
             },
           },
           name = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 12,
+            fontSize = F.FontSizeScaled(12),
             format = "|cff85d92b[name]|r",
           },
           title = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 10,
+            fontSize = F.FontSizeScaled(10),
             format = "|cff85d92b[npctitle:brackets]|r",
           },
         },
@@ -309,7 +309,7 @@ function PF:ElvUIFont()
           castbar = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 10,
+            fontSize = F.FontSizeScaled(10),
           },
           debuffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
@@ -317,14 +317,14 @@ function PF:ElvUIFont()
           health = {
             text = {
               font = F.FontOverride(I.Fonts.Primary),
-              fontSize = 14,
+              fontSize = F.FontSizeScaled(14),
               format = "[perhp]",
             },
           },
           name = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 12,
+            fontSize = F.FontSizeScaled(12),
             format = "[classcolor][name]",
           },
         },
@@ -339,7 +339,7 @@ function PF:ElvUIFont()
           castbar = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 10,
+            fontSize = F.FontSizeScaled(10),
           },
           debuffs = {
             countFont = F.FontOverride(I.Fonts.Primary),
@@ -347,20 +347,20 @@ function PF:ElvUIFont()
           health = {
             text = {
               font = F.FontOverride(I.Fonts.Primary),
-              fontSize = 14,
+              fontSize = F.FontSizeScaled(14),
               format = "[perhp]",
             },
           },
           name = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 12,
+            fontSize = F.FontSizeScaled(12),
             format = "[classcolor][name]",
           },
           title = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = 10,
+            fontSize = F.FontSizeScaled(10),
             format = "[classcolor][guild:brackets]",
           },
         },
