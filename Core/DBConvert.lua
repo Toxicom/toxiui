@@ -137,11 +137,6 @@ function TXUI:DBConvert()
     if converted then self:LogDebug("DBConvert > Converted Custom Texts to new names") end
   end
 
-  do
-    if db.themes.gradientMode.enabled then db.themes.darkMode.enabled = false end
-    self:LogDebug("DBConvert > Disabled Gradient Mode")
-  end
-
   -- Convert player toxiui:power text_format from percent to raw value
   do
     local playerPower = E.db.unitframe.units.player.customTexts["toxiui:power"]
