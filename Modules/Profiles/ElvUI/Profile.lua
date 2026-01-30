@@ -1446,7 +1446,7 @@ function PF:BuildProfile()
         -- UnitFrame Party Custom Texts Name
         ["toxiui:name"] = createCustomText({}, {
           text_format = "[tx:name]",
-          xOffset = F.Dpi(10),
+          xOffset = F.Dpi(5),
           yOffset = F.Dpi(27),
         }),
 
@@ -1852,16 +1852,17 @@ function PF:BuildProfile()
 
   -- UnitFrame Arena
   F.Table.Crush(pf.unitframe.units.arena, {
-    width = F.Dpi(250),
-    height = F.Dpi(40),
+    width = F.Dpi(200),
+    height = F.Dpi(30),
     spacing = F.Dpi(40),
+    pvpSpecIcon = false,
 
     -- UnitFrame Arena Custom Texts
     customTexts = {
       -- UnitFrame Arena Custom Texts Health
       ["toxiui:health"] = createCustomText({}, {
         text_format = "[tx:health:percent:nosign]",
-        xOffset = F.Dpi(5),
+        xOffset = F.Dpi(10),
         yOffset = F.Dpi(15),
       }),
 
@@ -1877,7 +1878,16 @@ function PF:BuildProfile()
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = "[tx:power:percent:nosign]",
-        xOffset = F.Dpi(10),
+        xOffset = F.Dpi(85),
+        yOffset = F.Dpi(0),
+      }),
+
+      -- UnitFrame Arena Custom Texts Class Icon
+      ["toxiui:class-icon"] = createCustomText({}, {
+        justifyH = "RIGHT",
+        attachTextTo = "Health",
+        text_format = "[tx:classicon:reverse]",
+        xOffset = F.Dpi(-5),
         yOffset = F.Dpi(0),
       }),
     },
@@ -1952,7 +1962,7 @@ function PF:BuildProfile()
   F.Table.Crush(pf.unitframe.units.boss, {
     width = F.Dpi(200),
     height = F.Dpi(30),
-    spacing = F.Dpi(45),
+    spacing = F.Dpi(40),
 
     -- UnitFrame Boss Custom Texts
     customTexts = {
