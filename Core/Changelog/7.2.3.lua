@@ -12,6 +12,7 @@ TXUI.Changelog["7.2.3"] = {
 
     "* Profile updates",
     F.String.ElvUI() .. ": Use the new reverse class icon tag for Target and Focus UnitFrames.",
+    F.String.ElvUI() .. ": Adjust Target Marker Icon size and position for Player, Target, Focus, Party, Boss, and Arena UnitFrames.",
 
     "* Documentation",
 

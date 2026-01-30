@@ -922,9 +922,10 @@ function PF:BuildProfile()
 
     -- UnitFrame Player raidicon (Target Marker Icon)
     raidicon = {
-      size = F.Dpi(24),
-      yOffset = F.Dpi(0),
-      attachTo = "CENTER",
+      attachTo = "TOPLEFT",
+      size = F.Dpi(20),
+      xOffset = F.Dpi(-22.5),
+      yOffset = F.Dpi(22.5),
     },
 
     power = {
@@ -1101,9 +1102,10 @@ function PF:BuildProfile()
 
       -- UnitFrame Target raidicon (Target Marker Icon)
       raidicon = {
-        size = F.Dpi(24),
-        yOffset = F.Dpi(0),
-        attachTo = "CENTER",
+        attachTo = "TOPRIGHT",
+        size = F.Dpi(20),
+        yOffset = F.Dpi(22.5),
+        xOffset = F.Dpi(22.5),
       },
 
       -- UnitFrame Target Raid Role Icon
@@ -1371,9 +1373,10 @@ function PF:BuildProfile()
 
     -- UnitFrame Focus raidicon (Target Marker Icon)
     raidicon = {
-      size = F.Dpi(24),
-      yOffset = F.Dpi(0),
-      attachTo = "CENTER",
+      attachTo = "TOPRIGHT",
+      size = F.Dpi(20),
+      yOffset = F.Dpi(22.5),
+      xOffset = F.Dpi(22.5),
     },
 
     -- UnitFrame Focus Castbar
@@ -1537,9 +1540,10 @@ function PF:BuildProfile()
 
       -- UnitFrame Party RaidIcon (Target Marker)
       raidicon = {
-        size = F.Dpi(26),
-        xOffset = F.Dpi(-50),
-        yOffset = F.Dpi(-10),
+        attachTo = "TOPLEFT",
+        size = F.Dpi(20),
+        xOffset = F.Dpi(-22.5),
+        yOffset = F.Dpi(22.5),
       },
 
       -- UnitFrame Party Role Icons
@@ -1924,6 +1928,14 @@ function PF:BuildProfile()
       },
     },
 
+    -- UnitFrame Arena raidicon (Target Marker Icon)
+    raidicon = {
+      attachTo = "TOPRIGHT",
+      size = F.Dpi(20),
+      yOffset = F.Dpi(22.5),
+      xOffset = F.Dpi(22.5),
+    },
+
     -- UnitFrame Arena Power
     power = {
       height = F.Dpi(10),
@@ -2015,6 +2027,14 @@ function PF:BuildProfile()
         frameLevel = 1,
         useCustomLevel = true,
       },
+    },
+
+    -- UnitFrame Boss raidicon (Target Marker Icon)
+    raidicon = {
+      attachTo = "TOPRIGHT",
+      size = F.Dpi(20),
+      yOffset = F.Dpi(22.5),
+      xOffset = F.Dpi(22.5),
     },
 
     -- UnitFrame Boss Power
