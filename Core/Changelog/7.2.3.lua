@@ -18,6 +18,7 @@ TXUI.Changelog["7.2.3"] = {
     F.String.ElvUI() .. ": Add class icon tag to Arena UnitFrames",
 
     "* Documentation",
+    "Re-enable Gradient Mode by default",
 
     "* Settings refactoring",
 

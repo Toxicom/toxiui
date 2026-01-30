@@ -57,7 +57,7 @@ P.themes = {
     transparencyAlpha = 0.25, -- Alpha of Background
   },
   gradientMode = {
-    enabled = false, -- Enabled by default
+    enabled = true, -- Enabled by default
 
     textures = {
       health = "- ToxiUI",
