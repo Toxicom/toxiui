@@ -139,7 +139,7 @@ function PF:BuildProfile()
   end
 
   -- Special Case: ToxiUIWAAnchor
-  local WAAnchorY = { 329, 399 }
+  local WAAnchorY = { 395, 479 }
 
   local defaultPadding = 4
   local IsHorizontalLayout = E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL
@@ -154,67 +154,67 @@ function PF:BuildProfile()
       -- 3 => Anchor position of PARENT FRAME
 
       -- Movers: Pop-ups
-      MicrobarMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 495, 30),
-      LootFrameMover = F.Position("CENTER", "ElvUIParent", "CENTER", 300, 0),
-      AlertFrameMover = F.Position("LEFT", "LootFrameMover", "RIGHT", 200, -50),
+      MicrobarMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 594, 36),
+      LootFrameMover = F.Position("CENTER", "ElvUIParent", "CENTER", 360, 0),
+      AlertFrameMover = F.Position("LEFT", "LootFrameMover", "RIGHT", 240, -60),
 
       -- Movers: Bars
-      ExperienceBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 43),
-      ReputationBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -3, -264),
-      ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -554, -363),
+      ExperienceBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 52),
+      ReputationBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -4, -317),
+      ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -665, -436),
 
       -- Movers: ActionBars
-      ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 45),
+      ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 54),
       ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Close Left
       ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Close Right
       ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvAB_6", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Far Left
       ElvAB_4 = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Far Right
 
-      ElvAB_2 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -37, -401), -- Unused
-      ElvAB_7 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -73, -401), -- Unused
-      ElvAB_8 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -109, -401), -- Unused
-      ElvAB_9 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -144, -401), -- Unused
-      ElvAB_10 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -180, -401), -- Unused
+      ElvAB_2 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -44, -481), -- Unused
+      ElvAB_7 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -88, -481), -- Unused
+      ElvAB_8 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -131, -481), -- Unused
+      ElvAB_9 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -173, -481), -- Unused
+      ElvAB_10 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -216, -481), -- Unused
 
       PetAB = F.Position("TOP", "ElvUF_Player", "BOTTOM", 0, -defaultPadding),
       VehicleLeaveButton = F.Position("BOTTOMLEFT", "ElvAB_4", "BOTTOMRIGHT", defaultPadding, 0),
-      DurabilityFrameMover = F.Position("BOTTOMLEFT", "ElvAB_4", "BOTTOMRIGHT", 34, 0),
+      DurabilityFrameMover = F.Position("BOTTOMLEFT", "ElvAB_4", "BOTTOMRIGHT", 41, 0),
       ShiftAB = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
 
       -- Movers: UnitFrames
-      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 350),
+      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 420),
       ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
-      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 372),
+      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 446),
       ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
-      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 350),
+      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 420),
       ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
-      TargetPowerBarMover = F.Position("LEFT", "ElvUF_Target", "BOTTOMLEFT", 10, 0),
+      TargetPowerBarMover = F.Position("LEFT", "ElvUF_Target", "BOTTOMLEFT", 12, 0),
 
       ElvUF_TargetTargetMover = F.Position("TOPLEFT", "ElvUF_Target", "TOPRIGHT", defaultPadding, 0),
 
       ElvUF_PetMover = F.Position("TOPRIGHT", "ElvUF_Player", "TOPLEFT", -defaultPadding, 0),
       ElvUF_PetCastbarMover = F.Position("TOPLEFT", "ElvUF_Pet", "BOTTOMLEFT", 0, -1),
 
-      ElvUF_FocusMover = F.Position("TOP", "ElvUF_Target", "BOTTOM", 0, -60),
+      ElvUF_FocusMover = F.Position("TOP", "ElvUF_Target", "BOTTOM", 0, -72),
       ElvUF_FocusCastbarMover = F.Position("TOPLEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 0, -defaultPadding),
-      FocusPowerBarMover = F.Position("LEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 10, 0),
+      FocusPowerBarMover = F.Position("LEFT", "ElvUF_FocusMover", "BOTTOMLEFT", 12, 0),
 
-      ElvUF_PartyMover = F.Position("LEFT", "ElvUIParent", "LEFT", 300, 0, true),
+      ElvUF_PartyMover = F.Position("LEFT", "ElvUIParent", "LEFT", 360, 0, true),
 
-      ElvUF_Raid1Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 60, 335),
-      ElvUF_Raid2Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 60, 335),
-      ElvUF_Raid3Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 60, 335),
+      ElvUF_Raid1Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 72, 402),
+      ElvUF_Raid2Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 72, 402),
+      ElvUF_Raid3Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 72, 402),
 
-      ArenaHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -300, 0, true, true),
+      ArenaHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -360, 0, true, true),
       BossHeaderMover = F.Position("TOPRIGHT", "ArenaHeaderMover", "TOPRIGHT", 0, 0),
 
       ElvUF_TankMover = F.Position("TOPLEFT", "LeftChatMover", "TOPRIGHT", defaultPadding, 0),
       ElvUF_AssistMover = F.Position("TOPLEFT", "ElvUF_TankMover", "BOTTOMLEFT", 0, -defaultPadding),
 
       -- Movers: Chat
-      LeftChatMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", defaultPadding, 60),
-      RightChatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -defaultPadding, 45),
+      LeftChatMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", defaultPadding, 72),
+      RightChatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -defaultPadding, 54),
 
       -- Movers: Bags
       ElvUIBagMover = F.Position("BOTTOMLEFT", "RightChatMover", "TOPLEFT", 0, defaultPadding),
@@ -225,13 +225,13 @@ function PF:BuildProfile()
       DebuffsMover = F.Position("TOPLEFT", "BuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
 
       -- Movers: Misc
-      BelowMinimapContainerMover = F.Position("TOPLEFT", "ElvUIParent", "TOPLEFT", 195, -220),
+      BelowMinimapContainerMover = F.Position("TOPLEFT", "ElvUIParent", "TOPLEFT", 234, -264),
       BNETMover = F.Position("TOPRIGHT", "MinimapMover", "TOPLEFT", -defaultPadding, 0),
       GMMover = F.Position("TOPRIGHT", "BNETMover", "BOTTOMRIGHT", 0, -defaultPadding),
       MinimapMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -defaultPadding, -defaultPadding),
-      ObjectiveFrameMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -70, -270),
-      TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -15, 115),
-      TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -35),
+      ObjectiveFrameMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -84, -324),
+      TooltipMover = F.Position("BOTTOMRIGHT", "RightChatMover", "TOPRIGHT", -18, 138),
+      TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -42),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
       QueueStatusMover = F.Position("BOTTOMRIGHT", "MinimapMover", "BOTTOMRIGHT", -defaultPadding * 2, defaultPadding * 2),
 
@@ -240,49 +240,49 @@ function PF:BuildProfile()
     },
     F.Table.If(TXUI.IsRetail, {
       -- Movers: Bars Retail Only
-      AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 180),
-      AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 351, -324),
-      HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -573, -422),
+      AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 216),
+      AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 421, -389),
+      HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -688, -506),
       WTExtraItemsBar1Mover = F.Position("BOTTOMRIGHT", "RightChatMover", "BOTTOMLEFT", -defaultPadding, 0),
 
       -- Movers: ActionBars Retail Only
-      BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -300, 200),
-      PetBattleABMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 76, 313),
-      ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 630, 200),
+      BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -360, 240),
+      PetBattleABMover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 91, 376),
+      ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 756, 240),
 
       -- Movers: Chat
-      WTRaidMarkersBarAnchor = F.Position("BOTTOMLEFT", "LeftChatMover", "TOPLEFT", 0, F.IsAddOnEnabled("Chattynator") and defaultPadding + 60 or defaultPadding),
+      WTRaidMarkersBarAnchor = F.Position("BOTTOMLEFT", "LeftChatMover", "TOPLEFT", 0, F.IsAddOnEnabled("Chattynator") and defaultPadding + 72 or defaultPadding),
 
       -- Movers: Misc Retail Only
-      LevelUpBossBannerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -170),
-      LossControlMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 505),
+      LevelUpBossBannerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -204),
+      LossControlMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 606),
       PetBattleStatusMover = F.Position("TOP", "PetBattleFrame", "TOP", 0, 0),
-      RaidUtility_Mover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -550, -4),
-      SocialMenuMover = F.Position("TOPLEFT", "ElvUIParent", "TOPLEFT", 4, -187),
-      UIErrorsFrameMover = F.Position("TOP", "UIParent", "TOP", 0, -122),
-      VehicleSeatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -305, 330),
-      PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 158),
+      RaidUtility_Mover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -660, -5),
+      SocialMenuMover = F.Position("TOPLEFT", "ElvUIParent", "TOPLEFT", 5, -224),
+      UIErrorsFrameMover = F.Position("TOP", "UIParent", "TOP", 0, -146),
+      VehicleSeatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -366, 396),
+      PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 190),
       AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding * 4),
     }),
     F.Table.If(IsHorizontalLayout, {
       -- Horizontal Layout
-      AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 326, 518),
-      BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 565, 235),
+      AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 391, 622),
+      BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 678, 282),
 
-      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 402),
+      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 482),
       ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
-      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -325, 420),
-      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 325, 420),
+      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 504),
+      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 504),
 
-      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 160),
+      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 192),
 
-      ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 200),
-      ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
-      ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
-      ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
+      ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 240),
+      ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
+      ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
+      ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
 
-      ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 565, 235),
+      ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 678, 282),
 
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     }),
@@ -290,7 +290,7 @@ function PF:BuildProfile()
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
     }),
     F.Table.If(not TXUI.IsRetail, {
-      MirrorTimer1Mover = F.Position("TOP", "ElvUIParent", "TOP", 0, -60),
+      MirrorTimer1Mover = F.Position("TOP", "ElvUIParent", "TOP", 0, -72),
       MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
       MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
     })
@@ -313,7 +313,7 @@ function PF:BuildProfile()
     -- General Quest Tracker
     objectiveFrameAutoHide = false,
     objectiveFrameAutoHideInKeystone = false,
-    objectiveFrameHeight = F.Dpi(500),
+    objectiveFrameHeight = F.Dpi(600),
 
     -- General Colors
     valuecolor = F.Table.CurrentClassColor(),
@@ -324,7 +324,7 @@ function PF:BuildProfile()
     -- General MiniMap
     minimap = {
       -- General MiniMap Size
-      size = F.Dpi(230),
+      size = F.Dpi(276),
 
       -- General MiniMap Icons
       icons = {
@@ -425,10 +425,10 @@ function PF:BuildProfile()
   -- Bags
   F.Table.Crush(pf.bags, {
     -- Bags Size
-    bagSize = F.Dpi(44),
-    bagWidth = F.Dpi(700),
-    bankSize = F.Dpi(40),
-    bankWidth = F.Dpi(700),
+    bagSize = F.Dpi(53),
+    bagWidth = F.Dpi(840),
+    bankSize = F.Dpi(48),
+    bankWidth = F.Dpi(840),
 
     -- Bags Options
     useBlizzardCleanup = false,
@@ -481,7 +481,7 @@ function PF:BuildProfile()
 
   -- Auras Buffs
   F.Table.Crush(pf.auras.buffs, {
-    size = F.Dpi(32),
+    size = F.Dpi(38),
     -- Auras Buffs Options
     fadeThreshold = 3,
     maxWraps = 2,
@@ -491,20 +491,20 @@ function PF:BuildProfile()
 
     -- ElvUI_RatioMinimapAuras
     keepSizeRatio = false,
-    height = F.Dpi(21),
+    height = F.Dpi(25),
   })
 
   -- Auras Debuffs
   F.Table.Crush(pf.auras.debuffs, {
     -- Auras Debuffs Size
-    size = F.Dpi(40),
+    size = F.Dpi(48),
 
     -- Auras Debuffs Options
     growthDirection = "RIGHT_DOWN",
 
     -- ElvUI_RatioMinimapAuras
     keepSizeRatio = false,
-    height = F.Dpi(27),
+    height = F.Dpi(32),
   })
 
   -- Nameplates
@@ -515,169 +515,169 @@ function PF:BuildProfile()
     units = {
       ["ENEMY_NPC"] = {
         auras = {
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = 15,
         },
         buffs = {
           anchorPoint = "TOPRIGHT",
           attachTo = "DEBUFFS",
           growthX = "LEFT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
-          yOffset = F.Dpi(7),
+          size = F.Dpi(30),
+          yOffset = F.Dpi(8),
         },
         castbar = {
           anchorPoint = "BOTTOM",
           iconOffsetX = F.Dpi(2),
           iconOffsetY = F.Dpi(-2),
-          iconSize = F.Dpi(20),
+          iconSize = F.Dpi(24),
           showIcon = false,
           textYOffset = F.Dpi(-2),
           timeYOffset = F.Dpi(-2),
-          yOffset = F.Dpi(7),
+          yOffset = F.Dpi(8),
         },
         debuffs = {
           anchorPoint = "TOPLEFT",
           growthX = "RIGHT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = F.Dpi(-1),
-          yOffset = F.Dpi(4),
+          yOffset = F.Dpi(5),
         },
         health = {
           text = {
             position = "TOPRIGHT",
-            yOffset = F.Dpi(-8),
+            yOffset = F.Dpi(-10),
           },
-          width = F.Dpi(125),
-          height = F.Dpi(8),
+          width = F.Dpi(150),
+          height = F.Dpi(10),
         },
         level = {
           enable = false,
         },
         name = {
-          yOffset = F.Dpi(-8),
+          yOffset = F.Dpi(-10),
         },
         raidTargetIndicator = {
-          size = F.Dpi(13),
+          size = F.Dpi(16),
           xOffset = -15,
         },
       },
 
       ["FRIENDLY_NPC"] = {
         auras = {
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = 15,
         },
         buffs = {
           anchorPoint = "TOPRIGHT",
           attachTo = "DEBUFFS",
           growthX = "LEFT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
-          yOffset = F.Dpi(7),
+          size = F.Dpi(30),
+          yOffset = F.Dpi(8),
         },
         castbar = {
           anchorPoint = "BOTTOM",
           iconOffsetX = F.Dpi(2),
           iconOffsetY = F.Dpi(-2),
-          iconSize = F.Dpi(20),
+          iconSize = F.Dpi(24),
           showIcon = false,
           textYOffset = F.Dpi(-2),
           timeYOffset = F.Dpi(-2),
-          yOffset = F.Dpi(7),
+          yOffset = F.Dpi(8),
         },
         debuffs = {
           anchorPoint = "TOPLEFT",
           growthX = "RIGHT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = F.Dpi(-1),
-          yOffset = F.Dpi(4),
+          yOffset = F.Dpi(5),
         },
         health = {
           text = {
             position = "TOPRIGHT",
-            yOffset = F.Dpi(-8),
+            yOffset = F.Dpi(-10),
           },
-          width = F.Dpi(125),
-          height = F.Dpi(8),
+          width = F.Dpi(150),
+          height = F.Dpi(10),
         },
         level = {
           enable = false,
         },
         name = {
-          yOffset = F.Dpi(-8),
+          yOffset = F.Dpi(-10),
         },
         title = {
           enable = true,
-          yOffset = F.Dpi(-8),
+          yOffset = F.Dpi(-10),
         },
         raidTargetIndicator = {
-          size = F.Dpi(13),
+          size = F.Dpi(16),
           xOffset = -15,
         },
       },
 
       ["ENEMY_PLAYER"] = {
         auras = {
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = 15,
         },
         buffs = {
           anchorPoint = "TOPRIGHT",
           attachTo = "DEBUFFS",
           growthX = "LEFT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
-          yOffset = F.Dpi(7),
+          size = F.Dpi(30),
+          yOffset = F.Dpi(8),
         },
         castbar = {
           anchorPoint = "BOTTOM",
           iconOffsetX = F.Dpi(2),
           iconOffsetY = F.Dpi(-2),
-          iconSize = F.Dpi(20),
+          iconSize = F.Dpi(24),
           showIcon = false,
           textYOffset = F.Dpi(-2),
           timeYOffset = F.Dpi(-2),
-          yOffset = F.Dpi(7),
+          yOffset = F.Dpi(8),
         },
         debuffs = {
           anchorPoint = "TOPLEFT",
           growthX = "RIGHT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = F.Dpi(-1),
-          yOffset = F.Dpi(4),
+          yOffset = F.Dpi(5),
         },
         health = {
           text = {
             position = "TOPRIGHT",
-            yOffset = F.Dpi(-8),
+            yOffset = F.Dpi(-10),
           },
-          width = F.Dpi(125),
-          height = F.Dpi(8),
+          width = F.Dpi(150),
+          height = F.Dpi(10),
         },
         level = {
           enable = false,
         },
         name = {
-          yOffset = F.Dpi(-8),
+          yOffset = F.Dpi(-10),
         },
         raidTargetIndicator = {
-          size = F.Dpi(13),
+          size = F.Dpi(16),
           xOffset = -15,
         },
       },
@@ -686,55 +686,55 @@ function PF:BuildProfile()
         nameOnly = true,
 
         auras = {
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = 15,
         },
         buffs = {
           anchorPoint = "TOPRIGHT",
           attachTo = "DEBUFFS",
           growthX = "LEFT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
-          yOffset = F.Dpi(7),
+          size = F.Dpi(30),
+          yOffset = F.Dpi(8),
         },
         castbar = {
           anchorPoint = "BOTTOM",
           iconOffsetX = F.Dpi(2),
           iconOffsetY = F.Dpi(-2),
-          iconSize = F.Dpi(20),
+          iconSize = F.Dpi(24),
           showIcon = false,
           textYOffset = F.Dpi(-2),
           timeYOffset = F.Dpi(-2),
-          yOffset = F.Dpi(7),
+          yOffset = F.Dpi(8),
         },
         debuffs = {
           anchorPoint = "TOPLEFT",
           growthX = "RIGHT",
-          height = F.Dpi(17),
+          height = F.Dpi(20),
           keepSizeRatio = false,
-          size = F.Dpi(25),
+          size = F.Dpi(30),
           xOffset = F.Dpi(-1),
-          yOffset = F.Dpi(4),
+          yOffset = F.Dpi(5),
         },
         health = {
           text = {
             position = "TOPRIGHT",
-            yOffset = F.Dpi(-8),
+            yOffset = F.Dpi(-10),
           },
-          width = F.Dpi(125),
-          height = F.Dpi(8),
+          width = F.Dpi(150),
+          height = F.Dpi(10),
         },
         level = {
           enable = false,
         },
         name = {
-          yOffset = F.Dpi(-8),
+          yOffset = F.Dpi(-10),
         },
         raidTargetIndicator = {
-          size = F.Dpi(13),
+          size = F.Dpi(16),
           xOffset = -15,
         },
         title = {
@@ -769,8 +769,8 @@ function PF:BuildProfile()
     justifyH = "LEFT",
 
     -- Offset
-    xOffset = F.Dpi(-10),
-    yOffset = F.Dpi(27),
+    xOffset = F.Dpi(-12),
+    yOffset = F.Dpi(32),
   }
 
   local createCustomText = function(db, ...)
@@ -780,8 +780,8 @@ function PF:BuildProfile()
   -- UnitFrame Player
   F.Table.Crush(pf.unitframe.units.player, { -- Player
     -- UnitFrame Player Size
-    width = F.Dpi(250),
-    height = F.Dpi(30),
+    width = F.Dpi(300),
+    height = F.Dpi(36),
     threatStyle = "NONE",
 
     -- UnitFrame Player Options
@@ -793,31 +793,31 @@ function PF:BuildProfile()
       ["toxiui:name"] = createCustomText({}, {
         attachTextTo = "Health",
         text_format = "[tx:name]",
-        xOffset = F.Dpi(5),
-        yOffset = F.Dpi(27),
+        xOffset = F.Dpi(6),
+        yOffset = F.Dpi(32),
       }),
 
       -- UnitFrame Player Custom Texts Level
       ["toxiui:level"] = createCustomText({}, {
         justifyH = "LEFT",
         text_format = "[tx:level]",
-        xOffset = F.Dpi(18),
-        yOffset = F.Dpi(-15),
+        xOffset = F.Dpi(22),
+        yOffset = F.Dpi(-18),
       }),
 
       -- UnitFrame Player Custom Texts Health
       ["toxiui:health"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:health:percent:nosign]",
-        xOffset = F.Dpi(-10),
-        yOffset = F.Dpi(15),
+        xOffset = F.Dpi(-12),
+        yOffset = F.Dpi(18),
       }),
 
       ["toxiui:health-small"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
-        xOffset = F.Dpi(-10),
-        yOffset = F.Dpi(-15),
+        xOffset = F.Dpi(-12),
+        yOffset = F.Dpi(-18),
       }),
 
       -- UnitFrame Player Custom Texts Power
@@ -834,7 +834,7 @@ function PF:BuildProfile()
         justifyH = "LEFT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
-        xOffset = F.Dpi(5),
+        xOffset = F.Dpi(6),
         yOffset = F.Dpi(0),
       }),
     },
@@ -850,15 +850,15 @@ function PF:BuildProfile()
       priority = "Blacklist,Boss,CCDebuffs,RaidDebuffs,CastByUnit,CastByNPC,Personal",
       spacing = 0,
       xOffset = 0,
-      yOffset = F.Dpi(25),
+      yOffset = F.Dpi(30),
 
       -- Stack Counter
       countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-6),
+      countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(36),
-      height = F.Dpi(24),
+      sizeOverride = F.Dpi(43),
+      height = F.Dpi(29),
     },
 
     -- UnitFrame Player Fader
@@ -885,9 +885,9 @@ function PF:BuildProfile()
       defaultColor = false,
 
       anchorPoint = "TOPRIGHT",
-      size = F.Dpi(36),
-      xOffset = F.Dpi(10),
-      yOffset = F.Dpi(18),
+      size = F.Dpi(43),
+      xOffset = F.Dpi(12),
+      yOffset = F.Dpi(22),
 
       texture = "CUSTOM",
       customTexture = I.General.MediaPath .. "Textures\\Resting.tga",
@@ -897,8 +897,8 @@ function PF:BuildProfile()
     raidRoleIcons = {
       enable = true,
       scale = 2,
-      xOffset = F.Dpi(5),
-      yOffset = F.Dpi(21),
+      xOffset = F.Dpi(6),
+      yOffset = F.Dpi(25),
     },
 
     partyIndicator = {
@@ -910,7 +910,7 @@ function PF:BuildProfile()
       enable = true,
 
       anchorPoint = "CENTER",
-      size = F.Dpi(24),
+      size = F.Dpi(29),
       yOffset = -20, -- Not sure if this needs DPI
 
       defaultColor = true,
@@ -923,16 +923,16 @@ function PF:BuildProfile()
     -- UnitFrame Player raidicon (Target Marker Icon)
     raidicon = {
       attachTo = "TOPLEFT",
-      size = F.Dpi(20),
-      xOffset = F.Dpi(-22.5),
-      yOffset = F.Dpi(22.5),
+      size = F.Dpi(24),
+      xOffset = F.Dpi(-27),
+      yOffset = F.Dpi(27),
     },
 
     power = {
       enable = true,
       detachFromFrame = true,
       autoHide = false,
-      detachedWidth = F.Dpi(243),
+      detachedWidth = F.Dpi(292),
       text_format = "",
       height = 10,
     },
@@ -940,14 +940,14 @@ function PF:BuildProfile()
     classbar = {
       enable = true,
       detachFromFrame = true,
-      detachedWidth = F.Dpi(243),
+      detachedWidth = F.Dpi(292),
       height = 10,
     },
 
     -- UnitFrame Player Castbar
     castbar = {
-      width = F.Dpi(250),
-      height = F.Dpi(20),
+      width = F.Dpi(300),
+      height = F.Dpi(24),
 
       -- UnitFrame Player Castbar Options
       insideInfoPanel = false,
@@ -956,8 +956,8 @@ function PF:BuildProfile()
 
       -- UnitFrame Player Castbar Text
       textColor = F.Table.HexToRGB("#ffffff"),
-      xOffsetText = F.Dpi(5),
-      xOffsetTime = F.Dpi(-10),
+      xOffsetText = F.Dpi(6),
+      xOffsetTime = F.Dpi(-12),
 
       -- Puts castbar below Combat Icon and Class Icon
       strataAndLevel = {
@@ -986,8 +986,8 @@ function PF:BuildProfile()
     pf.unitframe.units.target,
     { -- Target
       -- UnitFrame Target Size
-      width = F.Dpi(250),
-      height = F.Dpi(30),
+      width = F.Dpi(300),
+      height = F.Dpi(36),
       threatStyle = "NONE",
 
       -- UnitFrame Target Options
@@ -1000,23 +1000,23 @@ function PF:BuildProfile()
         ["toxiui:health"] = createCustomText({}, {
           justifyH = "LEFT",
           text_format = "[tx:health:percent:nosign]",
-          xOffset = F.Dpi(10),
-          yOffset = F.Dpi(15),
+          xOffset = F.Dpi(12),
+          yOffset = F.Dpi(18),
         }),
 
         ["toxiui:health-small"] = createCustomText({}, {
           justifyH = "LEFT",
           text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
-          xOffset = F.Dpi(10),
-          yOffset = F.Dpi(-15),
+          xOffset = F.Dpi(12),
+          yOffset = F.Dpi(-18),
         }),
 
         -- UnitFrame Target Custom Texts Name
         ["toxiui:name"] = createCustomText({}, {
           justifyH = "RIGHT",
           text_format = "[tx:name]",
-          xOffset = F.Dpi(-5),
-          yOffset = F.Dpi(27),
+          xOffset = F.Dpi(-6),
+          yOffset = F.Dpi(32),
         }),
 
         -- UnitFrame Target Custom Texts Level
@@ -1024,14 +1024,14 @@ function PF:BuildProfile()
           justifyH = "RIGHT",
           text_format = "[tx:level:difficulty]",
           xOffset = F.Dpi(-18),
-          yOffset = F.Dpi(-15),
+          yOffset = F.Dpi(-18),
         }),
 
         -- UnitFrame Target Custom Texts Power
         ["toxiui:power"] = createCustomText({}, {
           attachTextTo = "Power",
           text_format = "[tx:power:percent:nosign]",
-          xOffset = F.Dpi(85),
+          xOffset = F.Dpi(102),
           yOffset = F.Dpi(0),
         }),
 
@@ -1040,7 +1040,7 @@ function PF:BuildProfile()
           justifyH = "RIGHT",
           attachTextTo = "Health",
           text_format = "[tx:classicon:reverse]",
-          xOffset = F.Dpi(-5),
+          xOffset = F.Dpi(-6),
           yOffset = F.Dpi(0),
         }),
 
@@ -1049,8 +1049,8 @@ function PF:BuildProfile()
           justifyH = "RIGHT",
           attachTextTo = "Health",
           text_format = "[tx:classification]",
-          xOffset = F.Dpi(15),
-          yOffset = F.Dpi(25),
+          xOffset = F.Dpi(18),
+          yOffset = F.Dpi(30),
         }),
       },
 
@@ -1062,15 +1062,15 @@ function PF:BuildProfile()
         priority = "Blacklist,Personal,Boss,NonPersonal,CastByUnit",
         spacing = 0,
         xOffset = 0,
-        yOffset = F.Dpi(60),
+        yOffset = F.Dpi(72),
 
         -- Stack Counter
         countPosition = "BOTTOM",
-        countYOffset = F.Dpi(-6),
+        countYOffset = F.Dpi(-7),
 
         keepSizeRatio = false,
-        sizeOverride = F.Dpi(36),
-        height = F.Dpi(24),
+        sizeOverride = F.Dpi(43),
+        height = F.Dpi(29),
       },
 
       -- UnitFrame Target Debuffs
@@ -1084,15 +1084,15 @@ function PF:BuildProfile()
         priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
         spacing = 0,
         xOffset = 0,
-        yOffset = F.Dpi(25),
+        yOffset = F.Dpi(30),
 
         -- Stack Counter
         countPosition = "BOTTOM",
-        countYOffset = F.Dpi(-6),
+        countYOffset = F.Dpi(-7),
 
         keepSizeRatio = false,
-        sizeOverride = F.Dpi(36),
-        height = F.Dpi(24),
+        sizeOverride = F.Dpi(43),
+        height = F.Dpi(29),
       },
 
       -- New "Custom" tab introduced in ElvUI 14.00
@@ -1103,9 +1103,9 @@ function PF:BuildProfile()
       -- UnitFrame Target raidicon (Target Marker Icon)
       raidicon = {
         attachTo = "TOPRIGHT",
-        size = F.Dpi(20),
-        yOffset = F.Dpi(22.5),
-        xOffset = F.Dpi(22.5),
+        size = F.Dpi(24),
+        yOffset = F.Dpi(27),
+        xOffset = F.Dpi(27),
       },
 
       -- UnitFrame Target Raid Role Icon
@@ -1113,14 +1113,14 @@ function PF:BuildProfile()
         enable = true,
         scale = 2,
         position = "TOPRIGHT",
-        xOffset = F.Dpi(-5),
-        yOffset = F.Dpi(21),
+        xOffset = F.Dpi(-6),
+        yOffset = F.Dpi(25),
       },
 
       -- UnitFrame Target Castbar
       castbar = {
-        width = F.Dpi(250),
-        height = F.Dpi(20),
+        width = F.Dpi(300),
+        height = F.Dpi(24),
 
         -- UnitFrame Target Castbar Options
         insideInfoPanel = false,
@@ -1129,8 +1129,8 @@ function PF:BuildProfile()
 
         -- UnitFrame Target Castbar Text
         textColor = F.Table.HexToRGB("#ffffff"),
-        xOffsetText = F.Dpi(5),
-        xOffsetTime = F.Dpi(-10),
+        xOffsetText = F.Dpi(6),
+        xOffsetTime = F.Dpi(-12),
 
         -- Puts castbar below Combat Icon and Class Icon
         strataAndLevel = {
@@ -1156,7 +1156,7 @@ function PF:BuildProfile()
         enable = true,
         detachFromFrame = true,
         autoHide = true,
-        detachedWidth = F.Dpi(120),
+        detachedWidth = F.Dpi(144),
         text_format = "",
       },
 
@@ -1174,8 +1174,8 @@ function PF:BuildProfile()
   F.Table.Crush(
     pf.unitframe.units.pet,
     { -- Pet
-      width = F.Dpi(100),
-      height = F.Dpi(15),
+      width = F.Dpi(120),
+      height = F.Dpi(18),
       disableTargetGlow = false,
       threatStyle = "NONE",
 
@@ -1185,7 +1185,7 @@ function PF:BuildProfile()
         ["toxiui:name"] = createCustomText({}, {
           text_format = "[tx:name]",
           xOffset = F.Dpi(0),
-          yOffset = F.Dpi(15),
+          yOffset = F.Dpi(18),
           justifyH = "CENTER",
         }),
 
@@ -1200,8 +1200,8 @@ function PF:BuildProfile()
       -- UnitFrame Pet Castbar
       castbar = {
         textColor = F.Table.HexToRGB("#ffffff"),
-        height = F.Dpi(12),
-        width = F.Dpi(100),
+        height = F.Dpi(14),
+        width = F.Dpi(120),
 
         icon = true,
         iconAttached = true,
@@ -1247,8 +1247,8 @@ function PF:BuildProfile()
 
   -- UnitFrame Target-Target
   F.Table.Crush(pf.unitframe.units.targettarget, { -- ToT
-    width = F.Dpi(100),
-    height = F.Dpi(15),
+    width = F.Dpi(120),
+    height = F.Dpi(18),
     threatStyle = "NONE",
     disableMouseoverGlow = true,
 
@@ -1258,14 +1258,14 @@ function PF:BuildProfile()
       ["toxiui:name"] = createCustomText({}, {
         text_format = "[tx:name]",
         xOffset = F.Dpi(0),
-        yOffset = F.Dpi(15),
+        yOffset = F.Dpi(18),
         justifyH = "CENTER",
       }),
     },
 
     -- UnitFrame Target-Target RaidIcon (Target Maker)
     raidicon = {
-      size = F.Dpi(16),
+      size = F.Dpi(19),
       attachTo = "CENTER",
       yOffset = F.Dpi(0),
     },
@@ -1282,8 +1282,8 @@ function PF:BuildProfile()
 
   -- UnitFrame Focus
   F.Table.Crush(pf.unitframe.units.focus, { -- Focus
-    width = F.Dpi(250),
-    height = F.Dpi(30),
+    width = F.Dpi(300),
+    height = F.Dpi(36),
     threatStyle = "NONE",
 
     -- UnitFrame Focus Options
@@ -1297,31 +1297,31 @@ function PF:BuildProfile()
       ["toxiui:name"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:name]",
-        xOffset = F.Dpi(-5),
-        yOffset = F.Dpi(27),
+        xOffset = F.Dpi(-6),
+        yOffset = F.Dpi(32),
       }),
 
       -- UnitFrame Focus Custom Texts Health
       ["toxiui:health"] = createCustomText({}, {
         justifyH = "LEFT",
         text_format = "[tx:health:percent:nosign]",
-        xOffset = F.Dpi(10),
-        yOffset = F.Dpi(15),
+        xOffset = F.Dpi(12),
+        yOffset = F.Dpi(18),
       }),
 
       -- UnitFrame Focus Custom Texts Health
       ["toxiui:health-small"] = createCustomText({}, {
         justifyH = "LEFT",
         text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
-        xOffset = F.Dpi(10),
-        yOffset = F.Dpi(-15),
+        xOffset = F.Dpi(12),
+        yOffset = F.Dpi(-18),
       }),
 
       -- UnitFrame Focus Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = "[tx:power:percent:nosign]",
-        xOffset = F.Dpi(85),
+        xOffset = F.Dpi(102),
         yOffset = F.Dpi(0),
       }),
 
@@ -1330,7 +1330,7 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         attachTextTo = "Health",
         text_format = "[tx:classicon:reverse]",
-        xOffset = F.Dpi(-5),
+        xOffset = F.Dpi(-6),
         yOffset = F.Dpi(0),
       }),
     },
@@ -1342,15 +1342,15 @@ function PF:BuildProfile()
       maxDuration = 0,
       perrow = 5,
       priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,NonPersonal",
-      sizeOverride = F.Dpi(24),
+      sizeOverride = F.Dpi(29),
 
       -- Stack Counter
       countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-6),
+      countYOffset = F.Dpi(-7),
 
       spacing = F.Dpi(0),
-      xOffset = F.Dpi(3),
-      yOffset = F.Dpi(25),
+      xOffset = F.Dpi(4),
+      yOffset = F.Dpi(30),
     },
 
     -- UnitFrame Focus Debuffs
@@ -1359,38 +1359,38 @@ function PF:BuildProfile()
       maxDuration = 0,
       priority = "Blacklist,Personal,NonPersonal",
       spacing = F.Dpi(0),
-      xOffset = F.Dpi(-3),
-      yOffset = F.Dpi(25),
+      xOffset = F.Dpi(-4),
+      yOffset = F.Dpi(30),
 
       -- Stack Counter
       countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-6),
+      countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(24),
-      height = F.Dpi(16),
+      sizeOverride = F.Dpi(29),
+      height = F.Dpi(19),
     },
 
     -- UnitFrame Focus raidicon (Target Marker Icon)
     raidicon = {
       attachTo = "TOPRIGHT",
-      size = F.Dpi(20),
-      yOffset = F.Dpi(22.5),
-      xOffset = F.Dpi(22.5),
+      size = F.Dpi(24),
+      yOffset = F.Dpi(27),
+      xOffset = F.Dpi(27),
     },
 
     -- UnitFrame Focus Castbar
     castbar = {
-      height = F.Dpi(20),
-      width = F.Dpi(250),
+      height = F.Dpi(24),
+      width = F.Dpi(300),
       insideInfoPanel = false,
 
       icon = true,
       iconAttached = true,
 
       textColor = F.Table.HexToRGB("#ffffff"),
-      xOffsetText = F.Dpi(5),
-      xOffsetTime = F.Dpi(-10),
+      xOffsetText = F.Dpi(6),
+      xOffsetTime = F.Dpi(-12),
 
       -- UnitFrame Focus Castbar Classcolor
       customColor = {
@@ -1408,7 +1408,7 @@ function PF:BuildProfile()
     power = {
       width = "spaced",
       text_format = "",
-      detachedWidth = F.Dpi(120),
+      detachedWidth = F.Dpi(144),
       detachFromFrame = true,
       autoHide = true,
       position = "RIGHT",
@@ -1427,42 +1427,42 @@ function PF:BuildProfile()
   F.Table.Crush(
     pf.unitframe.units.party,
     { -- Party
-      width = F.Dpi(200),
-      height = F.Dpi(30),
+      width = F.Dpi(240),
+      height = F.Dpi(36),
 
       visibility = "[@raid1,exists][@party1,noexists] hide;show",
 
       -- UnitFrame Party Options
       groupBy = "ROLE",
       growthDirection = "DOWN_LEFT",
-      horizontalSpacing = F.Dpi(5),
+      horizontalSpacing = F.Dpi(6),
       raidWideSorting = true,
       showPlayer = false,
       startFromCenter = true,
-      verticalSpacing = F.Dpi(40),
+      verticalSpacing = F.Dpi(48),
 
       -- UnitFrame Party Custom Texts
       customTexts = {
         -- UnitFrame Party Custom Texts Name
         ["toxiui:name"] = createCustomText({}, {
           text_format = "[tx:name]",
-          xOffset = F.Dpi(5),
-          yOffset = F.Dpi(27),
+          xOffset = F.Dpi(6),
+          yOffset = F.Dpi(32),
         }),
 
         -- UnitFrame Party Custom Texts Health
         ["toxiui:health"] = createCustomText({}, {
           justifyH = "RIGHT",
           text_format = "[tx:health:percent:nosign]",
-          xOffset = F.Dpi(-10),
-          yOffset = F.Dpi(15),
+          xOffset = F.Dpi(-12),
+          yOffset = F.Dpi(18),
         }),
 
         -- UnitFrame Party Custom Texts Level
         ["toxiui:level"] = createCustomText({}, {
           justifyH = "LEFT",
           text_format = "[tx:level:difficulty]",
-          xOffset = F.Dpi(18),
+          xOffset = F.Dpi(22),
           yOffset = F.Dpi(-12),
         }),
 
@@ -1471,7 +1471,7 @@ function PF:BuildProfile()
           justifyH = "LEFT",
           attachTextTo = "Power",
           text_format = "[tx:power:percent:nosign]",
-          xOffset = F.Dpi(10),
+          xOffset = F.Dpi(12),
           yOffset = F.Dpi(0),
         }),
 
@@ -1480,14 +1480,14 @@ function PF:BuildProfile()
           justifyH = "LEFT",
           attachTextTo = "Health",
           text_format = "[tx:classicon]",
-          xOffset = F.Dpi(5),
+          xOffset = F.Dpi(6),
           yOffset = F.Dpi(0),
         }),
       },
 
       -- UnitFrame Party BuffIndicator
       buffIndicator = {
-        size = F.Dpi(10),
+        size = F.Dpi(12),
       },
 
       -- UnitFrame Party Buffs
@@ -1501,11 +1501,11 @@ function PF:BuildProfile()
 
         -- Stack Counter
         countPosition = "BOTTOM",
-        countYOffset = F.Dpi(-6),
+        countYOffset = F.Dpi(-7),
 
         keepSizeRatio = false,
-        sizeOverride = F.Dpi(32),
-        height = F.Dpi(21),
+        sizeOverride = F.Dpi(38),
+        height = F.Dpi(25),
       },
 
       -- UnitFrame Party Debuffs
@@ -1520,11 +1520,11 @@ function PF:BuildProfile()
 
         -- Stack Counter
         countPosition = "BOTTOM",
-        countYOffset = F.Dpi(-6),
+        countYOffset = F.Dpi(-7),
 
         keepSizeRatio = false,
-        sizeOverride = F.Dpi(32),
-        height = F.Dpi(21),
+        sizeOverride = F.Dpi(38),
+        height = F.Dpi(25),
       },
 
       -- UnitFrame Party Heal Prediction
@@ -1541,9 +1541,9 @@ function PF:BuildProfile()
       -- UnitFrame Party RaidIcon (Target Marker)
       raidicon = {
         attachTo = "TOPLEFT",
-        size = F.Dpi(20),
-        xOffset = F.Dpi(-22.5),
-        yOffset = F.Dpi(22.5),
+        size = F.Dpi(24),
+        xOffset = F.Dpi(-27),
+        yOffset = F.Dpi(27),
       },
 
       -- UnitFrame Party Role Icons
@@ -1551,21 +1551,21 @@ function PF:BuildProfile()
         enable = true,
         scale = 2,
         position = "TOPLEFT",
-        xOffset = F.Dpi(10),
-        yOffset = F.Dpi(21),
+        xOffset = F.Dpi(12),
+        yOffset = F.Dpi(25),
       },
 
       -- UnitFrame Party Raid Debuffs
       rdebuffs = {
         enable = false,
-        size = F.Dpi(30),
-        yOffset = F.Dpi(20),
+        size = F.Dpi(36),
+        yOffset = F.Dpi(24),
       },
 
       -- UnitFrame Party Ready Check Icon
       readycheckIcon = {
         position = "CENTER",
-        size = F.Dpi(40),
+        size = F.Dpi(48),
         yOffset = F.Dpi(0),
       },
 
@@ -1573,7 +1573,7 @@ function PF:BuildProfile()
       roleIcon = {
         damager = true,
         position = "LEFT",
-        size = F.Dpi(30),
+        size = F.Dpi(36),
         xOffset = F.Dpi(-35),
         yOffset = F.Dpi(0),
       },
@@ -1581,7 +1581,7 @@ function PF:BuildProfile()
       -- UnitFrame Party Power
       power = {
         width = "spaced",
-        height = F.Dpi(10),
+        height = F.Dpi(12),
         text_format = "",
       },
 
@@ -1596,9 +1596,9 @@ function PF:BuildProfile()
 
       -- UnitFrame Party Horizontal Layout
       width = F.Dpi(150),
-      height = F.Dpi(60),
-      verticalSpacing = F.Dpi(5),
-      horizontalSpacing = F.Dpi(5),
+      height = F.Dpi(72),
+      verticalSpacing = F.Dpi(6),
+      horizontalSpacing = F.Dpi(6),
       growthDirection = "RIGHT_DOWN",
       showPlayer = true,
 
@@ -1609,18 +1609,18 @@ function PF:BuildProfile()
         },
 
         ["toxiui:name"] = {
-          xOffset = F.Dpi(7),
+          xOffset = F.Dpi(8),
           yOffset = F.Dpi(0),
         },
 
         ["toxiui:level"] = {
-          xOffset = F.Dpi(20),
+          xOffset = F.Dpi(24),
           yOffset = F.Dpi(-20),
         },
 
         ["toxiui:power"] = {
           justifyH = "RIGHT",
-          xOffset = F.Dpi(-10),
+          xOffset = F.Dpi(-12),
         },
 
         ["toxiui:class-icon"] = {
@@ -1631,7 +1631,7 @@ function PF:BuildProfile()
       -- UnitFrame Party Horizontal Layout Power
       power = {
         width = "filled",
-        height = F.Dpi(15),
+        height = F.Dpi(18),
       },
 
       -- UnitFrame Party Horizontal Layout Buffs
@@ -1640,7 +1640,7 @@ function PF:BuildProfile()
         numrows = 2,
         enable = true,
         anchorPoint = "BOTTOM",
-        yOffset = F.Dpi(-5),
+        yOffset = F.Dpi(-6),
         spacing = 2,
       },
 
@@ -1649,7 +1649,7 @@ function PF:BuildProfile()
         anchorPoint = "TOP",
         perrow = 4,
         numrows = 2,
-        yOffset = F.Dpi(18),
+        yOffset = F.Dpi(22),
         spacing = 2,
       },
 
@@ -1662,8 +1662,8 @@ function PF:BuildProfile()
       roleIcon = {
         position = "TOPLEFT",
         size = F.Dpi(22),
-        xOffset = F.Dpi(-10),
-        yOffset = F.Dpi(10),
+        xOffset = F.Dpi(-12),
+        yOffset = F.Dpi(12),
         damager = false,
       },
     })
@@ -1671,8 +1671,8 @@ function PF:BuildProfile()
 
   local raidFramesTable = {
     enable = true,
-    width = F.Dpi(80),
-    height = F.Dpi(35),
+    width = F.Dpi(96),
+    height = F.Dpi(42),
 
     -- UnitFrame Raid1 Options
     groupBy = "GROUP",
@@ -1714,8 +1714,8 @@ function PF:BuildProfile()
     -- UnitFrame Raid1 Raid Debuffs
     rdebuffs = {
       enable = true,
-      size = F.Dpi(20),
-      yOffset = F.Dpi(5),
+      size = F.Dpi(24),
+      yOffset = F.Dpi(6),
 
       duration = {
         color = F.Table.HexToRGB("#fff0ea"),
@@ -1730,7 +1730,7 @@ function PF:BuildProfile()
 
     -- UnitFrame Raid1 Ready Check Icon
     readycheckIcon = {
-      size = F.Dpi(24),
+      size = F.Dpi(29),
     },
 
     -- UnitFrame Raid1 Role Icon
@@ -1738,7 +1738,7 @@ function PF:BuildProfile()
       enable = true,
       damager = false,
       position = "BOTTOMLEFT",
-      size = F.Dpi(20),
+      size = F.Dpi(24),
       xOffset = 0,
       yOffset = 2,
     },
@@ -1746,7 +1746,7 @@ function PF:BuildProfile()
     raidRoleIcons = {
       enable = true,
       scale = 2,
-      yOffset = F.Dpi(6),
+      yOffset = F.Dpi(7),
     },
 
     -- Disable UnitFrame Raid1 health text
@@ -1852,9 +1852,9 @@ function PF:BuildProfile()
 
   -- UnitFrame Arena
   F.Table.Crush(pf.unitframe.units.arena, {
-    width = F.Dpi(200),
-    height = F.Dpi(30),
-    spacing = F.Dpi(40),
+    width = F.Dpi(240),
+    height = F.Dpi(36),
+    spacing = F.Dpi(48),
     pvpSpecIcon = false,
 
     -- UnitFrame Arena Custom Texts
@@ -1862,23 +1862,23 @@ function PF:BuildProfile()
       -- UnitFrame Arena Custom Texts Health
       ["toxiui:health"] = createCustomText({}, {
         text_format = "[tx:health:percent:nosign]",
-        xOffset = F.Dpi(10),
-        yOffset = F.Dpi(15),
+        xOffset = F.Dpi(12),
+        yOffset = F.Dpi(18),
       }),
 
       -- UnitFrame Arena Custom Texts Name
       ["toxiui:name"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:name]",
-        xOffset = F.Dpi(-5),
-        yOffset = F.Dpi(27),
+        xOffset = F.Dpi(-6),
+        yOffset = F.Dpi(32),
       }),
 
       -- UnitFrame Arena Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = "[tx:power:percent:nosign]",
-        xOffset = F.Dpi(85),
+        xOffset = F.Dpi(102),
         yOffset = F.Dpi(0),
       }),
 
@@ -1887,7 +1887,7 @@ function PF:BuildProfile()
         justifyH = "RIGHT",
         attachTextTo = "Health",
         text_format = "[tx:classicon:reverse]",
-        xOffset = F.Dpi(-5),
+        xOffset = F.Dpi(-6),
         yOffset = F.Dpi(0),
       }),
     },
@@ -1898,11 +1898,11 @@ function PF:BuildProfile()
 
       -- Stack Counter
       countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-6),
+      countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(24),
-      height = F.Dpi(16),
+      sizeOverride = F.Dpi(29),
+      height = F.Dpi(19),
     },
 
     -- UnitFrame Arena Debuffs
@@ -1912,21 +1912,21 @@ function PF:BuildProfile()
 
       -- Stack Counter
       countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-6),
+      countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(24),
-      height = F.Dpi(16),
+      sizeOverride = F.Dpi(29),
+      height = F.Dpi(19),
     },
 
     -- UnitFrame Arena Trinket
     pvpTrinket = {
-      size = F.Dpi(30),
+      size = F.Dpi(36),
     },
 
     -- UnitFrame Arena Castbar
     castbar = {
-      width = F.Dpi(250),
+      width = F.Dpi(300),
 
       icon = true,
       iconAttached = true,
@@ -1941,14 +1941,14 @@ function PF:BuildProfile()
     -- UnitFrame Arena raidicon (Target Marker Icon)
     raidicon = {
       attachTo = "TOPRIGHT",
-      size = F.Dpi(20),
-      yOffset = F.Dpi(22.5),
-      xOffset = F.Dpi(22.5),
+      size = F.Dpi(24),
+      yOffset = F.Dpi(27),
+      xOffset = F.Dpi(27),
     },
 
     -- UnitFrame Arena Power
     power = {
-      height = F.Dpi(10),
+      height = F.Dpi(12),
       text_format = "",
     },
 
@@ -1960,39 +1960,39 @@ function PF:BuildProfile()
 
   -- UnitFrame Boss
   F.Table.Crush(pf.unitframe.units.boss, {
-    width = F.Dpi(200),
-    height = F.Dpi(30),
-    spacing = F.Dpi(40),
+    width = F.Dpi(240),
+    height = F.Dpi(36),
+    spacing = F.Dpi(48),
 
     -- UnitFrame Boss Custom Texts
     customTexts = {
       -- UnitFrame Boss Custom Texts Health
       ["toxiui:health"] = createCustomText({}, {
         text_format = "[tx:health:percent:nosign]",
-        xOffset = F.Dpi(5),
-        yOffset = F.Dpi(15),
+        xOffset = F.Dpi(6),
+        yOffset = F.Dpi(18),
       }),
 
       -- UnitFrame Boss Custom Texts Health
       ["toxiui:health-small"] = createCustomText({}, {
         text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
-        xOffset = F.Dpi(5),
-        yOffset = F.Dpi(-15),
+        xOffset = F.Dpi(6),
+        yOffset = F.Dpi(-18),
       }),
 
       -- UnitFrame Boss Custom Texts Name
       ["toxiui:name"] = createCustomText({}, {
         justifyH = "RIGHT",
         text_format = "[tx:name]",
-        xOffset = F.Dpi(-5),
-        yOffset = F.Dpi(27),
+        xOffset = F.Dpi(-6),
+        yOffset = F.Dpi(32),
       }),
 
       -- UnitFrame Boss Custom Texts Power
       ["toxiui:power"] = createCustomText({}, {
         attachTextTo = "Power",
         text_format = "[tx:power:percent:nosign]",
-        xOffset = F.Dpi(70),
+        xOffset = F.Dpi(84),
         yOffset = F.Dpi(0),
       }),
     },
@@ -2000,34 +2000,34 @@ function PF:BuildProfile()
     -- UnitFrame Boss Buffs
     buffs = {
       maxDuration = 300,
-      yOffset = F.Dpi(16),
+      yOffset = F.Dpi(19),
 
       -- Stack Counter
       countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-6),
+      countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(24),
-      height = F.Dpi(16),
+      sizeOverride = F.Dpi(29),
+      height = F.Dpi(19),
     },
 
     -- UnitFrame Boss Debuffs
     debuffs = {
       maxDuration = 300,
-      yOffset = F.Dpi(-16),
+      yOffset = F.Dpi(-19),
 
       -- Stack Counter
       countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-6),
+      countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(24),
-      height = F.Dpi(16),
+      sizeOverride = F.Dpi(29),
+      height = F.Dpi(19),
     },
 
     -- UnitFrame Boss Castbar
     castbar = {
-      width = F.Dpi(200),
+      width = F.Dpi(240),
 
       icon = true,
       iconAttached = true,
@@ -2042,9 +2042,9 @@ function PF:BuildProfile()
     -- UnitFrame Boss raidicon (Target Marker Icon)
     raidicon = {
       attachTo = "TOPRIGHT",
-      size = F.Dpi(20),
-      yOffset = F.Dpi(22.5),
-      xOffset = F.Dpi(22.5),
+      size = F.Dpi(24),
+      yOffset = F.Dpi(27),
+      xOffset = F.Dpi(27),
     },
 
     -- UnitFrame Boss Power
@@ -2065,7 +2065,7 @@ function PF:BuildProfile()
     {
       transparent = true,
       globalFadeAlpha = 1,
-      flyoutSize = F.Dpi(33),
+      flyoutSize = F.Dpi(40),
       countTextYOffset = F.Dpi(0),
 
       -- ActionBars Cooldowns
@@ -2091,11 +2091,11 @@ function PF:BuildProfile()
         keepSizeRatio = false,
         flyoutDirection = "UP",
 
-        buttonSize = F.Dpi(32), -- Width
-        buttonHeight = F.Dpi(21),
+        buttonSize = F.Dpi(38), -- Width
+        buttonHeight = F.Dpi(25),
 
-        flyoutSize = F.Dpi(32), -- Width
-        flyoutHeight = F.Dpi(21),
+        flyoutSize = F.Dpi(38), -- Width
+        flyoutHeight = F.Dpi(25),
 
         spacing = F.Dpi(1),
         flyoutSpacing = F.Dpi(1),
@@ -2113,8 +2113,8 @@ function PF:BuildProfile()
     mouseover = false,
 
     buttons = 12,
-    buttonSize = F.Dpi(32), -- Width
-    buttonHeight = F.Dpi(21),
+    buttonSize = F.Dpi(38), -- Width
+    buttonHeight = F.Dpi(25),
     buttonsPerRow = 6,
 
     hotkeytext = true,
@@ -2160,8 +2160,8 @@ function PF:BuildProfile()
   -- ActionBar Bar1
   pf.actionbar.bar1 = createMainActionBar {
     enabled = true,
-    buttonSize = F.Dpi(32),
-    buttonHeight = F.Dpi(21),
+    buttonSize = F.Dpi(38),
+    buttonHeight = F.Dpi(25),
   }
 
   -- ActionBar Bar2
@@ -2232,8 +2232,8 @@ function PF:BuildProfile()
     backdrop = false,
     backdropSpacing = F.Dpi(1),
 
-    buttonSize = F.Dpi(24),
-    buttonHeight = F.Dpi(16),
+    buttonSize = F.Dpi(29),
+    buttonHeight = F.Dpi(19),
     buttonSpacing = F.Dpi(1),
     buttonsPerRow = 10,
 
@@ -2249,7 +2249,7 @@ function PF:BuildProfile()
   pf.actionbar.stanceBar = createActionBar {
     alpha = 0.8,
     mouseover = true,
-    buttonSize = F.Dpi(26),
+    buttonSize = F.Dpi(31),
     inheritGlobalFade = true,
     hotkeyTextPosition = "TOP",
   }

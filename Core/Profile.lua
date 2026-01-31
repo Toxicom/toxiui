@@ -501,7 +501,7 @@ P.vehicleBar = {
 P.miniMapCoords = {
   enabled = true,
   xOffset = 0,
-  yOffset = -115,
+  yOffset = -138,
   format = "%.0f",
 
   coordFont = I.Fonts.TitleBlack,

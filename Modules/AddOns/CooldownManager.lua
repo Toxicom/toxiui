@@ -47,7 +47,7 @@ function CM:SyncBarsWidth()
   if not width or width <= 0 then return end
 
   -- For when EssentialCooldownViewer is too small or no spells etc.
-  if width <= 100 then width = F.Dpi(243) end -- default width
+  if width <= 100 then width = F.Dpi(292) end -- default width
 
   -- Update ElvUI player power and classbar detached width
   local playerDB = E.db.unitframe.units.player

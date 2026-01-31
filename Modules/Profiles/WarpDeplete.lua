@@ -40,8 +40,8 @@ function PF:BuildWarpDepleteProfile()
     forcesOverlayTexture = "- Tx Left",
 
     -- Frame
-    frameX = F.Dpi(-4),
-    frameY = F.Dpi(240),
+    frameX = F.Dpi(-5),
+    frameY = F.Dpi(288),
 
     -- Key
     keyFont = F.FontOverride(I.Fonts.TitleBlack),

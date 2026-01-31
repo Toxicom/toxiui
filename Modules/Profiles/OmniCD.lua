@@ -51,8 +51,8 @@ function PF:BuildOmniCDProfile()
               statusBarWidth = 426,
               manualPos = {
                 raidBar1 = {
-                  x = F.Dpi(329) + offset,
-                  y = F.Dpi(165),
+                  x = F.Dpi(395) + offset,
+                  y = F.Dpi(198),
                 },
               },
               reverseFill = false,
@@ -92,8 +92,8 @@ function PF:BuildOmniCDProfile()
               enabled = true,
               manualPos = {
                 raidBar2 = {
-                  x = F.Dpi(165) + offset,
-                  y = F.Dpi(250),
+                  x = F.Dpi(198) + offset,
+                  y = F.Dpi(300),
                 },
               },
               paddingX = 1,
@@ -116,8 +116,8 @@ function PF:BuildOmniCDProfile()
               enabled = true,
               manualPos = {
                 raidBar3 = {
-                  x = F.Dpi(790) + offset,
-                  y = F.Dpi(345),
+                  x = F.Dpi(948) + offset,
+                  y = F.Dpi(414),
                 },
               },
               columns = 3,
@@ -140,8 +140,8 @@ function PF:BuildOmniCDProfile()
               enabled = true,
               manualPos = {
                 raidBar4 = {
-                  x = F.Dpi(790) + offset,
-                  y = F.Dpi(425),
+                  x = F.Dpi(948) + offset,
+                  y = F.Dpi(510),
                 },
               },
               paddingX = 1,
@@ -180,7 +180,7 @@ function PF:BuildOmniCDProfile()
             paddingX = 1,
             attach = "TOPLEFT",
             preset = "TOPLEFT",
-            offsetX = F.Dpi(50),
+            offsetX = F.Dpi(60),
             anchor = "TOPRIGHT",
           },
 
@@ -199,11 +199,11 @@ function PF:BuildOmniCDProfile()
           extraBars = {
             raidBar0 = {
               hideSpark = true,
-              statusBarWidth = F.Dpi(200),
+              statusBarWidth = F.Dpi(240),
               manualPos = {
                 raidBar0 = {
-                  x = F.Dpi(340) + offset,
-                  y = F.Dpi(155),
+                  x = F.Dpi(408) + offset,
+                  y = F.Dpi(186),
                 },
               },
               reverseFill = false,
@@ -231,8 +231,8 @@ function PF:BuildOmniCDProfile()
               columns = 20,
               manualPos = {
                 raidBar2 = {
-                  x = F.Dpi(265) + offset,
-                  y = F.Dpi(225),
+                  x = F.Dpi(318) + offset,
+                  y = F.Dpi(270),
                 },
               },
               locked = true,
@@ -241,8 +241,8 @@ function PF:BuildOmniCDProfile()
             raidBar1 = {
               manualPos = {
                 raidBar1 = {
-                  x = F.Dpi(240) + offset,
-                  y = F.Dpi(205),
+                  x = F.Dpi(288) + offset,
+                  y = F.Dpi(246),
                 },
               },
               growLeft = true,
@@ -306,8 +306,8 @@ function PF:BuildOmniCDProfile()
 
           manualPos = {
             raidCDBar2 = {
-              x = F.Dpi(35) + offset,
-              y = F.Dpi(230),
+              x = F.Dpi(42) + offset,
+              y = F.Dpi(276),
             },
           },
 
@@ -334,8 +334,8 @@ function PF:BuildOmniCDProfile()
             raidBar1 = {
               manualPos = {
                 raidBar1 = {
-                  x = F.Dpi(165) + offset,
-                  y = F.Dpi(365),
+                  x = F.Dpi(198) + offset,
+                  y = F.Dpi(438),
                 },
               },
             },
@@ -351,7 +351,7 @@ function PF:BuildOmniCDProfile()
             anchorMore = "TOPLEFT",
 
             offsetX = F.Dpi(0),
-            offsetY = F.Dpi(35),
+            offsetY = F.Dpi(42),
           },
         },
       },

@@ -23,5 +23,9 @@ TXUI.Changelog["7.2.3"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Refactor F.Dpi(), F.Position() and their usage" --
+      .. F.String.Sublist("For the user, absolutely nothing should change, but there might be some positioning/sizing changes that were not intended!")
+      .. F.String.Sublist("This change is purely QoL for myself as a developer")
+      .. F.String.Sublist("In the future, because of this change, some values may slightly change (eg from 52 to 50 etc.)"),
   },
 }

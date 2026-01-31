@@ -26,8 +26,8 @@ function ST:BuildActionBarsProfile()
     -- ActionBars
     F.Table.Crush(pf.actionbar, {
       bar1 = {
-        buttonSize = F.Dpi(40),
-        buttonHeight = F.Dpi(27),
+        buttonSize = F.Dpi(48),
+        buttonHeight = F.Dpi(32),
       },
 
       bar3 = {
@@ -48,8 +48,8 @@ function ST:BuildActionBarsProfile()
         ElvAB_1 = F.Position("TOP", "PlayerPowerBarMover", "BOTTOM", 0, -defaultPadding),
         ElvAB_6 = F.Position("TOPRIGHT", "ElvAB_1", "BOTTOM", -defaultPadding / 2, -defaultPadding), -- left
         ElvAB_5 = F.Position("TOPLEFT", "ElvAB_1", "BOTTOM", defaultPadding / 2, -defaultPadding), -- right
-        ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding / 2, 45), -- left
-        ElvAB_4 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 45), -- right
+        ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOM", -defaultPadding / 2, 54), -- left
+        ElvAB_4 = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOM", defaultPadding / 2, 54), -- right
         ShiftAB = F.Position("BOTTOM", "ElvAB_3", "TOPRIGHT", 0, defaultPadding),
       },
       F.Table.If(IsHorizontalLayout, {
@@ -60,10 +60,10 @@ function ST:BuildActionBarsProfile()
         ElvAB_4 = F.Position("LEFT", "ElvAB_5", "RIGHT", defaultPadding, 0), -- right
         ShiftAB = F.Position("BOTTOM", "ElvAB_3", "TOPRIGHT", 0, defaultPadding),
 
-        ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 180),
-        ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 110),
-        ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 110),
-        ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 110),
+        ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 216),
+        ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 132),
+        ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 132),
+        ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 132),
       })
     )
   end
@@ -81,8 +81,8 @@ function ST:BuildActionBarsProfile()
     -- ActionBars
     F.Table.Crush(pf.actionbar, {
       bar1 = {
-        buttonSize = F.Dpi(32),
-        buttonHeight = F.Dpi(21),
+        buttonSize = F.Dpi(36),
+        buttonHeight = F.Dpi(24),
       },
 
       bar3 = {
@@ -100,17 +100,17 @@ function ST:BuildActionBarsProfile()
     F.Table.Crush(
       pf.movers,
       {
-        ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 45),
+        ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 54),
         ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Close Left
         ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Close Right
         ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvAB_6", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Far Left
         ElvAB_4 = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Far Right
       },
       F.Table.If(IsHorizontalLayout, {
-        ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 200),
-        ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
-        ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
-        ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 120),
+        ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 240),
+        ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
+        ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
+        ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
       })
     )
   end

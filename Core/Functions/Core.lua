@@ -140,9 +140,8 @@ function F.PixelPerfect()
 end
 
 local baseScale = 768 / 1440 -- 0,5333333333333333
-local baseMulti = 0.64 / baseScale -- 1,2
 local perfectScale = baseScale / F.PixelPerfect()
-local perfectMulti = baseMulti * perfectScale
+local perfectMulti = perfectScale
 
 function F.HiDpi()
   return E.physicalHeight / 1440 >= 1

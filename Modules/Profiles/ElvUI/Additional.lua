@@ -11,7 +11,7 @@ function PF:ElvUIAdditional()
 
     -- WT Mover
     F.Table.Crush(pf.movers, {
-      WTMinimapButtonBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -238, -4),
+      WTMinimapButtonBarAnchor = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -286, -5),
     })
 
     -- WT DB Settings
@@ -41,9 +41,9 @@ function PF:ElvUIAdditional()
         raidMarkers = {
           enable = true,
           backdropSpacing = F.Dpi(2),
-          buttonSize = F.Dpi(24),
+          buttonSize = F.Dpi(29),
           countDownTime = 7,
-          spacing = F.Dpi(8),
+          spacing = F.Dpi(10),
           visibility = "INPARTY",
         },
       },
@@ -198,10 +198,10 @@ function PF:ElvUIAdditionalPrivate()
         -- Maps: Minimap Buttons
         minimapButtons = {
           backdropSpacing = F.Dpi(2),
-          buttonSize = F.Dpi(25),
+          buttonSize = F.Dpi(30),
           buttonsPerRow = 3,
           mouseOver = true,
-          spacing = F.Dpi(5),
+          spacing = F.Dpi(6),
         },
 
         -- Maps: Super Tracker

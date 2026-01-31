@@ -247,7 +247,7 @@ function AFK:SetupFrames()
   self.frame.bottom.logoText:SetText(" ")
 
   -- Player Model
-  self.frame.bottom.model:SetPoint("CENTER", self.frame.bottom.modelHolder, "CENTER", F.Dpi(-100), F.Dpi(100))
+  self.frame.bottom.model:SetPoint("CENTER", self.frame.bottom.modelHolder, "CENTER", F.Dpi(-120), F.Dpi(120))
   self.frame.bottom.model:SetCamDistanceScale(4) -- Lower number => bigger model. Higher number => smaller model.
   self.frame.bottom.model:SetScript("OnUpdate", nil)
 
