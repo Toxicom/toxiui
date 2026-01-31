@@ -55,9 +55,11 @@ function CM:SyncBarsWidth()
     if playerDB.power then playerDB.power.detachedWidth = width end
     if playerDB.classbar then playerDB.classbar.detachedWidth = width end
 
-    -- Update the unitframe to apply changes
-    local uf = E:GetModule("UnitFrames")
-    if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+    -- Update the unitframe to apply changes (must be out of combat to avoid taint)
+    F.Event.ContinueOutOfCombat(function()
+      local uf = E:GetModule("UnitFrames")
+      if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+    end)
   end
 end
 
