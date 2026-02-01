@@ -5,6 +5,7 @@
   <Script file='ElvUI.lua' />
   <Script file='ActionBars.lua' />
   <Script file='CooldownManager.lua' />
+  <Script file='DamageMeter.lua' />
   <Script file='GameMenuSkin.lua' />
   <Script file='ClassIcons.lua' />
   <Script file='GroupIcons.lua' />

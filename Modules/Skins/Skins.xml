@@ -2,6 +2,7 @@
   <Script file='Core.lua' />
 
   <Script file='AddOnSkins.lua' />
+  <Script file='DamageMeter.lua' />
   <Script file='WindTools.lua' />
 
   <Include file='Details\Details.xml' />

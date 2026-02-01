@@ -78,6 +78,62 @@ M.SpecIcons = {
   [1473] = M:GetCoordinates(7, 5), -- Evoker Augmentation
 }
 
+-- Blizzard specIconID (texture file ID) -> ToxiUI specID mapping
+M.BlizzardToSpecID = {
+  -- Death Knight
+  [135770] = 250, -- Blood
+  [135773] = 251, -- Frost
+  [135775] = 252, -- Unholy
+  -- Demon Hunter
+  [1247264] = 577, -- Havoc
+  [1247265] = 581, -- Vengeance
+  -- Druid
+  [136096] = 102, -- Balance
+  [132115] = 103, -- Feral
+  [132276] = 104, -- Guardian
+  [136041] = 105, -- Restoration
+  -- Evoker
+  [4511811] = 1467, -- Devastation
+  [4511812] = 1468, -- Preservation
+  [5198700] = 1473, -- Augmentation
+  -- Hunter
+  [461112] = 253, -- Beast Mastery
+  [236179] = 254, -- Marksmanship
+  [461113] = 255, -- Survival
+  -- Mage
+  [135932] = 62, -- Arcane
+  [135810] = 63, -- Fire
+  [135846] = 64, -- Frost
+  -- Monk
+  [608951] = 268, -- Brewmaster
+  [608952] = 270, -- Mistweaver
+  [608953] = 269, -- Windwalker
+  -- Paladin
+  [135920] = 65, -- Holy
+  [236264] = 66, -- Protection
+  [135873] = 70, -- Retribution
+  -- Priest
+  [135940] = 256, -- Discipline
+  [237542] = 257, -- Holy
+  [136207] = 258, -- Shadow
+  -- Rogue
+  [236270] = 259, -- Assassination
+  [236286] = 260, -- Outlaw
+  [132320] = 261, -- Subtlety
+  -- Shaman
+  [136048] = 262, -- Elemental
+  [237581] = 263, -- Enhancement
+  [136052] = 264, -- Restoration
+  -- Warlock
+  [136145] = 265, -- Affliction
+  [136172] = 266, -- Demonology
+  [136186] = 267, -- Destruction
+  -- Warrior
+  [132355] = 71, -- Arms
+  [132347] = 72, -- Fury
+  [132341] = 73, -- Protection
+}
+
 function M:GetClassIconPath(theme)
   if not theme or theme == "" then theme = "ToxiClasses" end
 

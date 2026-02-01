@@ -27,6 +27,7 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.ELTRUISM_DISABLED] = "You can't use this module because EltruismUI is enabled. Please disable it to unlock this option.",
   [I.Enum.Requirements.BETTER_COOLDOWN_MANAGER_DISABLED] = "You can't use this module because BetterCooldownManager is enabled. Please disable it to unlock this option.",
   [I.Enum.Requirements.COOLDOWN_MANAGER_CENTERED_DISABLED] = "You can't use this module because CooldownManagerCentered is enabled. Please disable it to unlock this option.",
+  [I.Enum.Requirements.DETAILS_ADDON_DISABLED] = "This option is only available when the Details addon is not enabled.",
 }
 
 I.Strings.RequirementsDebug = {

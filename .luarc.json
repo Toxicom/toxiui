@@ -12,6 +12,7 @@
     "Details",
     "ElvUI",
     "LibStub",
+    "DamageMeter",
 
     "BigWigsAPI",
     "DBT_AllPersistentOptions",

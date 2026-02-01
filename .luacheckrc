@@ -35,6 +35,7 @@ globals = {
   "Details",
   "ElvUI",
   "LibStub",
+  "DamageMeter",
 
   -- AddOn DBs
   "BigWigsAPI",

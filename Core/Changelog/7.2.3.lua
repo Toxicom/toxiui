@@ -7,6 +7,7 @@ TXUI.Changelog["7.2.3"] = {
 
     "* New features",
     "tx:classicon:reverse tag",
+    F.String.Retail() .. "Damage Meter skin",
 
     "* Bug fixes",
 

@@ -270,6 +270,12 @@ P.addons = {
     fading = false, -- Disabled by default
     dynamicBarsWidth = false, -- Disabled by default
   },
+
+  -- Damage Meter (Blizzard)
+  damageMeter = {
+    enabled = true, -- Enabled by default
+    icons = true, -- Enabled by default
+  },
 }
 
 P.misc = {
