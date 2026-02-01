@@ -156,8 +156,10 @@ function DM:Initialize()
       -- Hook future windows
       hooksecurefunc(_G.DamageMeter, "SetupSessionWindow", HookSessionWindows)
 
-      -- Refresh layout to trigger all hooks and apply styling
-      _G.DamageMeter:RefreshLayout()
+      -- Delay refresh to ensure GR module is ready, then trigger all hooks
+      E:Delay(0.1, function()
+        _G.DamageMeter:RefreshLayout()
+      end)
     end)
   end)
 
