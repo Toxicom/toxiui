@@ -64,9 +64,7 @@ end
 
 -- Get class color for gradient mode
 local function GetBarColor(content)
-  if content.classFilename then
-    return "classColorMap", content.classFilename
-  end
+  if content.classFilename then return "classColorMap", content.classFilename end
 end
 
 -- Apply gradient colors to the status bar
