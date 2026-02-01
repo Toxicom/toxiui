@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local DM = TXUI:NewModule("SkinsDamageMeter", "AceHook-3.0")
 local M -- Misc module, initialized later
+local GR -- Gradients module, initialized later
 
 local _G = _G
 local hooksecurefunc = hooksecurefunc
@@ -61,6 +62,37 @@ local function ApplySpecIcon(content)
   content.Icon.Icon:SetTexCoord(texData.left, texData.right, texData.top, texData.bottom)
 end
 
+-- Get class color for gradient mode
+local function GetBarColor(content)
+  if content.classFilename then
+    return "classColorMap", content.classFilename
+  end
+end
+
+-- Apply gradient colors to the status bar
+local function ApplyGradient(content, _, dR, dG, dB)
+  if not GR or not GR.db or not GR.isEnabled then return end
+  if not E.db.TXUI.addons.damageMeter.gradients then return end
+  if not content or not content.StatusBar then return end
+
+  -- Set percentage for gradient calculation (always full since we can't access internal value)
+  local valueChanged = content.currentPercent == nil
+  if valueChanged then content.currentPercent = 1 end
+
+  -- Get current color if not provided
+  if not dB then
+    local texture = content.StatusBar:GetStatusBarTexture()
+    if texture then
+      dR, dG, dB = texture:GetVertexColor()
+    end
+  end
+
+  if not dR then return end
+
+  local colorFunc = F.Event.GenerateClosure(GetBarColor, content)
+  GR:SetGradientColors(content, valueChanged, dR, dG, dB, false, colorFunc)
+end
+
 -- Called for each meter bar after ElvUI's SkinMeter has run
 local function SkinMeter(content)
   if not content or not content.StatusBar then return end
@@ -72,8 +104,17 @@ local function SkinMeter(content)
     ApplySpecIcon(self)
   end) end
 
-  -- Apply immediately for current state
-  ApplySpecIcon(content)
+  -- Hook for gradient mode (set up hooks based on setting, ApplyGradient checks if GR is ready)
+  if E.db.TXUI.addons.damageMeter.gradients and E.db.TXUI.themes.gradientMode.enabled then
+    local texture = content.StatusBar:GetStatusBarTexture()
+    if texture and not DM:IsHooked(texture, "SetVertexColor") then
+      -- Set gradient properties on the content frame
+      content.fadeMode = I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.HORIZONTAL]
+      content.fadeDirection = I.Enum.GradientMode.Direction.RIGHT
+
+      DM:RawHook(texture, "SetVertexColor", F.Event.GenerateClosure(ApplyGradient, content), true)
+    end
+  end
 end
 
 local function HookScrollBox(scrollBox)
@@ -104,8 +145,9 @@ function DM:Initialize()
     -- Check if module is enabled
     if not E.db.TXUI.addons.damageMeter.enabled then return end
 
-    -- Get Misc module now that everything is loaded
+    -- Get modules now that everything is loaded
     M = TXUI:GetModule("Misc")
+    GR = TXUI:GetModule("ThemesGradients")
 
     F.Event.ContinueOnAddOnLoaded("Blizzard_DamageMeter", function()
       -- Hook existing windows
@@ -113,6 +155,9 @@ function DM:Initialize()
 
       -- Hook future windows
       hooksecurefunc(_G.DamageMeter, "SetupSessionWindow", HookSessionWindows)
+
+      -- Refresh layout to trigger all hooks and apply styling
+      _G.DamageMeter:RefreshLayout()
     end)
   end)
 

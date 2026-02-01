@@ -77,6 +77,37 @@ function O:Skins_DamageMeter()
       end,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Gradients
+  do
+    local gradientsGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Gradient Mode",
+    }, {
+      name = "Apply " .. TXUI.Title .. " gradient colors to the damage meter bars. Requires Gradient Mode to be enabled in Themes.\n\n",
+    }, I.Requirements.DamageMeter).args
+
+    gradientsGroup.gradients = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Apply gradient colors to damage meter bars.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.damageMeter.gradients, gradientsGroup)
+      end,
+      disabled = function()
+        return not E.db.TXUI.addons.damageMeter.enabled or not E.db.TXUI.themes.gradientMode.enabled
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.gradients
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.gradients = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
 end
 
 if TXUI.IsRetail then O:AddCallback("Skins_DamageMeter") end

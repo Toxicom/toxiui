@@ -275,6 +275,7 @@ P.addons = {
   damageMeter = {
     enabled = true, -- Enabled by default
     icons = true, -- Enabled by default
+    gradients = true, -- Enabled by default (requires gradient mode to be on)
   },
 }
 
