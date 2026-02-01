@@ -20,9 +20,6 @@ function T:SetupProfile()
   -- Misc
   E.db.TXUI.vehicleBar.enabled = true
 
-  -- WunderBar: General
-  E.db.TXUI.wunderbar.general.backgroundTexture = TXUI.IsVanilla and "TX WorldState Score" or "WorldState Score"
-
   -- WunderBar: Modules
   E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
   E.db.TXUI.wunderbar.modules.LeftPanel[3] = UnitLevel("player") < 80 and "DataBar" or "Durability"
