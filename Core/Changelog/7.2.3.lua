@@ -16,6 +16,7 @@ TXUI.Changelog["7.2.3"] = {
     F.String.ElvUI() .. ": Adjust Arena/Boss/Party UnitFrame size, spacing and text positions",
     F.String.ElvUI() .. ": Remove Arena UnitFrame's PvP Spec Icon",
     F.String.ElvUI() .. ": Add class icon tag to Arena UnitFrames",
+    F.String.WindTools() .. ": Enable Extend Merchant Pages by default",
 
     "* Documentation",
     "Re-enable Gradient Mode by default",

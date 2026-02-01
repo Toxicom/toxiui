@@ -219,6 +219,13 @@ function PF:ElvUIAdditionalPrivate()
         },
       },
 
+      item = {
+        extendMerchantPages = {
+          enable = true,
+          numberOfPages = 2,
+        },
+      },
+
       -- Misc
       misc = {
         moveBlizzardFrames = true,
