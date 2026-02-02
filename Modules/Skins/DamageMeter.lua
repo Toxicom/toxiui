@@ -69,7 +69,7 @@ end
 
 -- Apply gradient colors to the status bar
 local function ApplyGradient(content, _, dR, dG, dB)
-  if not GR or not GR.db or not GR.isEnabled then return end
+  if not GR or not GR.db then return end
   if not E.db.TXUI.addons.damageMeter.gradients then return end
   if not content or not content.StatusBar then return end
 
@@ -102,8 +102,8 @@ local function SkinMeter(content)
     ApplySpecIcon(self)
   end) end
 
-  -- Hook for gradient mode (set up hooks based on setting, ApplyGradient checks if GR is ready)
-  if E.db.TXUI.addons.damageMeter.gradients and E.db.TXUI.themes.gradientMode.enabled then
+  -- Hook for gradient mode (works with any theme)
+  if E.db.TXUI.addons.damageMeter.gradients then
     local texture = content.StatusBar:GetStatusBarTexture()
     if texture and not DM:IsHooked(texture, "SetVertexColor") then
       -- Set gradient properties on the content frame
