@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local DM = TXUI:NewModule("SkinsDamageMeter", "AceHook-3.0")
+local S = E:GetModule("Skins")
 local M -- Misc module, initialized later
 local GR -- Gradients module, initialized later
 
@@ -52,11 +53,7 @@ local function ApplySpecIcon(content)
     texData = GetTexCoords("class_" .. content.classFilename, M.ClassIcons[content.classFilename], TEXTURE_CLASS)
   end
 
-  -- Priority 3: ToxiUI logo fallback
-  if not texData then
-    TXUI:LogDebug("DamageMeter: Unknown icon - specIconID: ", content.specIconID, " classFilename: ", content.classFilename)
-    texData = GetTexCoords("fallback", "0:64:320:384", TEXTURE_SPEC)
-  end
+  if not texData then return end
 
   content.Icon.Icon:SetTexture(texData.texture)
   content.Icon.Icon:SetTexCoord(texData.left, texData.right, texData.top, texData.bottom)
@@ -91,16 +88,15 @@ local function ApplyGradient(content, _, dR, dG, dB)
   GR:SetGradientColors(content, valueChanged, dR, dG, dB, false, colorFunc)
 end
 
--- Called for each meter bar after ElvUI's SkinMeter has run
+-- Hook into ElvUI's S:DamageMeter_HandleStatusBar for each meter bar
 local function SkinMeter(content)
   if not content or not content.StatusBar then return end
   if content.txuiHooked then return end
   content.txuiHooked = true
 
-  -- Hook UpdateIcon to apply ToxiUI spec icons on future updates
-  if content.UpdateIcon then hooksecurefunc(content, "UpdateIcon", function(self)
-    ApplySpecIcon(self)
-  end) end
+  -- Hook UpdateIcon for future updates and apply immediately
+  if content.UpdateIcon then hooksecurefunc(content, "UpdateIcon", ApplySpecIcon) end
+  ApplySpecIcon(content)
 
   -- Hook for gradient mode (works with any theme)
   if E.db.TXUI.addons.damageMeter.gradients then
@@ -112,28 +108,8 @@ local function SkinMeter(content)
 
       DM:RawHook(texture, "SetVertexColor", F.Event.GenerateClosure(ApplyGradient, content), true)
     end
+    ApplyGradient(content)
   end
-end
-
-local function HookScrollBox(scrollBox)
-  if not scrollBox or scrollBox.txuiHooked then return end
-
-  hooksecurefunc(scrollBox, "Update", function(sb)
-    sb:ForEachFrame(SkinMeter)
-  end)
-  scrollBox.txuiHooked = true
-
-  -- Process existing frames
-  scrollBox:ForEachFrame(SkinMeter)
-end
-
-local function HookSessionWindows()
-  if not _G.DamageMeter then return end
-
-  _G.DamageMeter:ForEachSessionWindow(function(window)
-    local ScrollBox = window.GetScrollBox and window:GetScrollBox()
-    if ScrollBox then HookScrollBox(ScrollBox) end
-  end)
 end
 
 function DM:Initialize()
@@ -147,22 +123,21 @@ function DM:Initialize()
     M = TXUI:GetModule("Misc")
     GR = TXUI:GetModule("ThemesGradients")
 
+    hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinMeter)
+
     F.Event.ContinueOnAddOnLoaded("Blizzard_DamageMeter", function()
-      -- Enable and show the damage meter first
-      local isDamageMeterEnabled = C_CVar.GetCVarBool("damageMeterEnabled")
-      if not isDamageMeterEnabled then C_CVar.SetCVar("damageMeterEnabled", "1") end
-      _G.DamageMeter:Show()
+      if not _G.DamageMeter then return end
 
-      -- Hook existing windows
-      HookSessionWindows()
-
-      -- Hook future windows
-      hooksecurefunc(_G.DamageMeter, "SetupSessionWindow", HookSessionWindows)
-
-      -- Delay refresh to ensure GR module is ready, then trigger all hooks
       E:Delay(0.1, function()
         _G.DamageMeter:RefreshLayout()
       end)
+
+      -- Enable and show the damage meter
+      local isDamageMeterEnabled = C_CVar.GetCVarBool("damageMeterEnabled")
+      if not isDamageMeterEnabled then
+        C_CVar.SetCVar("damageMeterEnabled", "1")
+        _G.DamageMeter:Show()
+      end
     end)
   end)
 
