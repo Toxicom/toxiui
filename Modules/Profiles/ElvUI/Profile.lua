@@ -9,13 +9,45 @@ function PF:BuildColorsProfile()
     unitframe = {
       colors = {},
     },
+    nameplates = {
+      colors = {},
+    },
   }
 
-  F.Table.Crush(pf, {
+  local castColor = F.Table.HexToRGB("#ffb300")
+  local castNoInterrupt = F.Table.HexToRGB("#808080")
+  local castInterruptedColor = F.Table.HexToRGB("#ff1a1a")
+
+  -- Power colors (for Dark and Normal modes)
+  -- Should be the same as colors in Core/Profile.lua
+  -- [I.Enum.GradientMode.Color.NORMAL]
+  local power = {
+    ALT_POWER = F.Table.HexToRGB("#2175d4"), -- swap alt
+    MANA = F.Table.HexToRGB("#35a4ff"), -- mana
+    RAGE = F.Table.HexToRGB("#ed3333"), -- rage
+    FOCUS = F.Table.HexToRGB("#db753b"), -- focus
+    ENERGY = F.Table.HexToRGB("#ffe169"), -- energy
+    RUNIC_POWER = F.Table.HexToRGB("#1cd6ff"), -- runic
+    PAIN = F.Table.HexToRGB("#f5f5f5"), -- pain
+    FURY = F.Table.HexToRGB("#e81ff5"), -- fury
+    LUNAR_POWER = F.Table.HexToRGB("#9c54ff"), -- astral
+    INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
+    MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
+  }
+
+  local classResources = {
+    ["DEATHKNIGHT"] = {
+      [1] = F.Table.HexToRGB("#e51a46"), -- Blood
+      [2] = F.Table.HexToRGB("#00acff"), -- Frost
+      [3] = F.Table.HexToRGB("#09d858"), -- Unholy
+    },
+  }
+
+  F.Table.Crush(pf.unitframe.colors, {
     -- UnitFrames Colors CastBar
-    castColor = F.Table.HexToRGB("#ffb300"),
-    castNoInterrupt = F.Table.HexToRGB("#808080"),
-    castInterruptedColor = F.Table.HexToRGB("#ff1a1a"),
+    castColor = castColor,
+    castNoInterrupt = castNoInterrupt,
+    castInterruptedColor = castInterruptedColor,
 
     -- UnitFrames Colors
     borderColor = F.Table.HexToRGB("#000000"),
@@ -46,30 +78,17 @@ function PF:BuildColorsProfile()
       },
     },
 
-    -- UnitFrame Colors Power (for Dark and Normal modes)
-    -- Should be the same as colors in Core/Profile.lua
-    -- [I.Enum.GradientMode.Color.NORMAL]
-    power = { -- RIGHT
-      ALT_POWER = F.Table.HexToRGB("#2175d4"), -- swap alt
-      MANA = F.Table.HexToRGB("#35a4ff"), -- mana
-      RAGE = F.Table.HexToRGB("#ed3333"), -- rage
-      FOCUS = F.Table.HexToRGB("#db753b"), -- focus
-      ENERGY = F.Table.HexToRGB("#ffe169"), -- energy
-      RUNIC_POWER = F.Table.HexToRGB("#1cd6ff"), -- runic
-      PAIN = F.Table.HexToRGB("#f5f5f5"), -- pain
-      FURY = F.Table.HexToRGB("#e81ff5"), -- fury
-      LUNAR_POWER = F.Table.HexToRGB("#9c54ff"), -- astral
-      INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
-      MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
-    },
+    power = power,
+    classResources = classResources,
+  })
 
-    classResources = {
-      ["DEATHKNIGHT"] = {
-        [1] = F.Table.HexToRGB("#e51a46"), -- Blood
-        [2] = F.Table.HexToRGB("#00acff"), -- Frost
-        [3] = F.Table.HexToRGB("#09d858"), -- Unholy
-      },
-    },
+  -- Nameplates Colors
+  F.Table.Crush(pf.nameplates.colors, {
+    castColor = castColor,
+    castNoInterruptColor = castNoInterrupt,
+    castInterruptedColor = castInterruptedColor,
+    power = power,
+    classResources = classResources,
   })
 
   return pf
@@ -92,7 +111,9 @@ function PF:BuildProfile()
     },
     general = {},
     movers = {},
-    nameplates = {},
+    nameplates = {
+      colors = {},
+    },
     tooltip = {},
     unitframe = {
       colors = {},
@@ -768,7 +789,10 @@ function PF:BuildProfile()
   })
 
   -- UnitFrames Colors
-  F.Table.Crush(pf.unitframe.colors, colors)
+  F.Table.Crush(pf.unitframe.colors, colors.unitframe.colors)
+
+  -- Nameplates Colors
+  F.Table.Crush(pf.nameplates.colors, colors.nameplates.colors)
 
   local customTextTemplate = {
     -- Options

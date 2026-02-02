@@ -18,6 +18,7 @@ TXUI.Changelog["7.2.3"] = {
     F.String.ElvUI() .. ": Remove Arena UnitFrame's PvP Spec Icon",
     F.String.ElvUI() .. ": Add class icon tag to Arena UnitFrames",
     F.String.ElvUI() .. ": Update Death Knight class resource colors",
+    F.String.ElvUI() .. ": Update Nameplate colors" .. F.String.Sublist("Now that we use nameplates, had to port over most of the UnitFrame colors to Nameplates"),
     F.String.WindTools() .. ": Enable Extend Merchant Pages by default",
     "Set nameplateSelectedScale CVar to 1.5 during installer/profile application",
 
