@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local CM = TXUI:NewModule("CooldownManager", "AceHook-3.0")
 
 local _G = _G
-local EventRegistry = EventRegistry
+local essentialViewer
 
 local frameNames = {
   "EssentialCooldownViewer",
@@ -40,7 +40,6 @@ function CM:SetParent()
 end
 
 function CM:SyncBarsWidth()
-  local essentialViewer = _G["EssentialCooldownViewer"]
   if not essentialViewer then return end
 
   local width = essentialViewer:GetWidth()
@@ -48,6 +47,10 @@ function CM:SyncBarsWidth()
 
   -- For when EssentialCooldownViewer is too small or no spells etc.
   if width <= 100 then width = F.Dpi(292) end -- default width
+
+  -- Skip if width hasn't changed
+  if self.cachedBarsWidth == width then return end
+  self.cachedBarsWidth = width
 
   -- Update ElvUI player power and classbar detached width
   local playerDB = E.db.unitframe.units.player
@@ -66,24 +69,18 @@ end
 function CM:EnableDynamicBarsWidth()
   if not self.Initialized then return end
 
-  -- Sync initially
-  self:SyncBarsWidth()
+  if not essentialViewer then return end
 
-  -- Register for CooldownViewerSettings changes via EventRegistry
-  if EventRegistry then
-    EventRegistry:RegisterCallback("CooldownViewerSettings.OnDataChanged", self.SyncBarsWidth, self)
-    self.dynamicBarsWidthRegistered = true
-  end
+  -- Hook OnSizeChanged to sync whenever frame width changes
+  if not self:IsHooked(essentialViewer, "OnSizeChanged") then self:SecureHookScript(essentialViewer, "OnSizeChanged", "SyncBarsWidth") end
 end
 
 function CM:DisableDynamicBarsWidth()
   if not self.Initialized then return end
 
-  -- Unregister from EventRegistry
-  if EventRegistry and self.dynamicBarsWidthRegistered then
-    EventRegistry:UnregisterCallback("CooldownViewerSettings.OnDataChanged", self)
-    self.dynamicBarsWidthRegistered = false
-  end
+  self.cachedBarsWidth = nil
+
+  if essentialViewer and self:IsHooked(essentialViewer, "OnSizeChanged") then self:Unhook(essentialViewer, "OnSizeChanged") end
 end
 
 function CM:Disable()
@@ -150,6 +147,8 @@ end
 function CM:Initialize()
   -- Don't init second time
   if self.Initialized then return end
+
+  essentialViewer = _G["EssentialCooldownViewer"]
 
   -- Register for updates
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
