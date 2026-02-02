@@ -148,6 +148,11 @@ function DM:Initialize()
     GR = TXUI:GetModule("ThemesGradients")
 
     F.Event.ContinueOnAddOnLoaded("Blizzard_DamageMeter", function()
+      -- Enable and show the damage meter first
+      local isDamageMeterEnabled = C_CVar.GetCVarBool("damageMeterEnabled")
+      if not isDamageMeterEnabled then C_CVar.SetCVar("damageMeterEnabled", "1") end
+      _G.DamageMeter:Show()
+
       -- Hook existing windows
       HookSessionWindows()
 
