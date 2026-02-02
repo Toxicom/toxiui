@@ -7,6 +7,7 @@ local ElvUF = E.oUF
 local AbbreviateNumbers = AbbreviateNumbers
 local floor = math.floor
 local format = string.format
+local strfind = strfind
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
 local ipairs = ipairs
 local match = string.match
@@ -108,6 +109,35 @@ function M:Tags()
 
     return FormatColorTag(name, unit)
   end)
+
+  -- Name tags with length variants
+  -- CREDITS TO ELVUI TEAM
+  for textFormat, length in pairs { veryshort = 5, short = 10, medium = 15, long = 20 } do
+    E:AddTag(format("tx:name:%s", textFormat), NAME_EVENTS, function(unit)
+      local name = UnitName(unit)
+      if E:NotSecretValue(name) and name then name = E:ShortenString(name, length) end
+
+      if not name then return end
+
+      if not dm.isEnabled then return name end
+
+      return FormatColorTag(name, unit)
+    end)
+
+    -- tx:name:abbrev:veryshort, tx:name:abbrev:short, tx:name:abbrev:medium, tx:name:abbrev:long
+    E:AddTag(format("tx:name:abbrev:%s", textFormat), NAME_EVENTS, function(unit)
+      local name = UnitName(unit)
+      if E:NotSecretValue(name) and name and strfind(name, "%s") then name = Abbrev(name) end
+
+      if E:NotSecretValue(name) and name then name = E:ShortenString(name, length) end
+
+      if not name then return end
+
+      if not dm.isEnabled then return name end
+
+      return FormatColorTag(name, unit)
+    end)
+  end
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
@@ -365,6 +395,16 @@ function M:Tags()
   -- Tag info: Names
   do
     E:AddTagInfo("tx:name", TagNames.NAMES, "Displays unit's name with " .. TXUI.Title .. " colors.")
+
+    local secret = F.String.Error("[SECRET]") .. " "
+    for textFormat, length in pairs { veryshort = 5, short = 10, medium = 15, long = 20 } do
+      E:AddTagInfo(format("tx:name:%s", textFormat), TagNames.NAMES, format(secret .. "Displays unit's name shortened to %d characters with %s colors.", length, TXUI.Title))
+      E:AddTagInfo(
+        format("tx:name:abbrev:%s", textFormat),
+        TagNames.NAMES,
+        format(secret .. "Displays unit's abbreviated name shortened to %d characters with %s colors.", length, TXUI.Title)
+      )
+    end
   end
 
   -- Tag info: Health
@@ -409,6 +449,14 @@ function M:Tags()
       ["tx:health:current:shortvalue:absorb"] = true,
 
       ["tx:name"] = true,
+      ["tx:name:veryshort"] = true,
+      ["tx:name:short"] = true,
+      ["tx:name:medium"] = true,
+      ["tx:name:long"] = true,
+      ["tx:name:abbrev:veryshort"] = true,
+      ["tx:name:abbrev:short"] = true,
+      ["tx:name:abbrev:medium"] = true,
+      ["tx:name:abbrev:long"] = true,
 
       ["tx:power:percent:nosign"] = true,
     }

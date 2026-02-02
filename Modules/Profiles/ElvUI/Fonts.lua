@@ -259,7 +259,7 @@ function PF:ElvUIFont()
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = F.FontSizeScaled(12),
-            format = "[name]",
+            format = "[name:abbrev:medium]",
           },
         },
 

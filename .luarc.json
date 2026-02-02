@@ -19520,7 +19520,8 @@
     "UnitHealthPercent",
     "UnitPowerPercent",
     "AbbreviateNumbers",
-    "EventRegistry"
+    "EventRegistry",
+    "Abbrev"
   ],
   "diagnostics.disable": ["deprecated", "inject-field", "undefined-field"]
 }
