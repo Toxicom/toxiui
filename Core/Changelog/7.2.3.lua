@@ -24,6 +24,7 @@ TXUI.Changelog["7.2.3"] = {
     "Re-enable Gradient Mode by default",
 
     "* Settings refactoring",
+    F.String.Retail() .. ": Update " .. TXUI.Title .. " installer text for " .. F.String.Details() .. ", indicating that it's no longer recommended",
 
     "* Development improvements",
     "Refactor F.Dpi(), F.Position() and their usage" --
