@@ -62,6 +62,14 @@ function PF:BuildColorsProfile()
       INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
       MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
     },
+
+    classResources = {
+      ["DEATHKNIGHT"] = {
+        [1] = F.Table.HexToRGB("#e51a46"), -- Blood
+        [2] = F.Table.HexToRGB("#00acff"), -- Frost
+        [3] = F.Table.HexToRGB("#09d858"), -- Unholy
+      },
+    },
   })
 
   return pf
