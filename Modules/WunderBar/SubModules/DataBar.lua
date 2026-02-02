@@ -96,7 +96,7 @@ function DB:OnEvent(event)
       self.noData = false
 
       if C_Reputation then
-        if C_Reputation.IsFactionParagon and C_Reputation.IsFactionParagon(factionID) then
+        if C_Reputation.IsFactionParagonForCurrentPlayer and C_Reputation.IsFactionParagonForCurrentPlayer(factionID) then
           local currentValue, threshold, _, hasRewardPending = C_Reputation.GetFactionParagonInfo(factionID)
           minValue, maxValue = 0, threshold
           curValue = currentValue % threshold
