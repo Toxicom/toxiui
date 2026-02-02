@@ -2384,6 +2384,7 @@ function PF:ElvUIProfilePrivate()
 
       blizzard = {
         weeklyRewards = false,
+        damageMeter = true,
       },
     },
   })

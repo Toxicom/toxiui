@@ -121,6 +121,8 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       if F.IsAddOnEnabled("CooldownManagerCentered") then return requirement end
     elseif requirement == I.Enum.Requirements.DETAILS_ADDON_DISABLED then
       if F.IsAddOnEnabled("Details") then return requirement end
+    elseif requirement == I.Enum.Requirements.ELVUI_DAMAGE_METER_SKIN_ENABLED then
+      if not (E.private.skins.blizzard.enable and E.private.skins.blizzard.damageMeter) then return requirement end
     end
   end
 

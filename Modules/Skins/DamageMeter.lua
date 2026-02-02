@@ -116,7 +116,8 @@ function DM:Initialize()
   if self.Initialized then return end
 
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", function()
-    -- Check if module is enabled
+    -- Check requirements and if module is enabled
+    if not TXUI:HasRequirements(I.Requirements.DamageMeter) then return end
     if not E.db.TXUI.addons.damageMeter.enabled then return end
 
     -- Get modules now that everything is loaded

@@ -173,6 +173,7 @@ I.Requirements = {
   },
   ["DamageMeter"] = {
     I.Enum.Requirements.DETAILS_ADDON_DISABLED,
+    I.Enum.Requirements.ELVUI_DAMAGE_METER_SKIN_ENABLED,
   },
 }
 

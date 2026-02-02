@@ -66,7 +66,7 @@ function O:Skins_DamageMeter()
         return self:GetEnableName(E.db.TXUI.addons.damageMeter.icons, iconsGroup)
       end,
       disabled = function()
-        return not E.db.TXUI.addons.damageMeter.enabled
+        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
       end,
       get = function(_)
         return E.db.TXUI.addons.damageMeter.icons
@@ -97,7 +97,7 @@ function O:Skins_DamageMeter()
         return self:GetEnableName(E.db.TXUI.addons.damageMeter.gradients, gradientsGroup)
       end,
       disabled = function()
-        return not E.db.TXUI.addons.damageMeter.enabled
+        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
       end,
       get = function(_)
         return E.db.TXUI.addons.damageMeter.gradients
