@@ -3,6 +3,7 @@ local CM = TXUI:NewModule("CooldownManager", "AceHook-3.0")
 
 local _G = _G
 local essentialViewer
+local InCombatLockdown = InCombatLockdown
 
 local frameNames = {
   "EssentialCooldownViewer",
@@ -41,6 +42,7 @@ end
 
 function CM:SyncBarsWidth()
   if not essentialViewer then return end
+  if InCombatLockdown() then return end
 
   local width = essentialViewer:GetWidth()
   if not width or width <= 0 then return end

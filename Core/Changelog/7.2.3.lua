@@ -11,6 +11,7 @@ TXUI.Changelog["7.2.3"] = {
 
     "* Bug fixes",
     F.String.Retail() .. ": Fix WunderBar paragon faction tracking",
+    F.String.Retail() .. ": Do not sync CDM bars width in combat",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Use the new reverse class icon tag for Target and Focus UnitFrames",
