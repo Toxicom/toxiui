@@ -108,6 +108,77 @@ function O:Skins_DamageMeter()
       end,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Header Fade
+  do
+    local headerFadeGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Header Fade",
+    }, {
+      name = "Fade the header (dropdowns and backdrop) based on mouse hover.\n\n",
+    }, I.Requirements.DamageMeter).args
+
+    headerFadeGroup.headerFade = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Fade the header when not hovering over the damage meter.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.damageMeter.headerFade, headerFadeGroup)
+      end,
+      disabled = function()
+        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.headerFade
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.headerFade = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    headerFadeGroup.headerFadeMinAlpha = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Minimum Alpha",
+      desc = "Alpha when not hovering over the damage meter.",
+      min = 0,
+      max = 1,
+      step = 0.05,
+      disabled = function()
+        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled or not E.db.TXUI.addons.damageMeter.headerFade
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.headerFadeMinAlpha
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.headerFadeMinAlpha = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    headerFadeGroup.headerFadeMaxAlpha = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Maximum Alpha",
+      desc = "Alpha when hovering over the damage meter.",
+      min = 0,
+      max = 1,
+      step = 0.05,
+      disabled = function()
+        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled or not E.db.TXUI.addons.damageMeter.headerFade
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.headerFadeMaxAlpha
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.headerFadeMaxAlpha = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
 end
 
 if TXUI.IsRetail then O:AddCallback("Skins_DamageMeter") end

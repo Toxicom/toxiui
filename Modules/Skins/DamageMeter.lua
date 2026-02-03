@@ -88,6 +88,37 @@ local function ApplyGradient(content, _, dR, dG, dB)
   GR:SetGradientColors(content, valueChanged, dR, dG, dB, false, colorFunc)
 end
 
+-- Set alpha on all header elements
+local function SetHeaderAlpha(window, alpha)
+  if window.headerBackdrop then window.headerBackdrop:SetAlpha(alpha) end
+  if window.DamageMeterTypeDropdown then window.DamageMeterTypeDropdown:SetAlpha(alpha) end
+  if window.SessionDropdown then window.SessionDropdown:SetAlpha(alpha) end
+  if window.SettingsDropdown then window.SettingsDropdown:SetAlpha(alpha) end
+end
+
+local function SkinHeader(window)
+  if not window or not window.headerBackdrop then return end
+  if not E.db.TXUI.addons.damageMeter.headerFade then return end
+  if window.txuiHeaderHooked then return end
+  window.txuiHeaderHooked = true
+
+  local db = E.db.TXUI.addons.damageMeter
+
+  -- Set initial alpha to hidden
+  SetHeaderAlpha(window, db.headerFadeMinAlpha)
+
+  -- OnEnter: show header at full alpha
+  window:HookScript("OnEnter", function()
+    SetHeaderAlpha(window, db.headerFadeMaxAlpha)
+  end)
+
+  -- OnLeave: fade header to low alpha (only if mouse truly left the window)
+  window:HookScript("OnLeave", function()
+    if window:IsMouseOver() then return end
+    SetHeaderAlpha(window, db.headerFadeMinAlpha)
+  end)
+end
+
 -- Hook into ElvUI's S:DamageMeter_HandleStatusBar for each meter bar
 local function SkinMeter(content)
   if not content or not content.StatusBar then return end
@@ -128,6 +159,11 @@ function DM:Initialize()
 
     F.Event.ContinueOnAddOnLoaded("Blizzard_DamageMeter", function()
       if not _G.DamageMeter then return end
+
+      -- Apply header mouseover to existing session windows
+      _G.DamageMeter:ForEachSessionWindow(function(window)
+        SkinHeader(window)
+      end)
 
       E:Delay(0.1, function()
         _G.DamageMeter:RefreshLayout()
