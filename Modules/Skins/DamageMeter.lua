@@ -106,9 +106,7 @@ local function AnimateAlpha(frame, alpha)
   if not frame or not frame.txuiFadeAnim then return end
 
   -- Stop any running animation
-  if frame.txuiFadeAnim:IsPlaying() then
-    frame.txuiFadeAnim:Stop()
-  end
+  if frame.txuiFadeAnim:IsPlaying() then frame.txuiFadeAnim:Stop() end
 
   frame.txuiFadeAnim:SetChange(alpha)
   frame.txuiFadeAnim:Play()
