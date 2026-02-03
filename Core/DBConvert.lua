@@ -58,6 +58,12 @@ function TXUI:DBConvert()
     end
   end
 
+  -- If both gradientMode and darkMode are enabled, disable gradientMode
+  if db.themes.gradientMode.enabled and db.themes.darkMode.enabled then
+    db.themes.gradientMode.enabled = false
+    self:LogDebug("DBConvert > Disabled gradientMode because darkMode is enabled")
+  end
+
   -- Saturation Boost convert
   if db.themes.gradientMode.saturationBoost == false or db.themes.gradientMode.saturationBoost == true then
     -- Store old value
