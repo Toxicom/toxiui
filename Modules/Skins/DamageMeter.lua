@@ -88,7 +88,41 @@ local function ApplyGradient(content, _, dR, dG, dB)
   GR:SetGradientColors(content, valueChanged, dR, dG, dB, false, colorFunc)
 end
 
--- Set alpha on all header elements
+-- Animation duration for header fade
+local HEADER_FADE_DURATION = 0.3
+local HEADER_FADE_EASING = "out-quintic"
+
+-- Setup fade animation for a single frame
+local function SetupFadeAnimation(frame)
+  if not frame or frame.txuiFadeAnim then return end
+
+  frame.txuiFadeAnim = TXUI:CreateAnimationGroup(frame):CreateAnimation("Fade")
+  frame.txuiFadeAnim:SetDuration(HEADER_FADE_DURATION)
+  frame.txuiFadeAnim:SetEasing(HEADER_FADE_EASING)
+end
+
+-- Animate alpha on a single frame
+local function AnimateAlpha(frame, alpha)
+  if not frame or not frame.txuiFadeAnim then return end
+
+  -- Stop any running animation
+  if frame.txuiFadeAnim:IsPlaying() then
+    frame.txuiFadeAnim:Stop()
+  end
+
+  frame.txuiFadeAnim:SetChange(alpha)
+  frame.txuiFadeAnim:Play()
+end
+
+-- Animate alpha on all header elements
+local function AnimateHeaderAlpha(window, alpha)
+  if window.headerBackdrop then AnimateAlpha(window.headerBackdrop, alpha) end
+  if window.DamageMeterTypeDropdown then AnimateAlpha(window.DamageMeterTypeDropdown, alpha) end
+  if window.SessionDropdown then AnimateAlpha(window.SessionDropdown, alpha) end
+  if window.SettingsDropdown then AnimateAlpha(window.SettingsDropdown, alpha) end
+end
+
+-- Set alpha immediately on all header elements (no animation)
 local function SetHeaderAlpha(window, alpha)
   if window.headerBackdrop then window.headerBackdrop:SetAlpha(alpha) end
   if window.DamageMeterTypeDropdown then window.DamageMeterTypeDropdown:SetAlpha(alpha) end
@@ -104,18 +138,24 @@ local function SkinHeader(window)
 
   local db = E.db.TXUI.addons.damageMeter
 
-  -- Set initial alpha to hidden
+  -- Setup fade animations for each header element
+  SetupFadeAnimation(window.headerBackdrop)
+  SetupFadeAnimation(window.DamageMeterTypeDropdown)
+  SetupFadeAnimation(window.SessionDropdown)
+  SetupFadeAnimation(window.SettingsDropdown)
+
+  -- Set initial alpha to hidden (no animation on initial setup)
   SetHeaderAlpha(window, db.headerFadeMinAlpha)
 
-  -- OnEnter: show header at full alpha
+  -- OnEnter: animate header to full alpha
   window:HookScript("OnEnter", function()
-    SetHeaderAlpha(window, db.headerFadeMaxAlpha)
+    AnimateHeaderAlpha(window, db.headerFadeMaxAlpha)
   end)
 
-  -- OnLeave: fade header to low alpha (only if mouse truly left the window)
+  -- OnLeave: animate header to low alpha (only if mouse truly left the window)
   window:HookScript("OnLeave", function()
     if window:IsMouseOver() then return end
-    SetHeaderAlpha(window, db.headerFadeMinAlpha)
+    AnimateHeaderAlpha(window, db.headerFadeMinAlpha)
   end)
 end
 
