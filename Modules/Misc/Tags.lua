@@ -24,6 +24,9 @@ local UnitPowerMax = UnitPowerMax
 local UnitPowerPercent = UnitPowerPercent
 local UnitReaction = UnitReaction
 
+local utf8len = string.utf8len
+local utf8sub = string.utf8sub
+
 function M:_TagsUpdate()
   if not F.IsTXUIProfile() then return end
 
@@ -77,6 +80,53 @@ end
 local function GetLevelString(level)
   if level == -1 or not level or level == "" then return "??" end
   return tostring(level)
+end
+
+function M:ReplaceAndColorRest(name, strMatch, colorFunc)
+  if strMatch and strMatch ~= "" then
+    -- Convert both strings to lowercase for case-insensitive matching
+    local lowerName = name:lower()
+    local lowerMatch = strMatch:lower()
+
+    -- Find the start position of the match
+    local startPos, endPos = lowerName:find(lowerMatch, 1, true)
+
+    if startPos then
+      -- Keep the matched string white
+      local whiteMatch = "|cffffffff" .. name:sub(startPos, endPos) .. "|r"
+      local nameBefore = name:sub(1, startPos - 1)
+      local nameAfter = name:sub(endPos + 1)
+
+      -- Color the rest of the string
+      local coloredNameBefore = colorFunc(nameBefore)
+      local coloredNameAfter = colorFunc(nameAfter)
+
+      return coloredNameBefore .. whiteMatch .. coloredNameAfter
+    end
+  end
+
+  -- If no match is found, split the name and color the second half
+  local spaceCount = select(2, name:gsub(" ", ""))
+  local splitPoint = floor(utf8len(name) / 2) + spaceCount
+  local nameHighlight = utf8sub(name, 1, splitPoint)
+  local nameRest = utf8sub(name, splitPoint + 1)
+  return nameHighlight .. colorFunc(nameRest)
+end
+
+function M:SplitAndColorName(name, unit, strMatch, class)
+  -- Define the color function for class or reaction coloring
+  local function colorFunc(text)
+    if UnitIsPlayer(unit) then
+      local cs = ElvUF.colors.class[class]
+      return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. text) or ("|cffcccccc" .. text)
+    else
+      local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
+      return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. text) or ("|cffcccccc" .. text)
+    end
+  end
+
+  -- Replace and color the non-matched part or split and color if no match
+  return self:ReplaceAndColorRest(name, strMatch, colorFunc)
 end
 
 function M:Tags()
@@ -135,6 +185,38 @@ function M:Tags()
 
       if not dm.isEnabled then return name end
 
+      return FormatColorTag(name, unit)
+    end)
+
+    E:AddTag(format("tx:name:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
+      local name = UnitName(unit)
+      if not name then return end
+
+      local _, unitClass = UnitClass(unit)
+
+      if E:NotSecretValue(name) then
+        name = E:ShortenString(name, length)
+        return self:SplitAndColorName(name, unit, strMatch, unitClass)
+      end
+
+      if not dm.isEnabled then return name end
+      return FormatColorTag(name, unit)
+    end)
+
+    E:AddTag(format("tx:name:abbrev:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
+      local name = UnitName(unit)
+      if not name then return end
+
+      local _, unitClass = UnitClass(unit)
+
+      if E:NotSecretValue(name) then
+        if strfind(name, "%s") then name = Abbrev(name) end
+        name = E:ShortenString(name, length)
+        return self:SplitAndColorName(name, unit, strMatch, unitClass)
+      end
+
+      -- Secret value: just color without split
+      if not dm.isEnabled then return name end
       return FormatColorTag(name, unit)
     end)
   end
@@ -398,11 +480,37 @@ function M:Tags()
 
     local secret = F.String.Error("[SECRET]") .. " "
     for textFormat, length in pairs { veryshort = 5, short = 10, medium = 15, long = 20 } do
-      E:AddTagInfo(format("tx:name:%s", textFormat), TagNames.NAMES, format(secret .. "Displays unit's name shortened to %d characters with %s colors.", length, TXUI.Title))
+      E:AddTagInfo(
+        format("tx:name:%s", textFormat),
+        TagNames.NAMES,
+        secret .. F.String.ToxiUI("[BASIC]") .. " Displays the name of the unit with " .. TXUI.Title .. " colors. (limited to " .. length .. " letters)"
+      )
       E:AddTagInfo(
         format("tx:name:abbrev:%s", textFormat),
         TagNames.NAMES,
-        format(secret .. "Displays unit's abbreviated name shortened to %d characters with %s colors.", length, TXUI.Title)
+        secret .. F.String.ToxiUI("[BASIC / ABBREV]") .. " Displays the name of the unit with abbreviation and " .. TXUI.Title .. " colors. (limited to " .. length .. " letters)"
+      )
+      E:AddTagInfo(
+        format("tx:name:%s:split", textFormat),
+        TagNames.NAMES,
+        secret
+          .. F.String.ToxiUI("[SPLIT]")
+          .. " Displays the name of the unit split in |cffffffffwhite|r and "
+          .. F.String.Class("class")
+          .. " color. Can use |cfff4f4f4{stringMatch}|r to split. (limited to "
+          .. length
+          .. " letters)"
+      )
+      E:AddTagInfo(
+        format("tx:name:abbrev:%s:split", textFormat),
+        TagNames.NAMES,
+        secret
+          .. F.String.ToxiUI("[SPLIT / ABBREV]")
+          .. " Displays the name of the unit with abbreviation split in |cffffffffwhite|r and "
+          .. F.String.Class("class")
+          .. " color. Can use |cfff4f4f4{stringMatch}|r to split. (limited to "
+          .. length
+          .. " letters)"
       )
     end
   end
@@ -457,6 +565,14 @@ function M:Tags()
       ["tx:name:abbrev:short"] = true,
       ["tx:name:abbrev:medium"] = true,
       ["tx:name:abbrev:long"] = true,
+      ["tx:name:veryshort:split"] = true,
+      ["tx:name:short:split"] = true,
+      ["tx:name:medium:split"] = true,
+      ["tx:name:long:split"] = true,
+      ["tx:name:abbrev:veryshort:split"] = true,
+      ["tx:name:abbrev:short:split"] = true,
+      ["tx:name:abbrev:medium:split"] = true,
+      ["tx:name:abbrev:long:split"] = true,
 
       ["tx:power:percent:nosign"] = true,
     }

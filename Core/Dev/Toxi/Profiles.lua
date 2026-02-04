@@ -6,6 +6,8 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 
 local SetCVar = SetCVar
 local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet", "lfg" }
+local splitUnitframes = { "player", "focus", "targettarget", "pet" }
+local splitAbbrevUnitframes = { "party", "target" }
 
 function T:SetupCvars()
   -- if E.TimerunningID and UnitLevel("player") < 80 then
@@ -50,6 +52,14 @@ function T:SetupProfile()
 
   -- ElvUI
   E.db.general.taintLog = false
+
+  -- ElvUI: UnitFrames
+  for _, unit in ipairs(splitUnitframes) do
+    E.db.unitframe.units[unit].customTexts["toxiui:name"].text_format = "[tx:name:medium:split{Toxi}]"
+  end
+  for _, unit in ipairs(splitAbbrevUnitframes) do
+    E.db.unitframe.units[unit].customTexts["toxiui:name"].text_format = "[tx:name:abbrev:medium:split{Toxi}]"
+  end
 
   -- WindTools
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then

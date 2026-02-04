@@ -824,7 +824,7 @@ function PF:BuildProfile()
       -- UnitFrame Player Custom Texts Name
       ["toxiui:name"] = createCustomText({}, {
         attachTextTo = "Health",
-        text_format = "[tx:name:medium]",
+        text_format = "[tx:name:medium:split]",
         xOffset = F.Dpi(6),
         yOffset = F.Dpi(32),
       }),
@@ -1046,7 +1046,7 @@ function PF:BuildProfile()
         -- UnitFrame Target Custom Texts Name
         ["toxiui:name"] = createCustomText({}, {
           justifyH = "RIGHT",
-          text_format = "[tx:name:abbrev:medium]",
+          text_format = "[tx:name:abbrev:medium:split]",
           xOffset = F.Dpi(-6),
           yOffset = F.Dpi(32),
         }),
@@ -1215,7 +1215,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Pet Custom Texts Name
         ["toxiui:name"] = createCustomText({}, {
-          text_format = "[tx:name:short]",
+          text_format = "[tx:name:short:split]",
           xOffset = F.Dpi(0),
           yOffset = F.Dpi(18),
           justifyH = "CENTER",
@@ -1288,7 +1288,7 @@ function PF:BuildProfile()
     customTexts = {
       -- UnitFrame Target-Target Custom Texts Name
       ["toxiui:name"] = createCustomText({}, {
-        text_format = "[tx:name:short]",
+        text_format = "[tx:name:short:split]",
         xOffset = F.Dpi(0),
         yOffset = F.Dpi(18),
         justifyH = "CENTER",
@@ -1328,7 +1328,7 @@ function PF:BuildProfile()
       -- UnitFrame Focus Custom Texts Name
       ["toxiui:name"] = createCustomText({}, {
         justifyH = "RIGHT",
-        text_format = "[tx:name:medium]",
+        text_format = "[tx:name:medium:split]",
         xOffset = F.Dpi(-6),
         yOffset = F.Dpi(32),
       }),
@@ -1477,7 +1477,7 @@ function PF:BuildProfile()
       customTexts = {
         -- UnitFrame Party Custom Texts Name
         ["toxiui:name"] = createCustomText({}, {
-          text_format = "[tx:name:medium]",
+          text_format = "[tx:name:abbrev:medium:split]",
           xOffset = F.Dpi(6),
           yOffset = F.Dpi(32),
         }),
@@ -1901,7 +1901,7 @@ function PF:BuildProfile()
       -- UnitFrame Arena Custom Texts Name
       ["toxiui:name"] = createCustomText({}, {
         justifyH = "RIGHT",
-        text_format = "[tx:name:medium]",
+        text_format = "[tx:name:medium:split]",
         xOffset = F.Dpi(-6),
         yOffset = F.Dpi(32),
       }),
@@ -2015,7 +2015,7 @@ function PF:BuildProfile()
       -- UnitFrame Boss Custom Texts Name
       ["toxiui:name"] = createCustomText({}, {
         justifyH = "RIGHT",
-        text_format = "[tx:name:abbrev:medium]",
+        text_format = "[tx:name:abbrev:medium:split]",
         xOffset = F.Dpi(-6),
         yOffset = F.Dpi(32),
       }),

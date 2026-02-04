@@ -21,7 +21,7 @@ TXUI.Changelog["7.2.3"] = {
     F.String.ElvUI() .. ": Add class icon tag to Arena UnitFrames",
     F.String.ElvUI() .. ": Update Death Knight class resource colors",
     F.String.ElvUI() .. ": Update Nameplate colors" .. F.String.Sublist("Now that we use nameplates, had to port over most of the UnitFrame colors to Nameplates"),
-    F.String.ElvUI() .. ": Bring back abbreviated and shortened name tags secret-safe, meaning they will not abbreviate or shorten in instances",
+    F.String.ElvUI() .. ": Bring back SHORTENED, ABBREVIATED, SPLIT name tags secret-safe, meaning they will not abbreviate, shorten or split on secret units",
     F.String.ElvUI() .. ": Update UnitFrame and Nameplate texts with 'new' tags",
     F.String.WindTools() .. ": Enable Extend Merchant Pages by default",
     "Set nameplateSelectedScale CVar to 1.5 during installer/profile application",
