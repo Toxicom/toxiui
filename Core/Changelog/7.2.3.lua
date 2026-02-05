@@ -29,6 +29,7 @@ TXUI.Changelog["7.2.3"] = {
 
     "* Documentation",
     "Re-enable Gradient Mode by default",
+    F.String.MinElv("15.03"),
 
     "* Settings refactoring",
     F.String.Retail() .. ": Update " .. TXUI.Title .. " installer text for " .. F.String.Details() .. ", indicating that it's no longer recommended",
