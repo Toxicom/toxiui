@@ -18,5 +18,6 @@ TXUI.Changelog["7.2.4"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Create table for Retail Specialization IDs for easier referencing",
   },
 }

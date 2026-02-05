@@ -35,103 +35,117 @@ M.ClassIcons = {
 }
 
 M.SpecIcons = {
-  -- Retail
-  [0] = M:GetCoordinates(8, 8), -- Unknown
-  [62] = M:GetCoordinates(3, 2), -- Mage Arcane
-  [63] = M:GetCoordinates(4, 2), -- Mage Fire
-  [64] = M:GetCoordinates(5, 2), -- Mage Frost
-  [65] = M:GetCoordinates(1, 3), -- Paladin Holy
-  [66] = M:GetCoordinates(2, 3), -- Paladin Protection
-  [70] = M:GetCoordinates(3, 3), -- Paladin Retribution
-  [71] = M:GetCoordinates(8, 4), -- Warrior Arms
-  [72] = M:GetCoordinates(1, 5), -- Warrior Fury
-  [73] = M:GetCoordinates(2, 5), -- Warrior Protection
-  [102] = M:GetCoordinates(4, 1), -- Druid Balance
-  [103] = M:GetCoordinates(5, 1), -- Druid Feral
-  [104] = M:GetCoordinates(6, 1), -- Druid Guardian
-  [105] = M:GetCoordinates(7, 1), -- Druid Restoration
-  [250] = M:GetCoordinates(1, 1), -- Death Knight Blood
-  [251] = M:GetCoordinates(2, 1), -- Death Knight Frost
-  [252] = M:GetCoordinates(3, 1), -- Death Knight Unholy
-  [253] = M:GetCoordinates(8, 1), -- Hunter Beast Master
-  [254] = M:GetCoordinates(1, 2), -- Hunter Marksmanship
-  [255] = M:GetCoordinates(2, 2), -- Hunter Survival
-  [256] = M:GetCoordinates(4, 3), -- Priest Discipline
-  [257] = M:GetCoordinates(5, 3), -- Priest Holy
-  [258] = M:GetCoordinates(6, 3), -- Priest Shadow
-  [259] = M:GetCoordinates(7, 3), -- Rogue Assassination
-  [260] = M:GetCoordinates(8, 3), -- Rogue Outlaw
-  [261] = M:GetCoordinates(1, 4), -- Rogue Subtlety
-  [262] = M:GetCoordinates(2, 4), -- Shaman Elemental
-  [263] = M:GetCoordinates(3, 4), -- Shaman Enhancement
-  [264] = M:GetCoordinates(4, 4), -- Shaman Restoration
-  [265] = M:GetCoordinates(5, 4), -- Warlock Affliction
-  [266] = M:GetCoordinates(6, 4), -- Warlock Demonology
-  [267] = M:GetCoordinates(7, 4), -- Warlock Destruction
-  [268] = M:GetCoordinates(6, 2), -- Monk Brewmaster
-  [269] = M:GetCoordinates(8, 2), -- Monk Windwalker
-  [270] = M:GetCoordinates(7, 2), -- Monk Mistweaver
-  [577] = M:GetCoordinates(3, 5), -- Demon Hunter Havoc
-  [581] = M:GetCoordinates(4, 5), -- Demon Hunter Vengeance
-  [1467] = M:GetCoordinates(5, 5), -- Evoker Devastation
-  [1468] = M:GetCoordinates(6, 5), -- Evoker Preservation
-  [1473] = M:GetCoordinates(7, 5), -- Evoker Augmentation
+  -- Unknown
+  [0] = M:GetCoordinates(8, 8),
+
+  [I.Specs.DeathKnight.Blood] = M:GetCoordinates(1, 1),
+  [I.Specs.DeathKnight.Frost] = M:GetCoordinates(2, 1),
+  [I.Specs.DeathKnight.Unholy] = M:GetCoordinates(3, 1),
+
+  [I.Specs.DemonHunter.Havoc] = M:GetCoordinates(3, 5),
+  [I.Specs.DemonHunter.Vengeance] = M:GetCoordinates(4, 5),
+  [I.Specs.DemonHunter.Devourer] = M:GetCoordinates(3, 5), -- @todo: add Devourer DH icon
+
+  [I.Specs.Druid.Balance] = M:GetCoordinates(4, 1),
+  [I.Specs.Druid.Feral] = M:GetCoordinates(5, 1),
+  [I.Specs.Druid.Guardian] = M:GetCoordinates(6, 1),
+  [I.Specs.Druid.Restoration] = M:GetCoordinates(7, 1),
+
+  [I.Specs.Evoker.Devastation] = M:GetCoordinates(5, 5),
+  [I.Specs.Evoker.Preservation] = M:GetCoordinates(6, 5),
+  [I.Specs.Evoker.Augmentation] = M:GetCoordinates(7, 5),
+
+  [I.Specs.Hunter.BeastMastery] = M:GetCoordinates(8, 1),
+  [I.Specs.Hunter.Marksmanship] = M:GetCoordinates(1, 2),
+  [I.Specs.Hunter.Survival] = M:GetCoordinates(2, 2),
+
+  [I.Specs.Mage.Arcane] = M:GetCoordinates(3, 2),
+  [I.Specs.Mage.Fire] = M:GetCoordinates(4, 2),
+  [I.Specs.Mage.Frost] = M:GetCoordinates(5, 2),
+
+  [I.Specs.Monk.Brewmaster] = M:GetCoordinates(6, 2),
+  [I.Specs.Monk.Mistweaver] = M:GetCoordinates(7, 2),
+  [I.Specs.Monk.Windwalker] = M:GetCoordinates(8, 2),
+
+  [I.Specs.Paladin.Holy] = M:GetCoordinates(1, 3),
+  [I.Specs.Paladin.Protection] = M:GetCoordinates(2, 3),
+  [I.Specs.Paladin.Retribution] = M:GetCoordinates(3, 3),
+
+  [I.Specs.Priest.Discipline] = M:GetCoordinates(4, 3),
+  [I.Specs.Priest.Holy] = M:GetCoordinates(5, 3),
+  [I.Specs.Priest.Shadow] = M:GetCoordinates(6, 3),
+
+  [I.Specs.Rogue.Assassination] = M:GetCoordinates(7, 3),
+  [I.Specs.Rogue.Outlaw] = M:GetCoordinates(8, 3),
+  [I.Specs.Rogue.Subtlety] = M:GetCoordinates(1, 4),
+
+  [I.Specs.Shaman.Elemental] = M:GetCoordinates(2, 4),
+  [I.Specs.Shaman.Enhancement] = M:GetCoordinates(3, 4),
+  [I.Specs.Shaman.Restoration] = M:GetCoordinates(4, 4),
+
+  [I.Specs.Warlock.Affliction] = M:GetCoordinates(5, 4),
+  [I.Specs.Warlock.Demonology] = M:GetCoordinates(6, 4),
+  [I.Specs.Warlock.Destruction] = M:GetCoordinates(7, 4),
+
+  [I.Specs.Warrior.Arms] = M:GetCoordinates(8, 4),
+  [I.Specs.Warrior.Fury] = M:GetCoordinates(1, 5),
+  [I.Specs.Warrior.Protection] = M:GetCoordinates(2, 5),
 }
 
 -- Blizzard specIconID (texture file ID) -> ToxiUI specID mapping
 M.BlizzardToSpecID = {
   -- Death Knight
-  [135770] = 250, -- Blood
-  [135773] = 251, -- Frost
-  [135775] = 252, -- Unholy
+  [135770] = I.Specs.DeathKnight.Blood,
+  [135773] = I.Specs.DeathKnight.Frost,
+  [135775] = I.Specs.DeathKnight.Unholy,
   -- Demon Hunter
-  [1247264] = 577, -- Havoc
-  [1247265] = 581, -- Vengeance
+  [1247264] = I.Specs.DemonHunter.Havoc,
+  [1247265] = I.Specs.DemonHunter.Vengeance,
   -- Druid
-  [136096] = 102, -- Balance
-  [132115] = 103, -- Feral
-  [132276] = 104, -- Guardian
-  [136041] = 105, -- Restoration
+  [136096] = I.Specs.Druid.Balance,
+  [132115] = I.Specs.Druid.Feral,
+  [132276] = I.Specs.Druid.Guardian,
+  [136041] = I.Specs.Druid.Restoration,
   -- Evoker
-  [4511811] = 1467, -- Devastation
-  [4511812] = 1468, -- Preservation
-  [5198700] = 1473, -- Augmentation
+  [4511811] = I.Specs.Evoker.Devastation,
+  [4511812] = I.Specs.Evoker.Preservation,
+  [5198700] = I.Specs.Evoker.Augmentation,
   -- Hunter
-  [461112] = 253, -- Beast Mastery
-  [236179] = 254, -- Marksmanship
-  [461113] = 255, -- Survival
+  [461112] = I.Specs.Hunter.BeastMastery,
+  [236179] = I.Specs.Hunter.Marksmanship,
+  [461113] = I.Specs.Hunter.Survival,
   -- Mage
-  [135932] = 62, -- Arcane
-  [135810] = 63, -- Fire
-  [135846] = 64, -- Frost
+  [135932] = I.Specs.Mage.Arcane,
+  [135810] = I.Specs.Mage.Fire,
+  [135846] = I.Specs.Mage.Frost,
   -- Monk
-  [608951] = 268, -- Brewmaster
-  [608952] = 270, -- Mistweaver
-  [608953] = 269, -- Windwalker
+  [608951] = I.Specs.Monk.Brewmaster,
+  [608952] = I.Specs.Monk.Mistweaver,
+  [608953] = I.Specs.Monk.Windwalker,
   -- Paladin
-  [135920] = 65, -- Holy
-  [236264] = 66, -- Protection
-  [135873] = 70, -- Retribution
+  [135920] = I.Specs.Paladin.Holy,
+  [236264] = I.Specs.Paladin.Protection,
+  [135873] = I.Specs.Paladin.Retribution,
   -- Priest
-  [135940] = 256, -- Discipline
-  [237542] = 257, -- Holy
-  [136207] = 258, -- Shadow
+  [135940] = I.Specs.Priest.Discipline,
+  [237542] = I.Specs.Priest.Holy,
+  [136207] = I.Specs.Priest.Shadow,
   -- Rogue
-  [236270] = 259, -- Assassination
-  [236286] = 260, -- Outlaw
-  [132320] = 261, -- Subtlety
+  [236270] = I.Specs.Rogue.Assassination,
+  [236286] = I.Specs.Rogue.Outlaw,
+  [132320] = I.Specs.Rogue.Subtlety,
   -- Shaman
-  [136048] = 262, -- Elemental
-  [237581] = 263, -- Enhancement
-  [136052] = 264, -- Restoration
+  [136048] = I.Specs.Shaman.Elemental,
+  [237581] = I.Specs.Shaman.Enhancement,
+  [136052] = I.Specs.Shaman.Restoration,
   -- Warlock
-  [136145] = 265, -- Affliction
-  [136172] = 266, -- Demonology
-  [136186] = 267, -- Destruction
+  [136145] = I.Specs.Warlock.Affliction,
+  [136172] = I.Specs.Warlock.Demonology,
+  [136186] = I.Specs.Warlock.Destruction,
   -- Warrior
-  [132355] = 71, -- Arms
-  [132347] = 72, -- Fury
-  [132341] = 73, -- Protection
+  [132355] = I.Specs.Warrior.Arms,
+  [132347] = I.Specs.Warrior.Fury,
+  [132341] = I.Specs.Warrior.Protection,
 }
 
 function M:GetClassIconPath(theme)

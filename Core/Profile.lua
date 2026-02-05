@@ -1166,45 +1166,59 @@ P.wunderbar = {
       icons = {
         -- Retail
         [0] = F.String.ConvertGlyph(59712), -- Unknown
-        [62] = F.String.ConvertGlyph(59660), -- Mage Arcane
-        [63] = F.String.ConvertGlyph(59661), -- Mage Fire
-        [64] = F.String.ConvertGlyph(59662), -- Mage Frost
-        [65] = F.String.ConvertGlyph(59666), -- Paladin Holy
-        [66] = F.String.ConvertGlyph(59667), -- Paladin Protection
-        [70] = F.String.ConvertGlyph(59668), -- Paladin Retribution
-        [71] = F.String.ConvertGlyph(59681), -- Warrior Arms
-        [72] = F.String.ConvertGlyph(59682), -- Warrior Fury
-        [73] = F.String.ConvertGlyph(59683), -- Warrior Protection
-        [102] = F.String.ConvertGlyph(59653), -- Druid Balance
-        [103] = F.String.ConvertGlyph(59654), -- Druid Feral
-        [104] = F.String.ConvertGlyph(59655), -- Druid Guardian
-        [105] = F.String.ConvertGlyph(59656), -- Druid Restoration
-        [250] = F.String.ConvertGlyph(59648), -- Death Knight Blood
-        [251] = F.String.ConvertGlyph(59649), -- Death Knight Frost
-        [252] = F.String.ConvertGlyph(59650), -- Death Knight Unholy
-        [253] = F.String.ConvertGlyph(59657), -- Hunter Beast Master
-        [254] = F.String.ConvertGlyph(59658), -- Hunter Marksmanship
-        [255] = F.String.ConvertGlyph(59659), -- Hunter Survival
-        [256] = F.String.ConvertGlyph(59669), -- Priest Discipline
-        [257] = F.String.ConvertGlyph(59670), -- Priest Holy
-        [258] = F.String.ConvertGlyph(59671), -- Priest Shadow
-        [259] = F.String.ConvertGlyph(59672), -- Rogue Assassination
-        [260] = F.String.ConvertGlyph(59673), -- Rogue Outlaw
-        [261] = F.String.ConvertGlyph(59674), -- Rogue Subtlety
-        [262] = F.String.ConvertGlyph(59675), -- Shaman Elemental
-        [263] = F.String.ConvertGlyph(59676), -- Shaman Enhancement
-        [264] = F.String.ConvertGlyph(59677), -- Shaman Restoration
-        [265] = F.String.ConvertGlyph(59678), -- Warlock Affliction
-        [266] = F.String.ConvertGlyph(59679), -- Warlock Demonology
-        [267] = F.String.ConvertGlyph(59680), -- Warlock Destruction
-        [268] = F.String.ConvertGlyph(59663), -- Monk Brewmaster
-        [269] = F.String.ConvertGlyph(59665), -- Monk Windwalker
-        [270] = F.String.ConvertGlyph(59664), -- Monk Mistweaver
-        [577] = F.String.ConvertGlyph(59651), -- Demon Hunter Havoc
-        [581] = F.String.ConvertGlyph(59652), -- Demon Hunter Vengeance
-        [1467] = F.String.ConvertGlyph(59725), -- Evoker Devastation
-        [1468] = F.String.ConvertGlyph(59726), -- Evoker Preservation
-        [1473] = F.String.ConvertGlyph(59727), -- Evoker Augmentation
+
+        [I.Specs.DeathKnight.Blood] = F.String.ConvertGlyph(59648),
+        [I.Specs.DeathKnight.Frost] = F.String.ConvertGlyph(59649),
+        [I.Specs.DeathKnight.Unholy] = F.String.ConvertGlyph(59650),
+
+        [I.Specs.DemonHunter.Havoc] = F.String.ConvertGlyph(59651),
+        [I.Specs.DemonHunter.Vengeance] = F.String.ConvertGlyph(59652),
+        [I.Specs.DemonHunter.Devourer] = F.String.ConvertGlyph(59651),
+
+        [I.Specs.Druid.Balance] = F.String.ConvertGlyph(59653),
+        [I.Specs.Druid.Feral] = F.String.ConvertGlyph(59654),
+        [I.Specs.Druid.Guardian] = F.String.ConvertGlyph(59655),
+        [I.Specs.Druid.Restoration] = F.String.ConvertGlyph(59656),
+
+        [I.Specs.Evoker.Devastation] = F.String.ConvertGlyph(59725),
+        [I.Specs.Evoker.Preservation] = F.String.ConvertGlyph(59726),
+        [I.Specs.Evoker.Augmentation] = F.String.ConvertGlyph(59727),
+
+        [I.Specs.Hunter.BeastMastery] = F.String.ConvertGlyph(59657),
+        [I.Specs.Hunter.Marksmanship] = F.String.ConvertGlyph(59658),
+        [I.Specs.Hunter.Survival] = F.String.ConvertGlyph(59659),
+
+        [I.Specs.Mage.Arcane] = F.String.ConvertGlyph(59660),
+        [I.Specs.Mage.Fire] = F.String.ConvertGlyph(59661),
+        [I.Specs.Mage.Frost] = F.String.ConvertGlyph(59662),
+
+        [I.Specs.Monk.Brewmaster] = F.String.ConvertGlyph(59663),
+        [I.Specs.Monk.Mistweaver] = F.String.ConvertGlyph(59664),
+        [I.Specs.Monk.Windwalker] = F.String.ConvertGlyph(59665),
+
+        [I.Specs.Paladin.Holy] = F.String.ConvertGlyph(59666),
+        [I.Specs.Paladin.Protection] = F.String.ConvertGlyph(59667),
+        [I.Specs.Paladin.Retribution] = F.String.ConvertGlyph(59668),
+
+        [I.Specs.Priest.Discipline] = F.String.ConvertGlyph(59669),
+        [I.Specs.Priest.Holy] = F.String.ConvertGlyph(59670),
+        [I.Specs.Priest.Shadow] = F.String.ConvertGlyph(59671),
+
+        [I.Specs.Rogue.Assassination] = F.String.ConvertGlyph(59672),
+        [I.Specs.Rogue.Outlaw] = F.String.ConvertGlyph(59673),
+        [I.Specs.Rogue.Subtlety] = F.String.ConvertGlyph(59674),
+
+        [I.Specs.Shaman.Elemental] = F.String.ConvertGlyph(59675),
+        [I.Specs.Shaman.Enhancement] = F.String.ConvertGlyph(59676),
+        [I.Specs.Shaman.Restoration] = F.String.ConvertGlyph(59677),
+
+        [I.Specs.Warlock.Affliction] = F.String.ConvertGlyph(59678),
+        [I.Specs.Warlock.Demonology] = F.String.ConvertGlyph(59679),
+        [I.Specs.Warlock.Destruction] = F.String.ConvertGlyph(59680),
+
+        [I.Specs.Warrior.Arms] = F.String.ConvertGlyph(59681),
+        [I.Specs.Warrior.Fury] = F.String.ConvertGlyph(59682),
+        [I.Specs.Warrior.Protection] = F.String.ConvertGlyph(59683),
 
         -- Wrath
         ["MageArcane"] = F.String.ConvertGlyph(59660),

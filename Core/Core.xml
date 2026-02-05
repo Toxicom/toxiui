@@ -5,6 +5,7 @@
 
   <!-- Configs -->
   <Script file='InternalEnum.lua' />
+  <Script file='InternalSpecs.lua' />
   <Script file='InternalString.lua' />
   <Script file='InternalData.lua' />
   <Script file='Internal.lua' />

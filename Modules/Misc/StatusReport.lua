@@ -31,50 +31,8 @@ local englishClassName = {
   WARRIOR = "Warrior",
 }
 
-local englishSpecName = {
-  [250] = "Blood",
-  [251] = "Frost",
-  [252] = "Unholy",
-  [102] = "Balance",
-  [103] = "Feral",
-  [104] = "Guardian",
-  [105] = "Restoration",
-  [253] = "Beast Mastery",
-  [254] = "Marksmanship",
-  [255] = "Survival",
-  [62] = "Arcane",
-  [63] = "Fire",
-  [64] = "Frost",
-  [268] = "Brewmaster",
-  [270] = "Mistweaver",
-  [269] = "Windwalker",
-  [65] = "Holy",
-  [66] = "Protection",
-  [70] = "Retribution",
-  [256] = "Discipline",
-  [257] = "Holy",
-  [258] = "Shadow",
-  [259] = "Assasination",
-  [260] = "Combat",
-  [261] = "Sublety",
-  [262] = "Elemental",
-  [263] = "Enhancement",
-  [264] = "Restoration",
-  [265] = "Affliction",
-  [266] = "Demonoligy",
-  [267] = "Destruction",
-  [71] = "Arms",
-  [72] = "Fury",
-  [73] = "Protection",
-  [577] = "Havoc",
-  [581] = "Vengeance",
-  [1467] = "Devastation",
-  [1468] = "Preservation",
-  [1473] = "Augmentation",
-}
-
 local function getSpecName()
-  return englishSpecName[GetSpecializationInfo(GetSpecialization())] or UNKNOWN
+  return I.SpecNames[GetSpecializationInfo(GetSpecialization())] or UNKNOWN
 end
 
 function M:StatusReportCreateContent(num, width, parent, anchorTo, content)
