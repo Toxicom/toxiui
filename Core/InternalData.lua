@@ -213,6 +213,15 @@ I.Data.Contributor = {
         ["Mojoshooter-Illidan"] = true,
       },
     },
+
+    ["evilknivel"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Mal'Ganis
+        ["Avadacadaver-Mal'Ganis"] = true,
+        ["Feartherapy-Mal'Ganis"] = true,
+        ["Baitnbite-Mal'Ganis"] = true,
+      },
+    },
   },
 
   -- RARE => Green Badge (rare supporter)
