@@ -235,8 +235,9 @@ function IS:ImportExistingProfiles(profiles)
     -- Switch to the public profile
     E.data:SetProfile(profiles.public.name)
 
-    -- Copy private settings from the found profile
-    E.charSettings:CopyProfile(profiles.private.name)
+    -- Copy private settings manually to avoid CopyProfile callbacks triggering reload
+    local sourcePrivateData = E.charSettings.profiles and E.charSettings.profiles[profiles.private.name]
+    if sourcePrivateData then F.Table.Crush(E.private, sourcePrivateData) end
 
     -- Force DB update
     E:UpdateDB()
@@ -250,7 +251,7 @@ function IS:ImportExistingProfiles(profiles)
       self:ShowStepComplete(TXUI.Title .. " profile imported successfully!")
       E:StaticPopup_Show("CONFIG_RL")
     end)
-  end)
+  end, true)
 end
 
 -- Find newest ToxiUI profiles across all ElvUI profiles
