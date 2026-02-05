@@ -6,6 +6,7 @@ TXUI.Changelog["7.2.4"] = {
     "* Breaking changes",
 
     "* New features",
+    "Replace the " .. TXUI.Title .. " installer's Turbo Mode with Import Existing, where it finds existing profiles and suggests using the newest one",
 
     "* Bug fixes",
 

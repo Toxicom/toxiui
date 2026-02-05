@@ -116,7 +116,7 @@ function IS:Dialog()
 
     -- Custom handling for each page
     if page == Pages.Welcome then
-      AddImageScripts { "skip", I.Media.Installer.TurboMode, I.Media.Installer.DiscordBanner }
+      AddImageScripts { "skip", "skip", I.Media.Installer.DiscordBanner }
     elseif page == Pages.Core then
       AddImageScripts { I.Media.Installer.Vertical, I.Media.Installer.Horizontal }
     elseif page == Pages.Details then
@@ -199,35 +199,27 @@ function IS:Dialog()
             installFrame.Next:Click()
           end)
           installFrame.Option2:Show()
-          installFrame.Option2:SetText(F.String.Error("Turbo Mode"))
+          installFrame.Option2:SetText(F.String.ToxiUI("Import Existing"))
           installFrame.Option2:SetScript("OnClick", function()
-            -- Prevent concurrent profile updates
-            if TXUI.PreventProfileUpdates then return end
-            TXUI.PreventProfileUpdates = true
+            -- Find newest ToxiUI profiles
+            local profiles = self:FindNewestTXUIProfiles()
 
-            -- Set ToxiUI profile
-            E.data:SetProfile(I.ProfileNames.Default)
-            -- Set Vertical layout
-            E.db.TXUI.installer.layout = I.Enum.Layouts.VERTICAL
+            -- Both public AND private must exist for a valid ToxiUI profile
+            if not profiles.public or not profiles.private then
+              self:ShowNoProfilesFoundPopup()
+              return
+            end
 
-            -- Show splash screen and install profiles
-            TXUI:GetModule("SplashScreen"):Wrap("Installing ...", function()
-              self.reloadRequired = true
+            -- Check if already on the newest private profile
+            local currentPrivateProfile = E.charSettings:GetCurrentProfile()
+            F.Log.Dev(currentPrivateProfile, "current")
+            if profiles.private.name == currentPrivateProfile then
+              self:ShowAlreadyLatestPopup()
+              return
+            end
 
-              -- Install ElvUI profiles with callback to continue after async completion
-              self:ElvUI(function()
-                -- Install addon profiles after ElvUI completes
-                if F.IsAddOnEnabled("Details") then PF:Details(false) end
-                if F.IsAddOnEnabled("BigWigs") then PF:BigWigs() end
-
-                -- Install additional addon profiles
-                if F.IsAddOnEnabled("OmniCD") then PF:ApplyOmniCDProfile() end
-                if F.IsAddOnEnabled("WarpDeplete") then PF:ApplyWarpDepleteProfile() end
-
-                -- Show reload popup (direct ReloadUI is blocked in protected context)
-                E:StaticPopup_Show("CONFIG_RL")
-              end)
-            end, true) -- manualHide = true, ReloadUI will handle cleanup
+            -- Show import confirmation popup with found profiles
+            self:ShowImportProfilePopup()
           end)
           installFrame.Option3:Show()
           installFrame.Option3:SetText("Discord")

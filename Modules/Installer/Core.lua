@@ -227,6 +227,75 @@ function IS:ElvUIProfileDialog()
   E:StaticPopup_Show(dialogName)
 end
 
+-- Import existing ToxiUI profiles from another character
+function IS:ImportExistingProfiles(profiles)
+  local SplashScreen = TXUI:GetModule("SplashScreen")
+
+  SplashScreen:Wrap("Applying existing profiles ...", function()
+    -- Switch to the public profile
+    E.data:SetProfile(profiles.public.name)
+
+    -- Copy private settings from the found profile
+    E.charSettings:CopyProfile(profiles.private.name)
+
+    -- Force DB update
+    E:UpdateDB()
+
+    -- Apply CVars
+    PF:ElvUICVars()
+
+    -- Execute full ElvUI Update and show reload popup
+    PF:ExecuteElvUIUpdate(function()
+      SplashScreen:Hide()
+      self:ShowStepComplete(TXUI.Title .. " profile imported successfully!")
+      E:StaticPopup_Show("CONFIG_RL")
+    end)
+  end)
+end
+
+-- Find newest ToxiUI profiles across all ElvUI profiles
+function IS:FindNewestTXUIProfiles()
+  local CL = TXUI:GetModule("Changelog")
+  local result = {
+    public = nil, -- { name = "ProfileName", version = "1.0.0" }
+    private = nil, -- { name = "ProfileName", version = "1.0.0" }
+  }
+
+  -- Scan public profiles for highest lastLayoutVersion
+  local publicProfiles = {}
+  E.data:GetProfiles(publicProfiles)
+
+  for _, profileName in ipairs(publicProfiles) do
+    local profileData = E.data.profiles and E.data.profiles[profileName]
+    if profileData and profileData.TXUI and profileData.TXUI.changelog then
+      local version = profileData.TXUI.changelog.lastLayoutVersion
+      if version and version ~= 0 then
+        if not result.public or CL:IsNewer(version, result.public.version) then
+          result.public = { name = profileName, version = version }
+        end
+      end
+    end
+  end
+
+  -- Scan private profiles for highest releaseVersion
+  local privateProfiles = {}
+  E.charSettings:GetProfiles(privateProfiles)
+
+  for _, profileName in ipairs(privateProfiles) do
+    local profileData = E.charSettings.profiles and E.charSettings.profiles[profileName]
+    if profileData and profileData.TXUI and profileData.TXUI.changelog then
+      local version = profileData.TXUI.changelog.releaseVersion
+      if version and version ~= 0 then
+        if not result.private or CL:IsNewer(version, result.private.version) then
+          result.private = { name = profileName, version = version }
+        end
+      end
+    end
+  end
+
+  return result
+end
+
 -- Initialization
 function IS:Initialize()
   -- Don't init second time
