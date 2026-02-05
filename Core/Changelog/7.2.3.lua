@@ -4,7 +4,7 @@ TXUI.Changelog["7.2.3"] = {
   HOTFIX = true,
   CHANGES = {
     "* New features",
-    "tx:classicon:reverse tag",
+    F.String.ToxiUI("[tx:classicon:reverse]") .. " tag",
     F.String.Retail() .. "Damage Meter skin",
 
     "* Bug fixes",
