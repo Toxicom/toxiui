@@ -1,6 +1,5 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local IS = TXUI:GetModule("Installer")
-local PF = TXUI:GetModule("Profiles")
 
 -- Discord Popup Link
 function IS:PopupDiscordLink()
