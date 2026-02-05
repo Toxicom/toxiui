@@ -36,7 +36,9 @@ function O:Skins_CooldownManager()
         .. F.String.ToxiUI("(EssentialCooldownViewer, UtilityCooldownViewer, BuffIconCooldownViewer)")
         .. " fade together with your Player UnitFrame.\n\n"
         .. F.String.Warning("Warning: ")
-        .. "This requires a UI reload to take effect.\n\n",
+        .. "This requires a UI reload to take effect.\n\n"
+        .. F.String.ToxiUI("Information: ")
+        .. "It is recommended to reload your UI after editing cooldown settings for the best experience.\n\n",
     }, I.Requirements.CooldownManager).args
 
     fadingGroup.fading = {

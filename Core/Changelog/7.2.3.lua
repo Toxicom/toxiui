@@ -33,6 +33,7 @@ TXUI.Changelog["7.2.3"] = {
 
     "* Settings refactoring",
     F.String.Retail() .. ": Update " .. TXUI.Title .. " installer text for " .. F.String.Details() .. ", indicating that it's no longer recommended",
+    F.String.Retail() .. ": Update information in CDM Fading skin description",
 
     "* Development improvements",
     "Refactor F.Dpi(), F.Position() and their usage" --
