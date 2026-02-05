@@ -310,9 +310,19 @@ function M:Tags()
 
   -- Specs that should not display mana in Midnight
   local hideManaSpecs = {
-    [63] = true, -- Fire Mage
-    [64] = true, -- Frost Mage
-    [263] = true, -- Enhancement Shaman
+    [I.Specs.Mage.Fire] = true,
+    [I.Specs.Mage.Frost] = true,
+    [I.Specs.Shaman.Enhancement] = true,
+  }
+
+  local displayPercentageSpecs = {
+    -- all healers except Paladin, since they use holy power
+    [I.Specs.Druid.Restoration] = true,
+    [I.Specs.Evoker.Preservation] = true,
+    [I.Specs.Monk.Mistweaver] = true,
+    [I.Specs.Priest.Discipline] = true,
+    [I.Specs.Priest.Holy] = true,
+    [I.Specs.Shaman.Restoration] = true,
   }
 
   -- Cache current spec ID to avoid repeated API calls
@@ -328,6 +338,7 @@ function M:Tags()
       if E.myclass == "WARLOCK" and unit == "player" then power = UnitPower(unit, Enum.PowerType.SoulShards) end
       if E.myclass == "PALADIN" and unit == "player" then power = UnitPower(unit, Enum.PowerType.HolyPower) end
       if unit == "player" and hideManaSpecs[cachedSpecID] then return end
+      if unit == "player" and displayPercentageSpecs[cachedSpecID] then power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100)) end
     end
 
     if dm.isEnabled then
@@ -538,10 +549,7 @@ function M:Tags()
     E:AddTagInfo(
       "tx:power",
       TagNames.POWER,
-      "Displays current Power of unit. Also adds "
-        .. TXUI.Title
-        .. " colors."
-        .. (TXUI.IsRetail and " Displays Soul Shards for " .. F.String.Class("Warlock", "WARLOCK") .. " and hides mana for non-Arcane " .. F.String.Class("Mages", "MAGE") or "")
+      "Displays current Power of unit. Also adds " .. TXUI.Title .. " colors." .. (TXUI.IsMidnight and " Smart display per-specialization." or "")
     )
   end
 

@@ -7,6 +7,8 @@ TXUI.Changelog["9.9.9"] = {
 
     "* New features",
 
+    "* Enhancements",
+
     "* Bug fixes",
 
     "* Profile updates",

@@ -8,6 +8,9 @@ TXUI.Changelog["7.2.4"] = {
     "* New features",
     "Replace the " .. TXUI.Title .. " installer's Turbo Mode with Import Existing, where it finds existing profiles and suggests using the newest one",
 
+    "* Enhancements",
+    F.String.Retail() .. "Display mana percentage for healers in " .. F.String.ToxiUI("[tx:power]") .. " tag",
+
     "* Bug fixes",
 
     "* Profile updates",

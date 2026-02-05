@@ -21,6 +21,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
     local specialCases = {
       ["* Breaking changes"] = { glyph = 59711, class = "DEATHKNIGHT" },
       ["* New features"] = { glyph = 59691, class = "MONK" },
+      ["* Enhancements"] = { glyph = 59706, class = "DEMONHUNTER" },
       ["* Bug fixes"] = { glyph = 59715, class = "WARLOCK" },
       ["* Profile updates"] = { glyph = 59702, class = "ROGUE" },
       ["* Documentation"] = { glyph = 59708, class = "MAGE" },
@@ -34,7 +35,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
       if specialCase then
         local formattedLine = F.String.ConvertGlyph(specialCase.glyph) .. " " .. line:sub(3)
         if not isUsingToxiUIFont then formattedLine = line:sub(3) end
-        text = text .. "\n" .. F.String.Trim(F.String.GradientClass(formattedLine, specialCase.class)) .. "\n\n"
+        text = text .. "\n\n" .. F.String.Trim(F.String.GradientClass(formattedLine, specialCase.class)) .. "\n\n"
       elseif sub(line, 1, 2) == "* " then
         if title then
           text = text .. "• " .. F.String.Trim(line:sub(3)) .. "\n"
