@@ -222,6 +222,38 @@ I.Data.Contributor = {
         ["Baitnbite-Mal'Ganis"] = true,
       },
     },
+
+    ["Exodus"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- KirinTor
+        ["Adaar-KirinTor"] = true,
+
+        -- Mal'Ganis
+        ["Abuturlini-Mal'Ganis"] = true,
+        ["Pathogenesis-Mal'Ganis"] = true,
+        ["Tethren-Mal'Ganis"] = true,
+        ["Vekroz-Mal'Ganis"] = true,
+        ["Tethrake-Mal'Ganis"] = true,
+        ["Tethrakos-Mal'Ganis"] = true,
+        ["Paradori-Mal'Ganis"] = true,
+        ["Mortur-Mal'Ganis"] = true,
+        ["Anagreth-Mal'Ganis"] = true,
+        ["Akili-Mal'Ganis"] = true,
+        ["Bruis-Mal'Ganis"] = true,
+        ["Tazgardo-Mal'Ganis"] = true,
+        ["Malted-Mal'Ganis"] = true,
+        ["Razzadil-Mal'Ganis"] = true,
+        ["Inkwix-Mal'Ganis"] = true,
+        ["Agandour-Mal'Ganis"] = true,
+        ["Rhaas-Mal'Ganis"] = true,
+
+        -- Proudmoore
+        ["Kilrend-Proudmoore"] = true,
+
+        -- Sargeras
+        ["Sendrack-Sargeras"] = true,
+      },
+    },
   },
 
   -- RARE => Green Badge (rare supporter)

@@ -17,6 +17,7 @@ TXUI.Changelog["7.2.4"] = {
 
     "* Documentation",
     "Add " .. F.String.Epic("evilknivel") .. " to the contributors list",
+    "Add " .. F.String.Epic("Exodus") .. " to the contributors list",
 
     "* Settings refactoring",
 
