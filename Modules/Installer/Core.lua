@@ -231,7 +231,7 @@ end
 function IS:ImportExistingProfiles(profiles)
   local SplashScreen = TXUI:GetModule("SplashScreen")
 
-  SplashScreen:Wrap("Applying existing profiles ...", function()
+  SplashScreen:Wrap("Applying existing " .. F.String.ElvUI() .. " profiles - Please reload after it's done!", function()
     -- Switch to the public profile
     E.data:SetProfile(profiles.public.name)
 
