@@ -210,12 +210,15 @@ function IS:Dialog()
               return
             end
 
-            -- Check if already on the newest private profile
-            local currentPrivateProfile = E.charSettings:GetCurrentProfile()
-            F.Log.Dev(currentPrivateProfile, "current")
-            if profiles.private.name == currentPrivateProfile then
-              self:ShowAlreadyLatestPopup()
-              return
+            -- Check if already on the newest version
+            local CL = TXUI:GetModule("Changelog")
+            local currentPrivateVersion = E.private.TXUI and E.private.TXUI.changelog and E.private.TXUI.changelog.releaseVersion
+            if currentPrivateVersion and currentPrivateVersion ~= 0 then
+              -- If found version is not newer than current, nothing to import
+              if not CL:IsNewer(profiles.private.version, currentPrivateVersion) then
+                self:ShowAlreadyLatestPopup()
+                return
+              end
             end
 
             -- Show import confirmation popup with found profiles
