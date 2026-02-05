@@ -270,9 +270,7 @@ function IS:FindNewestTXUIProfiles()
     if profileData and profileData.TXUI and profileData.TXUI.changelog then
       local version = profileData.TXUI.changelog.lastLayoutVersion
       if version and version ~= 0 then
-        if not result.public or CL:IsNewer(version, result.public.version) then
-          result.public = { name = profileName, version = version }
-        end
+        if not result.public or CL:IsNewer(version, result.public.version) then result.public = { name = profileName, version = version } end
       end
     end
   end
@@ -286,9 +284,7 @@ function IS:FindNewestTXUIProfiles()
     if profileData and profileData.TXUI and profileData.TXUI.changelog then
       local version = profileData.TXUI.changelog.releaseVersion
       if version and version ~= 0 then
-        if not result.private or CL:IsNewer(version, result.private.version) then
-          result.private = { name = profileName, version = version }
-        end
+        if not result.private or CL:IsNewer(version, result.private.version) then result.private = { name = profileName, version = version } end
       end
     end
   end

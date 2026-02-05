@@ -81,11 +81,7 @@ function IS:ShowAlreadyLatestPopup()
   local dialogName = "TXUI_AlreadyLatestPopup"
 
   E.PopupDialogs[dialogName] = {
-    text = F.String.Good("You are already on the latest version!")
-      .. "\n\n"
-      .. "Your current private profile is already the newest "
-      .. TXUI.Title
-      .. " profile available.",
+    text = F.String.Good("You are already on the latest version!") .. "\n\n" .. "Your current private profile is already the newest " .. TXUI.Title .. " profile available.",
     button1 = OKAY,
     timeout = 0,
     whileDead = 1,
