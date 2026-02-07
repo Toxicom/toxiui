@@ -250,7 +250,7 @@ function IS:ImportExistingProfiles(profiles)
       SplashScreen:Hide()
       self:ShowStepComplete(TXUI.Title .. " profile imported successfully!")
       E:StaticPopup_Show("CONFIG_RL")
-    end)
+    end, true)
   end, true)
 end
 
