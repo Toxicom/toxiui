@@ -1,4 +1,4 @@
-# ToxiUI v7.2.5-beta.1 - 2026-02-07
+# ToxiUI v7.2.5 - 2026-02-07
 
 ## ✨ Enhancements
 
