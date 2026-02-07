@@ -261,6 +261,13 @@ function PF:ElvUIFont()
             fontSize = F.FontSizeScaled(12),
             format = "[name:abbrev:medium]",
           },
+
+          level = {
+            font = F.FontOverride(I.Fonts.Primary),
+            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+            fontSize = F.FontSizeScaled(14),
+            format = "[tx:classification]",
+          },
         },
 
         ["FRIENDLY_NPC"] = {

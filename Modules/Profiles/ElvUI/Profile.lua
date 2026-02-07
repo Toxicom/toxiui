@@ -586,7 +586,10 @@ function PF:BuildProfile()
           height = F.Dpi(10),
         },
         level = {
-          enable = false,
+          enable = true,
+          position = "TOPLEFT",
+          xOffset = F.Dpi(-13),
+          yOffset = F.Dpi(-10),
         },
         name = {
           yOffset = F.Dpi(-10),

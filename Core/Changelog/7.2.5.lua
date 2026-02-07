@@ -14,6 +14,9 @@ TXUI.Changelog["7.2.5"] = {
     "Don't process movers after importing existing profile",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Add " .. F.String.ToxiUI("[tx:classification]") .. " tag to Enemy NPC Nameplates" .. F.String.Sublist(
+      "We use the Level field for it, since there's no custom texts option for Nameplates"
+    ),
 
     "* Documentation",
 
