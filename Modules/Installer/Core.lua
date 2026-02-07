@@ -245,12 +245,9 @@ function IS:ImportExistingProfiles(profiles)
     -- Apply CVars
     PF:ElvUICVars()
 
-    -- Execute full ElvUI Update and show reload popup
-    PF:ExecuteElvUIUpdate(function()
-      SplashScreen:Hide()
-      self:ShowStepComplete(TXUI.Title .. " profile imported successfully!")
-      E:StaticPopup_Show("CONFIG_RL")
-    end, true)
+    self:ShowStepComplete(TXUI.Title .. " profile imported successfully!")
+    E:StaticPopup_Show("CONFIG_RL")
+    SplashScreen:Hide()
   end, true)
 end
 

@@ -8,6 +8,7 @@ TXUI.Changelog["7.2.5"] = {
     "* New features",
 
     "* Enhancements",
+    "Simplify the 'Import Existing' function",
 
     "* Bug fixes",
     "Don't process movers after importing existing profile",
