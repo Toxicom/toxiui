@@ -3,10 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["7.2.5"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
     "* Enhancements",
     "Simplify the 'Import Existing' function",
 
@@ -17,11 +13,5 @@ TXUI.Changelog["7.2.5"] = {
     F.String.ElvUI() .. ": Add " .. F.String.ToxiUI("[tx:classification]") .. " tag to Enemy NPC Nameplates" .. F.String.Sublist(
       "We use the Level field for it, since there's no custom texts option for Nameplates"
     ),
-
-    "* Documentation",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
