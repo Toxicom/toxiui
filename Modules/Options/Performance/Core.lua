@@ -87,7 +87,13 @@ function O:Performance()
         return not E.db.TXUI.performance.enabled
       end,
     }, {
-      name = "These features were enabled before Performance Mode was activated. They will be restored when you disable Performance Mode.\n\n",
+      name = "These features were enabled before Performance Mode was activated. They will be restored when you disable Performance Mode.\n\n"
+        .. F.String.GoodIconSpaced()
+        .. F.String.Good("Saved")
+        .. " - will be restored\n"
+        .. F.String.ErrorIconSpaced()
+        .. F.String.Silver("Was already disabled")
+        .. "\n\n",
     }).args
 
     for id, entry in pairs(settingsMap) do
@@ -99,9 +105,9 @@ function O:Performance()
         end,
         name = function()
           if E.db.TXUI.performance.savedSettings[id] then
-            return "  " .. F.String.Good(entry.name) .. " (will be restored)\n"
+            return F.String.GoodIconSpaced() .. entry.name .. "\n"
           else
-            return "  " .. entry.name .. " (was already disabled)\n"
+            return F.String.ErrorIconSpaced() .. F.String.Silver(entry.name) .. "\n"
           end
         end,
       }
@@ -119,7 +125,13 @@ function O:Performance()
         return E.db.TXUI.performance.enabled
       end,
     }, {
-      name = "These features will be affected when Performance Mode is enabled.\n\n",
+      name = "These features will be affected when Performance Mode is enabled.\n\n"
+        .. F.String.GoodIconSpaced()
+        .. F.String.Good("Enabled")
+        .. " - will be disabled\n"
+        .. F.String.ErrorIconSpaced()
+        .. F.String.Silver("Already disabled")
+        .. "\n\n",
     }).args
 
     for id, entry in pairs(settingsMap) do
@@ -132,9 +144,9 @@ function O:Performance()
         name = function()
           local parent = F.GetDBFromPath(entry.path)
           if parent and parent[entry.key] == true then
-            return "  " .. F.String.Good(entry.name) .. " (enabled - will be disabled)\n"
+            return F.String.GoodIconSpaced() .. entry.name .. "\n"
           else
-            return "  " .. entry.name .. " (already disabled)\n"
+            return F.String.ErrorIconSpaced() .. F.String.Silver(entry.name) .. "\n"
           end
         end,
       }

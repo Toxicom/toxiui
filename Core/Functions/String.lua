@@ -173,6 +173,28 @@ function F.String.Warning(msg)
   return F.String.Color(msg, I.Enum.Colors.WARNING)
 end
 
+function F.String.Silver(msg)
+  return F.String.Color(msg, I.Enum.Colors.SILVER)
+end
+
+function F.String.GoodIcon(size)
+  size = size or 14
+  return format("|TInterface\\RAIDFRAME\\ReadyCheck-Ready:%d:%d:0:-1|t", size, size)
+end
+
+function F.String.GoodIconSpaced(size)
+  return "  " .. F.String.GoodIcon(size) .. "  "
+end
+
+function F.String.ErrorIcon(size)
+  size = size or 14
+  return format("|TInterface\\RAIDFRAME\\ReadyCheck-NotReady:%d:%d:0:-1|t", size, size)
+end
+
+function F.String.ErrorIconSpaced(size)
+  return "  " .. F.String.ErrorIcon(size) .. "  "
+end
+
 function F.String.WunderUI()
   return F.String.Epic("Wunder") .. "UI"
 end
