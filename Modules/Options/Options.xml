@@ -11,5 +11,6 @@
   <Include file='Fonts\Fonts.xml' />
   <Include file='Misc\Misc.xml' />
   <Include file='Changelog\Changelog.xml' />
+  <Include file='Performance\Performance.xml' />
   <Include file='Reset\Reset.xml' />
 </Ui>

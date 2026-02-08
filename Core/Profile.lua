@@ -17,6 +17,11 @@ P.changelog = {
 
 P.disabledAddOns = {}
 
+P.performance = {
+  enabled = false,
+  savedSettings = {},
+}
+
 -- General
 P.general = {
   overrideDevMode = true, -- force disable dev mode
