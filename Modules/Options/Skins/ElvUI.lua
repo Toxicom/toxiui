@@ -40,8 +40,10 @@ function O:Skins_ElvUI()
       name = "This module applies a grain background and shadows to all "
         .. F.String.ElvUI()
         .. " elements.\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "This feature may increase your load times due to all the frames it has to skin. This should not however impact performance of the gameplay.\n\n",
+        -- .. F.String.Warning("Warning: ")
+        -- .. "This feature may increase your load times due to all the frames it has to skin. This should not however impact performance of the gameplay.\n\n"
+        .. F.String.Error("Important: ")
+        .. "Currently I do not recommend using this theme as it also skins damage meters and nameplates, which are very dynamic elements. Working on a fix to exclude them from the skinning.\n\n",
     }, I.Requirements.ElvUITheme)
 
     -- ElvUI Theme Mode Enable

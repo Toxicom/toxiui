@@ -22,6 +22,7 @@ TXUI.Changelog["7.2.6"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Update " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Skin description",
 
     "* Development improvements",
   },
