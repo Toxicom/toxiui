@@ -316,6 +316,7 @@ function M:Tags()
   }
 
   local displayPercentageSpecs = {
+    [I.Specs.Mage.Arcane] = true,
     -- all healers except Paladin, since they use holy power
     [I.Specs.Druid.Restoration] = true,
     [I.Specs.Evoker.Preservation] = true,
