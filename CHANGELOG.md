@@ -1,14 +1,3 @@
-# ToxiUI v7.2.5 - 2026-02-07
+# ToxiUI v7.2.6 - 2026-02-08
 
-## ✨ Enhancements
-
-- Simplify the **Import Existing** function
-
-## 🐛 Bug Fixes
-
-- Don’t process movers after importing an existing profile
-
-## 🧩 Profile Updates
-
-- **ElvUI**: Add **[tx:classification]** tag to Enemy NPC Nameplates
-  - Uses the **Level** field, as Nameplates do not support custom texts
+_crickets_
