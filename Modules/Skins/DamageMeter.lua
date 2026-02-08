@@ -204,9 +204,7 @@ function DM:Initialize()
 
         -- Apply SkinMeter to any already-created bars (avoids RefreshLayout taint)
         local ScrollBox = window.GetScrollBox and window:GetScrollBox()
-        if ScrollBox and ScrollBox.ForEachFrame then
-          ScrollBox:ForEachFrame(SkinMeter)
-        end
+        if ScrollBox and ScrollBox.ForEachFrame then ScrollBox:ForEachFrame(SkinMeter) end
       end)
 
       -- Enable and show the damage meter
