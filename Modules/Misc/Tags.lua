@@ -350,39 +350,36 @@ function M:Tags()
   end)
 
   local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
+  local classIconPath = usingSpecIcons and self:GetClassIconPath("ToxiClasses") or iconPath
 
   -- Class Icon Tags (normal and reversed/mirrored)
   for _, reverse in ipairs { false, true } do
     local tagName = reverse and "tx:classicon:reverse" or "tx:classicon"
 
     E:AddTag(tagName, "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)
-      if UnitIsPlayer(unit) then
-        local _, class = UnitClass(unit)
-        local icon = M.ClassIcons[class]
+      local _, class = UnitClass(unit)
+      if not class then return end
 
-        if usingSpecIcons then
-          local specIcon = ""
-          local specId = nil
+      if UnitIsPlayer(unit) and usingSpecIcons then
+        local specId = nil
 
-          local info = E:GetUnitSpecInfo(unit)
-          if info and info.id then specId = info.id end
+        local info = E:GetUnitSpecInfo(unit)
+        if info and info.id then specId = info.id end
 
-          if iconsDb and specId then
-            icon = M.SpecIcons[specId]
+        if iconsDb and specId then
+          local specIcon = M.SpecIcons[specId]
 
-            if icon then
-              local coords = reverse and M:ReverseIconCoords(icon) or icon
-              specIcon = format(iconPath, coords)
-            end
+          if specIcon then
+            local coords = reverse and M:ReverseIconCoords(specIcon) or specIcon
+            return format(iconPath, coords)
           end
-
-          return specIcon
         end
+      end
 
-        if icon then
-          local coords = reverse and M:ReverseIconCoords(icon) or icon
-          return format(iconPath, coords)
-        end
+      local icon = M.ClassIcons[class]
+      if icon then
+        local coords = reverse and M:ReverseIconCoords(icon) or icon
+        return format(classIconPath, coords)
       end
     end)
   end

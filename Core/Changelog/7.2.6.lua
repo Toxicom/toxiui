@@ -9,6 +9,9 @@ TXUI.Changelog["7.2.6"] = {
 
     "* Enhancements",
     F.String.Retail() .. "Display percentage mana for " .. F.String.Class("Arcane Mages", "MAGE") .. " with the " .. F.String.ToxiUI("[tx:power]") .. " tag",
+    "Try displaying class icon when spec icon is not available for both " .. F.String.ToxiUI("[tx:classicon]") .. " tags" .. F.String.Sublist(
+      "This is most noticeable in follower dungeons"
+    ),
 
     "* Bug fixes",
 
