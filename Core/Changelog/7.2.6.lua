@@ -15,6 +15,7 @@ TXUI.Changelog["7.2.6"] = {
     ),
 
     "* Bug fixes",
+    F.String.Retail() .. "Potentially fix Damage Meter Skin taint when opening damage breakdown",
 
     "* Profile updates",
 

@@ -175,7 +175,7 @@ local function SkinMeter(content)
       content.fadeMode = I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.HORIZONTAL]
       content.fadeDirection = I.Enum.GradientMode.Direction.RIGHT
 
-      DM:RawHook(texture, "SetVertexColor", F.Event.GenerateClosure(ApplyGradient, content), true)
+      DM:SecureHook(texture, "SetVertexColor", F.Event.GenerateClosure(ApplyGradient, content), true)
     end
     ApplyGradient(content)
   end
@@ -198,13 +198,15 @@ function DM:Initialize()
     F.Event.ContinueOnAddOnLoaded("Blizzard_DamageMeter", function()
       if not _G.DamageMeter then return end
 
-      -- Apply header mouseover to existing session windows
+      -- Apply skins to existing session windows
       _G.DamageMeter:ForEachSessionWindow(function(window)
         SkinHeader(window)
-      end)
 
-      E:Delay(0.1, function()
-        _G.DamageMeter:RefreshLayout()
+        -- Apply SkinMeter to any already-created bars (avoids RefreshLayout taint)
+        local ScrollBox = window.GetScrollBox and window:GetScrollBox()
+        if ScrollBox and ScrollBox.ForEachFrame then
+          ScrollBox:ForEachFrame(SkinMeter)
+        end
       end)
 
       -- Enable and show the damage meter
