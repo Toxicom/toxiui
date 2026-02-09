@@ -44,7 +44,7 @@ function CM:SyncBarsWidth()
   if not essentialViewer then return end
   if InCombatLockdown() then return end
 
-  local width = essentialViewer:GetWidth()
+  local width = math.floor(essentialViewer:GetWidth() + 0.5)
   -- sometimes the width comes as fucking 1.003003002 etc. so make sure it's bigger than one button atleast
   if not width or width <= 30 then return end
 
