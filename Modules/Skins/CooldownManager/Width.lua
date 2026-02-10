@@ -33,19 +33,62 @@ function CM:SyncBarsWidth()
   end
 end
 
+function CM:SyncCastbarWidth()
+  if not self.essentialViewer then return end
+  if InCombatLockdown() then return end
+
+  local width = floor(self.essentialViewer:GetWidth() + 0.5)
+  if not width or width <= 30 then return end
+  if width <= 100 then width = F.Dpi(292) end
+
+  if self.cachedCastbarWidth == width then return end
+  self.cachedCastbarWidth = width
+
+  local playerDB = E.db.unitframe.units.player
+  if playerDB and playerDB.castbar then
+    playerDB.castbar.width = width
+
+    F.Event.ContinueOutOfCombat(function()
+      local uf = E:GetModule("UnitFrames")
+      if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+    end)
+  end
+end
+
+function CM:OnDynamicWidthChanged()
+  if self.db.dynamicBarsWidth then self:SyncBarsWidth() end
+  if self.db.dynamicCastbarWidth then self:SyncCastbarWidth() end
+end
+
 function CM:EnableDynamicBarsWidth()
   if not self.Initialized then return end
 
   if not self.essentialViewer then return end
 
   -- Hook OnSizeChanged to sync whenever frame width changes
-  if not self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:SecureHookScript(self.essentialViewer, "OnSizeChanged", "SyncBarsWidth") end
+  if not self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:SecureHookScript(self.essentialViewer, "OnSizeChanged", "OnDynamicWidthChanged") end
 end
 
 function CM:DisableDynamicBarsWidth()
   if not self.Initialized then return end
 
   self.cachedBarsWidth = nil
+
+  if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
+end
+
+function CM:EnableDynamicCastbarWidth()
+  if not self.Initialized then return end
+
+  if not self.essentialViewer then return end
+
+  if not self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:SecureHookScript(self.essentialViewer, "OnSizeChanged", "OnDynamicWidthChanged") end
+end
+
+function CM:DisableDynamicCastbarWidth()
+  if not self.Initialized then return end
+
+  self.cachedCastbarWidth = nil
 
   if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
 end

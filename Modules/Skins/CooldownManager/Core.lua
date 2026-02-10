@@ -20,6 +20,7 @@ function CM:Disable()
 
   self:UnhookAll()
   self:DisableDynamicBarsWidth()
+  self:DisableDynamicCastbarWidth()
   self:DisableAnchoring()
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self)
@@ -48,6 +49,9 @@ function CM:DatabaseUpdate()
 
     -- Enable dynamic bars width if enabled
     if self.db.dynamicBarsWidth then self:EnableDynamicBarsWidth() end
+
+    -- Enable dynamic castbar width if enabled
+    if self.db.dynamicCastbarWidth then self:EnableDynamicCastbarWidth() end
 
     -- Enable anchoring if any anchor is enabled
     if self.db.anchors then

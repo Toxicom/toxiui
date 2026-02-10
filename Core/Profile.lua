@@ -274,6 +274,7 @@ P.addons = {
   cooldownManager = {
     fading = false, -- Disabled by default
     dynamicBarsWidth = false, -- Disabled by default
+    dynamicCastbarWidth = false, -- Disabled by default
 
     -- Anchoring
     anchors = {

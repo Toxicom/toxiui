@@ -82,7 +82,44 @@ function O:Skins_CooldownManager()
         return E.db.TXUI.addons.cooldownManager.dynamicBarsWidth
       end,
       set = function(_, value)
-        E.db.TXUI.addons.cooldownManager.dynamicBarsWidth = value
+        local cmDB = E.db.TXUI.addons.cooldownManager
+        local playerDB = E.db.unitframe.units.player
+        if value and playerDB then
+          cmDB._savedBarsWidth = {
+            power = playerDB.power and playerDB.power.detachedWidth,
+            classbar = playerDB.classbar and playerDB.classbar.detachedWidth,
+          }
+        elseif not value and playerDB then
+          local saved = cmDB._savedBarsWidth
+          if saved then
+            if playerDB.power and saved.power then playerDB.power.detachedWidth = saved.power end
+            if playerDB.classbar and saved.classbar then playerDB.classbar.detachedWidth = saved.classbar end
+          end
+          cmDB._savedBarsWidth = nil
+        end
+        cmDB.dynamicBarsWidth = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    dynamicGroup.dynamicCastbarWidth = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enabling this syncs the player castbar width with the Cooldown Manager.",
+      name = "Castbar",
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.dynamicCastbarWidth
+      end,
+      set = function(_, value)
+        local cmDB = E.db.TXUI.addons.cooldownManager
+        local playerDB = E.db.unitframe.units.player
+        if value and playerDB and playerDB.castbar then
+          cmDB._savedCastbarWidth = playerDB.castbar.width
+        elseif not value and playerDB and playerDB.castbar then
+          if cmDB._savedCastbarWidth then playerDB.castbar.width = cmDB._savedCastbarWidth end
+          cmDB._savedCastbarWidth = nil
+        end
+        cmDB.dynamicCastbarWidth = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }

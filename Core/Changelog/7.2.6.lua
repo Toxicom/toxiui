@@ -8,6 +8,12 @@ TXUI.Changelog["7.2.6"] = {
     "* New features",
     F.String.Menu.Performance() .. " tab in " .. TXUI.Title .. " settings",
     F.String.Retail() .. "Anchoring section in " .. F.String.CDM(),
+    F.String.Retail() .. "Add option to sync Player Castbar width in " .. F.String.CDM(),
+    F.String.Retail() --
+      .. "Disabling Dynamic Width options in "
+      .. F.String.CDM()
+      .. " will restore previous width"
+      .. F.String.Sublist("Will not save previous width if enabled before this update"),
 
     "* Enhancements",
     F.String.Retail() .. "Display percentage mana for " .. F.String.Class("Arcane Mages", "MAGE") .. " with the " .. F.String.ToxiUI("[tx:power]") .. " tag",
