@@ -212,6 +212,10 @@ function F.String.Scaling()
   return F.String.ToxiUI("Additional Scaling") .. " module"
 end
 
+function F.String.CDM()
+  return TXUI.Title .. " " .. F.String.ToxiUI("Cooldown Manager Skin")
+end
+
 function F.String.ReforgedArmory()
   return F.String.Class("Reforged", "MONK") .. F.String.Class("Armory", "ROGUE")
 end

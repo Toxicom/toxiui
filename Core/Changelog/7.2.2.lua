@@ -7,8 +7,8 @@ TXUI.Changelog["7.2.2"] = {
     "Remove Wardrobe frame from Animations and Scaling modules" .. F.String.Sublist("It's already covered by the Collections Journal frame"),
 
     "* New features",
-    F.String.Retail() .. "Cooldown Manager fading option",
-    F.String.Retail() .. "Cooldown Manager dynamic bars width option",
+    F.String.Retail() .. F.String.CDM() .. " fading option",
+    F.String.Retail() .. F.String.CDM() .. " dynamic bars width option",
     "Bring back " .. TXUI.Title .. " Gradient Mode" .. F.String.Error(" [WIP]"),
 
     "* Bug fixes",

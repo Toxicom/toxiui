@@ -9,8 +9,8 @@ TXUI.Changelog["7.2.3"] = {
 
     "* Bug fixes",
     F.String.Retail() .. ": Fix WunderBar paragon faction tracking",
-    F.String.Retail() .. ": Do not sync CDM bars width in combat",
-    F.String.Retail() .. ": Do not sync CDM bars width when a stupid value comes, like 1.0000932",
+    F.String.Retail() .. ": Do not sync " .. F.String.CDM() .. " bars width in combat",
+    F.String.Retail() .. ": Do not sync " .. F.String.CDM() .. " bars width when a stupid value comes, like 1.0000932",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Use the new reverse class icon tag for Target and Focus UnitFrames",
@@ -31,14 +31,14 @@ TXUI.Changelog["7.2.3"] = {
 
     "* Settings refactoring",
     F.String.Retail() .. ": Update " .. TXUI.Title .. " installer text for " .. F.String.Details() .. ", indicating that it's no longer recommended",
-    F.String.Retail() .. ": Update information in CDM Fading skin description",
+    F.String.Retail() .. ": Update information in " .. F.String.CDM() .. " Fading description",
 
     "* Development improvements",
     "Refactor F.Dpi(), F.Position() and their usage" --
       .. F.String.Sublist("For the user, absolutely nothing should change, but there might be some positioning/sizing changes that were not intended!")
       .. F.String.Sublist("This change is purely QoL for myself as a developer")
       .. F.String.Sublist("In the future, because of this change, some values may slightly change (eg from 52 to 50 etc.)"),
-    F.String.Retail() .. "Improve CDM Bars width sync performance by caching last width value",
+    F.String.Retail() .. "Improve " .. F.String.CDM() .. " Bars width sync performance by caching last width value",
     F.String.Retail() .. "Use the OnSizeChanged hook for syncing CDM Bars width instead of OnDataChanged",
   },
 }

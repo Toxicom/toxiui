@@ -274,6 +274,26 @@ P.addons = {
   cooldownManager = {
     fading = false, -- Disabled by default
     dynamicBarsWidth = false, -- Disabled by default
+
+    -- Anchoring
+    anchors = {
+      essential = {
+        enabled = false,
+        yOffset = -4,
+      },
+      utility = {
+        enabled = false,
+        yOffset = -4,
+      },
+      buff = {
+        enabled = false,
+        yOffset = 20,
+      },
+      buffBar = {
+        enabled = false,
+        yOffset = 80,
+      },
+    },
   },
 
   -- Damage Meter (Blizzard)

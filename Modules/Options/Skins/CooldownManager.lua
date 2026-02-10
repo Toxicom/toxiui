@@ -21,7 +21,9 @@ function O:Skins_CooldownManager()
       .. F.String.ToxiUI("Blizzard Cooldown Manager")
       .. " which can be configured here.\n\n"
       .. F.String.Warning("Warning: ")
-      .. "This is still experimental and might be removed in the future.\n\n",
+      .. "This is still experimental and might be removed in the future.\n\n"
+      .. F.String.ToxiUI("Information: ")
+      .. "We recommend reloading the UI each time you interact with the Edit Mode to avoid issues!\n\n",
   })
 
   -- Spacer
@@ -85,6 +87,173 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         E.db.TXUI.addons.cooldownManager.dynamicBarsWidth = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Anchoring
+  do
+    local db = E.db.TXUI.addons.cooldownManager.anchors
+
+    local anchorGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Anchoring",
+    }, {
+      name = "Anchor Cooldown Manager frames to "
+        .. F.String.ToxiUI("ElvUI")
+        .. " unit frame elements for automatic positioning.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "This requires a UI reload to take effect.\n\n",
+    }, I.Requirements.CooldownManager).args
+
+    -- Essential Cooldown Viewer -> Power Bar
+    anchorGroup.anchorEssentialEnabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Anchor the Essential Cooldown Viewer to the bottom of ElvUI's detached Power Bar.",
+      name = "Essential to Power Bar",
+      get = function(_)
+        return db.essential.enabled
+      end,
+      set = function(_, value)
+        db.essential.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    anchorGroup.anchorEssentialYOffset = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Y Offset",
+      desc = "Vertical offset for the Essential Cooldown Viewer anchor.",
+      min = -50,
+      max = 50,
+      step = 1,
+      disabled = function()
+        return not db.essential.enabled
+      end,
+      get = function(_)
+        return db.essential.yOffset
+      end,
+      set = function(_, value)
+        db.essential.yOffset = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    -- Spacer
+    self:AddSpacer(anchorGroup)
+
+    -- Utility Cooldown Viewer -> Essential Cooldown Viewer
+    anchorGroup.anchorUtilityEnabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Anchor the Utility Cooldown Viewer to the bottom of the Essential Cooldown Viewer.",
+      name = "Utility to Essential",
+      get = function(_)
+        return db.utility.enabled
+      end,
+      set = function(_, value)
+        db.utility.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    anchorGroup.anchorUtilityYOffset = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Y Offset",
+      desc = "Vertical offset for the Utility Cooldown Viewer anchor.",
+      min = -50,
+      max = 50,
+      step = 1,
+      disabled = function()
+        return not db.utility.enabled
+      end,
+      get = function(_)
+        return db.utility.yOffset
+      end,
+      set = function(_, value)
+        db.utility.yOffset = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    -- Spacer
+    self:AddSpacer(anchorGroup)
+
+    -- Buff Viewer -> Class Bar (fallback: Power Bar)
+    anchorGroup.anchorBuffEnabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Anchor the Buff Viewer to the top of ElvUI's Class Bar. Falls back to the Power Bar if the Class Bar is not available.",
+      name = "Buff to Class Bar",
+      get = function(_)
+        return db.buff.enabled
+      end,
+      set = function(_, value)
+        db.buff.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    anchorGroup.anchorBuffYOffset = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Y Offset",
+      desc = "Vertical offset for the Buff Viewer anchor.",
+      min = -50,
+      max = 50,
+      step = 1,
+      disabled = function()
+        return not db.buff.enabled
+      end,
+      get = function(_)
+        return db.buff.yOffset
+      end,
+      set = function(_, value)
+        db.buff.yOffset = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    -- Spacer
+    self:AddSpacer(anchorGroup)
+
+    -- Buff Bar Viewer -> Health Bar
+    anchorGroup.anchorBuffBarEnabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Anchor the Buff Bar Viewer to the top of ElvUI's Health Bar.",
+      name = "Buff Bar to Health Bar",
+      get = function(_)
+        return db.buffBar.enabled
+      end,
+      set = function(_, value)
+        db.buffBar.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    anchorGroup.anchorBuffBarYOffset = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Y Offset",
+      desc = "Vertical offset for the Buff Bar Viewer anchor.",
+      min = 0,
+      max = 200,
+      step = 1,
+      disabled = function()
+        return not db.buffBar.enabled
+      end,
+      get = function(_)
+        return db.buffBar.yOffset
+      end,
+      set = function(_, value)
+        db.buffBar.yOffset = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }
