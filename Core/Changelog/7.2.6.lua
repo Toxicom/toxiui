@@ -22,6 +22,7 @@ TXUI.Changelog["7.2.6"] = {
     "* Profile updates",
 
     "* Documentation",
+    F.String.Retail() .. "Enable " .. TXUI.Title .. " for 12.0.1 without testing, in case it works and NA can enjoy launch",
 
     "* Settings refactoring",
     "Update " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Skin description",
