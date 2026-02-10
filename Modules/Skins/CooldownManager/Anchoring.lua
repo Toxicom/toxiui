@@ -57,7 +57,6 @@ function CM:EnableAnchoring()
   -- Re-apply on zone changes since cooldown manager may reset positions
   F.Event.RegisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self.SetAnchors, self, "CM_Anchors")
   F.Event.RegisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self.SetAnchors, self, "CM_Anchors")
-
 end
 
 function CM:DisableAnchoring()

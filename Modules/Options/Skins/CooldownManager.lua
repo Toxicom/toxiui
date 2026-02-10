@@ -66,9 +66,7 @@ function O:Skins_CooldownManager()
     local dynamicGroup = self:AddInlineRequirementsDesc(options, {
       name = "Dynamic Bars Width",
     }, {
-      name = "This option syncs the width of the Player Power Bar and Class Bar "
-        .. F.String.ToxiUI("(detached)")
-        .. " with the Essential Cooldown Viewer width.\n\n",
+      name = "This option syncs the width of the Player Power Bar and Class Bar " .. F.String.ToxiUI("(detached)") .. " with the Essential Cooldown Viewer width.\n\n",
     }, I.Requirements.CooldownManager).args
 
     dynamicGroup.dynamicBarsWidth = {
@@ -135,9 +133,7 @@ function O:Skins_CooldownManager()
     local anchorGroup = self:AddInlineRequirementsDesc(options, {
       name = "Anchoring",
     }, {
-      name = "Anchor Cooldown Manager frames to "
-        .. F.String.ToxiUI("ElvUI")
-        .. " unit frame elements for automatic positioning.\n\n",
+      name = "Anchor Cooldown Manager frames to " .. F.String.ToxiUI("ElvUI") .. " unit frame elements for automatic positioning.\n\n",
     }, I.Requirements.CooldownManager).args
 
     -- Essential Cooldown Viewer -> Power Bar
