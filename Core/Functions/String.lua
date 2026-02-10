@@ -213,7 +213,7 @@ function F.String.Scaling()
 end
 
 function F.String.CDM()
-  return TXUI.Title .. " " .. F.String.ToxiUI("Cooldown Manager Skin")
+  return TXUI.Title .. " " .. F.String.Class("Cooldown Manager Skin", "MONK")
 end
 
 function F.String.ReforgedArmory()

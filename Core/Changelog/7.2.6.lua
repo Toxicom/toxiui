@@ -18,6 +18,7 @@ TXUI.Changelog["7.2.6"] = {
     "* Bug fixes",
     F.String.Retail() .. "Potentially fix Damage Meter Skin taint when opening damage breakdown",
     F.String.Retail() .. "Floor the dynamic bar width value for the " .. F.String.CDM(),
+    F.String.Retail() .. "Improve fading logic for " .. F.String.CDM(),
 
     "* Profile updates",
 
@@ -29,5 +30,6 @@ TXUI.Changelog["7.2.6"] = {
     "Update " .. F.String.CDM() .. " description",
 
     "* Development improvements",
+    F.String.Retail() .. "Refactor " .. F.String.CDM() .. " for better structure",
   },
 }

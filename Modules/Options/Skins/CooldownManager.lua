@@ -37,8 +37,6 @@ function O:Skins_CooldownManager()
       name = "This option makes your Cooldown Manager bars "
         .. F.String.ToxiUI("(EssentialCooldownViewer, UtilityCooldownViewer, BuffIconCooldownViewer)")
         .. " fade together with your Player UnitFrame.\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "This requires a UI reload to take effect.\n\n"
         .. F.String.ToxiUI("Information: ")
         .. "It is recommended to reload your UI after editing cooldown settings for the best experience.\n\n",
     }, I.Requirements.CooldownManager).args
@@ -70,9 +68,7 @@ function O:Skins_CooldownManager()
     }, {
       name = "This option syncs the width of the Player Power Bar and Class Bar "
         .. F.String.ToxiUI("(detached)")
-        .. " with the Essential Cooldown Viewer width.\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "This requires a UI reload to take effect.\n\n",
+        .. " with the Essential Cooldown Viewer width.\n\n",
     }, I.Requirements.CooldownManager).args
 
     dynamicGroup.dynamicBarsWidth = {
@@ -104,9 +100,7 @@ function O:Skins_CooldownManager()
     }, {
       name = "Anchor Cooldown Manager frames to "
         .. F.String.ToxiUI("ElvUI")
-        .. " unit frame elements for automatic positioning.\n\n"
-        .. F.String.Warning("Warning: ")
-        .. "This requires a UI reload to take effect.\n\n",
+        .. " unit frame elements for automatic positioning.\n\n",
     }, I.Requirements.CooldownManager).args
 
     -- Essential Cooldown Viewer -> Power Bar
