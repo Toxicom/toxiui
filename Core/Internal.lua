@@ -17,7 +17,7 @@ I.General = {
 }
 
 I.MaxLevelTable = {
-  ["Retail"] = 90,
+  ["Retail"] = 80,
   ["Classic"] = 90,
   ["ClassicEra"] = 60,
   ["Anniversary"] = 70,
