@@ -39,6 +39,7 @@ local function ApplySpecIcon(content)
   if not content.Icon or not content.Icon.Icon then return end
   if not M or not M.BlizzardToSpecID then return end
   if not E.db.TXUI.addons.damageMeter.icons then return end
+  if content.spellID then return end
 
   local texData
 
@@ -162,6 +163,8 @@ local function SkinMeter(content)
   if not content or not content.StatusBar then return end
   if content.txuiHooked then return end
   content.txuiHooked = true
+
+  F.Log.Dev(content, "content")
 
   -- Hook UpdateIcon for future updates and apply immediately
   if content.UpdateIcon then hooksecurefunc(content, "UpdateIcon", ApplySpecIcon) end
