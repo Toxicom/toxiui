@@ -17,7 +17,7 @@ function CM:SetAnchors()
   local classBar = _G["ElvUF_Player_ClassBar"]
 
   -- Anchor EssentialCooldownViewer to bottom of power bar
-  if anchors.essential.enabled and essential and powerBar then
+  if anchors.essential.enabled and essential and powerBar and E.db.unitframe.units.player.power.enable then
     essential:ClearAllPoints()
     essential:SetPoint("TOP", powerBar, "BOTTOM", 0, anchors.essential.yOffset)
   end

@@ -136,12 +136,17 @@ function O:Skins_CooldownManager()
       name = "Anchor Cooldown Manager frames to " .. F.String.ToxiUI("ElvUI") .. " unit frame elements for automatic positioning.\n\n",
     }, I.Requirements.CooldownManager).args
 
+    local function essentialDisabled()
+      return not E.db.unitframe.units.player.power.enable
+    end
+
     -- Essential Cooldown Viewer -> Power Bar
     anchorGroup.anchorEssentialEnabled = {
       order = self:GetOrder(),
       type = "toggle",
       desc = "Anchor the Essential Cooldown Viewer to the bottom of ElvUI's detached Power Bar.",
       name = "Essential to Power Bar",
+      disabled = essentialDisabled,
       get = function(_)
         return db.essential.enabled
       end,
@@ -160,7 +165,7 @@ function O:Skins_CooldownManager()
       max = 50,
       step = 1,
       disabled = function()
-        return not db.essential.enabled
+        return not db.essential.enabled or essentialDisabled()
       end,
       get = function(_)
         return db.essential.yOffset

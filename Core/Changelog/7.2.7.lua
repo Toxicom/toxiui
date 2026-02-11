@@ -11,6 +11,7 @@ TXUI.Changelog["7.2.7"] = {
     F.String.Retail() .. "Disable " .. F.String.CDM() .. " by default",
 
     "* Bug fixes",
+    F.String.Retail() .. "Do not anchor " .. F.String.CDM() .. " essentials when power bar is disabled",
 
     "* Profile updates",
 
