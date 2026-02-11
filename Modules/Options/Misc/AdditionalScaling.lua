@@ -304,7 +304,7 @@ function O:Plugins_AdditionalScaling()
       type = "range",
       name = "Collections",
       disabled = function()
-        return TXUI.IsVanilla or TXUI.IsTBC
+        return TXUI.IsClassicEra or TXUI.IsAnniversary
       end,
       get = function(_)
         return E.db.TXUI.misc.scaling.collections.scale

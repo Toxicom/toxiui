@@ -39,6 +39,21 @@ local UnitSex = UnitSex
 local unpack = unpack
 local wipe = wipe
 
+A.Achievements = {
+  Epic = {
+    ["Retail"] = 61679,
+    ["Classic"] = 5372,
+    ["ClassicEra"] = 5372,
+    ["Anniversary"] = 5372,
+  },
+  Rare = {
+    ["Retail"] = 61678,
+    ["Classic"] = 5372,
+    ["ClassicEra"] = 5372,
+    ["Anniversary"] = 5372,
+  },
+}
+
 -- Vars
 A.enumDirection = F.Enum { "LEFT", "RIGHT", "BOTTOM" }
 A.colors = {
@@ -368,12 +383,12 @@ function A:UpdateItemLevel()
   end
 
   if self:UseFontGradient(self.db.stats, "itemLevel") then
-    local epicComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 40147 or 5372))
+    local epicComplete = select(13, GetAchievementInfo(A.Achievements.Epic[TXUI.MetaFlavor]))
 
     if epicComplete then
       self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.78, 0.13, 0.57, 0.42, 0.08, 0.82))
     else
-      local rareComplete = select(13, GetAchievementInfo(TXUI.IsRetail and 40146 or 5373))
+      local rareComplete = select(13, GetAchievementInfo(A.Achievements.Rare[TXUI.MetaFlavor]))
 
       if rareComplete then
         self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.01, 0.78, 0.98, 0, 0.38, 0.90))

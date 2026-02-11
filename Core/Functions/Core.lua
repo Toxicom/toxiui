@@ -792,7 +792,7 @@ function F.CacheHearthstoneData()
   for id, config in pairs(I.HearthstoneData) do
     if config.load == nil or config.load == true then
       if (config.type == "toy") or (config.type == "item") then
-        if (TXUI.IsVanilla or TXUI.IsTBC) and config.type == "toy" then TXUI:ThrowError("HearthstoneData: Type toy is not valid for: " .. id) end
+        if (TXUI.IsClassicEra or TXUI.IsAnniversary) and config.type == "toy" then TXUI:ThrowError("HearthstoneData: Type toy is not valid for: " .. id) end
         local success = F.ProtectedCall(function()
           local itemMixin = CreateFromMixins(ItemMixin)
           itemMixin:SetItemID(id)
@@ -800,7 +800,7 @@ function F.CacheHearthstoneData()
             config.id = id
             config.name = itemMixin:GetItemName()
 
-            if not TXUI.IsVanilla and not TXUI.IsTBC and config.type == "toy" then
+            if not TXUI.IsClassicEra and not TXUI.IsAnniversary and config.type == "toy" then
               config.known = PlayerHasToy(id)
             else
               config.known = GetItemCount(id, false, true) > 0

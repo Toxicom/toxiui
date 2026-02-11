@@ -38,7 +38,7 @@ function M:AdditionalScaling()
     end
 
     -- Retail & Mists scaling
-    if not TXUI.IsVanilla and not TXUI.IsTBC then M:AddCallbackOrScale("Blizzard_Collections", self.ScaleCollections) end
+    if not TXUI.IsClassicEra and not TXUI.IsAnniversary then M:AddCallbackOrScale("Blizzard_Collections", self.ScaleCollections) end
 
     -- Mists & Vanilla scaling
     if not TXUI.IsRetail then

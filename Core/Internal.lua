@@ -17,10 +17,10 @@ I.General = {
 }
 
 I.MaxLevelTable = {
-  ["Vanilla"] = 60,
-  ["Mists"] = 90,
-  ["Mainline"] = 80,
-  ["TBC"] = 70,
+  ["Retail"] = 90,
+  ["Classic"] = 90,
+  ["ClassicEra"] = 60,
+  ["Anniversary"] = 70,
 }
 
 I.Fonts = {
@@ -656,7 +656,7 @@ I.HearthstoneData = {
   [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone
 }
 
-I.HearthstoneData_Mists = {
+I.HearthstoneData_Classic = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
   [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
   [54452] = { ["type"] = "item", ["hearthstone"] = true }, -- Ethereal Portal
@@ -719,7 +719,7 @@ I.HearthstoneData_Mists = {
   [132626] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "MOP" }, -- Portal: Vale of Eternal Blossoms (Horde)
 }
 
-I.HearthstoneData_Vanilla = {
+I.HearthstoneData_ClassicEra = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
 
   -- Hearthstone: Druid
@@ -748,7 +748,7 @@ I.HearthstoneData_Vanilla = {
   [3562] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "IF" }, -- Teleport: Ironforge
 }
 
-I.HearthstoneData_TBC = {
+I.HearthstoneData_Anniversary = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
   [260221] = { ["type"] = "item", ["hearthstone"] = true }, -- Naaru's Embrace
 

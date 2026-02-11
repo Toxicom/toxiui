@@ -243,7 +243,7 @@ function DB:UpdateFonts()
 end
 
 function DB:UpdateAverageItemLevel()
-  if TXUI.IsRetail or TXUI.IsMists then
+  if TXUI.IsRetail or TXUI.IsClassic then
     local avgItemLevel, avgItemLevelEquipped = GetAverageItemLevel()
 
     if avgItemLevel ~= self.avgItemLevel or avgItemLevelEquipped ~= self.avgItemLevelEquipped then
@@ -379,5 +379,5 @@ WB:RegisterSubModule(
   F.Table.Join({
     "UPDATE_INVENTORY_DURABILITY",
     "MERCHANT_SHOW",
-  }, F.Table.If(TXUI.IsRetail, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(TXUI.IsMists, { "PLAYER_EQUIPMENT_CHANGED" }))
+  }, F.Table.If(TXUI.IsRetail, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(TXUI.IsClassic, { "PLAYER_EQUIPMENT_CHANGED" }))
 )

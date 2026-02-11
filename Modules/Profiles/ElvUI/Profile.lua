@@ -315,7 +315,7 @@ function PF:BuildProfile()
 
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     }),
-    F.Table.If(TXUI.IsMists, {
+    F.Table.If(TXUI.IsClassic, {
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
     }),
     F.Table.If(not TXUI.IsRetail, {
@@ -1225,7 +1225,7 @@ function PF:BuildProfile()
         }),
 
         ["toxiui:pet-happiness"] = createCustomText({}, {
-          text_format = (TXUI.IsVanilla or TXUI.IsTBC) and "[happiness:discord]" or "",
+          text_format = (TXUI.IsClassicEra or TXUI.IsAnniversary) and "[happiness:discord]" or "",
           xOffset = -25,
           yOffset = 0,
           justifyH = "LEFT",
@@ -2120,7 +2120,7 @@ function PF:BuildProfile()
         scale = F.DpiRaw(1.25),
       },
     },
-    F.Table.If(TXUI.IsMists, {
+    F.Table.If(TXUI.IsClassic, {
       totemBar = {
         mouseover = true,
         keepSizeRatio = false,
@@ -2164,7 +2164,7 @@ function PF:BuildProfile()
     if not tbl.visibility then
       if TXUI.IsRetail then
         tbl.visibility = "[vehicleui][petbattle][overridebar] hide; show"
-      elseif TXUI.IsMists then
+      elseif TXUI.IsClassic then
         tbl.visibility = "[vehicleui][overridebar] hide; show"
       else
         tbl.visibility = "[overridebar] hide; show"
@@ -2292,7 +2292,7 @@ function PF:BuildProfile()
   if TXUI.IsRetail then
     pf.actionbar.barPet.visibility = "[petbattle] hide; [novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui][petbattle] hide; show"
-  elseif TXUI.IsMists then
+  elseif TXUI.IsClassic then
     pf.actionbar.barPet.visibility = "[novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui] hide; show"
   else
@@ -2359,7 +2359,7 @@ function PF:ElvUIProfilePrivate()
       totemTracker = false,
       glossTex = "- ToxiUI", -- Secondary Texture
       normTex = "- ToxiUI",
-      classColors = TXUI.IsVanilla,
+      classColors = TXUI.IsClassicEra,
 
       minimap = {
         hideClassHallReport = false,

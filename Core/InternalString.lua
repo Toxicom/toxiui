@@ -123,7 +123,7 @@ I.Strings.Deconstruct = {
 }
 
 I.Strings.Classes = {
-  VANILLA = {
+  CLASSIC_ERA = {
     "WARRIOR",
     "PALADIN",
     "HUNTER",
@@ -134,7 +134,18 @@ I.Strings.Classes = {
     "WARLOCK",
     "DRUID",
   },
-  MISTS = {
+  ANNIVERSARY = {
+    "WARRIOR",
+    "PALADIN",
+    "HUNTER",
+    "ROGUE",
+    "PRIEST",
+    "SHAMAN",
+    "MAGE",
+    "WARLOCK",
+    "DRUID",
+  },
+  CLASSIC = {
     "WARRIOR",
     "PALADIN",
     "HUNTER",

@@ -174,7 +174,7 @@ function M:GenerateSpecIcon(dbPath)
     else
       specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
     end
-  elseif TXUI.IsMists then
+  elseif TXUI.IsClassic then
     local specIndex = C_SpecializationInfo.GetSpecialization()
     local specId = C_SpecializationInfo.GetSpecializationInfo(specIndex)
 

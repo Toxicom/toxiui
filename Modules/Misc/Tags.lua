@@ -223,7 +223,7 @@ function M:Tags()
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
-    if TXUI.IsMidnight then return format("%d", UnitHealthPercent(unit, true, ScaleTo100)) end
+    if TXUI.IsRetail then return format("%d", UnitHealthPercent(unit, true, ScaleTo100)) end
 
     local max = UnitHealthMax(unit)
     if max == 0 then
@@ -286,7 +286,7 @@ function M:Tags()
 
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
-    if TXUI.IsMidnight then
+    if TXUI.IsRetail then
       local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
       if not dm.isEnabled then
@@ -335,7 +335,7 @@ function M:Tags()
   E:AddTag("tx:power", POWER_EVENTS, function(unit)
     local power = UnitPower(unit)
 
-    if TXUI.IsMidnight then
+    if TXUI.IsRetail then
       if E.myclass == "WARLOCK" and unit == "player" then power = UnitPower(unit, Enum.PowerType.SoulShards) end
       if E.myclass == "PALADIN" and unit == "player" then power = UnitPower(unit, Enum.PowerType.HolyPower) end
       if unit == "player" and hideManaSpecs[cachedSpecID] then return end
@@ -547,7 +547,7 @@ function M:Tags()
     E:AddTagInfo(
       "tx:power",
       TagNames.POWER,
-      "Displays current Power of unit. Also adds " .. TXUI.Title .. " colors." .. (TXUI.IsMidnight and " Smart display per-specialization." or "")
+      "Displays current Power of unit. Also adds " .. TXUI.Title .. " colors." .. (TXUI.IsRetail and " Smart display per-specialization." or "")
     )
   end
 

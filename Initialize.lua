@@ -38,12 +38,10 @@ TXUI.MetaFlavor = GetAddOnMetadata(addonName, "X-Flavor")
 TXUI.ClientBuildVersion = select(4, GetBuildInfo())
 TXUI.Version = GetAddOnMetadata(addonName, "Version")
 
-TXUI.IsVanilla = TXUI.MetaFlavor == "Vanilla"
-TXUI.IsMists = TXUI.MetaFlavor == "Mists"
-TXUI.IsRetail = TXUI.MetaFlavor == "Mainline"
--- Identical to Retail. Need this so I can revisit code that's been disabled for Midnight
-TXUI.IsMidnight = TXUI.MetaFlavor == "Mainline"
-TXUI.IsTBC = TXUI.MetaFlavor == "TBC"
+TXUI.IsRetail = TXUI.MetaFlavor == "Retail"
+TXUI.IsClassic = TXUI.MetaFlavor == "Classic"
+TXUI.IsClassicEra = TXUI.MetaFlavor == "ClassicEra"
+TXUI.IsAnniversary = TXUI.MetaFlavor == "Anniversary"
 
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
@@ -65,10 +63,10 @@ function TXUI:Initialize()
 
   -- Set correct flavor
   local flavorMap = {
-    ["Vanilla"] = I.Enum.Flavor.VANILLA,
-    ["Mists"] = I.Enum.Flavor.MISTS,
-    ["Mainline"] = I.Enum.Flavor.RETAIL,
-    ["TBC"] = I.Enum.Flavor.TBC,
+    ["Retail"] = I.Enum.Flavor.RETAIL,
+    ["Classic"] = I.Enum.Flavor.CLASSIC,
+    ["ClassicEra"] = I.Enum.Flavor.CLASSIC_ERA,
+    ["Anniversary"] = I.Enum.Flavor.ANNIVERSARY,
   }
 
   self.Flavor = flavorMap[self.MetaFlavor] or I.Enum.Flavor.RETAIL
@@ -120,24 +118,24 @@ function TXUI:Initialize()
   end
 
   -- Check for non Mists, non Retail, non Vanilla, and non TBC
-  if not self.IsRetail and not self.IsMists and not self.IsVanilla and not self.IsTBC then return end
+  if not self.IsRetail and not self.IsClassic and not self.IsClassicEra and not self.IsAnniversary then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
 
   -- Set the correct tables for Flavor
-  if self.IsMists then
-    I.HearthstoneData = I.HearthstoneData_Mists
+  if self.IsClassic then
+    I.HearthstoneData = I.HearthstoneData_Classic
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 
-  if self.IsVanilla then
-    I.HearthstoneData = I.HearthstoneData_Vanilla
+  if self.IsClassicEra then
+    I.HearthstoneData = I.HearthstoneData_ClassicEra
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 
-  if self.IsTBC then
-    I.HearthstoneData = I.HearthstoneData_TBC
+  if self.IsAnniversary then
+    I.HearthstoneData = I.HearthstoneData_Anniversary
     I.InterruptSpellMap = I.InterruptSpellMap_Empty
   end
 

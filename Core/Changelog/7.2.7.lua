@@ -19,5 +19,6 @@ TXUI.Changelog["7.2.7"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Rename all internal cases of referencing game versions",
   },
 }

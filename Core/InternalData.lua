@@ -40,7 +40,7 @@ I.Data.Contributor = {
         ["Toxizen-TarrenMill"] = true,
       },
 
-      [I.Enum.Flavor.MISTS] = {
+      [I.Enum.Flavor.CLASSIC] = {
         -- Giantstalker
         ["Toxi-Giantstalker"] = true,
         ["Toxilich-Giantstalker"] = true,
@@ -76,7 +76,7 @@ I.Data.Contributor = {
         ["Toxispring-Gehennas"] = true, -- Hunter
       },
 
-      [I.Enum.Flavor.TBC] = {
+      [I.Enum.Flavor.ANNIVERSARY] = {
         -- Thunderstrike
         ["Toxilock-Thunderstrike"] = true,
         ["Toxishot-Thunderstrike"] = true,
@@ -88,7 +88,7 @@ I.Data.Contributor = {
         ["Toxibow-Spineshatter"] = true,
       },
 
-      [I.Enum.Flavor.VANILLA] = {
+      [I.Enum.Flavor.CLASSIC_ERA] = {
         -- Firemaw
         ["Toxisin-Firemaw"] = true,
 
@@ -110,7 +110,7 @@ I.Data.Contributor = {
         ["Ryadia-Draenor"] = true,
       },
 
-      [I.Enum.Flavor.MISTS] = {
+      [I.Enum.Flavor.CLASSIC] = {
         -- Ashbringer
         ["Cyassa-Ashbringer"] = true,
         ["Ryashh-Ashbringer"] = true,
@@ -157,7 +157,7 @@ I.Data.Contributor = {
         ["Raovasbank-Daggerspine"] = true,
       },
 
-      [I.Enum.Flavor.MISTS] = {
+      [I.Enum.Flavor.CLASSIC] = {
         -- Giantstalker
         ["Lexza-Giantstalker"] = true,
       },
@@ -325,7 +325,7 @@ I.Data.Contributor = {
 
     -- Joined Jan 15, 2026
     ["Aspry"] = {
-      [I.Enum.Flavor.TBC] = {
+      [I.Enum.Flavor.ANNIVERSARY] = {
         -- Spineshatter
         ["Kyenra-Spineshatter"] = true,
         ["Rindwahn-Spineshatter"] = true,
@@ -362,7 +362,7 @@ I.Data.Contributor = {
         ["Lilithye-Silvermoon"] = true,
       },
 
-      [I.Enum.Flavor.MISTS] = {
+      [I.Enum.Flavor.CLASSIC] = {
         -- Hoptallus
         ["Scilia-Hoptallus"] = true,
 

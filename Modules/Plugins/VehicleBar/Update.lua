@@ -230,7 +230,7 @@ function VB:UpdateBar()
   end
 
   -- Update Paging
-  if not TXUI.IsVanilla and not TXUI.IsTBC then
+  if not TXUI.IsClassicEra and not TXUI.IsAnniversary then
     local pageState =
       format("[overridebar] %d; [vehicleui] %d; [possessbar] %d; [shapeshift] 13; %s", GetOverrideBarIndex(), GetVehicleBarIndex(), GetVehicleBarIndex(), "[bonusbar:5] 11;")
     local pageAttribute = self.ab:GetPage("bar1", 1, pageState)

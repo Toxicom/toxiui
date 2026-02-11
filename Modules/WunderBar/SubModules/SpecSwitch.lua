@@ -128,7 +128,7 @@ function SS:SpecEnter(text, icon)
 
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Show Talent UI")
-    if TXUI.IsRetail or (TXUI.IsMists and GetNumSpecGroups(true) == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
+    if TXUI.IsRetail or (TXUI.IsClassic and GetNumSpecGroups(true) == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
     DT.tooltip:Show()
   end
 end
@@ -144,7 +144,7 @@ function SS:SpecClick(frame, button, ...)
   local hasDualSpec
   local activeGroup
 
-  if TXUI.IsMists then
+  if TXUI.IsClassic then
     hasDualSpec = GetNumSpecGroups(true) == 2
     activeGroup = C_SpecializationInfo.GetActiveSpecGroup()
   end
@@ -155,7 +155,7 @@ function SS:SpecClick(frame, button, ...)
   else
     if button == "LeftButton" then
       ToggleTalentFrame()
-    elseif TXUI.IsMists then
+    elseif TXUI.IsClassic then
       if not hasDualSpec then return end
       SetActiveTalentGroup(activeGroup == 1 and 2 or 1)
     else
@@ -228,7 +228,7 @@ end
 function SS:UpdateSpecialization()
   local spec1, spec2
 
-  if TXUI.IsVanilla or TXUI.IsTBC then
+  if TXUI.IsClassicEra or TXUI.IsAnniversary then
     spec1 = GetActiveSpecGroup()
     spec2 = GetNumTalentGroups() == 2 and (spec1 == 2 and 1 or 2) or nil
     self.specCache = {}
@@ -530,7 +530,7 @@ function SS:OnInit()
       local id, name = GetSpecializationInfoForClassID(classId, i)
       if id then self.specCache[i] = { id = id, name = name } end
     end
-  elseif TXUI.IsMists then
+  elseif TXUI.IsClassic then
     self.numSpecs = GetNumSpecializations()
     for i = 1, self.numSpecs do
       local id, name = GetTalentTabInfo(i)
@@ -566,6 +566,6 @@ WB:RegisterSubModule(
       "TRAIT_CONFIG_UPDATED",
       "TRAIT_TREE_CHANGED",
     }),
-    F.Table.If(TXUI.IsMists, { "TALENT_GROUP_ROLE_CHANGED", "PLAYER_LOOT_SPEC_UPDATED" })
+    F.Table.If(TXUI.IsClassic, { "TALENT_GROUP_ROLE_CHANGED", "PLAYER_LOOT_SPEC_UPDATED" })
   )
 )

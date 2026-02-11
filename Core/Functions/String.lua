@@ -139,10 +139,12 @@ end
 
 function F.String.RandomClassColor(msg)
   local classNames
-  if TXUI.IsVanilla or TXUI.IsTBC then
-    classNames = I.Strings.Classes.VANILLA
-  elseif TXUI.IsMists then
-    classNames = I.Strings.Classes.MISTS
+  if TXUI.IsClassicEra then
+    classNames = I.Strings.Classes.CLASSIC_ERA
+  elseif TXUI.IsAnniversary then
+    classNames = I.Strings.Classes.ANNIVERSARY
+  elseif TXUI.IsClassic then
+    classNames = I.Strings.Classes.CLASSIC
   else
     classNames = I.Strings.Classes.RETAIL
   end
