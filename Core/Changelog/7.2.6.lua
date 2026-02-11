@@ -27,6 +27,7 @@ TXUI.Changelog["7.2.6"] = {
     F.String.Retail() .. "Floor the dynamic bar width value for the " .. F.String.CDM(),
     F.String.Retail() .. "Improve fading logic for " .. F.String.CDM(),
     F.String.Retail() .. "Do not try to change Damage Meter icon if it has a spell ID",
+    F.String.Retail() .. "Fix Damage Meter Skin's header fading due to " .. F.String.ElvUI() .. " changes",
 
     "* Profile updates",
 

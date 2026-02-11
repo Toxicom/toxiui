@@ -115,7 +115,7 @@ end
 
 -- Animate alpha on all header elements
 local function AnimateHeaderAlpha(window, alpha)
-  if window.headerBackdrop then AnimateAlpha(window.headerBackdrop, alpha) end
+  if window.Header then AnimateAlpha(window.Header, alpha) end
   if window.DamageMeterTypeDropdown then AnimateAlpha(window.DamageMeterTypeDropdown, alpha) end
   if window.SessionDropdown then AnimateAlpha(window.SessionDropdown, alpha) end
   if window.SettingsDropdown then AnimateAlpha(window.SettingsDropdown, alpha) end
@@ -123,14 +123,14 @@ end
 
 -- Set alpha immediately on all header elements (no animation)
 local function SetHeaderAlpha(window, alpha)
-  if window.headerBackdrop then window.headerBackdrop:SetAlpha(alpha) end
+  if window.Header then window.Header:SetAlpha(alpha) end
   if window.DamageMeterTypeDropdown then window.DamageMeterTypeDropdown:SetAlpha(alpha) end
   if window.SessionDropdown then window.SessionDropdown:SetAlpha(alpha) end
   if window.SettingsDropdown then window.SettingsDropdown:SetAlpha(alpha) end
 end
 
 local function SkinHeader(window)
-  if not window or not window.headerBackdrop then return end
+  if not window or not window.Header then return end
   if not E.db.TXUI.addons.damageMeter.headerFade then return end
   if window.txuiHeaderHooked then return end
   window.txuiHeaderHooked = true
@@ -138,7 +138,7 @@ local function SkinHeader(window)
   local db = E.db.TXUI.addons.damageMeter
 
   -- Setup fade animations for each header element
-  SetupFadeAnimation(window.headerBackdrop)
+  SetupFadeAnimation(window.Header)
   SetupFadeAnimation(window.DamageMeterTypeDropdown)
   SetupFadeAnimation(window.SessionDropdown)
   SetupFadeAnimation(window.SettingsDropdown)
