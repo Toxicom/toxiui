@@ -115,7 +115,6 @@ end
 
 -- Animate alpha on all header elements
 local function AnimateHeaderAlpha(window, alpha)
-  if window.Header then AnimateAlpha(window.Header, alpha) end
   if window.DamageMeterTypeDropdown then AnimateAlpha(window.DamageMeterTypeDropdown, alpha) end
   if window.SessionDropdown then AnimateAlpha(window.SessionDropdown, alpha) end
   if window.SettingsDropdown then AnimateAlpha(window.SettingsDropdown, alpha) end
@@ -123,7 +122,6 @@ end
 
 -- Set alpha immediately on all header elements (no animation)
 local function SetHeaderAlpha(window, alpha)
-  if window.Header then window.Header:SetAlpha(alpha) end
   if window.DamageMeterTypeDropdown then window.DamageMeterTypeDropdown:SetAlpha(alpha) end
   if window.SessionDropdown then window.SessionDropdown:SetAlpha(alpha) end
   if window.SettingsDropdown then window.SettingsDropdown:SetAlpha(alpha) end
@@ -135,10 +133,12 @@ local function SkinHeader(window)
   if window.txuiHeaderHooked then return end
   window.txuiHeaderHooked = true
 
+  -- Make header backdrop transparent
+  window.Header:SetAlpha(0)
+
   local db = E.db.TXUI.addons.damageMeter
 
   -- Setup fade animations for each header element
-  SetupFadeAnimation(window.Header)
   SetupFadeAnimation(window.DamageMeterTypeDropdown)
   SetupFadeAnimation(window.SessionDropdown)
   SetupFadeAnimation(window.SettingsDropdown)
@@ -163,8 +163,6 @@ local function SkinMeter(content)
   if not content or not content.StatusBar then return end
   if content.txuiHooked then return end
   content.txuiHooked = true
-
-  F.Log.Dev(content, "content")
 
   -- Hook UpdateIcon for future updates and apply immediately
   if content.UpdateIcon then hooksecurefunc(content, "UpdateIcon", ApplySpecIcon) end
