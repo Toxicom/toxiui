@@ -295,6 +295,30 @@ P.addons = {
         yOffset = 80,
       },
     },
+
+    -- Keybind overlays
+    keybinds = {
+      essential = {
+        enabled = false,
+        labelFont = I.Fonts.Primary,
+        labelFontSize = 16,
+        labelFontOutline = "OUTLINE",
+        labelFontShadow = false,
+        anchor = "TOPRIGHT",
+        xOffset = -2,
+        yOffset = -2,
+      },
+      utility = {
+        enabled = false,
+        labelFont = I.Fonts.Primary,
+        labelFontSize = 12,
+        labelFontOutline = "OUTLINE",
+        labelFontShadow = false,
+        anchor = "TOPRIGHT",
+        xOffset = -1,
+        yOffset = -1,
+      },
+    },
   },
 
   -- Damage Meter (Blizzard)

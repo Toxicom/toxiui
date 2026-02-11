@@ -19556,4 +19556,5 @@ globals = {
   "EventRegistry",
   "Abbrev",
   "CooldownViewerSettings",
+  "C_CooldownViewer",
 }

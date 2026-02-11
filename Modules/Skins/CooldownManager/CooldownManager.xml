@@ -3,4 +3,5 @@
   <Script file='Anchoring.lua' />
   <Script file='Fading.lua' />
   <Script file='Width.lua' />
+  <Script file='Keybinds.lua' />
 </Ui>

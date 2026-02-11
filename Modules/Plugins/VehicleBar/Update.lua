@@ -1,5 +1,6 @@
 local TXUI, F, E, I = unpack((select(2, ...)))
 local VB = TXUI:GetModule("VehicleBar")
+local CM = TXUI:GetModule("ColorModifiers")
 local LAB = LibStub("LibActionButton-1.0-ElvUI")
 
 local GetOverrideBarIndex = GetOverrideBarIndex
@@ -107,7 +108,7 @@ function VB:UpdateKeybinds()
       local keybind = GetBindingKey("ACTIONBUTTON" .. buttonIndex)
       if keybind and self.db.showKeybinds then
         button.HotKey:SetTextColor(1, 1, 1)
-        button.HotKey:SetText(self:FormatKeybind(keybind))
+        button.HotKey:SetText(CM:FormatKeybind(keybind))
         -- stop truncating keybinds (thx Repooc =])
         button.HotKey:Width(button:GetWidth())
         button.HotKey:Show()
