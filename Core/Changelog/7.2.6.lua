@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["7.2.6"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     F.String.Menu.Performance() .. " tab in " .. TXUI.Title .. " settings",
     F.String.Retail() .. "Anchoring section in " .. F.String.CDM(),
@@ -30,15 +28,13 @@ TXUI.Changelog["7.2.6"] = {
     F.String.Retail() .. "Do not try to change Damage Meter icon if it has a spell ID",
     F.String.Retail() .. "Fix Damage Meter Skin's header fading due to " .. F.String.ElvUI() .. " changes",
 
-    "* Profile updates",
-
     "* Documentation",
     F.String.Retail() .. "Update for patch 12.0.1",
     F.String.MinElv("15.05"),
 
     "* Settings refactoring",
     "Update " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Skin description",
-    "Update " .. F.String.CDM() .. " description",
+    F.String.Retail() .. "Update " .. F.String.CDM() .. " description",
 
     "* Development improvements",
     F.String.Retail() .. "Refactor " .. F.String.CDM() .. " for better structure",
