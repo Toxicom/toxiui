@@ -19521,7 +19521,8 @@
     "UnitPowerPercent",
     "AbbreviateNumbers",
     "EventRegistry",
-    "Abbrev"
+    "Abbrev",
+    "CooldownViewerSettings"
   ],
   "diagnostics.disable": ["deprecated", "inject-field", "undefined-field"]
 }

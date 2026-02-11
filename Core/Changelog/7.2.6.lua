@@ -14,6 +14,7 @@ TXUI.Changelog["7.2.6"] = {
       .. F.String.CDM()
       .. " will restore previous width"
       .. F.String.Sublist("Will not save previous width if enabled before this update"),
+    F.String.Retail() .. "Add Cooldown Manager slash commands to toggle settings" .. F.String.Sublist("/cd") .. F.String.Sublist("/cdm") .. F.String.Sublist("/wa"),
 
     "* Enhancements",
     F.String.Retail() .. "Display percentage mana for " .. F.String.Class("Arcane Mages", "MAGE") .. " with the " .. F.String.ToxiUI("[tx:power]") .. " tag",

@@ -19555,4 +19555,5 @@ globals = {
   "AbbreviateNumbers",
   "EventRegistry",
   "Abbrev",
+  "CooldownViewerSettings",
 }

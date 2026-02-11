@@ -228,9 +228,23 @@ function TXUI:HandleChatCommand(msg)
   end
 end
 
+function TXUI:HandleCDMCommand()
+  local settings = _G.CooldownViewerSettings
+  if not settings then return end
+  if InCombatLockdown() then return end
+
+  settings:SetShown(not settings:IsShown())
+end
+
 function TXUI:LoadCommands()
   self:RegisterChatCommand("tx", "HandleChatCommand")
   self:RegisterChatCommand("txui", "HandleChatCommand")
   self:RegisterChatCommand("toxi", "HandleChatCommand")
   self:RegisterChatCommand("toxiui", "HandleChatCommand")
+
+  if TXUI.IsRetail then
+    self:RegisterChatCommand("cd", "HandleCDMCommand")
+    self:RegisterChatCommand("cdm", "HandleCDMCommand")
+    self:RegisterChatCommand("wa", "HandleCDMCommand")
+  end
 end
