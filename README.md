@@ -40,7 +40,6 @@
 ## Additional supported AddOns:
 
 - [BigWigs](https://www.curseforge.com/wow/addons/big-wigs)
-- [OmniCD - Party Cooldown Tracker](https://www.curseforge.com/wow/addons/omnicd)
 - [WarpDeplete (Retail only)](https://www.curseforge.com/wow/addons/warpdeplete)
 - [Ratio Minimap Auras](https://www.curseforge.com/wow/addons/elvui-ratiominimapauras)
 

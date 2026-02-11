@@ -87,9 +87,7 @@ function F.String.NameplateSCT(msg)
 end
 
 function F.String.OmniCD(msg)
-  if not msg or msg == "" then return F.String.Color("OmniCD", I.Enum.Colors.OMNICD) end
-
-  return F.String.Color(msg, I.Enum.Colors.OMNICD)
+  return msg or "OmniCD"
 end
 
 function F.String.WarpDeplete(msg)

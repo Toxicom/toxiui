@@ -425,25 +425,14 @@ function IS:Dialog()
         installFrame.SubTitle:SetText(F.String.ToxiUI("Additional AddOns"))
 
         installFrame.Desc1:SetText(TXUI.Title .. " offers extra profiles for commonly used AddOns.")
-        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.OmniCD() .. ", " .. F.String.WarpDeplete())
+        installFrame.Desc2:SetText("Currently supported AddOns: " .. F.String.WarpDeplete())
 
-        if not F.IsAddOnEnabled("OmniCD") and not F.IsAddOnEnabled("WarpDeplete") then
+        if not F.IsAddOnEnabled("WarpDeplete") then
           installFrame.Desc3:SetText(
             F.String.Warning("Warning: ") .. "Looks like you don't have any of the extra AddOns installed. Don't worry, you can still fully experience " .. TXUI.Title .. "!"
           )
         end
 
-        if F.IsAddOnEnabled("OmniCD") then
-          installFrame.Desc3:SetText(
-            F.String.Warning("Warning: ")
-              .. F.String.OmniCD()
-              .. " has only the dungeons profile set up! Raid profile is default, you might wanna tweak it before going to a raid! If you have suggestions for a profile, please contact us on the "
-              .. TXUI.Title
-              .. " Discord!"
-          )
-        end
-
-        InstallOptionalAddOn("OmniCD", F.String.OmniCD())
         InstallOptionalAddOn("WarpDeplete", F.String.WarpDeplete())
       end,
 

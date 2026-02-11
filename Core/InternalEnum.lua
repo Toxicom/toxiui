@@ -46,7 +46,6 @@ I.Enum.Colors = F.Enum {
   "DETAILS",
   "BIGWIGS",
   "NSCT",
-  "OMNICD",
   "WDP",
   "WT",
   "ELVUI", -- ElvUI Default Blue color
