@@ -22,6 +22,7 @@ function CM:Disable()
   self:DisableDynamicBarsWidth()
   self:DisableDynamicCastbarWidth()
   self:DisableAnchoring()
+  self:DisableKeybinds()
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self)
   F.Event.UnregisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self)
@@ -57,6 +58,12 @@ function CM:DatabaseUpdate()
     if self.db.anchors then
       local a = self.db.anchors
       if a.essential.enabled or a.utility.enabled or a.buff.enabled or a.buffBar.enabled then self:EnableAnchoring() end
+    end
+
+    -- Enable keybind overlays if any viewer has keybinds enabled
+    if self.db.keybinds then
+      local kb = self.db.keybinds
+      if (kb.essential and kb.essential.enabled) or (kb.utility and kb.utility.enabled) then self:EnableKeybinds() end
     end
 
     -- Re-apply all features on settings change or edit mode exit since they reset frames

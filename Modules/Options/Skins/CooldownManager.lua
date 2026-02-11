@@ -285,6 +285,182 @@ function O:Skins_CooldownManager()
       end,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Keybinds
+  do
+    local function keybindsDisabled()
+      return not E.private.actionbar.enable
+    end
+
+    local kbGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Keybinds",
+    }, {
+      name = "Show keybind text on Cooldown Manager icons by reading bindings from " .. F.String.ToxiUI("ElvUI Action Bars") .. ".\n\n" .. (keybindsDisabled() and F.String.Error(
+        "Requires ElvUI ActionBars to be enabled.\n\n"
+      ) or ""),
+    }, I.Requirements.CooldownManager).args
+
+    local function addViewerKeybindOptions(group, viewerLabel, settingKey)
+      local db = E.db.TXUI.addons.cooldownManager.keybinds[settingKey]
+
+      group["kb" .. settingKey .. "Enabled"] = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Show keybind text on " .. viewerLabel .. " icons.",
+        name = viewerLabel,
+        get = function(_)
+          return db.enabled
+        end,
+        set = function(_, value)
+          db.enabled = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+        disabled = keybindsDisabled,
+      }
+
+      group["kb" .. settingKey .. "Font"] = {
+        order = self:GetOrder(),
+        type = "select",
+        dialogControl = "LSM30_Font",
+        name = "Font",
+        desc = "Set the font.",
+        values = self:GetAllFontsFunc(),
+        disabled = function()
+          return not db.enabled or keybindsDisabled()
+        end,
+        get = function(_)
+          return db.labelFont
+        end,
+        set = function(_, value)
+          db.labelFont = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
+
+      group["kb" .. settingKey .. "FontOutline"] = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Font Outline",
+        desc = "Set the font outline.",
+        values = self:GetAllFontOutlinesFunc(),
+        disabled = function()
+          return not db.enabled or db.labelFontShadow == true or keybindsDisabled()
+        end,
+        get = function(_)
+          return db.labelFontOutline
+        end,
+        set = function(_, value)
+          db.labelFontOutline = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
+
+      group["kb" .. settingKey .. "FontSize"] = {
+        order = self:GetOrder(),
+        type = "range",
+        name = "Font Size",
+        desc = "Set the font size.",
+        min = 1,
+        max = 100,
+        step = 1,
+        disabled = function()
+          return not db.enabled or keybindsDisabled()
+        end,
+        get = function(_)
+          return db.labelFontSize
+        end,
+        set = function(_, value)
+          db.labelFontSize = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
+
+      group["kb" .. settingKey .. "FontShadow"] = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = "Font Shadow",
+        desc = "Set font drop shadow.",
+        disabled = function()
+          return not db.enabled or keybindsDisabled()
+        end,
+        get = function(_)
+          return db.labelFontShadow
+        end,
+        set = function(_, value)
+          db.labelFontShadow = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
+
+      group["kb" .. settingKey .. "Anchor"] = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Anchor",
+        desc = "Position of the keybind text on the icon.",
+        values = function()
+          return unpack(E.Config).Values.TextPositions
+        end,
+        disabled = function()
+          return not db.enabled or keybindsDisabled()
+        end,
+        get = function(_)
+          return db.anchor
+        end,
+        set = function(_, value)
+          db.anchor = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
+
+      group["kb" .. settingKey .. "XOffset"] = {
+        order = self:GetOrder(),
+        type = "range",
+        name = "X Offset",
+        desc = "Horizontal offset for the keybind text.",
+        min = -20,
+        max = 20,
+        step = 1,
+        disabled = function()
+          return not db.enabled or keybindsDisabled()
+        end,
+        get = function(_)
+          return db.xOffset
+        end,
+        set = function(_, value)
+          db.xOffset = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
+
+      group["kb" .. settingKey .. "YOffset"] = {
+        order = self:GetOrder(),
+        type = "range",
+        name = "Y Offset",
+        desc = "Vertical offset for the keybind text.",
+        min = -20,
+        max = 20,
+        step = 1,
+        disabled = function()
+          return not db.enabled or keybindsDisabled()
+        end,
+        get = function(_)
+          return db.yOffset
+        end,
+        set = function(_, value)
+          db.yOffset = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
+
+      self:AddSpacer(group)
+    end
+
+    addViewerKeybindOptions(kbGroup, "Essential", "essential")
+    addViewerKeybindOptions(kbGroup, "Utility", "utility")
+  end
 end
 
 if TXUI.IsRetail then O:AddCallback("Skins_CooldownManager") end

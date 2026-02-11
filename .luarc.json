@@ -19522,7 +19522,8 @@
     "AbbreviateNumbers",
     "EventRegistry",
     "Abbrev",
-    "CooldownViewerSettings"
+    "CooldownViewerSettings",
+    "C_CooldownViewer"
   ],
   "diagnostics.disable": ["deprecated", "inject-field", "undefined-field"]
 }
