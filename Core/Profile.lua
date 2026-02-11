@@ -272,26 +272,26 @@ P.addons = {
 
   -- Cooldown Manager
   cooldownManager = {
-    fading = true,
-    dynamicBarsWidth = true,
+    fading = false,
+    dynamicBarsWidth = false,
     dynamicCastbarWidth = false,
 
     -- Anchoring
     anchors = {
       essential = {
-        enabled = true,
+        enabled = false,
         yOffset = -4,
       },
       utility = {
-        enabled = true,
+        enabled = false,
         yOffset = -4,
       },
       buff = {
-        enabled = true,
+        enabled = false,
         yOffset = 20,
       },
       buffBar = {
-        enabled = true,
+        enabled = false,
         yOffset = 80,
       },
     },

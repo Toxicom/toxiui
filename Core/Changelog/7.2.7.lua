@@ -8,9 +8,9 @@ TXUI.Changelog["7.2.7"] = {
     "* New features",
 
     "* Enhancements",
+    F.String.Retail() .. "Disable " .. F.String.CDM() .. " by default",
 
     "* Bug fixes",
-    F.String.Retail() .. "Disable " .. F.String.CDM() .. " Castbar sync by default",
 
     "* Profile updates",
 
