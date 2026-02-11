@@ -21,6 +21,7 @@ TXUI.Changelog["7.2.6"] = {
     "Try displaying class icon when spec icon is not available for both " .. F.String.ToxiUI("[tx:classicon]") .. " tags" .. F.String.Sublist(
       "This is most noticeable in follower dungeons"
     ),
+    F.String.Retail() .. "Enable " .. F.String.CDM() .. " by default",
 
     "* Bug fixes",
     F.String.Retail() .. "Potentially fix Damage Meter Skin taint when opening damage breakdown",
@@ -41,5 +42,6 @@ TXUI.Changelog["7.2.6"] = {
 
     "* Development improvements",
     F.String.Retail() .. "Refactor " .. F.String.CDM() .. " for better structure",
+    "Remove P.blizzardFonts from code -- we don't have that functionality for months now",
   },
 }

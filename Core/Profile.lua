@@ -272,26 +272,26 @@ P.addons = {
 
   -- Cooldown Manager
   cooldownManager = {
-    fading = false, -- Disabled by default
-    dynamicBarsWidth = false, -- Disabled by default
-    dynamicCastbarWidth = false, -- Disabled by default
+    fading = true,
+    dynamicBarsWidth = true,
+    dynamicCastbarWidth = true,
 
     -- Anchoring
     anchors = {
       essential = {
-        enabled = false,
+        enabled = true,
         yOffset = -4,
       },
       utility = {
-        enabled = false,
+        enabled = true,
         yOffset = -4,
       },
       buff = {
-        enabled = false,
+        enabled = true,
         yOffset = 20,
       },
       buffBar = {
-        enabled = false,
+        enabled = true,
         yOffset = 80,
       },
     },
@@ -467,41 +467,6 @@ P.elvUIIcons = {
     xOffset = 0,
     yOffset = 5,
   },
-}
-
--- Blizzard Fonts
-P.blizzardFonts = {
-  enabled = true, -- Enabled by default
-
-  -- Zone
-  zoneFont = I.Fonts.Primary,
-  zoneFontSize = 33,
-  zoneFontShadow = true,
-  zoneFontOutline = "NONE",
-
-  -- Sub-Zone
-  subZoneFont = I.Fonts.Primary,
-  subZoneFontSize = 32,
-  subZoneFontShadow = true,
-  subZoneFontOutline = "NONE",
-
-  -- PvP-Zone
-  pvpZoneFont = I.Fonts.Primary,
-  pvpZoneFontSize = 22,
-  pvpZoneFontShadow = true,
-  pvpZoneFontOutline = "NONE",
-
-  -- Mail Text
-  mailFont = I.Fonts.Primary,
-  mailFontSize = 14,
-  mailFontShadow = false, -- dosen't support shadows
-  mailFontOutline = "NONE",
-
-  -- Gossip/Quest Text
-  gossipFont = I.Fonts.Primary,
-  gossipFontSize = 14,
-  gossipFontShadow = false, -- dosen't support shadows
-  gossipFontOutline = "NONE",
 }
 
 -- VehicleBar
