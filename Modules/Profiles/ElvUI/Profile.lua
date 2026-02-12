@@ -187,13 +187,8 @@ function PF:BuildProfile()
       LootFrameMover = F.Position("CENTER", "ElvUIParent", "CENTER", 360, 0),
       AlertFrameMover = F.Position("LEFT", "LootFrameMover", "RIGHT", 240, -60),
 
-      -- Movers: Bars
-      ExperienceBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 52),
-      ReputationBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -4, -317),
-      ThreatBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -665, -436),
-
       -- Movers: ActionBars
-      ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 54),
+      ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 50),
       ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Close Left
       ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Close Right
       ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvAB_6", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Far Left
@@ -231,9 +226,9 @@ function PF:BuildProfile()
 
       ElvUF_PartyMover = F.Position("LEFT", "ElvUIParent", "LEFT", 360, 0, true),
 
-      ElvUF_Raid1Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 72, 402),
-      ElvUF_Raid2Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 72, 402),
-      ElvUF_Raid3Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 72, 402),
+      ElvUF_Raid1Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 70, 400),
+      ElvUF_Raid2Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 70, 400),
+      ElvUF_Raid3Mover = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 70, 400),
 
       ArenaHeaderMover = F.Position("RIGHT", "ElvUIParent", "RIGHT", -360, 0, true, true),
       BossHeaderMover = F.Position("TOPRIGHT", "ArenaHeaderMover", "TOPRIGHT", 0, 0),
@@ -263,9 +258,6 @@ function PF:BuildProfile()
       TopCenterContainerMover = F.Position("TOP", "ElvUIParent", "TOP", 0, -42),
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
       QueueStatusMover = F.Position("BOTTOMRIGHT", "MinimapMover", "BOTTOMRIGHT", -defaultPadding * 2, defaultPadding * 2),
-
-      -- Movers: ToxiUI
-      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[1]),
     },
     F.Table.If(TXUI.IsRetail, {
       -- Movers: Bars Retail Only
@@ -295,25 +287,23 @@ function PF:BuildProfile()
     }),
     F.Table.If(IsHorizontalLayout, {
       -- Horizontal Layout
-      AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 391, 622),
-      BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 678, 282),
+      AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 620),
+      BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 680, 280),
 
-      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 482),
+      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 526),
       ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
 
-      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 504),
-      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 504),
+      ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 500),
+      ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 500),
 
-      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 192),
+      ElvUF_FocusMover = F.Position("BOTTOMLEFT", "ElvUF_Target", "TOPLEFT", 0, 190),
 
       ElvUF_PartyMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 240),
-      ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
-      ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
-      ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 144),
+      ElvUF_Raid1Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 140),
+      ElvUF_Raid2Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 140),
+      ElvUF_Raid3Mover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 140),
 
-      ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 678, 282),
-
-      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
+      ZoneAbility = F.Position("BOTTOMLEFT", "ElvUIParent", "BOTTOMLEFT", 678, 280),
     }),
     F.Table.If(TXUI.IsClassic, {
       TotemBarMover = F.Position("BOTTOM", "ElvAB_1", "TOP", 0, defaultPadding),
@@ -322,6 +312,12 @@ function PF:BuildProfile()
       MirrorTimer1Mover = F.Position("TOP", "ElvUIParent", "TOP", 0, -72),
       MirrorTimer2Mover = F.Position("TOP", "MirrorTimer1Mover", "BOTTOM", 0, -defaultPadding),
       MirrorTimer3Mover = F.Position("TOP", "MirrorTimer2Mover", "BOTTOM", 0, -defaultPadding),
+
+      -- Movers: ToxiUI
+      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[1]),
+    }),
+    F.Table.If(not TXUI.IsRetail and IsHorizontalLayout, {
+      ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     })
   )
 
@@ -1706,6 +1702,7 @@ function PF:BuildProfile()
         enable = true,
         anchorPoint = "BOTTOM",
         yOffset = F.Dpi(-6),
+        xOffset = 0,
         spacing = 2,
       },
 
@@ -1715,6 +1712,7 @@ function PF:BuildProfile()
         perrow = 4,
         numrows = 2,
         yOffset = F.Dpi(22),
+        xOffset = 0,
         spacing = 2,
       },
 

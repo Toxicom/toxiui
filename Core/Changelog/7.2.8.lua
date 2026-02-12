@@ -19,6 +19,7 @@ TXUI.Changelog["7.2.8"] = {
     F.String.ElvUI() .. ": Adjust Party unitframe buffs and debuffs position, sizing, texts",
     F.String.ElvUI() .. ": Adjust Raid (1, 2, 3) unitframe buffs and debuffs position, sizing, texts",
     F.String.ElvUI() .. ": Add custom names to Raid unitframes",
+    F.String.ElvUI() .. ": Adjust some movers for consistency",
 
     "* Documentation",
 
