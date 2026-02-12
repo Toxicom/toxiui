@@ -190,9 +190,7 @@ local function SkinMeter(content)
 
   -- Hook for gradient mode (works with any theme)
   if E.db.TXUI.addons.damageMeter.gradients then
-    if not DM:IsHooked(content.StatusBar, "SetStatusBarColor") then
-      DM:SecureHook(content.StatusBar, "SetStatusBarColor", F.Event.GenerateClosure(ApplyGradient, content))
-    end
+    if not DM:IsHooked(content.StatusBar, "SetStatusBarColor") then DM:SecureHook(content.StatusBar, "SetStatusBarColor", F.Event.GenerateClosure(ApplyGradient, content)) end
     ApplyGradient(content)
   end
 end
@@ -218,9 +216,7 @@ function DM:Initialize()
         F.Color.GenerateCache()
         _G.DamageMeter:ForEachSessionWindow(function(window)
           local ScrollBox = window.GetScrollBox and window:GetScrollBox()
-          if ScrollBox and ScrollBox.ForEachFrame then
-            ScrollBox:ForEachFrame(ApplyGradient)
-          end
+          if ScrollBox and ScrollBox.ForEachFrame then ScrollBox:ForEachFrame(ApplyGradient) end
         end)
       end
 
