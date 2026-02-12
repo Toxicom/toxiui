@@ -5,16 +5,16 @@ local sharedAuras = {
   height = F.Dpi(20),
   keepSizeRatio = false,
   size = F.Dpi(30),
-  xOffset = 15,
+  xOffset = F.Dpi(15),
 }
 
 local sharedBuffs = {
   anchorPoint = "TOPRIGHT",
   attachTo = "DEBUFFS",
   growthX = "LEFT",
-  height = F.Dpi(20),
   keepSizeRatio = false,
   size = F.Dpi(30),
+  height = F.Dpi(20),
   yOffset = F.Dpi(8),
 }
 
@@ -32,9 +32,9 @@ local sharedCastbar = {
 local sharedDebuffs = {
   anchorPoint = "TOPLEFT",
   growthX = "RIGHT",
-  height = F.Dpi(20),
   keepSizeRatio = false,
   size = F.Dpi(30),
+  height = F.Dpi(20),
   xOffset = F.Dpi(-1),
   yOffset = F.Dpi(5),
 }
@@ -50,7 +50,7 @@ local sharedHealth = {
 
 local sharedRaidTarget = {
   size = F.Dpi(16),
-  xOffset = -15,
+  xOffset = F.Dpi(-15),
 }
 
 local nameplates = {

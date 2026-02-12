@@ -11,8 +11,8 @@ local actionbarTemplate = {
   mouseover = false,
 
   buttons = 12,
-  buttonSize = F.Dpi(38), -- Width
-  buttonHeight = F.Dpi(25),
+  buttonSize = F.Dpi(36), -- Width
+  buttonHeight = F.Dpi(24),
   buttonsPerRow = 6,
 
   hotkeytext = true,
@@ -77,27 +77,29 @@ function PF:ApplyActionbars(pf)
     },
 
     -- Classic Totem Bar
-    totemBar = TXUI.IsClassic and {
-      mouseover = true,
-      keepSizeRatio = false,
-      flyoutDirection = "UP",
+    totemBar = TXUI.IsClassic
+        and {
+          mouseover = true,
+          keepSizeRatio = false,
+          flyoutDirection = "UP",
 
-      buttonSize = F.Dpi(38), -- Width
-      buttonHeight = F.Dpi(25),
+          buttonSize = F.Dpi(36), -- Width
+          buttonHeight = F.Dpi(24),
 
-      flyoutSize = F.Dpi(38), -- Width
-      flyoutHeight = F.Dpi(25),
+          flyoutSize = F.Dpi(36), -- Width
+          flyoutHeight = F.Dpi(24),
 
-      spacing = F.Dpi(1),
-      flyoutSpacing = F.Dpi(1),
-    } or nil,
+          spacing = F.Dpi(1),
+          flyoutSpacing = F.Dpi(1),
+        }
+      or nil,
   })
 
   -- ActionBar Bars
   pf.actionbar.bar1 = createMainActionBar {
     enabled = true,
-    buttonSize = F.Dpi(38),
-    buttonHeight = F.Dpi(25),
+    buttonSize = F.Dpi(36),
+    buttonHeight = F.Dpi(24),
   }
 
   pf.actionbar.bar2 = createMainActionBar {
@@ -136,8 +138,8 @@ function PF:ApplyActionbars(pf)
     backdrop = false,
     backdropSpacing = F.Dpi(1),
 
-    buttonSize = F.Dpi(29),
-    buttonHeight = F.Dpi(19),
+    buttonSize = F.Dpi(30),
+    buttonHeight = F.Dpi(20),
     buttonSpacing = F.Dpi(1),
     buttonsPerRow = 10,
 
@@ -153,7 +155,7 @@ function PF:ApplyActionbars(pf)
   pf.actionbar.stanceBar = createActionBar {
     alpha = 0.8,
     mouseover = true,
-    buttonSize = F.Dpi(31),
+    buttonSize = F.Dpi(32),
     inheritGlobalFade = true,
     hotkeyTextPosition = "TOP",
   }

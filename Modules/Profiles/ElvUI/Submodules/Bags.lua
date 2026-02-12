@@ -2,9 +2,9 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
 local bags = {
-  bagSize = F.Dpi(53),
+  bagSize = F.Dpi(50),
   bagWidth = F.Dpi(840),
-  bankSize = F.Dpi(48),
+  bankSize = F.Dpi(50),
   bankWidth = F.Dpi(840),
 
   useBlizzardCleanup = false,

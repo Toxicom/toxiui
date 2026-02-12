@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
 local buffs = {
-  size = F.Dpi(38),
+  size = F.Dpi(36),
   fadeThreshold = 3,
   maxWraps = 2,
   wrapAfter = 18,
@@ -10,7 +10,7 @@ local buffs = {
   growthDirection = "RIGHT_DOWN",
 
   keepSizeRatio = false,
-  height = F.Dpi(25),
+  height = F.Dpi(24),
 }
 
 local debuffs = {
