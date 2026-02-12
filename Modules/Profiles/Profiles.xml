@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file='Core.lua' />
 
-  <Script file='ElvUI\Unitframes.lua' />
+  <Include file='ElvUI\Submodules\Submodules.xml' />
 
   <Script file='ElvUI\Additional.lua' />
   <Script file='ElvUI\Chat.lua' />
