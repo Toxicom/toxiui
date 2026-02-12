@@ -8,4 +8,5 @@
   <Script file='Bags.lua' />
   <Script file='Chat.lua' />
   <Script file='Auras.lua' />
+  <Script file='Movers.lua' />
 </Ui>
