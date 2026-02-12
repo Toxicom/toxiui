@@ -1128,6 +1128,10 @@ function PF:BuildProfile()
         keepSizeRatio = false,
         sizeOverride = F.Dpi(43),
         height = F.Dpi(29),
+
+        -- Filters (ElvUI Default)
+        isAuraRaid = true,
+        isAuraRaidPlayer = true,
       },
 
       -- New "Custom" tab introduced in ElvUI 14.00
@@ -1386,6 +1390,11 @@ function PF:BuildProfile()
       spacing = F.Dpi(0),
       xOffset = F.Dpi(4),
       yOffset = F.Dpi(30),
+
+      -- Filters (ElvUI Default)
+      isAuraBigDefensive = true,
+      isAuraExternalDefensive = true,
+      isAuraExternalDefensivePlayer = true,
     },
 
     -- UnitFrame Focus Debuffs
@@ -1404,6 +1413,12 @@ function PF:BuildProfile()
       keepSizeRatio = false,
       sizeOverride = F.Dpi(29),
       height = F.Dpi(19),
+
+      -- Filters (ElvUI Default)
+      isAuraPlayer = true,
+      isAuraRaid = true,
+      isAuraBigDefensive = true,
+      isAuraExternalDefensive = true,
     },
 
     -- UnitFrame Focus raidicon (Target Marker Icon)
@@ -1527,20 +1542,29 @@ function PF:BuildProfile()
 
       -- UnitFrame Party Buffs
       buffs = {
-        enable = false,
-        anchorPoint = "BOTTOMLEFT",
+        enable = true,
+        anchorPoint = "LEFT",
+        growthX = "LEFT",
         perrow = 5,
         numrows = 1,
-        spacing = 1,
+        spacing = 2,
         yOffset = 0,
+        xOffset = F.Dpi(-40),
 
         -- Stack Counter
         countPosition = "BOTTOM",
-        countYOffset = F.Dpi(-7),
+        countYOffset = F.Dpi(-5),
 
         keepSizeRatio = false,
-        sizeOverride = F.Dpi(38),
-        height = F.Dpi(25),
+        sizeOverride = F.Dpi(36),
+        height = F.Dpi(24),
+
+        -- Filters (ElvUI Default)
+        isAuraBigDefensive = true,
+        isAuraBigDefensivePlayer = true,
+        isAuraRaidInCombatPlayer = true,
+        isAuraExternalDefensive = true,
+        isAuraExternalDefensivePlayer = true,
       },
 
       -- UnitFrame Party Debuffs
@@ -1550,16 +1574,22 @@ function PF:BuildProfile()
         perrow = 5,
         numrows = 1,
         priority = "Blacklist,Dispellable,Boss,RaidDebuffs,CCDebuffs,Whitelist",
-        spacing = 1,
+        spacing = 2,
         yOffset = 0,
+        xOffset = 10,
 
         -- Stack Counter
         countPosition = "BOTTOM",
-        countYOffset = F.Dpi(-7),
+        countYOffset = F.Dpi(-5),
 
         keepSizeRatio = false,
-        sizeOverride = F.Dpi(38),
-        height = F.Dpi(25),
+        sizeOverride = F.Dpi(36),
+        height = F.Dpi(24),
+
+        -- Filters (ElvUI Default)
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+        isAuraRaidPlayerDispellable = true,
       },
 
       -- UnitFrame Party Heal Prediction
@@ -1706,8 +1736,8 @@ function PF:BuildProfile()
 
   local raidFramesTable = {
     enable = true,
-    width = F.Dpi(96),
-    height = F.Dpi(42),
+    width = F.Dpi(120),
+    height = F.Dpi(50),
 
     -- UnitFrame Raid1 Options
     groupBy = "GROUP",
@@ -1790,6 +1820,45 @@ function PF:BuildProfile()
     name = { text_format = "" },
     -- Disable UnitFrame Raid1 power
     power = { enable = false },
+
+    buffs = {
+      enable = true,
+      anchorPoint = "TOPLEFT",
+      growthX = "RIGHT",
+
+      keepSizeRatio = false,
+      sizeOverride = F.Dpi(18),
+      height = F.Dpi(12),
+
+      perrow = 6,
+      xOffset = F.Dpi(4),
+      yOffset = F.Dpi(-18),
+
+      -- Filters (ElvUI Default)
+      isAuraBigDefensive = true,
+      isAuraBigDefensivePlayer = true,
+      isAuraRaidInCombatPlayer = true,
+      isAuraExternalDefensive = true,
+      isAuraExternalDefensivePlayer = true,
+    },
+
+    debuffs = {
+      enable = true,
+      anchorPoint = "BOTTOMRIGHT",
+      growthX = "LEFT",
+
+      keepSizeRatio = false,
+      sizeOverride = F.Dpi(18),
+      height = F.Dpi(12),
+
+      perrow = 6,
+      xOffset = F.Dpi(-4),
+      yOffset = F.Dpi(4),
+
+      isAuraImportant = true,
+      isAuraImportantPlayer = true,
+      isAuraRaidPlayerDispellable = true,
+    },
   }
 
   -- UnitFrame Raid1
@@ -1797,6 +1866,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid1,
     raidFramesTable,
     {
+      customName = "6 to 20",
       visibility = TXUI.IsRetail and "[@raid1,noexists][@raid21,exists] hide;show" or "[@raid1,noexists][@raid11,exists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
@@ -1810,6 +1880,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid2,
     raidFramesTable,
     {
+      customName = "21 to 30",
       visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
@@ -1823,6 +1894,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid3,
     raidFramesTable,
     {
+      customName = "31+",
       visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {

@@ -538,12 +538,14 @@ function PF:ElvUIFont()
 
             buffs = {
               countFont = F.FontOverride(I.Fonts.TitleBlack),
-              countFontSize = F.FontSizeScaled(18),
+              countFontSize = F.FontSizeScaled(14),
+              countFontOutline = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
             },
 
             debuffs = {
               countFont = F.FontOverride(I.Fonts.TitleBlack),
-              countFontSize = F.FontSizeScaled(18),
+              countFontSize = F.FontSizeScaled(14),
+              countFontOutline = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
             },
 
             rdebuffs = {
@@ -574,6 +576,14 @@ function PF:ElvUIFont()
             fontSize = F.FontSizeScaled(14),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
+
+          buffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+
+          debuffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
         },
 
         raid2 = {
@@ -587,6 +597,14 @@ function PF:ElvUIFont()
             fontSize = F.FontSizeScaled(14),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
+
+          buffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+
+          debuffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
         },
 
         raid3 = {
@@ -599,6 +617,14 @@ function PF:ElvUIFont()
             font = F.FontOverride(I.Fonts.Primary),
             fontSize = F.FontSizeScaled(14),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          },
+
+          buffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
+          },
+
+          debuffs = {
+            countFont = F.FontOverride(I.Fonts.Primary),
           },
         },
 

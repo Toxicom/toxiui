@@ -13,6 +13,12 @@ TXUI.Changelog["7.2.8"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Setup unitframe buff filters to match ElvUI defaults" .. F.String.Sublist(
+      "You should already have these, this is in case people re-run the installer to reset them"
+    ),
+    F.String.ElvUI() .. ": Adjust Party unitframe buffs and debuffs position, sizing, texts",
+    F.String.ElvUI() .. ": Adjust Raid (1, 2, 3) unitframe buffs and debuffs position, sizing, texts",
+    F.String.ElvUI() .. ": Add custom names to Raid unitframes",
 
     "* Documentation",
 
