@@ -96,9 +96,6 @@ function IS:ElvUI(callback)
   PF:ElvUIAdditional()
   PF:ElvUIAdditionalPrivate()
 
-  -- Apply AddOnSkins settings
-  PF:AddOnSkins()
-
   -- Force UIScale
   E:UIScale(true)
   E:UIScale()
@@ -134,7 +131,6 @@ function IS:Privates()
   PF:ElvUIFontPrivates()
 
   -- AddOns
-  PF:AddOnSkins_Private()
   PF:Details_Private()
 
   self:Complete()

@@ -153,17 +153,6 @@ function T:Enable()
   -- Set to enabled
   self.isEnabled = true
 
-  -- AddOnSkins Skinning
-  F.Event.ContinueOnAddOnLoaded("AddOnSkins", function()
-    local as = _G.AddOnSkins and _G.AddOnSkins[1]
-    if not as then return end
-
-    if not self:IsHooked(as, "SetTemplate") then
-      self:SecureHook(as, "SetTemplate", "SetTemplateAS")
-      as:UpdateSettings()
-    end
-  end)
-
   -- Scan all MetaTables
   self:MetatableScan()
 
