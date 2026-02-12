@@ -1866,7 +1866,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid1,
     raidFramesTable,
     {
-      customName = "6 to 20",
+      customName = TXUI.IsRetail and "1 to 20" or "1 to 10",
       visibility = TXUI.IsRetail and "[@raid1,noexists][@raid21,exists] hide;show" or "[@raid1,noexists][@raid11,exists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
@@ -1880,7 +1880,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid2,
     raidFramesTable,
     {
-      customName = "21 to 30",
+      customName = TXUI.IsRetail and "21 to 30" or "11 to 25",
       visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
@@ -1894,7 +1894,7 @@ function PF:BuildProfile()
     pf.unitframe.units.raid3,
     raidFramesTable,
     {
-      customName = "31+",
+      customName = TXUI.IsRetail and "31+" or "26+",
       visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
     },
     F.Table.If(IsHorizontalLayout, {
