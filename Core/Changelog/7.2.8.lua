@@ -5,6 +5,7 @@ TXUI.Changelog["7.2.8"] = {
   CHANGES = {
     "* Breaking changes",
     "Remove " .. F.String.OmniCD(),
+    "Remove unused quest icon",
 
     "* New features",
 
