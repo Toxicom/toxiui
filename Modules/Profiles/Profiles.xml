@@ -1,10 +1,14 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file='Core.lua' />
+
+  <Script file='ElvUI\Unitframes.lua' />
+
   <Script file='ElvUI\Additional.lua' />
   <Script file='ElvUI\Chat.lua' />
   <Script file='ElvUI\CVars.lua' />
   <Script file='ElvUI\Profile.lua' />
   <Script file='ElvUI\Fonts.lua' />
+
   <Script file='ImportStrings.lua' />
   <Script file='AddOnSkins.lua' />
   <Script file='BigWigs.lua' />
