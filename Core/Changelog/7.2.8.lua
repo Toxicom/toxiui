@@ -26,6 +26,6 @@ TXUI.Changelog["7.2.8"] = {
     "* Settings refactoring",
 
     "* Development improvements",
-    "Move Unitframe profile settings to separate file",
+    "Move ElvUI profile settings to separate files",
   },
 }
