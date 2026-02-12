@@ -2,7 +2,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local DM = TXUI:NewModule("SkinsDamageMeter", "AceHook-3.0")
 local S = E:GetModule("Skins")
 local M -- Misc module, initialized later
-local GR -- Gradients module, initialized later
 
 local _G = _G
 local hooksecurefunc = hooksecurefunc
@@ -60,33 +59,54 @@ local function ApplySpecIcon(content)
   content.Icon.Icon:SetTexCoord(texData.left, texData.right, texData.top, texData.bottom)
 end
 
--- Get class color for gradient mode
-local function GetBarColor(content)
-  if content.classFilename then return "classColorMap", content.classFilename end
+-- Gradient color cache (populated lazily, invalidated on settings change)
+local gradientOrientation
+local fgMapNormal
+local fgMapShift
+
+local function EnsureGradientCache()
+  if fgMapNormal then return true end
+
+  local fgMap = F.Color.GetMap("classColorMap")
+  if not fgMap then
+    F.Color.GenerateCache()
+    fgMap = F.Color.GetMap("classColorMap")
+  end
+  if not fgMap then return false end
+
+  fgMapNormal = fgMap[I.Enum.GradientMode.Color.NORMAL]
+  fgMapShift = fgMap[I.Enum.GradientMode.Color.SHIFT]
+  gradientOrientation = I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.HORIZONTAL]
+  return fgMapNormal ~= nil and fgMapShift ~= nil
 end
 
--- Apply gradient colors to the status bar
-local function ApplyGradient(content, _, dR, dG, dB)
-  if not GR or not GR.db then return end
-  if not E.db.TXUI.addons.damageMeter.gradients then return end
-  if not content or not content.StatusBar then return end
+local function InvalidateGradientCache()
+  fgMapNormal = nil
+  fgMapShift = nil
+end
 
-  -- Set percentage for gradient calculation (always full since we can't access internal value)
-  local valueChanged = content.currentPercent == nil
-  if valueChanged then content.currentPercent = 1 end
+-- Apply gradient colors to the status bar (hot path — called on every SetStatusBarColor)
+local function ApplyGradient(content)
+  if not content then return end
 
-  -- Get current color if not provided
-  if not dB then
-    local texture = content.StatusBar:GetStatusBarTexture()
-    if texture then
-      dR, dG, dB = texture:GetVertexColor()
-    end
+  local classFilename = content.classFilename
+  if not classFilename then return end
+  if not EnsureGradientCache() then return end
+
+  local normalColor = fgMapNormal[classFilename]
+  local shiftColor = fgMapShift[classFilename]
+  if not normalColor or not shiftColor then return end
+
+  -- Cache texture reference on the content frame
+  local texture = content.txuiBarTexture
+  if not texture then
+    if not content.StatusBar then return end
+    texture = content.StatusBar:GetStatusBarTexture()
+    if not texture then return end
+    content.txuiBarTexture = texture
   end
 
-  if not dR then return end
-
-  local colorFunc = F.Event.GenerateClosure(GetBarColor, content)
-  GR:SetGradientColors(content, valueChanged, dR, dG, dB, false, colorFunc)
+  texture:SetGradient(gradientOrientation, shiftColor, normalColor)
 end
 
 -- Animation duration for header fade
@@ -170,13 +190,8 @@ local function SkinMeter(content)
 
   -- Hook for gradient mode (works with any theme)
   if E.db.TXUI.addons.damageMeter.gradients then
-    local texture = content.StatusBar:GetStatusBarTexture()
-    if texture and not DM:IsHooked(texture, "SetVertexColor") then
-      -- Set gradient properties on the content frame
-      content.fadeMode = I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.HORIZONTAL]
-      content.fadeDirection = I.Enum.GradientMode.Direction.RIGHT
-
-      DM:SecureHook(texture, "SetVertexColor", F.Event.GenerateClosure(ApplyGradient, content), true)
+    if not DM:IsHooked(content.StatusBar, "SetStatusBarColor") then
+      DM:SecureHook(content.StatusBar, "SetStatusBarColor", F.Event.GenerateClosure(ApplyGradient, content))
     end
     ApplyGradient(content)
   end
@@ -192,9 +207,26 @@ function DM:Initialize()
 
     -- Get modules now that everything is loaded
     M = TXUI:GetModule("Misc")
-    GR = TXUI:GetModule("ThemesGradients")
 
     hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinMeter)
+
+    -- Re-apply gradients when gradient settings change
+    if E.db.TXUI.addons.damageMeter.gradients then
+      local function RefreshGradients()
+        if not _G.DamageMeter then return end
+        InvalidateGradientCache()
+        F.Color.GenerateCache()
+        _G.DamageMeter:ForEachSessionWindow(function(window)
+          local ScrollBox = window.GetScrollBox and window:GetScrollBox()
+          if ScrollBox and ScrollBox.ForEachFrame then
+            ScrollBox:ForEachFrame(ApplyGradient)
+          end
+        end)
+      end
+
+      F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.Health", RefreshGradients, self)
+      F.Event.RegisterCallback("ThemesGradients.DatabaseUpdate", RefreshGradients, self)
+    end
 
     F.Event.ContinueOnAddOnLoaded("Blizzard_DamageMeter", function()
       if not _G.DamageMeter then return end

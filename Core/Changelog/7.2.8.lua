@@ -12,6 +12,7 @@ TXUI.Changelog["7.2.8"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. "Fix gradient mode for Damage Meter Skin",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Setup unitframe buff filters to match ElvUI defaults" .. F.String.Sublist(
