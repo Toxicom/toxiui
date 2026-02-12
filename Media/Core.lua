@@ -144,7 +144,6 @@ F.AddMedia("logo", "Youtube")
 --   INSTALLER IMAGES
 -- -----
 
-F.AddMedia("installer", "Layouts")
 F.AddMedia("installer", "DetailsOne")
 F.AddMedia("installer", "DetailsTwo")
 F.AddMedia("installer", "BigWigs")
