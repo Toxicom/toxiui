@@ -7,10 +7,6 @@ TXUI.Changelog["7.2.8"] = {
     "Remove " .. F.String.OmniCD(),
     "Remove unused media and code",
 
-    "* New features",
-
-    "* Enhancements",
-
     "* Bug fixes",
     F.String.Retail() .. "Fix gradient mode for Damage Meter Skin",
 
@@ -22,10 +18,6 @@ TXUI.Changelog["7.2.8"] = {
     F.String.ElvUI() .. ": Adjust Raid (1, 2, 3) unitframe buffs and debuffs position, sizing, texts",
     F.String.ElvUI() .. ": Add custom names to Raid unitframes",
     F.String.ElvUI() .. ": Adjust some movers for consistency",
-
-    "* Documentation",
-
-    "* Settings refactoring",
 
     "* Development improvements",
     "Move ElvUI profile settings to separate files",
