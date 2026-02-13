@@ -1,7 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
-function PF:ElvUIAdditional()
+function PF:BuildAdditionalProfile()
   local pf = {}
 
   -- WindTools Config
@@ -172,11 +172,14 @@ function PF:ElvUIAdditional()
     })
   end
 
-  -- Merge Tables
-  F.Table.Crush(E.db, pf)
+  return pf
 end
 
-function PF:ElvUIAdditionalPrivate()
+function PF:ElvUIAdditional()
+  F.Table.Crush(E.db, self:BuildAdditionalProfile())
+end
+
+function PF:BuildAdditionalPrivateProfile()
   local pv = {}
 
   -- WindTools Config
@@ -356,6 +359,9 @@ function PF:ElvUIAdditionalPrivate()
     })
   end
 
-  -- Merge Tables
-  F.Table.Crush(E.private, pv)
+  return pv
+end
+
+function PF:ElvUIAdditionalPrivate()
+  F.Table.Crush(E.private, self:BuildAdditionalPrivateProfile())
 end

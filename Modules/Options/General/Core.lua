@@ -66,6 +66,29 @@ function O:General()
           E:ToggleOptions()
         end,
       },
+
+      -- Spacer
+      ["generalInstallSpacer"] = {
+        order = self:GetOrder(),
+        type = "description",
+        name = " ",
+        width = 0.1,
+      },
+
+      -- Update BUTTON
+      ["generalUpdateButton"] = {
+        order = self:GetOrder(),
+        type = "execute",
+        name = F.String.Good("Profile Updater"),
+        desc = "Selectively update specific profile sections without running the full installer.",
+        hidden = function()
+          return not F.IsTXUIProfile() or not E.db.TXUI.installer.layout
+        end,
+        func = function()
+          TXUI:GetModule("ProfileUpdater"):Toggle()
+          E:ToggleOptions()
+        end,
+      },
     },
   }
 

@@ -208,7 +208,7 @@ function PF:BuildProfile()
   return pf
 end
 
-function PF:ElvUIProfilePrivate()
+function PF:BuildPrivateProfile()
   local isBagsEnabled = true
   local isChatEnabled = true
 
@@ -223,7 +223,7 @@ function PF:ElvUIProfilePrivate()
     if F.IsAddOnEnabled(addon) then isChatEnabled = false end
   end
 
-  F.Table.Crush(E.private, {
+  return {
     -- General
     general = {
       chatBubbles = "nobackdrop",
@@ -263,11 +263,15 @@ function PF:ElvUIProfilePrivate()
         cooldownManager = true,
       },
     },
-  })
+  }
 end
 
-function PF:ElvUIProfileGlobal()
-  F.Table.Crush(E.global, {
+function PF:ElvUIProfilePrivate()
+  F.Table.Crush(E.private, self:BuildPrivateProfile())
+end
+
+function PF:BuildGlobalProfile()
+  return {
     -- General
     general = {
       ultrawide = false,
@@ -281,7 +285,11 @@ function PF:ElvUIProfileGlobal()
         height = 810,
       },
     },
-  })
+  }
+end
+
+function PF:ElvUIProfileGlobal()
+  F.Table.Crush(E.global, self:BuildGlobalProfile())
 end
 
 function PF:UpdateProfileForGradient()
