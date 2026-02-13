@@ -2,30 +2,40 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
 local SetCVar = SetCVar
+local pairs = pairs
 
 -- copied from E:SetupCVars
-function PF:ElvUICVars()
-  SetCVar("statusTextDisplay", "BOTH")
-  SetCVar("screenshotQuality", 10)
-  SetCVar("chatMouseScroll", 1)
-  SetCVar("chatStyle", "classic")
-  SetCVar("whisperMode", "inline")
-  SetCVar("wholeChatWindowClickable", 0)
-  SetCVar("showTutorials", 0)
-  SetCVar("showNPETutorials", 0)
-  SetCVar("UberTooltips", 1)
-  SetCVar("threatWarning", 3)
-  SetCVar("alwaysShowActionBars", 1)
-  SetCVar("lockActionBars", 1)
-  SetCVar("ActionButtonUseKeyDown", 1)
-  SetCVar("spamFilter", 0)
-  SetCVar("cameraDistanceMaxZoomFactor", 2.6)
-  SetCVar("showQuestTrackingTooltips", 1)
-  SetCVar("fstack_preferParentKeys", 0) -- Add back the frame names via fstack!
-  SetCVar("useUiScale", 1)
-  SetCVar("uiScale", E.global.general.UIScale)
-  SetCVar("autoClearAFK", 1)
-  SetCVar("nameplateSelectedScale", 1.5)
+function PF:BuildCVarsProfile()
+  local cvars = {
+    statusTextDisplay = "BOTH",
+    screenshotQuality = 10,
+    chatMouseScroll = 1,
+    chatStyle = "classic",
+    whisperMode = "inline",
+    wholeChatWindowClickable = 0,
+    showTutorials = 0,
+    showNPETutorials = 0,
+    UberTooltips = 1,
+    threatWarning = 3,
+    alwaysShowActionBars = 1,
+    lockActionBars = 1,
+    ActionButtonUseKeyDown = 1,
+    spamFilter = 0,
+    cameraDistanceMaxZoomFactor = 2.6,
+    showQuestTrackingTooltips = 1,
+    fstack_preferParentKeys = 0, -- Add back the frame names via fstack!
+    useUiScale = 1,
+    uiScale = E.global.general.UIScale,
+    autoClearAFK = 1,
+    nameplateSelectedScale = 1.5,
+  }
 
-  if TXUI.IsRetail then SetCVar("cameraDistanceMaxZoomFactor", 2.6) end
+  return cvars
+end
+
+function PF:ElvUICVars()
+  local cvars = self:BuildCVarsProfile()
+  for name, value in pairs(cvars) do
+    SetCVar(name, value)
+  end
 end

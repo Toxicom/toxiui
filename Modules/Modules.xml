@@ -8,6 +8,7 @@
   <Include file='Profiles\Profiles.xml' />
   <Include file='Styles\Styles.xml' />
   <Include file='Themes\Themes.xml' />
+  <Include file='ProfileUpdater\ProfileUpdater.xml' />
   <Include file='Installer\Installer.xml' />
   <Include file='Options\Options.xml' />
 </Ui>
