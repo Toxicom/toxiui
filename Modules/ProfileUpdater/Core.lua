@@ -381,6 +381,16 @@ function PU:GetSelectedCount()
   return count
 end
 
+function PU:GetTotalItemCount()
+  local count = 0
+  for _, category in ipairs(CATEGORIES) do
+    for _ in ipairs(category.items) do
+      count = count + 1
+    end
+  end
+  return count
+end
+
 function PU:HasAnySelected()
   return next(self.selectedItems) ~= nil
 end
@@ -417,6 +427,13 @@ function PU:ExecuteSelectedUpdates()
   if self.selectedItems.global then PF:ElvUIProfileGlobal() end
   if self.selectedItems.additional then PF:ElvUIAdditional() end
   if self.selectedItems.additional_private then PF:ElvUIAdditionalPrivate() end
+
+  -- Update version stamps only if all items are selected (full update = equivalent to installer)
+  if self:GetSelectedCount() == self:GetTotalItemCount() then
+    E.db.TXUI.changelog.lastLayoutVersion = TXUI.ReleaseVersion
+    E.db.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
+    E.private.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
+  end
 
   ReloadUI()
 end
