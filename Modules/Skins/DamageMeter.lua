@@ -1,6 +1,5 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
-local DM = TXUI:NewModule("SkinsDamageMeter", "AceHook-3.0")
-local S = E:GetModule("Skins")
+local DM = TXUI:NewModule("SkinsDamageMeter")
 local M -- Misc module, initialized later
 
 local _G = _G
@@ -85,7 +84,7 @@ local function InvalidateGradientCache()
   fgMapShift = nil
 end
 
--- Apply gradient colors to the status bar (hot path — called on every SetStatusBarColor)
+-- Apply gradient colors to a bar texture using the content's class
 local function ApplyGradient(content)
   if not content then return end
 
@@ -178,20 +177,59 @@ local function SkinHeader(window)
   end)
 end
 
--- Hook into ElvUI's S:DamageMeter_HandleStatusBar for each meter bar
 local function SkinMeter(content)
   if not content or not content.StatusBar then return end
-  if content.txuiHooked then return end
-  content.txuiHooked = true
 
-  -- Hook UpdateIcon for future updates and apply immediately
-  if content.UpdateIcon then hooksecurefunc(content, "UpdateIcon", ApplySpecIcon) end
+  if not content.txuiHooked then
+    content.txuiHooked = true
+
+    if content.UpdateIcon then hooksecurefunc(content, "UpdateIcon", ApplySpecIcon) end
+
+    if E.db.TXUI.addons.damageMeter.gradients then
+      local barTexture = content.StatusBar:GetStatusBarTexture()
+      if barTexture and not barTexture.txuiGradientHooked then
+        barTexture.txuiGradientHooked = true
+        content.txuiBarTexture = barTexture
+
+        hooksecurefunc(barTexture, "SetVertexColor", function()
+          if not content.classFilename then return end
+          if not EnsureGradientCache() then return end
+
+          local normalColor = fgMapNormal[content.classFilename]
+          local shiftColor = fgMapShift[content.classFilename]
+          if not normalColor or not shiftColor then return end
+
+          barTexture:SetGradient(gradientOrientation, shiftColor, normalColor)
+        end)
+      end
+    end
+  end
+
   ApplySpecIcon(content)
+  if E.db.TXUI.addons.damageMeter.gradients then ApplyGradient(content) end
+end
 
-  -- Hook for gradient mode (works with any theme)
-  if E.db.TXUI.addons.damageMeter.gradients then
-    if not DM:IsHooked(content.StatusBar, "SetStatusBarColor") then DM:SecureHook(content.StatusBar, "SetStatusBarColor", F.Event.GenerateClosure(ApplyGradient, content)) end
-    ApplyGradient(content)
+local function HookScrollBox(scrollBox)
+  if not scrollBox or scrollBox.txuiHooked then return end
+  scrollBox.txuiHooked = true
+
+  hooksecurefunc(scrollBox, "Update", function(self)
+    if self.ForEachFrame then self:ForEachFrame(SkinMeter) end
+  end)
+
+  if scrollBox.ForEachFrame then scrollBox:ForEachFrame(SkinMeter) end
+end
+
+local function HookSessionWindow(window)
+  SkinHeader(window)
+
+  local ScrollBox = window.GetScrollBox and window:GetScrollBox()
+  if ScrollBox then HookScrollBox(ScrollBox) end
+
+  -- Source window (spell breakdown) has its own ScrollBox
+  if window.SourceWindow then
+    local sourceScrollBox = window.SourceWindow.GetScrollBox and window.SourceWindow:GetScrollBox()
+    if sourceScrollBox then HookScrollBox(sourceScrollBox) end
   end
 end
 
@@ -205,8 +243,6 @@ function DM:Initialize()
 
     -- Get modules now that everything is loaded
     M = TXUI:GetModule("Misc")
-
-    hooksecurefunc(S, "DamageMeter_HandleStatusBar", SkinMeter)
 
     -- Re-apply gradients when gradient settings change
     if E.db.TXUI.addons.damageMeter.gradients then
@@ -227,14 +263,12 @@ function DM:Initialize()
     F.Event.ContinueOnAddOnLoaded("Blizzard_DamageMeter", function()
       if not _G.DamageMeter then return end
 
-      -- Apply skins to existing session windows
-      _G.DamageMeter:ForEachSessionWindow(function(window)
-        SkinHeader(window)
-
-        -- Apply SkinMeter to any already-created bars (avoids RefreshLayout taint)
-        local ScrollBox = window.GetScrollBox and window:GetScrollBox()
-        if ScrollBox and ScrollBox.ForEachFrame then ScrollBox:ForEachFrame(SkinMeter) end
+      hooksecurefunc(_G.DamageMeter, "SetupSessionWindow", function()
+        _G.DamageMeter:ForEachSessionWindow(HookSessionWindow)
       end)
+
+      -- Apply to existing session windows
+      _G.DamageMeter:ForEachSessionWindow(HookSessionWindow)
 
       -- Enable and show the damage meter
       local isDamageMeterEnabled = C_CVar.GetCVarBool("damageMeterEnabled")

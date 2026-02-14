@@ -28,7 +28,6 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.BETTER_COOLDOWN_MANAGER_DISABLED] = "You can't use this module because BetterCooldownManager is enabled. Please disable it to unlock this option.",
   [I.Enum.Requirements.COOLDOWN_MANAGER_CENTERED_DISABLED] = "You can't use this module because CooldownManagerCentered is enabled. Please disable it to unlock this option.",
   [I.Enum.Requirements.DETAILS_ADDON_DISABLED] = "This option is only available when the Details addon is not enabled.",
-  [I.Enum.Requirements.ELVUI_DAMAGE_METER_SKIN_ENABLED] = "You can't use this module because ElvUI's Damage Meter skin is disabled. Please enable it in ElvUI settings to unlock this option.",
 }
 
 I.Strings.RequirementsDebug = {
