@@ -18,7 +18,7 @@ TXUI.Changelog["7.2.9"] = {
     F.String.Retail() .. "Fix disappearing gradients in dungeons for Damage Meter Skin",
 
     "* Profile updates",
-    F.String.ElvUI() .. "Enable environment conditions for Nameplates",
+    F.String.ElvUI() .. ": Enable environment conditions for Nameplates",
 
     "* Documentation",
 
