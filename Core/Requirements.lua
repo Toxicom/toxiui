@@ -119,6 +119,8 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       if F.IsAddOnEnabled("BetterCooldownManager") then return requirement end
     elseif requirement == I.Enum.Requirements.COOLDOWN_MANAGER_CENTERED_DISABLED then
       if F.IsAddOnEnabled("CooldownManagerCentered") then return requirement end
+    elseif requirement == I.Enum.Requirements.ARCUI_DISABLED then
+      if F.IsAddOnEnabled("ArcUI") then return requirement end
     elseif requirement == I.Enum.Requirements.DETAILS_ADDON_DISABLED then
       if F.IsAddOnEnabled("Details") then return requirement end
     end

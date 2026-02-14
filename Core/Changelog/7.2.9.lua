@@ -12,6 +12,7 @@ TXUI.Changelog["7.2.9"] = {
     F.String.Retail() .. "Decouple Damage Meter Skin from " .. F.String.ElvUI() .. F.String.Sublist(
       "You can now enjoy default blizzard damage meter with ToxiUI icons and gradients"
     ),
+    F.String.Retail() .. "Disable " .. F.String.CDM() .. " if ArcUI is enabled",
 
     "* Bug fixes",
     F.String.Retail() .. "Fix disappearing gradients in dungeons for Damage Meter Skin",

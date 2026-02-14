@@ -170,6 +170,7 @@ I.Requirements = {
   ["CooldownManager"] = {
     I.Enum.Requirements.BETTER_COOLDOWN_MANAGER_DISABLED,
     I.Enum.Requirements.COOLDOWN_MANAGER_CENTERED_DISABLED,
+    I.Enum.Requirements.ARCUI_DISABLED,
   },
   ["DamageMeter"] = {
     I.Enum.Requirements.DETAILS_ADDON_DISABLED,
