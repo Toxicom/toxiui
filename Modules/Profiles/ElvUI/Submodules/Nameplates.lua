@@ -56,6 +56,24 @@ local sharedRaidTarget = {
 local nameplates = {
   highlight = false,
   statusbar = "- ToxiUI",
+  persistentFriendlyNP = true,
+
+  enviromentConditions = {
+    friendly = {
+      arena = true,
+      party = true, -- dungeons
+      resting = false,
+      world = false,
+      pvp = false, -- battlegrounds
+      scenario = true,
+      raid = false,
+    },
+    friendlyEnabled = true,
+    stackingEnabled = true,
+    stackingNameplates = {
+      resting = true,
+    },
+  },
 
   units = {
     ["ENEMY_NPC"] = {

@@ -13,6 +13,7 @@ TXUI.Changelog["7.2.9"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. "Enable environment conditions for Nameplates",
 
     "* Documentation",
 
