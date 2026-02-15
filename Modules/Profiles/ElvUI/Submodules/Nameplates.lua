@@ -58,7 +58,7 @@ local nameplates = {
   statusbar = "- ToxiUI",
 
   visibility = {
-    classColorFriendlyPlayerNames = true,
+    classColorNames = true,
     friendly = {
       npcs = false,
     },
