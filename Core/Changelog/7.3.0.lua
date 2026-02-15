@@ -8,6 +8,7 @@ TXUI.Changelog["7.3.0"] = {
     "* New features",
 
     "* Enhancements",
+    "Add disclaimer text to " .. TXUI.Title .. " Profile Updater",
 
     "* Bug fixes",
 

@@ -318,6 +318,22 @@ function PU:CreateUpdaterFrame()
 
   local yOffset = -TITLE_HEIGHT
 
+  -- Disclaimer text (left panel)
+  local disclaimerText = frame:CreateFontString(nil, "OVERLAY")
+  disclaimerText:SetPoint("TOPLEFT", frame, "TOPLEFT", PADDING, yOffset - 5)
+  disclaimerText:SetWidth(LEFT_PANEL_WIDTH - PADDING * 2)
+  disclaimerText:SetWordWrap(true)
+  disclaimerText:SetJustifyH("LEFT")
+  disclaimerText:SetJustifyV("TOP")
+  disclaimerText:SetSpacing(2)
+  disclaimerText:FontTemplate(font, 12, "NONE", true)
+  disclaimerText:SetText(
+    "|cffff6666WARNING:|r Applying selected sections will |cffff6666overwrite|r your current ElvUI settings for those sections with "
+      .. TXUI.Title
+      .. " defaults. Any manual changes you have made to selected sections will be lost.\n\nHover over each section to preview what will change.\n\n"
+  )
+  yOffset = yOffset - disclaimerText:GetStringHeight() - 15
+
   -- Build checkboxes (left panel)
   local checkboxes = {}
   local categories = self:GetCategories()
