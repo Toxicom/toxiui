@@ -11,6 +11,9 @@ TXUI.Changelog["7.3.0"] = {
 
     "* Enhancements",
     "Add disclaimer text to " .. TXUI.Title .. " Profile Updater",
+    "Update default " .. F.String.GradientString() .. " color for Priest" .. F.String.Sublist("Old values:") .. F.String.Sublist("From: #d1d1d1") .. F.String.Sublist(
+      "To: #ffffff"
+    ),
 
     "* Bug fixes",
 
