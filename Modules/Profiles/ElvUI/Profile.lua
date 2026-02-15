@@ -302,6 +302,18 @@ function PF:UpdateProfileForGradient()
   F.UpdateDBFromPath(pf, "unitframe.colors.frameGlow.mouseoverGlow", "texture")
 
   E.private.general.normTex = E.db.unitframe.statusbar
+
+  -- Set fade directions based on current layout
+  local layouts = I.GradientMode.Layouts[E.db.TXUI.installer.layout]
+  if layouts then
+    for unitType in pairs(P.themes.gradientMode.fadeDirection) do
+      if layouts.Left[unitType] then
+        E.db.TXUI.themes.gradientMode.fadeDirection[unitType] = I.Enum.GradientMode.Direction.LEFT
+      else
+        E.db.TXUI.themes.gradientMode.fadeDirection[unitType] = I.Enum.GradientMode.Direction.RIGHT
+      end
+    end
+  end
 end
 
 function PF:UpdateProfileForTheme()

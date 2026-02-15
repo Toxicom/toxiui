@@ -7,6 +7,7 @@ TXUI.Changelog["7.2.9"] = {
 
     "* New features",
     TXUI.Title .. " Profile Updater" .. F.String.Sublist("/tx update; /tx u"),
+    "Allow changing fade direction for " .. F.String.GradientString() .. " mode",
 
     "* Enhancements",
     F.String.Retail() .. "Decouple Damage Meter Skin from " .. F.String.ElvUI() .. F.String.Sublist(

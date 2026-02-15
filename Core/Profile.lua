@@ -72,6 +72,24 @@ P.themes = {
 
     backgroundMultiplier = 0.35,
 
+    fadeDirection = {
+      player = I.Enum.GradientMode.Direction.LEFT,
+      pet = I.Enum.GradientMode.Direction.LEFT,
+      tank = I.Enum.GradientMode.Direction.LEFT,
+      tanktarget = I.Enum.GradientMode.Direction.RIGHT,
+      assist = I.Enum.GradientMode.Direction.LEFT,
+      assisttarget = I.Enum.GradientMode.Direction.RIGHT,
+      target = I.Enum.GradientMode.Direction.RIGHT,
+      targettarget = I.Enum.GradientMode.Direction.RIGHT,
+      arena = I.Enum.GradientMode.Direction.RIGHT,
+      boss = I.Enum.GradientMode.Direction.RIGHT,
+      focus = I.Enum.GradientMode.Direction.RIGHT,
+      party = I.Enum.GradientMode.Direction.RIGHT,
+      raid1 = I.Enum.GradientMode.Direction.RIGHT,
+      raid2 = I.Enum.GradientMode.Direction.RIGHT,
+      raid3 = I.Enum.GradientMode.Direction.RIGHT,
+    },
+
     interruptCDEnabled = false,
     interruptSoonEnabled = false,
 

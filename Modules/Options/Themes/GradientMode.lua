@@ -514,6 +514,217 @@ function O:ToxiUI_Themes_GradientMode()
     end
   end
 
+  -- Fade Direction
+  do
+    local name = "Fade Direction"
+
+    -- Tab
+    local tab = self:AddGroup(options, {
+      name = name,
+    }).args
+
+    local directionValues = {
+      [I.Enum.GradientMode.Direction.LEFT] = "Left",
+      [I.Enum.GradientMode.Direction.RIGHT] = "Right",
+    }
+
+    local function directionGet(unitType)
+      return function()
+        return E.db.TXUI.themes.gradientMode.fadeDirection[unitType]
+      end
+    end
+
+    local function directionSet(unitType)
+      return function(_, value)
+        if E.db.TXUI.themes.gradientMode.fadeDirection[unitType] == value then return end
+        E.db.TXUI.themes.gradientMode.fadeDirection[unitType] = value
+        F.Event.TriggerEvent("ThemesGradients.SettingsUpdate")
+        F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
+        F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power", true)
+      end
+    end
+
+    -- Player & Target
+    do
+      local group = self:AddInlineDesc(tab, {
+        name = "Player & Target",
+      }, {
+        name = "Control the gradient fade direction for player and target unitframes.\n\n",
+      }).args
+
+      group.player = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Player",
+        values = directionValues,
+        get = directionGet("player"),
+        set = directionSet("player"),
+      }
+
+      group.pet = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Pet",
+        values = directionValues,
+        get = directionGet("pet"),
+        set = directionSet("pet"),
+      }
+
+      group.target = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Target",
+        values = directionValues,
+        get = directionGet("target"),
+        set = directionSet("target"),
+      }
+
+      group.targettarget = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Target of Target",
+        values = directionValues,
+        get = directionGet("targettarget"),
+        set = directionSet("targettarget"),
+      }
+
+      group.focus = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Focus",
+        values = directionValues,
+        get = directionGet("focus"),
+        set = directionSet("focus"),
+      }
+    end
+
+    -- Spacer
+    self:AddSpacer(tab)
+
+    -- Group Frames
+    do
+      local group = self:AddInlineDesc(tab, {
+        name = "Group Frames",
+      }, {
+        name = "Control the gradient fade direction for party and raid unitframes.\n\n",
+      }).args
+
+      group.party = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Party",
+        values = directionValues,
+        get = directionGet("party"),
+        set = directionSet("party"),
+      }
+
+      group.raid1 = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Raid 1",
+        values = directionValues,
+        get = directionGet("raid1"),
+        set = directionSet("raid1"),
+      }
+
+      group.raid2 = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Raid 2",
+        values = directionValues,
+        get = directionGet("raid2"),
+        set = directionSet("raid2"),
+      }
+
+      group.raid3 = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Raid 3",
+        values = directionValues,
+        get = directionGet("raid3"),
+        set = directionSet("raid3"),
+      }
+    end
+
+    -- Spacer
+    self:AddSpacer(tab)
+
+    -- Boss & Arena
+    do
+      local group = self:AddInlineDesc(tab, {
+        name = "Boss & Arena",
+      }, {
+        name = "Control the gradient fade direction for boss and arena unitframes.\n\n",
+      }).args
+
+      group.boss = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Boss",
+        values = directionValues,
+        get = directionGet("boss"),
+        set = directionSet("boss"),
+      }
+
+      group.arena = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Arena",
+        values = directionValues,
+        get = directionGet("arena"),
+        set = directionSet("arena"),
+      }
+    end
+
+    -- Spacer
+    self:AddSpacer(tab)
+
+    -- Role Frames
+    do
+      local group = self:AddInlineDesc(tab, {
+        name = "Role Frames",
+      }, {
+        name = "Control the gradient fade direction for tank and assist unitframes.\n\n",
+      }).args
+
+      group.tank = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Tank",
+        values = directionValues,
+        get = directionGet("tank"),
+        set = directionSet("tank"),
+      }
+
+      group.tanktarget = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Tank Target",
+        values = directionValues,
+        get = directionGet("tanktarget"),
+        set = directionSet("tanktarget"),
+      }
+
+      group.assist = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Assist",
+        values = directionValues,
+        get = directionGet("assist"),
+        set = directionSet("assist"),
+      }
+
+      group.assisttarget = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Assist Target",
+        values = directionValues,
+        get = directionGet("assisttarget"),
+        set = directionSet("assisttarget"),
+      }
+    end
+  end
+
   -- Settings
   do
     local name = "Settings"

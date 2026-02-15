@@ -18,10 +18,10 @@ end
 
 function GR:UpdateFadeDirection(frame)
   local unitType = frame.unitframeType or frame.__owner.unitframeType
-  local fadeDirection = unitType and (self.leftFrames[unitType] and I.Enum.GradientMode.Direction.LEFT or (self.rightFrames[unitType] and I.Enum.GradientMode.Direction.RIGHT))
+  local fadeDirection = unitType and self.db.fadeDirection and self.db.fadeDirection[unitType]
   if not fadeDirection then fadeDirection = I.Enum.GradientMode.Direction.RIGHT end
 
-  frame.fadeMode = I.Enum.GradientMode.Mode[fadeDirection and I.Enum.GradientMode.Mode.HORIZONTAL or I.Enum.GradientMode.Mode.VERTICAL]
+  frame.fadeMode = I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.HORIZONTAL]
   frame.fadeDirection = fadeDirection
 end
 
@@ -29,15 +29,15 @@ function GR:UpdateStatusBarFrame(frame)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
   if not frame then return end
 
-  -- Comfigure Health
+  -- Configure Health
   if frame.Health then
     local healthTexture = LSM:Fetch("statusbar", self.db.textures.health)
     frame.Health:SetStatusBarTexture(healthTexture)
     frame.Health.bg:SetTexture(healthTexture)
+    self:UpdateFadeDirection(frame.Health)
 
     -- Hook if needed
     if not self:IsHooked(frame.Health, "PostUpdateColor") then
-      self:UpdateFadeDirection(frame.Health)
       self:RawHook(frame.Health, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdateHealthColor, self))
       self:AddFrameToSettingsUpdate("Health", frame.Health, F.Event.GenerateClosure(self.PostUpdateHealthColor, self, frame.Health, frame.unit))
     end
@@ -48,10 +48,10 @@ function GR:UpdateStatusBarFrame(frame)
     local castTexture = LSM:Fetch("statusbar", self.db.textures.cast)
     frame.Castbar:SetStatusBarTexture(castTexture)
     frame.Castbar.bg:SetTexture(castTexture)
+    self:UpdateFadeDirection(frame.Castbar)
 
     -- Hook if needed
     if not self:IsHooked(frame.Castbar, "PostCastStart") then
-      self:UpdateFadeDirection(frame.Castbar)
       self:SecureHook(frame.Castbar, "PostCastStart", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
       self:SecureHook(frame.Castbar, "PostCastFail", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, true))
       self:SecureHook(frame.Castbar, "PostCastInterruptible", F.Event.GenerateClosure(self.PostUpdateCastColor, self, frame.Castbar, false))
@@ -63,10 +63,10 @@ function GR:UpdateStatusBarFrame(frame)
     local powerTexture = LSM:Fetch("statusbar", self.db.textures.power)
     frame.Power:SetStatusBarTexture(powerTexture)
     frame.Power.bg:SetTexture(powerTexture)
+    self:UpdateFadeDirection(frame.Power)
 
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
-      self:UpdateFadeDirection(frame.Power)
       self:RawHook(frame.Power, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdatePowerColor, self))
       self:AddFrameToSettingsUpdate("Power", frame.Power, F.Event.GenerateClosure(self.PostUpdatePowerColor, self, frame.Power, frame.unit))
     end
@@ -100,9 +100,10 @@ function GR:SettingsUpdate()
   -- Regenerate Colors
   F.Color.GenerateCache()
 
-  -- Set layout
-  self.leftFrames = I.GradientMode.Layouts[E.db.TXUI.installer.layout].Left
-  self.rightFrames = I.GradientMode.Layouts[E.db.TXUI.installer.layout].Right
+  -- Refresh fade directions for all registered frames
+  for frame in pairs(self.settingsEvents) do
+    self:UpdateFadeDirection(frame)
+  end
 end
 
 function GR:TexturesUpdate()

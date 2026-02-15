@@ -15,10 +15,6 @@ function GR:PostUpdatePowerColor(frame, unit, eR, eG, eB)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
   if not unit then return end
 
-  -- should be updated outside
-  frame.fadeMode = I.Enum.GradientMode.Mode[I.Enum.GradientMode.Mode.HORIZONTAL]
-  frame.fadeDirection = I.Enum.GradientMode.Direction.LEFT
-
   -- Power values are secret in Midnight, use fixed percentage
   local valueChanged = frame.currentPercent == nil
   if valueChanged then frame.currentPercent = 1 end
