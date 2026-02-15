@@ -16,6 +16,20 @@ local createCustomText = function(db, ...)
   return F.Table.Join(db or {}, customTextTemplate, ...)
 end
 
+local general = {
+  smoothbars = true,
+  maxAllowedGroups = false,
+  statusbar = "- ToxiUI",
+
+  altManaPowers = {
+    DRUID = {
+      Energy = false,
+      LunarPower = false,
+      Rage = false,
+    },
+  },
+}
+
 local player = {
   width = F.Dpi(300),
   height = F.Dpi(36),
@@ -1085,11 +1099,7 @@ local boss = {
 
 function PF:ApplyUnitframes(pf, colors, IsHorizontalLayout)
   -- UnitFrames General
-  F.Table.Crush(pf.unitframe, {
-    smoothbars = true,
-    maxAllowedGroups = false,
-    statusbar = "- ToxiUI",
-  })
+  F.Table.Crush(pf.unitframe, general)
 
   -- UnitFrames Colors
   F.Table.Crush(pf.unitframe.colors, colors.unitframe.colors)

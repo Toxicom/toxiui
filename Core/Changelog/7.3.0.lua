@@ -18,6 +18,7 @@ TXUI.Changelog["7.3.0"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Disable additional powers for Druid",
 
     "* Documentation",
 
