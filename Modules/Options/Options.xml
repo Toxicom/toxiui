@@ -1,5 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file='Core.lua' />
+  <Include file='Widgets\Widgets.xml' />
 
   <Include file='General\General.xml' />
   <Include file='Contacts\Contacts.xml' />

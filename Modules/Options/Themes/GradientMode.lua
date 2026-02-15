@@ -148,6 +148,16 @@ function O:ToxiUI_Themes_GradientMode()
         end, class),
       }
 
+      -- Gradient Preview
+      colorGroup[class .. "preview"] = {
+        order = self:GetOrder(),
+        type = "description",
+        name = "classColorMap:" .. class,
+        dialogControl = "TXUIGradientPreview",
+        width = 1,
+        customWidth = 120,
+      }
+
       -- Spacer
       self:AddTinySpacer(colorGroup)
     end
@@ -249,6 +259,16 @@ function O:ToxiUI_Themes_GradientMode()
         end, reaction),
       }
 
+      -- Gradient Preview
+      colorGroup[reaction .. "preview"] = {
+        order = self:GetOrder(),
+        type = "description",
+        name = "reactionColorMap:" .. reaction,
+        dialogControl = "TXUIGradientPreview",
+        width = 1,
+        customWidth = 120,
+      }
+
       -- Spacer
       self:AddTinySpacer(colorGroup)
     end
@@ -330,6 +350,16 @@ function O:ToxiUI_Themes_GradientMode()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power")
           F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, power),
+      }
+
+      -- Gradient Preview
+      colorGroup[power .. "preview"] = {
+        order = self:GetOrder(),
+        type = "description",
+        name = "powerColorMap:" .. power,
+        dialogControl = "TXUIGradientPreview",
+        width = 1,
+        customWidth = 120,
       }
 
       -- Spacer
@@ -425,6 +455,16 @@ function O:ToxiUI_Themes_GradientMode()
         end, special),
       }
 
+      -- Gradient Preview
+      stateGroup[special .. "preview"] = {
+        order = self:GetOrder(),
+        type = "description",
+        name = "specialColorMap:" .. special,
+        dialogControl = "TXUIGradientPreview",
+        width = 1,
+        customWidth = 120,
+      }
+
       -- Spacer
       self:AddTinySpacer(stateGroup)
     end
@@ -506,6 +546,16 @@ function O:ToxiUI_Themes_GradientMode()
             F.Event.TriggerEvent("ThemesGradients.SettingsUpdate")
             F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
           end, cast),
+        }
+
+        -- Gradient Preview
+        castGroup[cast .. "preview"] = {
+          order = self:GetOrder(),
+          type = "description",
+          name = "castColorMap:" .. cast,
+          dialogControl = "TXUIGradientPreview",
+          width = 1,
+          customWidth = 120,
         }
 
         -- Spacer
