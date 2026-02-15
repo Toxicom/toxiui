@@ -14,6 +14,7 @@ TXUI.Changelog["7.3.0"] = {
     "Update default " .. F.String.GradientString() .. " color for Priest" .. F.String.Sublist("Old values:") .. F.String.Sublist("From: #d1d1d1") .. F.String.Sublist(
       "To: #ffffff"
     ),
+    F.String.Retail() .. "Add " .. F.String.ToxiUI("Trader’s Gilded Brutosaur") .. " to " .. F.String.Menu.WunderBar() .. "'s Durability module",
 
     "* Bug fixes",
 

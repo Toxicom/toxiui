@@ -385,12 +385,15 @@ I.ElvUIIcons = {
   },
 }
 
+-- Mount ID, not Spell ID
+-- Can find Mount ID on Wowhead, or use E.MountIDs[spellID]
 I.RepairMounts = {
   2237, -- Grizzly Hills Packmaster
   460, -- Grand Expedition Yak
   284, -- Traveler's Tundra Mammoth (Horde)
   280, -- Traveler's Tundra Mammoth (Alliance)
   1039, -- Mighty Caravan Brutosaur
+  2265, -- Trader’s Gilded Brutosaur
 }
 
 -- Holds all data important to use, and will be filled with the below entries when GameBar is loaded
