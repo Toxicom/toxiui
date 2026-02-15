@@ -56,7 +56,13 @@ local sharedRaidTarget = {
 local nameplates = {
   highlight = false,
   statusbar = "- ToxiUI",
-  persistentFriendlyNP = true,
+
+  visibility = {
+    classColorFriendlyPlayerNames = true,
+    friendly = {
+      npcs = false,
+    },
+  },
 
   enviromentConditions = {
     friendly = {
