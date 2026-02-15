@@ -342,24 +342,34 @@ I.Data.Contributor = {
     ["Liue"] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Draenor
-        ["Niato-Draenor"] = true,
         ["Lilithye-Draenor"] = true,
+        ["Inydae-Draenor"] = true,
+        ["Dalitea-Draenor"] = true,
+        ["Siladre-Draenor"] = true,
+        ["Everita-Draenor"] = true,
+        ["Yitsa-Draenor"] = true,
         ["Jicae-Draenor"] = true,
+        ["Niato-Draenor"] = true,
         ["Scilia-Draenor"] = true,
 
         -- Silvermoon
+        ["Eynia-Silvermoon"] = true,
+        ["Miyena-Silvermoon"] = true,
+        ["Lilithye-Silvermoon"] = true,
+        ["Lialia-Silvermoon"] = true,
+        ["Ridelle-Silvermoon"] = true,
+        ["Aylirae-Silvermoon"] = true,
         ["Liue-Silvermoon"] = true,
+        ["Eliare-Silvermoon"] = true,
+        ["Yitsa-Silvermoon"] = true,
+        ["Ajisa-Silvermoon"] = true,
         ["Faelya-Silvermoon"] = true,
         ["Siladre-Silvermoon"] = true,
-        ["Dalitea-Silvermoon"] = true,
-        ["Yitsa-Silvermoon"] = true,
-        ["Ridelle-Silvermoon"] = true,
-        ["Eynia-Silvermoon"] = true,
-        ["Inydae-Silvermoon"] = true,
         ["Niato-Silvermoon"] = true,
-        ["Ajisa-Silvermoon"] = true,
-        ["Eliare-Silvermoon"] = true,
-        ["Lilithye-Silvermoon"] = true,
+        ["Dalitea-Silvermoon"] = true,
+        ["Inydae-Silvermoon"] = true,
+        ["Rishah-Silvermoon"] = true,
+        ["Liliyena-Silvermoon"] = true,
       },
 
       [I.Enum.Flavor.CLASSIC] = {
