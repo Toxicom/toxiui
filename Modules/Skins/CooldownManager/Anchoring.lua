@@ -9,6 +9,8 @@ function CM:SetAnchors()
   if InCombatLockdown() then return end
   if not self.db or not self.db.anchors then return end
 
+  self._settingAnchors = true
+
   local anchors = self.db.anchors
   local essential = _G[self.frameNames.essential]
   local utility = _G[self.frameNames.utility]
@@ -46,6 +48,30 @@ function CM:SetAnchors()
       buffBar:SetPoint("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset)
     end
   end
+
+  self._settingAnchors = false
+end
+
+function CM:HookAnchorLock(frame)
+  if not frame then return end
+
+  self:SecureHook(frame, "SetPoint", function()
+    if self._settingAnchors then return end
+    if InCombatLockdown() then return end
+
+    self:SetAnchors()
+  end)
+end
+
+function CM:SetupAnchorLocks()
+  if not self.db or not self.db.anchors then return end
+
+  local anchors = self.db.anchors
+
+  if anchors.essential.enabled then self:HookAnchorLock(_G[self.frameNames.essential]) end
+  if anchors.utility.enabled then self:HookAnchorLock(_G[self.frameNames.utility]) end
+  if anchors.buff.enabled then self:HookAnchorLock(_G[self.frameNames.buff]) end
+  if anchors.buffBar.enabled then self:HookAnchorLock(_G[self.frameNames.buffBar]) end
 end
 
 function CM:EnableAnchoring()
@@ -53,6 +79,9 @@ function CM:EnableAnchoring()
 
   -- Apply anchors initially
   self:SetAnchors()
+
+  -- Lock anchors via SetPoint hooks to prevent external resets
+  self:SetupAnchorLocks()
 
   -- Re-apply on zone changes since cooldown manager may reset positions
   F.Event.RegisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self.SetAnchors, self, "CM_Anchors")
