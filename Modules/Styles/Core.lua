@@ -29,8 +29,6 @@ function ST:ApplyStyle(styleType, style, dontReload)
   E.db.TXUI.styles[styleType] = style
   if styleType == "actionBars" then
     pf = self:BuildActionBarsProfile()
-  elseif styleType == "unitFrames" then
-    pf = self:BuildUnitFramesProfile()
   else
     TXUI:LogDebug("Styles > Invalid styleType provided")
     return
