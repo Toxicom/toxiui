@@ -19,6 +19,7 @@ TXUI.Changelog["7.2.9"] = {
 
     "* Profile updates",
     F.String.ElvUI() .. ": Enable environment conditions for Nameplates",
+    F.String.Retail() .. F.String.WindTools() .. ": Enable Objective Tracker skin",
 
     "* Documentation",
 

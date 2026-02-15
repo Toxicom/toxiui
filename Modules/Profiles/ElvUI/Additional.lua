@@ -237,6 +237,8 @@ function PF:BuildAdditionalPrivateProfile()
       -- Quest
       quest = {
         objectiveTracker = {
+          enable = true,
+
           header = {
             classColor = true,
           },
