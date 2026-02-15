@@ -352,36 +352,42 @@ function M:Tags()
   local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
   local classIconPath = usingSpecIcons and self:GetClassIconPath("ToxiClasses") or iconPath
 
-  -- Class Icon Tags (normal and reversed/mirrored)
+  -- Class Icon Tags (normal and reversed/mirrored, with optional :player filter)
   for _, reverse in ipairs { false, true } do
-    local tagName = reverse and "tx:classicon:reverse" or "tx:classicon"
+    for _, playerOnly in ipairs { false, true } do
+      local tagName = "tx:classicon"
+      if reverse then tagName = tagName .. ":reverse" end
+      if playerOnly then tagName = tagName .. ":player" end
 
-    E:AddTag(tagName, "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)
-      local _, class = UnitClass(unit)
-      if not class then return end
+      E:AddTag(tagName, "PLAYER_TARGET_CHANGED PLAYER_SPECIALIZATION_CHANGED", function(unit)
+        if playerOnly and not UnitIsPlayer(unit) then return end
 
-      if UnitIsPlayer(unit) and usingSpecIcons then
-        local specId = nil
+        local _, class = UnitClass(unit)
+        if not class then return end
 
-        local info = E:GetUnitSpecInfo(unit)
-        if info and info.id then specId = info.id end
+        if UnitIsPlayer(unit) and usingSpecIcons then
+          local specId = nil
 
-        if iconsDb and specId then
-          local specIcon = M.SpecIcons[specId]
+          local info = E:GetUnitSpecInfo(unit)
+          if info and info.id then specId = info.id end
 
-          if specIcon then
-            local coords = reverse and M:ReverseIconCoords(specIcon) or specIcon
-            return format(iconPath, coords)
+          if iconsDb and specId then
+            local specIcon = M.SpecIcons[specId]
+
+            if specIcon then
+              local coords = reverse and M:ReverseIconCoords(specIcon) or specIcon
+              return format(iconPath, coords)
+            end
           end
         end
-      end
 
-      local icon = M.ClassIcons[class]
-      if icon then
-        local coords = reverse and M:ReverseIconCoords(icon) or icon
-        return format(classIconPath, coords)
-      end
-    end)
+        local icon = M.ClassIcons[class]
+        if icon then
+          local coords = reverse and M:ReverseIconCoords(icon) or icon
+          return format(classIconPath, coords)
+        end
+      end)
+    end
   end
 
   -- Level Tag
@@ -440,27 +446,24 @@ function M:Tags()
   -- Tag info
   -- Tag info: General
 
-  -- Class Icon
+  -- Class Icon Tags
   do
-    E:AddTagInfo(
-      "tx:classicon",
-      TagNames.GENERAL,
-      "Displays " .. TXUI.Title .. " class icon. The class icon style can be customized in " .. TXUI.Title .. " settings -> " .. F.String.Menu.Skins() .. " -> " .. F.String.ElvUI()
-    )
+    local settingsPath = TXUI.Title .. " settings -> " .. F.String.Menu.Skins() .. " -> " .. F.String.Class("Class") .. " icons"
 
-    -- Class Icon (Reversed/Mirrored)
-    E:AddTagInfo(
-      "tx:classicon:reverse",
-      TagNames.GENERAL,
-      "Displays "
-        .. TXUI.Title
-        .. " class icon reversed/mirrored. The class icon style can be customized in "
-        .. TXUI.Title
-        .. " settings -> "
-        .. F.String.Menu.Skins()
-        .. " -> "
-        .. F.String.ElvUI()
-    )
+    for _, reverse in ipairs { false, true } do
+      for _, playerOnly in ipairs { false, true } do
+        local tagName = "tx:classicon"
+        if reverse then tagName = tagName .. ":reverse" end
+        if playerOnly then tagName = tagName .. ":player" end
+
+        local desc = "Displays " .. TXUI.Title .. " class icon"
+        if reverse then desc = desc .. " reversed/mirrored" end
+        if playerOnly then desc = desc .. " only for player units" end
+        desc = desc .. ". The class icon style can be customized in " .. settingsPath
+
+        E:AddTagInfo(tagName, TagNames.GENERAL, desc)
+      end
+    end
 
     -- Level
     E:AddTagInfo("tx:level", TagNames.GENERAL, "Displays unit's level with " .. TXUI.Title .. " colors (e.g. Lv 42). Hides when the unit is max level.")

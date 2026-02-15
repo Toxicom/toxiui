@@ -6,6 +6,7 @@ TXUI.Changelog["7.3.0"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add player-only tags for " .. F.String.ToxiUI("[tx:classicon]"),
 
     "* Enhancements",
     "Add disclaimer text to " .. TXUI.Title .. " Profile Updater",
