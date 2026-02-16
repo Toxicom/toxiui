@@ -24,7 +24,7 @@ TXUI.Changelog["6.8.7"] = {
 
     "* Documentation",
     "Add " .. F.String.ToxiUI("Notorious Thread's Hearthstone") .. " to " .. F.String.Menu.WunderBar(),
-    "Added " .. F.String.ToxiUI("Wormhole Generator: Khaz Algar") .. " to " .. F.String.Menu.WunderBar() .. " hearthstones" .. F.String.Sublist("Credits to Kryonyx"),
+    "Added " .. F.String.ToxiUI("Wormhole Generator: Khaz Algar") .. " to " .. F.String.Menu.WunderBar() .. " hearthstones" .. F.String.Sublist("Credits to " .. F.String.Kryo()),
     "Update contributors list",
 
     "* Development improvements",

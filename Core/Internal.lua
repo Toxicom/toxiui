@@ -131,7 +131,7 @@ I.Requirements = {
     I.Enum.Requirements.ELVUI_ACTIONBARS_ENABLED,
     I.Enum.Requirements.AB_BUDDY_DISABLED,
   },
-  ["GameMenuButton"] = {},
+  ["GameMenu"] = {},
   ["AdditionalScaling"] = {
     I.Enum.Requirements.ELTRUISM_DISABLED,
   },

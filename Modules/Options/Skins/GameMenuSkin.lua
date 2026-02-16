@@ -19,7 +19,7 @@ function O:Skins_ElvUI()
       name = "Description",
     }, {
       name = TXUI.Title .. " provides a skin for the Game Menu (ESC) that applies a background and additional information, all of which can be configured here.\n\n",
-    }, I.Requirements.GameMenuButton).args
+    }, I.Requirements.GameMenu).args
 
     -- ToxiUI Game Menu Button Enable
     mainGroup.gameMenuSkin = {
@@ -49,7 +49,7 @@ function O:Skins_ElvUI()
       name = "Customize the color of the Game Menu Skin's background.\n\nThe " .. F.String.ToxiUI("Class Color") .. " option will override the " .. F.String.ToxiUI(
         "Background Color"
       ) .. " option, but you can still use it to control the alpha of the background.\n\n",
-    }, I.Requirements.GameMenuButton).args
+    }, I.Requirements.GameMenu).args
 
     local optionsDisabled = function()
       return not E.db.TXUI.addons.gameMenuSkin.enabled
@@ -89,7 +89,7 @@ function O:Skins_ElvUI()
       name = "Information Sections",
     }, {
       name = "Display various useful information about your character.\n\n",
-    }, I.Requirements.GameMenuButton).args
+    }, I.Requirements.GameMenu).args
 
     local optionsDisabled = function()
       return not E.db.TXUI.addons.gameMenuSkin.enabled
@@ -166,7 +166,7 @@ function O:Skins_ElvUI()
       name = "Specialization Icon",
     }, {
       name = "Customize the specialization icon that appears in the Player Info section.\n\n",
-    }, I.Requirements.GameMenuButton).args
+    }, I.Requirements.GameMenu).args
 
     local optionsDisabled = function()
       return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
@@ -221,7 +221,7 @@ function O:Skins_ElvUI()
       hidden = not TXUI.IsRetail,
     }, {
       name = "Display your character's Mythic+ information.\n\n",
-    }, I.Requirements.GameMenuButton).args
+    }, I.Requirements.GameMenu).args
 
     mythicGroup.showMythic = {
       order = self:GetOrder(),

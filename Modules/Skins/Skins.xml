@@ -6,4 +6,5 @@
 
   <Include file='Details\Details.xml' />
   <Include file='CooldownManager\CooldownManager.xml' />
+  <Include file='GameMenu\GameMenu.xml' />
 </Ui>

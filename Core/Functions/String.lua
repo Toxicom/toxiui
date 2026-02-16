@@ -204,6 +204,10 @@ function F.String.Eltreum()
   return F.String.FastGradientHex("Eltreum", "#587AAD", "#9FE3F4")
 end
 
+function F.String.Kryo()
+  return F.String.Class("Kryo", "DEMONHUNTER")
+end
+
 function F.String.Ugg()
   return F.String.Color("U.", "3273fa") .. F.String.Color("GG", "ffffff")
 end
