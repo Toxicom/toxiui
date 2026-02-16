@@ -87,9 +87,7 @@ function GM:Disable()
 
   self:UnhookAll()
 
-  if self.backgroundFade then
-    self.backgroundFade:Hide()
-  end
+  if self.backgroundFade then self.backgroundFade:Hide() end
 end
 
 function GM:DatabaseUpdate()
