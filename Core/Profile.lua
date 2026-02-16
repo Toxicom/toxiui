@@ -175,24 +175,9 @@ P.themes = {
     },
 
     classColorMap = {
-      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
-        DEATHKNIGHT = F.Table.HexToRGB("#f52652"),
-        DEMONHUNTER = F.Table.HexToRGB("#ba00f5"),
-        DRUID = F.Table.HexToRGB("#ff7d0a"),
-        EVOKER = F.Table.HexToRGB("#44c5aa"),
-        HUNTER = F.Table.HexToRGB("#abed4f"),
-        MAGE = F.Table.HexToRGB("#33c7fc"),
-        MONK = F.Table.HexToRGB("#00ff96"),
-        PALADIN = F.Table.HexToRGB("#f58cba"),
-        PRIEST = F.Table.HexToRGB("#f0e8ff"),
-        ROGUE = F.Table.HexToRGB("#fff368"),
-        SHAMAN = F.Table.HexToRGB("#0a7ded"),
-        WARLOCK = F.Table.HexToRGB("#8561ed"),
-        WARRIOR = F.Table.HexToRGB("#e0a361"),
-      },
       [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
         DEATHKNIGHT = F.Table.HexToRGB("#ba1c2b"),
-        DEMONHUNTER = F.Table.HexToRGB("#b3008a"),
+        DEMONHUNTER = F.Table.HexToRGB("#b30067"),
         DRUID = F.Table.HexToRGB("#ff5e0a"),
         EVOKER = F.Table.HexToRGB("#2c7e6c"),
         HUNTER = F.Table.HexToRGB("#4acc35"),
@@ -204,6 +189,21 @@ P.themes = {
         SHAMAN = F.Table.HexToRGB("#0061bf"),
         WARLOCK = F.Table.HexToRGB("#634aad"),
         WARRIOR = F.Table.HexToRGB("#c78c4a"),
+      },
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
+        DEATHKNIGHT = F.Table.HexToRGB("#f52652"),
+        DEMONHUNTER = F.Table.HexToRGB("#5700f5"),
+        DRUID = F.Table.HexToRGB("#ff7d0a"),
+        EVOKER = F.Table.HexToRGB("#44c5aa"),
+        HUNTER = F.Table.HexToRGB("#abed4f"),
+        MAGE = F.Table.HexToRGB("#33c7fc"),
+        MONK = F.Table.HexToRGB("#00ff96"),
+        PALADIN = F.Table.HexToRGB("#f58cba"),
+        PRIEST = F.Table.HexToRGB("#f0e8ff"),
+        ROGUE = F.Table.HexToRGB("#fff368"),
+        SHAMAN = F.Table.HexToRGB("#0a7ded"),
+        WARLOCK = F.Table.HexToRGB("#8561ed"),
+        WARRIOR = F.Table.HexToRGB("#e0a361"),
       },
     },
   },
@@ -314,6 +314,13 @@ P.addons = {
         enabled = false,
         yOffset = 80,
       },
+    },
+
+    -- Centering
+    centering = {
+      essential = false,
+      utility = false,
+      buff = false,
     },
 
     -- Keybind overlays
