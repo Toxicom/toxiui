@@ -32,6 +32,7 @@ TXUI.Changelog["7.3.0"] = {
 
     "* Profile updates",
     F.String.ElvUI() .. ": Disable additional powers for Druid",
+    F.String.ElvUI() .. ": Use player-only class icon tag for Target UnitFrame",
 
     "* Documentation",
 

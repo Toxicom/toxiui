@@ -257,7 +257,7 @@ local function getTarget(horizontal)
       ["toxiui:class-icon"] = createCustomText({}, {
         justifyH = "RIGHT",
         attachTextTo = "Health",
-        text_format = "[tx:classicon:reverse]",
+        text_format = "[tx:classicon:reverse:player]",
         xOffset = F.Dpi(-6),
         yOffset = F.Dpi(0),
       }),
