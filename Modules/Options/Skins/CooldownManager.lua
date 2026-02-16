@@ -294,6 +294,60 @@ function O:Skins_CooldownManager()
   -- Spacer
   self:AddSpacer(options)
 
+  -- Centering
+  do
+    local centerGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Centering",
+    }, {
+      name = "Center Cooldown Manager icons within each viewer frame instead of the default left-aligned layout.\n\n",
+    }, I.Requirements.CooldownManager).args
+
+    centerGroup.centerEssential = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Center icons in the Essential Cooldown Viewer.",
+      name = "Essential",
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.centering.essential
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.centering.essential = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+
+    centerGroup.centerUtility = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Center icons in the Utility Cooldown Viewer.",
+      name = "Utility",
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.centering.utility
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.centering.utility = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+
+    centerGroup.centerBuff = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Center icons in the Buff Icon Cooldown Viewer.",
+      name = "Buff Icons",
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.centering.buff
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.centering.buff = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
   -- Keybinds
   do
     local function keybindsDisabled()

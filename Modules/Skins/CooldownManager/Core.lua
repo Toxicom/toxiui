@@ -13,12 +13,14 @@ CM.frameNames = {
 function CM:OnCooldownManagerChanged()
   self:SetAnchors()
   self:SetParent()
+  self:CenterAllViewers()
 end
 
 function CM:Disable()
   if not self.Initialized then return end
 
   self:UnhookAll()
+  self:DisableCentering()
   self:DisableDynamicBarsWidth()
   self:DisableDynamicCastbarWidth()
   self:DisableAnchoring()
@@ -58,6 +60,12 @@ function CM:DatabaseUpdate()
     if self.db.anchors then
       local a = self.db.anchors
       if a.essential.enabled or a.utility.enabled or a.buff.enabled or a.buffBar.enabled then self:EnableAnchoring() end
+    end
+
+    -- Enable centering if any viewer has it enabled
+    if self.db.centering then
+      local c = self.db.centering
+      if c.essential or c.utility or c.buff then self:EnableCentering() end
     end
 
     -- Enable keybind overlays if any viewer has keybinds enabled
