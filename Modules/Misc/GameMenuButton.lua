@@ -98,17 +98,17 @@ function M:OnPlayerEnteringWorld(_, isLogin, isReloadingUI)
   E.global.TXUI.sessionStartEpoch = E.global.TXUI.sessionStartEpoch or {}
   E.global.TXUI.sessionStartEpoch[E.myrealm] = E.global.TXUI.sessionStartEpoch[E.myrealm] or {}
 
+  if not self._playedRequested then
+    self._playedRequested = true
+    self:RegisterEvent("TIME_PLAYED_MSG", "OnTimePlayed")
+    RequestTimePlayed()
+  end
+
   if isLogin then
     -- Start a fresh session only on initial login
     local now = time()
     self.sessionStartEpoch = now
     E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname] = now
-
-    if not self._playedRequested then
-      self._playedRequested = true
-      self:RegisterEvent("TIME_PLAYED_MSG", "OnTimePlayed")
-      RequestTimePlayed()
-    end
   elseif isReloadingUI then
     -- On UI reload, restore the session start so the timer continues
     local saved = E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname]
