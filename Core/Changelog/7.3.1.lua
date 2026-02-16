@@ -10,6 +10,18 @@ TXUI.Changelog["7.3.1"] = {
 
     "* Enhancements",
     "Set 0.65 UI scale for non-standard resolutions",
+    "Update default " --
+      .. F.String.GradientString()
+      .. " color for "
+      .. F.String.Class("Paladin", "PALADIN")
+      .. F.String.Sublist("Old values:")
+      .. F.String.Sublist("To: #f58cba"),
+    "Update default " --
+      .. F.String.GradientString()
+      .. " color for "
+      .. F.String.Class("Mage", "MAGE")
+      .. F.String.Sublist("Old values:")
+      .. F.String.Sublist("To: #33c7fc"),
 
     "* Bug fixes",
 
