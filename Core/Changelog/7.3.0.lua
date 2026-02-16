@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["7.3.0"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add player-only tags for " .. F.String.ToxiUI("[tx:classicon]"),
     "Preview bars in " .. TXUI.Title .. " " .. F.String.GradientString() .. " mode settings",
@@ -28,16 +26,8 @@ TXUI.Changelog["7.3.0"] = {
       .. F.String.Sublist("To: #ba00f5"),
     F.String.Retail() .. "Add " .. F.String.ToxiUI("Trader’s Gilded Brutosaur") .. " to " .. F.String.Menu.WunderBar() .. "'s Durability module",
 
-    "* Bug fixes",
-
     "* Profile updates",
     F.String.ElvUI() .. ": Disable additional powers for Druid",
     F.String.ElvUI() .. ": Use player-only class icon tag for Target UnitFrame",
-
-    "* Documentation",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }

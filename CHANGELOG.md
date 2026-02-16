@@ -1,4 +1,4 @@
-# ToxiUI v7.3.0-beta.1 - 2026-02-16
+# ToxiUI v7.3.0 - 2026-02-16
 
 ## 🚀 New Features
 
@@ -22,3 +22,4 @@
 ## 🧩 Profile Updates
 
 - **ElvUI**: Disable additional powers for Druid
+- **ElvUI**: Use player-only class icon tag for Target UnitFrame
