@@ -152,7 +152,7 @@ function M:BuildPlayedGraph()
   -- Create container once
   if not self.played.graph then
     local graph = CreateFrame("Frame", nil, self.backgroundFade)
-    graph:SetPoint("TOPLEFT", (self.played.session or self.played.total), "BOTTOMLEFT", 0, m(-6))
+    graph:SetPoint("TOPLEFT", (self.played.session or self.played.total), "BOTTOMLEFT", 0, m(-10))
     graph:SetSize(700, 1) -- height will grow as bars are added
     self.played.graph = graph
     self.played.graph.bars = {}
