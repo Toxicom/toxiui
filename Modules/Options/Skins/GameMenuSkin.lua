@@ -18,7 +18,8 @@ function O:Skins_ElvUI()
     local mainGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = TXUI.Title .. " provides a skin for the Game Menu (ESC) that applies a background and additional information, all of which can be configured here.\n\n",
+      name = TXUI.Title ..
+      " provides a skin for the Game Menu (ESC) that applies a background and additional information, all of which can be configured here.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     -- ToxiUI Game Menu Button Enable
@@ -46,7 +47,8 @@ function O:Skins_ElvUI()
     local backgroundGroup = self:AddInlineRequirementsDesc(options, {
       name = "Background",
     }, {
-      name = "Customize the color of the Game Menu Skin's background.\n\nThe " .. F.String.ToxiUI("Class Color") .. " option will override the " .. F.String.ToxiUI(
+      name = "Customize the color of the Game Menu Skin's background.\n\nThe " ..
+      F.String.ToxiUI("Class Color") .. " option will override the " .. F.String.ToxiUI(
         "Background Color"
       ) .. " option, but you can still use it to control the alpha of the background.\n\n",
     }, I.Requirements.GameMenuButton).args
@@ -140,6 +142,21 @@ function O:Skins_ElvUI()
       end,
       disabled = optionsDisabled,
       hidden = not TXUI.IsRetail,
+    }
+
+    infoGroup.showPlayed = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show Played",
+      desc = "Toggling this on displays your total and session played time, plus per-class bars.",
+      get = function()
+        return E.db.TXUI.addons.gameMenuSkin.showPlayed
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.gameMenuSkin.showPlayed = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+      disabled = optionsDisabled,
     }
   end
 
