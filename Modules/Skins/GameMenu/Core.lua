@@ -76,9 +76,6 @@ function GM:Enable()
   self:SecureHookScript(GameMenuFrame, "OnHide", function()
     if self.backgroundFade then self.backgroundFade:Hide() end
   end)
-
-  -- Request /played on login
-  self:RegisterEvent("PLAYER_ENTERING_WORLD", "OnPlayerEnteringWorld")
 end
 
 function GM:Disable()
@@ -107,6 +104,9 @@ function GM:Initialize()
   if self.Initialized then return end
 
   self.isEnabled = false
+
+  -- Register early - PLAYER_ENTERING_WORLD fires before TXUI.InitializedSafe
+  self:RegisterEvent("PLAYER_ENTERING_WORLD", "OnPlayerEnteringWorld")
 
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
   F.Event.RegisterCallback("TXUI.DatabaseUpdate", self.DatabaseUpdate, self)
