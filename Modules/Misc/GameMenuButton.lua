@@ -112,9 +112,7 @@ function M:OnPlayerEnteringWorld(_, isLogin, isReloadingUI)
   elseif isReloadingUI then
     -- On UI reload, restore the session start so the timer continues
     local saved = E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname]
-    if saved and saved > 0 then
-      self.sessionStartEpoch = saved
-    end
+    if saved and saved > 0 then self.sessionStartEpoch = saved end
     -- Do NOT request /played on reload; keep it to initial login only
   else
     -- Neither initial login nor reload (failsafe); try to restore if available
@@ -133,9 +131,7 @@ local function AggregatePlayedByClass()
     if playedRealm then
       for name, classToken in pairs(classMap) do
         local seconds = playedRealm[name]
-        if seconds and seconds > 0 then
-          totals[classToken] = (totals[classToken] or 0) + seconds
-        end
+        if seconds and seconds > 0 then totals[classToken] = (totals[classToken] or 0) + seconds end
       end
     end
   end
@@ -144,10 +140,11 @@ local function AggregatePlayedByClass()
   for classToken, seconds in pairs(totals) do
     table.insert(list, { class = classToken, seconds = seconds })
   end
-  table.sort(list, function(a, b) return a.seconds > b.seconds end)
+  table.sort(list, function(a, b)
+    return a.seconds > b.seconds
+  end)
   return list
 end
-
 
 function M:BuildPlayedGraph()
   if not self.played or not self.backgroundFade then return end
@@ -233,7 +230,7 @@ function M:BuildPlayedGraph()
   end
 
   -- Resize container height to fit bars
-  graph:SetHeight((-yOffset) + barHeight)
+  graph:SetHeight(-yOffset + barHeight)
 end
 
 function M:GameMenuButton()
@@ -288,8 +285,7 @@ function M:GameMenuButton()
       backgroundFade.bottomText:Point("BOTTOM", 0, outerSpacing)
       backgroundFade.bottomText:SetFont(primaryFont, F.FontSizeScaled(14), "OUTLINE")
       backgroundFade.bottomText:SetTextColor(1, 1, 1, 0.6)
-      backgroundFade.bottomText:SetText("You can find all the relevant " ..
-        TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
+      backgroundFade.bottomText:SetText("You can find all the relevant " .. TXUI.Title .. " information at " .. I.Strings.Branding.Links.Website)
 
       -- Player Name
       backgroundFade.nameText = backgroundFade:CreateFontString(nil, "OVERLAY")
@@ -394,8 +390,7 @@ function M:GameMenuButton()
 
       -- Mythic+ history
       mythic.latestRuns = backgroundFade:CreateFontString(nil, "OVERLAY")
-      mythic.latestRuns:SetPoint("TOPLEFT", self.gamemenudb.showMythicScore and mythic.score or mythic.keystone,
-        "BOTTOMLEFT", 0, m(-4))
+      mythic.latestRuns:SetPoint("TOPLEFT", self.gamemenudb.showMythicScore and mythic.score or mythic.keystone, "BOTTOMLEFT", 0, m(-4))
       mythic.latestRuns:SetFont(titleFont, F.FontSizeScaled(18), "OUTLINE")
 
       -- 10 = max history limit
@@ -473,8 +468,7 @@ function M:GameMenuButton()
         self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(E.db.TXUI.addons.gameMenuSkin.specIconSize), "")
         self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)
 
-        self.backgroundFade.guildText:SetText(guildName and
-          F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
+        self.backgroundFade.guildText:SetText(guildName and F.String.FastGradientHex("<" .. guildName .. ">", "06c910", "33ff3d") or "")
         self.backgroundFade.specIcon:SetText(specIcon)
         self.backgroundFade.levelText:SetText("Lv " .. E.mylevel)
         self.backgroundFade.classText:SetText(F.String.GradientClass(E.myLocalizedClass, nil, true))
@@ -483,8 +477,7 @@ function M:GameMenuButton()
       if self.collections then
         local _, petsOwned = C_PetJournal.GetNumPets()
         self.collections.pets:SetText("Pets: " .. F.String.ToxiUI(petsOwned))
-        self.collections.achievs:SetText("Achievement Points: " ..
-          F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
+        self.collections.achievs:SetText("Achievement Points: " .. F.String.ToxiUI(E:FormatLargeNumber(GetTotalAchievementPoints(), ",")))
       end
 
       if self.mythic then
@@ -503,10 +496,7 @@ function M:GameMenuButton()
 
             -- Safely get hex color
             local levelColored = levelText
-            if colorObj and colorObj.GenerateHexColor then
-              levelColored = F.String.Color(levelText,
-                colorObj:GenerateHexColor())
-            end
+            if colorObj and colorObj.GenerateHexColor then levelColored = F.String.Color(levelText, colorObj:GenerateHexColor()) end
 
             text = keystoneTextPrefix .. F.String.ToxiUI(dungeonName .. " (" .. levelColored .. ")")
           else
@@ -548,10 +538,7 @@ function M:GameMenuButton()
                 local colorObj = C_ChallengeMode.GetKeystoneLevelRarityColor(historyRun.level)
                 local levelText = "+" .. historyRun.level
                 local levelColored = levelText
-                if colorObj and colorObj.GenerateHexColor then
-                  levelColored = F.String.Color(levelText,
-                    colorObj:GenerateHexColor())
-                end
+                if colorObj and colorObj.GenerateHexColor then levelColored = F.String.Color(levelText, colorObj:GenerateHexColor()) end
                 local output = ("%s (%s)"):format(historyDungeonName, levelColored)
                 historyFrame:SetText(historyRun.completed and F.String.Good(output) or F.String.Error(output))
               else
@@ -608,32 +595,29 @@ function M:GameMenuButton()
         local randomTip = randomTips[randomIndex]
 
         local monthDate = date("%m/%d") -- mm/dd eg 10/24 (oct 24)
-        local year = date("%Y")         -- yyyy eg 2023
+        local year = date("%Y") -- yyyy eg 2023
         local ToxiBirthday = monthDate == "01/06"
         local ToxiUiBirthday = monthDate == "10/18"
         local ToxiUiAge = year - 2020
         local holidays = { ["12/24"] = true, ["12/25"] = true, ["12/26"] = true }
-        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or
-            ""
+        local holidayString = holidays[monthDate] and "\n\nThe " .. TXUI.Title .. " team wishes you Happy Holidays!" or ""
         -- let's call it an easter egg
         if ToxiBirthday then
           self.backgroundFade.tipText:SetText(
             "Did you know that today, January 6th, is "
-            .. F.String.ToxiUI("Toxi")
-            .. "'s birthday?\n"
-            .. F.String.ToxiUI("Fun fact:")
-            .. " First version of the "
-            .. TXUI.Title
-            .. " installer was released on this day back in 2021!"
+              .. F.String.ToxiUI("Toxi")
+              .. "'s birthday?\n"
+              .. F.String.ToxiUI("Fun fact:")
+              .. " First version of the "
+              .. TXUI.Title
+              .. " installer was released on this day back in 2021!"
           )
         elseif ToxiUiBirthday then
           self.backgroundFade.tipText:SetText(
-            "Did you know that today, October 18th, is " ..
-            TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
+            "Did you know that today, October 18th, is " .. TXUI.Title .. "'s birthday? " .. TXUI.Title .. " is now " .. ToxiUiAge .. " years old!"
           )
         else
-          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") ..
-            randomTip .. holidayString)
+          self.backgroundFade.tipText:SetText(F.String.ToxiUI("Random tip #" .. randomIndex .. ": ") .. randomTip .. holidayString)
         end
       end
 

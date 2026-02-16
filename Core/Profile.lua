@@ -57,8 +57,8 @@ P.styles = {
 -- Themes
 P.themes = {
   darkMode = {
-    enabled = false,          -- Disabled by default
-    transparency = true,      -- Enabled by default
+    enabled = false, -- Disabled by default
+    transparency = true, -- Enabled by default
     transparencyAlpha = 0.25, -- Alpha of Background
   },
   gradientMode = {
@@ -102,75 +102,75 @@ P.themes = {
     },
 
     reactionColorMap = {
-      [I.Enum.GradientMode.Color.NORMAL] = {   -- RIGHT
-        BAD = F.Table.HexToRGB("#d94040"),     -- enemy
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
+        BAD = F.Table.HexToRGB("#d94040"), -- enemy
         NEUTRAL = F.Table.HexToRGB("#dec24a"), -- neutral
-        GOOD = F.Table.HexToRGB("#85d92b"),    -- friendly
+        GOOD = F.Table.HexToRGB("#85d92b"), -- friendly
       },
-      [I.Enum.GradientMode.Color.SHIFT] = {    -- LEFT
-        BAD = F.Table.HexToRGB("#c72121"),     -- enemy
+      [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
+        BAD = F.Table.HexToRGB("#c72121"), -- enemy
         NEUTRAL = F.Table.HexToRGB("#cf9145"), -- neutral
-        GOOD = F.Table.HexToRGB("#2f9706"),    -- friendly
+        GOOD = F.Table.HexToRGB("#2f9706"), -- friendly
       },
     },
 
     castColorMap = {
-      [I.Enum.GradientMode.Color.NORMAL] = {         -- RIGHT
-        DEFAULT = F.Table.HexToRGB("#ffbf00"),       -- cast def.
-        NOINTERRUPT = F.Table.HexToRGB("#8f8c8c"),   -- cast non.
-        INTERRUPTED = F.Table.HexToRGB("#d94040"),   -- cast was stopped
-        INTERRUPTCD = F.Table.HexToRGB("#8591b0"),   -- interrupt is on cd, and will not come off cd during cast
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
+        DEFAULT = F.Table.HexToRGB("#ffbf00"), -- cast def.
+        NOINTERRUPT = F.Table.HexToRGB("#8f8c8c"), -- cast non.
+        INTERRUPTED = F.Table.HexToRGB("#d94040"), -- cast was stopped
+        INTERRUPTCD = F.Table.HexToRGB("#8591b0"), -- interrupt is on cd, and will not come off cd during cast
         INTERRUPTSOON = F.Table.HexToRGB("#de7000"), -- interrupt is on cd, but will be ready inside the cast
       },
-      [I.Enum.GradientMode.Color.SHIFT] = {          -- LEFT
-        DEFAULT = F.Table.HexToRGB("#ffad00"),       -- cast def.
-        NOINTERRUPT = F.Table.HexToRGB("#737070"),   -- cast non.
-        INTERRUPTED = F.Table.HexToRGB("#991f1f"),   -- cast was stopped
-        INTERRUPTCD = F.Table.HexToRGB("#4f5c7a"),   -- interrupt is on cd, and will not come off cd during cast
+      [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
+        DEFAULT = F.Table.HexToRGB("#ffad00"), -- cast def.
+        NOINTERRUPT = F.Table.HexToRGB("#737070"), -- cast non.
+        INTERRUPTED = F.Table.HexToRGB("#991f1f"), -- cast was stopped
+        INTERRUPTCD = F.Table.HexToRGB("#4f5c7a"), -- interrupt is on cd, and will not come off cd during cast
         INTERRUPTSOON = F.Table.HexToRGB("#8f4700"), -- interrupt is on cd, but will be ready inside the cast
       },
     },
 
     powerColorMap = {
-      [I.Enum.GradientMode.Color.SHIFT] = {        -- LEFT
-        ALT_POWER = F.Table.HexToRGB("#264ad1"),   -- swap alt
-        MANA = F.Table.HexToRGB("#0040b3"),        -- mana
-        RAGE = F.Table.HexToRGB("#cf1717"),        -- rage
-        FOCUS = F.Table.HexToRGB("#cf591f"),       -- focus
-        ENERGY = F.Table.HexToRGB("#d9721a"),      -- energy
+      [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
+        ALT_POWER = F.Table.HexToRGB("#264ad1"), -- swap alt
+        MANA = F.Table.HexToRGB("#0040b3"), -- mana
+        RAGE = F.Table.HexToRGB("#cf1717"), -- rage
+        FOCUS = F.Table.HexToRGB("#cf591f"), -- focus
+        ENERGY = F.Table.HexToRGB("#d9721a"), -- energy
         RUNIC_POWER = F.Table.HexToRGB("#009cff"), -- runic
-        PAIN = F.Table.HexToRGB("#cccccc"),        -- pain
-        FURY = F.Table.HexToRGB("#c414b5"),        -- fury
+        PAIN = F.Table.HexToRGB("#cccccc"), -- pain
+        FURY = F.Table.HexToRGB("#c414b5"), -- fury
         LUNAR_POWER = F.Table.HexToRGB("#9e4fe8"), -- astral
-        INSANITY = F.Table.HexToRGB("#850ab0"),    -- insanity
-        MAELSTROM = F.Table.HexToRGB("#0073ff"),   -- maelstrom
+        INSANITY = F.Table.HexToRGB("#850ab0"), -- insanity
+        MAELSTROM = F.Table.HexToRGB("#0073ff"), -- maelstrom
       },
 
-      [I.Enum.GradientMode.Color.NORMAL] = {       -- RIGHT
-        ALT_POWER = F.Table.HexToRGB("#2175d4"),   -- swap alt
-        MANA = F.Table.HexToRGB("#35a4ff"),        -- mana
-        RAGE = F.Table.HexToRGB("#ed3333"),        -- rage
-        FOCUS = F.Table.HexToRGB("#db753b"),       -- focus
-        ENERGY = F.Table.HexToRGB("#ffe169"),      -- energy
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
+        ALT_POWER = F.Table.HexToRGB("#2175d4"), -- swap alt
+        MANA = F.Table.HexToRGB("#35a4ff"), -- mana
+        RAGE = F.Table.HexToRGB("#ed3333"), -- rage
+        FOCUS = F.Table.HexToRGB("#db753b"), -- focus
+        ENERGY = F.Table.HexToRGB("#ffe169"), -- energy
         RUNIC_POWER = F.Table.HexToRGB("#1cd6ff"), -- runic
-        PAIN = F.Table.HexToRGB("#f5f5f5"),        -- pain
-        FURY = F.Table.HexToRGB("#e81ff5"),        -- fury
+        PAIN = F.Table.HexToRGB("#f5f5f5"), -- pain
+        FURY = F.Table.HexToRGB("#e81ff5"), -- fury
         LUNAR_POWER = F.Table.HexToRGB("#9c54ff"), -- astral
-        INSANITY = F.Table.HexToRGB("#9629bd"),    -- insanity
-        MAELSTROM = F.Table.HexToRGB("#0096ff"),   -- maelstrom
+        INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
+        MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
       },
     },
 
     specialColorMap = {
-      [I.Enum.GradientMode.Color.NORMAL] = {        -- RIGHT
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
         DISCONNECTED = F.Table.HexToRGB("#ff6b59"), -- disconnect
-        TAPPED = F.Table.HexToRGB("#a3a6b0"),       -- tapped
-        DEAD = F.Table.HexToRGB("#cd001c"),         -- dead
+        TAPPED = F.Table.HexToRGB("#a3a6b0"), -- tapped
+        DEAD = F.Table.HexToRGB("#cd001c"), -- dead
       },
-      [I.Enum.GradientMode.Color.SHIFT] = {         -- LEFT
+      [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
         DISCONNECTED = F.Table.HexToRGB("#e85747"), -- disconnect
-        TAPPED = F.Table.HexToRGB("#7d828f"),       -- tapped
-        DEAD = F.Table.HexToRGB("#61000e"),         -- dead
+        TAPPED = F.Table.HexToRGB("#7d828f"), -- tapped
+        DEAD = F.Table.HexToRGB("#61000e"), -- dead
       },
     },
 
@@ -242,7 +242,7 @@ P.addons = {
 
   -- Deconstruct
   deconstruct = {
-    enabled = true,         -- Enabled by default
+    enabled = true, -- Enabled by default
     highlightMode = "DARK", -- DARK by default, possible "NONE", "DARK", "ALPHA"
 
     animations = true,
@@ -284,7 +284,7 @@ P.addons = {
 
   -- Fade Persist
   fadePersist = {
-    enabled = true,     -- Enabled by default
+    enabled = true, -- Enabled by default
     mode = "MOUSEOVER", -- MOUSEOVER, NO_COMBAT, IN_COMBAT, ELVUI, ALWAYS
     showInVehicles = true,
   },
@@ -351,10 +351,10 @@ P.addons = {
 
   -- Damage Meter (Blizzard)
   damageMeter = {
-    enabled = true,         -- Enabled by default
-    icons = true,           -- Enabled by default
-    gradients = true,       -- Enabled by default (works with any theme)
-    headerFade = true,      -- Fade header on mouseover
+    enabled = true, -- Enabled by default
+    icons = true, -- Enabled by default
+    gradients = true, -- Enabled by default (works with any theme)
+    headerFade = true, -- Fade header on mouseover
     headerFadeMinAlpha = 0, -- Alpha when not hovering
     headerFadeMaxAlpha = 1, -- Alpha when hovering
   },
@@ -507,7 +507,7 @@ P.elvUIIcons = {
   deadIcons = {
     enabled = true, -- Enabled by default
     theme = "TXUI_STYLIZED",
-    size = 28,      -- 36 for material/original
+    size = 28, -- 36 for material/original
     xOffset = 0,
     yOffset = 5,
   },
@@ -515,7 +515,7 @@ P.elvUIIcons = {
   offlineIcons = {
     enabled = true, -- Enabled by default
     theme = "TXUI_STYLIZED",
-    size = 28,      -- 36 for material/original
+    size = 28, -- 36 for material/original
     xOffset = 0,
     yOffset = 5,
   },
@@ -829,7 +829,7 @@ P.armory = {
 
 -- Animations (Retail-only)
 P.animations = {
-  enabled = true,     -- Enabled by default
+  enabled = true, -- Enabled by default
 
   animationsMult = 1, -- Animation speed multiplier, higher than 1 => slower, lower than 1 => faster
 
@@ -954,7 +954,7 @@ P.wunderbar = {
 
     barWidth = E.physicalWidth,
     barHeight = 30,
-    barSpacing = 20,             -- spacing from the screen edges, reduces the size of the 3 panels
+    barSpacing = 20, -- spacing from the screen edges, reduces the size of the 3 panels
     barVisibility = "NO_COMBAT", -- ALWAYS, NO_COMBAT, RESTING
     barMouseOverOnly = false,
 
@@ -1002,9 +1002,9 @@ P.wunderbar = {
   },
   subModules = {
     Time = {
-      localTime = true,                     -- this should be in sync with ElvUI profile for better tooltips
+      localTime = true, -- this should be in sync with ElvUI profile for better tooltips
       twentyFour = GetCurrentRegion() ~= 1, -- sets 24h for everyone, except US
-      timeFormat = "HH:MM",                 -- valid are HH:MM, H:MM, H:M
+      timeFormat = "HH:MM", -- valid are HH:MM, H:MM, H:M
 
       showRestingAnimation = true,
       experimentalDynamicSize = false,
@@ -1035,7 +1035,7 @@ P.wunderbar = {
 
       textColor = true,
       textColorFadeFromNormal = true,
-      textColorLatencyThreshold = 60,   -- or above
+      textColorLatencyThreshold = 60, -- or above
       textColorFramerateThreshold = 60, -- or under
 
       showIcons = true,
@@ -1118,14 +1118,14 @@ P.wunderbar = {
 
       displayedCurrency = "GOLD", -- NEEDS to be GOLD
       enabledCurrencies = {
-        [3008] = true,            --               Valorstones
-        [3290] = true,            --     Gilded Ethereal Crest
-        [3288] = true,            --      Runed Ethereal Crest
-        [3286] = true,            --     Carved Ethereal Crest
-        [3284] = true,            --  Weathered Ethereal Crest
-        [2815] = true,            --        Resonance Crystals
-        [3028] = true,            --       Restored Coffer Key
-      },                          -- Format: [currencyID] = true,
+        [3008] = true, --               Valorstones
+        [3290] = true, --     Gilded Ethereal Crest
+        [3288] = true, --      Runed Ethereal Crest
+        [3286] = true, --     Carved Ethereal Crest
+        [3284] = true, --  Weathered Ethereal Crest
+        [2815] = true, --        Resonance Crystals
+        [3028] = true, --       Restored Coffer Key
+      }, -- Format: [currencyID] = true,
 
       showIcon = true,
       showSmall = true,
@@ -1191,8 +1191,8 @@ P.wunderbar = {
         useUppercase = true,
 
         showIcons = true,
-        showSpec1 = true,   -- active spec
-        showSpec2 = false,  -- loot spec
+        showSpec1 = true, -- active spec
+        showSpec2 = false, -- loot spec
 
         showLoadout = true, -- Retail only, show current selected talent loadout
 

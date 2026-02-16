@@ -18,8 +18,7 @@ function O:Skins_ElvUI()
     local mainGroup = self:AddInlineRequirementsDesc(options, {
       name = "Description",
     }, {
-      name = TXUI.Title ..
-      " provides a skin for the Game Menu (ESC) that applies a background and additional information, all of which can be configured here.\n\n",
+      name = TXUI.Title .. " provides a skin for the Game Menu (ESC) that applies a background and additional information, all of which can be configured here.\n\n",
     }, I.Requirements.GameMenuButton).args
 
     -- ToxiUI Game Menu Button Enable
@@ -47,8 +46,7 @@ function O:Skins_ElvUI()
     local backgroundGroup = self:AddInlineRequirementsDesc(options, {
       name = "Background",
     }, {
-      name = "Customize the color of the Game Menu Skin's background.\n\nThe " ..
-      F.String.ToxiUI("Class Color") .. " option will override the " .. F.String.ToxiUI(
+      name = "Customize the color of the Game Menu Skin's background.\n\nThe " .. F.String.ToxiUI("Class Color") .. " option will override the " .. F.String.ToxiUI(
         "Background Color"
       ) .. " option, but you can still use it to control the alpha of the background.\n\n",
     }, I.Requirements.GameMenuButton).args
