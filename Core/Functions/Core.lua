@@ -136,6 +136,8 @@ function F.PixelPerfect()
   local perfectScale = 768 / E.physicalHeight
   if doubleScaleResolutions[E.physicalHeight] then perfectScale = perfectScale * 1.5 end
   if customScaleResolutions[E.physicalHeight] then perfectScale = customScaleResolutions[E.physicalHeight] end
+  -- if less than 1440p and not in any of the resolution tables, just fallback to 0.65 to avoid bullshit 16:10 macbook screens
+  if perfectScale < (768 / 1440) then perfectScale = 0.65 end
   return perfectScale
 end
 
