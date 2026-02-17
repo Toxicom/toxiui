@@ -28,6 +28,7 @@ TXUI.Changelog["7.3.1"] = {
     "* Bug fixes",
     F.String.Retail() .. "Improve anchoring and keybinds logic of " .. F.String.CDM(),
     F.String.Retail() .. F.String.Anniversary() .. "Fix error when disabling " .. F.String.GradientString() .. " mode",
+    F.String.Retail() .. "Fix an icon indexing issue with " .. F.String.CDM() .. F.String.Sublist("Credits to " .. F.String.Kryo()),
 
     "* Profile updates",
 

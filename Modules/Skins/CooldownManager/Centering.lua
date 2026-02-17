@@ -67,9 +67,7 @@ function CM:CenterViewer(viewerKey)
   local step = iconWidth + xSpacing
   -- Ensure stride is sane; fall back to calculated value and clamp to at least 1
   local stride = tonumber(cache.stride)
-  if not stride or stride < 1 then
-    stride = floor((viewerWidth + xSpacing) / step)
-  end
+  if not stride or stride < 1 then stride = floor((viewerWidth + xSpacing) / step) end
   local maxPerRow = max(1, stride)
   local rows = ceil(count / maxPerRow)
 
