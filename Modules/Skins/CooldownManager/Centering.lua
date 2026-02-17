@@ -65,7 +65,12 @@ function CM:CenterViewer(viewerKey)
   local viewerWidth = floor(viewer:GetWidth() + 0.5)
 
   local step = iconWidth + xSpacing
-  local maxPerRow = cache.stride or max(1, floor((viewerWidth + xSpacing) / step))
+  -- Ensure stride is sane; fall back to calculated value and clamp to at least 1
+  local stride = tonumber(cache.stride)
+  if not stride or stride < 1 then
+    stride = floor((viewerWidth + xSpacing) / step)
+  end
+  local maxPerRow = max(1, stride)
   local rows = ceil(count / maxPerRow)
 
   self._centeringIcons = true
@@ -81,8 +86,10 @@ function CM:CenterViewer(viewerKey)
 
     for i = 0, rowCount - 1 do
       local icon = shownBuffer[startIndex + i]
-      icon:ClearAllPoints()
-      icon:SetPoint("TOP", viewer, "TOP", startX + i * step, yPos)
+      if icon then
+        icon:ClearAllPoints()
+        icon:SetPoint("TOP", viewer, "TOP", startX + i * step, yPos)
+      end
     end
   end
 
