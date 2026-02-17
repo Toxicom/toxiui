@@ -3,7 +3,9 @@ local CM = TXUI:GetModule("CooldownManager")
 local ColorMod = TXUI:GetModule("ColorModifiers")
 
 local _G = _G
+local format = format
 local ipairs = ipairs
+local pairs = pairs
 local GetActionInfo = GetActionInfo
 local GetMacroSpell = GetMacroSpell
 local GetBindingKey = GetBindingKey
@@ -97,10 +99,14 @@ end
 function CM:RefreshViewerKeybinds(settingKey, bindingMap)
   local viewerName = self.frameNames[settingKey]
   local viewer = viewerName and _G[viewerName]
-  if not viewer then return end
+  if not viewer then
+    TXUI:LogDebug(format("[Keybinds] %s: viewer not found (%s)", settingKey, tostring(viewerName)))
+    return
+  end
 
   local kdb = self.db.keybinds
   if not kdb or not kdb[settingKey] or not kdb[settingKey].enabled then
+    TXUI:LogDebug(format("[Keybinds] %s: disabled in DB", settingKey))
     HideViewerKeybinds(viewer)
     return
   end
@@ -109,17 +115,34 @@ function CM:RefreshViewerKeybinds(settingKey, bindingMap)
   bindingMap = bindingMap or self:ScanElvUIBindings()
   local children = { viewer:GetChildren() }
 
+  local bindingCount = 0
+  for _ in pairs(bindingMap) do
+    bindingCount = bindingCount + 1
+  end
+
+  TXUI:LogDebug(format("[Keybinds] %s: %d children, %d bindings in map", settingKey, #children, bindingCount))
+
+  local matched, noIcon, noCooldownID, noInfo, noBinding = 0, 0, 0, 0, 0
+
   for _, child in ipairs(children) do
-    if child.Icon and child.cooldownID then
+    if not child.Icon then
+      noIcon = noIcon + 1
+    elseif not child.cooldownID then
+      noCooldownID = noCooldownID + 1
+    else
       local info = C_CooldownViewer.GetCooldownViewerCooldownInfo(child.cooldownID)
       local text
 
       if info then
         text = self:ResolveSpellBinding(info.spellID, bindingMap)
         if not text and info.overrideSpellID then text = self:ResolveSpellBinding(info.overrideSpellID, bindingMap) end
+        if not text then noBinding = noBinding + 1 end
+      else
+        noInfo = noInfo + 1
       end
 
       if text then
+        matched = matched + 1
         local keybind = GetKeybind(child)
         StyleKeybind(keybind, viewerDB)
         keybind.text:SetText(text)
@@ -129,6 +152,8 @@ function CM:RefreshViewerKeybinds(settingKey, bindingMap)
       end
     end
   end
+
+  TXUI:LogDebug(format("[Keybinds] %s: matched=%d, noIcon=%d, noCooldownID=%d, noInfo=%d, noBinding=%d", settingKey, matched, noIcon, noCooldownID, noInfo, noBinding))
 end
 
 function CM:RefreshAllKeybinds()
@@ -171,7 +196,38 @@ function CM:EnableKeybinds()
     end
   end
 
-  self:RefreshAllKeybinds()
+  -- Initial refresh with retry — cooldownIDs may not be assigned yet on reload
+  local retries = 0
+  local retryRefresh
+  retryRefresh = function()
+    if not self.keybindsActive then return end
+
+    local hasCooldownIDs = false
+    for _, key in ipairs(keybindKeys) do
+      local viewer = _G[self.frameNames[key]]
+      if viewer then
+        for _, child in ipairs { viewer:GetChildren() } do
+          if child.Icon and child.cooldownID then
+            hasCooldownIDs = true
+            break
+          end
+        end
+      end
+      if hasCooldownIDs then break end
+    end
+
+    if hasCooldownIDs then
+      TXUI:LogDebug(format("[Keybinds] Initial refresh (attempt %d)", retries + 1))
+      self:RefreshAllKeybinds()
+    elseif retries < 10 then
+      retries = retries + 1
+      TXUI:LogDebug(format("[Keybinds] No cooldownIDs yet, retry %d", retries))
+      E:Delay(0.5, retryRefresh)
+    else
+      TXUI:LogDebug("[Keybinds] Gave up waiting for cooldownIDs")
+    end
+  end
+  retryRefresh()
 end
 
 function CM:DisableKeybinds()
