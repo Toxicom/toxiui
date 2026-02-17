@@ -36,6 +36,7 @@ TXUI.Changelog["7.3.1"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Update description of " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Skin",
 
     "* Development improvements",
     "Refactor Game Menu Skin as it's own module with subfolder structure",
