@@ -116,7 +116,7 @@ function GM:BuildPlayedGraph()
     local tex = barFrame:CreateTexture(nil, "ARTWORK")
     tex:SetPoint("LEFT", barFrame, "LEFT", 0, 0)
     tex:SetSize(width, barHeight)
-    tex:SetColorTexture(1, 1, 1, 1)
+    tex:SetTexture(E.media.normTex)
 
     local start = shiftMap and shiftMap[item.class] or CreateColor(0.3, 0.3, 0.3, 1)
     local finish = normalMap and normalMap[item.class] or CreateColor(0.6, 0.6, 0.6, 1)
