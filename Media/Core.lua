@@ -42,6 +42,9 @@ F.AddMedia("texture", "Bezo-dark2", "- Bezo Darker", "statusbar")
 -- Custom ones for WunderBar for example (no defaults)
 F.AddMedia("texture", "TX-WorldState-Score", "TX WorldState Score", "statusbar")
 
+-- Kringel's Media Tags
+F.AddMedia("texture", "KMT47", "KMT47", "statusbar")
+
 -- -----
 --   CHAT ICONS/BADGES
 -- -----
