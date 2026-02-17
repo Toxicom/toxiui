@@ -22,6 +22,7 @@ TXUI.Changelog["7.3.1"] = {
       .. F.String.Class("Mage", "MAGE")
       .. F.String.Sublist("Old values:")
       .. F.String.Sublist("To: #33c7fc"),
+    "Bring back Gradient Mode to " .. TXUI.Title .. " Status Report window",
 
     "* Bug fixes",
     F.String.Retail() .. "Improve anchoring and keybinds logic of " .. F.String.CDM(),
