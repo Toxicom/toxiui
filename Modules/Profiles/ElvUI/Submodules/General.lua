@@ -50,14 +50,14 @@ function PF:ApplyGeneral(pf)
 
     -- Loot Roll
     lootRoll = {
-      statusBarTexture = F.ChooseForGradient("- ToxiUI", "- Tx Right"),
+      statusBarTexture = I.Textures.Primary,
       buttonSize = 30,
       leftButtons = true,
     },
 
     -- AltPowerBar
     altPowerBar = {
-      statusBar = "- ToxiUI",
+      statusBar = I.Textures.Primary,
     },
 
     -- AddOn Compartment

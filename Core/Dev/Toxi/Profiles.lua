@@ -66,27 +66,10 @@ function T:SetupProfile()
     E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
     E.db.WT.quest.turnIn.enable = true
   end
-
-  -- Apply KMT47 texture
-  E.db.TXUI.themes.gradientMode.textures.cast = "KMT47"
-  E.db.TXUI.themes.gradientMode.textures.health = "KMT47"
-  E.db.TXUI.themes.gradientMode.textures.power = "KMT47"
-  E.db.TXUI.vehicleBar.enabled = true
-  E.db.TXUI.vehicleBar.vigorBar.normalTexture = "KMT47"
-  E.db.general.altPowerBar.statusBar = "KMT47"
-  E.db.general.lootRoll.statusBarTexture = "KMT47"
-  E.db.unitframe.colors.frameGlow.mouseoverGlow.texture = "KMT47"
 end
 
 function T:SetupPrivate()
-  if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
-    E.private.WT.misc.moveFrames.rememberPositions = true
-    -- Apply KMT47 texture
-    E.private.WT.misc.lfgList.line.tex = "KMT47"
-    E.private.WT.skins.cooldownViewer.buffBar.barTexture = "KMT47"
-  end
-  E.private.general.glossTex = "KMT47"
-  E.private.general.normTex = "KMT47"
+  if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then E.private.WT.misc.moveFrames.rememberPositions = true end
 end
 
 T:AddCallback("SetupCvars")

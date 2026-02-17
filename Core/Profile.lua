@@ -65,9 +65,9 @@ P.themes = {
     enabled = true, -- Enabled by default
 
     textures = {
-      health = "- ToxiUI",
-      power = "- ToxiUI",
-      cast = "- ToxiUI",
+      health = I.Textures.Primary,
+      power = I.Textures.Primary,
+      cast = I.Textures.Primary,
     },
 
     backgroundMultiplier = 0.35,
@@ -537,7 +537,7 @@ P.vehicleBar = {
   vigorBar = {
     enabled = true,
     height = 10,
-    normalTexture = "- ToxiUI",
+    normalTexture = I.Textures.Primary,
     darkTexture = "- Tx Half",
     useCustomColor = false,
     customColorLeft = { r = 0.208, g = 0.424, b = 1 },

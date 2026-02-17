@@ -55,7 +55,7 @@ local sharedRaidTarget = {
 
 local nameplates = {
   highlight = false,
-  statusbar = "- ToxiUI",
+  statusbar = I.Textures.Primary,
   classColorNames = true,
 
   visibility = {

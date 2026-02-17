@@ -19,7 +19,7 @@ end
 local general = {
   smoothbars = true,
   maxAllowedGroups = false,
-  statusbar = "- ToxiUI",
+  statusbar = I.Textures.Primary,
 
   altManaPowers = {
     DRUID = {

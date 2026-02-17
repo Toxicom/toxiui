@@ -31,6 +31,10 @@ I.Fonts = {
   Icons = "- ToxiUI Icons",
 }
 
+I.Textures = {
+  Primary = "KMT47",
+}
+
 I.FontNames = {
   [I.Fonts.Primary] = "Primary",
   [I.Fonts.Title] = "Title",

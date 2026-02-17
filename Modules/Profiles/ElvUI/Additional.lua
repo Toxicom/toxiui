@@ -362,7 +362,7 @@ function PF:BuildAdditionalPrivateProfile()
           enable = true,
 
           buffBar = {
-            barTexture = "- ToxiUI",
+            barTexture = I.Textures.Primary,
           },
 
           buffIcon = {
@@ -400,13 +400,13 @@ function PF:BuildAdditionalPrivateProfile()
 
           checkbox = {
             color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
-            texture = "- ToxiUI",
+            texture = I.Textures.Primary,
             classColor = widgetClassColor,
           },
 
           slider = {
             color = F.Table.HexToRGB(I.Strings.Colors[I.Enum.Colors.TXUI]),
-            texture = "- ToxiUI",
+            texture = I.Textures.Primary,
             classColor = widgetClassColor,
           },
 

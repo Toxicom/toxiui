@@ -35,6 +35,7 @@ TXUI.Changelog["7.3.1"] = {
 
     "* Profile updates",
     F.String.Retail() .. F.String.WindTools() .. ": Enable and update the Cooldown Viewer skin",
+    F.String.ElvUI() .. " & " .. F.String.WindTools() .. ": Use the new " .. F.String.ToxiUI("KMT47") .. " texture",
 
     "* Documentation",
 

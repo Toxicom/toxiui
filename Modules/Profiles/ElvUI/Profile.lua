@@ -74,7 +74,7 @@ function PF:BuildColorsProfile()
     -- UnitFrame Colors MouseOver Glow
     frameGlow = {
       mouseoverGlow = {
-        texture = "- ToxiUI",
+        texture = I.Textures.Primary,
       },
     },
 
@@ -229,8 +229,8 @@ function PF:BuildPrivateProfile()
       chatBubbles = "nobackdrop",
       raidUtility = true,
       totemTracker = false,
-      glossTex = "- ToxiUI", -- Secondary Texture
-      normTex = "- ToxiUI",
+      glossTex = I.Textures.Primary, -- Secondary Texture
+      normTex = I.Textures.Primary,
       classColors = TXUI.IsClassicEra,
 
       minimap = {
@@ -293,16 +293,6 @@ function PF:ElvUIProfileGlobal()
 end
 
 function PF:UpdateProfileForGradient()
-  local pf = self:BuildProfile()
-
-  F.UpdateDBFromPath(pf, "general.altPowerBar", "statusBar")
-  F.UpdateDBFromPath(pf, "general.lootRoll", "statusBarTexture")
-
-  F.UpdateDBFromPath(pf, "unitframe", "statusbar")
-  F.UpdateDBFromPath(pf, "unitframe.colors.frameGlow.mouseoverGlow", "texture")
-
-  E.private.general.normTex = E.db.unitframe.statusbar
-
   -- Set fade directions based on current layout
   local layouts = I.GradientMode.Layouts[E.db.TXUI.installer.layout]
   if layouts then
