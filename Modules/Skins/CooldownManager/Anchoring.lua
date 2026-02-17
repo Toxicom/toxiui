@@ -15,38 +15,37 @@ function CM:SetAnchors()
   local essential = _G[self.frameNames.essential]
   local utility = _G[self.frameNames.utility]
   local buff = _G[self.frameNames.buff]
+  local buffBar = _G[self.frameNames.buffBar]
+  local healthBar = _G["ElvUF_Player_HealthBar"]
   local powerBar = _G["ElvUF_Player_PowerBar"]
   local classBar = _G["ElvUF_Player_ClassBar"]
+  local powerBarAvailable = powerBar and powerBar:IsShown() and E.db.unitframe.units.player.power.enable
+  local classBarAvailable = classBar and classBar:IsShown() and E.db.unitframe.units.player.classbar.enable
 
-  -- Anchor EssentialCooldownViewer to bottom of power bar
-  if anchors.essential.enabled and essential and powerBar and E.db.unitframe.units.player.power.enable then
+  -- Anchor EssentialCooldownViewer to bottom of power bar, fallback to class bar
+  if anchors.essential.enabled and essential then
+    local anchor = (powerBarAvailable and powerBar) or (classBarAvailable and classBar)
     essential:ClearAllPoints()
-    essential:SetPoint("TOP", powerBar, "BOTTOM", 0, anchors.essential.yOffset)
+    if anchor then essential:SetPoint("TOP", anchor, "BOTTOM", 0, anchors.essential.yOffset) end
   end
 
   -- Anchor UtilityCooldownViewer to bottom of EssentialCooldownViewer
-  if anchors.utility.enabled and utility and essential then
+  if anchors.utility.enabled and utility then
     utility:ClearAllPoints()
-    utility:SetPoint("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset)
+    if essential then utility:SetPoint("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset) end
   end
 
   -- Anchor BuffIconCooldownViewer to top of class bar, fallback to power bar
   if anchors.buff.enabled and buff then
-    local anchor = (classBar and classBar:IsShown() and classBar) or powerBar
-    if anchor then
-      buff:ClearAllPoints()
-      buff:SetPoint("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset)
-    end
+    local anchor = (classBarAvailable and classBar) or (powerBarAvailable and powerBar)
+    buff:ClearAllPoints()
+    if anchor then buff:SetPoint("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset) end
   end
 
   -- Anchor BuffBarCooldownViewer to top of health bar
-  if anchors.buffBar.enabled then
-    local buffBar = _G[self.frameNames.buffBar]
-    local healthBar = _G["ElvUF_Player_HealthBar"]
-    if buffBar and healthBar then
-      buffBar:ClearAllPoints()
-      buffBar:SetPoint("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset)
-    end
+  if anchors.buffBar.enabled and buffBar then
+    buffBar:ClearAllPoints()
+    if healthBar then buffBar:SetPoint("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset) end
   end
 
   self._settingAnchors = false

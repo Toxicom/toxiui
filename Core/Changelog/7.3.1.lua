@@ -24,6 +24,7 @@ TXUI.Changelog["7.3.1"] = {
       .. F.String.Sublist("To: #33c7fc"),
 
     "* Bug fixes",
+    F.String.Retail() .. "Improve anchoring logic of " .. F.String.CDM(),
 
     "* Profile updates",
 
