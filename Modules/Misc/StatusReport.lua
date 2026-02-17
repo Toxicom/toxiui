@@ -35,6 +35,11 @@ local function getSpecName()
   return I.SpecNames[GetSpecializationInfo(GetSpecialization())] or UNKNOWN
 end
 
+-- Format a scale value for display (trim excessive decimals)
+local function formatScale(value)
+  return format("%.4g", value)
+end
+
 -- Helper: generates a line entry for a feature with a requirements check
 local function reqLine(label, requirementsKey, dbValue)
   return {
@@ -48,8 +53,8 @@ local function reqLine(label, requirementsKey, dbValue)
 end
 
 -- Declarative section definitions
--- Each section: { header = "...", lines = { { "Label", valueFn }, ... } }
--- valueFn returns the formatted value string for display
+-- Each section: { header, lines, [headerFn] }
+-- Each line: { "Label", valueFn } — valueFn returns the formatted value string
 -- Entries that are `false` or `nil` are skipped (use for conditional lines)
 local function getSections()
   local cl = TXUI:GetModule("Changelog")
@@ -83,20 +88,21 @@ local function getSections()
         {
           "Pixel Perfect Scale",
           function()
-            return F.String.Good(E:PixelBestSize())
+            return F.String.Good(formatScale(E:PixelBestSize()))
           end,
         },
         {
           TXUI.Title .. " Perfect Scale",
           function()
-            return F.String.Good(F.PixelPerfect())
+            return F.String.Good(formatScale(F.PixelPerfect()))
           end,
         },
         {
           "UI Scale Is",
           function()
             local uiScale = E.global.general.UIScale
-            return uiScale == F.PixelPerfect() and F.String.Good(uiScale) or F.String.Error(uiScale)
+            local display = formatScale(uiScale)
+            return uiScale == F.PixelPerfect() and F.String.Good(display) or F.String.Error(display)
           end,
         },
       },
@@ -157,10 +163,10 @@ local function getSections()
             return F.String.Good(E.resolution)
           end,
         },
-        {
+        E.isMacClient and {
           "Using Mac Client",
           function()
-            return (E.isMacClient == true) and F.String.Good("Yes") or F.String.Error("No")
+            return F.String.Good("Yes")
           end,
         },
       },
@@ -229,11 +235,48 @@ function M:StatusReportCreateContent(num, width, parent, anchorTo, content)
       local line = CreateFrame("Frame", nil, content)
       line:SetSize(width, 20)
 
+      -- Alternating row background (even rows only, faded edges)
+      if i % 2 == 0 then
+        local rowBgLeft = line:CreateTexture(nil, "BACKGROUND")
+        rowBgLeft:SetTexture(E.media.blankTex)
+        rowBgLeft:SetPoint("LEFT", line, "LEFT", 0, 0)
+        rowBgLeft:SetPoint("RIGHT", line, "CENTER", 0, 0)
+        rowBgLeft:SetHeight(20)
+        F.Color.SetGradientRGB(rowBgLeft, "HORIZONTAL", 1, 1, 1, 0.08, 1, 1, 1, 0)
+
+        local rowBgRight = line:CreateTexture(nil, "BACKGROUND")
+        rowBgRight:SetTexture(E.media.blankTex)
+        rowBgRight:SetPoint("LEFT", line, "CENTER", 0, 0)
+        rowBgRight:SetPoint("RIGHT", line, "RIGHT", 0, 0)
+        rowBgRight:SetHeight(20)
+        F.Color.SetGradientRGB(rowBgRight, "HORIZONTAL", 1, 1, 1, 0, 1, 1, 1, 0.08)
+      end
+
+      -- Label (left-aligned)
+      local label = line:CreateFontString(nil, "ARTWORK")
+      label:SetPoint("LEFT", line, "LEFT", 0, 0)
+      label:SetPoint("RIGHT", line, "CENTER", -5, 0)
+      label:SetJustifyH("LEFT")
+      label:SetJustifyV("MIDDLE")
+      label:FontTemplate(font, 14, "OUTLINE", true)
+      line.Label = label
+
+      -- Value (right-aligned)
+      local value = line:CreateFontString(nil, "ARTWORK")
+      value:SetPoint("LEFT", line, "CENTER", 5, 0)
+      value:SetPoint("RIGHT", line, "RIGHT", 0, 0)
+      value:SetJustifyH("RIGHT")
+      value:SetJustifyV("MIDDLE")
+      value:FontTemplate(font, 14, "OUTLINE", true)
+      line.Value = value
+
+      -- Single-line text (used by addon/plugin side panel)
       local text = line:CreateFontString(nil, "ARTWORK")
       text:SetAllPoints()
       text:SetJustifyH("LEFT")
       text:SetJustifyV("MIDDLE")
       text:FontTemplate(font, 14, "OUTLINE", true)
+      text:Hide()
       line.Text = text
 
       if i == 1 then
@@ -368,7 +411,7 @@ function M:StatusReportCreate()
     prevAnchor = section
   end
 
-  -- Side panel sections (addons/plugins — dynamic, kept as-is)
+  -- Side panel sections (addons/plugins — dynamic)
   pluginFrame.SectionA = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame, "TOP", -10)
   pluginFrame.SectionP = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame.SectionA, "BOTTOM", -30)
 
@@ -396,11 +439,16 @@ function M:StatusReportUpdate()
     local lines = filterLines(sectionDef.lines)
     for lineIdx, entry in ipairs(lines) do
       local label, valueFn = entry[1], entry[2]
-      section.Content["Line" .. lineIdx].Text:SetFormattedText("%s: %s", label, valueFn())
+      local line = section.Content["Line" .. lineIdx]
+      line.Label:SetText(label)
+      line.Value:SetText(valueFn())
+      line.Label:Show()
+      line.Value:Show()
+      line.Text:Hide()
     end
   end
 
-  -- AddOn Frame (dynamic count — kept as-is)
+  -- AddOn Frame (side panel)
   local AddOnSection = addOnFrame.SectionA
   AddOnSection.Header.Text:SetText(F.String.ColorFirstLetter("AddOns"))
 
@@ -441,7 +489,11 @@ function M:StatusReportUpdate()
       for i = 1, count do
         local data = addOnData[i]
         local name = data.title or data.name
-        AddOnSection.Content["Line" .. i].Text:SetFormattedText("%s %s", name, F.String.Good(data.version))
+        local line = AddOnSection.Content["Line" .. i]
+        line.Text:Show()
+        line.Label:Hide()
+        line.Value:Hide()
+        line.Text:SetFormattedText("%s %s", name, F.String.Good(data.version))
       end
 
       AddOnSection:SetHeight(count * 25)
@@ -465,7 +517,11 @@ function M:StatusReportUpdate()
         local name = data.title or data.name or UNKNOWN
         local version = F.String.Strip(data.version) or UNKNOWN
         local versionString = (data.old or version == UNKNOWN) and F.String.Error(version) or F.String.Good(version)
-        PluginSection.Content["Line" .. i].Text:SetFormattedText("%s %s", name, versionString)
+        local line = PluginSection.Content["Line" .. i]
+        line.Text:Show()
+        line.Label:Hide()
+        line.Value:Hide()
+        line.Text:SetFormattedText("%s %s", name, versionString)
       end
 
       PluginSection:SetHeight(count * 25)
