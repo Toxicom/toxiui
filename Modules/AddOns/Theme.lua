@@ -156,10 +156,7 @@ function T:Enable()
   -- Scan all MetaTables
   self:MetatableScan()
 
-  -- Defer ForceRefresh to avoid "script ran too long" on initial login
-  F.Event.RunNextFrame(function()
-    if self.isEnabled then self:ForceRefresh() end
-  end, 0.1)
+  if self.isEnabled then self:ForceRefresh() end
 end
 
 function T:SettingsUpdate()
