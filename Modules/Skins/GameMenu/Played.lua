@@ -81,8 +81,12 @@ function GM:BuildPlayedGraph()
   local barHeight = 16
   local spacing = m(-2)
 
-  -- Color maps for class gradients
+  -- Color maps for class gradients (lazy-init if cache not yet generated)
   local fgMap = F.Color.GetMap("classColorMap")
+  if not fgMap then
+    F.Color.GenerateCache()
+    fgMap = F.Color.GetMap("classColorMap")
+  end
   local normalMap = fgMap and fgMap[I.Enum.GradientMode.Color.NORMAL]
   local shiftMap = fgMap and fgMap[I.Enum.GradientMode.Color.SHIFT]
 
