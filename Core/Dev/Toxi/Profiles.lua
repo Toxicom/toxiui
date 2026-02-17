@@ -81,7 +81,9 @@ end
 function T:SetupPrivate()
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
     E.private.WT.misc.moveFrames.rememberPositions = true
+    -- Apply KMT47 texture
     E.private.WT.misc.lfgList.line.tex = "KMT47"
+    E.private.WT.skins.cooldownViewer.buffBar.barTexture = "KMT47"
   end
   E.private.general.glossTex = "KMT47"
   E.private.general.normTex = "KMT47"
