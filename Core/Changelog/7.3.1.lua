@@ -35,5 +35,6 @@ TXUI.Changelog["7.3.1"] = {
 
     "* Development improvements",
     "Refactor Game Menu Skin as it's own module with subfolder structure",
+    "Refactor code for Status Report, makes it easier to add/remove lines and sections",
   },
 }

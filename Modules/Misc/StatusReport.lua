@@ -35,6 +35,189 @@ local function getSpecName()
   return I.SpecNames[GetSpecializationInfo(GetSpecialization())] or UNKNOWN
 end
 
+-- Helper: generates a line entry for a feature with a requirements check
+local function reqLine(label, requirementsKey, dbValue)
+  return {
+    label,
+    function()
+      local requirements = TXUI:CheckRequirements(requirementsKey)
+      if requirements ~= true then return F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements])) end
+      return (dbValue() == true) and F.String.Good("Yes") or F.String.Error("No")
+    end,
+  }
+end
+
+-- Declarative section definitions
+-- Each section: { header = "...", lines = { { "Label", valueFn }, ... } }
+-- valueFn returns the formatted value string for display
+-- Entries that are `false` or `nil` are skipped (use for conditional lines)
+local function getSections()
+  local cl = TXUI:GetModule("Changelog")
+
+  return {
+    {
+      header = "AddOn Info",
+      lines = {
+        {
+          format("Version of %s", TXUI.Title),
+          function()
+            return F.String.Good(cl:FormattedVersion())
+          end,
+        },
+        {
+          "Last Profile Version",
+          function()
+            local version = (not E.db.TXUI.changelog.lastLayoutVersion or E.db.TXUI.changelog.lastLayoutVersion == 0) and "NONE"
+              or cl:FormattedVersion(E.db.TXUI.changelog.lastLayoutVersion)
+            return (version == "NONE" or E.db.TXUI.changelog.lastLayoutVersion ~= TXUI.ReleaseVersion) and F.String.Error(version) or F.String.Good(version)
+          end,
+        },
+        {
+          "Last Private Version",
+          function()
+            local version = (not E.private.TXUI.changelog.releaseVersion or E.private.TXUI.changelog.releaseVersion == 0) and "NONE"
+              or cl:FormattedVersion(E.private.TXUI.changelog.releaseVersion)
+            return (version == "NONE" or E.private.TXUI.changelog.releaseVersion ~= TXUI.ReleaseVersion) and F.String.Error(version) or F.String.Good(version)
+          end,
+        },
+        {
+          "Pixel Perfect Scale",
+          function()
+            return F.String.Good(E:PixelBestSize())
+          end,
+        },
+        {
+          TXUI.Title .. " Perfect Scale",
+          function()
+            return F.String.Good(F.PixelPerfect())
+          end,
+        },
+        {
+          "UI Scale Is",
+          function()
+            local uiScale = E.global.general.UIScale
+            return uiScale == F.PixelPerfect() and F.String.Good(uiScale) or F.String.Error(uiScale)
+          end,
+        },
+      },
+    },
+    {
+      header = "Settings",
+      headerFn = function()
+        return TXUI.Title .. " " .. F.String.ColorFirstLetter("Settings")
+      end,
+      lines = {
+        {
+          "Debug Mode",
+          function()
+            return (not F.Table.IsEmpty(E.db.TXUI.disabledAddOns)) and F.String.Good("On") or F.String.Error("Off")
+          end,
+        },
+        reqLine("Gradient Mode", I.Requirements.GradientMode, function()
+          return E.db.TXUI.themes.gradientMode.enabled
+        end),
+        reqLine("Dark Mode", I.Requirements.DarkMode, function()
+          return E.db.TXUI.themes.darkMode.enabled
+        end),
+        reqLine("DM Transparency", I.Requirements.DarkModeTransparency, function()
+          return E.db.TXUI.themes.darkMode.transparency
+        end),
+        reqLine("WunderBar", I.Requirements.WunderBar, function()
+          return E.db.TXUI.wunderbar.general.enabled
+        end),
+        TXUI.IsRetail and reqLine("Damage Meter", I.Requirements.DamageMeter, function()
+          return E.db.TXUI.addons.damageMeter.enabled
+        end),
+      },
+    },
+    {
+      header = "WoW Info",
+      lines = {
+        {
+          "Version of WoW",
+          function()
+            return F.String.Good(format("%s (build %s)", E.wowpatch, E.wowbuild))
+          end,
+        },
+        {
+          "Client Language",
+          function()
+            return F.String.Good(E.locale)
+          end,
+        },
+        {
+          "Display Mode",
+          function()
+            return F.String.Good(E:GetDisplayMode())
+          end,
+        },
+        {
+          "Resolution",
+          function()
+            return F.String.Good(E.resolution)
+          end,
+        },
+        {
+          "Using Mac Client",
+          function()
+            return (E.isMacClient == true) and F.String.Good("Yes") or F.String.Error("No")
+          end,
+        },
+      },
+    },
+    {
+      header = "Character Info",
+      lines = {
+        {
+          "Faction",
+          function()
+            return F.String.Good(E.myfaction)
+          end,
+        },
+        {
+          "Race",
+          function()
+            return F.String.Good(E.myrace)
+          end,
+        },
+        {
+          "Class",
+          function()
+            return F.String.Good(englishClassName[E.myclass])
+          end,
+        },
+        TXUI.IsRetail and {
+          "Specialization",
+          function()
+            return F.String.Good(getSpecName())
+          end,
+        },
+        {
+          "Level",
+          function()
+            return F.String.Good(E.mylevel)
+          end,
+        },
+        {
+          "Zone",
+          function()
+            return F.String.Good(GetRealZoneText() or UNKNOWN)
+          end,
+        },
+      },
+    },
+  }
+end
+
+-- Filters out false/nil entries from a lines table
+local function filterLines(lines)
+  local filtered = {}
+  for _, entry in ipairs(lines) do
+    if entry then tinsert(filtered, entry) end
+  end
+  return filtered
+end
+
 function M:StatusReportCreateContent(num, width, parent, anchorTo, content)
   if not content then content = CreateFrame("Frame", nil, parent) end
   content:SetSize(width, (num * 20) + ((num - 1) * 5)) -- 20 height and 5 spacing
@@ -168,27 +351,26 @@ function M:StatusReportCreate()
   local mainSectionPadding = 40
   local sideSectionWidth = 280
 
-  -- Sections
-  statusFrame.Section1 = self:StatusReportCreateSection(mainSectionWidth, (6 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame, "TOP", -90)
-  statusFrame.Section2 = self:StatusReportCreateSection(mainSectionWidth, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section1, "BOTTOM", 0)
-  statusFrame.Section3 = self:StatusReportCreateSection(mainSectionWidth, (5 * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section2, "BOTTOM", 0)
-  statusFrame.Section4 = self:StatusReportCreateSection(mainSectionWidth, ((TXUI.IsRetail and 6 or 5) * 30) + 10, nil, 30, statusFrame, "TOP", statusFrame.Section3, "BOTTOM", 0)
+  -- Build main sections from declarative definitions
+  local sections = getSections()
+  statusFrame.Sections = {}
+
+  local prevAnchor = statusFrame
+  for i, sectionDef in ipairs(sections) do
+    local lines = filterLines(sectionDef.lines)
+    local lineCount = #lines
+    local sectionHeight = (lineCount * 30) + 10
+
+    local section = self:StatusReportCreateSection(mainSectionWidth, sectionHeight, nil, 30, statusFrame, "TOP", prevAnchor, i == 1 and "TOP" or "BOTTOM", i == 1 and -90 or 0)
+    section.Content = self:StatusReportCreateContent(lineCount, mainSectionWidth - mainSectionPadding, section, section.Header)
+
+    statusFrame.Sections[i] = section
+    prevAnchor = section
+  end
+
+  -- Side panel sections (addons/plugins — dynamic, kept as-is)
   pluginFrame.SectionA = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame, "TOP", -10)
   pluginFrame.SectionP = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame.SectionA, "BOTTOM", -30)
-
-  -- Section content
-  statusFrame.Section1.Content = self:StatusReportCreateContent(6, mainSectionWidth - mainSectionPadding, statusFrame.Section1, statusFrame.Section1.Header)
-  statusFrame.Section2.Content = self:StatusReportCreateContent(5, mainSectionWidth - mainSectionPadding, statusFrame.Section2, statusFrame.Section2.Header)
-  statusFrame.Section3.Content = self:StatusReportCreateContent(5, mainSectionWidth - mainSectionPadding, statusFrame.Section3, statusFrame.Section3.Header)
-  statusFrame.Section4.Content = self:StatusReportCreateContent(TXUI.IsRetail and 6 or 5, mainSectionWidth - mainSectionPadding, statusFrame.Section4, statusFrame.Section4.Header)
-
-  -- Content lines
-  statusFrame.Section3.Content.Line1.Text:SetFormattedText("Version of WoW: %s", F.String.Good(format("%s (build %s)", E.wowpatch, E.wowbuild)))
-  statusFrame.Section3.Content.Line2.Text:SetFormattedText("Client Language: %s", F.String.Good(E.locale))
-  statusFrame.Section3.Content.Line5.Text:SetFormattedText("Using Mac Client: %s", (E.isMacClient == true and F.String.Good("Yes") or F.String.Error("No")))
-  statusFrame.Section4.Content.Line1.Text:SetFormattedText("Faction: %s", F.String.Good(E.myfaction))
-  statusFrame.Section4.Content.Line2.Text:SetFormattedText("Race: %s", F.String.Good(E.myrace))
-  statusFrame.Section4.Content.Line3.Text:SetFormattedText("Class: %s", F.String.Good(englishClassName[E.myclass]))
 
   return statusFrame
 end
@@ -204,126 +386,21 @@ local pluginData = {}
 function M:StatusReportUpdate()
   local statusFrame = self.StatusReportFrame
   local addOnFrame = statusFrame.AddOnFrame
-  local cl = TXUI:GetModule("Changelog")
 
-  -- Section headers
-  statusFrame.Section1.Header.Text:SetText(F.String.ColorFirstLetter("AddOn Info"))
-  statusFrame.Section2.Header.Text:SetText(TXUI.Title .. " " .. F.String.ColorFirstLetter("Settings"))
-  statusFrame.Section3.Header.Text:SetText(F.String.ColorFirstLetter("WoW Info"))
-  statusFrame.Section4.Header.Text:SetText(F.String.ColorFirstLetter("Character Info"))
+  -- Update all main sections from declarative definitions
+  local sections = getSections()
+  for i, sectionDef in ipairs(sections) do
+    local section = statusFrame.Sections[i]
+    section.Header.Text:SetText(sectionDef.headerFn and sectionDef.headerFn() or F.String.ColorFirstLetter(sectionDef.header))
 
-  -- Section #1
-  statusFrame.Section1.Content.Line1.Text:SetFormattedText("Version of %s: %s", TXUI.Title, F.String.Good(cl:FormattedVersion()))
-
-  do
-    local version = (not E.db.TXUI.changelog.lastLayoutVersion or E.db.TXUI.changelog.lastLayoutVersion == 0) and "NONE"
-      or cl:FormattedVersion(E.db.TXUI.changelog.lastLayoutVersion)
-    local versionString = (version == "NONE" or E.db.TXUI.changelog.lastLayoutVersion ~= TXUI.ReleaseVersion) and F.String.Error(version) or F.String.Good(version)
-    statusFrame.Section1.Content.Line2.Text:SetFormattedText("Last Profile Version: %s", versionString)
-  end
-
-  do
-    local version = (not E.private.TXUI.changelog.releaseVersion or E.private.TXUI.changelog.releaseVersion == 0) and "NONE"
-      or cl:FormattedVersion(E.private.TXUI.changelog.releaseVersion)
-    local versionString = (version == "NONE" or E.private.TXUI.changelog.releaseVersion ~= TXUI.ReleaseVersion) and F.String.Error(version) or F.String.Good(version)
-    statusFrame.Section1.Content.Line3.Text:SetFormattedText("Last Private Version: %s", versionString)
-  end
-
-  statusFrame.Section1.Content.Line4.Text:SetFormattedText("Pixel Perfect Scale: %s", F.String.Good(E:PixelBestSize()))
-  statusFrame.Section1.Content.Line5.Text:SetFormattedText("ToxiUI Perfect Scale: %s", F.String.Good(F.PixelPerfect()))
-
-  do
-    local uiScale = E.global.general.UIScale
-    local uiScaleString = uiScale == F.PixelPerfect() and F.String.Good(uiScale) or F.String.Error(uiScale)
-    statusFrame.Section1.Content.Line6.Text:SetFormattedText("UI Scale Is: %s", uiScaleString)
-  end
-
-  -- Section #2
-  do
-    local Section2 = statusFrame.Section2
-    local text
-
-    -- Debug Mode
-    do
-      text = (not F.Table.IsEmpty(E.db.TXUI.disabledAddOns)) and F.String.Good("On") or F.String.Error("Off")
-
-      Section2.Content.Line1.Text:SetFormattedText("Debug Mode: %s", text)
-    end
-
-    -- Gradient Mode
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.GradientMode)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.themes.gradientMode.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line2.Text:SetFormattedText("Gradient Mode: %s", text)
-    end
-
-    -- Dark Mode
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.DarkMode)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.themes.darkMode.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line3.Text:SetFormattedText("Dark Mode: %s", text)
-    end
-
-    -- Dark Mode Transparency
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.DarkModeTransparency)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.themes.darkMode.transparency == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line4.Text:SetFormattedText("DM Transparency: %s", text)
-    end
-
-    -- WunderBar
-    do
-      local requirements = TXUI:CheckRequirements(I.Requirements.WunderBar)
-
-      if requirements ~= true then
-        text = F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements]))
-      else
-        text = ((E.db.TXUI.wunderbar.general.enabled == true) and F.String.Good("Yes") or F.String.Error("No"))
-      end
-
-      Section2.Content.Line5.Text:SetFormattedText("WunderBar: %s", text)
+    local lines = filterLines(sectionDef.lines)
+    for lineIdx, entry in ipairs(lines) do
+      local label, valueFn = entry[1], entry[2]
+      section.Content["Line" .. lineIdx].Text:SetFormattedText("%s: %s", label, valueFn())
     end
   end
 
-  -- Section #3
-  do
-    local Section3 = statusFrame.Section3
-    Section3.Content.Line3.Text:SetFormattedText("Display Mode: %s", F.String.Good(E:GetDisplayMode()))
-    Section3.Content.Line4.Text:SetFormattedText("Resolution: %s", F.String.Good(E.resolution))
-  end
-
-  -- Section #4
-  do
-    local Section4 = statusFrame.Section4
-    if TXUI.IsRetail then
-      Section4.Content.Line4.Text:SetFormattedText("Specialization: %s", F.String.Good(getSpecName()))
-      Section4.Content.Line5.Text:SetFormattedText("Level: %s", F.String.Good(E.mylevel))
-      Section4.Content.Line6.Text:SetFormattedText("Zone: %s", F.String.Good(GetRealZoneText() or UNKNOWN))
-    else
-      Section4.Content.Line4.Text:SetFormattedText("Level: %s", F.String.Good(E.mylevel))
-      Section4.Content.Line5.Text:SetFormattedText("Zone: %s", F.String.Good(GetRealZoneText() or UNKNOWN))
-    end
-  end
-
-  -- AddOn Frame
+  -- AddOn Frame (dynamic count — kept as-is)
   local AddOnSection = addOnFrame.SectionA
   AddOnSection.Header.Text:SetText(F.String.ColorFirstLetter("AddOns"))
 
