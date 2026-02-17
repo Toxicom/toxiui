@@ -142,7 +142,11 @@ function GR:Enable()
 
   F.EventManagerRegister(self.interruptNamespace, "PLAYER_ENTERING_WORLD", F.CheckInterruptSpells)
   F.EventManagerRegister(self.interruptNamespace, "PLAYER_LEVEL_CHANGED", F.CheckInterruptSpells)
-  F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_TAB", F.CheckInterruptSpells)
+  if TXUI.IsAnniversary or TXUI.IsRetail then
+    F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_SKILL_LINE", F.CheckInterruptSpells)
+  else
+    F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_TAB", F.CheckInterruptSpells)
+  end
 
   -- Update!
   self.uf:Update_AllFrames()
