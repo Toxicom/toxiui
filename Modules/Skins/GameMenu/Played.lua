@@ -3,6 +3,7 @@ local GM = TXUI:GetModule("GameMenu")
 local Misc = TXUI:GetModule("Misc")
 
 local CreateFrame = CreateFrame
+local GameTooltip = GameTooltip
 local m = GM.Spacing
 
 function GM:CreatePlayed()
@@ -124,6 +125,37 @@ function GM:BuildPlayedGraph()
     totalFS:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(13), "OUTLINE")
     totalFS:SetTextColor(1, 1, 1, 1)
     totalFS:SetText(GM.FormatPlayed(item.seconds, false))
+
+    -- Hover highlight overlay
+    local highlight = barFrame:CreateTexture(nil, "HIGHLIGHT")
+    highlight:SetAllPoints(barFrame)
+    highlight:SetColorTexture(1, 1, 1, 0.12)
+
+    -- Tooltip on hover showing per-character breakdown
+    barFrame:EnableMouse(true)
+    barFrame:SetScript("OnEnter", function(frame)
+      bg:SetColorTexture(0, 0, 0, 0.5)
+
+      local chars = GM.GetCharactersByClass(item.class)
+      if #chars == 0 then return end
+
+      GameTooltip:SetOwner(frame, "ANCHOR_RIGHT", 8, 0)
+
+      local className = F.String.Class(I.EnglishClassName[item.class] or item.class, item.class)
+      GameTooltip:AddLine(className .. "  —  " .. GM.FormatPlayed(item.seconds, false), 1, 1, 1)
+      GameTooltip:AddLine(" ")
+
+      for _, char in ipairs(chars) do
+        local nameRealm = F.String.Class(char.name, item.class) .. "|cff888888-" .. char.realm .. "|r"
+        GameTooltip:AddDoubleLine(nameRealm, GM.FormatPlayed(char.seconds, false), 1, 1, 1, 0.8, 0.8, 0.8)
+      end
+
+      GameTooltip:Show()
+    end)
+    barFrame:SetScript("OnLeave", function()
+      bg:SetColorTexture(0, 0, 0, 0.33)
+      GameTooltip:Hide()
+    end)
 
     table.insert(graph.bars, barFrame)
     barFrame:Show()

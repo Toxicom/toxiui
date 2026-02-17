@@ -15,22 +15,6 @@ local GetSpecialization = GetSpecialization
 local GetSpecializationInfo = GetSpecializationInfo
 local UNKNOWN = UNKNOWN
 
-local englishClassName = {
-  DEATHKNIGHT = "Death Knight",
-  DEMONHUNTER = "Demon Hunter",
-  DRUID = "Druid",
-  EVOKER = "Evoker",
-  HUNTER = "Hunter",
-  MAGE = "Mage",
-  MONK = "Monk",
-  PALADIN = "Paladin",
-  PRIEST = "Priest",
-  ROGUE = "Rogue",
-  SHAMAN = "Shaman",
-  WARLOCK = "Warlock",
-  WARRIOR = "Warrior",
-}
-
 local function getSpecName()
   return I.SpecNames[GetSpecializationInfo(GetSpecialization())] or UNKNOWN
 end
@@ -189,7 +173,7 @@ local function getSections()
         {
           "Class",
           function()
-            return F.String.Good(englishClassName[E.myclass])
+            return F.String.Good(I.EnglishClassName[E.myclass])
           end,
         },
         TXUI.IsRetail and {

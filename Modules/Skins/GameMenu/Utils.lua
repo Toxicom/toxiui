@@ -66,6 +66,30 @@ function GM.GetTotalPlayedAll()
   return total
 end
 
+-- Get per-character breakdown for a specific class token, sorted descending
+function GM.GetCharactersByClass(classToken)
+  local chars = {}
+  local classes = (E.global.TXUI and E.global.TXUI.classMap) or {}
+  local played = (E.global.TXUI and E.global.TXUI.playedSeconds) or {}
+
+  for realm, classMap in pairs(classes) do
+    local playedRealm = played[realm]
+    if playedRealm then
+      for name, token in pairs(classMap) do
+        if token == classToken then
+          local seconds = playedRealm[name]
+          if seconds and seconds > 0 then table_insert(chars, { name = name, realm = realm, seconds = seconds }) end
+        end
+      end
+    end
+  end
+
+  table.sort(chars, function(a, b)
+    return a.seconds > b.seconds
+  end)
+  return chars
+end
+
 -- Group played time by class token, return sorted list (descending)
 function GM.AggregatePlayedByClass()
   local totals = {}

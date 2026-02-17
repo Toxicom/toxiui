@@ -71,6 +71,24 @@ I.Specs = {
   },
 }
 
+-- Class token to English display name mapping
+-- Usage: I.EnglishClassName["DEATHKNIGHT"] -> "Death Knight"
+I.EnglishClassName = {
+  DEATHKNIGHT = "Death Knight",
+  DEMONHUNTER = "Demon Hunter",
+  DRUID = "Druid",
+  EVOKER = "Evoker",
+  HUNTER = "Hunter",
+  MAGE = "Mage",
+  MONK = "Monk",
+  PALADIN = "Paladin",
+  PRIEST = "Priest",
+  ROGUE = "Rogue",
+  SHAMAN = "Shaman",
+  WARLOCK = "Warlock",
+  WARRIOR = "Warrior",
+}
+
 -- Spec ID to English name mapping
 -- Usage: I.SpecNames[specId] -> "Protection"
 I.SpecNames = {
