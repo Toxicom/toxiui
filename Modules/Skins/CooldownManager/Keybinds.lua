@@ -164,14 +164,41 @@ function CM:EnableKeybinds()
   for _, key in ipairs(keybindKeys) do
     local viewerName = self.frameNames[key]
     local viewer = viewerName and _G[viewerName]
-    if viewer and not self:IsHooked(viewer, "RefreshLayout") then
-      self:SecureHook(viewer, "RefreshLayout", function()
+    if viewer and not self:IsHooked(viewer, "RefreshData") then
+      self:SecureHook(viewer, "RefreshData", function()
         if self.keybindsActive then self:RefreshViewerKeybinds(key) end
       end)
     end
   end
 
-  self:RefreshAllKeybinds()
+  -- Initial refresh with retry — cooldownIDs may not be assigned yet on some characters
+  local retries = 0
+  local retryRefresh
+  retryRefresh = function()
+    if not self.keybindsActive then return end
+
+    local ready = false
+    for _, key in ipairs(keybindKeys) do
+      local viewer = _G[self.frameNames[key]]
+      if viewer then
+        for _, child in ipairs { viewer:GetChildren() } do
+          if child.Icon and child.cooldownID then
+            ready = true
+            break
+          end
+        end
+      end
+      if ready then break end
+    end
+
+    if ready then
+      self:RefreshAllKeybinds()
+    elseif retries < 10 then
+      retries = retries + 1
+      E:Delay(0.5, retryRefresh)
+    end
+  end
+  retryRefresh()
 end
 
 function CM:DisableKeybinds()
