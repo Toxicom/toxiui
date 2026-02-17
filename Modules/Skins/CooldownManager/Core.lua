@@ -46,6 +46,7 @@ function CM:DatabaseUpdate()
     -- Check requirements
     if not TXUI:HasRequirements(I.Requirements.CooldownManager) then return end
     if not self.db then return end
+    if not self.db.enabled then return end
 
     -- Enable fading if enabled
     if self.db.fading then self:EnableFadingAfterUnitsLoaded() end

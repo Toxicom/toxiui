@@ -291,6 +291,7 @@ P.addons = {
 
   -- Cooldown Manager
   cooldownManager = {
+    enabled = false,
     fading = false,
 
     -- If these are enabled by default, their previous width value does not get stored

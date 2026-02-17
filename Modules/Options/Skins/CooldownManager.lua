@@ -13,6 +13,10 @@ function O:Skins_CooldownManager()
   -- Options
   local options = self.options.skins.args["cooldownManagerGroup"]["args"]
 
+  local function isDisabled()
+    return not E.db.TXUI.addons.cooldownManager.enabled
+  end
+
   self:AddInlineDesc(options, {
     name = "Description",
   }, {
@@ -25,6 +29,34 @@ function O:Skins_CooldownManager()
       .. F.String.ToxiUI("Information: ")
       .. "We recommend reloading the UI each time you interact with the Edit Mode to avoid issues!\n\n",
   })
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- General
+  do
+    local generalGroup = self:AddInlineRequirementsDesc(options, {
+      name = "General",
+    }, {
+      name = "Enable or disable all " .. TXUI.Title .. " features for the Blizzard Cooldown Manager.\n\n",
+    }, I.Requirements.CooldownManager).args
+
+    generalGroup.enabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enable " .. TXUI.Title .. " features for the Blizzard Cooldown Manager.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.cooldownManager.enabled, generalGroup)
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.enabled = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
 
   -- Spacer
   self:AddSpacer(options)
@@ -48,6 +80,7 @@ function O:Skins_CooldownManager()
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.cooldownManager.fading, fadingGroup)
       end,
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.cooldownManager.fading
       end,
@@ -76,6 +109,7 @@ function O:Skins_CooldownManager()
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.cooldownManager.dynamicBarsWidth, dynamicGroup)
       end,
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.cooldownManager.dynamicBarsWidth
       end,
@@ -105,6 +139,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Enabling this syncs the player castbar width with the Cooldown Manager.",
       name = "Castbar",
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.cooldownManager.dynamicCastbarWidth
       end,
@@ -137,14 +172,14 @@ function O:Skins_CooldownManager()
     }, I.Requirements.CooldownManager).args
 
     local function essentialDisabled()
-      return not E.db.unitframe.units.player.power.enable
+      return isDisabled() or not E.db.unitframe.units.player.power.enable or not E.db.unitframe.units.player.classbar.enable
     end
 
     -- Essential Cooldown Viewer -> Power Bar
     anchorGroup.anchorEssentialEnabled = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Anchor the Essential Cooldown Viewer to the bottom of ElvUI's detached Power Bar.",
+      desc = "Anchor the Essential Cooldown Viewer to the bottom of ElvUI's detached Power Bar. Tries anchoring to the Class Bar if Power Bar is disabled.",
       name = "Essential to Power Bar",
       disabled = essentialDisabled,
       get = function(_)
@@ -185,6 +220,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Anchor the Utility Cooldown Viewer to the bottom of the Essential Cooldown Viewer.",
       name = "Utility to Essential",
+      disabled = isDisabled,
       get = function(_)
         return db.utility.enabled
       end,
@@ -203,7 +239,7 @@ function O:Skins_CooldownManager()
       max = 50,
       step = 1,
       disabled = function()
-        return not db.utility.enabled
+        return isDisabled() or not db.utility.enabled
       end,
       get = function(_)
         return db.utility.yOffset
@@ -223,6 +259,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Anchor the Buff Viewer to the top of ElvUI's Class Bar. Falls back to the Power Bar if the Class Bar is not available.",
       name = "Buff to Class Bar",
+      disabled = isDisabled,
       get = function(_)
         return db.buff.enabled
       end,
@@ -241,7 +278,7 @@ function O:Skins_CooldownManager()
       max = 50,
       step = 1,
       disabled = function()
-        return not db.buff.enabled
+        return isDisabled() or not db.buff.enabled
       end,
       get = function(_)
         return db.buff.yOffset
@@ -261,6 +298,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Anchor the Buff Bar Viewer to the top of ElvUI's Health Bar.",
       name = "Buff Bar to Health Bar",
+      disabled = isDisabled,
       get = function(_)
         return db.buffBar.enabled
       end,
@@ -279,7 +317,7 @@ function O:Skins_CooldownManager()
       max = 200,
       step = 1,
       disabled = function()
-        return not db.buffBar.enabled
+        return isDisabled() or not db.buffBar.enabled
       end,
       get = function(_)
         return db.buffBar.yOffset
@@ -307,6 +345,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Center icons in the Essential Cooldown Viewer.",
       name = "Essential",
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.cooldownManager.centering.essential
       end,
@@ -321,6 +360,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Center icons in the Utility Cooldown Viewer.",
       name = "Utility",
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.cooldownManager.centering.utility
       end,
@@ -335,6 +375,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Center icons in the Buff Icon Cooldown Viewer.",
       name = "Buff Icons",
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.cooldownManager.centering.buff
       end,
@@ -351,15 +392,16 @@ function O:Skins_CooldownManager()
   -- Keybinds
   do
     local function keybindsDisabled()
-      return not E.private.actionbar.enable
+      return isDisabled() or not E.private.actionbar.enable
     end
 
     local kbGroup = self:AddInlineRequirementsDesc(options, {
       name = "Keybinds",
     }, {
-      name = "Show keybind text on Cooldown Manager icons by reading bindings from " .. F.String.ToxiUI("ElvUI Action Bars") .. ".\n\n" .. (keybindsDisabled() and F.String.Error(
-        "Requires ElvUI ActionBars to be enabled.\n\n"
-      ) or ""),
+      name = "Show keybind text on Cooldown Manager icons by reading bindings from "
+        .. F.String.ToxiUI("ElvUI Action Bars")
+        .. ".\n\n"
+        .. (not E.private.actionbar.enable and F.String.Error("Requires ElvUI ActionBars to be enabled.\n\n") or ""),
     }, I.Requirements.CooldownManager).args
 
     local function addViewerKeybindOptions(group, viewerLabel, settingKey)
