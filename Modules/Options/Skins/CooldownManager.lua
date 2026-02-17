@@ -53,7 +53,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         E.db.TXUI.addons.cooldownManager.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
   end
@@ -86,7 +86,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         E.db.TXUI.addons.cooldownManager.fading = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
   end
@@ -128,9 +128,13 @@ function O:Skins_CooldownManager()
             if playerDB.classbar and saved.classbar then playerDB.classbar.detachedWidth = saved.classbar end
           end
           cmDB._savedBarsWidth = nil
+          F.Event.ContinueOutOfCombat(function()
+            local uf = E:GetModule("UnitFrames")
+            if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+          end)
         end
         cmDB.dynamicBarsWidth = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -151,9 +155,13 @@ function O:Skins_CooldownManager()
         elseif not value and playerDB and playerDB.castbar then
           if cmDB._savedCastbarWidth then playerDB.castbar.width = cmDB._savedCastbarWidth end
           cmDB._savedCastbarWidth = nil
+          F.Event.ContinueOutOfCombat(function()
+            local uf = E:GetModule("UnitFrames")
+            if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+          end)
         end
         cmDB.dynamicCastbarWidth = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
   end
@@ -187,7 +195,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.essential.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -207,7 +215,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.essential.yOffset = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -226,7 +234,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.utility.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -246,7 +254,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.utility.yOffset = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -265,7 +273,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.buff.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -285,7 +293,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.buff.yOffset = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -304,7 +312,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.buffBar.enabled = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
 
@@ -324,7 +332,7 @@ function O:Skins_CooldownManager()
       end,
       set = function(_, value)
         db.buffBar.yOffset = value
-        E:StaticPopup_Show("CONFIG_RL")
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
   end

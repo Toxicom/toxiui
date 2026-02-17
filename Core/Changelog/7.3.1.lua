@@ -26,6 +26,7 @@ TXUI.Changelog["7.3.1"] = {
     "Bring back Gradient Mode to " .. TXUI.Title .. " Status Report window",
     "Re-designed Status Report window",
     "Add a global toggle for the " .. F.String.CDM() .. F.String.Sublist("You will need to re-enable the CDM skin, as it's off by default"),
+    "Allow updating " .. F.String.CDM() .. " options without requiring a reload of the UI",
 
     "* Bug fixes",
     F.String.Retail() .. "Improve anchoring and keybinds logic of " .. F.String.CDM(),

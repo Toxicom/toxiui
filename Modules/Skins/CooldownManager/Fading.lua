@@ -36,11 +36,33 @@ function CM:SetParent()
   end
 end
 
+function CM:DisableFading()
+  if not self._originalParents then return end
+
+  for frameName, parent in pairs(self._originalParents) do
+    local frame = _G[frameName]
+    if frame and parent then frame:SetParent(parent) end
+  end
+  self._originalParents = nil
+
+  -- Ensure all frames are visible after restoring parent
+  self:SetCooldownFramesVisibility(true)
+end
+
 function CM:EnableFading()
   if not self.Initialized then return end
 
   local playerFrame = _G["ElvUF_Player"]
   if not playerFrame then return end
+
+  -- Store original parents before re-parenting so DisableFading can restore them
+  if not self._originalParents then
+    self._originalParents = {}
+    for _, frameName in pairs(self.frameNames) do
+      local frame = _G[frameName]
+      if frame then self._originalParents[frameName] = frame:GetParent() end
+    end
+  end
 
   -- Set parent initially
   self:SetParent()

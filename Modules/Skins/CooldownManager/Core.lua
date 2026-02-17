@@ -21,6 +21,7 @@ function CM:Disable()
 
   self:UnhookAll()
   self:DisableCentering()
+  self:DisableFading()
   self:DisableDynamicBarsWidth()
   self:DisableDynamicCastbarWidth()
   self:DisableAnchoring()
