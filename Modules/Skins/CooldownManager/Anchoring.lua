@@ -25,27 +25,31 @@ function CM:SetAnchors()
   -- Anchor EssentialCooldownViewer to bottom of power bar, fallback to class bar
   if anchors.essential.enabled and essential then
     local anchor = (powerBarAvailable and powerBar) or (classBarAvailable and classBar)
-    essential:ClearAllPoints()
-    if anchor then essential:SetPoint("TOP", anchor, "BOTTOM", 0, anchors.essential.yOffset) end
+    if anchor then
+      essential:ClearAllPoints()
+      essential:SetPoint("TOP", anchor, "BOTTOM", 0, anchors.essential.yOffset)
+    end
   end
 
   -- Anchor UtilityCooldownViewer to bottom of EssentialCooldownViewer
-  if anchors.utility.enabled and utility then
+  if anchors.utility.enabled and utility and essential then
     utility:ClearAllPoints()
-    if essential then utility:SetPoint("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset) end
+    utility:SetPoint("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset)
   end
 
   -- Anchor BuffIconCooldownViewer to top of class bar, fallback to power bar
   if anchors.buff.enabled and buff then
     local anchor = (classBarAvailable and classBar) or (powerBarAvailable and powerBar)
-    buff:ClearAllPoints()
-    if anchor then buff:SetPoint("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset) end
+    if anchor then
+      buff:ClearAllPoints()
+      buff:SetPoint("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset)
+    end
   end
 
   -- Anchor BuffBarCooldownViewer to top of health bar
-  if anchors.buffBar.enabled and buffBar then
+  if anchors.buffBar.enabled and buffBar and healthBar then
     buffBar:ClearAllPoints()
-    if healthBar then buffBar:SetPoint("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset) end
+    buffBar:SetPoint("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset)
   end
 
   self._settingAnchors = false
