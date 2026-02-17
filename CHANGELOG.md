@@ -1,4 +1,4 @@
-# ToxiUI v7.3.1-beta.2 - 2026-02-17
+# ToxiUI v7.3.1-beta.3 - 2026-02-17
 
 ## 🚀 New Features
 
@@ -14,6 +14,10 @@
 - Update default **Gradient Mode** color for **Mage**
   - Old values:
   - To: #33c7fc
+
+## 🐛 Bug Fixes
+
+- [Retail] Improve anchoring and keybinds logic of **ToxiUI Cooldown Manager Skin**
 
 ## 🔧 Development Improvements
 
