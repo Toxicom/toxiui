@@ -800,6 +800,30 @@ function PF:ElvUIFontPrivates()
         errorMessage = {
           size = F.FontSizeScaled(24),
         },
+
+        cooldownViewer = {
+          buffIcon = {
+            chargeCountText = {
+              name = F.FontOverride(I.Fonts.TitleBlack),
+              size = F.FontSizeScaled(9),
+              style = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
+            },
+          },
+          essential = {
+            chargeCountText = {
+              name = F.FontOverride(I.Fonts.TitleBlack),
+              size = F.FontSizeScaled(9),
+              style = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
+            },
+          },
+          utility = {
+            chargeCountText = {
+              name = F.FontOverride(I.Fonts.TitleBlack),
+              size = F.FontSizeScaled(7),
+              style = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
+            },
+          },
+        },
       },
 
       quest = {

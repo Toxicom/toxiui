@@ -32,6 +32,7 @@ TXUI.Changelog["7.3.1"] = {
     F.String.Retail() .. "Fix an icon indexing issue with " .. F.String.CDM() .. F.String.Sublist("Credits to " .. F.String.Kryo()),
 
     "* Profile updates",
+    F.String.Retail() .. F.String.WindTools() .. ": Enable and update the Cooldown Viewer skin",
 
     "* Documentation",
 
