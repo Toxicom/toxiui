@@ -4,6 +4,9 @@ TXUI.Changelog["7.3.1"] = {
   HOTFIX = true,
   CHANGES = {
     "* Breaking changes",
+    "Remove " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Skin" .. F.String.Sublist("Lately it's been causing issues") .. F.String.Sublist(
+      "If it ever comes back, needs to be completely refactored from scratch"
+    ),
 
     "* New features",
     "Total time played information shown in " .. TXUI.Title .. " Game Menu Skin" .. F.String.Sublist("Credits to " .. F.String.Kryo()),
@@ -41,7 +44,6 @@ TXUI.Changelog["7.3.1"] = {
     "* Documentation",
 
     "* Settings refactoring",
-    "Update description of " .. TXUI.Title .. " " .. F.String.ElvUI() .. " Skin",
 
     "* Development improvements",
     "Refactor Game Menu Skin as it's own module with subfolder structure",
