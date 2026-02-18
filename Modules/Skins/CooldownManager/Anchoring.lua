@@ -2,11 +2,11 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local CM = TXUI:GetModule("CooldownManager")
 
 local _G = _G
-local InCombatLockdown = InCombatLockdown
+-- local InCombatLockdown = InCombatLockdown
 
 function CM:SetAnchors()
   if not self.Initialized then return end
-  if InCombatLockdown() then return end
+  -- if InCombatLockdown() then return end
   if not self.db or not self.db.anchors then return end
 
   self._settingAnchors = true
@@ -60,7 +60,7 @@ function CM:HookAnchorLock(frame)
 
   self:SecureHook(frame, "SetPoint", function()
     if self._settingAnchors then return end
-    if InCombatLockdown() then return end
+    -- if InCombatLockdown() then return end
 
     self:SetAnchors()
   end)
