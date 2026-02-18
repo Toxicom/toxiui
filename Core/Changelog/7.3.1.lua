@@ -10,7 +10,7 @@ TXUI.Changelog["7.3.1"] = {
 
     "* New features",
     "Total time played information shown in " .. TXUI.Title .. " Game Menu Skin" .. F.String.Sublist("Credits to " .. F.String.Kryo()),
-    "Add " .. F.String.ToxiUI("KMT47") .. " statusbar texture" .. F.String.Sublist("Credits to kringel"),
+    "Add " .. F.String.ToxiUI("KMT47") .. " statusbar texture" .. F.String.Sublist("Credits to " .. F.String.Class("kringel", "DRUID")),
 
     "* Enhancements",
     "Set 0.65 UI scale for non-standard resolutions",
