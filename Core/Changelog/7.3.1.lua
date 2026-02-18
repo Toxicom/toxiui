@@ -19,13 +19,20 @@ TXUI.Changelog["7.3.1"] = {
       .. " color for "
       .. F.String.Class("Paladin", "PALADIN")
       .. F.String.Sublist("Old values:")
-      .. F.String.Sublist("To: #f58cba"),
+      .. F.String.Sublist("RIGHT: " .. F.String.Color("#F58CBA", "f58cba")),
     "Update default " --
       .. F.String.GradientString()
       .. " color for "
       .. F.String.Class("Mage", "MAGE")
       .. F.String.Sublist("Old values:")
-      .. F.String.Sublist("To: #33c7fc"),
+      .. F.String.Sublist("RIGHT: " .. F.String.Color("#33C7FC", "33c7fc")),
+    "Update default " --
+      .. F.String.GradientString()
+      .. " color for "
+      .. F.String.Class("Demon Hunter", "DEMONHUNTER")
+      .. F.String.Sublist("Old values:")
+      .. F.String.Sublist("RIGHT: " .. F.String.Color("#5700F5", "5700f5"))
+      .. F.String.Sublist("Credits to " .. F.String.Kryo()),
     "Bring back Gradient Mode to " .. TXUI.Title .. " Status Report window",
     "Re-designed Status Report window",
     "Add a global toggle for the " .. F.String.CDM() .. F.String.Sublist("You will need to re-enable the CDM skin, as it's off by default"),

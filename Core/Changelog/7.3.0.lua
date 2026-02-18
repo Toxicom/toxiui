@@ -10,20 +10,20 @@ TXUI.Changelog["7.3.0"] = {
 
     "* Enhancements",
     "Add disclaimer text to " .. TXUI.Title .. " Profile Updater",
-    "Update default "
+    "Update default " --
       .. F.String.GradientString()
       .. " color for "
       .. F.String.Class("Priest", "PRIEST")
       .. F.String.Sublist("Old values:")
-      .. F.String.Sublist("From: #d1d1d1")
-      .. F.String.Sublist("To: #ffffff"),
+      .. F.String.Sublist("LEFT: " .. F.String.Color("#D1D1D1", "d1d1d1"))
+      .. F.String.Sublist("RIGHT: " .. F.String.Color("#FFFFFF", "ffffff")),
     "Update default " --
       .. F.String.GradientString()
       .. " color for "
       .. F.String.Class("Demon Hunter", "DEMONHUNTER")
       .. F.String.Sublist("Old values:")
-      .. F.String.Sublist("From: #b3008a")
-      .. F.String.Sublist("To: #ba00f5"),
+      .. F.String.Sublist("LEFT: " .. F.String.Color("#B3008A", "b3008a"))
+      .. F.String.Sublist("RIGHT: " .. F.String.Color("#BA00F5", "ba00f5")),
     F.String.Retail() .. "Add " .. F.String.ToxiUI("Trader’s Gilded Brutosaur") .. " to " .. F.String.Menu.WunderBar() .. "'s Durability module",
 
     "* Profile updates",

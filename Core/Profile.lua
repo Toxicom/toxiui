@@ -192,7 +192,7 @@ P.themes = {
       },
       [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
         DEATHKNIGHT = F.Table.HexToRGB("#f52652"),
-        DEMONHUNTER = F.Table.HexToRGB("#5700f5"),
+        DEMONHUNTER = F.Table.HexToRGB("#7d00f5"),
         DRUID = F.Table.HexToRGB("#ff7d0a"),
         EVOKER = F.Table.HexToRGB("#44c5aa"),
         HUNTER = F.Table.HexToRGB("#abed4f"),
