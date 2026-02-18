@@ -12,6 +12,9 @@ TXUI.Changelog["7.3.2"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(
+      "Now that they're bigger due to the requirement to fit buffs and debuffs inside of it, have to save space"
+    ),
 
     "* Documentation",
 
