@@ -366,15 +366,15 @@ function PF:BuildAdditionalPrivateProfile()
           },
 
           buffIcon = {
-            iconHeightRatio = 0.67,
+            iconHeightRatio = 0.7,
           },
 
           essential = {
-            iconHeightRatio = 0.67,
+            iconHeightRatio = 0.7,
           },
 
           utility = {
-            iconHeightRatio = 0.67,
+            iconHeightRatio = 0.7,
           },
         },
 
