@@ -34,16 +34,6 @@ local function boolLine(label, valueFn)
   }
 end
 
--- Helper: generates a numeric display line
-local function numLine(label, valueFn)
-  return {
-    label,
-    function()
-      return F.String.Good(format("%.4g", valueFn()))
-    end,
-  }
-end
-
 -- Helper: generates a line entry for a feature with a requirements check
 local function reqLine(label, requirementsKey, dbValue)
   return {
