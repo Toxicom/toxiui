@@ -24,6 +24,26 @@ local function formatScale(value)
   return format("%.4g", value)
 end
 
+-- Helper: generates a Yes/No line for a boolean DB value
+local function boolLine(label, valueFn)
+  return {
+    label,
+    function()
+      return valueFn() and F.String.Good("Yes") or F.String.Error("No")
+    end,
+  }
+end
+
+-- Helper: generates a numeric display line
+local function numLine(label, valueFn)
+  return {
+    label,
+    function()
+      return F.String.Good(format("%.4g", valueFn()))
+    end,
+  }
+end
+
 -- Helper: generates a line entry for a feature with a requirements check
 local function reqLine(label, requirementsKey, dbValue)
   return {
@@ -34,6 +54,111 @@ local function reqLine(label, requirementsKey, dbValue)
       return (dbValue() == true) and F.String.Good("Yes") or F.String.Error("No")
     end,
   }
+end
+
+-- Skin section definitions for the left side panel
+-- Same format as getSections(): { header, lines } with false/nil entries filtered
+local function getSkinsData()
+  local sections = {}
+
+  -- Damage Meter (Retail only)
+  if TXUI.IsRetail then
+    tinsert(sections, {
+      header = "Damage Meter",
+      lines = {
+        reqLine("Enabled", I.Requirements.DamageMeter, function()
+          return E.db.TXUI.addons.damageMeter.enabled
+        end),
+        boolLine("Spec Icons", function()
+          return E.db.TXUI.addons.damageMeter.icons
+        end),
+        boolLine("Gradients", function()
+          return E.db.TXUI.addons.damageMeter.gradients
+        end),
+        boolLine("Header Fade", function()
+          return E.db.TXUI.addons.damageMeter.headerFade
+        end),
+      },
+    })
+  end
+
+  -- Cooldown Manager (Retail only)
+  if TXUI.IsRetail then
+    tinsert(sections, {
+      header = "Cooldown Manager",
+      lines = {
+        reqLine("Enabled", I.Requirements.CooldownManager, function()
+          return E.db.TXUI.addons.cooldownManager.enabled
+        end),
+        boolLine("Fading", function()
+          return E.db.TXUI.addons.cooldownManager.fading
+        end),
+        boolLine("Bars Width", function()
+          return E.db.TXUI.addons.cooldownManager.dynamicBarsWidth
+        end),
+        boolLine("Castbar Width", function()
+          return E.db.TXUI.addons.cooldownManager.dynamicCastbarWidth
+        end),
+        boolLine("Anchor Essential", function()
+          return E.db.TXUI.addons.cooldownManager.anchors.essential.enabled
+        end),
+        boolLine("Anchor Utility", function()
+          return E.db.TXUI.addons.cooldownManager.anchors.utility.enabled
+        end),
+        boolLine("Anchor Buff", function()
+          return E.db.TXUI.addons.cooldownManager.anchors.buff.enabled
+        end),
+        boolLine("Anchor Buff Bar", function()
+          return E.db.TXUI.addons.cooldownManager.anchors.buffBar.enabled
+        end),
+        boolLine("Center Essential", function()
+          return E.db.TXUI.addons.cooldownManager.centering.essential
+        end),
+        boolLine("Center Utility", function()
+          return E.db.TXUI.addons.cooldownManager.centering.utility
+        end),
+        boolLine("Center Buff", function()
+          return E.db.TXUI.addons.cooldownManager.centering.buff
+        end),
+        boolLine("Keybinds Essential", function()
+          return E.db.TXUI.addons.cooldownManager.keybinds.essential.enabled
+        end),
+        boolLine("Keybinds Utility", function()
+          return E.db.TXUI.addons.cooldownManager.keybinds.utility.enabled
+        end),
+      },
+    })
+  end
+
+  -- Game Menu
+  tinsert(sections, {
+    header = "Game Menu",
+    lines = {
+      reqLine("Enabled", I.Requirements.GameMenu, function()
+        return E.db.TXUI.addons.gameMenuSkin.enabled
+      end),
+      boolLine("Player Info", function()
+        return E.db.TXUI.addons.gameMenuSkin.showInfo
+      end),
+      boolLine("Tips", function()
+        return E.db.TXUI.addons.gameMenuSkin.showTips
+      end),
+      boolLine("Played Time", function()
+        return E.db.TXUI.addons.gameMenuSkin.showPlayed
+      end),
+      TXUI.IsRetail and boolLine("Collections", function()
+        return E.db.TXUI.addons.gameMenuSkin.showCollections
+      end),
+      TXUI.IsRetail and boolLine("Mythic+", function()
+        return E.db.TXUI.addons.gameMenuSkin.showMythic
+      end),
+      TXUI.IsRetail and boolLine("Mythic Score", function()
+        return E.db.TXUI.addons.gameMenuSkin.showMythicScore
+      end),
+    },
+  })
+
+  return sections
 end
 
 -- Declarative section definitions
@@ -114,9 +239,6 @@ local function getSections()
         end),
         reqLine("WunderBar", I.Requirements.WunderBar, function()
           return E.db.TXUI.wunderbar.general.enabled
-        end),
-        TXUI.IsRetail and reqLine("Damage Meter", I.Requirements.DamageMeter, function()
-          return E.db.TXUI.addons.damageMeter.enabled
         end),
       },
     },
@@ -354,13 +476,21 @@ function M:StatusReportCreate()
   statusFrame:SetSize(0, 100)
   statusFrame:Hide()
 
-  -- Plugin frame
+  -- Plugin frame (right side — addons/plugins)
   local pluginFrame = CreateFrame("Frame", nil, statusFrame)
   pluginFrame:SetPoint("TOPLEFT", statusFrame, "TOPRIGHT", E:Scale(E.Border * 2 + 1), 0)
   pluginFrame:SetFrameStrata("HIGH")
   pluginFrame:CreateBackdrop("Transparent")
   pluginFrame:SetSize(0, 25)
   statusFrame.AddOnFrame = pluginFrame
+
+  -- Skin frame (left side — ToxiUI skins)
+  local skinFrame = CreateFrame("Frame", nil, statusFrame)
+  skinFrame:SetPoint("TOPRIGHT", statusFrame, "TOPLEFT", -E:Scale(E.Border * 2 + 1), 0)
+  skinFrame:SetFrameStrata("HIGH")
+  skinFrame:CreateBackdrop("Transparent")
+  skinFrame:SetSize(0, 25)
+  statusFrame.SkinFrame = skinFrame
 
   -- Title logo (drag to move frame)
   local titleLogoFrame = CreateFrame("Frame", nil, statusFrame, "TitleDragAreaTemplate")
@@ -399,6 +529,25 @@ function M:StatusReportCreate()
   pluginFrame.SectionA = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame, "TOP", -10)
   pluginFrame.SectionP = self:StatusReportCreateSection(sideSectionWidth, nil, nil, 30, pluginFrame, "TOP", pluginFrame.SectionA, "BOTTOM", -30)
 
+  -- Skin panel sections (left side — fixed, built from getSkinsData)
+  local skinSectionPadding = 20
+  local skinSections = getSkinsData()
+  skinFrame.Sections = {}
+
+  local skinPrevAnchor = skinFrame
+  for i, sectionDef in ipairs(skinSections) do
+    local lines = filterLines(sectionDef.lines)
+    local lineCount = #lines
+    -- Derive height from actual content dimensions: header(30) + lines(20ea) + gaps(5ea) + bottom padding(10)
+    local sectionHeight = 30 + (lineCount * 20) + ((lineCount - 1) * 5) + 10
+
+    local section = self:StatusReportCreateSection(sideSectionWidth, sectionHeight, nil, 30, skinFrame, "TOP", skinPrevAnchor, i == 1 and "TOP" or "BOTTOM", i == 1 and -10 or 0)
+    section.Content = self:StatusReportCreateContent(lineCount, sideSectionWidth - skinSectionPadding, section, section.Header)
+
+    skinFrame.Sections[i] = section
+    skinPrevAnchor = section
+  end
+
   return statusFrame
 end
 
@@ -429,6 +578,27 @@ function M:StatusReportUpdate()
       line.Label:Show()
       line.Value:Show()
       line.Text:Hide()
+    end
+  end
+
+  -- Skin frame (left side panel)
+  do
+    local skinFrame = statusFrame.SkinFrame
+    local skinSections = getSkinsData()
+    for i, sectionDef in ipairs(skinSections) do
+      local section = skinFrame.Sections[i]
+      section.Header.Text:SetText(F.String.ColorFirstLetter(sectionDef.header))
+
+      local lines = filterLines(sectionDef.lines)
+      for lineIdx, entry in ipairs(lines) do
+        local label, valueFn = entry[1], entry[2]
+        local line = section.Content["Line" .. lineIdx]
+        line.Label:SetText(label)
+        line.Value:SetText(valueFn())
+        line.Label:Show()
+        line.Value:Show()
+        line.Text:Hide()
+      end
     end
   end
 
