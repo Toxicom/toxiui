@@ -222,8 +222,8 @@ end
 
 -- Hide the "sticky self row" (LocalPlayerEntry) that floats while scrolling
 local function HideLocalPlayerEntry(window)
-  if not window or not window.LocalPlayerEntry then return end
   if not E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then return end
+  if not window or not window.LocalPlayerEntry then return end
 
   local entry = window.LocalPlayerEntry
   entry:Hide()
@@ -257,7 +257,7 @@ local function HookSessionWindow(window)
   SkinHeader(window)
 
   -- Hide sticky local player row
-  HookLocalPlayerEntry(window)
+  if E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then HookLocalPlayerEntry(window) end
 
   local ScrollBox = window.GetScrollBox and window:GetScrollBox()
   if ScrollBox then HookScrollBox(ScrollBox) end
