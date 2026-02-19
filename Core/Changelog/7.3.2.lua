@@ -21,6 +21,7 @@ TXUI.Changelog["7.3.2"] = {
 
     "* Settings refactoring",
     F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",
+    "Sort " .. F.String.GradientString() .. " mode's classes in settings",
 
     "* Development improvements",
   },

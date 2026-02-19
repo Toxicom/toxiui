@@ -162,9 +162,14 @@ function O:ToxiUI_Themes_GradientMode()
       self:AddTinySpacer(colorGroup)
     end
 
-    -- Class Colors
+    -- Class Colors (alphabetical by localized name)
+    local sortedClasses = {}
     for class, _ in pairs(P.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-      if classNames[class] ~= nil then generateClassOptions(class) end
+      if classNames[class] ~= nil then sortedClasses[#sortedClasses + 1] = class end
+    end
+    table.sort(sortedClasses, function(a, b) return classNames[a] < classNames[b] end)
+    for _, class in ipairs(sortedClasses) do
+      generateClassOptions(class)
     end
   end
 
