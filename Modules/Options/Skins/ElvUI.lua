@@ -41,7 +41,7 @@ function O:Skins_ElvUI()
         .. F.String.ElvUI()
         .. " elements.\n\n"
         .. F.String.Warning("Warning: ")
-        .. "This feature may increase your load times due to all the frames it has to skin. It can also negatively impact performance of the gameplay.\n\n",
+        .. "This feature may increase your load times due to all the frames it has to skin. It can also negatively impact performance of the gameplay.\nTherefore it is disabled by default and not recommended - use at your own caution.\n\n",
     }, I.Requirements.ElvUITheme)
 
     -- ElvUI Theme Mode Enable

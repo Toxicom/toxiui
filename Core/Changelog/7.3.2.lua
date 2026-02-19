@@ -6,6 +6,9 @@ TXUI.Changelog["7.3.2"] = {
     "* Breaking changes",
 
     "* New features",
+    "Due to popular demand, revert the removal of " .. TXUI.Title .. " " .. F.String.ElvUI() .. " skin" .. F.String.Sublist(
+      "Do be aware that it's known to bug out and there currently will not be much effort into fixing it"
+    ),
 
     "* Enhancements",
     "Update "
