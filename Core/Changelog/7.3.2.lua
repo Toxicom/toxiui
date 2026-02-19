@@ -9,6 +9,7 @@ TXUI.Changelog["7.3.2"] = {
     "Due to popular demand, revert the removal of " .. TXUI.Title .. " " .. F.String.ElvUI() .. " skin" .. F.String.Sublist(
       "Do be aware that it's known to bug out and there currently will not be much effort into fixing it"
     ),
+    F.String.Retail() .. "Option to hide floating player entry on the Damage Meter" .. F.String.Sublist("Enabled by default") .. F.String.Sublist("Credits to " .. F.String.Kryo()),
 
     "* Enhancements",
     "Update "
