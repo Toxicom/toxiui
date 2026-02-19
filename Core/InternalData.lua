@@ -195,6 +195,20 @@ I.Data.Contributor = {
         ["Demonilly-Draenor"] = true,
       },
     },
+
+    ["Kryo"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Thrall
+        ["Kryosys-Thrall"] = true,
+        ["Kryostab-Thrall"] = true,
+        ["Kryoxys-Thrall"] = true,
+        ["Kryoblast-Thrall"] = true,
+        ["Kryonyx-Thrall"] = true,
+        ["Kryoptyx-Thrall"] = true,
+        ["Kryodyn-Thrall"] = true,
+        ["Kryototem-Thrall"] = true,
+      },
+    },
   },
 
   -- EPIC => Purple Badge (epic supporter)

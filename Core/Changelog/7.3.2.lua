@@ -33,6 +33,7 @@ TXUI.Changelog["7.3.2"] = {
     ),
 
     "* Documentation",
+    "Add " .. F.String.Kryo() .. " to contributors list",
 
     "* Settings refactoring",
     F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",
