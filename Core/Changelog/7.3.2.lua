@@ -10,7 +10,7 @@ TXUI.Changelog["7.3.2"] = {
     "* Enhancements",
     "Update "
       .. F.String.GradientString()
-      .. " classes except for "
+      .. " colors for classes except for "
       .. F.String.Class("Hunter", "HUNTER")
       .. ", "
       .. F.String.Class("Shaman", "SHAMAN")
