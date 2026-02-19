@@ -220,8 +220,44 @@ local function HookScrollBox(scrollBox)
   if scrollBox.ForEachFrame then scrollBox:ForEachFrame(SkinMeter) end
 end
 
+-- Hide the "sticky self row" (LocalPlayerEntry) that floats while scrolling
+local function HideLocalPlayerEntry(window)
+  if not window or not window.LocalPlayerEntry then return end
+  if not E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then return end
+
+  local entry = window.LocalPlayerEntry
+  entry:Hide()
+  entry:SetAlpha(0)
+  entry:EnableMouse(false)
+end
+
+local function HookLocalPlayerEntry(window)
+  if not window or window.txuiLocalPlayerEntryHooked then return end
+  window.txuiLocalPlayerEntryHooked = true
+
+  -- Hide now
+  HideLocalPlayerEntry(window)
+
+  -- Prevent it from coming back on scroll/refresh
+  if window.ShowLocalPlayerEntry then hooksecurefunc(window, "ShowLocalPlayerEntry", function(self)
+    HideLocalPlayerEntry(self)
+  end) end
+
+  if window.EnsureLocalPlayerPresent then hooksecurefunc(window, "EnsureLocalPlayerPresent", function(self)
+    HideLocalPlayerEntry(self)
+  end) end
+
+  -- Safety: if the frame is shown for any reason, re-hide
+  window:HookScript("OnShow", function(self)
+    HideLocalPlayerEntry(self)
+  end)
+end
+
 local function HookSessionWindow(window)
   SkinHeader(window)
+
+  -- Hide sticky local player row
+  HookLocalPlayerEntry(window)
 
   local ScrollBox = window.GetScrollBox and window:GetScrollBox()
   if ScrollBox then HookScrollBox(ScrollBox) end
