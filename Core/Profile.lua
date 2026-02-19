@@ -358,6 +358,7 @@ P.addons = {
     headerFade = true, -- Fade header on mouseover
     headerFadeMinAlpha = 0, -- Alpha when not hovering
     headerFadeMaxAlpha = 1, -- Alpha when hovering
+    hideLocalPlayerEntry = true, -- Enabled by default
   },
 }
 

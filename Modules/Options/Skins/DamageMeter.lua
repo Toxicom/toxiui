@@ -179,6 +179,37 @@ function O:Skins_DamageMeter()
       end,
     }
   end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Hide Local Player Entry
+  do
+    local hideLocalPlayerGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Hide Floating Player Entry",
+    }, {
+      name = "Hide your own character's entry from floating over the Blizzard Damage Meter.\n\n",
+    }, I.Requirements.DamageMeter).args
+
+    hideLocalPlayerGroup.hideLocalPlayerEntry = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry, hideLocalPlayerGroup)
+      end,
+      desc = "Hide your own character's entry from floating over the Blizzard Damage Meter.",
+      disabled = function()
+        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+  end
 end
 
 if TXUI.IsRetail then O:AddCallback("Skins_DamageMeter") end
