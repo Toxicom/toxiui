@@ -8,7 +8,14 @@ TXUI.Changelog["7.3.2"] = {
     "* New features",
 
     "* Enhancements",
-    "Update " .. F.String.GradientString() .. " classes except for " .. F.String.Class("Hunter", "HUNTER") .. " and " .. F.String.Class("Shaman", "SHAMAN"),
+    "Update "
+      .. F.String.GradientString()
+      .. " classes except for "
+      .. F.String.Class("Hunter", "HUNTER")
+      .. ", "
+      .. F.String.Class("Shaman", "SHAMAN")
+      .. " and "
+      .. F.String.Class("Rogue", "ROGUE"),
     "Add borders to the played graph bars for the Game Menu Skin",
 
     "* Bug fixes",
