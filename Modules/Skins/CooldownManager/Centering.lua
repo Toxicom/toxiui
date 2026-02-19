@@ -87,6 +87,8 @@ function CM:CenterViewer(viewerKey)
     for i = 0, rowCount - 1 do
       local icon = shownBuffer[startIndex + i]
       if icon then
+        if icon.DebuffBorder then icon.DebuffBorder:SetAlpha(0) end
+
         icon:ClearAllPoints()
         icon:SetPoint("TOP", viewer, "TOP", startX + i * step, yPos)
       end
