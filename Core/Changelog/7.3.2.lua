@@ -10,6 +10,7 @@ TXUI.Changelog["7.3.2"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. "Skip anchoring and centering for the " .. F.String.CDM() .. " if a viewer's orientation is vertical",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(
@@ -19,6 +20,7 @@ TXUI.Changelog["7.3.2"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",
 
     "* Development improvements",
   },

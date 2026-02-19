@@ -176,7 +176,9 @@ function O:Skins_CooldownManager()
     local anchorGroup = self:AddInlineRequirementsDesc(options, {
       name = "Anchoring",
     }, {
-      name = "Anchor Cooldown Manager frames to " .. F.String.ToxiUI("ElvUI") .. " unit frame elements for automatic positioning.\n\n",
+      name = "Anchor Cooldown Manager frames to " .. F.String.ToxiUI("ElvUI") .. " unit frame elements for automatic positioning.\n\n"
+        .. F.String.Warning("Note: ")
+        .. "Anchoring only works when the viewer is set to " .. F.String.ToxiUI("Horizontal") .. " orientation in the Blizzard Cooldown Manager settings. Vertical viewers are skipped.\n\n",
     }, I.Requirements.CooldownManager).args
 
     local function essentialDisabled()
@@ -345,7 +347,9 @@ function O:Skins_CooldownManager()
     local centerGroup = self:AddInlineRequirementsDesc(options, {
       name = "Centering",
     }, {
-      name = "Center Cooldown Manager icons within each viewer frame instead of the default left-aligned layout.\n\n",
+      name = "Center Cooldown Manager icons within each viewer frame instead of the default left-aligned layout.\n\n"
+        .. F.String.Warning("Note: ")
+        .. "Centering only works when the viewer is set to " .. F.String.ToxiUI("Horizontal") .. " orientation in the Blizzard Cooldown Manager settings. Vertical viewers are skipped.\n\n",
     }, I.Requirements.CooldownManager).args
 
     centerGroup.centerEssential = {

@@ -23,7 +23,7 @@ function CM:SetAnchors()
   local classBarAvailable = classBar and classBar:IsShown() and E.db.unitframe.units.player.classbar.enable
 
   -- Anchor EssentialCooldownViewer to bottom of power bar, fallback to class bar
-  if anchors.essential.enabled and essential then
+  if anchors.essential.enabled and essential and essential.orientationSetting ~= 1 then
     local anchor = (powerBarAvailable and powerBar) or (classBarAvailable and classBar)
     if anchor then
       essential:ClearAllPoints()
@@ -32,13 +32,13 @@ function CM:SetAnchors()
   end
 
   -- Anchor UtilityCooldownViewer to bottom of EssentialCooldownViewer
-  if anchors.utility.enabled and utility and essential then
+  if anchors.utility.enabled and utility and essential and utility.orientationSetting ~= 1 then
     utility:ClearAllPoints()
     utility:SetPoint("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset)
   end
 
   -- Anchor BuffIconCooldownViewer to top of class bar, fallback to power bar
-  if anchors.buff.enabled and buff then
+  if anchors.buff.enabled and buff and buff.orientationSetting ~= 1 then
     local anchor = (classBarAvailable and classBar) or (powerBarAvailable and powerBar)
     if anchor then
       buff:ClearAllPoints()

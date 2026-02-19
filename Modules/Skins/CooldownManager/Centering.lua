@@ -29,6 +29,7 @@ local function cacheViewerProps(viewerKey)
 
   viewerCache[viewerKey] = {
     viewer = viewer,
+    orientationSetting = viewer.orientationSetting,
     stride = viewer.stride,
     xSpacing = viewer.childXPadding or 4,
     ySpacing = viewer.childYPadding or 4,
@@ -42,6 +43,7 @@ function CM:CenterViewer(viewerKey)
 
   local cache = viewerCache[viewerKey]
   if not cache then return end
+  if cache.orientationSetting == 1 then return end -- skip vertical viewers
 
   local viewer = cache.viewer
   local children = { viewer:GetChildren() }
