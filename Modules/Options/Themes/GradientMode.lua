@@ -167,7 +167,9 @@ function O:ToxiUI_Themes_GradientMode()
     for class, _ in pairs(P.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT]) do
       if classNames[class] ~= nil then sortedClasses[#sortedClasses + 1] = class end
     end
-    table.sort(sortedClasses, function(a, b) return classNames[a] < classNames[b] end)
+    table.sort(sortedClasses, function(a, b)
+      return classNames[a] < classNames[b]
+    end)
     for _, class in ipairs(sortedClasses) do
       generateClassOptions(class)
     end
