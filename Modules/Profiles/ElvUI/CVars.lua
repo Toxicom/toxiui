@@ -21,7 +21,7 @@ function PF:BuildCVarsProfile()
     lockActionBars = 1,
     ActionButtonUseKeyDown = 1,
     spamFilter = 0,
-    cameraDistanceMaxZoomFactor = 2.6,
+    cameraDistanceMaxZoomFactor = TXUI.IsRetail and 2.6 or 4,
     showQuestTrackingTooltips = 1,
     fstack_preferParentKeys = 0, -- Add back the frame names via fstack!
     useUiScale = 1,
