@@ -92,8 +92,16 @@ function GM:BuildPlayedGraph()
 
   local yOffset = 0
   for _, item in ipairs(aggregated) do
-    local barFrame = CreateFrame("Frame", nil, graph)
-    barFrame:SetPoint("TOPLEFT", graph, "TOPLEFT", 24, yOffset)
+    local borderFrame = CreateFrame("Frame", nil, graph)
+    borderFrame:SetPoint("TOPLEFT", graph, "TOPLEFT", 24 - E.Border, yOffset + E.Border)
+    borderFrame:SetSize(maxWidth + E.Border * 2, barHeight + E.Border * 2)
+
+    local borderBg = borderFrame:CreateTexture(nil, "BACKGROUND")
+    borderBg:SetAllPoints()
+    borderBg:SetColorTexture(0, 0, 0, 1)
+
+    local barFrame = CreateFrame("Frame", nil, borderFrame)
+    barFrame:SetPoint("TOPLEFT", borderFrame, "TOPLEFT", E.Border, -E.Border)
     barFrame:SetSize(maxWidth, barHeight)
 
     -- Transparent black backdrop
@@ -161,8 +169,8 @@ function GM:BuildPlayedGraph()
       GameTooltip:Hide()
     end)
 
-    table.insert(graph.bars, barFrame)
-    barFrame:Show()
+    table.insert(graph.bars, borderFrame)
+    borderFrame:Show()
     yOffset = yOffset - (barHeight - spacing)
   end
 
