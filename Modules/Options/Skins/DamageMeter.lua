@@ -186,9 +186,9 @@ function O:Skins_DamageMeter()
   -- Hide Local Player Entry
   do
     local hideLocalPlayerGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Hide Local Player Entry",
+      name = "Hide Floating Player Entry",
     }, {
-      name = "Hide your own character's entry from the Blizzard Damage Meter.\n\n",
+      name = "Hide your own character's entry from floating over the Blizzard Damage Meter.\n\n",
     }, I.Requirements.DamageMeter).args
 
     hideLocalPlayerGroup.hideLocalPlayerEntry = {
@@ -197,7 +197,7 @@ function O:Skins_DamageMeter()
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry, hideLocalPlayerGroup)
       end,
-      desc = "Hide your own character's entry from the Blizzard Damage Meter.",
+      desc = "Hide your own character's entry from floating over the Blizzard Damage Meter.",
       disabled = function()
         return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
       end,
