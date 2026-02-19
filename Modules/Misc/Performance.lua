@@ -11,6 +11,7 @@ local settingsMap = {
   darkModeTransparency = { name = "Dark Mode Transparency", path = "TXUI.themes.darkMode", key = "transparency" },
   damageMeter = { name = "Damage Meter Skin", path = "TXUI.addons.damageMeter", key = "enabled" },
   wunderbarAnimations = { name = "WunderBar Animations", path = "TXUI.wunderbar.general", key = "animations" },
+  elvuiSkin = { name = "ElvUI Theme", path = "TXUI.addons.elvUITheme", key = "enabled" },
 }
 
 function M:GetPerformanceSettingsMap()

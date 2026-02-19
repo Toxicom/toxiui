@@ -23,6 +23,90 @@ function O:Skins_ElvUI()
   -- Spacer
   self:AddSpacer(options)
 
+  -- ElvUI Theme
+  do
+    -- ElvUI Theme
+    local elvuiTheme = self:AddInlineRequirementsDesc(options, {
+      name = TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin",
+      get = function(info)
+        return E.db.TXUI.addons.elvUITheme[info[#info]]
+      end,
+      set = function(info, value)
+        if E.db.TXUI.addons.elvUITheme[info[#info]] == value then return end
+        E.db.TXUI.addons.elvUITheme[info[#info]] = value
+        F.Event.TriggerEvent("Theme.SettingsUpdate")
+      end,
+    }, {
+      name = "This module applies a grain background and shadows to all "
+        .. F.String.ElvUI()
+        .. " elements.\n\n"
+        .. F.String.Warning("Warning: ")
+        .. "This feature may increase your load times due to all the frames it has to skin. It can also negatively impact performance of the gameplay.\n\n",
+    }, I.Requirements.ElvUITheme)
+
+    -- ElvUI Theme Mode Enable
+    elvuiTheme["args"]["enabled"] = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Toggling this on enables the " .. TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.elvUITheme.enabled)
+      end,
+      set = function(info, value)
+        if E.db.TXUI.addons.elvUITheme[info[#info]] == value then return end
+        E.db.TXUI.addons.elvUITheme[info[#info]] = value
+
+        TXUI:GetModule("SplashScreen"):Wrap("Applying Theme ...", function()
+          F.Event.TriggerEvent("Theme.DatabaseUpdate")
+        end)
+      end,
+    }
+
+    -- Disabled helper
+    local optionsDisabled = function()
+      return self:GetEnabledState(E.db.TXUI.addons.elvUITheme.enabled, elvuiTheme) ~= self.enabledState.YES
+    end
+
+    -- Shadow Toggle
+    elvuiTheme["args"]["shadowEnabled"] = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enable shadows for most of ElvUI frames.",
+      name = "Soft Shadows",
+      disabled = optionsDisabled,
+    }
+
+    -- Shadow Alpha
+    elvuiTheme["args"]["shadowAlpha"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Shadow Opacity",
+      min = 0.1,
+      max = 1,
+      step = 0.01,
+      isPercent = true,
+      disabled = function()
+        return optionsDisabled() or not E.db.TXUI.addons.elvUITheme.shadowEnabled
+      end,
+    }
+
+    -- Shadow Size
+    elvuiTheme["args"]["shadowSize"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Shadow Size",
+      min = 1,
+      max = 10,
+      step = 1,
+      disabled = function()
+        return optionsDisabled() or not E.db.TXUI.addons.elvUITheme.shadowEnabled
+      end,
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
   -- ElvUI AFK Mode
   do
     -- ElvUI AFK Mode Group

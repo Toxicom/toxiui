@@ -3,4 +3,6 @@
   <Script file='ColorModifiers.lua' />
   <Script file='Deconstruct.lua' />
   <Script file='FadePersist.lua' />
+  <Script file='Theme.lua' />
+  <Script file='ThemeThreatGlow.lua' />
 </Ui>

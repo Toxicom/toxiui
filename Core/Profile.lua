@@ -211,6 +211,15 @@ P.themes = {
 
 -- AddOn Skinning
 P.addons = {
+  -- ElvUI Theme
+  elvUITheme = {
+    enabled = false,
+
+    shadowEnabled = true,
+    shadowAlpha = 0.6,
+    shadowSize = 4,
+  },
+
   -- Color Modifier Keys
   colorModifiers = {
     enabled = true,
