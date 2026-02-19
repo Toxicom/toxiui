@@ -387,8 +387,14 @@ I.Data.Contributor = {
   [I.Enum.ContributorType.BETA] = {
     ["v0dKa"] = {
       [I.Enum.Flavor.RETAIL] = {
+        -- Antonidas
         ["Bakul-Antonidas"] = true,
-        ["Mythelor-Antonidas"] = true,
+
+        -- Eredar
+        ["Varlanis-Eredar"] = true,
+        ["Panril-Eredar"] = true,
+        ["Zantheas-Eredar"] = true,
+        ["Glanus-Eredar"] = true,
       },
     },
 
