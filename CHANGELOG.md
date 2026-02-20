@@ -1,6 +1,15 @@
-# ToxiUI v7.3.2-beta.1 - 2026-02-19
+# ToxiUI v7.3.2-beta.2 - 2026-02-20
 
-**Full Changelog**: https://github.com/Toxicom/toxiui/compare/v7.3.1...v7.3.2-beta.1
+**Full Changelog**: https://github.com/Toxicom/toxiui/compare/v7.3.1...v7.3.2-beta.2
+
+## 🚀 New Features
+
+- Due to popular demand, revert the removal of **ToxiUI** **ElvUI** skin
+  - Do be aware that it's known to bug out and there currently will not be much effort into fixing it
+- [Retail] Option to hide floating player entry on the Damage Meter
+  - Enabled by default
+  - Credits to **Kryo**
+- Option to delete a character from Played data
 
 ## ✨ Enhancements
 
@@ -10,11 +19,17 @@
 ## 🐛 Bug Fixes
 
 - [Retail] Skip anchoring and centering for the **ToxiUI Cooldown Manager Skin** if a viewer's orientation is vertical
+- [Retail] Hide the debuff border for **ToxiUI Cooldown Manager Skin** icons if centering is enabled
+  - This is a bandaid fix, hopefully ElvUI fixes it properly in the future
 
 ## 🧩 Profile Updates
 
 - **ElvUI**: Nudge raid frames to the left
   - Now that they're bigger due to the requirement to fit buffs and debuffs inside of it, have to save space
+
+## 📘 Documentation
+
+- Add **Kryo** to contributors list
 
 ## ♻️ Settings Refactoring
 
