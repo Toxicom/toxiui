@@ -197,7 +197,7 @@ function GM:OnTimePlayed(_, totalTimePlayed, levelTimePlayed)
   self:UnregisterEvent("TIME_PLAYED_MSG")
 end
 
-function GM:OnPlayerEnteringWorld(_, isLogin, isReloadingUI)
+function GM:OnPlayerEnteringWorld(_, isLogin)
   -- Prepare persistent store for session start per character
   E.global.TXUI = E.global.TXUI or {}
   E.global.TXUI.sessionStartEpoch = E.global.TXUI.sessionStartEpoch or {}
@@ -213,9 +213,6 @@ function GM:OnPlayerEnteringWorld(_, isLogin, isReloadingUI)
     local now = time()
     self.sessionStartEpoch = now
     E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname] = now
-  elseif isReloadingUI then
-    local saved = E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname]
-    if saved and saved > 0 then self.sessionStartEpoch = saved end
   else
     local saved = E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname]
     if saved and saved > 0 then self.sessionStartEpoch = saved end
