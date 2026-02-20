@@ -3,6 +3,7 @@ local OI = TXUI:NewModule("OfflineIcons", "AceHook-3.0")
 
 -- Globals
 local _G = _G
+local UnitExists = UnitExists
 local UnitIsConnected = UnitIsConnected
 
 -- Vars
@@ -16,7 +17,7 @@ function OI.ElementUpdate(frame, _, unit)
   if unit and unit ~= frame.unit then return end
   if not unit then unit = frame.unit end
 
-  local isOffline = frame.isForced or (not UnitIsConnected(unit))
+  local isOffline = frame.isForced or (UnitExists(unit) and not UnitIsConnected(unit))
 
   if isOffline then
     element:Show()
