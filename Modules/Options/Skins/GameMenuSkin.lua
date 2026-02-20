@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local GM = TXUI:GetModule("GameMenu")
 
 function O:Skins_ElvUI()
   -- Create Tab
@@ -85,6 +86,31 @@ function O:Skins_ElvUI()
 
   -- Information Sections
   do
+    local function getCharValues()
+      local list = {}
+      local played = (E.global.TXUI and E.global.TXUI.playedSeconds) or {}
+      local classes = (E.global.TXUI and E.global.TXUI.classMap) or {}
+      for realm, realmMap in pairs(played) do
+        for name, seconds in pairs(realmMap) do
+          if seconds and seconds > 0 then
+            local key = realm .. "\t" .. name
+            local classToken = classes[realm] and classes[realm][name]
+            list[key] = F.String.Class(name .. "-" .. realm, classToken) .. F.String.Silver(" (" .. GM.FormatPlayed(seconds, false) .. ")")
+          end
+        end
+      end
+      return list
+    end
+
+    local function getCharSorting()
+      local keys = {}
+      for k in pairs(getCharValues()) do
+        keys[#keys + 1] = k
+      end
+      table.sort(keys)
+      return keys
+    end
+
     local infoGroup = self:AddInlineRequirementsDesc(options, {
       name = "Information Sections",
     }, {
@@ -153,6 +179,26 @@ function O:Skins_ElvUI()
       set = function(_, value)
         E.db.TXUI.addons.gameMenuSkin.showPlayed = value
         E:StaticPopup_Show("CONFIG_RL")
+      end,
+      disabled = optionsDisabled,
+    }
+
+    infoGroup.charSelect = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Remove Character",
+      desc = "Select a character to remove from the played time data. Useful when a character was renamed or changed faction, creating a duplicate entry.",
+      width = 2.0,
+      values = getCharValues,
+      sorting = getCharSorting,
+      get = function()
+        return nil
+      end,
+      set = function(_, value)
+        if not value then return end
+        local realm, name = value:match("^(.+)\t(.+)$")
+        if not realm or not name then return end
+        E:StaticPopup_Show("TXUI_DELETE_PLAYED_CHARACTER", name .. "-" .. realm, nil, { realm = realm, name = name })
       end,
       disabled = optionsDisabled,
     }

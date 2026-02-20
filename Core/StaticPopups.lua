@@ -43,4 +43,21 @@ function TXUI:LoadStaticPopups()
       F.ResetMiscProfile(profile)
     end,
   }
+
+  E.PopupDialogs.TXUI_DELETE_PLAYED_CHARACTER = {
+    text = "Are you sure you want to remove " .. F.String.Error("%s") .. " from the played time data?\n\nThis " .. F.String.Error("cannot") .. " be undone.",
+    button1 = F.String.Error(YES),
+    button2 = F.String.Good(NO),
+    hideOnEscape = 1,
+    whileDead = 1,
+    OnAccept = function(_, data)
+      if not data or not E.global.TXUI then return end
+      local realm, name = data.realm, data.name
+      if not realm or not name then return end
+      if E.global.TXUI.playedSeconds and E.global.TXUI.playedSeconds[realm] then E.global.TXUI.playedSeconds[realm][name] = nil end
+      if E.global.TXUI.classMap and E.global.TXUI.classMap[realm] then E.global.TXUI.classMap[realm][name] = nil end
+      if E.global.TXUI.sessionStartEpoch and E.global.TXUI.sessionStartEpoch[realm] then E.global.TXUI.sessionStartEpoch[realm][name] = nil end
+      E.Libs.AceConfigRegistry:NotifyChange("ElvUI")
+    end,
+  }
 end
