@@ -92,23 +92,12 @@ function GM:BuildPlayedGraph()
 
   local yOffset = 0
   for _, item in ipairs(aggregated) do
-    local borderFrame = CreateFrame("Frame", nil, graph)
-    borderFrame:SetPoint("TOPLEFT", graph, "TOPLEFT", 24 - E.Border, yOffset + E.Border)
-    borderFrame:SetSize(maxWidth + E.Border * 2, barHeight + E.Border * 2)
-
-    local borderBg = borderFrame:CreateTexture(nil, "BACKGROUND")
-    borderBg:SetAllPoints()
-    borderBg:SetColorTexture(0, 0, 0, 1)
-
-    local barFrame = CreateFrame("Frame", nil, borderFrame)
-    barFrame:SetPoint("TOPLEFT", borderFrame, "TOPLEFT", E.Border, -E.Border)
+    local barFrame = CreateFrame("Frame", nil, graph, "BackdropTemplate")
+    barFrame:SetPoint("TOPLEFT", graph, "TOPLEFT", 24, yOffset)
     barFrame:SetSize(maxWidth, barHeight)
-
-    -- Transparent black backdrop
-    local bg = barFrame:CreateTexture(nil, "BACKGROUND")
-    bg:SetPoint("LEFT", barFrame, "LEFT", 0, 0)
-    bg:SetSize(maxWidth, barHeight)
-    bg:SetColorTexture(0, 0, 0, 0.33)
+    barFrame:SetBackdrop({ bgFile = E.media.normTex, edgeFile = E.media.normTex, edgeSize = E.Border, insets = { left = 0, right = 0, top = 0, bottom = 0 } })
+    barFrame:SetBackdropColor(0, 0, 0, 0.33)
+    barFrame:SetBackdropBorderColor(0, 0, 0, 1)
 
     -- Class icon
     local iconFS = barFrame:CreateFontString(nil, "OVERLAY")
@@ -146,7 +135,7 @@ function GM:BuildPlayedGraph()
     -- Tooltip on hover showing per-character breakdown
     barFrame:EnableMouse(true)
     barFrame:SetScript("OnEnter", function(frame)
-      bg:SetColorTexture(0, 0, 0, 0.5)
+      barFrame:SetBackdropColor(0, 0, 0, 0.5)
 
       local chars = GM.GetCharactersByClass(item.class)
       if #chars == 0 then return end
@@ -165,12 +154,12 @@ function GM:BuildPlayedGraph()
       GameTooltip:Show()
     end)
     barFrame:SetScript("OnLeave", function()
-      bg:SetColorTexture(0, 0, 0, 0.33)
+      barFrame:SetBackdropColor(0, 0, 0, 0.33)
       GameTooltip:Hide()
     end)
 
-    table.insert(graph.bars, borderFrame)
-    borderFrame:Show()
+    table.insert(graph.bars, barFrame)
+    barFrame:Show()
     yOffset = yOffset - (barHeight - spacing)
   end
 
