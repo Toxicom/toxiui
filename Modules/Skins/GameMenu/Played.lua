@@ -95,7 +95,7 @@ function GM:BuildPlayedGraph()
     local barFrame = CreateFrame("Frame", nil, graph, "BackdropTemplate")
     barFrame:SetPoint("TOPLEFT", graph, "TOPLEFT", 24, yOffset)
     barFrame:SetSize(maxWidth, barHeight)
-    barFrame:SetBackdrop({ bgFile = E.media.normTex, edgeFile = E.media.normTex, edgeSize = E.Border, insets = { left = 0, right = 0, top = 0, bottom = 0 } })
+    barFrame:SetBackdrop { bgFile = E.media.normTex, edgeFile = E.media.normTex, edgeSize = E.Border, insets = { left = 0, right = 0, top = 0, bottom = 0 } }
     barFrame:SetBackdropColor(0, 0, 0, 0.33)
     barFrame:SetBackdropBorderColor(0, 0, 0, 1)
 
