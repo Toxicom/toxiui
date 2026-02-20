@@ -95,9 +95,8 @@ function GM:BuildPlayedGraph()
     local barFrame = CreateFrame("Frame", nil, graph, "BackdropTemplate")
     barFrame:SetPoint("TOPLEFT", graph, "TOPLEFT", 24, yOffset)
     barFrame:SetSize(maxWidth, barHeight)
-    barFrame:SetBackdrop { bgFile = E.media.normTex, edgeFile = E.media.normTex, edgeSize = E.Border, insets = { left = 0, right = 0, top = 0, bottom = 0 } }
+    barFrame:SetBackdrop { bgFile = E.media.normTex, insets = { left = 0, right = 0, top = 0, bottom = 0 } }
     barFrame:SetBackdropColor(0, 0, 0, 0.33)
-    barFrame:SetBackdropBorderColor(0, 0, 0, 1)
 
     -- Class icon
     local iconFS = barFrame:CreateFontString(nil, "OVERLAY")
@@ -118,6 +117,13 @@ function GM:BuildPlayedGraph()
     local start = shiftMap and shiftMap[item.class] or CreateColor(0.3, 0.3, 0.3, 1)
     local finish = normalMap and normalMap[item.class] or CreateColor(0.6, 0.6, 0.6, 1)
     F.Color.SetGradient(tex, "HORIZONTAL", start, finish)
+
+    -- Border: child frame has a higher frameLevel than barFrame, so it renders above ARTWORK gradient
+    local borderOverlay = CreateFrame("Frame", nil, barFrame, "BackdropTemplate")
+    borderOverlay:SetAllPoints(barFrame)
+    borderOverlay:SetBackdrop { edgeFile = E.media.normTex, edgeSize = E.Border }
+    borderOverlay:SetBackdropBorderColor(0, 0, 0, 1)
+    borderOverlay:EnableMouse(false)
 
     -- Duration label
     local totalFS = barFrame:CreateFontString(nil, "OVERLAY")
