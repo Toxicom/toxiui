@@ -5,6 +5,8 @@ local defaultPadding = 4
 local WAAnchorY = { 395, 479 }
 
 function PF:ApplyMovers(pf, horizontal)
+  local powerBarIsEnabled = E.db.unitframe.units.player.power.enable and true or false
+  local powerMoverPosition = horizontal and F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 526) or F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 446)
   F.Table.Crush(
     pf.movers,
     {
@@ -39,8 +41,8 @@ function PF:ApplyMovers(pf, horizontal)
       -- UnitFrames
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 420),
       ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
-      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 446),
-      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
+      PlayerPowerBarMover = powerMoverPosition,
+      ClassBarMover = powerBarIsEnabled and F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2) or powerMoverPosition,
 
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 420),
       ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
@@ -117,8 +119,8 @@ function PF:ApplyMovers(pf, horizontal)
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 620),
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 680, 280),
 
-      PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 526),
-      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
+      PlayerPowerBarMover = powerMoverPosition,
+      ClassBarMover = powerBarIsEnabled and F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2) or powerMoverPosition,
 
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 500),
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 500),

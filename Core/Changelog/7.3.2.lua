@@ -28,6 +28,7 @@ TXUI.Changelog["7.3.2"] = {
     F.String.Retail() .. "Hide the debuff border for " .. F.String.CDM() .. " icons if centering is enabled" .. F.String.Sublist(
       "This is a bandaid fix, hopefully ElvUI fixes it properly in the future"
     ),
+    "Fix Class Bar position after updating if Power Bar is disabled",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(
