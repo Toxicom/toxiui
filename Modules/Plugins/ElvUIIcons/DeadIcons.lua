@@ -3,7 +3,6 @@ local DI = TXUI:NewModule("DeadIcons", "AceHook-3.0")
 
 -- Globals
 local _G = _G
-local UnitExists = UnitExists
 local UnitIsDead = UnitIsDead
 local UnitIsGhost = UnitIsGhost
 
@@ -18,7 +17,7 @@ function DI.ElementUpdate(frame, _, unit)
   if unit and unit ~= frame.unit then return end
   if not unit then unit = frame.unit end
 
-  local isDead = frame.isForced or (UnitExists(unit) and (UnitIsDead(unit) or UnitIsGhost(unit)))
+  local isDead = frame.isForced or UnitIsDead(unit) or UnitIsGhost(unit)
 
   if isDead then
     element:Show()
