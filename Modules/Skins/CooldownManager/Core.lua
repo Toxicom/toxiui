@@ -49,6 +49,9 @@ function CM:DatabaseUpdate()
     if not self.db then return end
     if not self.db.enabled then return end
 
+    local isCDMEnabled = C_CVar.GetCVarBool("cooldownViewerEnabled")
+    if not isCDMEnabled then C_CVar.SetCVar("cooldownViewerEnabled", "1") end
+
     -- Enable fading if enabled
     if self.db.fading then self:EnableFadingAfterUnitsLoaded() end
 

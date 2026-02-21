@@ -22,6 +22,7 @@ TXUI.Changelog["7.3.2"] = {
       .. " and "
       .. F.String.Class("Rogue", "ROGUE"),
     "Add borders to the played graph bars for the Game Menu Skin",
+    F.String.Retail() .. "Enable the Cooldown Manager in Blizzard settings if " .. F.String.CDM() .. " is enabled",
 
     "* Bug fixes",
     F.String.Retail() .. "Skip anchoring and centering for the " .. F.String.CDM() .. " if a viewer's orientation is vertical",
