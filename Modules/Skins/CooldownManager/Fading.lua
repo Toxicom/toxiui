@@ -71,10 +71,20 @@ function CM:EnableFading()
   F.Event.RegisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self.SetParent, self)
   F.Event.RegisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self.SetParent, self)
 
-  -- Hook SetAlpha to also toggle visibility when fading
-  if not self:IsHooked(playerFrame, "SetAlpha") then self:SecureHook(playerFrame, "SetAlpha", function(_, alpha)
-    self:SetCooldownFramesVisibility(alpha > 0.1)
-  end) end
+  -- Hook SetAlpha to also toggle visibility when fading.
+  -- Use state tracking + C_Timer.After(0) to avoid calling Show() inside Blizzard's animation
+  -- callback, which triggers OnShow -> RefreshLayout -> duplicate layoutIndex crash (Blizzard bug).
+  self._cooldownFramesVisible = true
+  if not self:IsHooked(playerFrame, "SetAlpha") then
+    self:SecureHook(playerFrame, "SetAlpha", function(_, alpha)
+      local shouldShow = alpha > 0.1
+      if shouldShow == self._cooldownFramesVisible then return end
+      self._cooldownFramesVisible = shouldShow
+      C_Timer.After(0, function()
+        self:SetCooldownFramesVisibility(shouldShow)
+      end)
+    end)
+  end
 end
 
 function CM:EnableFadingAfterUnitsLoaded()
