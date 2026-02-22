@@ -25,6 +25,9 @@ TXUI.Changelog["7.3.2"] = {
       .. F.String.Class("Shaman", "SHAMAN")
       .. " and "
       .. F.String.Class("Rogue", "ROGUE"),
+    "Update " .. F.String.GradientString() .. " colors for " .. F.String.Class("Priest", "PRIEST") .. F.String.Sublist(
+      "Previous color had a blue tint to it which resulted in the backdrop being dark blue, which looked very wrong"
+    ),
     "Add borders to the played graph bars for the Game Menu Skin",
     F.String.Retail() .. "Enable the Cooldown Manager in Blizzard settings if " .. F.String.CDM() .. " is enabled",
     F.String.Retail() .. "Display Essence on " .. F.String.ToxiUI("[tx:power]") .. " tag for " .. F.String.Class("Evokers", "EVOKER"),
