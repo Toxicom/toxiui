@@ -160,6 +160,7 @@ function CM:EnableKeybinds()
   F.Event.RegisterFrameEventAndCallback("ACTIONBAR_HIDEGRID", self.OnKeybindEvent, self)
   F.Event.RegisterFrameEventAndCallback("ACTIONBAR_PAGE_CHANGED", self.OnKeybindEvent, self)
   F.Event.RegisterFrameEventAndCallback("UPDATE_BONUS_ACTIONBAR", self.OnKeybindEvent, self)
+  F.Event.RegisterFrameEventAndCallback("UPDATE_SHAPESHIFT_FORM", self.OnKeybindEvent, self)
 
   for _, key in ipairs(keybindKeys) do
     local viewerName = self.frameNames[key]
@@ -211,6 +212,7 @@ function CM:DisableKeybinds()
   F.Event.UnregisterFrameEventAndCallback("ACTIONBAR_HIDEGRID", self)
   F.Event.UnregisterFrameEventAndCallback("ACTIONBAR_PAGE_CHANGED", self)
   F.Event.UnregisterFrameEventAndCallback("UPDATE_BONUS_ACTIONBAR", self)
+  F.Event.UnregisterFrameEventAndCallback("UPDATE_SHAPESHIFT_FORM", self)
 
   -- Hide all keybinds
   for _, key in ipairs(keybindKeys) do
