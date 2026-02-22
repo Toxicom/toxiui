@@ -105,7 +105,7 @@ local function ApplyGradient(content)
     content.txuiBarTexture = texture
   end
 
-  texture:SetGradient(gradientOrientation, shiftColor, normalColor)
+  texture:SetGradient(gradientOrientation, normalColor, shiftColor)
 end
 
 -- Animation duration for header fade
