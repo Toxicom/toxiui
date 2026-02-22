@@ -6,7 +6,6 @@ local GameTooltip = GameTooltip
 local GetCVarBool = GetCVarBool
 local GetItemCooldown = C_Container and C_Container.GetItemCooldown
 local GetSpellTexture = (C_Spell and C_Spell.GetSpellTexture) or GetSpellTexture
-local GetTime = GetTime
 local InCombatLockdown = InCombatLockdown
 
 local secureFlyOutFrame
