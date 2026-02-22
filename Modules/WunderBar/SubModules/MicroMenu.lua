@@ -268,6 +268,7 @@ MM.microMenu = {
     name = SPELLBOOK_ABILITIES_BUTTON,
     click = {
       LeftButton = function()
+        if InCombatLockdown() then return end
         if PlayerSpellsUtil then
           PlayerSpellsUtil.ToggleSpellBookFrame()
         else
@@ -286,6 +287,7 @@ MM.microMenu = {
     name = TALENTS_BUTTON,
     click = {
       LeftButton = function()
+        if InCombatLockdown() then return end
         if PlayerSpellsUtil then
           PlayerSpellsUtil.ToggleClassTalentFrame()
         else

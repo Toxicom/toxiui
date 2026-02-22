@@ -37,6 +37,7 @@ TXUI.Changelog["7.3.2"] = {
       "This is a bandaid fix, hopefully ElvUI fixes it properly in the future"
     ),
     F.String.Retail() .. "Protect " .. F.String.Menu.WunderBar() .. " currency tooltip in combat",
+    F.String.Menu.WunderBar() .. " MicroMenu: Block talent and spell icons from clicks in combat",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(
