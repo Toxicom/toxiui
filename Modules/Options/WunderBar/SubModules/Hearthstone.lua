@@ -16,17 +16,19 @@ function O:WunderBar_SubModules_Additional_Toggle(group)
     function()
       local names = {}
       for _, option in pairs(I.HearthstoneData) do
-        if option.known and not option.hearthstone and not option.class and (TXUI.IsClassic or (not option.portal and not option.teleport)) then names[option.id] = option.name end
+        if option.known and not option.hearthstone and not option.mythic and not option.class and (TXUI.IsClassic or (not option.portal and not option.teleport)) then
+          names[option.id] = option.name
+        end
       end
       return names
     end,
     nil,
     nil,
     function(_, key)
-      return E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key]
+      return E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] ~= false
     end,
     function(_, key, value)
-      E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = value
+      E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = value and nil or false
     end
   )
 end
@@ -150,16 +152,11 @@ function O:WunderBar_SubModules_Hearthstone()
   local primaryHsDisabled = function()
     return E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHs
   end
-  local tomeOfTeleportationEnabled = function()
-    return F.IsAddOnEnabled("TomeOfTeleportation")
-  end
 
   self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 2, "primaryHS", primaryHsDisabled)
-  self:WunderBar_SubModules_Hearthstone_Select(tab.hearthstoneGroup.args, 3, "secondaryHS", tomeOfTeleportationEnabled)
 
   -- Sort hearthstone selects by value
   tab.hearthstoneGroup.args.primaryHS.sortByValue = true
-  tab.hearthstoneGroup.args.secondaryHS.sortByValue = true
 
   -- Cooldowns
   tab.cooldownGroup = ACH:Group("Cooldown Text Group", nil, 2)
@@ -190,8 +187,8 @@ function O:WunderBar_SubModules_Hearthstone()
     step = 1,
   }, nil, nil, nil, cooldownDisabled)
 
-  -- Additional Tooltip Hearthstones
-  tab.additionalGroup = ACH:Group("Additional Tooltip Cooldowns", nil, 3)
+  -- Additional Teleports
+  tab.additionalGroup = ACH:Group("Additional Teleports", nil, 3)
   tab.additionalGroup.inline = true
   self:WunderBar_SubModules_Additional_Toggle(tab.additionalGroup.args)
 end

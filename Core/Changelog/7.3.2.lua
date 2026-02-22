@@ -11,6 +11,9 @@ TXUI.Changelog["7.3.2"] = {
     ),
     F.String.Retail() .. "Option to hide floating player entry on the Damage Meter" .. F.String.Sublist("Enabled by default") .. F.String.Sublist("Credits to " .. F.String.Kryo()),
     "Option to delete a character from Played data",
+    F.String.Menu.WunderBar() .. " Hearthstone: Replace secondary Hearthstone right-click with a flyout for Additional Teleports" .. F.String.Sublist(
+      "All Additional Teleports are now enabled by default"
+    ),
 
     "* Enhancements",
     "Update "
@@ -25,6 +28,7 @@ TXUI.Changelog["7.3.2"] = {
     F.String.Retail() .. "Enable the Cooldown Manager in Blizzard settings if " .. F.String.CDM() .. " is enabled",
 
     "* Bug fixes",
+    "Fix flyout buttons retaining cooldown state when reused across different flyout menus",
     F.String.Retail() .. "Skip anchoring and centering for the " .. F.String.CDM() .. " if a viewer's orientation is vertical",
     F.String.Retail() .. "Hide the debuff border for " .. F.String.CDM() .. " icons if centering is enabled" .. F.String.Sublist(
       "This is a bandaid fix, hopefully ElvUI fixes it properly in the future"

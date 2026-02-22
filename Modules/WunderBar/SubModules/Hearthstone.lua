@@ -132,6 +132,25 @@ function HS:GetMythicPortals()
   return portals
 end
 
+function HS:GetAdditionalHearthstones()
+  local slots = {}
+
+  for _, data in pairs(I.HearthstoneData) do
+    if data.known and not data.hearthstone and not data.mythic and not data.class and (TXUI.IsClassic or (not data.portal and not data.teleport)) then
+      if self.db.additionalHS[data.id] ~= false then
+        tinsert(slots, {
+          spellID = data.id,
+          type = data.type,
+          name = data.name,
+          icon = GetItemIcon(data.id),
+        })
+      end
+    end
+  end
+
+  return slots
+end
+
 function HS:GetCovenantStone(hs)
   local covenant = F.GetCachedCovenant(true)
 
@@ -172,22 +191,14 @@ function HS:UpdateSelected()
   self.hsPrimary = I.HearthstoneData[self.db.primaryHS] or I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS]
   if not self.hsPrimary then return self:LogDebug("HS:UpdateSelected > Item could not be found in DB for hsPrimary") end
 
-  -- Check if spell is in DB
-  self.hsSecondary = I.HearthstoneData[self.db.secondaryHS] or I.HearthstoneData[P.wunderbar.subModules.Hearthstone.secondaryHS]
-  if not self.hsSecondary then return self:LogDebug("HS:UpdateSelected > Item could not be found in DB for hsSecondary") end
-
   -- Check if any ids could be found
-  if not self.hsPrimary.id or not self.hsSecondary.id then return self:LogDebug("HS:UpdateSelected > Main IDs and Fallback could not be found") end
+  if not self.hsPrimary.id then return self:LogDebug("HS:UpdateSelected > Primary ID could not be found") end
 
   -- If covenant hearthstone is selected, be smart and replace it with current covenant
   if self.hsPrimary.covenant then self.hsPrimary = self:GetCovenantStone(self.hsPrimary) end
-  if self.hsSecondary.covenant then self.hsSecondary = self:GetCovenantStone(self.hsSecondary) end
 
   -- Fallback to default if spell is not known
   if not self.hsPrimary.known then self.hsPrimary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS] end
-
-  -- Fallback to default if spell is not known
-  if not self.hsSecondary.known then self.hsSecondary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.secondaryHS] end
 
   if self.db.randomPrimaryHs then
     local idTable = {}
@@ -210,15 +221,18 @@ function HS:UpdateSelected()
   if E.myclass ~= "MAGE" then self.hsClass = self:GetClassTeleport() end
   self.hsMythics = self:GetMythicPortals()
 
+  -- Build additional hearthstones list
+  self.hsAdditional = self:GetAdditionalHearthstones()
+
   -- Set Types
   self.secureFrame:SetAttribute("type1", self.hsPrimary.type)
-  if F.IsAddOnEnabled("TomeOfTeleportation") then
+
+  -- Right-click opens additional hearthstones flyout
+  if self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then
     self.secureFrame:SetAttribute("type2", "function")
     self.secureFrame:SetAttribute("_function2", function()
-      _G.TeleporterSlashCmdFunction()
+      WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsAdditional)
     end)
-  else
-    self.secureFrame:SetAttribute("type2", self.hsSecondary.type)
   end
 
   if self.hsMythics and not F.Table.IsEmpty(self.hsMythics) then
@@ -230,7 +244,6 @@ function HS:UpdateSelected()
 
   -- Set Type IDs
   self.secureFrame:SetAttribute(self.hsPrimary.type .. "1", self.hsPrimary.name)
-  self.secureFrame:SetAttribute(self.hsSecondary.type .. "2", self.hsSecondary.name)
 
   -- Class spells
   if self.hsClass.name then
@@ -259,26 +272,8 @@ function HS:UpdateTooltip()
   DT.tooltip:AddLine(" ")
 
   self:AddHearthstoneLine(self.hsPrimary)
-  if self.hsPrimary ~= self.hsSecondary and not F.IsAddOnEnabled("TomeOfTeleportation") then self:AddHearthstoneLine(self.hsSecondary) end
 
   DT.tooltip:AddLine(" ")
-
-  local additionalAdded = false
-  for index, enabled in pairs(self.db.additionalHS) do
-    if enabled then
-      local data = I.HearthstoneData[index]
-      if data and data.known and not data.hearthstone and not data.class and not data.portal and not data.teleport then
-        if not additionalAdded then
-          DT.tooltip:AddLine("Additional")
-          DT.tooltip:AddLine(" ")
-        end
-        self:AddHearthstoneLine(data)
-        additionalAdded = true
-      end
-    end
-  end
-
-  if additionalAdded then DT.tooltip:AddLine(" ") end
 
   local classAdded = false
   if self.hsClass.name then
@@ -292,12 +287,8 @@ function HS:UpdateTooltip()
   -- Primary
   if self.hsPrimary and self.hsPrimary.name then DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Cast " .. self.hsPrimary.name) end
 
-  -- Secondary
-  if F.IsAddOnEnabled("TomeOfTeleportation") then
-    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Toggle Tome of Teleporation")
-  elseif self.hsSecondary and self.hsSecondary.name then
-    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Cast " .. self.hsSecondary.name)
-  end
+  -- Right-click: Additional hearthstones flyout
+  if self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Additional Hearthstones") end
 
   -- Shift-Primary for Mythic+ Teleports
   if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
@@ -363,46 +354,14 @@ end
 
 function HS:UpdateCooldownText()
   local primaryReady, primaryReadyText = self:GetCooldownForItem(self.hsPrimary)
-  local secondaryReady, secondaryReadyText = true, ""
 
-  if self.hsPrimary ~= self.hsSecondary then
-    secondaryReady, secondaryReadyText = self:GetCooldownForItem(self.hsSecondary)
-  end
+  WB:StopAnimationType(self.hearthstoneText.cooldownText, WB.animationType.FADE)
+  self.hearthstoneText.cooldownText:SetAlpha(1)
 
-  if not primaryReady and not secondaryReady then
-    if not WB:IsTextTransitionPlaying(self.hearthstoneText.cooldownText) then
-      self.hearthstoneText.cooldownLoop = 0
-
-      WB:StartTextTransition(self.hearthstoneText.cooldownText, 5, function(anim)
-        if self.hearthstoneText.cooldownLoop == 0 then
-          anim.LoopCounter = 2
-        elseif anim.LoopCounter > 2 then
-          anim.LoopCounter = 1
-        end
-
-        self.hearthstoneText.cooldownLoop = anim.LoopCounter
-        self:UpdateCooldownText()
-      end)
-    end
-
-    if self.hearthstoneText.cooldownLoop == 1 then
-      self.hearthstoneText.cooldownText:SetText(primaryReadyText)
-    elseif self.hearthstoneText.cooldownLoop == 2 then
-      self.hearthstoneText.cooldownText:SetText(secondaryReadyText)
-    else
-      self.hearthstoneText.cooldownText:SetText("")
-    end
+  if not primaryReady then
+    self.hearthstoneText.cooldownText:SetText(primaryReadyText)
   else
-    WB:StopAnimationType(self.hearthstoneText.cooldownText, WB.animationType.FADE)
-    self.hearthstoneText.cooldownText:SetAlpha(1)
-
-    if not primaryReady then
-      self.hearthstoneText.cooldownText:SetText(primaryReadyText)
-    elseif not secondaryReady then
-      self.hearthstoneText.cooldownText:SetText(secondaryReadyText)
-    else
-      self.hearthstoneText.cooldownText:SetText("")
-    end
+    self.hearthstoneText.cooldownText:SetText("")
   end
 end
 
@@ -475,7 +434,7 @@ function HS:OnInit()
   self.dataLoaded = false
   self.hsLocation = ""
   self.hsPrimary = {}
-  self.hsSecondary = {}
+  self.hsAdditional = {}
   self.hsClass = {}
   self.hasTeleports = false
 

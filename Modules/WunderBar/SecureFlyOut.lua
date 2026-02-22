@@ -4,7 +4,9 @@ local WB = TXUI:GetModule("WunderBar")
 local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
 local GetCVarBool = GetCVarBool
+local GetItemCooldown = C_Container and C_Container.GetItemCooldown
 local GetSpellTexture = (C_Spell and C_Spell.GetSpellTexture) or GetSpellTexture
+local GetTime = GetTime
 local InCombatLockdown = InCombatLockdown
 
 local secureFlyOutFrame
@@ -25,8 +27,21 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   if InCombatLockdown() then return end
 
   local showTooltip = function(button)
-    if button.spellID then
-      GameTooltip:SetOwner(button, "ANCHOR_LEFT", 4, 4)
+    GameTooltip:SetOwner(button, "ANCHOR_LEFT", 4, 4)
+    if button.isItem then
+      -- Use the item's on-use spell tooltip for a clean display without inventory data
+      -- C_Item.GetItemSpell returns (spellName, spellID) as two separate values
+      local itemSpellID
+      if C_Item and C_Item.GetItemSpell then
+        local _, sid = C_Item.GetItemSpell(button.spellID)
+        itemSpellID = sid
+      end
+      if itemSpellID then
+        GameTooltip:SetSpellByID(itemSpellID)
+      else
+        GameTooltip:SetHyperlink("item:" .. button.spellID)
+      end
+    elseif button.spellID then
       -- Necessary for professions
       local _, _, _, _, _, _, spellID = E:GetSpellInfo(button.spellID)
       GameTooltip:SetSpellByID(spellID or button.spellID)
@@ -165,14 +180,21 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
       prevSlots[currentColumn] = slot
     end
 
-    slot:SetAttribute("type", info.type)
+    local isItem = info.type == "item" or info.type == "toy"
+    slot:SetAttribute("type", isItem and "item" or info.type)
 
     if info.type == "function" then
       slot:SetAttribute("_function", info.func)
       slot.spellID = info.spellID
-    else
-      slot:SetAttribute(info.type, info.spellID)
+      slot.isItem = nil
+    elseif isItem then
+      slot:SetAttribute("item", info.name)
       slot.spellID = info.spellID
+      slot.isItem = true
+    else
+      slot:SetAttribute("spell", info.spellID)
+      slot.spellID = info.spellID
+      slot.isItem = nil
     end
 
     local texture = info.icon or GetSpellTexture(info.spellID)
@@ -191,8 +213,12 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     disabledTexture:SetInside()
     disabledTexture:SetDesaturated(true)
 
-    -- Create Cooldown for spells
-    if info.type == "spell" then
+    -- Reset cooldown state from any previous use of this pooled button
+    slot:SetScript("OnUpdate", nil)
+    if slot.cooldown then slot.cooldown:SetCooldown(0, 0) end
+
+    -- Create Cooldown for spells and items
+    if info.type == "spell" or isItem then
       if not slot.cooldown then
         local cooldown = CreateFrame("Cooldown", nil, slot, "CooldownFrameTemplate")
         cooldown:SetAllPoints()
@@ -201,24 +227,27 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
         slot.cooldown = cooldown
       end
 
-      if not slot.cdText then
-        local cdText = slot.cooldown:CreateFontString(nil, "OVERLAY")
-        cdText:SetPoint("CENTER", slot.cooldown, "CENTER")
-        slot.cdText = cdText
-      end
-
-      slot.cdText:SetFont(labelFont, flyoutDb.labelFontSize, "OUTLINE")
-
       -- Hook OnUpdate script to update cooldown
-      slot:SetScript("OnUpdate", function(btn)
-        local start, duration = E:GetSpellCooldown(info.spellID)
-        if start and duration and duration > 0 then
-          local currentTime = GetTime()
-          local remaining = math.floor((start + duration) - currentTime)
-          slot.cdText:SetText(F.String.FormatTimeClass(remaining))
-          btn.cooldown:SetCooldown(start, duration)
-        end
-      end)
+      if info.type == "spell" then
+        slot:SetScript("OnUpdate", function(btn)
+          local start, duration = E:GetSpellCooldown(info.spellID)
+          if start and duration and duration > 0 then
+            btn.cooldown:SetCooldown(start, duration)
+          else
+            btn.cooldown:SetCooldown(0, 0)
+          end
+        end)
+      elseif GetItemCooldown then
+        slot:SetScript("OnUpdate", function(btn)
+          local start, duration = GetItemCooldown(info.spellID)
+          if start and duration and duration > 0 then
+            local remaining = math.floor((start + duration) - GetTime())
+            btn.cooldown:SetCooldown(start, duration)
+          else
+            btn.cooldown:SetCooldown(0, 0)
+          end
+        end)
+      end
     end
 
     if info.label and E.db.TXUI.wunderbar.subModules.Hearthstone.showLabels and not info.mage then
