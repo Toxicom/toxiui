@@ -129,9 +129,14 @@ function F.String.ElvUIValue(msg)
 end
 
 function F.String.Class(msg, class)
-  local finalClass = class or E.myclass
+  local finalClass = class
+
+  if not class then finalClass = E.myclass end
 
   local color = E:ClassColor(finalClass, true)
+
+  if not color or not color.r then color = E:ClassColor(E.myclass, true) end
+
   return F.String.Color(msg, F.String.FastRGB(color.r, color.g, color.b))
 end
 
