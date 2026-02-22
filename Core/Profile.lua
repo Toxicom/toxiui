@@ -297,6 +297,7 @@ P.addons = {
     -- If these are enabled by default, their previous width value does not get stored
     dynamicBarsWidth = false,
     dynamicCastbarWidth = false,
+    minDynamicWidth = F.Dpi(292),
 
     -- Anchoring
     anchors = {

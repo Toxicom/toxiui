@@ -3,6 +3,7 @@ local CM = TXUI:GetModule("CooldownManager")
 
 local InCombatLockdown = InCombatLockdown
 local floor = math.floor
+local max = math.max
 
 function CM:SyncBarsWidth()
   if not self.essentialViewer then return end
@@ -14,6 +15,10 @@ function CM:SyncBarsWidth()
 
   -- For when EssentialCooldownViewer is too small or no spells etc.
   if width <= 100 then width = F.Dpi(292) end -- default width
+
+  -- Apply minimum width if set
+  local minWidth = self.db.minDynamicWidth
+  if minWidth and minWidth > 0 then width = max(width, minWidth) end
 
   -- Skip if width hasn't changed
   if self.cachedBarsWidth == width then return end
@@ -40,6 +45,10 @@ function CM:SyncCastbarWidth()
   local width = floor(self.essentialViewer:GetWidth() + 0.5)
   if not width or width <= 30 then return end
   if width <= 100 then width = F.Dpi(292) end
+
+  -- Apply minimum width if set
+  local minWidth = self.db.minDynamicWidth
+  if minWidth and minWidth > 0 then width = max(width, minWidth) end
 
   if self.cachedCastbarWidth == width then return end
   self.cachedCastbarWidth = width

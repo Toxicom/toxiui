@@ -164,6 +164,28 @@ function O:Skins_CooldownManager()
         F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
+
+    dynamicGroup.minDynamicWidth = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Minimum Width",
+      desc = "Minimum width applied when syncing. Prevents bars from becoming too narrow when few cooldowns are shown.",
+      min = 200,
+      max = 600,
+      step = 1,
+      disabled = function()
+        local cmDB = E.db.TXUI.addons.cooldownManager
+        return isDisabled() or (not cmDB.dynamicBarsWidth and not cmDB.dynamicCastbarWidth)
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.minDynamicWidth
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.minDynamicWidth = value
+        local cm = TXUI:GetModule("CooldownManager")
+        if cm then cm:OnDynamicWidthChanged() end
+      end,
+    }
   end
 
   -- Spacer
