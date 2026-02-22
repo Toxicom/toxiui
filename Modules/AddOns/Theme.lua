@@ -42,6 +42,7 @@ function T:SetTemplate(frame, template, glossTex, ignoreUpdates, _, isUnitFrameE
   -- Transparent & UnitFrames
   if (skinForTransparent or skinForUnitFrame or isStatusBar) and (self.db and self.db.enabled and self.db.shadowEnabled) then
     if not frame.TXCreateSoftShadow then return self:LogDebug("API function TXCreateSoftShadow not found!") end
+    if frame.IsProtected and frame:IsProtected() then return end
     if frame.shadow then frame.shadow:Kill() end
     frame:TXCreateSoftShadow(F.Dpi(self.db.shadowSize), self.db.shadowAlpha)
     self.shadowCache[frame] = true

@@ -667,7 +667,13 @@ function F.CreateSoftShadow(frame, shadowSize, shadowAlpha)
   local softShadow = frame.txSoftShadow or CreateFrame("Frame", nil, frame, "BackdropTemplate")
   softShadow:SetFrameLevel(frame:GetFrameLevel())
   softShadow:SetFrameStrata(frame:GetFrameStrata())
-  softShadow:SetOutside(frame, (shadowSize - edgeSize) or edgeSize, (shadowSize - edgeSize) or edgeSize)
+
+  local ok = pcall(softShadow.SetOutside, softShadow, frame, (shadowSize - edgeSize) or edgeSize, (shadowSize - edgeSize) or edgeSize)
+  if not ok then
+    softShadow:Hide()
+    return
+  end
+
   softShadow:SetBackdrop {
     edgeFile = E.Media.Textures.GlowTex,
     edgeSize = E:Scale(shadowSize),
