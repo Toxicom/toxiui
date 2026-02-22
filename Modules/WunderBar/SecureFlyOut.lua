@@ -241,7 +241,6 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
         slot:SetScript("OnUpdate", function(btn)
           local start, duration = GetItemCooldown(info.spellID)
           if start and duration and duration > 0 then
-            local remaining = math.floor((start + duration) - GetTime())
             btn.cooldown:SetCooldown(start, duration)
           else
             btn.cooldown:SetCooldown(0, 0)
