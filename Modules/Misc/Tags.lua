@@ -337,6 +337,7 @@ function M:Tags()
 
     if TXUI.IsRetail then
       if E.myclass == "WARLOCK" and unit == "player" then power = UnitPower(unit, Enum.PowerType.SoulShards) end
+      if E.myclass == "EVOKER" and unit == "player" then power = UnitPower(unit, Enum.PowerType.Essence) end
       if E.myclass == "PALADIN" and unit == "player" then power = UnitPower(unit, Enum.PowerType.HolyPower) end
       if unit == "player" and hideManaSpecs[cachedSpecID] then return end
       if unit == "player" and displayPercentageSpecs[cachedSpecID] then power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100)) end
