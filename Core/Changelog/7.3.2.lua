@@ -31,11 +31,12 @@ TXUI.Changelog["7.3.2"] = {
 
     "* Bug fixes",
     "Fix flyout buttons retaining cooldown state when reused across different flyout menus",
+    "Fix Class Bar position after updating if Power Bar is disabled",
     F.String.Retail() .. "Skip anchoring and centering for the " .. F.String.CDM() .. " if a viewer's orientation is vertical",
     F.String.Retail() .. "Hide the debuff border for " .. F.String.CDM() .. " icons if centering is enabled" .. F.String.Sublist(
       "This is a bandaid fix, hopefully ElvUI fixes it properly in the future"
     ),
-    "Fix Class Bar position after updating if Power Bar is disabled",
+    F.String.Retail() .. "Protect " .. F.String.Menu.WunderBar() .. " currency tooltip in combat",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(

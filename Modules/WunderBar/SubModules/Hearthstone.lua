@@ -59,7 +59,11 @@ function HS:GetCooldownForItem(itemInfo)
 
   if startTime == nil or duration == nil then return self:LogDebug("HS:GetCooldownForItem > GetItemCooldown returned nil for item") end
 
-  local cooldownTime = startTime + duration - GetTime()
+  -- startTime can be a "secret" tainted value in combat, arithmetic on it will error
+  local ok, cooldownTime = pcall(function()
+    return startTime + duration - GetTime()
+  end)
+  if not ok then return false, "In Combat" end
   local ready = (duration - gcdDur <= 0) or cooldownTime <= 0
 
   if not ready then
