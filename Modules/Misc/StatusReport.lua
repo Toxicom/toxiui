@@ -40,7 +40,7 @@ local function reqLine(label, requirementsKey, dbValue)
     label,
     function()
       local requirements = TXUI:CheckRequirements(requirementsKey)
-      if requirements ~= true then return F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements])) end
+      if requirements ~= true then return F.String.Error(format("No (%s)", I.Strings.RequirementsDebug[requirements] or "?")) end
       return (dbValue() == true) and F.String.Good("Yes") or F.String.Error("No")
     end,
   }
