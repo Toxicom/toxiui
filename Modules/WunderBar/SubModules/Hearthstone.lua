@@ -136,11 +136,33 @@ function HS:GetMythicPortals()
   return portals
 end
 
+function HS:GetRaidPortals()
+  if not TXUI.IsRetail then return nil end
+
+  local portals = {}
+
+  for _, option in pairs(I.HearthstoneData) do
+    if self.db.seasonRaids then
+      if option.known and option.raid and option.expansion == TXUI.RetailExpansion then
+        option.spellID = option.id
+        option.type = "spell"
+        tinsert(portals, option)
+      end
+    elseif option.known and option.raid then
+      option.spellID = option.id
+      option.type = "spell"
+      tinsert(portals, option)
+    end
+  end
+
+  return portals
+end
+
 function HS:GetAdditionalHearthstones()
   local slots = {}
 
   for _, data in pairs(I.HearthstoneData) do
-    if data.known and not data.hearthstone and not data.mythic and not data.class and (TXUI.IsClassic or (not data.portal and not data.teleport)) then
+    if data.known and not data.hearthstone and not data.mythic and not data.raid and not data.class and (TXUI.IsClassic or (not data.portal and not data.teleport)) then
       if self.db.additionalHS[data.id] ~= false then
         tinsert(slots, {
           spellID = data.id,
@@ -224,6 +246,7 @@ function HS:UpdateSelected()
   -- Get class teleport for non mages
   if E.myclass ~= "MAGE" then self.hsClass = self:GetClassTeleport() end
   self.hsMythics = self:GetMythicPortals()
+  self.hsRaids = self:GetRaidPortals()
 
   -- Build additional hearthstones list
   self.hsAdditional = self:GetAdditionalHearthstones()
@@ -239,10 +262,18 @@ function HS:UpdateSelected()
     end)
   end
 
-  if self.hsMythics and not F.Table.IsEmpty(self.hsMythics) then
+  local hasMythics = self.hsMythics and not F.Table.IsEmpty(self.hsMythics)
+  local hasRaids = self.hsRaids and not F.Table.IsEmpty(self.hsRaids)
+  if hasMythics or hasRaids then
     self.secureFrame:SetAttribute("shift-type1", "function")
     self.secureFrame:SetAttribute("shift-_function1", function()
-      WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics)
+      if hasMythics and hasRaids then
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics, self.hsRaids)
+      elseif hasMythics then
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics)
+      else
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsRaids)
+      end
     end)
   end
 
@@ -294,8 +325,18 @@ function HS:UpdateTooltip()
   -- Right-click: Additional hearthstones flyout
   if self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Additional Hearthstones") end
 
-  -- Shift-Primary for Mythic+ Teleports
-  if (self.hsMythics and not F.Table.IsEmpty(self.hsMythics)) and TXUI.IsRetail then DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu") end
+  -- Shift-Primary for Mythic+/Raid Teleports
+  if TXUI.IsRetail then
+    local hasMythics = self.hsMythics and not F.Table.IsEmpty(self.hsMythics)
+    local hasRaids = self.hsRaids and not F.Table.IsEmpty(self.hsRaids)
+    if hasMythics and hasRaids then
+      DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ & Raid Teleports Menu")
+    elseif hasMythics then
+      DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Mythic+ Teleports Menu")
+    elseif hasRaids then
+      DT.tooltip:AddLine("|cffFFFFFFShift-Left Click:|r Open Raid Teleports Menu")
+    end
+  end
 
   -- Shift-Secondary for Class Travel other than Mages
   if classAdded then DT.tooltip:AddLine("|cffFFFFFFShift-Right Click:|r Cast " .. self.hsClass.name) end

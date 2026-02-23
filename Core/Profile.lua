@@ -1152,6 +1152,7 @@ P.wunderbar = {
       iconFontSize = 18,
 
       seasonMythics = false,
+      seasonRaids = false,
       showLabels = true,
       showMageLabels = true,
 

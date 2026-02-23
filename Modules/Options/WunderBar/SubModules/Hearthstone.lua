@@ -113,6 +113,15 @@ function O:WunderBar_SubModules_Hearthstone()
     width = 1.2,
   }
 
+  tab.generalGroup.args.seasonRaids = {
+    type = "toggle",
+    name = "Seasonal Raid Teleports",
+    desc = "Enabling this will show only the current expansion's raid teleports in the Flyout frame",
+    order = self:GetOrder(),
+    hidden = not TXUI.IsRetail,
+    width = 1.2,
+  }
+
   tab.generalGroup.args.showLabels = {
     type = "toggle",
     name = "Show labels",

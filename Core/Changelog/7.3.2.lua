@@ -14,6 +14,7 @@ TXUI.Changelog["7.3.2"] = {
     F.String.Menu.WunderBar() .. " Hearthstone: Replace secondary Hearthstone right-click with a flyout for Additional Teleports" .. F.String.Sublist(
       "All Additional Teleports are now enabled by default"
     ),
+    F.String.Menu.WunderBar() .. " Hearthstone: Add raid teleports to M+ flyout",
     F.String.Retail() .. "Add minimum width slider to bars sync functionality of " .. F.String.CDM(),
 
     "* Enhancements",

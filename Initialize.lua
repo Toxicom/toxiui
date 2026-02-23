@@ -47,6 +47,10 @@ TXUI.IsAnniversary = TXUI.MetaFlavor == "Anniversary"
 -- see Internal.lua for M+ Hearthstones
 TXUI.RetailSeason = "tww3"
 
+-- Current expansion for Retail, eg.: tww
+-- see Internal.lua for Raid Hearthstones
+TXUI.RetailExpansion = "tww"
+
 TXUI.Modules = {}
 TXUI.Modules.Changelog = TXUI:NewModule("Changelog", "AceEvent-3.0", "AceTimer-3.0")
 TXUI.Modules.Options = TXUI:NewModule("Options")
