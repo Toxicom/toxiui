@@ -82,14 +82,14 @@ function VB:CreateVigorSegments()
     leftColor = CreateColor(customLeft.r, customLeft.g, customLeft.b, 1)
     rightColor = CreateColor(customRight.r, customRight.g, customRight.b, 1)
   elseif E.db.TXUI.themes.gradientMode.enabled then
-    local colorMap = E.db.TXUI.themes.gradientMode.classColorMap
-
-    local left = colorMap[1][E.myclass]
-    local right = colorMap[2][E.myclass]
-
-    if left.r and right.r then
-      leftColor = CreateColor(left.r, left.g, left.b, 1)
-      rightColor = CreateColor(right.r, right.g, right.b, 1)
+    local fgMap = F.Color.GetMap("classColorMap")
+    if not fgMap then
+      F.Color.GenerateCache()
+      fgMap = F.Color.GetMap("classColorMap")
+    end
+    if fgMap then
+      leftColor = fgMap[I.Enum.GradientMode.Color.SHIFT][E.myclass]
+      rightColor = fgMap[I.Enum.GradientMode.Color.NORMAL][E.myclass]
     end
   end
 

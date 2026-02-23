@@ -60,6 +60,33 @@ function VB:UpdateSpeedText()
   self.vigorBar.speedText:SetText(self:ColorSpeedText(format("%d%%", movespeed)))
 end
 
+function VB:UpdateVigorColors()
+  if not self.vigorBar or F.Table.IsEmpty(self.vigorBar.segments) then return end
+
+  local leftColor, rightColor
+
+  if self.vdb.useCustomColor then
+    local customLeft = self.vdb.customColorLeft
+    local customRight = self.vdb.customColorRight
+    leftColor = CreateColor(customLeft.r, customLeft.g, customLeft.b, 1)
+    rightColor = CreateColor(customRight.r, customRight.g, customRight.b, 1)
+  elseif E.db.TXUI.themes.gradientMode.enabled then
+    F.Color.GenerateCache()
+    local fgMap = F.Color.GetMap("classColorMap")
+    if fgMap then
+      leftColor = fgMap[I.Enum.GradientMode.Color.SHIFT][E.myclass]
+      rightColor = fgMap[I.Enum.GradientMode.Color.NORMAL][E.myclass]
+    end
+  end
+
+  for _, segment in ipairs(self.vigorBar.segments) do
+    segment.leftColor = leftColor
+    segment.rightColor = rightColor
+  end
+
+  self:UpdateVigorSegments()
+end
+
 function VB:UpdateVigorBar()
   -- Always recreate segments when settings change to ensure colors/textures are updated
   if not F.Table.IsEmpty(self.vigorBar.segments) then

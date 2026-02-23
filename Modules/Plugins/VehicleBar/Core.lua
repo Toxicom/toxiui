@@ -166,6 +166,8 @@ function VB:Initialize()
   F.Event.RegisterCallback("TXUI.DatabaseUpdate", self.DatabaseUpdate, self)
   F.Event.RegisterCallback("VehicleBar.DatabaseUpdate", self.DatabaseUpdate, self)
   F.Event.RegisterCallback("VehicleBar.SettingsUpdate", self.UpdateBar, self)
+  F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.Health", self.UpdateVigorColors, self)
+  F.Event.RegisterCallback("ThemesGradients.DatabaseUpdate", self.UpdateVigorColors, self)
 
   -- We are done, hooray!
   self.Initialized = true
