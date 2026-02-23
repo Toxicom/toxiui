@@ -406,9 +406,9 @@ I.HearthstoneDataLoaded = false
 I.HearthstoneData = {
   -- Standard Items --
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
-  [110560] = { ["type"] = "toy", ["hearthstone"] = false }, -- Garrison Hearthstone
-  [140192] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dalaran Hearthstone
-  [141605] = { ["type"] = "item", ["hearthstone"] = false }, -- Flight Master's Whistle
+  [110560] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "GARR" }, -- Garrison Hearthstone
+  [140192] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DALA" }, -- Dalaran Hearthstone
+  [141605] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "FMW" }, -- Flight Master's Whistle
 
   -- Class Teleports --
   [556] = { ["type"] = "spell", ["hearthstone"] = true, ["class"] = "SHAMAN" }, -- Astral Recall
@@ -418,9 +418,9 @@ I.HearthstoneData = {
   [193753] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Dreamwalk
 
   -- Racial Teleports/Items --
-  [168862] = { ["type"] = "item", ["hearthstone"] = false }, -- G.E.A.R. Tracking Beacon
-  [265225] = { ["type"] = "spell", ["hearthstone"] = false }, -- Mole Machine
-  [312372] = { ["type"] = "spell", ["hearthstone"] = false }, -- Return to Camp
+  [168862] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "FMW" }, -- G.E.A.R. Tracking Beacon
+  [265225] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "MOLE" }, -- Mole Machine
+  [312372] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "CAMP" }, -- Return to Camp
 
   -- Alternate Hearthstones --
   [54452] = { ["type"] = "toy", ["hearthstone"] = true }, -- Ethereal Portal
@@ -453,55 +453,59 @@ I.HearthstoneData = {
   [236687] = { ["type"] = "toy", ["hearthstone"] = true }, -- Explosive Hearthstone
   [246565] = { ["type"] = "toy", ["hearthstone"] = true }, -- Cosmic Hearthstone
   [245970] = { ["type"] = "toy", ["hearthstone"] = true }, -- P.O.S.T. Master's Express Hearthstone
+  [263489] = { ["type"] = "toy", ["hearthstone"] = true }, -- Naaru's Enfold
+  [235016] = { ["type"] = "toy", ["hearthstone"] = true }, -- Redeployment Module
 
   -- Engineering Items/Toys --
-  [18984] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dimensional Ripper - Everlook
-  [18986] = { ["type"] = "toy", ["hearthstone"] = false }, -- Ultrasafe Transporter: Gadgetzan
-  [30542] = { ["type"] = "toy", ["hearthstone"] = false }, -- Dimensional Ripper - Area 52
-  [30544] = { ["type"] = "toy", ["hearthstone"] = false }, -- Ultrasafe Transporter: Toshley's Station
-  [48933] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Northrend
-  [87215] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Pandaria
-  [112059] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Centrifuge
-  [132517] = { ["type"] = "item", ["hearthstone"] = false }, -- Intra-Dalaran Wormhole Generator
-  [151652] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Argus
-  [168807] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Kul Tiras
-  [168808] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Zandalar
-  [172924] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Shadowlands
-  [198156] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wyrmhole Generator: Dragon Isles
-  [221966] = { ["type"] = "toy", ["hearthstone"] = false }, -- Wormhole Generator: Khaz Algar
+  [18984] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "EVR" }, -- Dimensional Ripper - Everlook
+  [18986] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "GAD" }, -- Ultrasafe Transporter: Gadgetzan
+  [30542] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "A52" }, -- Dimensional Ripper - Area 52
+  [30544] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "TOSH" }, -- Ultrasafe Transporter: Toshley's Station
+  [48933] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "WotLK" }, -- Wormhole Generator: Northrend
+  [87215] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "MOP" }, -- Wormhole Generator: Pandaria
+  [112059] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "WOD" }, -- Wormhole Centrifuge
+  [132517] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Intra-Dalaran Wormhole Generator
+  [151652] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "ARG" }, -- Wormhole Generator: Argus
+  [168807] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "KT" }, -- Wormhole Generator: Kul Tiras
+  [168808] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "ZAN" }, -- Wormhole Generator: Zandalar
+  [172924] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "SL" }, -- Wormhole Generator: Shadowlands
+  [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DF" }, -- Wyrmhole Generator: Dragon Isles
+  [221966] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "TWW" }, -- Wormhole Generator: Khaz Algar
 
   -- Teleportation Equipment --
-  [22589] = { ["type"] = "item", ["hearthstone"] = false }, -- Atiesh, Greatstaff of the Guardian
-  [28585] = { ["type"] = "item", ["hearthstone"] = false }, -- Ruby Slippers
-  [32757] = { ["type"] = "item", ["hearthstone"] = false }, -- Blessed Medallion of Karabor
-  [44935] = { ["type"] = "item", ["hearthstone"] = false }, -- Ring of the Kirin Tor
-  [45690] = { ["type"] = "item", ["hearthstone"] = false }, -- Inscribed Ring of the Kirin Tor
-  [46874] = { ["type"] = "item", ["hearthstone"] = false }, -- Argent Crusader's Tabard
-  [48956] = { ["type"] = "item", ["hearthstone"] = false }, -- Etched Ring of the Kirin Tor
-  [51559] = { ["type"] = "item", ["hearthstone"] = false }, -- Runed of the Kirin Tor
-  [50287] = { ["type"] = "item", ["hearthstone"] = false }, -- Boots of the Bay
-  [63206] = { ["type"] = "item", ["hearthstone"] = false }, -- Wrap of Unity (Alliance)
-  [63207] = { ["type"] = "item", ["hearthstone"] = false }, -- Wrap of Unity (Horde)
-  [63352] = { ["type"] = "item", ["hearthstone"] = false }, -- Shroud of Cooperation (Alliance)
-  [63353] = { ["type"] = "item", ["hearthstone"] = false }, -- Shroud of Cooperation (Horde)
-  [63378] = { ["type"] = "item", ["hearthstone"] = false }, -- Hellscream's Reach Tabard
-  [63379] = { ["type"] = "item", ["hearthstone"] = false }, -- Baradin's Wardens Tabard
-  [65274] = { ["type"] = "item", ["hearthstone"] = false }, -- Cloak of Coordination (Horde)
-  [65360] = { ["type"] = "item", ["hearthstone"] = false }, -- Cloak of Coordination (Alliance)
-  [139599] = { ["type"] = "item", ["hearthstone"] = false }, -- Empowered Ring of the Kirin Tor
-  [142469] = { ["type"] = "item", ["hearthstone"] = false }, -- Violet Seal of the Grand Magus
-  [144391] = { ["type"] = "item", ["hearthstone"] = false }, -- Pugilist's Powerful Punching Ring (Alliance)
-  [144392] = { ["type"] = "item", ["hearthstone"] = false }, -- Pugilist's Powerful Punching Ring (Horde)
-  [166559] = { ["type"] = "item", ["hearthstone"] = false }, -- Commander's Signet of Battle
-  [166560] = { ["type"] = "item", ["hearthstone"] = false }, -- Captain's Signet of Command
-  [193000] = { ["type"] = "item", ["hearthstone"] = false }, -- Ring-Bound Hourglass
-  [243056] = { ["type"] = "toy", ["hearthstone"] = false }, -- Delver's Mana-Bound Ethergate
-  [230850] = { ["type"] = "toy", ["hearthstone"] = false }, -- Delve-O-Bot 7001
-  [205255] = { ["type"] = "toy", ["hearthstone"] = false }, -- Niffen Diggin' Mitts
+  [22589] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "KZ" }, -- Atiesh, Greatstaff of the Guardian
+  [28585] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "HOME" }, -- Ruby Slippers
+  [32757] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "KAR" }, -- Blessed Medallion of Karabor
+  [44935] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Ring of the Kirin Tor
+  [45690] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Inscribed Ring of the Kirin Tor
+  [46874] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "ICC" }, -- Argent Crusader's Tabard
+  [48956] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Etched Ring of the Kirin Tor
+  [51559] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Runed of the Kirin Tor
+  [50287] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BOTY" }, -- Boots of the Bay
+  [63206] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "SW" }, -- Wrap of Unity (Alliance)
+  [63207] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "ORG" }, -- Wrap of Unity (Horde)
+  [63352] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "SW" }, -- Shroud of Cooperation (Alliance)
+  [63353] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "ORG" }, -- Shroud of Cooperation (Horde)
+  [63378] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "TBR" }, -- Hellscream's Reach Tabard
+  [63379] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "TBR" }, -- Baradin's Wardens Tabard
+  [65274] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "ORG" }, -- Cloak of Coordination (Horde)
+  [65360] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "SW" }, -- Cloak of Coordination (Alliance)
+  [139599] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Empowered Ring of the Kirin Tor
+  [142469] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "KZ" }, -- Violet Seal of the Grand Magus
+  [144391] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BRAWL" }, -- Pugilist's Powerful Punching Ring (Alliance)
+  [144392] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BRAWL" }, -- Pugilist's Powerful Punching Ring (Horde)
+  [166559] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DAZ" }, -- Commander's Signet of Battle
+  [166560] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BOR" }, -- Captain's Signet of Command
+  [193000] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "RAND" }, -- Ring-Bound Hourglass
+  [243056] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DORN" }, -- Delver's Mana-Bound Ethergate
+  [230850] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DLVE" }, -- Delve-O-Bot 7001
+  [205255] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "ZARL" }, -- Niffen Diggin' Mitts
 
   --                   --
   -- Mythic+ Teleports --
   --                   --
+  -- Wrath of the Lich King
+  [1254555] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wotlk", ["label"] = "POS" }, -- Pit of Saron
   -- Cataclysm
   [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df2", ["label"] = "VP" }, -- The Vortex Pinnacle
   [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "TotT" }, -- Throne of the Tides
@@ -527,6 +531,7 @@ I.HearthstoneData = {
   [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl4", ["label"] = "GD" }, -- Grimrail Depot
   [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "EB" }, -- The Everbloom
   [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "UBS" }, -- Upper Blackrock Spire
+  [1254557] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "SKY" }, -- Skyreach
 
   -- Legion
   [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "NL" }, -- Neltharion's Lair
@@ -534,6 +539,7 @@ I.HearthstoneData = {
   [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DHT" }, -- Darkheart Thicket
   [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "HOV" }, -- Halls of Valor
   [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "COS" }, -- Court of Stars
+  [1254551] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "legion", ["label"] = "SotV" }, -- Seat of the Triumvirate
 
   -- Battle for Azeroth
   [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "WM" }, -- Waycrest Manor
@@ -586,6 +592,23 @@ I.HearthstoneData = {
   [1216786] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww3", ["label"] = "FLOOD" }, -- Operation: Floodgate
   [1237215] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww3", ["label"] = "EDA" }, -- Eco-Dome Al'dani
 
+  -- Midnight
+  [1254572] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "MT" }, -- Magisters' Terrace
+  [1254400] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "WS" }, -- Windrunner Spire
+  [1254563] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "NPX" }, -- Nexus-Point Xenas
+  [1254559] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "MC" }, -- Maisara Caverns
+
+  --                --
+  -- Raid Teleports --
+  --                --
+  -- Dragonflight
+  [432254] = { ["type"] = "spell", ["hearthstone"] = false, ["raid"] = true, ["expansion"] = "df", ["label"] = "VotI" }, -- Vault of the Incarnates
+  [432257] = { ["type"] = "spell", ["hearthstone"] = false, ["raid"] = true, ["expansion"] = "df", ["label"] = "ABER" }, -- Aberrus, the Shadowed Crucible
+  [432258] = { ["type"] = "spell", ["hearthstone"] = false, ["raid"] = true, ["expansion"] = "df", ["label"] = "AMIR" }, -- Amirdrassil, the Dream's Hope
+  -- The War Within
+  [1226482] = { ["type"] = "spell", ["hearthstone"] = false, ["raid"] = true, ["expansion"] = "tww", ["label"] = "UNDER" }, -- Liberation of Undermine
+  [1239155] = { ["type"] = "spell", ["hearthstone"] = false, ["raid"] = true, ["expansion"] = "tww", ["label"] = "MANA" }, -- Manaforge Omega
+
   --                --
   -- Mage Teleports --
   --                --
@@ -616,6 +639,7 @@ I.HearthstoneData = {
   [344587] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "SL" }, -- Teleport: Oribos
   [395277] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "DF" }, -- Teleport: Valdrakken
   [446540] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "TWW" }, -- Teleport: Dornogal
+  [1259190] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, ["label"] = "MID" }, -- Teleport: Silvermoon City (Midnight)
 
   -- Mage Portals --
   [10059] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "SW" }, -- Portal: Stormwind
@@ -644,26 +668,27 @@ I.HearthstoneData = {
   [344597] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "SL" }, -- Portal: Oribos
   [395289] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "DF" }, -- Portal: Valdrakken
   [446534] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "TWW" }, -- Portal: Dornogal
+  [1259194] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, ["label"] = "MID" }, -- Portal: Silvermoon City (Midnight)
 
   -- Other Teleportation Items/Spells --
-  [37863] = { ["type"] = "item", ["hearthstone"] = false }, -- Direbrew's Remote
-  [43824] = { ["type"] = "toy", ["hearthstone"] = false }, -- The Schools of Arcane Magic - Mastery
-  [52251] = { ["type"] = "item", ["hearthstone"] = false }, -- Jaina's Locket
-  [58487] = { ["type"] = "item", ["hearthstone"] = false }, -- Potion of Deepholm
-  [64457] = { ["type"] = "item", ["hearthstone"] = false }, -- The Last Relic of Argus
-  [95567] = { ["type"] = "toy", ["hearthstone"] = false }, -- Kirin Tor Beacon
-  [95568] = { ["type"] = "toy", ["hearthstone"] = false }, -- Sunreaver Beacon
-  [103678] = { ["type"] = "item", ["hearthstone"] = false }, -- Time-Lost Artifact
-  [118662] = { ["type"] = "item", ["hearthstone"] = false }, -- Bladespire Relic
-  [118663] = { ["type"] = "item", ["hearthstone"] = false }, -- Relic of Karabor
-  [128353] = { ["type"] = "item", ["hearthstone"] = false }, -- Ever-Shifting Mirror
-  [129276] = { ["type"] = "item", ["hearthstone"] = false }, -- Beginner's Guide to Dimensional Rifting
-  [129929] = { ["type"] = "item", ["hearthstone"] = false }, -- Admiral's Compass
-  [140324] = { ["type"] = "toy", ["hearthstone"] = false }, -- Mobile Telemancy Beacon
-  [140493] = { ["type"] = "item", ["hearthstone"] = false }, -- Adepts's Guide to Dimensional Rifting
-  [167075] = { ["type"] = "item", ["hearthstone"] = false }, -- Ultrasafe Transporter: Mechagon
-  [211788] = { ["type"] = "toy", ["hearthstone"] = false }, -- Tess's Peacebloom
-  [324547] = { ["type"] = "spell", ["hearthstone"] = false }, -- Hearth Kidneystone
+  [37863] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BRD" }, -- Direbrew's Remote
+  [43824] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DALA" }, -- The Schools of Arcane Magic - Mastery
+  [52251] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Jaina's Locket
+  [58487] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DHLM" }, -- Potion of Deepholm
+  [64457] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "RAND" }, -- The Last Relic of Argus
+  [95567] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "IoT" }, -- Kirin Tor Beacon
+  [95568] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "IoT" }, -- Sunreaver Beacon
+  [103678] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "TIML" }, -- Time-Lost Artifact
+  [118662] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BLAD" }, -- Bladespire Relic
+  [118663] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "KAR" }, -- Relic of Karabor
+  [128353] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "SHIP" }, -- Admiral's Compass
+  [129276] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "AZ" }, -- Beginner's Guide to Dimensional Rifting
+  [129929] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "SHFT" }, -- Ever-Shifting Mirror
+  [140324] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "SUR" }, -- Mobile Telemancy Beacon
+  [140493] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BI" }, -- Adepts's Guide to Dimensional Rifting
+  [167075] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "MECH" }, -- Ultrasafe Transporter: Mechagon
+  [211788] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "GIL" }, -- Tess's Peacebloom
+  [324547] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "NECR" }, -- Hearth Kidneystone
 }
 
 I.HearthstoneData_Classic = {
