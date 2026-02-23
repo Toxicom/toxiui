@@ -17,7 +17,7 @@ I.General = {
 }
 
 I.MaxLevelTable = {
-  ["Retail"] = 80,
+  ["Retail"] = 90,
   ["Classic"] = 90,
   ["ClassicEra"] = 60,
   ["Anniversary"] = 70,
@@ -505,7 +505,7 @@ I.HearthstoneData = {
   -- Mythic+ Teleports --
   --                   --
   -- Wrath of the Lich King
-  [1254555] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wotlk", ["label"] = "POS" }, -- Pit of Saron
+  [1254555] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "POS" }, -- Pit of Saron
   -- Cataclysm
   [410080] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df2", ["label"] = "VP" }, -- The Vortex Pinnacle
   [424142] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "TotT" }, -- Throne of the Tides
@@ -531,7 +531,7 @@ I.HearthstoneData = {
   [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl4", ["label"] = "GD" }, -- Grimrail Depot
   [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "EB" }, -- The Everbloom
   [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "UBS" }, -- Upper Blackrock Spire
-  [1254557] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "SKY" }, -- Skyreach
+  [1254557] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SKY" }, -- Skyreach
 
   -- Legion
   [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "NL" }, -- Neltharion's Lair
@@ -539,7 +539,7 @@ I.HearthstoneData = {
   [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DHT" }, -- Darkheart Thicket
   [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "HOV" }, -- Halls of Valor
   [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "COS" }, -- Court of Stars
-  [1254551] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "legion", ["label"] = "SotV" }, -- Seat of the Triumvirate
+  [1254551] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SotV" }, -- Seat of the Triumvirate
 
   -- Battle for Azeroth
   [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "WM" }, -- Waycrest Manor
@@ -573,7 +573,7 @@ I.HearthstoneData = {
   [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "RLP" }, -- Ruby Life Pools
   [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "NO" }, -- Nokhud Offensive
   [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "BH" }, -- Brackenhide Hollow
-  [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "AA" }, -- Algeth'ar Academy
+  [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "AA" }, -- Algeth'ar Academy
   [393276] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "NELT" }, -- Neltharus
   [393279] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "AV" }, -- Azure Vault
   [393283] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "HOI" }, -- Halls of Infusion
@@ -593,10 +593,10 @@ I.HearthstoneData = {
   [1237215] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww3", ["label"] = "EDA" }, -- Eco-Dome Al'dani
 
   -- Midnight
-  [1254572] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "MT" }, -- Magisters' Terrace
-  [1254400] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "WS" }, -- Windrunner Spire
-  [1254563] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "NPX" }, -- Nexus-Point Xenas
-  [1254559] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid", ["label"] = "MC" }, -- Maisara Caverns
+  [1254572] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "MT" }, -- Magisters' Terrace
+  [1254400] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "WS" }, -- Windrunner Spire
+  [1254563] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "NPX" }, -- Nexus-Point Xenas
+  [1254559] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "MC" }, -- Maisara Caverns
 
   --                --
   -- Raid Teleports --
