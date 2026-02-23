@@ -495,6 +495,9 @@ I.HearthstoneData = {
   [166559] = { ["type"] = "item", ["hearthstone"] = false }, -- Commander's Signet of Battle
   [166560] = { ["type"] = "item", ["hearthstone"] = false }, -- Captain's Signet of Command
   [193000] = { ["type"] = "item", ["hearthstone"] = false }, -- Ring-Bound Hourglass
+  [243056] = { ["type"] = "toy", ["hearthstone"] = false }, -- Delver's Mana-Bound Ethergate
+  [230850] = { ["type"] = "toy", ["hearthstone"] = false }, -- Delve-O-Bot 7001
+  [205255] = { ["type"] = "toy", ["hearthstone"] = false }, -- Niffen Diggin' Mitts
 
   --                   --
   -- Mythic+ Teleports --

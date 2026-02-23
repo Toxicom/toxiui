@@ -52,6 +52,9 @@ TXUI.Changelog["7.3.2"] = {
 
     "* Documentation",
     "Add " .. F.String.Kryo() .. " to contributors list",
+    F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Add several TWW toys" .. F.String.Sublist("Delver's Mana-Bound Ethergate") .. F.String.Sublist(
+      "Delve-O-Bot 7001"
+    ) .. F.String.Sublist("Niffen Diggin' Mitts"),
 
     "* Settings refactoring",
     F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",
