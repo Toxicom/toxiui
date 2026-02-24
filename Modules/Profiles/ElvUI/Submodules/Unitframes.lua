@@ -91,7 +91,7 @@ local player = {
     maxDuration = 0,
     perrow = 7,
     priority = "Blacklist,Boss,CCDebuffs,RaidDebuffs,CastByUnit,CastByNPC,Personal",
-    spacing = 0,
+    spacing = F.Dpi(2),
     xOffset = 0,
     yOffset = F.Dpi(30),
 
@@ -99,8 +99,8 @@ local player = {
     countYOffset = F.Dpi(-7),
 
     keepSizeRatio = false,
-    sizeOverride = F.Dpi(43),
-    height = F.Dpi(29),
+    sizeOverride = F.Dpi(41),
+    height = F.Dpi(27),
   },
 
   fader = {
@@ -276,7 +276,7 @@ local function getTarget(horizontal)
       growthX = "LEFT",
       perrow = 7,
       priority = "Blacklist,Personal,Boss,NonPersonal,CastByUnit",
-      spacing = 0,
+      spacing = F.Dpi(2),
       xOffset = 0,
       yOffset = F.Dpi(72),
 
@@ -284,8 +284,8 @@ local function getTarget(horizontal)
       countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(43),
-      height = F.Dpi(29),
+      sizeOverride = F.Dpi(41),
+      height = F.Dpi(27),
     },
 
     debuffs = {
@@ -296,7 +296,7 @@ local function getTarget(horizontal)
       maxDuration = 0,
       perrow = 7,
       priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
-      spacing = 0,
+      spacing = 2,
       xOffset = 0,
       yOffset = F.Dpi(30),
 
@@ -304,8 +304,8 @@ local function getTarget(horizontal)
       countYOffset = F.Dpi(-7),
 
       keepSizeRatio = false,
-      sizeOverride = F.Dpi(43),
-      height = F.Dpi(29),
+      sizeOverride = F.Dpi(41),
+      height = F.Dpi(27),
 
       -- Filters (ElvUI Default)
       isAuraRaid = true,
@@ -514,7 +514,7 @@ local focus = {
     countPosition = "BOTTOM",
     countYOffset = F.Dpi(-7),
 
-    spacing = F.Dpi(0),
+    spacing = F.Dpi(2),
     xOffset = F.Dpi(4),
     yOffset = F.Dpi(30),
 

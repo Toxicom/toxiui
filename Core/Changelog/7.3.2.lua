@@ -52,6 +52,7 @@ TXUI.Changelog["7.3.2"] = {
     F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(
       "Now that they're bigger due to the requirement to fit buffs and debuffs inside of it, have to save space"
     ),
+    F.String.ElvUI() .. "Adjust spacing for player, target, focus unitframes auras",
 
     "* Documentation",
     "Add " .. F.String.Kryo() .. " to contributors list",
