@@ -1167,9 +1167,8 @@ P.wunderbar = {
       textColor = true,
       textColorFadeToNormal = true,
 
-      randomPrimaryHs = true,
+      randomPrimaryHs = TXUI.IsRetail and true or false,
       primaryHS = 6948,
-      secondaryHS = TXUI.IsRetail and 140192 or 6948,
       additionalHS = {},
     },
     Durability = {
@@ -1220,7 +1219,7 @@ P.wunderbar = {
 
         [I.Specs.DemonHunter.Havoc] = F.String.ConvertGlyph(59651),
         [I.Specs.DemonHunter.Vengeance] = F.String.ConvertGlyph(59652),
-        [I.Specs.DemonHunter.Devourer] = F.String.ConvertGlyph(59651),
+        [I.Specs.DemonHunter.Devourer] = F.String.ConvertGlyph(59742),
 
         [I.Specs.Druid.Balance] = F.String.ConvertGlyph(59653),
         [I.Specs.Druid.Feral] = F.String.ConvertGlyph(59654),
