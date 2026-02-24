@@ -786,6 +786,7 @@ I.HearthstoneData_ClassicEra = {
 I.HearthstoneData_Anniversary = {
   [6948] = { ["type"] = "item", ["hearthstone"] = true }, -- Hearthstone
   [260221] = { ["type"] = "item", ["hearthstone"] = true }, -- Naaru's Embrace
+  [184871] = { ["type"] = "toy", ["hearthstone"] = true }, -- Dark Portal (TBC Deluxe Edition)
 
   -- Hearthstone: Druid
   [18960] = { ["type"] = "spell", ["hearthstone"] = false, ["class"] = "DRUID" }, -- Teleport: Moonglade
