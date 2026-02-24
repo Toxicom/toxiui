@@ -33,6 +33,7 @@ TXUI.Changelog["7.3.2"] = {
     F.String.Retail() .. "Enable the Cooldown Manager in Blizzard settings if " .. F.String.CDM() .. " is enabled",
     F.String.Retail() .. "Display Essence on " .. F.String.ToxiUI("[tx:power]") .. " tag for " .. F.String.Class("Evokers", "EVOKER"),
     F.String.Retail() .. "Reverse " .. F.String.GradientString() .. " direction for Damage Meter gradients",
+    F.String.Retail() .. "Hide mana text for feral & guardian druids in human form",
 
     "* Bug fixes",
     "Fix flyout buttons retaining cooldown state when reused across different flyout menus",
