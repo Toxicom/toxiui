@@ -580,7 +580,13 @@ end
 
 function F.String.FormatTimeClass(seconds)
   local class = E.myclass
-  if seconds >= 60 then
+  if seconds >= 7200 then
+    return math.floor((seconds / 3600) + 0.5) .. F.String.Class("h", class)
+  elseif seconds >= 3600 then
+    local hours = math.floor(seconds / 3600)
+    local minutes = math.floor((seconds % 3600) / 60)
+    return hours .. F.String.Class("h", class) .. " " .. minutes .. F.String.Class("m", class)
+  elseif seconds >= 60 then
     local minutes = math.floor(seconds / 60)
     return minutes .. F.String.Class("m", class)
   else
