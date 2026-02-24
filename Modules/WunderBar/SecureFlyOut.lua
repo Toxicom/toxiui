@@ -215,6 +215,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     -- Reset cooldown state from any previous use of this pooled button
     slot:SetScript("OnUpdate", nil)
     if slot.cooldown then slot.cooldown:SetCooldown(0, 0) end
+    if slot.cdText then slot.cdText:SetText("") end
 
     -- Create Cooldown for spells and items
     if info.type == "spell" or isItem then
@@ -223,26 +224,41 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
         cooldown:SetAllPoints()
         cooldown:SetDrawBling(false)
         cooldown:SetDrawEdge(false)
+        cooldown:SetHideCountdownNumbers(true)
         slot.cooldown = cooldown
       end
+
+      if not slot.cdText then
+        local cdText = slot.cooldown:CreateFontString(nil, "OVERLAY")
+        cdText:SetPoint("CENTER", slot.cooldown, "CENTER")
+        slot.cdText = cdText
+      end
+
+      slot.cdText:SetFont(labelFont, flyoutDb.labelFontSize, "OUTLINE")
 
       -- Hook OnUpdate script to update cooldown
       if info.type == "spell" then
         slot:SetScript("OnUpdate", function(btn)
           local start, duration = E:GetSpellCooldown(info.spellID)
           if start and duration and duration > 0 then
+            local remaining = math.floor((start + duration) - GetTime())
+            slot.cdText:SetText(F.String.FormatTimeClass(remaining))
             btn.cooldown:SetCooldown(start, duration)
           else
             btn.cooldown:SetCooldown(0, 0)
+            slot.cdText:SetText("")
           end
         end)
       elseif GetItemCooldown then
         slot:SetScript("OnUpdate", function(btn)
           local start, duration = GetItemCooldown(info.spellID)
           if start and duration and duration > 0 then
+            local remaining = math.floor((start + duration) - GetTime())
+            slot.cdText:SetText(F.String.FormatTimeClass(remaining))
             btn.cooldown:SetCooldown(start, duration)
           else
             btn.cooldown:SetCooldown(0, 0)
+            slot.cdText:SetText("")
           end
         end)
       end

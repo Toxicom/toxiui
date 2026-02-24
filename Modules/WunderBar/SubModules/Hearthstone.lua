@@ -254,8 +254,13 @@ function HS:UpdateSelected()
   -- Set Types
   self.secureFrame:SetAttribute("type1", self.hsPrimary.type)
 
-  -- Right-click opens additional hearthstones flyout
-  if self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then
+  -- Right-click: TomeOfTeleportation takes priority, then additional hearthstones flyout
+  if F.IsAddOnEnabled("TomeOfTeleportation") then
+    self.secureFrame:SetAttribute("type2", "function")
+    self.secureFrame:SetAttribute("_function2", function()
+      _G.TeleporterSlashCmdFunction()
+    end)
+  elseif self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then
     self.secureFrame:SetAttribute("type2", "function")
     self.secureFrame:SetAttribute("_function2", function()
       WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsAdditional)
@@ -322,8 +327,12 @@ function HS:UpdateTooltip()
   -- Primary
   if self.hsPrimary and self.hsPrimary.name then DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Cast " .. self.hsPrimary.name) end
 
-  -- Right-click: Additional hearthstones flyout
-  if self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Additional Hearthstones") end
+  -- Right-click hint
+  if F.IsAddOnEnabled("TomeOfTeleportation") then
+    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Toggle Tome of Teleportation")
+  elseif self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then
+    DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Open Additional Hearthstones")
+  end
 
   -- Shift-Primary for Mythic+/Raid Teleports
   if TXUI.IsRetail then

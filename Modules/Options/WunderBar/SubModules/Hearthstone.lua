@@ -199,5 +199,19 @@ function O:WunderBar_SubModules_Hearthstone()
   -- Additional Teleports
   tab.additionalGroup = ACH:Group("Additional Teleports", nil, 3)
   tab.additionalGroup.inline = true
+
+  tab.additionalGroup.args.tomeNote = {
+    type = "description",
+    name = F.String.ToxiUI("Tome Of Teleportation") .. " is active - right-click is reserved for Tome of Teleportation. Disable it to configure additional teleports here.",
+    order = 0,
+    fontSize = "medium",
+    hidden = function()
+      return not F.IsAddOnEnabled("TomeOfTeleportation")
+    end,
+  }
+
   self:WunderBar_SubModules_Additional_Toggle(tab.additionalGroup.args)
+  tab.additionalGroup.args.toggles.disabled = function()
+    return F.IsAddOnEnabled("TomeOfTeleportation")
+  end
 end
