@@ -42,6 +42,7 @@ TXUI.Changelog["7.3.2"] = {
     "Fix missing requirement strings in Status Report window",
     "Vehicle Bar gradient colors should update dynamically",
     "Do not register played time events for Game Menu Skin if the feature is disabled in settings",
+    "Do not request time played if it had already been requested by another addon to avoid duplicate chat messages",
     F.String.Retail() .. "Protect " .. F.String.Menu.WunderBar() .. " currency tooltip in combat",
     F.String.Retail() .. "Skip anchoring and centering for the " .. F.String.CDM() .. " if a viewer's orientation is vertical",
     F.String.Retail() .. "Hide the debuff border for " .. F.String.CDM() .. " icons if centering is enabled" .. F.String.Sublist(

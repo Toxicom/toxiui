@@ -175,6 +175,7 @@ end
 -- Event handlers for /played time tracking
 
 function GM:OnTimePlayed(_, totalTimePlayed, levelTimePlayed)
+  self._playedReceived = true
   self.totalTimePlayed = totalTimePlayed
   self.levelTimePlayed = levelTimePlayed
   if self.played and self.played.total then
@@ -206,7 +207,13 @@ function GM:OnPlayerEnteringWorld(_, isLogin)
   if not self._playedRequested then
     self._playedRequested = true
     self:RegisterEvent("TIME_PLAYED_MSG", "OnTimePlayed")
-    RequestTimePlayed()
+    -- Defer our own request so we can piggyback on another addon's call if one fires first,
+    -- avoiding the duplicate chat message that RequestTimePlayed() produces.
+    E:Delay(2, function()
+      if not self._playedReceived then
+        RequestTimePlayed()
+      end
+    end)
   end
 
   if isLogin then
