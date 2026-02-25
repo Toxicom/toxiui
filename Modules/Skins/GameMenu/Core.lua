@@ -105,8 +105,10 @@ function GM:Initialize()
 
   self.isEnabled = false
 
-  -- Register early - PLAYER_ENTERING_WORLD fires before TXUI.InitializedSafe
-  self:RegisterEvent("PLAYER_ENTERING_WORLD", "OnPlayerEnteringWorld")
+  if E.db.TXUI.addons.gameMenuSkin.showPlayed then
+    -- Register early - PLAYER_ENTERING_WORLD fires before TXUI.InitializedSafe
+    self:RegisterEvent("PLAYER_ENTERING_WORLD", "OnPlayerEnteringWorld")
+  end
 
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
   F.Event.RegisterCallback("TXUI.DatabaseUpdate", self.DatabaseUpdate, self)

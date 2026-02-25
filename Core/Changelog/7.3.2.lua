@@ -41,6 +41,7 @@ TXUI.Changelog["7.3.2"] = {
     F.String.Menu.WunderBar() .. " MicroMenu: Block talent and spell icons from clicks in combat",
     "Fix missing requirement strings in Status Report window",
     "Vehicle Bar gradient colors should update dynamically",
+    "Do not register played time events for Game Menu Skin if the feature is disabled in settings",
     F.String.Retail() .. "Protect " .. F.String.Menu.WunderBar() .. " currency tooltip in combat",
     F.String.Retail() .. "Skip anchoring and centering for the " .. F.String.CDM() .. " if a viewer's orientation is vertical",
     F.String.Retail() .. "Hide the debuff border for " .. F.String.CDM() .. " icons if centering is enabled" .. F.String.Sublist(
