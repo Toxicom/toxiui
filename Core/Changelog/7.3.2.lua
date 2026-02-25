@@ -57,6 +57,7 @@ TXUI.Changelog["7.3.2"] = {
     "* Documentation",
     "Add " .. F.String.Kryo() .. " to contributors list",
     F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Update data adding some missing spells and toys, including Midnight ones",
+    F.String.MinElv("15.06"),
 
     "* Settings refactoring",
     F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",
