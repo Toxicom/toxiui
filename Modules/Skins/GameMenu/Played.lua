@@ -210,9 +210,7 @@ function GM:OnPlayerEnteringWorld(_, isLogin)
     -- Defer our own request so we can piggyback on another addon's call if one fires first,
     -- avoiding the duplicate chat message that RequestTimePlayed() produces.
     E:Delay(2, function()
-      if not self._playedReceived then
-        RequestTimePlayed()
-      end
+      if not self._playedReceived then RequestTimePlayed() end
     end)
   end
 
