@@ -9,13 +9,13 @@ TXUI.Changelog["7.3.2"] = {
     "Due to popular demand, revert the removal of " .. TXUI.Title .. " " .. F.String.ElvUI() .. " skin" .. F.String.Sublist(
       "Do be aware that it's known to bug out and there currently will not be much effort into fixing it"
     ),
-    F.String.Retail() .. "Option to hide floating player entry on the Damage Meter" .. F.String.Sublist("Enabled by default") .. F.String.Sublist("Credits to " .. F.String.Kryo()),
     "Option to delete a character from Played data",
     F.String.Menu.WunderBar() .. " Hearthstone: Replace secondary Hearthstone right-click with a flyout for Additional Teleports" .. F.String.Sublist(
       "All Additional Teleports are now enabled by default"
     ),
     F.String.Menu.WunderBar() .. " Hearthstone: Add raid teleports to M+ flyout",
     F.String.Retail() .. "Add minimum width slider to bars sync functionality of " .. F.String.CDM(),
+    F.String.Retail() .. "Option to hide floating player entry on the Damage Meter" .. F.String.Sublist("Enabled by default") .. F.String.Sublist("Credits to " .. F.String.Kryo()),
 
     "* Enhancements",
     "Update "
@@ -38,15 +38,16 @@ TXUI.Changelog["7.3.2"] = {
     "* Bug fixes",
     "Fix flyout buttons retaining cooldown state when reused across different flyout menus",
     "Fix Class Bar position after updating if Power Bar is disabled",
+    F.String.Menu.WunderBar() .. " MicroMenu: Block talent and spell icons from clicks in combat",
+    "Fix missing requirement strings in Status Report window",
+    "Vehicle Bar gradient colors should update dynamically",
+    F.String.Retail() .. "Protect " .. F.String.Menu.WunderBar() .. " currency tooltip in combat",
     F.String.Retail() .. "Skip anchoring and centering for the " .. F.String.CDM() .. " if a viewer's orientation is vertical",
     F.String.Retail() .. "Hide the debuff border for " .. F.String.CDM() .. " icons if centering is enabled" .. F.String.Sublist(
       "This is a bandaid fix, hopefully ElvUI fixes it properly in the future"
     ),
-    F.String.Retail() .. "Protect " .. F.String.Menu.WunderBar() .. " currency tooltip in combat",
-    F.String.Menu.WunderBar() .. " MicroMenu: Block talent and spell icons from clicks in combat",
-    "Fix missing requirement strings in Status Report window",
     F.String.Retail() .. "Update keybinds for " .. F.String.CDM() .. " when changing shapeshift forms",
-    "Vehicle Bar gradient colors should update dynamically",
+    F.String.Retail() .. "Buff icons position for DK and Brewmaster Monk fixed in " .. F.String.CDM(),
 
     "* Profile updates",
     F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(
@@ -56,8 +57,8 @@ TXUI.Changelog["7.3.2"] = {
 
     "* Documentation",
     "Add " .. F.String.Kryo() .. " to contributors list",
-    F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Update data adding some missing spells and toys, including Midnight ones",
     F.String.MinElv("15.06"),
+    F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Update data adding some missing spells and toys, including Midnight ones",
 
     "* Settings refactoring",
     F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",

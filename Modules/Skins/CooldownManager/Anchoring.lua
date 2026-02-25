@@ -19,6 +19,8 @@ function CM:SetAnchors()
   local healthBar = _G["ElvUF_Player_HealthBar"]
   local powerBar = _G["ElvUF_Player_PowerBar"]
   local classBar = _G["ElvUF_Player_ClassBar"]
+  if E.myclass == "DEATHKNIGHT" then classBar = _G["ElvUF_Player_Runes"] end
+  if E.myclass == "MONK" and E.myspecID == I.Specs.Monk.Brewmaster then classBar = _G["ElvUF_Player_Stagger"] end
   local powerBarAvailable = powerBar and powerBar:IsShown() and E.db.unitframe.units.player.power.enable
   local classBarAvailable = classBar and classBar:IsShown() and E.db.unitframe.units.player.classbar.enable
 
