@@ -329,12 +329,6 @@ function M:Tags()
     [I.Specs.Shaman.Restoration] = true,
   }
 
-  -- Cache current spec ID to avoid repeated API calls
-  local cachedSpecID = PlayerUtil.GetCurrentSpecID()
-  F.Event.RegisterFrameEventAndCallback("PLAYER_SPECIALIZATION_CHANGED", function()
-    cachedSpecID = PlayerUtil.GetCurrentSpecID()
-  end, self)
-
   E:AddTag("tx:power", POWER_EVENTS, function(unit)
     local power = UnitPower(unit)
     local powerType = UnitPowerType(unit)
@@ -343,8 +337,8 @@ function M:Tags()
       if E.myclass == "WARLOCK" and unit == "player" then power = UnitPower(unit, Enum.PowerType.SoulShards) end
       if E.myclass == "EVOKER" and unit == "player" then power = UnitPower(unit, Enum.PowerType.Essence) end
       if E.myclass == "PALADIN" and unit == "player" then power = UnitPower(unit, Enum.PowerType.HolyPower) end
-      if unit == "player" and hideManaSpecs[cachedSpecID] and powerType == Enum.PowerType.Mana then return end
-      if unit == "player" and displayPercentageSpecs[cachedSpecID] then power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100)) end
+      if unit == "player" and hideManaSpecs[E.myspecID] and powerType == Enum.PowerType.Mana then return end
+      if unit == "player" and displayPercentageSpecs[E.myspecID] then power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100)) end
     end
 
     if dm.isEnabled then
