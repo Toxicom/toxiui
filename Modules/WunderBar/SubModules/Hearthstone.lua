@@ -169,6 +169,7 @@ function HS:GetAdditionalHearthstones()
           type = data.type,
           name = data.name,
           icon = GetItemIcon(data.id),
+          label = data.label,
         })
       end
     end

@@ -676,8 +676,8 @@ I.HearthstoneData = {
   [52251] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DALA" }, -- Jaina's Locket
   [58487] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "DHLM" }, -- Potion of Deepholm
   [64457] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "RAND" }, -- The Last Relic of Argus
-  [95567] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "IoT" }, -- Kirin Tor Beacon
-  [95568] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "IoT" }, -- Sunreaver Beacon
+  [95567] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "IOT" }, -- Kirin Tor Beacon
+  [95568] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "IOT" }, -- Sunreaver Beacon
   [103678] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "TIML" }, -- Time-Lost Artifact
   [118662] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "BLAD" }, -- Bladespire Relic
   [118663] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "KAR" }, -- Relic of Karabor

@@ -11,6 +11,7 @@ TXUI.Changelog["7.3.3"] = {
 
     "* Bug fixes",
     "Fix incorrect gradient fade direction for party and raid frames",
+    "Display labels for additional hearthstone flyout",
 
     "* Profile updates",
 
