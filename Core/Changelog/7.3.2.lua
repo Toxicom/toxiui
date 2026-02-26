@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["7.3.2"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Due to popular demand, revert the removal of " .. TXUI.Title .. " " .. F.String.ElvUI() .. " skin" .. F.String.Sublist(
       "Do be aware that it's known to bug out and there currently will not be much effort into fixing it"
@@ -58,7 +56,7 @@ TXUI.Changelog["7.3.2"] = {
     F.String.ElvUI() .. ": Nudge raid frames to the left" .. F.String.Sublist(
       "Now that they're bigger due to the requirement to fit buffs and debuffs inside of it, have to save space"
     ),
-    F.String.ElvUI() .. "Adjust spacing for player, target, focus unitframes auras",
+    F.String.ElvUI() .. ": Adjust spacing for player, target, focus unitframes auras",
 
     "* Documentation",
     "Add " .. F.String.Kryo() .. " to contributors list",
@@ -68,7 +66,5 @@ TXUI.Changelog["7.3.2"] = {
     "* Settings refactoring",
     F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",
     "Sort " .. F.String.GradientString() .. " mode's classes in settings",
-
-    "* Development improvements",
   },
 }
