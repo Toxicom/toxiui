@@ -16,6 +16,9 @@ TXUI.Changelog["7.3.2"] = {
     F.String.Menu.WunderBar() .. " Hearthstone: Add raid teleports to M+ flyout",
     F.String.Retail() .. "Add minimum width slider to bars sync functionality of " .. F.String.CDM(),
     F.String.Retail() .. "Option to hide floating player entry on the Damage Meter" .. F.String.Sublist("Enabled by default") .. F.String.Sublist("Credits to " .. F.String.Kryo()),
+    F.String.Retail() .. "Stylized specialization icon for " .. F.String.Class("Devourer Demon Hunter " .. F.String.ConvertGlyph(59742), "DEMONHUNTER") .. F.String.Sublist(
+      "Thank youuu " .. F.String.Legendary("Shaz") .. " |cffff0000<3 <3 <3|r"
+    ),
 
     "* Enhancements",
     "Update "

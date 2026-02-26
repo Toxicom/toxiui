@@ -44,7 +44,7 @@ M.SpecIcons = {
 
   [I.Specs.DemonHunter.Havoc] = M:GetCoordinates(3, 5),
   [I.Specs.DemonHunter.Vengeance] = M:GetCoordinates(4, 5),
-  [I.Specs.DemonHunter.Devourer] = M:GetCoordinates(3, 5), -- @todo: add Devourer DH icon
+  [I.Specs.DemonHunter.Devourer] = M:GetCoordinates(8, 5),
 
   [I.Specs.Druid.Balance] = M:GetCoordinates(4, 1),
   [I.Specs.Druid.Feral] = M:GetCoordinates(5, 1),
@@ -101,6 +101,7 @@ M.BlizzardToSpecID = {
   -- Demon Hunter
   [1247264] = I.Specs.DemonHunter.Havoc,
   [1247265] = I.Specs.DemonHunter.Vengeance,
+  [7455385] = I.Specs.DemonHunter.Devourer,
   -- Druid
   [136096] = I.Specs.Druid.Balance,
   [132115] = I.Specs.Druid.Feral,
