@@ -16,6 +16,7 @@ TXUI.Changelog["7.3.4"] = {
     F.String.ElvUI() .. ": Adjust cdm charge count color",
 
     "* Documentation",
+    F.String.MinElv("15.07"),
 
     "* Settings refactoring",
 
