@@ -80,5 +80,9 @@ function PF:ApplyGeneral(pf)
     classColors = {
       ["SHAMAN"] = F.Table.HexToRGB("#006edb"),
     },
+
+    cooldownManager = {
+      countFontColor = F.Table.HexToRGB("#ffb737"),
+    },
   })
 end

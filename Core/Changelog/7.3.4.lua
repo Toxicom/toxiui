@@ -12,6 +12,8 @@ TXUI.Changelog["7.3.4"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Disable source text for nameplate buffs",
+    F.String.ElvUI() .. ": Adjust cdm charge count color",
 
     "* Documentation",
 

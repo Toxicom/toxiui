@@ -16,6 +16,9 @@ local sharedBuffs = {
   size = F.Dpi(30),
   height = F.Dpi(20),
   yOffset = F.Dpi(8),
+  sourceText = {
+    enable = false,
+  },
 }
 
 local sharedCastbar = {
