@@ -14,6 +14,7 @@ TXUI.Changelog["7.3.4"] = {
     "* Profile updates",
     F.String.ElvUI() .. ": Disable source text for nameplate buffs",
     F.String.ElvUI() .. ": Adjust cdm charge count color",
+    F.String.ElvUI() .. ": Set heal prediction max overflow to 100%",
 
     "* Documentation",
     F.String.MinElv("15.07"),
