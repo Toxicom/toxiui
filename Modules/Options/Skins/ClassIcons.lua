@@ -38,36 +38,6 @@ function O:Skins_ClassIcons()
   self:AddSpacer(options)
 
   do
-    local detailsGroup = self:AddInlineDesc(options, {
-      name = "Details Icons",
-    }, {
-      name = "We are unable to change "
-        .. F.String.Details()
-        .. " custom icons automatically.\n\nYou need to do that yourself in "
-        .. F.String.ToxiUI("/details config")
-        .. " -> Bars: General -> Icons -> Texture\n\n",
-    }).args
-
-    detailsGroup.button = {
-      order = self:GetOrder(),
-      type = "execute",
-      name = F.String.Details("Open Details"),
-      desc = "Open the " .. F.String.Details() .. " configuration window",
-      disabled = function()
-        return not F.IsAddOnEnabled("Details")
-      end,
-      func = function()
-        -- instance = which details window
-        local instance = Details:GetInstance(1)
-        Details:OpenOptionsWindow(instance)
-        E:ToggleOptions()
-      end,
-    }
-  end
-
-  self:AddSpacer(options)
-
-  do
     local styleGroup = self:AddInlineDesc(options, {
       name = "Icon Style",
     }, {

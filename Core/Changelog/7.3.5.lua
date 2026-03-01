@@ -16,6 +16,7 @@ TXUI.Changelog["7.3.5"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    "Remove Details section from Class Icons settings",
 
     "* Development improvements",
   },
