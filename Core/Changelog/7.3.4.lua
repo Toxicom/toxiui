@@ -10,6 +10,7 @@ TXUI.Changelog["7.3.4"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. "Hide mana text for " .. F.String.Class("Balance Druids", "DRUID"),
 
     "* Profile updates",
     F.String.ElvUI() .. ": Disable source text for nameplate buffs",

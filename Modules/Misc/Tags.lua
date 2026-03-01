@@ -316,6 +316,7 @@ function M:Tags()
     [I.Specs.Shaman.Enhancement] = true,
     [I.Specs.Druid.Feral] = true,
     [I.Specs.Druid.Guardian] = true,
+    [I.Specs.Druid.Balance] = true,
   }
 
   local displayPercentageSpecs = {
