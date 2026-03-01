@@ -521,7 +521,7 @@ function O:WunderBar_General()
       order = self:GetOrder(),
       type = "range",
       name = "Slot Width",
-      desc = "Size of an individual slot. Height is going to change accordingly to maintain 4:3 aspect ratio.",
+      desc = "Size of an individual slot. Height is going to change accordingly to maintain 3:2 aspect ratio.",
       min = 20,
       max = 80,
       step = 1,

@@ -51,7 +51,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local spacing, padding = flyoutDb.spacing, flyoutDb.padding
   local dbGroupSpacing = flyoutDb.groupSpacing or 0
   local slotWidth = flyoutDb.width + E.Border
-  local slotHeight = (slotWidth - E.Border) / 4 * 3 + E.Border
+  local slotHeight = (slotWidth - E.Border) / 3 * 2 + E.Border
   local labelFont = F.GetFontPath(flyoutDb.labelFont)
 
   -- Limit the number of slots per column

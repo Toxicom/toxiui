@@ -9,6 +9,7 @@ TXUI.Changelog["7.3.4"] = {
     F.String.Menu.WunderBar() .. ": Option to adjust group spacing for flyouts",
 
     "* Enhancements",
+    F.String.Menu.WunderBar() .. ": Change flyout slots to be 3:2 aspect ratio instead of 4:3",
 
     "* Bug fixes",
     F.String.Retail() .. "Hide mana text for " .. F.String.Class("Balance Druids", "DRUID"),
