@@ -979,6 +979,7 @@ P.wunderbar = {
       borderSize = 2,
       width = 48,
       spacing = 4,
+      groupSpacing = 16,
       padding = 16,
 
       labelFont = I.Fonts.Primary,

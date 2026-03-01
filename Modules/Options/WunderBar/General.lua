@@ -534,6 +534,23 @@ function O:WunderBar_General()
       end,
     }
 
+    flyoutGroup["groupSpacing"] = {
+      order = self:GetOrder(),
+      type = "range",
+      name = "Group Spacing",
+      desc = "Extra spacing between primary and secondary slot groups.\nThis is currently used for Mage portals and the M+/Raid portals flyouts.",
+      min = 0,
+      max = 32,
+      step = 1,
+      disabled = flyoutDisabled,
+      get = function(info)
+        return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
+      end,
+      set = function(info, value)
+        E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
+      end,
+    }
+
     flyoutGroup["labelFont"] = {
       order = self:GetOrder(),
       type = "select",

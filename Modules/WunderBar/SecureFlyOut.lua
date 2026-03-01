@@ -49,6 +49,7 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
   local flyoutDb = F.GetDBFromPath("TXUI.wunderbar.general.flyoutBackdrop")
   local spacing, padding = flyoutDb.spacing, flyoutDb.padding
+  local dbGroupSpacing = flyoutDb.groupSpacing or 0
   local slotWidth = flyoutDb.width + E.Border
   local slotHeight = (slotWidth - E.Border) / 4 * 3 + E.Border
   local labelFont = F.GetFontPath(flyoutDb.labelFont)
@@ -61,10 +62,13 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   local totalColumns = numPrimaryColumns + numSecondaryColumns
   local totalSlots = #primarySlots + (secondarySlots and #secondarySlots or 0)
 
+  -- Extra gap inserted between primary and secondary column groups
+  local groupSpacing = (numSecondaryColumns > 0) and dbGroupSpacing or 0
+
   -- If there's less than 8 items in a column, we want to adjust our totalHeight calculation
   local heightCalcVar = (maxSlotsPerColumn < #primarySlots and maxSlotsPerColumn or #primarySlots)
   -- Calculate the total width and height of the flyout
-  local totalWidth = totalColumns * slotWidth + (totalColumns - 1) * spacing + 2 * padding
+  local totalWidth = totalColumns * slotWidth + (totalColumns - 1) * spacing + 2 * padding + groupSpacing
   local totalHeight = heightCalcVar * slotHeight + (heightCalcVar - 1) * spacing + 2 * padding
 
   if not secureFlyOutFrame then secureFlyOutFrame = CreateFrame("Frame", nil, self.bar, "BackdropTemplate") end
@@ -122,8 +126,8 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
       indexInColumn = (secondaryIndex - 1) % maxSlotsPerColumn + 1
       slotWithSpacing = slotWidth + spacing
       local slotOffset = (currentColumn - 1) * slotWithSpacing
-      -- Secondary slots start to the left of the primary slots and grow left
-      columnOffset = numPrimaryColumns * slotWithSpacing + slotOffset + padding
+      -- Secondary slots start to the left of the primary slots and grow left (with extra group gap)
+      columnOffset = numPrimaryColumns * slotWithSpacing + slotOffset + padding + groupSpacing
     end
 
     if not slot then
