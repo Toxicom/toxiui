@@ -415,9 +415,22 @@ function O:WunderBar_General()
       name = "Control the " .. F.String.Menu.WunderBar() .. " flyouts that show up in Profession and Hearthstone modules.\n\n",
     }).args
 
+    local backdropDisabled = function()
+      return self:GetEnabledState(E.db.TXUI.wunderbar.general.flyoutBackdrop.enabled) ~= self.enabledState.YES
+    end
+
+    flyoutGroup["backdropHeader"] = {
+      order = self:GetOrder(),
+      type = "header",
+      name = "Backdrop",
+    }
+
+    self:AddSpacer(flyoutGroup)
+
     flyoutGroup["enabled"] = {
       order = self:GetOrder(),
       type = "toggle",
+      desc = "Toggle the flyout backdrop.",
       name = function()
         return self:GetEnableName(E.db.TXUI.wunderbar.general.flyoutBackdrop.enabled)
       end,
@@ -429,10 +442,6 @@ function O:WunderBar_General()
       end,
     }
 
-    local flyoutDisabled = function()
-      return self:GetEnabledState(E.db.TXUI.wunderbar.general.flyoutBackdrop.enabled) ~= self.enabledState.YES
-    end
-
     flyoutGroup["alpha"] = {
       order = self:GetOrder(),
       type = "range",
@@ -441,7 +450,7 @@ function O:WunderBar_General()
       min = 0,
       max = 1,
       step = 0.05,
-      disabled = flyoutDisabled,
+      disabled = backdropDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
@@ -455,7 +464,7 @@ function O:WunderBar_General()
       type = "toggle",
       name = "Class Color",
       desc = "Enabling this will set the flyout's backdrop to your class color.",
-      disabled = flyoutDisabled,
+      disabled = backdropDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
@@ -472,7 +481,7 @@ function O:WunderBar_General()
       min = 1,
       max = 6,
       step = 1,
-      disabled = flyoutDisabled,
+      disabled = backdropDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
@@ -489,13 +498,21 @@ function O:WunderBar_General()
       min = 0,
       max = 32,
       step = 1,
-      disabled = flyoutDisabled,
+      disabled = backdropDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
       set = function(info, value)
         E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]] = value
       end,
+    }
+
+    self:AddSpacer(flyoutGroup)
+
+    flyoutGroup["layoutHeader"] = {
+      order = self:GetOrder(),
+      type = "header",
+      name = "Layout",
     }
 
     self:AddSpacer(flyoutGroup)
@@ -508,7 +525,6 @@ function O:WunderBar_General()
       min = 20,
       max = 80,
       step = 1,
-      disabled = flyoutDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
@@ -525,7 +541,6 @@ function O:WunderBar_General()
       min = 0,
       max = 16,
       step = 1,
-      disabled = flyoutDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
@@ -542,7 +557,6 @@ function O:WunderBar_General()
       min = 0,
       max = 32,
       step = 1,
-      disabled = flyoutDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
@@ -551,14 +565,23 @@ function O:WunderBar_General()
       end,
     }
 
+    self:AddSpacer(flyoutGroup)
+
+    flyoutGroup["labelsHeader"] = {
+      order = self:GetOrder(),
+      type = "header",
+      name = "Labels",
+    }
+
+    self:AddSpacer(flyoutGroup)
+
     flyoutGroup["labelFont"] = {
       order = self:GetOrder(),
       type = "select",
       dialogControl = "LSM30_Font",
       name = "Label Font",
-      desc = "Set the font for M+ portal labels.",
+      desc = "Set the font for slot labels.",
       values = self:GetAllFontsFunc(),
-      disabled = flyoutDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,
@@ -571,11 +594,10 @@ function O:WunderBar_General()
       order = self:GetOrder(),
       type = "range",
       name = "Label Font Size",
-      desc = "Set the font size for M+ portal labels.",
+      desc = "Set the font size for slot labels.",
       min = 8,
       max = 64,
       step = 1,
-      disabled = flyoutDisabled,
       get = function(info)
         return E.db.TXUI.wunderbar.general.flyoutBackdrop[info[#info]]
       end,

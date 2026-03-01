@@ -24,6 +24,7 @@ TXUI.Changelog["7.3.4"] = {
     F.String.Retail() .. F.String.Menu.WunderBar() .. ": Add Personal Key to the Arcantina",
 
     "* Settings refactoring",
+    F.String.Menu.WunderBar() .. ": Clean up and organize flyout settings",
 
     "* Development improvements",
   },
