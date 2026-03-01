@@ -5,7 +5,6 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 --@do-not-package@
 
 local SetCVar = SetCVar
-local disabledMenuIcons = { "chat", "quest", "shop", "spell", "talent", "pvp", "ach", "char", "pet", "lfg" }
 local splitUnitframes = { "player", "focus", "targettarget", "pet" }
 local splitAbbrevUnitframes = { "party", "target" }
 
@@ -21,27 +20,6 @@ end
 function T:SetupProfile()
   -- Misc
   E.db.TXUI.vehicleBar.enabled = true
-
-  -- WunderBar: Modules
-  E.db.TXUI.wunderbar.modules.LeftPanel[2] = "Profession"
-  E.db.TXUI.wunderbar.modules.LeftPanel[3] = UnitLevel("player") < 80 and "DataBar" or "Durability"
-  E.db.TXUI.wunderbar.modules.MiddlePanel[3] = "Volume"
-
-  -- WunderBar: Submodules
-  -- WunderBar: MicroMenu
-  for _, icon in ipairs(disabledMenuIcons) do
-    E.db.TXUI.wunderbar.subModules.MicroMenu.icons[icon].enabled = false
-  end
-
-  -- WunderBar: DataBar
-  E.db.TXUI.wunderbar.subModules.DataBar.infoEnabled = true
-  E.db.TXUI.wunderbar.subModules.DataBar.showCompletedXP = true
-
-  -- WunderBar: Profession
-  E.db.TXUI.wunderbar.subModules.Profession.general.showIcons = true
-
-  -- WunderBar: Hearthstone
-  E.db.TXUI.wunderbar.subModules.Hearthstone.primaryHS = TXUI.IsRetail and 209035 or 6948
 
   -- Miscellaneous: Additional Scaling
   E.db.TXUI.misc.scaling.enabled = true
