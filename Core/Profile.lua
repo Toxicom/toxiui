@@ -237,7 +237,6 @@ P.addons = {
     showChangelog = true,
     showTips = true,
 
-    specIconStyle = "ToxiSpecStylized",
     specIconSize = 20,
   },
 

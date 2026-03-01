@@ -126,7 +126,7 @@ function AFK:SetAFK(_, status)
 
   if status and not self.elvUIAfk.isAFK then
     local guildName = GetGuildInfo("player")
-    local specIcon, iconsFont = M:GenerateSpecIcon(E.db.TXUI.addons.afkMode.specIconStyle)
+    local specIcon, iconsFont = M:GenerateSpecIcon()
 
     self.elvUIAfk.isAFK = true
 

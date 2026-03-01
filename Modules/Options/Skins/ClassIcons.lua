@@ -59,10 +59,6 @@ function O:Skins_ClassIcons()
         if TXUI.IsRetail then
           local retailTable = {
             ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
-            ToxiSpecColored = F.String.Class("Spec") .. " " .. F.String.Rainbow("Colored"),
-            ToxiSpecColoredStroke = F.String.Class("Spec") .. " " .. F.String.Rainbow("Colored") .. " Stroke",
-            ToxiSpecWhite = F.String.Class("Spec") .. " White",
-            ToxiSpecWhiteStroke = F.String.Class("Spec") .. " White Stroke",
           }
 
           F.Table.Crush(tbl, retailTable)

@@ -180,30 +180,6 @@ function O:Skins_ElvUI()
       end,
     }
 
-    elvuiAfkGroup.specIconStyle = {
-      order = self:GetOrder(),
-      type = "select",
-      name = "Spec Icon Style",
-      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
-      width = 1.5,
-      values = {
-        ToxiSpecColored = TXUI.Title .. F.String.Class(" Class Colored "),
-        ToxiSpecColoredStroke = TXUI.Title .. F.String.Class(" Class Colored ") .. F.String.ToxiUI("[STROKE]"),
-        ToxiSpecStylized = TXUI.Title .. " Stylized",
-        ToxiSpecWhite = TXUI.Title .. " White",
-        ToxiSpecWhiteStroke = TXUI.Title .. " White " .. F.String.ToxiUI("[STROKE]"),
-      },
-      get = function()
-        return E.db.TXUI.addons.afkMode.specIconStyle
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.afkMode.specIconStyle = value
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.afkMode.enabled
-      end,
-    }
-
     elvuiAfkGroup.specIconSize = {
       order = self:GetOrder(),
       type = "range",
