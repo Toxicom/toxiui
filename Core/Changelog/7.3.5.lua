@@ -11,6 +11,7 @@ TXUI.Changelog["7.3.5"] = {
       .. F.String.Sublist("ToxiSpecWhiteStroke"),
 
     "* New features",
+    F.String.Retail() .. "Option to change spec icon for Damage Meter skin",
 
     "* Enhancements",
 

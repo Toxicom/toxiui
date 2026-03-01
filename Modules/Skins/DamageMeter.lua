@@ -7,9 +7,10 @@ local hooksecurefunc = hooksecurefunc
 local strsplit = strsplit
 local tonumber = tonumber
 
--- Texture paths (cached as constants)
-local TEXTURE_SPEC = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Textures\\Icons\\ToxiSpecStylized"
+local TEXTURE_SPEC
 local TEXTURE_CLASS = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Textures\\Icons\\ToxiClasses"
+
+local hasSpecIcons
 
 -- Pre-computed tex coord cache: [key] = { texturePath, left, right, top, bottom }
 local TexCoordCache = {}
@@ -42,14 +43,16 @@ local function ApplySpecIcon(content)
   local texData
 
   -- Priority 1: Spec icon if available
-  if content.specIconID then
+  if hasSpecIcons and content.specIconID then
     local specID = M.BlizzardToSpecID[content.specIconID]
     if specID and M.SpecIcons[specID] then texData = GetTexCoords("spec_" .. specID, M.SpecIcons[specID], TEXTURE_SPEC) end
   end
 
-  -- Priority 2: Class icon if class is known (for NPCs without spec)
+  -- Priority 2: Class icon — for class-only styles use TEXTURE_SPEC (the chosen sheet);
+  -- for ToxiSpecStylized use TEXTURE_CLASS (ToxiClasses) as fallback alongside spec icons
   if not texData and content.classFilename and M.ClassIcons[content.classFilename] then
-    texData = GetTexCoords("class_" .. content.classFilename, M.ClassIcons[content.classFilename], TEXTURE_CLASS)
+    local classTexture = hasSpecIcons and TEXTURE_CLASS or TEXTURE_SPEC
+    texData = GetTexCoords("class_" .. content.classFilename, M.ClassIcons[content.classFilename], classTexture)
   end
 
   if not texData then return end
@@ -279,6 +282,10 @@ function DM:Initialize()
 
     -- Get modules now that everything is loaded
     M = TXUI:GetModule("Misc")
+
+    local iconStyle = E.db.TXUI.addons.damageMeter.iconStyle or "ToxiSpecStylized"
+    TEXTURE_SPEC = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Textures\\Icons\\" .. iconStyle
+    hasSpecIcons = iconStyle == "ToxiSpecStylized"
 
     -- Re-apply gradients when gradient settings change
     if E.db.TXUI.addons.damageMeter.gradients then

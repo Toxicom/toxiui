@@ -94,18 +94,6 @@ function O:Skins_ClassIcons()
         return I.Media.Style.ClassIconsPreview, 512, 128
       end,
     }
-
-    self:AddSpacer(imageGroup)
-
-    imageGroup.spec = {
-      order = self:GetOrder(),
-      type = "description",
-      name = "",
-      hidden = not TXUI.IsRetail,
-      image = function()
-        return I.Media.Style.SpecIconsPreview, 512, 128
-      end,
-    }
   end
 end
 

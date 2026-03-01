@@ -355,6 +355,7 @@ P.addons = {
   damageMeter = {
     enabled = true, -- Enabled by default
     icons = true, -- Enabled by default
+    iconStyle = "ToxiSpecStylized", -- Icon style for spec/class icons
     gradients = true, -- Enabled by default (works with any theme)
     headerFade = true, -- Fade header on mouseover
     headerFadeMinAlpha = 0, -- Alpha when not hovering

@@ -76,6 +76,31 @@ function O:Skins_DamageMeter()
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }
+
+    iconsGroup.iconStyle = {
+      order = self:GetOrder(),
+      type = "select",
+      name = "Icon Style",
+      desc = "Choose the style used for spec and class icons in the damage meter.",
+      width = 1.5,
+      values = {
+        ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
+        ToxiClasses = F.String.ToxiUI("Stylized"),
+        UggColored = F.String.Ugg() .. " " .. F.String.Rainbow("Colored"),
+        UggColoredStroke = F.String.Ugg() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
+        UggWhiteStroke = F.String.Ugg() .. " White Stroke",
+      },
+      disabled = function()
+        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled or not E.db.TXUI.addons.damageMeter.icons
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.iconStyle
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.iconStyle = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
   end
 
   -- Spacer
