@@ -500,6 +500,7 @@ I.HearthstoneData = {
   [243056] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DORN" }, -- Delver's Mana-Bound Ethergate
   [230850] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DLVE" }, -- Delve-O-Bot 7001
   [205255] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "ZARL" }, -- Niffen Diggin' Mitts
+  [253629] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "ARC" }, -- Personal Key to the Arcantina
 
   --                   --
   -- Mythic+ Teleports --
