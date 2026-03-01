@@ -1122,13 +1122,13 @@ P.wunderbar = {
 
       displayedCurrency = "GOLD", -- NEEDS to be GOLD
       enabledCurrencies = {
-        [3008] = true, --               Valorstones
-        [3290] = true, --     Gilded Ethereal Crest
-        [3288] = true, --      Runed Ethereal Crest
-        [3286] = true, --     Carved Ethereal Crest
-        [3284] = true, --  Weathered Ethereal Crest
-        [2815] = true, --        Resonance Crystals
-        [3028] = true, --       Restored Coffer Key
+        [3383] = true, -- Adventurer
+        [3347] = true, -- Myth
+        [3345] = true, -- Hero
+        [3343] = true, -- Champion
+        [3341] = true, -- Veteran
+        [2815] = true, -- Resonance Crystals
+        [3028] = true, -- Restored Coffer Key
       }, -- Format: [currencyID] = true,
 
       showIcon = true,

@@ -19,6 +19,7 @@ TXUI.Changelog["7.3.4"] = {
 
     "* Documentation",
     F.String.MinElv("15.07"),
+    F.String.Retail() .. "Update currencies for Midnight Season 1",
 
     "* Settings refactoring",
 
