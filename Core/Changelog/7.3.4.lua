@@ -6,7 +6,7 @@ TXUI.Changelog["7.3.4"] = {
     "* Breaking changes",
 
     "* New features",
-    F.String.WunderBar() .. ": Option to adjust group spacing for flyouts",
+    F.String.Menu.WunderBar() .. ": Option to adjust group spacing for flyouts",
 
     "* Enhancements",
 
