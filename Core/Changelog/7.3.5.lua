@@ -18,6 +18,7 @@ TXUI.Changelog["7.3.5"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. "Update nameplate auras fonts",
 
     "* Documentation",
 

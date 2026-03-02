@@ -16,6 +16,8 @@ local sharedBuffs = {
   size = F.Dpi(30),
   height = F.Dpi(20),
   yOffset = F.Dpi(8),
+  countYOffset = F.Dpi(-5),
+  countPosition = "BOTTOM",
   sourceText = {
     enable = false,
   },
@@ -40,6 +42,8 @@ local sharedDebuffs = {
   height = F.Dpi(20),
   xOffset = F.Dpi(-1),
   yOffset = F.Dpi(5),
+  countYOffset = F.Dpi(-5),
+  countPosition = "BOTTOM",
 }
 
 local sharedHealth = {

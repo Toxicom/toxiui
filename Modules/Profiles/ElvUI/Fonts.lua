@@ -20,6 +20,40 @@ local function customTextSize(args)
 end
 
 function PF:ElvUIFont()
+  local nameplates = {
+    shared = {
+      auras = { countFont = F.FontOverride(I.Fonts.TitleBlack) },
+      buffs = {
+        countFont = F.FontOverride(I.Fonts.Primary),
+      },
+      castbar = {
+        font = F.FontOverride(I.Fonts.Primary),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        fontSize = F.FontSizeScaled(10),
+      },
+      debuffs = {
+        countFont = F.FontOverride(I.Fonts.TitleBlack),
+        countFontSize = F.FontSizeScaled(12),
+      },
+      health = {
+        text = {
+          font = F.FontOverride(I.Fonts.Primary),
+          fontSize = F.FontSizeScaled(14),
+          format = "[perhp]",
+        },
+      },
+      name = {
+        font = F.FontOverride(I.Fonts.Primary),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        fontSize = F.FontSizeScaled(12),
+      },
+      title = {
+        font = F.FontOverride(I.Fonts.Primary),
+        fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        fontSize = F.FontSizeScaled(10),
+      },
+    },
+  }
   F.Table.Crush(E.db, {
     -- General
     general = {
@@ -200,8 +234,9 @@ function PF:ElvUIFont()
         }
       end
 
-      -- Override cdmanager with larger font size
+      -- Overrides
       cd.cdmanager.fontSize = F.FontSizeScaled(20)
+      cd.nameplates.fontSize = F.FontSizeScaled(12)
 
       return cd
     end)(),
@@ -234,33 +269,14 @@ function PF:ElvUIFont()
     nameplates = {
       units = {
         ["ENEMY_NPC"] = {
-          auras = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          castbar = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(10),
-          },
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          health = {
-            text = {
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              format = "[perhp]",
-            },
-          },
-          name = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(12),
+          auras = nameplates.shared.auras,
+          buffs = nameplates.shared.buffs,
+          castbar = nameplates.shared.castbar,
+          debuffs = nameplates.shared.debuffs,
+          health = nameplates.shared.health,
+          name = F.Table.Crush(nameplates.shared.name, {
             format = "[name:abbrev:medium]",
-          },
+          }),
 
           level = {
             font = F.FontOverride(I.Fonts.Primary),
@@ -271,105 +287,42 @@ function PF:ElvUIFont()
         },
 
         ["FRIENDLY_NPC"] = {
-          auras = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          castbar = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(10),
-          },
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          health = {
-            text = {
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              format = "[perhp]",
-            },
-          },
-          name = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(12),
+          auras = nameplates.shared.auras,
+          buffs = nameplates.shared.buffs,
+          castbar = nameplates.shared.castbar,
+          debuffs = nameplates.shared.debuffs,
+          health = nameplates.shared.health,
+          name = F.Table.Crush(nameplates.shared.name, {
             format = "|cff85d92b[name]|r",
-          },
-          title = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(10),
+          }),
+          title = F.Table.Crush(nameplates.shared.title, {
             format = "|cff85d92b[npctitle:brackets]|r",
-          },
+          }),
         },
 
         ["ENEMY_PLAYER"] = {
-          auras = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          castbar = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(10),
-          },
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          health = {
-            text = {
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              format = "[perhp]",
-            },
-          },
-          name = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(12),
+          auras = nameplates.shared.auras,
+          buffs = nameplates.shared.buffs,
+          castbar = nameplates.shared.castbar,
+          debuffs = nameplates.shared.debuffs,
+          health = nameplates.shared.health,
+          name = F.Table.Crush(nameplates.shared.name, {
             format = "[classcolor][name]",
-          },
+          }),
         },
 
         ["FRIENDLY_PLAYER"] = {
-          auras = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          castbar = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(10),
-          },
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-          health = {
-            text = {
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              format = "[perhp]",
-            },
-          },
-          name = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(12),
+          auras = nameplates.shared.auras,
+          buffs = nameplates.shared.buffs,
+          castbar = nameplates.shared.castbar,
+          debuffs = nameplates.shared.debuffs,
+          health = nameplates.shared.health,
+          name = F.Table.Crush(nameplates.shared.name, {
             format = "[classcolor][name]",
-          },
-          title = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            fontSize = F.FontSizeScaled(10),
+          }),
+          title = F.Table.Crush(nameplates.shared.title, {
             format = "[classcolor][guild:brackets]",
-          },
+          }),
         },
 
         ["TARGET"] = {
