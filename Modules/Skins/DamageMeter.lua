@@ -108,7 +108,7 @@ local function ApplyGradient(content)
     content.txuiBarTexture = texture
   end
 
-  texture:SetGradient(gradientOrientation, normalColor, shiftColor)
+  F.Color.SetGradient(texture, gradientOrientation, normalColor, shiftColor)
 end
 
 -- Animation duration for header fade
@@ -202,7 +202,7 @@ local function SkinMeter(content)
           local shiftColor = fgMapShift[content.classFilename]
           if not normalColor or not shiftColor then return end
 
-          barTexture:SetGradient(gradientOrientation, shiftColor, normalColor)
+          F.Color.SetGradient(barTexture, gradientOrientation, normalColor, shiftColor)
         end)
       end
     end
