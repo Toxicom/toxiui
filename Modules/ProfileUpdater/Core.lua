@@ -49,14 +49,10 @@ local CATEGORIES = {
       {
         key = "fonts",
         label = "ElvUI Fonts",
-        desc = "All public font settings (general, bags, chat, cooldowns, auras, nameplates, unitframes, tooltip, actionbars). "
-          .. F.String.Error("We cannot show the difference for these."),
+        desc = "All public font settings (general, bags, chat, cooldowns, auras, nameplates, unitframes, tooltip, actionbars).",
+        hasDiff = true,
       },
-      {
-        key = "font_privates",
-        label = "Font Privates",
-        desc = "Chat bubble fonts, damage font, nameplate fonts, WindTools fonts. " .. F.String.Error("We cannot show the difference for these."),
-      },
+      { key = "font_privates", label = "Font Privates", desc = "Chat bubble fonts, damage font, nameplate fonts, WindTools fonts.", hasDiff = true },
     },
   },
   {
@@ -300,6 +296,28 @@ function PU:ComputeAllDiffs()
     return a.path < b.path
   end)
   self.diffs["additional_private"] = { count = #additionalPrivateEntries, entries = additionalPrivateEntries }
+
+  -- Fonts (public)
+  local fontsPf = PF:BuildFontsProfile()
+  local fontsEntries = {}
+  for k, v in pairs(fontsPf) do
+    if type(v) == "table" and type(E.db[k]) == "table" then computeTableDiff(E.db[k], v, k, fontsEntries) end
+  end
+  sort(fontsEntries, function(a, b)
+    return a.path < b.path
+  end)
+  self.diffs["fonts"] = { count = #fontsEntries, entries = fontsEntries }
+
+  -- Font Privates
+  local fontPrivatesPf = PF:BuildFontPrivatesProfile()
+  local fontPrivatesEntries = {}
+  for k, v in pairs(fontPrivatesPf) do
+    if type(v) == "table" and type(E.private[k]) == "table" then computeTableDiff(E.private[k], v, k, fontPrivatesEntries) end
+  end
+  sort(fontPrivatesEntries, function(a, b)
+    return a.path < b.path
+  end)
+  self.diffs["font_privates"] = { count = #fontPrivatesEntries, entries = fontPrivatesEntries }
 end
 
 function PU:GetDiffForItem(key)

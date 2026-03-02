@@ -19,12 +19,13 @@ local function customTextSize(args)
   return ret
 end
 
-function PF:ElvUIFont()
+function PF:BuildFontsProfile()
   local nameplates = {
     shared = {
-      auras = { countFont = F.FontOverride(I.Fonts.TitleBlack) },
+      auras = { countFont = F.FontOverride(I.Fonts.TitleBlack), countFontSize = F.FontSizeScaled(12) },
       buffs = {
         countFont = F.FontOverride(I.Fonts.Primary),
+        countFontSize = F.FontSizeScaled(12),
       },
       castbar = {
         font = F.FontOverride(I.Fonts.Primary),
@@ -104,7 +105,7 @@ function PF:ElvUIFont()
     },
   }
 
-  F.Table.Crush(E.db, {
+  local result = {
     -- General
     general = {
       font = F.FontOverride(I.Fonts.Primary),
@@ -539,17 +540,17 @@ function PF:ElvUIFont()
       },
     },
 
-    -- ActionBar
+    -- ActionBar (top-level)
     actionbar = {
       font = F.FontOverride(I.Fonts.Primary),
       fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       fontSize = F.FontSizeScaled(18),
     },
-  })
+  }
 
   -- ActionBars Main
   for i = 1, 10 do
-    F.Table.Crush(E.db.actionbar["bar" .. i], {
+    result.actionbar["bar" .. i] = {
       countFont = F.FontOverride(I.Fonts.Primary),
       countFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       countFontSize = F.FontSizeScaled(16),
@@ -561,16 +562,16 @@ function PF:ElvUIFont()
       macroFont = F.FontOverride(I.Fonts.Primary),
       macroFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       macroFontSize = F.FontSizeScaled(14),
-    })
+    }
   end
 
   -- ActionBars Additional
   for _, bar in next, { "barPet", "stanceBar", "vehicleExitButton", "extraActionButton" } do
-    local ab = {}
-
-    ab.hotkeyFont = F.FontOverride(I.Fonts.Primary)
-    ab.hotkeyFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE")
-    ab.hotkeyFontSize = F.FontSizeScaled(12)
+    local ab = {
+      hotkeyFont = F.FontOverride(I.Fonts.Primary),
+      hotkeyFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+      hotkeyFontSize = F.FontSizeScaled(12),
+    }
 
     if bar == "barPet" then
       ab.countFont = F.FontOverride(I.Fonts.Primary)
@@ -578,12 +579,12 @@ function PF:ElvUIFont()
       ab.countFontSize = F.FontSizeScaled(38)
     end
 
-    F.Table.Crush(E.db.actionbar[bar], ab)
+    result.actionbar[bar] = ab
   end
 
   -- WT
   if F.IsAddOnEnabled("ElvUI_WindTools") then
-    F.Table.Crush(E.db.WT, {
+    result.WT = {
       social = {
         friendList = {
           infoFont = {
@@ -599,13 +600,18 @@ function PF:ElvUIFont()
           },
         },
       },
-    })
+    }
   end
+
+  return result
 end
 
-function PF:ElvUIFontPrivates()
-  -- ElvUI
-  F.Table.Crush(E.private, {
+function PF:ElvUIFont()
+  F.Table.Crush(E.db, self:BuildFontsProfile())
+end
+
+function PF:BuildFontPrivatesProfile()
+  local result = {
     general = {
       -- General
       chatBubbleFont = F.FontOverride(I.Fonts.Primary),
@@ -624,11 +630,11 @@ function PF:ElvUIFontPrivates()
       nameplateLargeFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
       nameplateLargeFontSize = F.FontSizeScaled(10),
     },
-  })
+  }
 
   -- WT
   if F.IsAddOnEnabled("ElvUI_WindTools") then
-    F.Table.Crush(E.private.WT, {
+    result.WT = {
       maps = {
         instanceDifficulty = {
           name = F.FontOverride(I.Fonts.Primary),
@@ -688,8 +694,14 @@ function PF:ElvUIFontPrivates()
           },
         },
       },
-    })
+    }
   end
+
+  return result
+end
+
+function PF:ElvUIFontPrivates()
+  F.Table.Crush(E.private, self:BuildFontPrivatesProfile())
 end
 
 function PF:ApplyFontChange()

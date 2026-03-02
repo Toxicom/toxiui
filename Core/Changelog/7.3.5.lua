@@ -14,6 +14,7 @@ TXUI.Changelog["7.3.5"] = {
     F.String.Retail() .. "Option to change spec icon for Damage Meter skin",
 
     "* Enhancements",
+    "Show diff for fonts in Profile Updater",
 
     "* Bug fixes",
 
