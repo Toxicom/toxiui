@@ -26,5 +26,6 @@ TXUI.Changelog["7.3.5"] = {
     "Remove Details section from Class Icons settings",
 
     "* Development improvements",
+    "Simplify unitframe font config",
   },
 }

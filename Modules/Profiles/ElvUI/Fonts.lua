@@ -54,6 +54,56 @@ function PF:ElvUIFont()
       },
     },
   }
+
+  local unitframes = {
+    shared = {
+      castbar = {
+        customTextFont = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          fontSize = F.FontSizeScaled(14),
+          fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        },
+        customTimeFont = {
+          enable = true,
+          font = F.FontOverride(I.Fonts.Primary),
+          fontSize = F.FontSizeScaled(16),
+          fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        },
+      },
+      buffs = {
+        countFont = F.FontOverride(I.Fonts.TitleBlack),
+        countFontSize = F.FontSizeScaled(16),
+      },
+      debuffs = {
+        countFont = F.FontOverride(I.Fonts.TitleBlack),
+        countFontSize = F.FontSizeScaled(16),
+      },
+      raid = {
+        customTexts = customTextSize {
+          { "toxiui:name", I.Fonts.Primary, 16, I.Fonts.Primary, "SHADOWOUTLINE" },
+          { "toxiui:raid-group", I.Fonts.TitleRaid, 12, "SHADOWOUTLINE" },
+        },
+        rdebuffs = {
+          font = F.FontOverride(I.Fonts.Primary),
+          fontSize = F.FontSizeScaled(14),
+          fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+        },
+        buffs = {
+          countFont = F.FontOverride(I.Fonts.Primary),
+        },
+        debuffs = {
+          countFont = F.FontOverride(I.Fonts.Primary),
+        },
+      },
+      tankAssist = {
+        customTexts = customTextSize {
+          { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+        },
+      },
+    },
+  }
+
   F.Table.Crush(E.db, {
     -- General
     general = {
@@ -351,31 +401,9 @@ function PF:ElvUIFont()
             { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           },
 
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          castbar = {
-            customTextFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-
-            customTimeFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-          },
+          buffs = unitframes.shared.buffs,
+          debuffs = unitframes.shared.debuffs,
+          castbar = unitframes.shared.castbar,
         },
 
         target = {
@@ -389,31 +417,9 @@ function PF:ElvUIFont()
             { "toxiui:classification", I.Fonts.Primary, 20, "SHADOWOUTLINE", true },
           },
 
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          castbar = {
-            customTextFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-
-            customTimeFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-          },
+          buffs = unitframes.shared.buffs,
+          debuffs = unitframes.shared.debuffs,
+          castbar = unitframes.shared.castbar,
         },
 
         pet = {
@@ -422,21 +428,7 @@ function PF:ElvUIFont()
             { "toxiui:pet-happiness", I.Fonts.Title, 16, "SHADOWOUTLINE" },
           },
 
-          castbar = {
-            customTextFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-
-            customTimeFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-          },
+          castbar = unitframes.shared.castbar,
         },
 
         targettarget = {
@@ -452,31 +444,9 @@ function PF:ElvUIFont()
             { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           },
 
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          castbar = {
-            customTextFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(14),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-
-            customTimeFont = {
-              enable = true,
-              font = F.FontOverride(I.Fonts.Primary),
-              fontSize = F.FontSizeScaled(16),
-              fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-            },
-          },
+          buffs = unitframes.shared.buffs,
+          debuffs = unitframes.shared.debuffs,
+          castbar = unitframes.shared.castbar,
         },
 
         party = F.Table.Join(
@@ -518,80 +488,12 @@ function PF:ElvUIFont()
           })
         ),
 
-        raid1 = {
-          customTexts = customTextSize {
-            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-            { "toxiui:raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
-          },
+        raid1 = unitframes.shared.raid,
+        raid2 = unitframes.shared.raid,
+        raid3 = unitframes.shared.raid,
 
-          rdebuffs = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontSize = F.FontSizeScaled(14),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-          },
-
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-        },
-
-        raid2 = {
-          customTexts = customTextSize {
-            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-            { "toxiui:raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
-          },
-
-          rdebuffs = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontSize = F.FontSizeScaled(14),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-          },
-
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-        },
-
-        raid3 = {
-          customTexts = customTextSize {
-            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-            { "toxiui:raid-group", F.FontOverride(I.Fonts.TitleRaid), 12, F.FontStyleOverride(I.Fonts.TitleRaid, "SHADOWOUTLINE") },
-          },
-
-          rdebuffs = {
-            font = F.FontOverride(I.Fonts.Primary),
-            fontSize = F.FontSizeScaled(14),
-            fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-          },
-
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.Primary),
-          },
-        },
-
-        tank = {
-          customTexts = customTextSize {
-            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-          },
-        },
-
-        assist = {
-          customTexts = customTextSize {
-            { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
-          },
-        },
+        tank = unitframes.shared.tankAssist,
+        assist = unitframes.shared.tankAssist,
 
         arena = {
           customTexts = customTextSize {
@@ -600,15 +502,8 @@ function PF:ElvUIFont()
             { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
+          buffs = unitframes.shared.buffs,
+          debuffs = unitframes.shared.debuffs,
         },
 
         boss = {
@@ -619,15 +514,8 @@ function PF:ElvUIFont()
             { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
           },
 
-          buffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
-
-          debuffs = {
-            countFont = F.FontOverride(I.Fonts.TitleBlack),
-            countFontSize = F.FontSizeScaled(16),
-          },
+          buffs = unitframes.shared.buffs,
+          debuffs = unitframes.shared.debuffs,
         },
       },
     },
