@@ -33,6 +33,7 @@ DB.const = {
   mode = {
     ["rep"] = 0,
     ["exp"] = 1,
+    ["housing"] = 2,
   },
 }
 
@@ -49,9 +50,24 @@ function DB:GetValues(curValue, minValue, maxValue)
   end
 end
 
-function DB:OnEvent(event)
+function DB:OnEvent(event, ...)
   -- If smart mode changes, force update
   if self:UpdateSmartMode() then event = "ELVUI_FORCE_UPDATE" end
+
+  if event == "HOUSE_LEVEL_FAVOR_UPDATED" then
+    local payload = ...
+    if payload and payload.houseGUID then
+      local trackedGuid = C_Housing and C_Housing.GetTrackedHouseGuid()
+      if not trackedGuid then
+        local houseInfo = C_Housing and C_Housing.GetCurrentHouseInfo and C_Housing.GetCurrentHouseInfo()
+        trackedGuid = houseInfo and houseInfo.houseGUID
+      end
+      if payload.houseGUID == trackedGuid then self.cachedHouseLevelFavor = payload end
+    end
+  elseif event == "CVAR_UPDATE" then
+    local cvar = ...
+    if cvar == "trackedHouseFavor" and self.mode == self.const.mode.housing then event = "ELVUI_FORCE_UPDATE" end
+  end
 
   -- Reputation
   if
@@ -139,7 +155,7 @@ function DB:OnEvent(event)
       self:UpdateBar()
     end)
 
-    -- Experience
+  -- Experience
   elseif
     (self.mode == DB.const.mode.exp)
     and not self.updateExpNextOutOfCombat
@@ -179,6 +195,49 @@ function DB:OnEvent(event)
 
         self.data.expRestPercentage = (self.data.restedXP > 0) and ((min(self.data.restedXP, self.data.xpToLevel) / self.data.xpToLevel) * 100) or 0
         self.data.expPercentage = (self.data.currentXP / self.data.xpToLevel) * 100
+      end
+
+      self:UpdateTooltip()
+      self:UpdateBar()
+    end)
+
+  -- Housing
+  elseif
+    (self.mode == DB.const.mode.housing)
+    and not self.updateHousingNextOutOfCombat
+    and ((event == "ELVUI_FORCE_UPDATE") or (event == "HOUSE_LEVEL_FAVOR_UPDATED") or (event == "CURRENT_HOUSE_INFO_RECIEVED") or (event == "CURRENT_HOUSE_INFO_UPDATED"))
+  then
+    self.updateHousingNextOutOfCombat = true
+
+    F.Event.ContinueOutOfCombat(function()
+      self.updateHousingNextOutOfCombat = false
+
+      local houseInfo = C_Housing and C_Housing.GetCurrentHouseInfo and C_Housing.GetCurrentHouseInfo()
+
+      if not houseInfo then
+        self.noData = true
+        self.data.housingPercentage = 0
+      else
+        if event == "ELVUI_FORCE_UPDATE" and C_Housing.RequestCurrentHouseInfo then C_Housing.RequestCurrentHouseInfo() end
+
+        local trackedHouseGuid = C_Housing.GetTrackedHouseGuid() or houseInfo.houseGUID
+
+        if trackedHouseGuid and (event == "ELVUI_FORCE_UPDATE" or event == "CURRENT_HOUSE_INFO_RECIEVED" or event == "CURRENT_HOUSE_INFO_UPDATED") then
+          C_Housing.GetCurrentHouseLevelFavor(trackedHouseGuid)
+        end
+
+        local houseLevelFavor = self.cachedHouseLevelFavor
+        if not houseLevelFavor or houseLevelFavor.houseGUID ~= trackedHouseGuid then houseLevelFavor = { houseLevel = 1, houseFavor = 0 } end
+
+        self.data.housingLevel = houseLevelFavor.houseLevel
+        self.data.housingFavor = houseLevelFavor.houseFavor
+
+        local minBar = C_Housing.GetHouseLevelFavorForLevel(houseLevelFavor.houseLevel) or 0
+        local maxBar = C_Housing.GetHouseLevelFavorForLevel(houseLevelFavor.houseLevel + 1) or 1
+        if maxBar == minBar then maxBar = minBar + 1 end
+
+        self.data.housingPercentage = ((self.data.housingFavor - minBar) / (maxBar - minBar)) * 100
+        self.noData = false
       end
 
       self:UpdateTooltip()
@@ -241,11 +300,50 @@ function DB:UpdateExperienceTooltip()
   DT.tooltip:Show()
 end
 
+function DB:UpdateHousingTooltip()
+  DT.tooltip:ClearLines()
+  DT.tooltip:AddDoubleLine("Housing", format("Level %d", self.data.housingLevel or 1))
+  DT.tooltip:AddLine(" ")
+
+  local minBar = C_Housing.GetHouseLevelFavorForLevel(self.data.housingLevel) or 0
+  local maxBar = C_Housing.GetHouseLevelFavorForLevel(self.data.housingLevel + 1) or 1
+
+  if maxBar == minBar then maxBar = minBar + 1 end
+
+  local current = (self.data.housingFavor or 0) - minBar
+  local maximum = maxBar - minBar
+  local remainXP = maximum - current
+  local remainPercent = (remainXP / maximum) * 100
+  local remainBars = 20 * (remainXP / maximum)
+
+  DT.tooltip:AddDoubleLine(
+    "Experience:",
+    format(" %s / %s (%.2f%%)", E:ShortValue(current), E:ShortValue(maximum), self.data.housingPercentage),
+    1,
+    1,
+    1,
+    F.SlowColorGradient(1 - (remainPercent * 0.01), 1, 0.1, 0.1, 1, 1, 0.1, 0.1, 1, 0.1)
+  )
+
+  DT.tooltip:AddDoubleLine(
+    "Remaining:",
+    format(" %s (%.2f%% - %d " .. "Bars" .. ")", E:ShortValue(remainXP), remainPercent, remainBars),
+    1,
+    1,
+    1,
+    F.SlowColorGradient(1 - (remainPercent * 0.01), 1, 0.1, 0.1, 1, 1, 0.1, 0.1, 1, 0.1)
+  )
+
+  DT.tooltip:Show()
+end
+
 function DB:UpdateTooltip()
   if not self.mouseover then return end
 
   if self.mode == DB.const.mode.exp then
     self:UpdateExperienceTooltip()
+  elseif self.mode == DB.const.mode.housing then
+    self:UpdateHousingTooltip()
   elseif self.mode == DB.const.mode.rep then
     local dtModule = WB:GetElvUIDataText("Reputation")
     if dtModule then
@@ -275,6 +373,10 @@ function DB:OnLeave()
 end
 
 function DB:OnClick()
+  if self.mode == DB.const.mode.housing then
+    if not _G.HousingDashboardFrame or not _G.HousingDashboardFrame:IsShown() then _G.HousingFramesUtil.ToggleHousingDashboard() end
+    return
+  end
   if self.mode ~= DB.const.mode.rep then return end
 
   local dtModule = WB:GetElvUIDataText("Reputation")
@@ -300,6 +402,8 @@ function DB:UpdateBar()
   local barProgress
   if self.mode == DB.const.mode.rep then
     barProgress = self.data.repPercentage
+  elseif self.mode == DB.const.mode.housing then
+    barProgress = self.data.housingPercentage
   else
     barProgress = self.data.expPercentage
   end
@@ -385,9 +489,14 @@ function DB:GetCompletedPercentage()
 end
 
 function DB:UpdateSmartMode(init)
-  local mode = ((self.db.mode == "auto") and (not IsPlayerAtEffectiveMaxLevel()) and ((TXUI.IsClassicEra or TXUI.IsAnniversary) or not IsXPUserDisabledFunction()))
-      and self.const.mode.exp
-    or self.const.mode.rep
+  local mode
+  if self.db.mode == "housing" then
+    mode = self.const.mode.housing
+  elseif self.db.mode == "auto" and (not IsPlayerAtEffectiveMaxLevel()) and ((TXUI.IsClassicEra or TXUI.IsAnniversary) or not IsXPUserDisabledFunction()) then
+    mode = self.const.mode.exp
+  else
+    mode = self.const.mode.rep
+  end
 
   if not init and (mode ~= self.mode) then
     self.mode = mode
@@ -421,7 +530,10 @@ end
 
 function DB:UpdateInfoText()
   if self.db.infoEnabled then
-    self.infoText:SetText(E:Round((self.mode == DB.const.mode.exp) and self.data.expPercentage or self.data.repPercentage) .. "%")
+    self.infoText:SetText(
+      E:Round((self.mode == DB.const.mode.exp) and self.data.expPercentage or (self.mode == DB.const.mode.housing) and self.data.housingPercentage or self.data.repPercentage)
+        .. "%"
+    )
   else
     self.infoText:SetText("")
   end
@@ -500,6 +612,8 @@ function DB:OnInit()
   -- Don't init second time
   if self.Initialized then return end
 
+  if C_Housing and C_Housing.RequestCurrentHouseInfo then C_Housing.RequestCurrentHouseInfo() end
+
   -- Vars
   self.frame = self.SubModuleHolder
   self.updateExpNextOutOfCombat = false
@@ -514,6 +628,9 @@ function DB:OnInit()
     currentXP = 0,
     xpToLevel = 0,
     restedXP = 0,
+    housingLevel = 1,
+    housingFavor = 0,
+    housingPercentage = 0,
   }
 
   self:CreateBar()
@@ -537,5 +654,9 @@ WB:RegisterSubModule(
     "UPDATE_EXHAUSTION",
     "UPDATE_FACTION",
     "COMBAT_TEXT_UPDATE",
+    "HOUSE_LEVEL_FAVOR_UPDATED",
+    "CURRENT_HOUSE_INFO_RECIEVED",
+    "CURRENT_HOUSE_INFO_UPDATED",
+    "CVAR_UPDATE",
   }, F.Table.If(TXUI.IsRetail, { "SUPER_TRACKING_CHANGED" }))
 )

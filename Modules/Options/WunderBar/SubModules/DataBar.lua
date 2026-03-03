@@ -34,6 +34,7 @@ function O:WunderBar_SubModules_DataBar()
   tab.generalGroup.args.mode = ACH:Select("Mode", nil, 3, {
     ["auto"] = "Smart (Experience under Max Level)",
     ["rep"] = "Reputation",
+    ["housing"] = "Housing",
   }, nil, "double")
 
   -- Bar Group
