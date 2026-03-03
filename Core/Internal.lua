@@ -471,6 +471,7 @@ I.HearthstoneData = {
   [172924] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "SL" }, -- Wormhole Generator: Shadowlands
   [198156] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "DF" }, -- Wyrmhole Generator: Dragon Isles
   [221966] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "TWW" }, -- Wormhole Generator: Khaz Algar
+  [248485] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "MID" }, -- Wormhole Generator: Quel'Thalas
 
   -- Teleportation Equipment --
   [22589] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "KZ" }, -- Atiesh, Greatstaff of the Guardian
