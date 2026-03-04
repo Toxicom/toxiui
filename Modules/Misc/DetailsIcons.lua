@@ -13,6 +13,10 @@ function M:DetailsIcons()
     Details:AddCustomIconSet(iconsPath .. "UggWhiteStroke.blp", F.String.Ugg() .. " White Stroke", false, logoPath, coords)
 
     Details:AddCustomIconSet(iconsPath .. "ToxiSpecStylized.blp", TXUI.Title .. " " .. F.String.Class("Spec") .. " Stylized", true, logoPath, coords)
+    Details:AddCustomIconSet(iconsPath .. "ToxiSpecWhite.blp", TXUI.Title .. " " .. F.String.Class("Spec") .. " White", true, logoPath, coords)
+    Details:AddCustomIconSet(iconsPath .. "ToxiSpecWhiteStroke.blp", TXUI.Title .. " " .. F.String.Class("Spec") .. " White Stroke", true, logoPath, coords)
+    Details:AddCustomIconSet(iconsPath .. "ToxiSpecColored.blp", TXUI.Title .. " " .. F.String.Class("Spec") .. " Colored", true, logoPath, coords)
+    Details:AddCustomIconSet(iconsPath .. "ToxiSpecColoredStroke.blp", TXUI.Title .. " " .. F.String.Class("Spec") .. " Colored Stroke", true, logoPath, coords)
   end
 end
 

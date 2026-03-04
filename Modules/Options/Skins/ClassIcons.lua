@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local M = TXUI:GetModule("Misc")
 
 function O:Skins_ClassIcons()
   -- Create Tab
@@ -57,11 +58,7 @@ function O:Skins_ClassIcons()
         }
 
         if TXUI.IsRetail then
-          local retailTable = {
-            ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
-          }
-
-          F.Table.Crush(tbl, retailTable)
+          F.Table.Crush(tbl, M:GetSpecIconStyleValues())
         end
 
         return tbl

@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local M = TXUI:GetModule("Misc")
 
 function O:Skins_DamageMeter()
   -- Create Tab
@@ -83,13 +84,16 @@ function O:Skins_DamageMeter()
       name = "Icon Style",
       desc = "Choose the style used for spec and class icons in the damage meter.",
       width = 1.5,
-      values = {
-        ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
-        ToxiClasses = F.String.ToxiUI("Stylized"),
-        UggColored = F.String.Ugg() .. " " .. F.String.Rainbow("Colored"),
-        UggColoredStroke = F.String.Ugg() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
-        UggWhiteStroke = F.String.Ugg() .. " White Stroke",
-      },
+      values = function()
+        local tbl = {
+          ToxiClasses = F.String.ToxiUI("Stylized"),
+          UggColored = F.String.Ugg() .. " " .. F.String.Rainbow("Colored"),
+          UggColoredStroke = F.String.Ugg() .. " " .. F.String.Rainbow("Colored") .. " Stroke",
+          UggWhiteStroke = F.String.Ugg() .. " White Stroke",
+        }
+        F.Table.Crush(tbl, M:GetSpecIconStyleValues())
+        return tbl
+      end,
       disabled = function()
         return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled or not E.db.TXUI.addons.damageMeter.icons
       end,

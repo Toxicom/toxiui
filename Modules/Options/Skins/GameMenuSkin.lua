@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 local GM = TXUI:GetModule("GameMenu")
+local M = TXUI:GetModule("Misc")
 
 function O:Skins_ElvUI()
   -- Create Tab
@@ -224,9 +225,9 @@ function O:Skins_ElvUI()
       name = "Spec Icon Style",
       desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
       width = 1.5,
-      values = {
-        ToxiSpecStylized = TXUI.Title .. " Stylized",
-      },
+      values = function()
+        return M:GetSpecIconStyleValues()
+      end,
       get = function()
         return E.db.TXUI.addons.gameMenuSkin.specIconStyle
       end,

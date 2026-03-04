@@ -149,6 +149,16 @@ M.BlizzardToSpecID = {
   [132341] = I.Specs.Warrior.Protection,
 }
 
+function M:GetSpecIconStyleValues()
+  return {
+    ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
+    ToxiSpecWhite = F.String.Class("Spec") .. " " .. F.String.ToxiUI("White"),
+    ToxiSpecWhiteStroke = F.String.Class("Spec") .. " " .. F.String.ToxiUI("White Stroke"),
+    ToxiSpecColored = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Colored"),
+    ToxiSpecColoredStroke = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Colored Stroke"),
+  }
+end
+
 function M:GetClassIconPath(theme)
   if not theme or theme == "" then theme = "ToxiClasses" end
 
