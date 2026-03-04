@@ -8,6 +8,7 @@ TXUI.Changelog["7.3.5"] = {
     "* New features",
     F.String.Retail() .. "Option to change spec icon for Damage Meter skin",
     "Class Icons style setting now controls all spec/class icon displays globally",
+    "Class Icons can be previewed in the options",
 
     "* Enhancements",
     "Show diff for fonts in Profile Updater",

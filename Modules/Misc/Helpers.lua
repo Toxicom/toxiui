@@ -149,14 +149,59 @@ M.BlizzardToSpecID = {
   [132341] = I.Specs.Warrior.Protection,
 }
 
+local iconStyleDefs = {
+  ToxiClasses = { "class", "stylized" },
+  UggColored = { "class", "ugg", "colored" },
+  UggColoredStroke = { "class", "ugg", "colored", "stroke" },
+  UggWhiteStroke = { "class", "ugg", "white", "stroke" },
+  ToxiSpecStylized = { "spec", "stylized" },
+  ToxiSpecWhite = { "spec", "white" },
+  ToxiSpecWhiteStroke = { "spec", "white", "stroke" },
+  ToxiSpecColored = { "spec", "colored" },
+  ToxiSpecColoredStroke = { "spec", "colored", "stroke" },
+}
+
+local tokenFormatters = {
+  stylized = function()
+    return F.String.ToxiUI("Stylized")
+  end,
+  ugg = function()
+    return F.String.Ugg()
+  end,
+  colored = function()
+    return F.String.Class("Colored")
+  end,
+  stroke = function()
+    return F.String.Silver("Stroke")
+  end,
+  white = function()
+    return "White"
+  end,
+}
+
+local function FormatIconStyleLabel(def)
+  local parts = { def[1]:upper() .. " -" }
+  for i = 2, #def do
+    local fn = tokenFormatters[def[i]]
+    parts[#parts + 1] = fn and fn() or def[i]
+  end
+  return table.concat(parts, " ")
+end
+
+function M:GetClassIconStyleValues()
+  local result = {}
+  for key, def in pairs(iconStyleDefs) do
+    if def[1] == "class" then result[key] = FormatIconStyleLabel(def) end
+  end
+  return result
+end
+
 function M:GetSpecIconStyleValues()
-  return {
-    ToxiSpecStylized = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Stylized"),
-    ToxiSpecWhite = F.String.Class("Spec") .. " " .. F.String.ToxiUI("White"),
-    ToxiSpecWhiteStroke = F.String.Class("Spec") .. " " .. F.String.ToxiUI("White Stroke"),
-    ToxiSpecColored = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Colored"),
-    ToxiSpecColoredStroke = F.String.Class("Spec") .. " " .. F.String.ToxiUI("Colored Stroke"),
-  }
+  local result = {}
+  for key, def in pairs(iconStyleDefs) do
+    if def[1] == "spec" then result[key] = FormatIconStyleLabel(def) end
+  end
+  return result
 end
 
 function M:GetClassIconPath(theme)
