@@ -134,6 +134,8 @@ function M:Tags()
   local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
   local iconPath = self:GetClassIconPath(iconTheme)
+  local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
+  local classIconPath = usingSpecIcons and self:GetClassIconPath("ToxiClasses") or iconPath
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")
 
@@ -348,9 +350,6 @@ function M:Tags()
       return power
     end
   end)
-
-  local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
-  local classIconPath = usingSpecIcons and self:GetClassIconPath("ToxiClasses") or iconPath
 
   -- Class Icon Tags (normal and reversed/mirrored, with optional :player filter)
   for _, reverse in ipairs { false, true } do

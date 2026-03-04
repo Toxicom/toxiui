@@ -283,9 +283,9 @@ function DM:Initialize()
     -- Get modules now that everything is loaded
     M = TXUI:GetModule("Misc")
 
-    local iconStyle = E.db.TXUI.addons.damageMeter.iconStyle or "ToxiSpecStylized"
+    local iconStyle = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiSpecStylized"
     TEXTURE_SPEC = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Textures\\Icons\\" .. iconStyle
-    hasSpecIcons = iconStyle == "ToxiSpecStylized"
+    hasSpecIcons = iconStyle:match("ToxiSpec")
 
     -- Re-apply gradients when gradient settings change
     if E.db.TXUI.addons.damageMeter.gradients then

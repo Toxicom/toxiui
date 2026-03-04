@@ -7,9 +7,11 @@ TXUI.Changelog["7.3.5"] = {
 
     "* New features",
     F.String.Retail() .. "Option to change spec icon for Damage Meter skin",
+    "Class Icons style setting now controls all spec/class icon displays globally",
 
     "* Enhancements",
     "Show diff for fonts in Profile Updater",
+    "Class-only icon displays (Played graph, spec fallbacks) respect the selected class icon style",
 
     "* Bug fixes",
 
@@ -22,6 +24,7 @@ TXUI.Changelog["7.3.5"] = {
 
     "* Settings refactoring",
     "Remove Details section from Class Icons settings",
+    "Remove per-feature spec icon style selectors (Game Menu, AFK, Damage Meter) in favor of global Class Icons setting",
 
     "* Development improvements",
     "Simplify unitframe font config",

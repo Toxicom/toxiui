@@ -1,7 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 local GM = TXUI:GetModule("GameMenu")
-local M = TXUI:GetModule("Misc")
 
 function O:Skins_ElvUI()
   -- Create Tab
@@ -218,24 +217,6 @@ function O:Skins_ElvUI()
     local optionsDisabled = function()
       return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
     end
-
-    iconGroup.specIconStyle = {
-      order = self:GetOrder(),
-      type = "select",
-      name = "Spec Icon Style",
-      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
-      width = 1.5,
-      values = function()
-        return M:GetSpecIconStyleValues()
-      end,
-      get = function()
-        return E.db.TXUI.addons.gameMenuSkin.specIconStyle
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.specIconStyle = value
-      end,
-      disabled = optionsDisabled,
-    }
 
     iconGroup.specIconSize = {
       order = self:GetOrder(),

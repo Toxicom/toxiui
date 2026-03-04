@@ -42,7 +42,11 @@ function O:Skins_ClassIcons()
     local styleGroup = self:AddInlineDesc(options, {
       name = "Icon Style",
     }, {
-      name = "Change the style for the " .. F.String.ToxiUI("[tx:classicon]") .. " tag used in UnitFrames.\n\n",
+      name = "Change the style for all "
+        .. TXUI.Title
+        .. " spec icons: UnitFrames ("
+        .. F.String.ToxiUI("[tx:classicon]")
+        .. "), Game Menu, AFK screen, and Blizzard Damage Meter.\n\n",
     }).args
 
     styleGroup.style = {
@@ -57,9 +61,7 @@ function O:Skins_ClassIcons()
           UggWhiteStroke = F.String.Ugg() .. " White Stroke",
         }
 
-        if TXUI.IsRetail then
-          F.Table.Crush(tbl, M:GetSpecIconStyleValues())
-        end
+        if TXUI.IsRetail then F.Table.Crush(tbl, M:GetSpecIconStyleValues()) end
 
         return tbl
       end,

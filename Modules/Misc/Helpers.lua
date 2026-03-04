@@ -165,6 +165,11 @@ function M:GetClassIconPath(theme)
   return [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\]] .. theme .. [[:32:32:0:0:512:512:%s|t]]
 end
 
+function M:GetEffectiveClassIconTheme(theme)
+  if not theme or theme:match("ToxiSpec") then return "ToxiClasses" end
+  return theme
+end
+
 function M:ReverseIconCoords(coords)
   local x1, x2, y1, y2 = strsplit(":", coords)
   return format("%s:%s:%s:%s", x2, x1, y1, y2)
@@ -173,6 +178,7 @@ end
 function M:GenerateSpecIcon(dbPath)
   local specIcon
   local iconPath = self:GetClassIconPath(dbPath or "ToxiSpecStylized")
+  local classIconPath = self:GetClassIconPath(self:GetEffectiveClassIconTheme(dbPath))
   local iconsFont = F.GetFontPath(I.Fonts.Icons)
 
   if TXUI.IsRetail then
@@ -183,7 +189,7 @@ function M:GenerateSpecIcon(dbPath)
     if id and id ~= 0 and M.SpecIcons[id] then
       specIcon = format(iconPath, M.SpecIcons[id])
     else
-      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+      specIcon = format(classIconPath, M.ClassIcons[E.myclass])
     end
   elseif TXUI.IsClassic then
     local specIndex = C_SpecializationInfo.GetSpecialization()
@@ -192,7 +198,7 @@ function M:GenerateSpecIcon(dbPath)
     if specId and M.SpecIcons[specId] then
       specIcon = format(iconPath, M.SpecIcons[specId])
     else
-      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+      specIcon = format(classIconPath, M.ClassIcons[E.myclass])
     end
   else
     local spec
@@ -203,7 +209,7 @@ function M:GenerateSpecIcon(dbPath)
     if spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
       specIcon = format(iconPath, M.SpecIcons[spec.id])
     else
-      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+      specIcon = format(classIconPath, M.ClassIcons[E.myclass])
     end
   end
 

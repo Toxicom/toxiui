@@ -1,6 +1,5 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
-local M = TXUI:GetModule("Misc")
 
 function O:Skins_ElvUI()
   -- Create Tab
@@ -178,26 +177,6 @@ function O:Skins_ElvUI()
       set = function(_, value)
         E.db.TXUI.addons.afkMode.showTips = value
         E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }
-
-    elvuiAfkGroup.specIconStyle = {
-      order = self:GetOrder(),
-      type = "select",
-      name = "Spec Icon Style",
-      desc = "Choose the style used for the specialization icon on the AFK screen.",
-      width = 1.5,
-      values = function()
-        return M:GetSpecIconStyleValues()
-      end,
-      get = function()
-        return E.db.TXUI.addons.afkMode.specIconStyle
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.afkMode.specIconStyle = value
-      end,
-      disabled = function()
-        return not E.db.TXUI.addons.afkMode.enabled
       end,
     }
 
