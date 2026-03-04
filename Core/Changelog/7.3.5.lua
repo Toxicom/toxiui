@@ -23,6 +23,7 @@ TXUI.Changelog["7.3.5"] = {
 
     "* Documentation",
     F.String.Retail() .. F.String.Menu.WunderBar() .. ": Add Wormhole Generator: Quel'thalas to Hearthstone module",
+    F.String.MinElv("15.08"),
 
     "* Settings refactoring",
     "Remove Details section from Class Icons settings",

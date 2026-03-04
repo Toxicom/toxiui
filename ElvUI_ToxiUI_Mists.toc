@@ -11,7 +11,7 @@
 ## X-Flavor: Classic
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
-## X-ElvUIVersion: 15.07
+## X-ElvUIVersion: 15.08
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 ## Group: ElvUI
