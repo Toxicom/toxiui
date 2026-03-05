@@ -60,12 +60,16 @@ jobs:
           avatar_url: "https://i.imgur.com/ib1CSUx.png"
           description: |
             :tools: Release `${{ env.tag }}`
-            :scroll: Changelog in game with the `/tx changelog` command!
+            :scroll: Release notes: <https://github.com/Toxicom/toxiui/releases/tag/${{ env.tag }}>
 
             :hearts: Thank you all for getting this release ready! :hearts:
 
-            :floppy_disk: Download soon:tm: on CurseForge, Wago or WoWInterface
-            :information_source: Best way to manage your AddOns is via https://wowup.io
+            :floppy_disk: Download soon:tm:
+            :orange_square: CurseForge: <https://www.curseforge.com/wow/addons/toxiui>
+            :green_square: Wago: <https://addons.wago.io/addons/toxiui>
+            :blue_square: WoWInterface: <https://www.wowinterface.com/downloads/info25770-ToxiUI.html>
+
+            :information_source: Best way to manage your AddOns is via <https://wowup.io>
       - name: Upload release file to Discord
         uses: nocturlab/upload-to-discord@master
         if: success()
