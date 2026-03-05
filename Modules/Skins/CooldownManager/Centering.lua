@@ -98,11 +98,66 @@ function CM:CenterViewer(viewerKey)
   self._centeringIcons = false
 end
 
+function CM:AlignBuffBarViewer()
+  if self._centeringIcons then return end
+
+  local cache = viewerCache["buffBar"]
+  if not cache then return end
+
+  local viewer = cache.viewer
+  local children = { viewer:GetChildren() }
+
+  wipe(shownBuffer)
+  for _, child in ipairs(children) do
+    if child:IsShown() and child:GetHeight() > 1 then shownBuffer[#shownBuffer + 1] = child end
+  end
+
+  local count = #shownBuffer
+  if count == 0 then return end
+
+  if count > 1 then sort(shownBuffer, sortByLayoutIndex) end
+
+  local barHeight = floor(shownBuffer[1]:GetHeight() + 0.5)
+  if barHeight <= 0 then return end
+
+  local ySpacing = cache.ySpacing
+
+  self._centeringIcons = true
+
+  for i = 0, count - 1 do
+    local bar = shownBuffer[i + 1]
+    if bar then
+      local yPos = i * (barHeight + ySpacing)
+      bar:ClearAllPoints()
+      bar:SetPoint("BOTTOMLEFT", viewer, "BOTTOMLEFT", 0, yPos)
+      bar:SetPoint("BOTTOMRIGHT", viewer, "BOTTOMRIGHT", 0, yPos)
+    end
+  end
+
+  self._centeringIcons = false
+end
+
 function CM:CenterAllViewers()
   if not self.centeringActive then return end
 
   for _, key in ipairs(centeringKeys) do
     if self.db.centering[key] then self:CenterViewer(key) end
+  end
+  if self.db.centering.buffBar then self:AlignBuffBarViewer() end
+end
+
+function CM:HookBuffBarVisibility(viewer)
+  local children = { viewer:GetChildren() }
+  for _, child in ipairs(children) do
+    if not child._txBuffBarHooked then
+      child._txBuffBarHooked = true
+      self:SecureHookScript(child, "OnShow", function()
+        if self.centeringActive and self.db.centering.buffBar then self:AlignBuffBarViewer() end
+      end)
+      self:SecureHookScript(child, "OnHide", function()
+        if self.centeringActive and self.db.centering.buffBar then self:AlignBuffBarViewer() end
+      end)
+    end
   end
 end
 
@@ -163,6 +218,37 @@ function CM:EnableCentering()
       -- Initial centering
       self:CenterViewer(key)
     end
+  end
+
+  if self.db.centering.buffBar then
+    local cache = cacheViewerProps("buffBar")
+    if not cache then return end
+
+    local viewer = cache.viewer
+
+    if not self:IsHooked(viewer, "RefreshLayout") then
+      self:SecureHook(viewer, "RefreshLayout", function()
+        if self.centeringActive and self.db.centering.buffBar then
+          cacheViewerProps("buffBar")
+          self:HookBuffBarVisibility(viewer)
+          E:Delay(0, function()
+            self:AlignBuffBarViewer()
+          end)
+        end
+      end)
+    end
+
+    if not self:IsHooked(viewer, "OnSizeChanged") then
+      self:SecureHookScript(viewer, "OnSizeChanged", function()
+        if self.centeringActive and self.db.centering.buffBar then
+          self:HookBuffBarVisibility(viewer)
+          self:AlignBuffBarViewer()
+        end
+      end)
+    end
+
+    self:HookBuffBarVisibility(viewer)
+    self:AlignBuffBarViewer()
   end
 end
 

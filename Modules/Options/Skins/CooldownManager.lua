@@ -425,6 +425,21 @@ function O:Skins_CooldownManager()
         F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
+
+    centerGroup.centerBuffBar = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Align bars in the Buff Bar Cooldown Viewer to the bottom of the viewer frame instead of static layout.",
+      name = "Buff Bars",
+      disabled = isDisabled,
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.centering.buffBar
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.centering.buffBar = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
   end
 
   -- Spacer

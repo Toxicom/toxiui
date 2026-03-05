@@ -110,10 +110,19 @@ local function getSkinsData()
         boolLine("Center Buff", function()
           return E.db.TXUI.addons.cooldownManager.centering.buff
         end),
-        boolLine("Keybinds Essential", function()
+        boolLine("Center Buff Bar", function()
+          return E.db.TXUI.addons.cooldownManager.centering.buffBar
+        end),
+        boolLine("Class Bar Ovrd", function()
+          return E.db.TXUI.addons.cooldownManager.classBarOverride.enabled
+        end),
+        boolLine("Power Bar Ovrd", function()
+          return E.db.TXUI.addons.cooldownManager.powerBarOverride.enabled
+        end),
+        boolLine("Keybinds Ess.", function()
           return E.db.TXUI.addons.cooldownManager.keybinds.essential.enabled
         end),
-        boolLine("Keybinds Utility", function()
+        boolLine("Keybinds Util.", function()
           return E.db.TXUI.addons.cooldownManager.keybinds.utility.enabled
         end),
       },

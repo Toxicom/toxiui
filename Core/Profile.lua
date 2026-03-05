@@ -323,6 +323,7 @@ P.addons = {
       essential = false,
       utility = false,
       buff = false,
+      buffBar = false,
     },
 
     -- Class Bar Override: disable ElvUI class bar for selected specs

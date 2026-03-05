@@ -76,7 +76,7 @@ function CM:DatabaseUpdate()
     -- Enable centering if any viewer has it enabled
     if self.db.centering then
       local c = self.db.centering
-      if c.essential or c.utility or c.buff then self:EnableCentering() end
+      if c.essential or c.utility or c.buff or c.buffBar then self:EnableCentering() end
     end
 
     -- Enable keybind overlays if any viewer has keybinds enabled
