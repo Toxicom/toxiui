@@ -330,6 +330,7 @@ P.addons = {
       enabled = false,
       specs = { -- [specId] = true
         [I.Specs.Priest.Shadow] = true,
+        [I.Specs.Shaman.Elemental] = true,
       },
     },
 
@@ -342,6 +343,9 @@ P.addons = {
         [I.Specs.Warlock.Affliction] = true,
         [I.Specs.Warlock.Demonology] = true,
         [I.Specs.Warlock.Destruction] = true,
+        [I.Specs.Shaman.Enhancement] = true,
+        [I.Specs.Evoker.Devastation] = true,
+        [I.Specs.Evoker.Augmentation] = true,
       },
     },
 
