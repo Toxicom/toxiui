@@ -24,7 +24,7 @@ function PF:BuildFontsProfile()
     shared = {
       auras = { countFont = F.FontOverride(I.Fonts.TitleBlack), countFontSize = F.FontSizeScaled(12) },
       buffs = {
-        countFont = F.FontOverride(I.Fonts.Primary),
+        countFont = F.FontOverride(I.Fonts.TitleBlack),
         countFontSize = F.FontSizeScaled(12),
       },
       castbar = {
@@ -286,7 +286,7 @@ function PF:BuildFontsProfile()
       end
 
       -- Overrides
-      cd.cdmanager.fontSize = F.FontSizeScaled(20)
+      cd.cdmanager.fontSize = F.FontSizeScaled(18)
       cd.nameplates.fontSize = F.FontSizeScaled(12)
 
       return cd

@@ -17,7 +17,7 @@ TXUI.Changelog["7.3.5"] = {
     "* Bug fixes",
 
     "* Profile updates",
-    F.String.ElvUI() .. "Update nameplate auras fonts",
+    F.String.ElvUI() .. ": Update nameplate auras fonts",
 
     "* Documentation",
     F.String.Retail() .. F.String.Menu.WunderBar() .. ": Add Wormhole Generator: Quel'thalas to Hearthstone module",
