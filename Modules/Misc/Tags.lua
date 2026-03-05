@@ -332,7 +332,7 @@ function M:Tags()
     [I.Specs.Shaman.Restoration] = true,
   }
 
-  E:AddTag("tx:power", POWER_EVENTS, function(unit)
+  local function powerTagFunc(unit)
     local power = UnitPower(unit)
     local powerType = UnitPowerType(unit)
 
@@ -349,6 +349,14 @@ function M:Tags()
     else
       return power
     end
+  end
+
+  E:AddTag("tx:power", POWER_EVENTS, powerTagFunc)
+
+  E:AddTag("tx:power:classbar", POWER_EVENTS, function(unit)
+    local playerDB = E.db.unitframe and E.db.unitframe.units and E.db.unitframe.units.player
+    if not playerDB or playerDB.power.enable then return end
+    return powerTagFunc(unit)
   end)
 
   -- Class Icon Tags (normal and reversed/mirrored, with optional :player filter)
@@ -551,6 +559,7 @@ function M:Tags()
       TagNames.POWER,
       "Displays current Power of unit. Also adds " .. TXUI.Title .. " colors." .. (TXUI.IsRetail and " Smart display per-specialization." or "")
     )
+    E:AddTagInfo("tx:power:classbar", TagNames.POWER, "Same as [tx:power] but only displays when the Player Power Bar is disabled.")
   end
 
   -- Requires ElvUI 13.67 or later

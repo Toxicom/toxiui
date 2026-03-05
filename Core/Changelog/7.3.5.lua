@@ -9,6 +9,9 @@ TXUI.Changelog["7.3.5"] = {
     F.String.Retail() .. "Option to change spec icon for Damage Meter skin",
     "Class Icons style setting now controls all spec/class icon displays globally",
     "Class Icons can be previewed in the options",
+    F.String.Retail() .. F.String.CDM() .. ": Option to automatically disable " .. F.String.ToxiUI("ElvUI Class Bar") .. " per specialization",
+    F.String.Retail() .. F.String.CDM() .. ": Option to automatically disable " .. F.String.ToxiUI("ElvUI Power Bar") .. " per specialization",
+    F.String.Retail() .. "New " .. F.String.ToxiUI("[tx:power:classbar]") .. " tag: displays power value only when the Player Power Bar is disabled",
 
     "* Enhancements",
     "Show diff for fonts in Profile Updater",
@@ -18,6 +21,7 @@ TXUI.Changelog["7.3.5"] = {
 
     "* Profile updates",
     F.String.ElvUI() .. ": Update nameplate auras fonts",
+    F.String.ElvUI() .. ": " .. F.String.ToxiUI("ClassBarMover") .. " is now always positioned above the Power Bar, regardless of power bar state",
 
     "* Documentation",
     F.String.Retail() .. F.String.Menu.WunderBar() .. ": Add Wormhole Generator: Quel'thalas to Hearthstone module",
@@ -29,5 +33,12 @@ TXUI.Changelog["7.3.5"] = {
 
     "* Development improvements",
     "Simplify unitframe font config",
+    "Extract "
+      .. F.String.ToxiUI("I.ClassOrder")
+      .. " and "
+      .. F.String.ToxiUI("I.ClassSpecOrder")
+      .. " to "
+      .. F.String.ToxiUI("InternalSpecs.lua")
+      .. " for shared use across options modules",
   },
 }

@@ -325,6 +325,26 @@ P.addons = {
       buff = false,
     },
 
+    -- Class Bar Override: disable ElvUI class bar for selected specs
+    classBarOverride = {
+      enabled = false,
+      specs = { -- [specId] = true
+        [I.Specs.Priest.Shadow] = true,
+      },
+    },
+
+    -- Power Bar Override: disable ElvUI power bar for selected specs
+    powerBarOverride = {
+      enabled = false,
+      specs = { -- [specId] = true
+        [I.Specs.Paladin.Retribution] = true,
+        [I.Specs.Paladin.Protection] = true,
+        [I.Specs.Warlock.Affliction] = true,
+        [I.Specs.Warlock.Demonology] = true,
+        [I.Specs.Warlock.Destruction] = true,
+      },
+    },
+
     -- Keybind overlays
     keybinds = {
       essential = {

@@ -86,37 +86,8 @@ function O:Skins_ClassIcons()
   self:AddSpacer(options)
 
   do
-    local classOrder = {
-      "DEATHKNIGHT",
-      "DEMONHUNTER",
-      "DRUID",
-      "EVOKER",
-      "HUNTER",
-      "MAGE",
-      "MONK",
-      "PALADIN",
-      "PRIEST",
-      "ROGUE",
-      "SHAMAN",
-      "WARLOCK",
-      "WARRIOR",
-    }
-
-    local classSpecOrder = {
-      DEATHKNIGHT = { I.Specs.DeathKnight.Blood, I.Specs.DeathKnight.Frost, I.Specs.DeathKnight.Unholy },
-      DEMONHUNTER = { I.Specs.DemonHunter.Havoc, I.Specs.DemonHunter.Vengeance, I.Specs.DemonHunter.Devourer },
-      DRUID = { I.Specs.Druid.Balance, I.Specs.Druid.Feral, I.Specs.Druid.Guardian, I.Specs.Druid.Restoration },
-      EVOKER = { I.Specs.Evoker.Devastation, I.Specs.Evoker.Preservation, I.Specs.Evoker.Augmentation },
-      HUNTER = { I.Specs.Hunter.BeastMastery, I.Specs.Hunter.Marksmanship, I.Specs.Hunter.Survival },
-      MAGE = { I.Specs.Mage.Arcane, I.Specs.Mage.Fire, I.Specs.Mage.Frost },
-      MONK = { I.Specs.Monk.Brewmaster, I.Specs.Monk.Mistweaver, I.Specs.Monk.Windwalker },
-      PALADIN = { I.Specs.Paladin.Holy, I.Specs.Paladin.Protection, I.Specs.Paladin.Retribution },
-      PRIEST = { I.Specs.Priest.Discipline, I.Specs.Priest.Holy, I.Specs.Priest.Shadow },
-      ROGUE = { I.Specs.Rogue.Assassination, I.Specs.Rogue.Outlaw, I.Specs.Rogue.Subtlety },
-      SHAMAN = { I.Specs.Shaman.Elemental, I.Specs.Shaman.Enhancement, I.Specs.Shaman.Restoration },
-      WARLOCK = { I.Specs.Warlock.Affliction, I.Specs.Warlock.Demonology, I.Specs.Warlock.Destruction },
-      WARRIOR = { I.Specs.Warrior.Arms, I.Specs.Warrior.Fury, I.Specs.Warrior.Protection },
-    }
+    local classOrder = I.ClassOrder
+    local classSpecOrder = I.ClassSpecOrder
 
     local previewGroup = self:AddInlineDesc(options, {
       name = "Preview " .. E.NewSign,

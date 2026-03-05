@@ -399,6 +399,7 @@ function PF:BuildFontsProfile()
             { "toxiui:health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "toxiui:power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" },
+            { "toxiui:power-classbar", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" },
             { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           },
 

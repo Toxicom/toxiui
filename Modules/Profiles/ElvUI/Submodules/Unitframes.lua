@@ -74,6 +74,14 @@ local player = {
       justifyH = "CENTER",
     }),
 
+    ["toxiui:power-classbar"] = createCustomText({}, {
+      attachTextTo = "ClassPower",
+      text_format = "[tx:power:classbar]",
+      xOffset = 0,
+      yOffset = 10,
+      justifyH = "CENTER",
+    }),
+
     ["toxiui:class-icon"] = createCustomText({}, {
       justifyH = "LEFT",
       attachTextTo = "Health",

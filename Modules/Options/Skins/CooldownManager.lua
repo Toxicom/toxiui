@@ -1,5 +1,6 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
+local M = TXUI:GetModule("Misc")
 
 function O:Skins_CooldownManager()
   -- Create Tab
@@ -601,6 +602,130 @@ function O:Skins_CooldownManager()
 
     addViewerKeybindOptions(kbGroup, "Essential", "essential")
     addViewerKeybindOptions(kbGroup, "Utility", "utility")
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Build spec values table dynamically so icons update when the icon theme changes
+  local function buildSpecValues()
+    local values = {}
+    local theme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
+    local iconPath = M:GetClassIconPath(M:GetEffectiveClassIconTheme(theme)):gsub(":32:32:", ":16:16:")
+    for _, token in ipairs(I.ClassOrder) do
+      local icon = string.format(iconPath, M.ClassIcons[token])
+      local specs = I.ClassSpecOrder[token]
+      if specs then
+        for _, specID in ipairs(specs) do
+          values[specID] = icon .. " " .. F.String.Class(I.SpecNames[specID] or tostring(specID), token)
+        end
+      end
+    end
+    return values
+  end
+
+  -- Class Bar Override
+  do
+    local classBarGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Class Bar Override",
+    }, {
+      name = "Automatically disable the "
+        .. F.String.ToxiUI("ElvUI Class Bar")
+        .. " for selected specializations. The class bar is restored when switching to a spec not in the list.\n\n"
+        .. F.String.Warning("Note: ")
+        .. "Changes take effect on spec switch or UI reload.\n\n",
+    }, I.Requirements.CooldownManager).args
+
+    local classBarDB = E.db.TXUI.addons.cooldownManager.classBarOverride
+
+    classBarGroup.classBarOverrideEnabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enable automatic class bar disabling for selected specializations.",
+      name = function()
+        return self:GetEnableName(classBarDB.enabled, classBarGroup)
+      end,
+      disabled = isDisabled,
+      get = function(_)
+        return classBarDB.enabled
+      end,
+      set = function(_, value)
+        classBarDB.enabled = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+
+    classBarGroup.classBarOverrideSpecs = {
+      order = self:GetOrder(),
+      type = "multiselect",
+      name = "Disable Class Bar for Specs",
+      desc = "Select to disable the Class Bar for this specialization.",
+      values = buildSpecValues,
+      disabled = function()
+        return isDisabled() or not classBarDB.enabled
+      end,
+      get = function(_, specID)
+        return classBarDB.specs[specID] == true
+      end,
+      set = function(_, specID, value)
+        classBarDB.specs[specID] = value or nil
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+  end
+
+  -- Spacer
+  self:AddSpacer(options)
+
+  -- Power Bar Override
+  do
+    local powerBarGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Power Bar Override",
+    }, {
+      name = "Automatically disable the "
+        .. F.String.ToxiUI("ElvUI Power Bar")
+        .. " for selected specializations. The power bar is restored when switching to a spec not in the list.\n\n"
+        .. F.String.Warning("Note: ")
+        .. "Changes take effect on spec switch or UI reload.\n\n",
+    }, I.Requirements.CooldownManager).args
+
+    local powerBarDB = E.db.TXUI.addons.cooldownManager.powerBarOverride
+
+    powerBarGroup.powerBarOverrideEnabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enable automatic power bar disabling for selected specializations.",
+      name = function()
+        return self:GetEnableName(powerBarDB.enabled, powerBarGroup)
+      end,
+      disabled = isDisabled,
+      get = function(_)
+        return powerBarDB.enabled
+      end,
+      set = function(_, value)
+        powerBarDB.enabled = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+
+    powerBarGroup.powerBarOverrideSpecs = {
+      order = self:GetOrder(),
+      type = "multiselect",
+      name = "Disable Power Bar for Specs",
+      desc = "Select to disable the Power Bar for this specialization.",
+      width = 1.5,
+      values = buildSpecValues,
+      disabled = function()
+        return isDisabled() or not powerBarDB.enabled
+      end,
+      get = function(_, specID)
+        return powerBarDB.specs[specID] == true
+      end,
+      set = function(_, specID, value)
+        powerBarDB.specs[specID] = value or nil
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
   end
 end
 

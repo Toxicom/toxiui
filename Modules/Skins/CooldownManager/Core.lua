@@ -20,6 +20,7 @@ function CM:Disable()
   if not self.Initialized then return end
 
   self:UnhookAll()
+  self:DisableBarOverrides()
   self:DisableCentering()
   self:DisableFading()
   self:DisableDynamicBarsWidth()
@@ -51,6 +52,11 @@ function CM:DatabaseUpdate()
 
     local isCDMEnabled = C_CVar.GetCVarBool("cooldownViewerEnabled")
     if not isCDMEnabled then C_CVar.SetCVar("cooldownViewerEnabled", "1") end
+
+    -- Apply bar overrides first (may affect what bars are available for anchoring)
+    local hasClassBarOverride = self.db.classBarOverride and self.db.classBarOverride.enabled
+    local hasPowerBarOverride = self.db.powerBarOverride and self.db.powerBarOverride.enabled
+    if hasClassBarOverride or hasPowerBarOverride then self:EnableBarOverrides() end
 
     -- Enable fading if enabled
     if self.db.fading then self:EnableFadingAfterUnitsLoaded() end
