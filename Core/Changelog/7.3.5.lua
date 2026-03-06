@@ -32,7 +32,9 @@ TXUI.Changelog["7.3.5"] = {
     "* Settings refactoring",
     "Remove Details section from Class Icons settings",
     "Remove per-feature spec icon style selectors (Game Menu, AFK, Damage Meter) in favor of global Class Icons setting",
+    "Reduce logo size in ToxiUI options",
     F.String.Retail() .. F.String.CDM() .. ": Add navigation buttons to related " .. F.String.ElvUI() .. " and " .. F.String.WindTools() .. " Cooldown Manager settings panels",
+    F.String.Retail() .. F.String.CDM() .. ": Refactor settings into tabs for less scrolling",
 
     "* Development improvements",
     "Simplify unitframe font config",

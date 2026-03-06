@@ -7,6 +7,7 @@ function O:Skins_CooldownManager()
   self.options.skins.args["cooldownManagerGroup"] = {
     order = self:GetOrder(),
     type = "group",
+    childGroups = "tab",
     name = "Cooldown Manager " .. E.NewSign,
     args = {},
   }
@@ -18,17 +19,18 @@ function O:Skins_CooldownManager()
     return not E.db.TXUI.addons.cooldownManager.enabled
   end
 
+  -- Description
   self:AddInlineDesc(options, {
     name = "Description",
   }, {
     name = TXUI.Title --
       .. " provides additional features for "
       .. F.String.ToxiUI("Blizzard Cooldown Manager")
-      .. " which can be configured here.\n\n"
+      .. " which can be configured here.\n"
       .. F.String.Warning("Warning: ")
-      .. "This is still experimental and might be removed in the future.\n\n"
+      .. "This is still experimental and might be removed in the future.\n"
       .. F.String.ToxiUI("Information: ")
-      .. "We recommend reloading the UI each time you interact with the Edit Mode to avoid issues!\n\n",
+      .. "We recommend reloading the UI each time you interact with the Edit Mode to avoid issues!\n",
   })
 
   -- Related Settings Navigation
@@ -118,12 +120,12 @@ function O:Skins_CooldownManager()
     }
   end
 
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- General
+  -- Tab: General
   do
-    local generalGroup = self:AddInlineRequirementsDesc(options, {
+    local tab = self:AddGroup(options, { name = "General" }).args
+
+    -- Enable
+    local generalGroup = self:AddInlineRequirementsDesc(tab, {
       name = "General",
     }, {
       name = "Enable or disable all " .. TXUI.Title .. " features for the Blizzard Cooldown Manager.\n\n",
@@ -144,14 +146,12 @@ function O:Skins_CooldownManager()
         F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
-  end
 
-  -- Spacer
-  self:AddSpacer(options)
+    -- Spacer
+    self:AddSpacer(tab)
 
-  -- Fading
-  do
-    local fadingGroup = self:AddInlineRequirementsDesc(options, {
+    -- Fading
+    local fadingGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Fading",
     }, {
       name = "This option makes your Cooldown Manager bars "
@@ -175,14 +175,12 @@ function O:Skins_CooldownManager()
         F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
-  end
 
-  -- Spacer
-  self:AddSpacer(options)
+    -- Spacer
+    self:AddSpacer(tab)
 
-  -- Dynamic Bars Width
-  do
-    local dynamicGroup = self:AddInlineRequirementsDesc(options, {
+    -- Dynamic Bars Width
+    local dynamicGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Dynamic Bars Width",
     }, {
       name = "This option syncs the width of the Player Power Bar and Class Bar " .. F.String.ToxiUI("(detached)") .. " with the Essential Cooldown Viewer width.\n\n",
@@ -274,14 +272,12 @@ function O:Skins_CooldownManager()
     }
   end
 
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Anchoring
+  -- Tab: Anchoring
   do
+    local tab = self:AddGroup(options, { name = "Anchoring" }).args
     local db = E.db.TXUI.addons.cooldownManager.anchors
 
-    local anchorGroup = self:AddInlineRequirementsDesc(options, {
+    local anchorGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Anchoring",
     }, {
       name = "Anchor Cooldown Manager frames to "
@@ -451,12 +447,11 @@ function O:Skins_CooldownManager()
     }
   end
 
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Centering
+  -- Tab: Centering
   do
-    local centerGroup = self:AddInlineRequirementsDesc(options, {
+    local tab = self:AddGroup(options, { name = "Centering" }).args
+
+    local centerGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Centering",
     }, {
       name = "Center Cooldown Manager icons within each viewer frame instead of the default left-aligned layout.\n\n"
@@ -527,16 +522,15 @@ function O:Skins_CooldownManager()
     }
   end
 
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Keybinds
+  -- Tab: Keybinds
   do
+    local tab = self:AddGroup(options, { name = "Keybinds" }).args
+
     local function keybindsDisabled()
       return isDisabled() or not E.private.actionbar.enable
     end
 
-    local kbGroup = self:AddInlineRequirementsDesc(options, {
+    local kbGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Keybinds",
     }, {
       name = "Show keybind text on Cooldown Manager icons by reading bindings from "
@@ -704,29 +698,29 @@ function O:Skins_CooldownManager()
     addViewerKeybindOptions(kbGroup, "Utility", "utility")
   end
 
-  -- Spacer
-  self:AddSpacer(options)
+  -- Tab: Overrides
+  do
+    local tab = self:AddGroup(options, { name = "Overrides" }).args
 
-  -- Build spec values table dynamically so icons update when the icon theme changes
-  local function buildSpecValues()
-    local values = {}
-    local theme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
-    local iconPath = M:GetClassIconPath(M:GetEffectiveClassIconTheme(theme)):gsub(":32:32:", ":16:16:")
-    for _, token in ipairs(I.ClassOrder) do
-      local icon = string.format(iconPath, M.ClassIcons[token])
-      local specs = I.ClassSpecOrder[token]
-      if specs then
-        for _, specID in ipairs(specs) do
-          values[specID] = icon .. " " .. F.String.Class(I.SpecNames[specID] or tostring(specID), token)
+    -- Build spec values table dynamically so icons update when the icon theme changes
+    local function buildSpecValues()
+      local values = {}
+      local theme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
+      local iconPath = M:GetClassIconPath(M:GetEffectiveClassIconTheme(theme)):gsub(":32:32:", ":16:16:")
+      for _, token in ipairs(I.ClassOrder) do
+        local icon = string.format(iconPath, M.ClassIcons[token])
+        local specs = I.ClassSpecOrder[token]
+        if specs then
+          for _, specID in ipairs(specs) do
+            values[specID] = icon .. " " .. F.String.Class(I.SpecNames[specID] or tostring(specID), token)
+          end
         end
       end
+      return values
     end
-    return values
-  end
 
-  -- Class Bar Override
-  do
-    local classBarGroup = self:AddInlineRequirementsDesc(options, {
+    -- Class Bar Override
+    local classBarGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Class Bar Override",
     }, {
       name = "Automatically disable the "
@@ -772,14 +766,12 @@ function O:Skins_CooldownManager()
         F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
-  end
 
-  -- Spacer
-  self:AddSpacer(options)
+    -- Spacer
+    self:AddSpacer(tab)
 
-  -- Power Bar Override
-  do
-    local powerBarGroup = self:AddInlineRequirementsDesc(options, {
+    -- Power Bar Override
+    local powerBarGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Power Bar Override",
     }, {
       name = "Automatically disable the "

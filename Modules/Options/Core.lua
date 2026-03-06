@@ -383,7 +383,7 @@ function O:OptionsCallback()
         type = "description",
         name = "",
         image = function()
-          return I.Media.Logos.Logo, F.Dpi(256), F.Dpi(128)
+          return I.Media.Logos.Logo, 128, 64
         end,
       },
     },
