@@ -24,6 +24,7 @@ TXUI.Changelog["7.3.5"] = {
     F.String.ElvUI() .. ": Update fonts for Cooldown Manager text (name, duration, count)",
     F.String.ElvUI() .. ": Update nameplate auras fonts",
     F.String.ElvUI() .. ": " .. F.String.ToxiUI("ClassBarMover") .. " is now always positioned above the Power Bar, regardless of power bar state",
+    F.String.WindTools() .. ": Update objective tracker fonts",
 
     "* Documentation",
     F.String.Retail() .. F.String.Menu.WunderBar() .. ": Add Wormhole Generator: Quel'thalas to Hearthstone module",

@@ -241,11 +241,21 @@ function PF:BuildAdditionalPrivateProfile()
 
           header = {
             classColor = true,
+            uppercase = true,
           },
 
           titleColor = {
+            classColor = true,
             customColorNormal = F.Table.HexToRGB("#ffc730"),
             customColorHighlight = F.Table.HexToRGB("#ffd36b"),
+          },
+
+          title = {
+            uppercase = true,
+          },
+
+          infoColor = {
+            classColor = false,
           },
         },
       },

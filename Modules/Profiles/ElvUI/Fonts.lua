@@ -692,20 +692,20 @@ function PF:BuildFontPrivatesProfile()
       quest = {
         objectiveTracker = {
           header = {
-            name = F.FontOverride(I.Fonts.Title),
-            size = F.FontSizeScaled(24),
-            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-          },
-
-          title = {
             name = F.FontOverride(I.Fonts.Primary),
             size = F.FontSizeScaled(16),
             style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
 
+          title = {
+            name = F.FontOverride(I.Fonts.Primary),
+            size = F.FontSizeScaled(12),
+            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          },
+
           info = {
             name = F.FontOverride(I.Fonts.Primary),
-            size = F.FontSizeScaled(14),
+            size = F.FontSizeScaled(12),
             style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
         },
