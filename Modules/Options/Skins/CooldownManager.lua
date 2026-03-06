@@ -154,15 +154,13 @@ function O:Skins_CooldownManager()
     local fadingGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Fading",
     }, {
-      name = "This option makes your Cooldown Manager bars "
-        .. F.String.ToxiUI("(EssentialCooldownViewer, UtilityCooldownViewer, BuffIconCooldownViewer)")
-        .. " fade together with your Player UnitFrame.\n\n",
+      name = "This option makes your Cooldown Manager viewers fade together with your Player UnitFrame.\n\n",
     }, I.Requirements.CooldownManager).args
 
     fadingGroup.fading = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this makes the Cooldown Manager bars fade with the Player UnitFrame.",
+      desc = "Enabling this makes the Cooldown Manager viewers fade with the Player UnitFrame.",
       name = function()
         return self:GetEnableName(E.db.TXUI.addons.cooldownManager.fading, fadingGroup)
       end,
