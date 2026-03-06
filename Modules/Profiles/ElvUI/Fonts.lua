@@ -112,6 +112,21 @@ function PF:BuildFontsProfile()
       fontSize = F.FontSizeScaled(14, 13),
       fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
 
+      cooldownManager = {
+        -- Count font is overriden by WindTools
+        countFont = F.FontOverride(I.Fonts.TitleBlack),
+        countFontSize = F.FontSizeScaled(9),
+        countFontOutline = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
+
+        durationFont = F.FontOverride(I.Fonts.Primary),
+        durationFontSize = F.FontSizeScaled(14),
+        durationFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+
+        nameFont = F.FontOverride(I.Fonts.Primary),
+        nameFontSize = F.FontSizeScaled(14),
+        nameFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+      },
+
       fonts = {
         cooldown = {
           enable = true,

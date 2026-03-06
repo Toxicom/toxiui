@@ -21,6 +21,7 @@ TXUI.Changelog["7.3.5"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. ": Update fonts for Cooldown Manager text (name, duration, count)",
     F.String.ElvUI() .. ": Update nameplate auras fonts",
     F.String.ElvUI() .. ": " .. F.String.ToxiUI("ClassBarMover") .. " is now always positioned above the Power Bar, regardless of power bar state",
 
@@ -31,6 +32,7 @@ TXUI.Changelog["7.3.5"] = {
     "* Settings refactoring",
     "Remove Details section from Class Icons settings",
     "Remove per-feature spec icon style selectors (Game Menu, AFK, Damage Meter) in favor of global Class Icons setting",
+    F.String.Retail() .. F.String.CDM() .. ": Add navigation buttons to related " .. F.String.ElvUI() .. " and " .. F.String.WindTools() .. " Cooldown Manager settings panels",
 
     "* Development improvements",
     "Simplify unitframe font config",

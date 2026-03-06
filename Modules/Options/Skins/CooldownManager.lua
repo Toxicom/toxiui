@@ -31,6 +31,93 @@ function O:Skins_CooldownManager()
       .. "We recommend reloading the UI each time you interact with the Edit Mode to avoid issues!\n\n",
   })
 
+  -- Related Settings Navigation
+  do
+    local navGroup = self:AddInlineGroup(options, { name = "Related Settings" }).args
+
+    navGroup.navDesc = {
+      order = self:GetOrder(),
+      type = "description",
+      name = function()
+        local lines = F.String.ElvUI("ElvUI")
+          .. " Skin"
+          .. " - Toggle the Blizzard Cooldown Manager skin on/off.\n"
+          .. F.String.ElvUI("ElvUI")
+          .. " Settings"
+          .. " - Font, color, and display options for the Cooldown Manager text.\n"
+          .. F.String.ElvUI("ElvUI")
+          .. " Cooldown"
+          .. " - Global cooldown text settings including the Cooldown Manager duration display.\n"
+        if F.IsAddOnEnabled("ElvUI_WindTools") then
+          lines = lines
+            .. F.String.WindTools()
+            .. " Skin"
+            .. " - WindTools styling for the Cooldown Viewer frames.\n"
+            .. F.String.WindTools()
+            .. " Settings"
+            .. " - WindTools layout and appearance settings for the Cooldown Viewer.\n"
+        end
+        return lines .. "\n"
+      end,
+    }
+
+    navGroup.elvuiSkin = {
+      order = self:GetOrder(),
+      type = "execute",
+      name = F.String.ElvUI("ElvUI") .. " Skin",
+      desc = "Open the " .. F.String.ElvUI("ElvUI") .. " Skins panel to toggle the Cooldown Manager skin.",
+      func = function()
+        E:ToggleOptions("skins,blizzard")
+      end,
+    }
+
+    navGroup.elvuiSettings = {
+      order = self:GetOrder(),
+      type = "execute",
+      name = F.String.ElvUI("ElvUI") .. " Settings",
+      desc = "Open the " .. F.String.ElvUI("ElvUI") .. " General > Blizzard Improvements > Cooldown Manager settings.",
+      func = function()
+        E:ToggleOptions("general,blizzardImprovements,cooldownManager")
+      end,
+    }
+
+    navGroup.elvuiCooldown = {
+      order = self:GetOrder(),
+      type = "execute",
+      name = F.String.ElvUI("ElvUI") .. " Cooldown",
+      desc = "Open the " .. F.String.ElvUI("ElvUI") .. " Cooldown & Duration > Cooldown Manager settings.",
+      func = function()
+        E:ToggleOptions("cooldown,cdmanager")
+      end,
+    }
+
+    navGroup.windtoolsSkin = {
+      order = self:GetOrder(),
+      type = "execute",
+      name = F.String.WindTools() .. " Skin",
+      desc = "Open the " .. F.String.WindTools() .. " Skins > Blizzard panel to configure the Cooldown Viewer skin.",
+      hidden = function()
+        return not F.IsAddOnEnabled("ElvUI_WindTools")
+      end,
+      func = function()
+        E:ToggleOptions("WindTools,skins,blizzard")
+      end,
+    }
+
+    navGroup.windtoolsSettings = {
+      order = self:GetOrder(),
+      type = "execute",
+      name = F.String.WindTools() .. " Settings",
+      desc = "Open the " .. F.String.WindTools() .. " Skins > Cooldown Viewer settings.",
+      hidden = function()
+        return not F.IsAddOnEnabled("ElvUI_WindTools")
+      end,
+      func = function()
+        E:ToggleOptions("WindTools,skins,cooldownViewer")
+      end,
+    }
+  end
+
   -- Spacer
   self:AddSpacer(options)
 
@@ -69,9 +156,7 @@ function O:Skins_CooldownManager()
     }, {
       name = "This option makes your Cooldown Manager bars "
         .. F.String.ToxiUI("(EssentialCooldownViewer, UtilityCooldownViewer, BuffIconCooldownViewer)")
-        .. " fade together with your Player UnitFrame.\n\n"
-        .. F.String.ToxiUI("Information: ")
-        .. "It is recommended to reload your UI after editing cooldown settings for the best experience.\n\n",
+        .. " fade together with your Player UnitFrame.\n\n",
     }, I.Requirements.CooldownManager).args
 
     fadingGroup.fading = {
