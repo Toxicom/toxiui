@@ -6,10 +6,10 @@ TXUI.Changelog["7.3.5"] = {
     "* Breaking changes",
 
     "* New features",
-    F.String.Retail() .. F.String.CDM() .. ": Option to align Buff Bar Viewer bars to the bottom of the viewer frame",
-    F.String.Retail() .. "Option to change spec icon for Damage Meter skin",
     "Class Icons style setting now controls all spec/class icon displays globally",
     "Class Icons can be previewed in the options",
+    F.String.Retail() .. F.String.CDM() .. ": Option to align Buff Bar Viewer bars to the bottom of the viewer frame",
+    F.String.Retail() .. "Option to change spec icon for Damage Meter skin",
     F.String.Retail() .. F.String.CDM() .. ": Option to automatically disable " .. F.String.ToxiUI("ElvUI Class Bar") .. " per specialization",
     F.String.Retail() .. F.String.CDM() .. ": Option to automatically disable " .. F.String.ToxiUI("ElvUI Power Bar") .. " per specialization",
     F.String.Retail() .. "New " .. F.String.ToxiUI("[tx:power:classbar]") .. " tag: displays power value only when the Player Power Bar is disabled",
@@ -32,7 +32,8 @@ TXUI.Changelog["7.3.5"] = {
     "* Settings refactoring",
     "Remove Details section from Class Icons settings",
     "Remove per-feature spec icon style selectors (Game Menu, AFK, Damage Meter) in favor of global Class Icons setting",
-    "Reduce logo size in ToxiUI options",
+    "Reduce logo size in " .. TXUI.Title .. " options",
+    "Rename " .. TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin to " .. F.String.Silver("Shadows & Grain Background"),
     F.String.Retail() .. F.String.CDM() .. ": Add navigation buttons to related " .. F.String.ElvUI() .. " and " .. F.String.WindTools() .. " Cooldown Manager settings panels",
     F.String.Retail() .. F.String.CDM() .. ": Refactor settings into tabs for less scrolling",
 
