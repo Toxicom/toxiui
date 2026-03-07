@@ -3,8 +3,6 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 TXUI.Changelog["7.3.5"] = {
   HOTFIX = true,
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Class Icons style setting now controls all spec/class icon displays globally",
     "Class Icons can be previewed in the options",
@@ -18,8 +16,6 @@ TXUI.Changelog["7.3.5"] = {
     "Show diff for fonts in Profile Updater",
     "Class-only icon displays (Played graph, spec fallbacks) respect the selected class icon style",
     F.String.Retail() .. "Allow opening " .. F.String.ToxiUI("/cdm") .. " in combat",
-
-    "* Bug fixes",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Update fonts for Cooldown Manager text (name, duration, count)",
