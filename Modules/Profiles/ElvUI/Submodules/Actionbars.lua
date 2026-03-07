@@ -77,22 +77,20 @@ function PF:ApplyActionbars(pf)
     },
 
     -- Classic Totem Bar
-    totemBar = TXUI.IsClassic
-        and {
-          mouseover = true,
-          keepSizeRatio = false,
-          flyoutDirection = "UP",
+    totemBar = TXUI.IsClassic and {
+      mouseover = true,
+      keepSizeRatio = false,
+      flyoutDirection = "UP",
 
-          buttonSize = F.Dpi(36), -- Width
-          buttonHeight = F.Dpi(24),
+      buttonSize = F.Dpi(36), -- Width
+      buttonHeight = F.Dpi(24),
 
-          flyoutSize = F.Dpi(36), -- Width
-          flyoutHeight = F.Dpi(24),
+      flyoutSize = F.Dpi(36), -- Width
+      flyoutHeight = F.Dpi(24),
 
-          spacing = F.Dpi(1),
-          flyoutSpacing = F.Dpi(1),
-        }
-      or nil,
+      spacing = F.Dpi(1),
+      flyoutSpacing = F.Dpi(1),
+    } or nil,
   })
 
   -- ActionBar Bars
