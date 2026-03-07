@@ -40,7 +40,7 @@ function PF:ApplyMovers(pf, horizontal)
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 420),
       ElvUF_PlayerCastbarMover = F.Position("TOPLEFT", "ElvUF_Player", "BOTTOMLEFT", 0, -defaultPadding),
       PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 446),
-      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
+      ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 458),
 
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 420),
       ElvUF_TargetCastbarMover = F.Position("TOPRIGHT", "ElvUF_Target", "BOTTOMRIGHT", 0, -defaultPadding),
@@ -118,7 +118,7 @@ function PF:ApplyMovers(pf, horizontal)
       BossButton = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 680, 280),
 
       PlayerPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 526),
-      ClassBarMover = F.Position("BOTTOM", "PlayerPowerBarMover", "TOP", 0, defaultPadding / 2),
+      ClassBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 538),
 
       ElvUF_PlayerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", -390, 500),
       ElvUF_TargetMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 390, 500),
