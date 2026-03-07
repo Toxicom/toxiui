@@ -24,6 +24,9 @@ TXUI.Changelog["7.3.5"] = {
     F.String.ElvUI() .. ": Update fonts for Cooldown Manager text (name, duration, count)",
     F.String.ElvUI() .. ": Update nameplate auras fonts",
     F.String.ElvUI() .. ": " .. F.String.ToxiUI("ClassBarMover") .. " is now always positioned above the Power Bar, regardless of power bar state",
+    F.String.ElvUI() .. ": Set Max Overflow back to 0",
+    F.String.ElvUI() .. ": Adjust nameplate quest icon fonts",
+    F.String.ElvUI() .. ": Disable automated friendly nameplates",
     F.String.WindTools() .. ": Update objective tracker fonts",
 
     "* Documentation",

@@ -72,6 +72,7 @@ local nameplates = {
   },
 
   enviromentConditions = {
+    friendlyEnabled = false,
     friendly = {
       arena = true,
       party = true, -- dungeons
@@ -81,10 +82,16 @@ local nameplates = {
       scenario = true,
       raid = false,
     },
-    friendlyEnabled = true,
+
     stackingEnabled = true,
     stackingNameplates = {
+      arena = true,
+      party = true, -- dungeons
       resting = true,
+      world = true,
+      pvp = true, -- battlegrounds
+      scenario = true,
+      raid = true,
     },
   },
 

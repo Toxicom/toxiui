@@ -344,6 +344,8 @@ function PF:BuildFontsProfile()
             format = "[name:abbrev:medium]",
           }),
 
+          questIcon = { font = F.FontOverride(I.Fonts.Primary) },
+
           level = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
@@ -361,6 +363,7 @@ function PF:BuildFontsProfile()
           name = F.Table.Crush(nameplates.shared.name, {
             format = "|cff85d92b[name]|r",
           }),
+          questIcon = { font = F.FontOverride(I.Fonts.Primary) },
           title = F.Table.Crush(nameplates.shared.title, {
             format = "|cff85d92b[npctitle:brackets]|r",
           }),
