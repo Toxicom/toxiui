@@ -17,6 +17,7 @@ TXUI.Changelog["7.3.5"] = {
     "* Enhancements",
     "Show diff for fonts in Profile Updater",
     "Class-only icon displays (Played graph, spec fallbacks) respect the selected class icon style",
+    F.String.Retail() .. "Allow opening " .. F.String.ToxiUI("/cdm") .. " in combat",
 
     "* Bug fixes",
 

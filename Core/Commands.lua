@@ -233,7 +233,7 @@ end
 function TXUI:HandleCDMCommand()
   local settings = _G.CooldownViewerSettings
   if not settings then return end
-  if InCombatLockdown() then return end
+  -- if InCombatLockdown() then return end
 
   settings:SetShown(not settings:IsShown())
 end
