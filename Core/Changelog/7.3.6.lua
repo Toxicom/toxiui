@@ -18,6 +18,7 @@ TXUI.Changelog["7.3.6"] = {
 
     "* Documentation",
     F.String.Retail() .. "Add Haranir Rootwalking to hearthstone module",
+    F.String.Retail() .. "Track Voidlight Marl instead of Resonance Crystals by default",
 
     "* Settings refactoring",
 

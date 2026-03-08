@@ -1151,7 +1151,7 @@ P.wunderbar = {
         [3345] = true, -- Hero
         [3343] = true, -- Champion
         [3341] = true, -- Veteran
-        [2815] = true, -- Resonance Crystals
+        [3316] = true, -- Voidlight Marl
         [3028] = true, -- Restored Coffer Key
       }, -- Format: [currencyID] = true,
 
