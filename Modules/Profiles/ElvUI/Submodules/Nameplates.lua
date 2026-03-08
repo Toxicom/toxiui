@@ -32,6 +32,8 @@ local sharedCastbar = {
   textYOffset = F.Dpi(-2),
   timeYOffset = F.Dpi(-2),
   yOffset = F.Dpi(8),
+  width = F.Dpi(150),
+  height = F.Dpi(8),
 }
 
 local sharedDebuffs = {
