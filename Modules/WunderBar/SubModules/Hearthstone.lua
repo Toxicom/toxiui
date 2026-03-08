@@ -168,7 +168,7 @@ function HS:GetAdditionalHearthstones()
           spellID = data.id,
           type = data.type,
           name = data.name,
-          icon = GetItemIcon(data.id),
+          icon = data.type == "spell" and GetSpellTexture(data.id) or GetItemIcon(data.id),
           label = data.label,
         })
       end

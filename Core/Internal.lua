@@ -421,6 +421,7 @@ I.HearthstoneData = {
   [168862] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "FMW" }, -- G.E.A.R. Tracking Beacon
   [265225] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "MOLE" }, -- Mole Machine
   [312372] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "CAMP" }, -- Return to Camp
+  [1238686] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "ROOT" }, -- Rootwalking
 
   -- Alternate Hearthstones --
   [54452] = { ["type"] = "toy", ["hearthstone"] = true }, -- Ethereal Portal
