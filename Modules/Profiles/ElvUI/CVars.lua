@@ -28,6 +28,7 @@ function PF:BuildCVarsProfile()
     uiScale = E.global.general.UIScale,
     autoClearAFK = 1,
     nameplateSelectedScale = 1.5,
+    nameplateOccludedAlphaMult = 0.8,
   }
 
   return cvars

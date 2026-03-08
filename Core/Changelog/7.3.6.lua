@@ -12,6 +12,7 @@ TXUI.Changelog["7.3.6"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    "Set " .. F.String.ToxiUI("nameplateOccludedAlphaMult") .. " CVar to 0.8",
     F.String.ElvUI() .. ": Add nameplates castbar width/height settings to profile" .. F.String.Sublist("Previously it was using ElvUI default, so nothing changes."),
 
     "* Documentation",
