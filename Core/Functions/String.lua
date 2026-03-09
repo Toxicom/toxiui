@@ -33,7 +33,7 @@ function F.String.Color(msg, color)
 end
 
 function F.String.Sublist(msg)
-  return "\n  - |cffbdbdbd" .. msg .. "|r"
+  return "\n   › |cffbdbdbd" .. msg .. "|r"
 end
 
 function F.String.HexToRGB(hex)

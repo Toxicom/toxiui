@@ -41,7 +41,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
         line = "• " .. line:sub(3)
         text = text .. "\n" .. F.String.Trim(F.String.ToxiUI(line)) .. "\n\n"
       else
-        text = text .. "- " .. F.String.Trim(line) .. "\n"
+        text = text .. "• " .. F.String.Trim(line) .. "\n"
       end
     end
 
