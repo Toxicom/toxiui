@@ -21,7 +21,9 @@ TXUI.Changelog["7.3.6"] = {
     F.String.Retail() .. "Track Voidlight Marl instead of Resonance Crystals by default",
 
     "* Settings refactoring",
+    "Changelog: Category headers now render in uppercase",
 
     "* Development improvements",
+    "Changelog: Remove unused " .. F.String.ToxiUI("DYNAMIC") .. " changelog field support",
   },
 }
