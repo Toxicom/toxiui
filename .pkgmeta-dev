@@ -8,8 +8,13 @@ ignore:
   - .pkgmeta
   - .pkgmeta-dev
   - .vscode/*
+  - .editorconfig
+  - .luarc.json
+  - .stylua.toml
   - Assets/*
   - README.md
+  - **/*.png
   - Core/Changelog/_template.lua
+  - Core/Changelog/Archive/*
   - Modules/WunderBar/SubModules/_template.lua
   - Modules/Options/Settings/WunderBar/SubModules/_template.lua
