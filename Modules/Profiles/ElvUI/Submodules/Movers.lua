@@ -109,7 +109,7 @@ function PF:ApplyMovers(pf, horizontal)
       SocialMenuMover = F.Position("TOPLEFT", "ElvUIParent", "TOPLEFT", 5, -220),
       UIErrorsFrameMover = F.Position("TOP", "UIParent", "TOP", 0, -150),
       VehicleSeatMover = F.Position("BOTTOMRIGHT", "ElvUIParent", "BOTTOMRIGHT", -370, 400),
-      PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 190),
+      PowerBarContainerMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 400, 200),
       AddonCompartmentMover = F.Position("TOPRIGHT", "MinimapMover", "TOPRIGHT", -defaultPadding, -defaultPadding * 4),
     }),
     F.Table.If(horizontal, {
