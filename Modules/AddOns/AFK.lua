@@ -379,7 +379,7 @@ function AFK:Initialize()
 
   -- Get font
   self.primaryFont = F.GetFontPath(I.Fonts.Primary)
-  self.titleFont = F.GetFontPath(I.Fonts.TitleRaid)
+  self.titleFont = F.GetFontPath(I.Fonts.TitleBold)
 
   -- We are done, hooray!
   self.Initialized = true

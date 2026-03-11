@@ -31,21 +31,21 @@ P.general = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleBlack] = "DEFAULT",
-    [I.Fonts.TitleRaid] = "DEFAULT",
+    [I.Fonts.TitleBold] = "DEFAULT",
   },
 
   fontStyleOverride = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleBlack] = "DEFAULT",
-    [I.Fonts.TitleRaid] = "DEFAULT",
+    [I.Fonts.TitleBold] = "DEFAULT",
   },
 
   fontShadowOverride = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleBlack] = "DEFAULT",
-    [I.Fonts.TitleRaid] = "DEFAULT",
+    [I.Fonts.TitleBold] = "DEFAULT",
   },
 }
 
@@ -634,7 +634,7 @@ P.armory = {
     iconFontColor = "TXUI",
     iconFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
-    headerFont = I.Fonts.TitleRaid,
+    headerFont = I.Fonts.TitleBold,
     headerFontSize = 14,
     headerFontShadow = false,
     headerFontOutline = "OUTLINE",
@@ -802,7 +802,7 @@ P.armory = {
 
   nameTextOffsetX = 0,
   nameTextOffsetY = 0,
-  nameTextFont = I.Fonts.TitleRaid,
+  nameTextFont = I.Fonts.TitleBold,
   nameTextFontSize = 18,
   nameTextFontShadow = false,
   nameTextFontOutline = "OUTLINE",
@@ -811,7 +811,7 @@ P.armory = {
 
   titleTextOffsetX = 5,
   titleTextOffsetY = -2,
-  titleTextFont = I.Fonts.TitleRaid,
+  titleTextFont = I.Fonts.TitleBold,
   titleTextFontSize = 10,
   titleTextFontShadow = false,
   titleTextFontOutline = "OUTLINE",

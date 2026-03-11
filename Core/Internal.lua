@@ -26,7 +26,7 @@ I.MaxLevelTable = {
 I.Fonts = {
   Primary = "- ToxiUI",
   Title = "- Big Noodle Titling", -- - Big Noodle Titling
-  TitleRaid = "- M 700", -- - Montserrat Bold
+  TitleBold = "- M 700", -- - Montserrat Bold
   TitleBlack = "- M 900", -- - Montserrat Black
   Icons = "- ToxiUI Icons",
 }
@@ -38,21 +38,21 @@ I.Textures = {
 I.FontNames = {
   [I.Fonts.Primary] = "Primary",
   [I.Fonts.Title] = "Title",
-  [I.Fonts.TitleRaid] = "Title Raid",
+  [I.Fonts.TitleBold] = "Title Bold",
   [I.Fonts.TitleBlack] = "Title Black",
 }
 
 I.FontDescription = {
   [I.Fonts.Primary] = "Used in the majority of the UI.",
   [I.Fonts.Title] = "Used mostly for names.",
-  [I.Fonts.TitleRaid] = "Currently only used in BigWigs, Details & Raid Frames Group number.",
+  [I.Fonts.TitleBold] = "Used for headers and titles, e.g. AFK screen, Game Menu, zone text, and Raid Frames group number.",
   [I.Fonts.TitleBlack] = "Very bold font used in a couple places, like map coordinates.",
 }
 
 I.FontOrder = {
   I.Fonts.Primary,
   I.Fonts.Title,
-  I.Fonts.TitleRaid,
+  I.Fonts.TitleBold,
   I.Fonts.TitleBlack,
 }
 

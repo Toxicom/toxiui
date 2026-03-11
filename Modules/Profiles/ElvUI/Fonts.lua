@@ -83,7 +83,7 @@ function PF:BuildFontsProfile()
       raid = {
         customTexts = customTextSize {
           { "toxiui:name", I.Fonts.Primary, 16, I.Fonts.Primary, "SHADOWOUTLINE" },
-          { "toxiui:raid-group", I.Fonts.TitleRaid, 12, "SHADOWOUTLINE" },
+          { "toxiui:raid-group", I.Fonts.TitleBold, 12, "SHADOWOUTLINE" },
         },
         rdebuffs = {
           font = F.FontOverride(I.Fonts.Primary),
@@ -148,14 +148,16 @@ function PF:BuildFontsProfile()
 
         pvpsubzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBold),
+          size = F.FontSizeScaled(24),
+          outline = F.FontStyleOverride(I.Fonts.TitleBold, "SHADOW"),
         },
 
         pvpzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBold),
+          size = F.FontSizeScaled(26),
+          outline = F.FontStyleOverride(I.Fonts.TitleBold, "SHADOW"),
         },
 
         objective = {
@@ -184,14 +186,16 @@ function PF:BuildFontsProfile()
 
         worldsubzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBold),
+          size = F.FontSizeScaled(32),
+          outline = F.FontStyleOverride(I.Fonts.TitleBold, "SHADOW"),
         },
 
         worldzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBlack),
+          size = F.FontSizeScaled(48),
+          outline = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOW"),
         },
       },
 

@@ -25,8 +25,8 @@ TXUI.Changelog["6.4.3"] = {
       .. F.String.Sublist("Now you can set the scaling to 0.05 precision"), --
     TXUI.Title
       .. ": Update inconsistency in internal font names" --
-      .. F.String.Sublist("Title Raid -> Title Black") --
-      .. F.String.Sublist("Title Secondary -> Title Raid"), --
+      .. F.String.Sublist("Title Bold -> Title Black") --
+      .. F.String.Sublist("Title Secondary -> Title Bold"), --
     TXUI.Title .. ": Enable Collections Journal for WunderBar MicroMenu in " .. F.String.ToxiUI("Wrath"),
     F.String.ElvUI() .. ": Update chat timestamp color to use " .. TXUI.Title .. " brand color",
     F.String.ElvUI() .. ": Update fonts to use the new 'Shadow' font outline",

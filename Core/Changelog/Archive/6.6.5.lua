@@ -17,7 +17,7 @@ TXUI.Changelog["6.6.5"] = {
       .. F.String.Sublist("Enable class colors for cast bar"),
     "Change " .. F.String.Plater() .. " Castbar to match " .. F.String.ElvUI(),
     "Update fonts used" --
-      .. F.String.Sublist("Primary instead of TitleRaid in most cases"),
+      .. F.String.Sublist("Primary instead of TitleBold in most cases"),
     "Update Armory default fonts",
     "Update default ToxiUI icons" --
       .. F.String.Sublist("Material styles for role & group icons")

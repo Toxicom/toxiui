@@ -13,7 +13,7 @@ F.AddMedia("font", "ToxiUIIcons.ttf", I.Fonts.Icons, nil, allLocaleBits)
 F.AddMedia("font", "ToxiUI.ttf", I.Fonts.Primary, nil, supportedBits)
 F.AddMedia("font", "BigNoodleToo.ttf", I.Fonts.Title, nil, supportedBits)
 F.AddMedia("font", "Montserrat-Medium.ttf", "- M 500", nil, supportedBits)
-F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleRaid, nil, supportedBits)
+F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleBold, nil, supportedBits)
 F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.TitleBlack, nil, supportedBits)
 
 -- -----
