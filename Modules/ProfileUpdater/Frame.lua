@@ -17,7 +17,7 @@ local ROW_HEIGHT = 28
 local COLUMN_WIDTH = 185
 local SECTION_HEADER_HEIGHT = 30
 local PADDING = 15
-local BUTTON_WIDTH = 120
+local BUTTON_WIDTH = 160
 local BUTTON_HEIGHT = 26
 local PANEL_GAP = 60
 local TITLE_HEIGHT = 45
@@ -466,7 +466,9 @@ end
 function PU:UpdateApplyButton()
   if not self.applyButton then return end
 
-  if self:HasAnySelected() then
+  local count = self:GetSelectedCount()
+  self.applyButton:SetText("Apply (" .. count .. ") sections")
+  if count > 0 then
     self.applyButton:Enable()
   else
     self.applyButton:Disable()
@@ -546,6 +548,7 @@ function PU:CreateUpdaterFrame()
 
   self:CreateDiffPanel(frame)
   self:CreateActionButtons(frame)
+  self:UpdateApplyButton()
 
   -- Reload prompt when closing with pending individual changes
   frame:SetScript("OnHide", function()
