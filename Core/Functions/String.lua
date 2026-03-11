@@ -106,6 +106,22 @@ function F.String.Silver(msg)
   return F.String.Color(msg, I.Enum.Colors.SILVER)
 end
 
+function F.String.Muted(msg)
+  return F.String.Color(msg, I.Enum.Colors.MUTED)
+end
+
+function F.String.DiffChanged(msg)
+  return F.String.Color(msg, I.Enum.Colors.DIFF_CHANGED)
+end
+
+function F.String.DiffRemoved(msg)
+  return F.String.Color(msg, I.Enum.Colors.DIFF_REMOVED)
+end
+
+function F.String.DiffAdded(msg)
+  return F.String.Color(msg, I.Enum.Colors.DIFF_ADDED)
+end
+
 function F.String.GoodIcon(size)
   size = size or 14
   return format("|TInterface\\RAIDFRAME\\ReadyCheck-Ready:%d:%d:0:-1|t", size, size)
@@ -394,12 +410,12 @@ function F.String.FormatTime(seconds)
 end
 
 function F.String.FormatDiffValue(val)
-  if val == nil then return "|cff888888(none)|r" end
+  if val == nil then return F.String.Muted("(none)") end
   local t = type(val)
-  if t == "string" then return "|cffffd100\"" .. val .. "\"|r" end
-  if t == "number" then return "|cffffffff" .. tostring(val) .. "|r" end
-  if t == "boolean" then return val and "|cff66ff66true|r" or "|cffff6666false|r" end
-  if t == "table" then return "|cff888888{table}|r" end
+  if t == "string" then return F.String.DiffChanged("\"" .. val .. "\"") end
+  if t == "number" then return F.String.Color(tostring(val), I.Enum.Colors.WHITE) end
+  if t == "boolean" then return val and F.String.Good("true") or F.String.Error("false") end
+  if t == "table" then return F.String.Muted("{table}") end
   return tostring(val)
 end
 

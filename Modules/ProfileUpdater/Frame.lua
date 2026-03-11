@@ -89,6 +89,33 @@ local function acquireRow(pool, parent, contentWidth)
   return row
 end
 
+function PU:BuildCheckboxLabelText(item)
+  local labelText = item.label
+  local diffData = self:GetDiffForItem(item.key)
+  if diffData then
+    if diffData.count > 0 then
+      labelText = labelText .. " " .. F.String.DiffChanged("(" .. diffData.count .. ")")
+    else
+      labelText = labelText .. " " .. F.String.Good("(0)")
+    end
+    if diffData.reanchored and #diffData.reanchored > 0 then labelText = labelText .. " " .. F.String.Muted("+" .. #diffData.reanchored) end
+  end
+  return labelText
+end
+
+function PU:BuildDiffTitleText(label, diffData)
+  local titleParts = label .. " — "
+  if diffData then
+    if diffData.count > 0 then
+      titleParts = titleParts .. F.String.DiffChanged(diffData.count .. " change(s)")
+    else
+      titleParts = titleParts .. F.String.Good("No changes")
+    end
+    if diffData.reanchored and #diffData.reanchored > 0 then titleParts = titleParts .. " " .. F.String.Muted("(" .. #diffData.reanchored .. " re-anchored)") end
+  end
+  return titleParts
+end
+
 function PU:CreateSectionHeader(parent, text, yOffset)
   local headerFrame = CreateFrame("Frame", nil, parent)
   headerFrame:SetSize(LEFT_PANEL_WIDTH - PADDING, SECTION_HEADER_HEIGHT)
@@ -161,17 +188,7 @@ function PU:CreateCheckboxRow(parent, item, xOffset, yOffset)
   label:SetPoint("LEFT", cb, "RIGHT", 4, 0)
   label:FontTemplate(font, 14, "OUTLINE", true)
 
-  local labelText = item.label
-  local diffData = self:GetDiffForItem(item.key)
-  if diffData then
-    if diffData.count > 0 then
-      labelText = labelText .. " |cffffd100(" .. diffData.count .. ")|r"
-    else
-      labelText = labelText .. " |cff66ff66(0)|r"
-    end
-    if diffData.reanchored and #diffData.reanchored > 0 then labelText = labelText .. " |cff888888+" .. #diffData.reanchored .. "|r" end
-  end
-  label:SetText(labelText)
+  label:SetText(self:BuildCheckboxLabelText(item))
 
   cb:SetScript("OnEnter", function(self_cb)
     if item.desc then
@@ -209,7 +226,7 @@ function PU:CreateDiffPanel(parent)
   panelTitle:SetPoint("TOPRIGHT", panel, "TOPRIGHT", -10, -10)
   panelTitle:FontTemplate(font, 14, "OUTLINE", true)
   panelTitle:SetJustifyH("LEFT")
-  panelTitle:SetText("|cff888888Hover over a section to preview changes|r")
+  panelTitle:SetText(F.String.Muted("Hover over a section to preview changes"))
   self.diffPanelTitle = panelTitle
 
   -- Hint below the title
@@ -254,7 +271,7 @@ end
 
 function PU:ClearDiffRows()
   if self.rowPool then releaseAllRows(self.rowPool) end
-  if self.diffPanelTitle then self.diffPanelTitle:SetText("|cff888888Hover over a section to preview changes|r") end
+  if self.diffPanelTitle then self.diffPanelTitle:SetText(F.String.Muted("Hover over a section to preview changes")) end
   self.currentDiffKey = nil
   self.currentDiffLabel = nil
   self.pendingReload = false
@@ -277,18 +294,18 @@ function PU:BuildInteractiveDiffRows(key)
     row:SetPoint("TOPLEFT", self.diffScrollChild, "TOPLEFT", 0, -yOffset)
 
     if isReanchored then
-      row.pathLabel:SetText("|cff666666" .. entry.path .. "|r")
-      row.valueLabel:SetText("|cff774444- |r|cff555555" .. (entry.oldParent or "?") .. "|r")
-      row.newLabel:SetText("|cff447744+ |r|cff555555" .. (entry.newParent or "?") .. "|r")
+      row.pathLabel:SetText(F.String.Color(entry.path, "666666"))
+      row.valueLabel:SetText(F.String.Color("- ", "774444") .. F.String.Color(entry.oldParent or "?", "555555"))
+      row.newLabel:SetText(F.String.Color("+ ", "447744") .. F.String.Color(entry.newParent or "?", "555555"))
       row.newLabel:Show()
       row:EnableMouse(false)
       row:SetAlpha(0.5)
     else
       local capturedKey = key
       local capturedEntry = entry
-      row.pathLabel:SetText("|cffa0a0a0" .. entry.path .. "|r")
-      row.valueLabel:SetText("|cffff8080-|r " .. F.String.FormatDiffValue(entry.old))
-      row.newLabel:SetText("|cff88ff88+|r " .. F.String.FormatDiffValue(entry.new))
+      row.pathLabel:SetText(F.String.Silver(entry.path))
+      row.valueLabel:SetText(F.String.DiffRemoved("-") .. " " .. F.String.FormatDiffValue(entry.old))
+      row.newLabel:SetText(F.String.DiffAdded("+") .. " " .. F.String.FormatDiffValue(entry.new))
       row.newLabel:Show()
       row:EnableMouse(true)
       row:SetAlpha(1.0)
@@ -299,7 +316,7 @@ function PU:BuildInteractiveDiffRows(key)
       row:SetScript("OnEnter", function(self_row)
         GameTooltip:SetOwner(self_row, "ANCHOR_RIGHT")
         GameTooltip:AddLine("Click to apply this change", 1, 1, 1)
-        GameTooltip:AddLine("|cff888888A reload will be required after closing.|r", nil, nil, nil, true)
+        GameTooltip:AddLine(F.String.Muted("A reload will be required after closing."), nil, nil, nil, true)
         GameTooltip:Show()
       end)
       row:SetScript("OnLeave", function()
@@ -337,9 +354,9 @@ function PU:BuildInteractiveDiffRows(key)
   end
 
   if not diffData then
-    placeMessageRow("|cff888888Detailed preview not available for this section.|r")
+    placeMessageRow(F.String.Warning("Detailed preview not available for this section."))
   elseif diffData.count == 0 and (not diffData.reanchored or #diffData.reanchored == 0) then
-    placeMessageRow("|cff66ff66No changes detected.|r")
+    placeMessageRow(F.String.Good("No changes detected."))
   else
     for _, entry in ipairs(diffData.entries) do
       placeDiffRow(entry, false)
@@ -348,7 +365,7 @@ function PU:BuildInteractiveDiffRows(key)
     local reanchored = diffData.reanchored
     if reanchored and #reanchored > 0 then
       if diffData.count > 0 then yOffset = yOffset + 6 end
-      placeHeaderRow("|cff444444--- Re-anchored by ElvUI (" .. #reanchored .. ") — read-only ---|r")
+      placeHeaderRow(F.String.Color("--- Re-anchored by ElvUI (" .. #reanchored .. ") — read-only ---", "444444"))
       for _, entry in ipairs(reanchored) do
         placeDiffRow(entry, true)
       end
@@ -365,17 +382,7 @@ function PU:ShowDiffForItem(key, label)
   self.currentDiffKey = key
   self.currentDiffLabel = label
 
-  local diffData = self:GetDiffForItem(key)
-  local titleParts = label .. " — "
-  if diffData then
-    if diffData.count > 0 then
-      titleParts = titleParts .. "|cffffd100" .. diffData.count .. " change(s)|r"
-    else
-      titleParts = titleParts .. "|cff66ff66No changes|r"
-    end
-    if diffData.reanchored and #diffData.reanchored > 0 then titleParts = titleParts .. " |cff888888(" .. #diffData.reanchored .. " re-anchored)|r" end
-  end
-  self.diffPanelTitle:SetText(titleParts)
+  self.diffPanelTitle:SetText(self:BuildDiffTitleText(label, self:GetDiffForItem(key)))
 
   self:BuildInteractiveDiffRows(key)
 end
@@ -385,17 +392,7 @@ function PU:OnDiffEntryApplied(sectionKey)
   self:BuildInteractiveDiffRows(sectionKey)
 
   -- Refresh the title count
-  if self.currentDiffLabel then
-    local diffData = self:GetDiffForItem(sectionKey)
-    local titleParts = self.currentDiffLabel .. " — "
-    if diffData and diffData.count > 0 then
-      titleParts = titleParts .. "|cffffd100" .. diffData.count .. " change(s)|r"
-    else
-      titleParts = titleParts .. "|cff66ff66No changes|r"
-    end
-    if diffData and diffData.reanchored and #diffData.reanchored > 0 then titleParts = titleParts .. " |cff888888(" .. #diffData.reanchored .. " re-anchored)|r" end
-    self.diffPanelTitle:SetText(titleParts)
-  end
+  if self.currentDiffLabel then self.diffPanelTitle:SetText(self:BuildDiffTitleText(self.currentDiffLabel, self:GetDiffForItem(sectionKey))) end
 
   -- Update all checkbox count labels
   self:UpdateCheckboxLabels()
@@ -462,19 +459,7 @@ function PU:UpdateCheckboxLabels()
 
   for _, cb in pairs(self.checkboxes) do
     local item = cb.itemData
-    if item then
-      local labelText = item.label
-      local diffData = self:GetDiffForItem(item.key)
-      if diffData then
-        if diffData.count > 0 then
-          labelText = labelText .. " |cffffd100(" .. diffData.count .. ")|r"
-        else
-          labelText = labelText .. " |cff66ff66(0)|r"
-        end
-        if diffData.reanchored and #diffData.reanchored > 0 then labelText = labelText .. " |cff888888+" .. #diffData.reanchored .. "|r" end
-      end
-      cb.label:SetText(labelText)
-    end
+    if item then cb.label:SetText(self:BuildCheckboxLabelText(item)) end
   end
 end
 
@@ -518,7 +503,10 @@ function PU:CreateUpdaterFrame()
   disclaimerText:SetSpacing(2)
   disclaimerText:FontTemplate(font, 12, "NONE", true)
   disclaimerText:SetText(
-    "|cffff6666WARNING:|r Applying selected sections will |cffff6666overwrite|r your current ElvUI settings for those sections with "
+    F.String.Error("WARNING:")
+      .. " Applying selected sections will "
+      .. F.String.Error("overwrite")
+      .. " your current ElvUI settings for those sections with "
       .. TXUI.Title
       .. " defaults. Any manual changes you have made to selected sections will be lost.\n\n"
       .. F.String.Good("Hover over each section to preview what will change or to apply changes individually.")

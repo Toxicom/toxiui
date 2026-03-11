@@ -73,7 +73,7 @@ I.Strings.Colors = {
   [I.Enum.Colors.WT] = "54e5ff", -- #54e5ff
   [I.Enum.Colors.ELVUI] = "1784d1", -- #1784d1
   [I.Enum.Colors.ERROR] = "ef5350", -- #ef5350
-  [I.Enum.Colors.GOOD] = "66bb6a", -- #66bb6a
+  [I.Enum.Colors.GOOD] = "66ff66", -- #66ff66
   [I.Enum.Colors.WARNING] = "f5b041", -- #f5b041
   [I.Enum.Colors.WHITE] = "ffffff", -- #ffffff
   [I.Enum.Colors.LUXTHOS] = "03fc9c", -- #03fc9c
@@ -85,6 +85,12 @@ I.Strings.Colors = {
   [I.Enum.Colors.EPIC] = "a335ee", -- #a335ee
   [I.Enum.Colors.RARE] = "0070dd", -- #0070dd
   [I.Enum.Colors.BETA] = "1eff00", -- #1eff00
+
+  [I.Enum.Colors.MUTED] = "888888", -- #888888
+
+  [I.Enum.Colors.DIFF_CHANGED] = "ffd100", -- #ffd100
+  [I.Enum.Colors.DIFF_REMOVED] = "ff8080", -- #ff8080
+  [I.Enum.Colors.DIFF_ADDED] = "88ff88", -- #88ff88
 }
 
 I.Strings.Branding = {

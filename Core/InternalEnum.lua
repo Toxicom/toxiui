@@ -65,6 +65,12 @@ I.Enum.Colors = F.Enum {
   "EPIC",
   "RARE",
   "BETA",
+
+  "MUTED",
+
+  "DIFF_CHANGED",
+  "DIFF_REMOVED",
+  "DIFF_ADDED",
 }
 
 -- Used for gradient theme

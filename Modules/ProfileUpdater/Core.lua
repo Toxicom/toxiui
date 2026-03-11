@@ -11,7 +11,6 @@ local sort = sort
 local type = type
 local tostring = tostring
 local tonumber = tonumber
-local tconcat = table.concat
 local tremove = tremove
 local strsplit = strsplit
 local abs = math.abs
@@ -23,6 +22,10 @@ local InCombatLockdown = InCombatLockdown
 local CANCEL = CANCEL
 
 local POSITION_TOLERANCE = 2 -- pixels
+
+local function sortByPath(a, b)
+  return a.path < b.path
+end
 
 -- Category and item definitions for the checklist
 local CATEGORIES = {
@@ -196,6 +199,21 @@ local function computeTableDiff(current, new, path, results)
   end
 end
 
+-- Flat diff: iterates top-level keys of profile, recursing into sub-tables via computeTableDiff.
+-- skipKey: optional key to skip (e.g. "movers" for additional profile).
+-- tablesOnly: when true, only diffs table values (skips scalar mismatches).
+local function computeFlatDiff(source, profile, results, skipKey, tablesOnly)
+  for k, v in pairs(profile) do
+    if k ~= skipKey then
+      if type(v) == "table" and type(source[k]) == "table" then
+        computeTableDiff(source[k], v, k, results)
+      elseif not tablesOnly and source[k] ~= v then
+        tinsert(results, { path = k, old = source[k], new = v })
+      end
+    end
+  end
+end
+
 function PU:ComputeAllDiffs()
   wipe(self.diffs)
 
@@ -205,9 +223,7 @@ function PU:ComputeAllDiffs()
   for key, dbPath in pairs(SECTION_MAP) do
     local entries = {}
     computeTableDiff(E.db[dbPath], pf[dbPath], "", entries)
-    sort(entries, function(a, b)
-      return a.path < b.path
-    end)
+    sort(entries, sortByPath)
     self.diffs[key] = { count = #entries, entries = entries }
   end
 
@@ -215,12 +231,8 @@ function PU:ComputeAllDiffs()
   local moverEntries = {}
   local moverReanchored = {}
   computeMoverDiff(E.db.movers, pf.movers, moverEntries, moverReanchored)
-  sort(moverEntries, function(a, b)
-    return a.path < b.path
-  end)
-  sort(moverReanchored, function(a, b)
-    return a.path < b.path
-  end)
+  sort(moverEntries, sortByPath)
+  sort(moverReanchored, sortByPath)
   self.diffs.movers = { count = #moverEntries, entries = moverEntries, reanchored = moverReanchored }
 
   -- Colors (from BuildColorsProfile, authoritative source)
@@ -228,9 +240,7 @@ function PU:ComputeAllDiffs()
   local colorEntries = {}
   computeTableDiff(E.db.unitframe.colors, colors.unitframe.colors, "unitframe.colors", colorEntries)
   computeTableDiff(E.db.nameplates.colors, colors.nameplates.colors, "nameplates.colors", colorEntries)
-  sort(colorEntries, function(a, b)
-    return a.path < b.path
-  end)
+  sort(colorEntries, sortByPath)
   self.diffs.colors = { count = #colorEntries, entries = colorEntries }
 
   -- CVars (GetCVarInfo returns strings, so convert expected to string for comparison)
@@ -240,133 +250,48 @@ function PU:ComputeAllDiffs()
     local current = C_CVar.GetCVarInfo(name)
     if current ~= nil and tostring(current) ~= tostring(expected) then tinsert(cvarsEntries, { path = name, old = current, new = expected }) end
   end
-  sort(cvarsEntries, function(a, b)
-    return a.path < b.path
-  end)
+  sort(cvarsEntries, sortByPath)
   self.diffs["cvars"] = { count = #cvarsEntries, entries = cvarsEntries }
 
   -- Private profile
-  local privatePf = PF:BuildPrivateProfile()
   local privateEntries = {}
-  for k, v in pairs(privatePf) do
-    if type(v) == "table" and type(E.private[k]) == "table" then
-      computeTableDiff(E.private[k], v, k, privateEntries)
-    elseif E.private[k] ~= v then
-      tinsert(privateEntries, { path = k, old = E.private[k], new = v })
-    end
-  end
-  sort(privateEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.private, PF:BuildPrivateProfile(), privateEntries)
+  sort(privateEntries, sortByPath)
   self.diffs["private"] = { count = #privateEntries, entries = privateEntries }
 
   -- Global profile
-  local globalPf = PF:BuildGlobalProfile()
   local globalEntries = {}
-  for k, v in pairs(globalPf) do
-    if type(v) == "table" and type(E.global[k]) == "table" then
-      computeTableDiff(E.global[k], v, k, globalEntries)
-    elseif E.global[k] ~= v then
-      tinsert(globalEntries, { path = k, old = E.global[k], new = v })
-    end
-  end
-  sort(globalEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.global, PF:BuildGlobalProfile(), globalEntries)
+  sort(globalEntries, sortByPath)
   self.diffs["global"] = { count = #globalEntries, entries = globalEntries }
 
-  -- Additional AddOns (WindTools public)
-  local additionalPf = PF:BuildAdditionalProfile()
+  -- Additional AddOns (WindTools public) — movers handled separately above
   local additionalEntries = {}
-  for k, v in pairs(additionalPf) do
-    if k ~= "movers" then -- movers handled separately
-      if type(v) == "table" and type(E.db[k]) == "table" then
-        computeTableDiff(E.db[k], v, k, additionalEntries)
-      elseif E.db[k] ~= v then
-        tinsert(additionalEntries, { path = k, old = E.db[k], new = v })
-      end
-    end
-  end
-  sort(additionalEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.db, PF:BuildAdditionalProfile(), additionalEntries, "movers")
+  sort(additionalEntries, sortByPath)
   self.diffs["additional"] = { count = #additionalEntries, entries = additionalEntries }
 
   -- Additional Private (WindTools private)
-  local additionalPrivatePf = PF:BuildAdditionalPrivateProfile()
   local additionalPrivateEntries = {}
-  for k, v in pairs(additionalPrivatePf) do
-    if type(v) == "table" and type(E.private[k]) == "table" then
-      computeTableDiff(E.private[k], v, k, additionalPrivateEntries)
-    elseif E.private[k] ~= v then
-      tinsert(additionalPrivateEntries, { path = k, old = E.private[k], new = v })
-    end
-  end
-  sort(additionalPrivateEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.private, PF:BuildAdditionalPrivateProfile(), additionalPrivateEntries)
+  sort(additionalPrivateEntries, sortByPath)
   self.diffs["additional_private"] = { count = #additionalPrivateEntries, entries = additionalPrivateEntries }
 
   -- Fonts (public)
-  local fontsPf = PF:BuildFontsProfile()
   local fontsEntries = {}
-  for k, v in pairs(fontsPf) do
-    if type(v) == "table" and type(E.db[k]) == "table" then computeTableDiff(E.db[k], v, k, fontsEntries) end
-  end
-  sort(fontsEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.db, PF:BuildFontsProfile(), fontsEntries, nil, true)
+  sort(fontsEntries, sortByPath)
   self.diffs["fonts"] = { count = #fontsEntries, entries = fontsEntries }
 
   -- Font Privates
-  local fontPrivatesPf = PF:BuildFontPrivatesProfile()
   local fontPrivatesEntries = {}
-  for k, v in pairs(fontPrivatesPf) do
-    if type(v) == "table" and type(E.private[k]) == "table" then computeTableDiff(E.private[k], v, k, fontPrivatesEntries) end
-  end
-  sort(fontPrivatesEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.private, PF:BuildFontPrivatesProfile(), fontPrivatesEntries, nil, true)
+  sort(fontPrivatesEntries, sortByPath)
   self.diffs["font_privates"] = { count = #fontPrivatesEntries, entries = fontPrivatesEntries }
 end
 
 function PU:GetDiffForItem(key)
   return self.diffs[key]
-end
-
-function PU:BuildDiffText(key)
-  local diffData = self.diffs[key]
-  if not diffData then return nil end
-
-  local hasChanges = diffData.count > 0
-  local reanchored = diffData.reanchored
-  local hasReanchored = reanchored and #reanchored > 0
-
-  if not hasChanges and not hasReanchored then return "|cff66ff66No changes detected.|r" end
-
-  local lines = {}
-
-  -- Real changes
-  for _, entry in ipairs(diffData.entries) do
-    tinsert(lines, "|cffa0a0a0" .. entry.path .. "|r")
-    tinsert(lines, "  " .. F.String.FormatDiffValue(entry.old) .. " |cffffff00->|r " .. F.String.FormatDiffValue(entry.new))
-  end
-
-  -- Re-anchored movers (false positives from ElvUI parent resolution)
-  if hasReanchored then
-    if hasChanges then tinsert(lines, "") end
-    tinsert(lines, "|cff888888--- Re-anchored by ElvUI (" .. #reanchored .. ") ---|r")
-    tinsert(lines, "|cff888888These movers originally were anchored to a different frame but ElvUI resolved their parent frame.|r")
-    tinsert(lines, "|cff888888Because of that, we cannot be certain if the user moved them from their original position.|r")
-    tinsert(lines, "|cff888888They will be re-applied with the original anchor on update.|r")
-    tinsert(lines, "")
-    for _, entry in ipairs(reanchored) do
-      tinsert(lines, "|cff555555" .. entry.path .. "|r")
-      tinsert(lines, "  |cff555555" .. (entry.oldParent or "?") .. " -> " .. (entry.newParent or "?") .. "|r")
-    end
-  end
-
-  return tconcat(lines, "\n")
 end
 
 function PU:ApplyDiffEntry(sectionKey, entry)
