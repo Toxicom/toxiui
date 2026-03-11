@@ -19,6 +19,7 @@ TXUI.Changelog["7.3.7"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    F.String.Retail() .. F.String.CDM() .. ": Display only current class specs in the overrides tab" .. F.String.Sublist("Option to display all specs is available"),
 
     "* Development improvements",
     "Rename TitleRaid to TitleBold internally",

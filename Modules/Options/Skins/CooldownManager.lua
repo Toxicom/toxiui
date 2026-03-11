@@ -701,16 +701,19 @@ function O:Skins_CooldownManager()
     local tab = self:AddGroup(options, { name = "Overrides" }).args
 
     -- Build spec values table dynamically so icons update when the icon theme changes
-    local function buildSpecValues()
+    -- When showAll is false, only includes specs for the player's current class
+    local function buildSpecValues(showAll)
       local values = {}
       local theme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
       local iconPath = M:GetClassIconPath(M:GetEffectiveClassIconTheme(theme)):gsub(":32:32:", ":16:16:")
       for _, token in ipairs(I.ClassOrder) do
-        local icon = string.format(iconPath, M.ClassIcons[token])
-        local specs = I.ClassSpecOrder[token]
-        if specs then
-          for _, specID in ipairs(specs) do
-            values[specID] = icon .. " " .. F.String.Class(I.SpecNames[specID] or tostring(specID), token)
+        if showAll or token == E.myclass then
+          local icon = string.format(iconPath, M.ClassIcons[token])
+          local specs = I.ClassSpecOrder[token]
+          if specs then
+            for _, specID in ipairs(specs) do
+              values[specID] = icon .. " " .. F.String.Class(I.SpecNames[specID] or tostring(specID), token)
+            end
           end
         end
       end
@@ -747,12 +750,30 @@ function O:Skins_CooldownManager()
       end,
     }
 
+    classBarGroup.classBarShowAllSpecs = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show All Specs",
+      desc = "Show specs from all classes instead of only your current class.",
+      disabled = function()
+        return isDisabled() or not classBarDB.enabled
+      end,
+      get = function(_)
+        return classBarDB.showAllSpecs
+      end,
+      set = function(_, value)
+        classBarDB.showAllSpecs = value
+      end,
+    }
+
     classBarGroup.classBarOverrideSpecs = {
       order = self:GetOrder(),
       type = "multiselect",
       name = "Disable Class Bar for Specs",
       desc = "Select to disable the Class Bar for this specialization.",
-      values = buildSpecValues,
+      values = function()
+        return buildSpecValues(classBarDB.showAllSpecs)
+      end,
       disabled = function()
         return isDisabled() or not classBarDB.enabled
       end,
@@ -798,13 +819,31 @@ function O:Skins_CooldownManager()
       end,
     }
 
+    powerBarGroup.powerBarShowAllSpecs = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Show All Specs",
+      desc = "Show specs from all classes instead of only your current class.",
+      disabled = function()
+        return isDisabled() or not powerBarDB.enabled
+      end,
+      get = function(_)
+        return powerBarDB.showAllSpecs
+      end,
+      set = function(_, value)
+        powerBarDB.showAllSpecs = value
+      end,
+    }
+
     powerBarGroup.powerBarOverrideSpecs = {
       order = self:GetOrder(),
       type = "multiselect",
       name = "Disable Power Bar for Specs",
       desc = "Select to disable the Power Bar for this specialization.",
       width = 1.5,
-      values = buildSpecValues,
+      values = function()
+        return buildSpecValues(powerBarDB.showAllSpecs)
+      end,
       disabled = function()
         return isDisabled() or not powerBarDB.enabled
       end,

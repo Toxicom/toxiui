@@ -329,6 +329,7 @@ P.addons = {
     -- Class Bar Override: disable ElvUI class bar for selected specs
     classBarOverride = {
       enabled = false,
+      showAllSpecs = false,
       specs = { -- [specId] = true
         [I.Specs.Priest.Shadow] = true,
         [I.Specs.Shaman.Elemental] = true,
@@ -338,6 +339,7 @@ P.addons = {
     -- Power Bar Override: disable ElvUI power bar for selected specs
     powerBarOverride = {
       enabled = false,
+      showAllSpecs = false,
       specs = { -- [specId] = true
         [I.Specs.Paladin.Retribution] = true,
         [I.Specs.Paladin.Protection] = true,
