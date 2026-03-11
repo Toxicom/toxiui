@@ -12,6 +12,7 @@ local type = type
 local tostring = tostring
 local tonumber = tonumber
 local tconcat = table.concat
+local tremove = tremove
 local strsplit = strsplit
 local abs = math.abs
 local CreateFrame = CreateFrame
@@ -83,17 +84,26 @@ local SECTION_MAP = {
 
 PU.selectedItems = {}
 PU.diffs = {}
+PU.pendingReload = false
 
 -- Diff utilities
 
-local function formatValue(val)
-  if val == nil then return "|cff888888(none)|r" end
-  local valType = type(val)
-  if valType == "string" then return "|cffffd100\"" .. val .. "\"|r" end
-  if valType == "number" then return "|cffffffff" .. tostring(val) .. "|r" end
-  if valType == "boolean" then return val and "|cff66ff66true|r" or "|cffff6666false|r" end
-  if valType == "table" then return "|cff888888{table}|r" end
-  return tostring(val)
+local function setValueAtPath(tbl, path, value)
+  local parts = {}
+  for part in path:gmatch("[^%.]+") do
+    tinsert(parts, part)
+  end
+  if #parts == 0 then return end
+  local node = tbl
+  for i = 1, #parts - 1 do
+    local k = tonumber(parts[i]) or parts[i]
+    if type(node) ~= "table" then return end
+    node = node[k]
+    if node == nil then return end
+  end
+  if type(node) ~= "table" then return end
+  local lastKey = tonumber(parts[#parts]) or parts[#parts]
+  node[lastKey] = value
 end
 
 local function parseMoverString(str)
@@ -339,7 +349,7 @@ function PU:BuildDiffText(key)
   -- Real changes
   for _, entry in ipairs(diffData.entries) do
     tinsert(lines, "|cffa0a0a0" .. entry.path .. "|r")
-    tinsert(lines, "  " .. formatValue(entry.old) .. " |cffffff00->|r " .. formatValue(entry.new))
+    tinsert(lines, "  " .. F.String.FormatDiffValue(entry.old) .. " |cffffff00->|r " .. F.String.FormatDiffValue(entry.new))
   end
 
   -- Re-anchored movers (false positives from ElvUI parent resolution)
@@ -357,6 +367,40 @@ function PU:BuildDiffText(key)
   end
 
   return tconcat(lines, "\n")
+end
+
+function PU:ApplyDiffEntry(sectionKey, entry)
+  local path = entry.path
+  local newVal = entry.new
+
+  if SECTION_MAP[sectionKey] then
+    setValueAtPath(E.db[SECTION_MAP[sectionKey]], path, newVal)
+  elseif sectionKey == "movers" then
+    E.db.movers[path] = newVal
+  elseif sectionKey == "cvars" then
+    C_CVar.SetCVar(path, tostring(newVal))
+  elseif sectionKey == "colors" or sectionKey == "additional" or sectionKey == "fonts" then
+    setValueAtPath(E.db, path, newVal)
+  elseif sectionKey == "private" or sectionKey == "additional_private" or sectionKey == "font_privates" then
+    setValueAtPath(E.private, path, newVal)
+  elseif sectionKey == "global" then
+    setValueAtPath(E.global, path, newVal)
+  end
+
+  -- Remove the entry from diff data so the row disappears
+  local diffData = self.diffs[sectionKey]
+  if diffData then
+    local entries = diffData.entries
+    for i = #entries, 1, -1 do
+      if entries[i] == entry then
+        tremove(entries, i)
+        diffData.count = diffData.count - 1
+        break
+      end
+    end
+  end
+
+  self.pendingReload = true
 end
 
 -- Selection state
@@ -500,6 +544,7 @@ function PU:Toggle()
   else
     self:InitializeSelection()
     self:ComputeAllDiffs()
+    self:ClearDiffRows()
     self:UpdateCheckboxLabels()
     self:UpdateCheckboxStates()
     self:UpdateApplyButton()

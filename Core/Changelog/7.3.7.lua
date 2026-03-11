@@ -6,8 +6,10 @@ TXUI.Changelog["7.3.7"] = {
     "* Breaking changes",
 
     "* New features",
+    "Individual update option in Profile Updater",
 
     "* Enhancements",
+    "Update diff display in Profile Updater",
 
     "* Bug fixes",
 

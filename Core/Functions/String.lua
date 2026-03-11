@@ -393,6 +393,16 @@ function F.String.FormatTime(seconds)
   end
 end
 
+function F.String.FormatDiffValue(val)
+  if val == nil then return "|cff888888(none)|r" end
+  local t = type(val)
+  if t == "string" then return "|cffffd100\"" .. val .. "\"|r" end
+  if t == "number" then return "|cffffffff" .. tostring(val) .. "|r" end
+  if t == "boolean" then return val and "|cff66ff66true|r" or "|cffff6666false|r" end
+  if t == "table" then return "|cff888888{table}|r" end
+  return tostring(val)
+end
+
 function F.String.FormatTimeClass(seconds)
   local class = E.myclass
   if seconds >= 7200 then

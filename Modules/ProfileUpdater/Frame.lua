@@ -5,8 +5,10 @@ local S = E:GetModule("Skins")
 local CreateFrame = CreateFrame
 local ipairs = ipairs
 local pairs = pairs
+local tinsert = tinsert
 local GameTooltip = GameTooltip
 local GameTooltip_Hide = GameTooltip_Hide
+local ReloadUI = ReloadUI
 
 local FRAME_WIDTH = 1280
 local LEFT_PANEL_WIDTH = 390
@@ -19,6 +21,73 @@ local BUTTON_WIDTH = 120
 local BUTTON_HEIGHT = 26
 local PANEL_GAP = 60
 local TITLE_HEIGHT = 45
+local DIFF_ROW_HEIGHT = 54
+local RELOAD_BANNER_H = 28
+
+-- Row pool: hide all active rows, clear scripts so they can be safely reconfigured
+local function releaseAllRows(pool)
+  for _, row in ipairs(pool) do
+    if row:IsShown() then
+      row:Hide()
+      row:ClearAllPoints()
+      row:SetScript("OnClick", nil)
+      row:SetScript("OnEnter", nil)
+      row:SetScript("OnLeave", nil)
+      row:EnableMouse(false)
+    end
+  end
+end
+
+-- Acquire the first hidden row from the pool, or create a new one
+local function acquireRow(pool, parent, contentWidth)
+  for _, row in ipairs(pool) do
+    if not row:IsShown() then
+      row:Show()
+      return row
+    end
+  end
+
+  local font = F.GetFontPath(I.Fonts.Primary)
+  local row = CreateFrame("Button", nil, parent)
+  row:SetHeight(DIFF_ROW_HEIGHT)
+  row:SetWidth(contentWidth)
+
+  local hl = row:CreateTexture(nil, "HIGHLIGHT")
+  hl:SetAllPoints()
+  hl:SetTexture(E.media.blankTex)
+  hl:SetVertexColor(1, 1, 1, 0.08)
+
+  local pathLabel = row:CreateFontString(nil, "OVERLAY")
+  pathLabel:SetPoint("TOPLEFT", row, "TOPLEFT", 6, -4)
+  pathLabel:SetPoint("TOPRIGHT", row, "TOPRIGHT", -6, -4)
+  pathLabel:FontTemplate(font, 11, "OUTLINE", true)
+  pathLabel:SetJustifyH("LEFT")
+  row.pathLabel = pathLabel
+
+  local valueLabel = row:CreateFontString(nil, "OVERLAY")
+  valueLabel:SetPoint("TOPLEFT", pathLabel, "BOTTOMLEFT", 0, -2)
+  valueLabel:SetPoint("TOPRIGHT", pathLabel, "BOTTOMRIGHT", 0, -2)
+  valueLabel:FontTemplate(font, 11, "NONE", true)
+  valueLabel:SetJustifyH("LEFT")
+  row.valueLabel = valueLabel
+
+  local newLabel = row:CreateFontString(nil, "OVERLAY")
+  newLabel:SetPoint("TOPLEFT", valueLabel, "BOTTOMLEFT", 0, -1)
+  newLabel:SetPoint("TOPRIGHT", valueLabel, "BOTTOMRIGHT", 0, -1)
+  newLabel:FontTemplate(font, 11, "NONE", true)
+  newLabel:SetJustifyH("LEFT")
+  row.newLabel = newLabel
+
+  local sep = row:CreateTexture(nil, "ARTWORK")
+  sep:SetHeight(1)
+  sep:SetPoint("BOTTOMLEFT", row, "BOTTOMLEFT", 0, 0)
+  sep:SetPoint("BOTTOMRIGHT", row, "BOTTOMRIGHT", 0, 0)
+  sep:SetTexture(E.media.blankTex)
+  sep:SetVertexColor(1, 1, 1, 0.05)
+
+  tinsert(pool, row)
+  return row
+end
 
 function PU:CreateSectionHeader(parent, text, yOffset)
   local headerFrame = CreateFrame("Frame", nil, parent)
@@ -92,7 +161,6 @@ function PU:CreateCheckboxRow(parent, item, xOffset, yOffset)
   label:SetPoint("LEFT", cb, "RIGHT", 4, 0)
   label:FontTemplate(font, 14, "OUTLINE", true)
 
-  -- Build label text with change count
   local labelText = item.label
   local diffData = self:GetDiffForItem(item.key)
   if diffData then
@@ -105,7 +173,6 @@ function PU:CreateCheckboxRow(parent, item, xOffset, yOffset)
   end
   label:SetText(labelText)
 
-  -- Hover: show tooltip and diff panel
   cb:SetScript("OnEnter", function(self_cb)
     if item.desc then
       GameTooltip:SetOwner(self_cb, "ANCHOR_RIGHT")
@@ -131,13 +198,12 @@ function PU:CreateDiffPanel(parent)
   local diffPanelLeft = LEFT_PANEL_WIDTH + PANEL_GAP
   local rightPanelWidth = FRAME_WIDTH - diffPanelLeft - PADDING
 
-  -- Right panel container
   local panel = CreateFrame("Frame", nil, parent, "BackdropTemplate")
   panel:SetPoint("TOPLEFT", parent, "TOPLEFT", diffPanelLeft, -TITLE_HEIGHT)
   panel:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -PADDING, BUTTON_HEIGHT + PADDING + 10)
   panel:CreateBackdrop("Transparent")
 
-  -- Panel title
+  -- Section title (updates on hover)
   local panelTitle = panel:CreateFontString(nil, "OVERLAY")
   panelTitle:SetPoint("TOPLEFT", panel, "TOPLEFT", 10, -10)
   panelTitle:SetPoint("TOPRIGHT", panel, "TOPRIGHT", -10, -10)
@@ -146,71 +212,201 @@ function PU:CreateDiffPanel(parent)
   panelTitle:SetText("|cff888888Hover over a section to preview changes|r")
   self.diffPanelTitle = panelTitle
 
-  -- Scroll frame
-  local scrollFrame = CreateFrame("ScrollFrame", "TXUIProfileUpdaterScroll", panel, "UIPanelScrollFrameTemplate")
-  scrollFrame:SetPoint("TOPLEFT", panelTitle, "BOTTOMLEFT", 0, -8)
-  scrollFrame:SetPoint("BOTTOMRIGHT", panel, "BOTTOMRIGHT", -26, 8)
+  -- Hint below the title
+  local hintText = panel:CreateFontString(nil, "OVERLAY")
+  hintText:SetPoint("TOPLEFT", panelTitle, "BOTTOMLEFT", 0, -3)
+  hintText:FontTemplate(font, 10, "NONE", true)
+  hintText:SetJustifyH("LEFT")
+  hintText:SetText(F.String.ToxiUI("Click any change to apply it individually") .. F.String.Silver(" — reload required after closing"))
 
-  -- Scroll child
+  -- Reload banner (appears after first individual apply)
+  local reloadBanner = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
+  reloadBanner:SetSize(rightPanelWidth - 20, RELOAD_BANNER_H)
+  reloadBanner:SetPoint("BOTTOM", panel, "BOTTOM", 0, 6)
+  reloadBanner:SetText(F.String.Warning("Changes applied") .. " — click to Reload Now")
+  reloadBanner:GetFontString():FontTemplate(font, 11, "OUTLINE", true)
+  S:HandleButton(reloadBanner)
+  reloadBanner:Hide()
+  reloadBanner:SetScript("OnClick", function()
+    PU.pendingReload = false
+    ReloadUI()
+  end)
+  self.diffReloadBanner = reloadBanner
+
+  -- Scroll frame (leaves room for the banner at the bottom)
+  local scrollFrame = CreateFrame("ScrollFrame", "TXUIProfileUpdaterScroll", panel, "UIPanelScrollFrameTemplate")
+  scrollFrame:SetPoint("TOPLEFT", hintText, "BOTTOMLEFT", 0, -6)
+  scrollFrame:SetPoint("BOTTOMRIGHT", panel, "BOTTOMRIGHT", -26, RELOAD_BANNER_H + 10)
+
   local scrollChild = CreateFrame("Frame")
   scrollChild:SetWidth(rightPanelWidth - 46)
+  scrollChild:SetHeight(1)
   scrollFrame:SetScrollChild(scrollChild)
 
-  -- Content text
-  local contentText = scrollChild:CreateFontString(nil, "OVERLAY")
-  contentText:SetPoint("TOPLEFT", scrollChild, "TOPLEFT", 2, -2)
-  contentText:SetWidth(rightPanelWidth - 50)
-  contentText:SetWordWrap(true)
-  contentText:SetJustifyH("LEFT")
-  contentText:SetJustifyV("TOP")
-  contentText:SetSpacing(2)
-  contentText:FontTemplate(font, 12, "NONE", true)
-
-  -- Skin scrollbar
   local scrollBar = _G["TXUIProfileUpdaterScrollScrollBar"]
   if scrollBar then S:HandleScrollBar(scrollBar) end
 
-  self.diffContentText = contentText
   self.diffScrollChild = scrollChild
   self.diffScrollFrame = scrollFrame
+  self.diffContentWidth = rightPanelWidth - 46
+  self.rowPool = self.rowPool or {}
+end
+
+function PU:ClearDiffRows()
+  if self.rowPool then releaseAllRows(self.rowPool) end
+  if self.diffPanelTitle then self.diffPanelTitle:SetText("|cff888888Hover over a section to preview changes|r") end
+  self.currentDiffKey = nil
+  self.currentDiffLabel = nil
+  self.pendingReload = false
+  if self.diffReloadBanner then self.diffReloadBanner:Hide() end
+end
+
+function PU:BuildInteractiveDiffRows(key)
+  if not self.diffScrollChild then return end
+
+  releaseAllRows(self.rowPool)
+
+  local diffData = self:GetDiffForItem(key)
+  local yOffset = 0
+  local contentWidth = self.diffContentWidth
+
+  -- Places a diff entry row with GitHub-style - / + lines
+  local function placeDiffRow(entry, isReanchored)
+    local row = acquireRow(self.rowPool, self.diffScrollChild, contentWidth)
+    row:SetSize(contentWidth, DIFF_ROW_HEIGHT)
+    row:SetPoint("TOPLEFT", self.diffScrollChild, "TOPLEFT", 0, -yOffset)
+
+    if isReanchored then
+      row.pathLabel:SetText("|cff666666" .. entry.path .. "|r")
+      row.valueLabel:SetText("|cff774444- |r|cff555555" .. (entry.oldParent or "?") .. "|r")
+      row.newLabel:SetText("|cff447744+ |r|cff555555" .. (entry.newParent or "?") .. "|r")
+      row.newLabel:Show()
+      row:EnableMouse(false)
+      row:SetAlpha(0.5)
+    else
+      local capturedKey = key
+      local capturedEntry = entry
+      row.pathLabel:SetText("|cffa0a0a0" .. entry.path .. "|r")
+      row.valueLabel:SetText("|cffff8080-|r " .. F.String.FormatDiffValue(entry.old))
+      row.newLabel:SetText("|cff88ff88+|r " .. F.String.FormatDiffValue(entry.new))
+      row.newLabel:Show()
+      row:EnableMouse(true)
+      row:SetAlpha(1.0)
+      row:SetScript("OnClick", function()
+        PU:ApplyDiffEntry(capturedKey, capturedEntry)
+        PU:OnDiffEntryApplied(capturedKey)
+      end)
+      row:SetScript("OnEnter", function(self_row)
+        GameTooltip:SetOwner(self_row, "ANCHOR_RIGHT")
+        GameTooltip:AddLine("Click to apply this change", 1, 1, 1)
+        GameTooltip:AddLine("|cff888888A reload will be required after closing.|r", nil, nil, nil, true)
+        GameTooltip:Show()
+      end)
+      row:SetScript("OnLeave", function()
+        GameTooltip_Hide()
+      end)
+    end
+
+    yOffset = yOffset + DIFF_ROW_HEIGHT
+  end
+
+  -- Places a slim header/divider row (no diff lines)
+  local function placeHeaderRow(text)
+    local row = acquireRow(self.rowPool, self.diffScrollChild, contentWidth)
+    row:SetSize(contentWidth, 20)
+    row:SetPoint("TOPLEFT", self.diffScrollChild, "TOPLEFT", 0, -yOffset)
+    row.pathLabel:SetText(text)
+    row.valueLabel:SetText("")
+    row.newLabel:Hide()
+    row:EnableMouse(false)
+    row:SetAlpha(0.6)
+    yOffset = yOffset + 20
+  end
+
+  -- Places a single-line status message row
+  local function placeMessageRow(text)
+    local row = acquireRow(self.rowPool, self.diffScrollChild, contentWidth)
+    row:SetSize(contentWidth, 30)
+    row:SetPoint("TOPLEFT", self.diffScrollChild, "TOPLEFT", 0, -yOffset)
+    row.pathLabel:SetText(text)
+    row.valueLabel:SetText("")
+    row.newLabel:Hide()
+    row:EnableMouse(false)
+    row:SetAlpha(0.8)
+    yOffset = yOffset + 30
+  end
+
+  if not diffData then
+    placeMessageRow("|cff888888Detailed preview not available for this section.|r")
+  elseif diffData.count == 0 and (not diffData.reanchored or #diffData.reanchored == 0) then
+    placeMessageRow("|cff66ff66No changes detected.|r")
+  else
+    for _, entry in ipairs(diffData.entries) do
+      placeDiffRow(entry, false)
+    end
+
+    local reanchored = diffData.reanchored
+    if reanchored and #reanchored > 0 then
+      if diffData.count > 0 then yOffset = yOffset + 6 end
+      placeHeaderRow("|cff444444--- Re-anchored by ElvUI (" .. #reanchored .. ") — read-only ---|r")
+      for _, entry in ipairs(reanchored) do
+        placeDiffRow(entry, true)
+      end
+    end
+  end
+
+  self.diffScrollChild:SetHeight(yOffset > 0 and yOffset or 1)
+  self.diffScrollFrame:SetVerticalScroll(0)
 end
 
 function PU:ShowDiffForItem(key, label)
   if not self.diffPanelTitle then return end
 
+  self.currentDiffKey = key
+  self.currentDiffLabel = label
+
   local diffData = self:GetDiffForItem(key)
+  local titleParts = label .. " — "
   if diffData then
-    local titleParts = label .. " — "
     if diffData.count > 0 then
       titleParts = titleParts .. "|cffffd100" .. diffData.count .. " change(s)|r"
     else
       titleParts = titleParts .. "|cff66ff66No changes|r"
     end
     if diffData.reanchored and #diffData.reanchored > 0 then titleParts = titleParts .. " |cff888888(" .. #diffData.reanchored .. " re-anchored)|r" end
+  end
+  self.diffPanelTitle:SetText(titleParts)
+
+  self:BuildInteractiveDiffRows(key)
+end
+
+function PU:OnDiffEntryApplied(sectionKey)
+  -- Rebuild rows to reflect the removed entry
+  self:BuildInteractiveDiffRows(sectionKey)
+
+  -- Refresh the title count
+  if self.currentDiffLabel then
+    local diffData = self:GetDiffForItem(sectionKey)
+    local titleParts = self.currentDiffLabel .. " — "
+    if diffData and diffData.count > 0 then
+      titleParts = titleParts .. "|cffffd100" .. diffData.count .. " change(s)|r"
+    else
+      titleParts = titleParts .. "|cff66ff66No changes|r"
+    end
+    if diffData and diffData.reanchored and #diffData.reanchored > 0 then titleParts = titleParts .. " |cff888888(" .. #diffData.reanchored .. " re-anchored)|r" end
     self.diffPanelTitle:SetText(titleParts)
-  else
-    self.diffPanelTitle:SetText(label)
   end
 
-  local diffText = self:BuildDiffText(key)
-  if diffText then
-    self.diffContentText:SetText(diffText)
-  else
-    self.diffContentText:SetText("|cff888888Detailed preview not available for this section.|r")
-  end
+  -- Update all checkbox count labels
+  self:UpdateCheckboxLabels()
 
-  -- Resize scroll child to fit content
-  local textHeight = self.diffContentText:GetStringHeight() + 10
-  self.diffScrollChild:SetHeight(textHeight)
-
-  -- Reset scroll position to top
-  self.diffScrollFrame:SetVerticalScroll(0)
+  -- Show the reload banner
+  if self.diffReloadBanner then self.diffReloadBanner:Show() end
 end
 
 function PU:CreateActionButtons(parent)
   local font = F.GetFontPath(I.Fonts.Primary)
 
-  -- Select All
   local selectAll = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
   selectAll:SetSize(BUTTON_WIDTH, BUTTON_HEIGHT)
   selectAll:SetPoint("BOTTOMLEFT", parent, "BOTTOMLEFT", PADDING, PADDING)
@@ -223,7 +419,6 @@ function PU:CreateActionButtons(parent)
     PU:UpdateApplyButton()
   end)
 
-  -- Select None
   local selectNone = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
   selectNone:SetSize(BUTTON_WIDTH, BUTTON_HEIGHT)
   selectNone:SetPoint("LEFT", selectAll, "RIGHT", 10, 0)
@@ -236,7 +431,6 @@ function PU:CreateActionButtons(parent)
     PU:UpdateApplyButton()
   end)
 
-  -- Apply
   local apply = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
   apply:SetSize(BUTTON_WIDTH, BUTTON_HEIGHT)
   apply:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -PADDING, PADDING)
@@ -295,7 +489,6 @@ function PU:UpdateApplyButton()
 end
 
 function PU:CreateUpdaterFrame()
-  -- Main frame
   local frame = CreateFrame("Frame", "TXUIProfileUpdater", E.UIParent, "BackdropTemplate")
   frame:SetPoint("CENTER", E.UIParent, "CENTER")
   frame:SetFrameStrata("HIGH")
@@ -304,12 +497,10 @@ function PU:CreateUpdaterFrame()
   frame:SetMovable(true)
   frame:Hide()
 
-  -- Title drag area
   local titleDrag = CreateFrame("Frame", nil, frame, "TitleDragAreaTemplate")
   titleDrag:SetPoint("TOPLEFT", frame, "TOPLEFT")
   titleDrag:SetPoint("BOTTOMRIGHT", frame, "TOPRIGHT", 0, -TITLE_HEIGHT)
 
-  -- Title text
   local font = F.GetFontPath(I.Fonts.Primary)
   local title = frame:CreateFontString(nil, "OVERLAY")
   title:SetPoint("TOP", frame, "TOP", 0, -PADDING)
@@ -318,7 +509,6 @@ function PU:CreateUpdaterFrame()
 
   local yOffset = -TITLE_HEIGHT
 
-  -- Disclaimer text (left panel)
   local disclaimerText = frame:CreateFontString(nil, "OVERLAY")
   disclaimerText:SetPoint("TOPLEFT", frame, "TOPLEFT", PADDING, yOffset - 5)
   disclaimerText:SetWidth(LEFT_PANEL_WIDTH - PADDING * 2)
@@ -330,21 +520,22 @@ function PU:CreateUpdaterFrame()
   disclaimerText:SetText(
     "|cffff6666WARNING:|r Applying selected sections will |cffff6666overwrite|r your current ElvUI settings for those sections with "
       .. TXUI.Title
-      .. " defaults. Any manual changes you have made to selected sections will be lost.\n\nHover over each section to preview what will change.\n\n"
+      .. " defaults. Any manual changes you have made to selected sections will be lost.\n\n"
+      .. F.String.Good("Hover over each section to preview what will change or to apply changes individually.")
+      .. "\n\n"
+      .. F.String.ToxiUI("Important: ")
+      .. "It is recommended to create a backup your profile if you're afraid to lose any changes you've made.\n\n"
   )
   yOffset = yOffset - disclaimerText:GetStringHeight() - 15
 
-  -- Build checkboxes (left panel)
   local checkboxes = {}
   local categories = self:GetCategories()
 
   for _, category in ipairs(categories) do
-    -- Section header
     yOffset = yOffset - 5
     self:CreateSectionHeader(frame, category.label, yOffset)
     yOffset = yOffset - SECTION_HEADER_HEIGHT
 
-    -- Checkbox rows (two-column layout)
     local col = 0
     for _, item in ipairs(category.items) do
       local xOff = PADDING + (col * COLUMN_WIDTH)
@@ -358,21 +549,40 @@ function PU:CreateUpdaterFrame()
       end
     end
 
-    -- If ended on odd column, move to next row
     if col > 0 then yOffset = yOffset - ROW_HEIGHT end
   end
 
-  -- Bottom padding for buttons
   yOffset = yOffset - (BUTTON_HEIGHT + PADDING + 10)
 
-  -- Set final frame size
   frame:SetSize(FRAME_WIDTH, -yOffset)
 
-  -- Diff panel (right side)
   self:CreateDiffPanel(frame)
-
-  -- Action buttons (anchored to bottom, full width)
   self:CreateActionButtons(frame)
+
+  -- Reload prompt when closing with pending individual changes
+  frame:SetScript("OnHide", function()
+    if PU.pendingReload then
+      local dialogName = "TXUI_PROFILE_UPDATER_RELOAD"
+      E.PopupDialogs[dialogName] = {
+        text = TXUI.Title .. ": Individual changes have been applied.\n\n" .. F.String.Warning("A UI reload is required for changes to take full effect."),
+        button1 = "Reload UI",
+        button2 = "Later",
+        timeout = 0,
+        whileDead = 1,
+        hideOnEscape = 1,
+        OnAccept = function()
+          PU.pendingReload = false
+          ReloadUI()
+        end,
+      }
+      E:StaticPopup_Show(dialogName)
+    end
+  end)
+
+  -- Re-show the banner if the frame is re-opened with pending changes
+  frame:SetScript("OnShow", function()
+    if PU.pendingReload and PU.diffReloadBanner then PU.diffReloadBanner:Show() end
+  end)
 
   self.frame = frame
   self.checkboxes = checkboxes
