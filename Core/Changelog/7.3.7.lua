@@ -17,6 +17,9 @@ TXUI.Changelog["7.3.7"] = {
     F.String.ElvUI() .. ": Update world/pvp (sub)zone texts",
 
     "* Documentation",
+    F.String.Retail() .. F.String.CDM() .. ": Add " .. F.String.Class("Frost Mage", "MAGE") .. " by default to Power Bar Overrides" .. F.String.Sublist(
+      "ElvUI 15.09 now shows icicles as class bar, so we can hide power bar"
+    ),
 
     "* Settings refactoring",
     F.String.Retail() .. F.String.CDM() .. ": Display only current class specs in the overrides tab" .. F.String.Sublist("Option to display all specs is available"),

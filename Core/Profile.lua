@@ -349,6 +349,7 @@ P.addons = {
         [I.Specs.Shaman.Enhancement] = true,
         [I.Specs.Evoker.Devastation] = true,
         [I.Specs.Evoker.Augmentation] = true,
+        [I.Specs.Mage.Frost] = true,
       },
     },
 
