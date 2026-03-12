@@ -40,6 +40,7 @@ end
 
 function CM:CenterViewer(viewerKey)
   if self._centeringIcons then return end
+  if self._inEditMode then return end
 
   local cache = viewerCache[viewerKey]
   if not cache then return end
@@ -100,6 +101,7 @@ end
 
 function CM:AlignBuffBarViewer()
   if self._centeringIcons then return end
+  if self._inEditMode then return end
 
   local cache = viewerCache["buffBar"]
   if not cache then return end
@@ -129,6 +131,7 @@ function CM:AlignBuffBarViewer()
     if bar then
       local yPos = i * (barHeight + ySpacing)
       bar:ClearAllPoints()
+      bar:SetHeight(barHeight)
       bar:SetPoint("BOTTOMLEFT", viewer, "BOTTOMLEFT", 0, yPos)
       bar:SetPoint("BOTTOMRIGHT", viewer, "BOTTOMRIGHT", 0, yPos)
     end

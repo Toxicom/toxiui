@@ -9,6 +9,7 @@ function CM:SetAnchors()
   -- if InCombatLockdown() then return end
   if not self.db or not self.db.anchors then return end
 
+  self._inEditMode = false
   self._settingAnchors = true
 
   local anchors = self.db.anchors
@@ -27,34 +28,35 @@ function CM:SetAnchors()
   -- Anchor EssentialCooldownViewer to bottom of power bar, fallback to class bar
   if anchors.essential.enabled and essential and essential.orientationSetting ~= 1 then
     local anchor = (powerBarAvailable and powerBar) or (classBarAvailable and classBar)
-    if anchor then
-      essential:ClearAllPoints()
-      essential:SetPoint("TOP", anchor, "BOTTOM", 0, anchors.essential.yOffset)
-    end
+    if anchor then essential:SetPointOverride("TOP", anchor, "BOTTOM", 0, anchors.essential.yOffset) end
   end
 
   -- Anchor UtilityCooldownViewer to bottom of EssentialCooldownViewer
-  if anchors.utility.enabled and utility and essential and utility.orientationSetting ~= 1 then
-    utility:ClearAllPoints()
-    utility:SetPoint("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset)
-  end
+  if anchors.utility.enabled and utility and essential and utility.orientationSetting ~= 1 then utility:SetPointOverride("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset) end
 
   -- Anchor BuffIconCooldownViewer to top of class bar, fallback to power bar
   if anchors.buff.enabled and buff and buff.orientationSetting ~= 1 then
     local anchor = (classBarAvailable and classBar) or (powerBarAvailable and powerBar)
-    if anchor then
-      buff:ClearAllPoints()
-      buff:SetPoint("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset)
-    end
+    if anchor then buff:SetPointOverride("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset) end
   end
 
   -- Anchor BuffBarCooldownViewer to top of health bar
-  if anchors.buffBar.enabled and buffBar and healthBar then
-    buffBar:ClearAllPoints()
-    buffBar:SetPoint("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset)
-  end
+  if anchors.buffBar.enabled and buffBar and healthBar then buffBar:SetPointOverride("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset) end
 
   self._settingAnchors = false
+end
+
+function CM:RestoreAnchors()
+  if not self._savedAnchors then return end
+  -- _inEditMode = true guards the anchor lock, so SetPoint won't re-trigger SetAnchors
+  for frameName, anchor in pairs(self._savedAnchors) do
+    local f = _G[frameName]
+    if f then
+      f:ClearAllPointsOverride()
+      f:ClearAllPoints()
+      f:SetPoint(anchor[1], anchor[2], anchor[3], anchor[4], anchor[5])
+    end
+  end
 end
 
 function CM:HookAnchorLock(frame)
@@ -62,6 +64,7 @@ function CM:HookAnchorLock(frame)
 
   self:SecureHook(frame, "SetPoint", function()
     if self._settingAnchors then return end
+    if self._inEditMode then return end
     -- if InCombatLockdown() then return end
 
     self:SetAnchors()
@@ -79,8 +82,32 @@ function CM:SetupAnchorLocks()
   if anchors.buffBar.enabled then self:HookAnchorLock(_G[self.frameNames.buffBar]) end
 end
 
+function CM:SaveAnchors()
+  if not self.db or not self.db.anchors then return end
+  local anchors = self.db.anchors
+  self._savedAnchors = {}
+  local toSave = {
+    anchors.essential.enabled and self.frameNames.essential,
+    anchors.utility.enabled and self.frameNames.utility,
+    anchors.buff.enabled and self.frameNames.buff,
+    anchors.buffBar.enabled and self.frameNames.buffBar,
+  }
+  for _, frameName in pairs(toSave) do
+    if frameName then
+      local f = _G[frameName]
+      if f then
+        local p, r, rp, x, y = f:GetPoint(1)
+        if p then self._savedAnchors[frameName] = { p, r, rp, x, y } end
+      end
+    end
+  end
+end
+
 function CM:EnableAnchoring()
   if not self.Initialized then return end
+
+  -- Save current anchors before overriding so Edit Mode can restore them
+  self:SaveAnchors()
 
   -- Apply anchors initially
   self:SetAnchors()
@@ -95,6 +122,8 @@ end
 
 function CM:DisableAnchoring()
   if not self.Initialized then return end
+
+  self._savedAnchors = nil
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self, "CM_Anchors")
   F.Event.UnregisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self, "CM_Anchors")

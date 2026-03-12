@@ -10,6 +10,12 @@ CM.frameNames = {
   buffBar = "BuffBarCooldownViewer",
 }
 
+function CM:OnEditModeEnter()
+  self._inEditMode = true
+  self:RestoreOriginalParents()
+  self:RestoreAnchors()
+end
+
 function CM:OnCooldownManagerChanged()
   self:SetAnchors()
   self:SetParent()
@@ -33,6 +39,7 @@ function CM:Disable()
 
   if _G.EventRegistry then
     _G.EventRegistry:UnregisterCallback("CooldownViewerSettings.OnDataChanged", self)
+    _G.EventRegistry:UnregisterCallback("EditMode.Enter", self)
     _G.EventRegistry:UnregisterCallback("EditMode.Exit", self)
   end
 end
@@ -88,6 +95,7 @@ function CM:DatabaseUpdate()
     -- Re-apply all features on settings change or edit mode exit since they reset frames
     if _G.EventRegistry then
       _G.EventRegistry:RegisterCallback("CooldownViewerSettings.OnDataChanged", self.OnCooldownManagerChanged, self)
+      _G.EventRegistry:RegisterCallback("EditMode.Enter", self.OnEditModeEnter, self)
       _G.EventRegistry:RegisterCallback("EditMode.Exit", self.OnCooldownManagerChanged, self)
     end
   end)

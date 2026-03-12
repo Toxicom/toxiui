@@ -10,6 +10,7 @@ TXUI.Changelog["7.3.7"] = {
 
     "* Enhancements",
     "Update diff display in Profile Updater",
+    F.String.Retail() .. F.String.CDM() .. ": Hopefully improve code for when entering Edit Mode",
 
     "* Bug fixes",
 

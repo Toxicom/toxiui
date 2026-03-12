@@ -83,7 +83,10 @@ function CM:DisableDynamicBarsWidth()
 
   self.cachedBarsWidth = nil
 
-  if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
+  -- Both features share the same OnSizeChanged hook; only unhook if castbar sync isn't also using it
+  if not (self.db and self.db.dynamicCastbarWidth) then
+    if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
+  end
 end
 
 function CM:EnableDynamicCastbarWidth()
@@ -99,5 +102,8 @@ function CM:DisableDynamicCastbarWidth()
 
   self.cachedCastbarWidth = nil
 
-  if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
+  -- Both features share the same OnSizeChanged hook; only unhook if bars width sync isn't also using it
+  if not (self.db and self.db.dynamicBarsWidth) then
+    if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
+  end
 end
