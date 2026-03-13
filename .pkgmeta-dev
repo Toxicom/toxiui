@@ -1,5 +1,9 @@
 package-as: ElvUI_ToxiUI
 
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
 ignore:
   - .github/*
   - .gitignore
