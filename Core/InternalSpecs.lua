@@ -71,6 +71,24 @@ I.Specs = {
   },
 }
 
+-- Classes available in MoP Classic and above, but not in vanilla (ClassicEra/Anniversary)
+I.ClassicPlusClasses = {
+  DEATHKNIGHT = true,
+  MONK = true,
+}
+
+-- Classes that only exist in Retail
+I.RetailOnlyClasses = {
+  DEMONHUNTER = true,
+  EVOKER = true,
+}
+
+function I.IsClassAvailable(class)
+  if I.RetailOnlyClasses[class] then return TXUI.IsRetail end
+  if I.ClassicPlusClasses[class] then return TXUI.IsRetail or TXUI.IsClassic end
+  return true
+end
+
 -- Ordered list of class tokens (alphabetical)
 I.ClassOrder = {
   "DEATHKNIGHT",

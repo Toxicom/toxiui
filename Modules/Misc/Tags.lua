@@ -134,7 +134,7 @@ function M:Tags()
   local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
   local iconPath = self:GetClassIconPath(iconTheme)
-  local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
+  local usingSpecIcons = match(iconTheme, "ToxiSpec")
   local classIconPath = usingSpecIcons and self:GetClassIconPath("ToxiClasses") or iconPath
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")

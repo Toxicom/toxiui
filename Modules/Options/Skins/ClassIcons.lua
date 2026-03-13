@@ -57,7 +57,7 @@ function O:Skins_ClassIcons()
       values = function()
         local tbl = M:GetClassIconStyleValues()
 
-        if TXUI.IsRetail then F.Table.Crush(tbl, M:GetSpecIconStyleValues()) end
+        if TXUI.IsRetail or TXUI.IsClassic then F.Table.Crush(tbl, M:GetSpecIconStyleValues()) end
 
         return tbl
       end,
@@ -100,14 +100,14 @@ function O:Skins_ClassIcons()
       type = "description",
       name = function()
         local theme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
-        local usingSpecIcons = TXUI.IsRetail and theme:match("ToxiSpec")
+        local usingSpecIcons = theme:match("ToxiSpec")
         local classPath = M:GetClassIconPath(M:GetEffectiveClassIconTheme(theme))
         local specPath = usingSpecIcons and M:GetClassIconPath(theme) or nil
 
         local lines = {}
 
         for _, class in ipairs(classOrder) do
-          if class ~= "EVOKER" or TXUI.IsRetail then
+          if I.IsClassAvailable(class) then
             local classCoords = M.ClassIcons[class]
             if classCoords then
               local label = F.String.Class(string.upper(I.EnglishClassName[class] or class), class)

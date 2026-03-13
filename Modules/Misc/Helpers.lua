@@ -225,13 +225,14 @@ function M:GenerateSpecIcon(dbPath)
   local iconPath = self:GetClassIconPath(dbPath or "ToxiSpecStylized")
   local classIconPath = self:GetClassIconPath(self:GetEffectiveClassIconTheme(dbPath))
   local iconsFont = F.GetFontPath(I.Fonts.Icons)
+  local isSpecTheme = iconPath ~= classIconPath
 
   if TXUI.IsRetail then
     local _, classId = UnitClassBase("player")
     local specIndex = GetSpecialization()
     local id = GetSpecializationInfoForClassID(classId, specIndex)
 
-    if id and id ~= 0 and M.SpecIcons[id] then
+    if isSpecTheme and id and id ~= 0 and M.SpecIcons[id] then
       specIcon = format(iconPath, M.SpecIcons[id])
     else
       specIcon = format(classIconPath, M.ClassIcons[E.myclass])
@@ -240,7 +241,7 @@ function M:GenerateSpecIcon(dbPath)
     local specIndex = C_SpecializationInfo.GetSpecialization()
     local specId = C_SpecializationInfo.GetSpecializationInfo(specIndex)
 
-    if specId and M.SpecIcons[specId] then
+    if isSpecTheme and specId and M.SpecIcons[specId] then
       specIcon = format(iconPath, M.SpecIcons[specId])
     else
       specIcon = format(classIconPath, M.ClassIcons[E.myclass])
@@ -251,7 +252,7 @@ function M:GenerateSpecIcon(dbPath)
 
     if talents then spec = SS:GetWrathCacheForSpec(talents) end
 
-    if spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
+    if isSpecTheme and spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
       specIcon = format(iconPath, M.SpecIcons[spec.id])
     else
       specIcon = format(classIconPath, M.ClassIcons[E.myclass])

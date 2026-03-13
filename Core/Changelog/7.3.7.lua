@@ -13,6 +13,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.Retail() .. F.String.CDM() .. ": Hopefully improve code for when entering Edit Mode",
 
     "* Bug fixes",
+    F.String.Era() .. F.String.Anniversary() .. F.String.Classic() .. "Incorrect class icon showing on Game Menu Skin",
 
     "* Profile updates",
     F.String.ElvUI() .. ": Update world/pvp (sub)zone texts",
