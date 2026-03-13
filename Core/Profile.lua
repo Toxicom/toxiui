@@ -387,6 +387,7 @@ P.addons = {
     headerFadeMinAlpha = 0, -- Alpha when not hovering
     headerFadeMaxAlpha = 1, -- Alpha when hovering
     hideLocalPlayerEntry = true, -- Enabled by default
+    resetOnNewInstance = false, -- Auto-reset meter on new instance
   },
 }
 

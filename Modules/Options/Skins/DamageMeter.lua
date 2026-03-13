@@ -50,24 +50,24 @@ function O:Skins_DamageMeter()
   -- Spacer
   self:AddSpacer(options)
 
-  -- Icons
+  -- Features
   do
-    local iconsGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Spec Icons",
+    local featuresGroup = self:AddInlineRequirementsDesc(options, {
+      name = "Features",
     }, {
-      name = "Replace the default Blizzard spec icons with " .. TXUI.Title .. " styled icons.\n\n",
+      name = "Enable or disable individual features of the " .. TXUI.Title .. " Damage Meter skin.\n\n",
     }, I.Requirements.DamageMeter).args
 
-    iconsGroup.icons = {
+    local isDisabled = function()
+      return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
+    end
+
+    featuresGroup.icons = {
       order = self:GetOrder(),
       type = "toggle",
+      name = "Spec Icons",
       desc = "Use " .. TXUI.Title .. " spec icons instead of the default Blizzard icons.",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.addons.damageMeter.icons, iconsGroup)
-      end,
-      disabled = function()
-        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
-      end,
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.damageMeter.icons
       end,
@@ -76,35 +76,49 @@ function O:Skins_DamageMeter()
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }
-  end
 
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Gradients
-  do
-    local gradientsGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Gradient Bars",
-    }, {
-      name = "Apply " .. TXUI.Title .. " gradient colors to the damage meter bars.\n\n",
-    }, I.Requirements.DamageMeter).args
-
-    gradientsGroup.gradients = {
+    featuresGroup.gradients = {
       order = self:GetOrder(),
       type = "toggle",
+      name = "Gradient Bars",
       desc = "Apply gradient colors to damage meter bars.",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.addons.damageMeter.gradients, gradientsGroup)
-      end,
-      disabled = function()
-        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
-      end,
+      disabled = isDisabled,
       get = function(_)
         return E.db.TXUI.addons.damageMeter.gradients
       end,
       set = function(_, value)
         E.db.TXUI.addons.damageMeter.gradients = value
         E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    featuresGroup.hideLocalPlayerEntry = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Hide Floating Player Entry",
+      desc = "Hide your own character's entry from floating over the Blizzard Damage Meter.",
+      disabled = isDisabled,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
+
+    featuresGroup.resetOnNewInstance = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Auto Reset",
+      desc = "Automatically reset the Damage Meter when entering a new instance.\n\nThis option simply enables Blizzard's toggle for this functionality, so you don't have to set it up for every character.",
+      disabled = isDisabled,
+      get = function(_)
+        return E.db.TXUI.addons.damageMeter.resetOnNewInstance
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.damageMeter.resetOnNewInstance = value
+        C_CVar.SetCVar("damageMeterResetOnNewInstance", value and "1" or "0")
       end,
     }
   end
@@ -175,37 +189,6 @@ function O:Skins_DamageMeter()
       end,
       set = function(_, value)
         E.db.TXUI.addons.damageMeter.headerFadeMaxAlpha = value
-        E:StaticPopup_Show("CONFIG_RL")
-      end,
-    }
-  end
-
-  -- Spacer
-  self:AddSpacer(options)
-
-  -- Hide Local Player Entry
-  do
-    local hideLocalPlayerGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Hide Floating Player Entry",
-    }, {
-      name = "Hide your own character's entry from floating over the Blizzard Damage Meter.\n\n",
-    }, I.Requirements.DamageMeter).args
-
-    hideLocalPlayerGroup.hideLocalPlayerEntry = {
-      order = self:GetOrder(),
-      type = "toggle",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry, hideLocalPlayerGroup)
-      end,
-      desc = "Hide your own character's entry from floating over the Blizzard Damage Meter.",
-      disabled = function()
-        return not TXUI:HasRequirements(I.Requirements.DamageMeter) or not E.db.TXUI.addons.damageMeter.enabled
-      end,
-      get = function(_)
-        return E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry = value
         E:StaticPopup_Show("CONFIG_RL")
       end,
     }

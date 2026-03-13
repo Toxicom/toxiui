@@ -7,6 +7,7 @@ TXUI.Changelog["7.3.7"] = {
 
     "* New features",
     "Individual update option in Profile Updater",
+    F.String.Retail() .. "Option to enable Damage Meter reset on new instances",
 
     "* Enhancements",
     "Update diff display in Profile Updater",
@@ -25,6 +26,7 @@ TXUI.Changelog["7.3.7"] = {
 
     "* Settings refactoring",
     F.String.Retail() .. F.String.CDM() .. ": Display only current class specs in the overrides tab" .. F.String.Sublist("Option to display all specs is available"),
+    F.String.Retail() .. "Simplify the settings of Damage Meter skin",
 
     "* Development improvements",
     "Rename TitleRaid to TitleBold internally",
