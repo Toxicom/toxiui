@@ -116,8 +116,6 @@ function GR:Disable()
 
   self:UnhookAll()
   self.uf:Update_AllFrames()
-
-  F.EventManagerUnregisterAll(self.interruptNamespace)
 end
 
 function GR:Enable()
@@ -136,17 +134,6 @@ function GR:Enable()
   -- Hook functions for update functions
   self:SecureHook(self.uf, "Update_StatusBars", "UpdateStatusBars")
   self:SecureHook(self.uf, "Update_StatusBar", "UpdateStatusBar")
-
-  -- Register Interrupt handler
-  if TXUI.IsRetail then F.EventManagerRegister(self.interruptNamespace, "PLAYER_SPECIALIZATION_CHANGED", F.CheckInterruptSpells) end
-
-  F.EventManagerRegister(self.interruptNamespace, "PLAYER_ENTERING_WORLD", F.CheckInterruptSpells)
-  F.EventManagerRegister(self.interruptNamespace, "PLAYER_LEVEL_CHANGED", F.CheckInterruptSpells)
-  if TXUI.IsAnniversary or TXUI.IsRetail then
-    F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_SKILL_LINE", F.CheckInterruptSpells)
-  else
-    F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_TAB", F.CheckInterruptSpells)
-  end
 
   -- Update!
   self.uf:Update_AllFrames()
@@ -188,9 +175,6 @@ function GR:Initialize()
   -- Force Update Cache
   self.updateCache = {}
   self.settingsEvents = {}
-
-  -- Set namespace var
-  self.interruptNamespace = "GR_INTERRUPT"
 
   -- Register for updates
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))

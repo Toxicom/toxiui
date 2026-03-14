@@ -91,9 +91,6 @@ P.themes = {
       focus = I.Enum.GradientMode.Direction.RIGHT,
     },
 
-    interruptCDEnabled = false,
-    interruptSoonEnabled = false,
-
     saturationBoost = {
       enabled = false,
       shiftLight = 0.7,
@@ -120,15 +117,11 @@ P.themes = {
         DEFAULT = F.Table.HexToRGB("#ffbf00"), -- cast def.
         NOINTERRUPT = F.Table.HexToRGB("#8f8c8c"), -- cast non.
         INTERRUPTED = F.Table.HexToRGB("#d94040"), -- cast was stopped
-        INTERRUPTCD = F.Table.HexToRGB("#8591b0"), -- interrupt is on cd, and will not come off cd during cast
-        INTERRUPTSOON = F.Table.HexToRGB("#de7000"), -- interrupt is on cd, but will be ready inside the cast
       },
       [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
         DEFAULT = F.Table.HexToRGB("#ffad00"), -- cast def.
         NOINTERRUPT = F.Table.HexToRGB("#737070"), -- cast non.
         INTERRUPTED = F.Table.HexToRGB("#991f1f"), -- cast was stopped
-        INTERRUPTCD = F.Table.HexToRGB("#4f5c7a"), -- interrupt is on cd, and will not come off cd during cast
-        INTERRUPTSOON = F.Table.HexToRGB("#8f4700"), -- interrupt is on cd, but will be ready inside the cast
       },
     },
 

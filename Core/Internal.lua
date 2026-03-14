@@ -835,31 +835,3 @@ I.HearthstoneData_Anniversary = {
   [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "STON" }, -- Portal: Stonard - Horde
   [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "STON" }, -- Teleport: Stonard - Horde
 }
-
--- Data for which class or spec has which interrupt spell
-I.InterruptSpellMap = {
-  { id = 1766, conditions = { class = "ROGUE", level = 6 } }, -- Rogue, Kick
-  { id = 2139, conditions = { class = "MAGE", level = 7 } }, -- Mage, Counterspell
-  { id = 6552, conditions = { class = "WARRIOR", level = 7 } }, -- Warr, Pummel
-  { id = 15487, conditions = { specIds = { 258 } } }, -- Shadow Priest, Silence i kill u
-  { id = 19647, conditions = { specIds = { 265, 267 }, level = 29 } }, -- Aff&Destro Lock, Spell Lock
-  { id = 31935, conditions = { specIds = { 66 } } }, -- Prot Paladin, Avenger's Shield
-  { id = 47528, conditions = { class = "DEATHKNIGHT" } }, -- DK, Mind Freeze
-  { id = 57994, conditions = { class = "SHAMAN" } }, -- Sha, Wind Shear
-  { id = 78675, conditions = { specIds = { 102 } } }, -- Balance Druid, Solar Beeeeeam
-  { id = 89766, conditions = { specIds = { 266 }, level = 29 } }, -- Demo Lock, Axe Toss
-  { id = 96231, conditions = { class = "PALADIN" } }, -- Paladin, Rebuke
-  { id = 106839, conditions = { class = "DRUID" } }, -- Druid, Skull Bash
-  { id = 116705, conditions = { class = "MONK" } }, -- Monk, Spear Hand Strike
-  { id = 147362, conditions = { specIds = { 253, 254 } } }, -- BM/MM Hunter-Counter Shot
-  { id = 183752, conditions = { class = "DEMONHUNTER", level = 20 } }, -- DH, Disrupt
-  { id = 187707, conditions = { specIds = { 255 } } }, -- SV-lol Hunter Muzzle
-  { id = 351338, conditions = { class = "EVOKER" } }, -- Evoker Quell
-}
-
---[[
-  Data for which class or spec has which interrupt spell. This is currently only used in Mists and Vanilla,
-  as the interrupt logic iirc doesn't work properly in Mists and The API doesn't allow us to do it in the same way in Vanilla
-]]
-
-I.InterruptSpellMap_Empty = {}
