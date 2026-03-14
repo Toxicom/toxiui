@@ -55,6 +55,9 @@ local sharedHealth = {
   },
   width = F.Dpi(150),
   height = F.Dpi(10),
+
+  useClassificationColor = true,
+  useClassificationColorInInstance = true,
 }
 
 local sharedRaidTarget = {

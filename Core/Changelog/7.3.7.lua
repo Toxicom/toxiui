@@ -17,7 +17,8 @@ TXUI.Changelog["7.3.7"] = {
     F.String.Era() .. F.String.Anniversary() .. F.String.Classic() .. "Incorrect class icon showing on Game Menu Skin",
 
     "* Profile updates",
-    F.String.ElvUI() .. ": Update world/pvp (sub)zone texts",
+    F.String.ElvUI() .. " Fonts: Update world/pvp (sub)zone texts",
+    F.String.ElvUI() .. " Nameplates: Enable classification colors, only in instances",
 
     "* Documentation",
     F.String.Retail() .. F.String.CDM() .. ": Add " .. F.String.Class("Frost Mage", "MAGE") .. " by default to Power Bar Overrides" .. F.String.Sublist(
