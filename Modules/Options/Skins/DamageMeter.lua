@@ -118,7 +118,7 @@ function O:Skins_DamageMeter()
       end,
       set = function(_, value)
         E.db.TXUI.addons.damageMeter.resetOnNewInstance = value
-        C_CVar.SetCVar("damageMeterResetOnNewInstance", value and "1" or "0")
+        E:SetCVar("damageMeterResetOnNewInstance", value and "1" or "0")
       end,
     }
   end

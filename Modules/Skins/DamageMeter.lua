@@ -316,12 +316,12 @@ function DM:Initialize()
       -- Enable and show the damage meter
       local isDamageMeterEnabled = C_CVar.GetCVarBool("damageMeterEnabled")
       if not isDamageMeterEnabled then
-        C_CVar.SetCVar("damageMeterEnabled", "1")
+        E:SetCVar("damageMeterEnabled", "1")
         _G.DamageMeter:Show()
       end
 
       -- Sync reset-on-new-instance CVar with option
-      C_CVar.SetCVar("damageMeterResetOnNewInstance", E.db.TXUI.addons.damageMeter.resetOnNewInstance and "1" or "0")
+      E:SetCVar("damageMeterResetOnNewInstance", E.db.TXUI.addons.damageMeter.resetOnNewInstance and "1" or "0")
     end)
   end)
 

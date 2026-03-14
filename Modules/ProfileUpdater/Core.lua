@@ -303,7 +303,7 @@ function PU:ApplyDiffEntry(sectionKey, entry)
   elseif sectionKey == "movers" then
     E.db.movers[path] = newVal
   elseif sectionKey == "cvars" then
-    C_CVar.SetCVar(path, tostring(newVal))
+    E:SetCVar(path, tostring(newVal))
   elseif sectionKey == "colors" or sectionKey == "additional" or sectionKey == "fonts" then
     setValueAtPath(E.db, path, newVal)
   elseif sectionKey == "private" or sectionKey == "additional_private" or sectionKey == "font_privates" then

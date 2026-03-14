@@ -4,17 +4,12 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 -- Looks like this file is not important ...
 --@do-not-package@
 
-local SetCVar = SetCVar
 local splitUnitframes = { "player", "focus", "targettarget", "pet" }
 local splitAbbrevUnitframes = { "party", "target" }
 
 function T:SetupCvars()
-  -- if E.TimerunningID and UnitLevel("player") < 80 then
-  -- return
-  -- else
   -- CVars
-  SetCVar("autoLootDefault", 1)
-  -- end
+  E:SetCVar("autoLootDefault", 1)
 end
 
 function T:SetupProfile()
