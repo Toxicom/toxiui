@@ -36,7 +36,6 @@ local tinsert = table.insert
 local tonumber = tonumber
 local tremove = tremove
 local type = type
-local UnitLevel = UnitLevel
 local unpack = unpack
 local xpcall = xpcall
 
