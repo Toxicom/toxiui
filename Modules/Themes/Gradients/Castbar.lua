@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local GR = TXUI:GetModule("ThemesGradients")
 
 local select = select
+local UnitCanAttack = UnitCanAttack
 local UnitClass = UnitClass
 local UnitIsPlayer = UnitIsPlayer
 
@@ -9,10 +10,13 @@ function GR:GetCastbarColor(frame, unit, castFailed)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
   if unit == "vehicle" then unit = "player" end
 
+  local notInterruptible = E:NotSecretValue(frame.notInterruptible) and frame.notInterruptible
   local useClassColor, colorEntry
 
   if castFailed then
     colorEntry = "INTERRUPTED"
+  elseif notInterruptible and unit and (UnitIsPlayer(unit) or (unit ~= "player" and UnitCanAttack("player", unit))) then
+    colorEntry = "NOINTERRUPT"
   elseif frame.classColorFallback and (unit and UnitIsPlayer(unit)) then
     colorEntry = select(2, UnitClass(unit))
     useClassColor = true
