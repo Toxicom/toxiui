@@ -25,11 +25,12 @@ globals = {
   "_G",
   "bit",
 
-  -- Libs
+  -- WoW standard library extensions
   "string.utf8len",
   "string.utf8lower",
   "string.utf8sub",
   "string.utf8upper",
+  "table.wipe",
 
   -- AddOns
   "BigWigs",
