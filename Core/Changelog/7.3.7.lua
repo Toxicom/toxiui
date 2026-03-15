@@ -9,6 +9,7 @@ TXUI.Changelog["7.3.7"] = {
     "Individual update option in Profile Updater",
     F.String.Retail() .. "Option to enable Damage Meter reset on new instances",
     F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Option to select random hearthstone pool",
+    F.String.Retail() .. "Add " .. F.String.ToxiUI("/em") .. " chat command to open Edit Mode",
 
     "* Enhancements",
     "Update diff display in Profile Updater",
@@ -30,6 +31,7 @@ TXUI.Changelog["7.3.7"] = {
     "* Settings refactoring",
     F.String.Retail() .. F.String.CDM() .. ": Display only current class specs in the overrides tab" .. F.String.Sublist("Option to display all specs is available"),
     F.String.Retail() .. "Simplify the settings of Damage Meter skin",
+    "Add " .. F.String.ToxiUI("Commands") .. " tab in General " .. TXUI.Title .. " settings",
 
     "* Development improvements",
     "Rename TitleRaid to TitleBold internally",

@@ -128,7 +128,13 @@ _Prefix: `/tx` `/txui` `/toxi` `/toxiui`_
 `/tx export names` - Export a list of all character names where ElvUI was active<br>
 `/tx reset` - Resets all TXUI Settings _(not the ElvUI profile itself, tho a re-install is needed to gain access to TXUI features back)_<br>
 `/tx status` - Shows the Diagnostic Popup _(alias of /tx info)_<br>
-`/tx install` - Shows the Installer Dialog for TXUI
+`/tx install` - Shows the Installer Dialog for TXUI<br>
+`/tx update` - Opens the Profile Updater _(alias of /tx u)_
+
+### Retail Only
+
+`/cd` - Toggle Cooldown Manager settings window _(aliases: `/cdm`, `/wa`)_<br>
+`/em` - Open Edit Mode
 
 ### Dev Section (or beta builds)
 
