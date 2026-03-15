@@ -238,6 +238,12 @@ function TXUI:HandleCDMCommand()
   settings:SetShown(not settings:IsShown())
 end
 
+function TXUI:HandleEditModeCommand()
+  if EditModeManagerFrame:CanEnterEditMode() then
+    ShowUIPanel(EditModeManagerFrame)
+  end
+end
+
 function TXUI:LoadCommands()
   self:RegisterChatCommand("tx", "HandleChatCommand")
   self:RegisterChatCommand("txui", "HandleChatCommand")
@@ -248,5 +254,6 @@ function TXUI:LoadCommands()
     self:RegisterChatCommand("cd", "HandleCDMCommand")
     self:RegisterChatCommand("cdm", "HandleCDMCommand")
     self:RegisterChatCommand("wa", "HandleCDMCommand")
+    self:RegisterChatCommand("em", "HandleEditModeCommand")
   end
 end
