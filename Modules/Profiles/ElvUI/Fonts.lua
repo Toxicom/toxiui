@@ -82,7 +82,7 @@ function PF:BuildFontsProfile()
       },
       raid = {
         customTexts = customTextSize {
-          { "toxiui:name", I.Fonts.Primary, 16, I.Fonts.Primary, "SHADOWOUTLINE" },
+          { "toxiui:name", I.Fonts.Primary, 16, "SHADOWOUTLINE" },
           { "toxiui:raid-group", I.Fonts.TitleBold, 12, "SHADOWOUTLINE" },
         },
         rdebuffs = {
@@ -99,7 +99,7 @@ function PF:BuildFontsProfile()
       },
       tankAssist = {
         customTexts = customTextSize {
-          { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+          { "toxiui:name", I.Fonts.Primary, 16, "SHADOWOUTLINE" },
         },
       },
     },

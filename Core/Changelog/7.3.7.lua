@@ -21,6 +21,7 @@ TXUI.Changelog["7.3.7"] = {
 
     "* Profile updates",
     F.String.ElvUI() .. " Fonts: Update world/pvp (sub)zone texts",
+    F.String.ElvUI() .. " Fonts: Use correct settings for raid and tank unitframes",
     F.String.ElvUI() .. " Nameplates: Enable classification colors, only in instances",
 
     "* Documentation",
