@@ -8,6 +8,29 @@ local LOCALIZED_CLASS_NAMES_MALE = _G.LOCALIZED_CLASS_NAMES_MALE
 local pairs = pairs
 local UnitSex = UnitSex
 
+function O:WunderBar_SubModules_RandomPool_Toggle(group)
+  group["randomPool"] = ACH:MultiSelect(
+    "Random Pool",
+    "Select which hearthstones can be randomly chosen. Leave all unchecked to use all available hearthstones.",
+    2,
+    function()
+      local names = {}
+      for _, option in pairs(I.HearthstoneData) do
+        if option.known and option.hearthstone and not option.class and not option.covenant then names[option.id] = option.name end
+      end
+      return names
+    end,
+    nil,
+    nil,
+    function(_, key)
+      return E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHsPool[key] == true
+    end,
+    function(_, key, value)
+      E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHsPool[key] = value and true or nil
+    end
+  )
+end
+
 function O:WunderBar_SubModules_Additional_Toggle(group)
   group["toggles"] = ACH:MultiSelect(
     " ",
@@ -166,6 +189,13 @@ function O:WunderBar_SubModules_Hearthstone()
 
   -- Sort hearthstone selects by value
   tab.hearthstoneGroup.args.primaryHS.sortByValue = true
+
+  self:WunderBar_SubModules_RandomPool_Toggle(tab.hearthstoneGroup.args)
+  tab.hearthstoneGroup.args.randomPool.order = 3
+  tab.hearthstoneGroup.args.randomPool.sortByValue = true
+  tab.hearthstoneGroup.args.randomPool.hidden = function()
+    return not E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHs
+  end
 
   -- Cooldowns
   tab.cooldownGroup = ACH:Group("Cooldown Text Group", nil, 2)

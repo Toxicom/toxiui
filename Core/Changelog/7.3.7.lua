@@ -8,6 +8,7 @@ TXUI.Changelog["7.3.7"] = {
     "* New features",
     "Individual update option in Profile Updater",
     F.String.Retail() .. "Option to enable Damage Meter reset on new instances",
+    F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Option to select random hearthstone pool",
 
     "* Enhancements",
     "Update diff display in Profile Updater",

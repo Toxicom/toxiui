@@ -1189,7 +1189,8 @@ P.wunderbar = {
       textColor = true,
       textColorFadeToNormal = true,
 
-      randomPrimaryHs = TXUI.IsRetail and true or false,
+      randomPrimaryHs = false,
+      randomPrimaryHsPool = {},
       primaryHS = 6948,
       additionalHS = {},
     },
