@@ -326,6 +326,7 @@ function PU:ApplyDiffEntry(sectionKey, entry)
   end
 
   self.pendingReload = true
+  self.appliedCount = (self.appliedCount or 0) + 1
 end
 
 -- Selection state

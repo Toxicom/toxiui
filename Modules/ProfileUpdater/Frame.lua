@@ -240,7 +240,7 @@ function PU:CreateDiffPanel(parent)
   local reloadBanner = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
   reloadBanner:SetSize(rightPanelWidth - 20, RELOAD_BANNER_H)
   reloadBanner:SetPoint("BOTTOM", panel, "BOTTOM", 0, 6)
-  reloadBanner:SetText(F.String.Warning("Changes applied") .. " — click to Reload Now")
+  reloadBanner:SetText("")
   reloadBanner:GetFontString():FontTemplate(font, 11, "OUTLINE", true)
   S:HandleButton(reloadBanner)
   reloadBanner:Hide()
@@ -275,6 +275,7 @@ function PU:ClearDiffRows()
   self.currentDiffKey = nil
   self.currentDiffLabel = nil
   self.pendingReload = false
+  self.appliedCount = 0
   if self.diffReloadBanner then self.diffReloadBanner:Hide() end
 end
 
@@ -398,7 +399,15 @@ function PU:OnDiffEntryApplied(sectionKey)
   self:UpdateCheckboxLabels()
 
   -- Show the reload banner
-  if self.diffReloadBanner then self.diffReloadBanner:Show() end
+  self:ShowReloadBanner()
+end
+
+function PU:ShowReloadBanner()
+  if not self.diffReloadBanner then return end
+  local n = self.appliedCount or 0
+  local label = n == 1 and "1 change applied" or (n .. " changes applied")
+  self.diffReloadBanner:SetText(F.String.Warning(label) .. " — click to Reload Now")
+  self.diffReloadBanner:Show()
 end
 
 function PU:CreateActionButtons(parent)
@@ -572,7 +581,7 @@ function PU:CreateUpdaterFrame()
 
   -- Re-show the banner if the frame is re-opened with pending changes
   frame:SetScript("OnShow", function()
-    if PU.pendingReload and PU.diffReloadBanner then PU.diffReloadBanner:Show() end
+    if PU.pendingReload then PU:ShowReloadBanner() end
   end)
 
   self.frame = frame
