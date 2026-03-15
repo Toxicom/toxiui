@@ -15,6 +15,7 @@ TXUI.Changelog["7.3.7"] = {
 
     "* Bug fixes",
     F.String.Era() .. F.String.Anniversary() .. F.String.Classic() .. "Incorrect class icon showing on Game Menu Skin",
+    F.String.Retail() .. F.String.CDM() .. ": Fix essential anchoring being disabled if only one of the class/power bars is disabled",
 
     "* Profile updates",
     F.String.ElvUI() .. " Fonts: Update world/pvp (sub)zone texts",

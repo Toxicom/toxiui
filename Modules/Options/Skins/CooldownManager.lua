@@ -288,7 +288,7 @@ function O:Skins_CooldownManager()
     }, I.Requirements.CooldownManager).args
 
     local function essentialDisabled()
-      return isDisabled() or not E.db.unitframe.units.player.power.enable or not E.db.unitframe.units.player.classbar.enable
+      return (not E.db.unitframe.units.player.power.enable and not E.db.unitframe.units.player.classbar.enable) or isDisabled()
     end
 
     -- Essential Cooldown Viewer -> Power Bar
@@ -355,7 +355,7 @@ function O:Skins_CooldownManager()
       max = 50,
       step = 1,
       disabled = function()
-        return isDisabled() or not db.utility.enabled
+        return not db.utility.enabled or isDisabled()
       end,
       get = function(_)
         return db.utility.yOffset
@@ -375,7 +375,7 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Anchor the Buff Viewer to the top of ElvUI's Class Bar. Falls back to the Power Bar if the Class Bar is not available.",
       name = "Buff to Class Bar",
-      disabled = isDisabled,
+      disabled = essentialDisabled,
       get = function(_)
         return db.buff.enabled
       end,
@@ -394,7 +394,7 @@ function O:Skins_CooldownManager()
       max = 50,
       step = 1,
       disabled = function()
-        return isDisabled() or not db.buff.enabled
+        return not db.buff.enabled or essentialDisabled()
       end,
       get = function(_)
         return db.buff.yOffset
@@ -433,7 +433,7 @@ function O:Skins_CooldownManager()
       max = 200,
       step = 1,
       disabled = function()
-        return isDisabled() or not db.buffBar.enabled
+        return not db.buffBar.enabled or isDisabled()
       end,
       get = function(_)
         return db.buffBar.yOffset
@@ -771,6 +771,7 @@ function O:Skins_CooldownManager()
       type = "multiselect",
       name = "Disable Class Bar for Specs",
       desc = "Select to disable the Class Bar for this specialization.",
+      width = 1.5,
       values = function()
         return buildSpecValues(classBarDB.showAllSpecs)
       end,
