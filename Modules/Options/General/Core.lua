@@ -102,6 +102,10 @@ function O:General()
   -- Credits
   local credits = ""
 
+  local legendaryBadge = E:TextureString(I.Media.ChatIcons.Legendary, ":12:30") .. " "
+  local epicBadge = E:TextureString(I.Media.ChatIcons.Epic, ":12:30") .. " "
+  local rareBadge = E:TextureString(I.Media.ChatIcons.Rare, ":12:30") .. " "
+
   -- Credits helpers
   local addToCredits = function(color, name)
     if type(color) == "string" then
@@ -112,7 +116,7 @@ function O:General()
   end
 
   -- Add Contributors to credit
-  credits = credits .. F.String.ToxiUI("Legendary Supporter\n\n")
+  credits = credits .. legendaryBadge .. F.String.ToxiUI("Legendary Supporter\n\n")
 
   if next(I.Data.Contributor[I.Enum.ContributorType.LEGENDARY]) ~= nil then
     for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.LEGENDARY]) do
@@ -122,7 +126,7 @@ function O:General()
     addToCredits("ffffff", "No " .. F.String.Legendary("Legendary") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. F.String.ToxiUI("\n\nEpic Supporter\n\n")
+  credits = credits .. "\n\n" .. epicBadge .. F.String.ToxiUI("Epic Supporter\n\n")
 
   if next(I.Data.Contributor[I.Enum.ContributorType.EPIC]) ~= nil then
     for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.EPIC]) do
@@ -132,7 +136,7 @@ function O:General()
     addToCredits("ffffff", "No " .. F.String.Epic("Epic") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. F.String.ToxiUI("\n\nRare Supporter\n\n")
+  credits = credits .. "\n\n" .. rareBadge .. F.String.ToxiUI("Rare Supporter\n\n")
 
   if next(I.Data.Contributor[I.Enum.ContributorType.RARE]) ~= nil then
     for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.RARE]) do
@@ -142,7 +146,7 @@ function O:General()
     addToCredits("ffffff", "No " .. F.String.Rare("Rare") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. F.String.ToxiUI("\n\nBeta Testers\n\n")
+  credits = credits .. "\n\n" .. legendaryBadge .. F.String.ToxiUI("Beta Testers\n\n")
 
   for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.BETA]) do
     addToCredits(I.Enum.Colors.BETA, name)

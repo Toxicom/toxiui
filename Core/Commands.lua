@@ -239,9 +239,7 @@ function TXUI:HandleCDMCommand()
 end
 
 function TXUI:HandleEditModeCommand()
-  if EditModeManagerFrame:CanEnterEditMode() then
-    ShowUIPanel(EditModeManagerFrame)
-  end
+  if EditModeManagerFrame:CanEnterEditMode() then ShowUIPanel(EditModeManagerFrame) end
 end
 
 function TXUI:LoadCommands()

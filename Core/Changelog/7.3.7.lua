@@ -32,6 +32,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.Retail() .. F.String.CDM() .. ": Display only current class specs in the overrides tab" .. F.String.Sublist("Option to display all specs is available"),
     F.String.Retail() .. "Simplify the settings of Damage Meter skin",
     "Add " .. F.String.ToxiUI("Commands") .. " tab in General " .. TXUI.Title .. " settings",
+    "Display " .. TXUI.Title .. " badges in the Credits section",
 
     "* Development improvements",
     "Rename TitleRaid to TitleBold internally",
