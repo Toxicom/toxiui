@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.3.7"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Mar TBD, 2026",
   CHANGES = {
     "* Breaking changes",
     "Remove action bar styles" .. F.String.Sublist("Buggy code that never worked correctly") .. F.String.Sublist("With individual Profile Updater, no longer that useful"),
@@ -43,6 +44,7 @@ TXUI.Changelog["7.3.7"] = {
     "Add " .. F.String.ToxiUI("Commands") .. " tab in General " .. TXUI.Title .. " settings",
     "Display " .. TXUI.Title .. " badges in the Credits section",
     "Allow font scale slider to go from -5 to 5" .. F.String.Sublist("Previously it was -3 to 3"),
+    "Add release dates to in-game changelogs from v7.0.0 upwards",
 
     "* Development improvements",
     "Rename TitleRaid to TitleBold internally",

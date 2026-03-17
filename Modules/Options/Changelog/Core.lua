@@ -55,17 +55,21 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
   -- Get a pretty version number
   local versionString = CL:FormattedVersion(version)
 
+  -- Append release date if present
+  local releaseDateSuffix = ""
+  if changelog.RELEASE_DATE and changelog.RELEASE_DATE ~= "" then releaseDateSuffix = " " .. F.String.Silver(changelog.RELEASE_DATE) end
+
   -- Version header
   local header = {
     order = self:GetOrder(),
     type = "header",
-    name = F.String.ToxiUI(versionString),
+    name = F.String.ToxiUI(versionString) .. releaseDateSuffix,
   }
 
   -- Big header on first changelog
   if (changelogIndex == 0) or (changelogIndex == 9999) then
     header["type"] = "description"
-    header["name"] = (changelogIndex == 0) and "Latest Version " .. header["name"] or header["name"]
+    header["name"] = (changelogIndex == 0) and "Latest Version " .. F.String.ToxiUI(versionString) .. " —" .. releaseDateSuffix or header["name"]
     header["fontSize"] = "large"
   end
 

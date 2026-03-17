@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.3.6"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Mar 9, 2026",
   CHANGES = {
     "* Bug fixes",
     "Fix racial spells not showing icon in hearthstone's additional flyout",

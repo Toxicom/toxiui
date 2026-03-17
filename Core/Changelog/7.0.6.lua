@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.0.6"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Oct 21, 2025",
   CHANGES = {
     "* Profile updates",
     F.String.Plater() .. ": Add Legion Remix Empowered buffs to both Automatic and Manual tracking",

@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.2.0"] = {
   HOTFIX = false,
+  RELEASE_DATE = "Jan 25, 2026",
   CHANGES = {
     "* Breaking changes",
     "Remove Gradient Mode" .. F.String.Sublist("Gradient Mode might return in a future release, uncertain for now."),

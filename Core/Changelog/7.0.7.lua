@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.0.7"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Dec 5, 2025",
   CHANGES = {
     "* Breaking changes",
     "Remove the " .. TXUI.Title .. " Vigor Bar & Speed Text" .. F.String.Sublist("Vigor no longer exists, instead skyriding spells have charges with cooldown"),

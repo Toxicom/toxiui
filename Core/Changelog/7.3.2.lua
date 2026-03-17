@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.3.2"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Feb 26, 2026",
   CHANGES = {
     "* New features",
     "Due to popular demand, revert the removal of " .. TXUI.Title .. " " .. F.String.ElvUI() .. " skin" .. F.String.Sublist(

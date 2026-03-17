@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.2.9"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Feb 15, 2026",
   CHANGES = {
     "* New features",
     TXUI.Title .. " Profile Updater" .. F.String.Sublist("/tx update; /tx u"),

@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.2.7"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Feb 11, 2026",
   CHANGES = {
     "* New features",
     F.String.Retail() .. F.String.CDM() .. " Keybinds",

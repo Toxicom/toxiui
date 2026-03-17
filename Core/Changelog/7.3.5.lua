@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.3.5"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Mar 8, 2026",
   CHANGES = {
     "* New features",
     "Class Icons style setting now controls all spec/class icon displays globally",

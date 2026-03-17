@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.0.3"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Sep 26, 2025",
   CHANGES = {
     "* New features",
     "Add options to toggle Keybind & Macro texts on Vehicle Bar buttons",

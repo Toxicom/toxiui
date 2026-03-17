@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.2.2"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Jan 29, 2026",
   CHANGES = {
     "* Breaking changes",
     "Remove Wardrobe frame from Animations and Scaling modules" .. F.String.Sublist("It's already covered by the Collections Journal frame"),
