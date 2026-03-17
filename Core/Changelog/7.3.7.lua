@@ -34,6 +34,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.Retail() .. "Simplify the settings of Damage Meter skin",
     "Add " .. F.String.ToxiUI("Commands") .. " tab in General " .. TXUI.Title .. " settings",
     "Display " .. TXUI.Title .. " badges in the Credits section",
+    "Allow font scale slider to go from -5 to 5" .. F.String.Sublist("Previously it was -3 to 3"),
 
     "* Development improvements",
     "Rename TitleRaid to TitleBold internally",

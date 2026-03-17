@@ -57,8 +57,8 @@ function O:Fonts_ElvUIFonts()
   elvuiFontScaleGroup.fontScale = {
     order = self:GetOrder(),
     type = "range",
-    min = -3,
-    max = 3,
+    min = -5,
+    max = 5,
     step = 1,
     name = "",
     get = function(_)
