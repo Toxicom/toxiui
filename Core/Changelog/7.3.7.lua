@@ -33,6 +33,7 @@ TXUI.Changelog["7.3.7"] = {
 
     "* Settings refactoring",
     F.String.Retail() .. F.String.CDM() .. ": Display only current class specs in the overrides tab" .. F.String.Sublist("Option to display all specs is available"),
+    F.String.Retail() .. F.String.CDM() .. ": Tidy up keybind settings",
     F.String.Retail() .. "Simplify the settings of Damage Meter skin",
     "Add " .. F.String.ToxiUI("Commands") .. " tab in General " .. TXUI.Title .. " settings",
     "Display " .. TXUI.Title .. " badges in the Credits section",

@@ -528,23 +528,26 @@ function O:Skins_CooldownManager()
       return isDisabled() or not E.private.actionbar.enable
     end
 
-    local kbGroup = self:AddInlineRequirementsDesc(tab, {
+    local _ = self:AddInlineRequirementsDesc(tab, {
       name = "Keybinds",
     }, {
       name = "Show keybind text on Cooldown Manager icons by reading bindings from "
         .. F.String.ToxiUI("ElvUI Action Bars")
         .. ".\n\n"
         .. (not E.private.actionbar.enable and F.String.Error("Requires ElvUI ActionBars to be enabled.\n\n") or ""),
-    }, I.Requirements.CooldownManager).args
+    }, I.Requirements.CooldownManager)
 
-    local function addViewerKeybindOptions(group, viewerLabel, settingKey)
+    local function addViewerKeybindOptions(parentTab, viewerLabel, settingKey)
       local db = E.db.TXUI.addons.cooldownManager.keybinds[settingKey]
+      local group = self:AddInlineGroup(parentTab, { name = viewerLabel }).args
 
       group["kb" .. settingKey .. "Enabled"] = {
         order = self:GetOrder(),
         type = "toggle",
         desc = "Show keybind text on " .. viewerLabel .. " icons.",
-        name = viewerLabel,
+        name = function()
+          return self:GetEnableName(db.enabled, group)
+        end,
         get = function(_)
           return db.enabled
         end,
@@ -654,8 +657,8 @@ function O:Skins_CooldownManager()
         type = "range",
         name = "X Offset",
         desc = "Horizontal offset for the keybind text.",
-        min = -20,
-        max = 20,
+        min = -64,
+        max = 64,
         step = 1,
         disabled = function()
           return not db.enabled or keybindsDisabled()
@@ -674,8 +677,8 @@ function O:Skins_CooldownManager()
         type = "range",
         name = "Y Offset",
         desc = "Vertical offset for the keybind text.",
-        min = -20,
-        max = 20,
+        min = -64,
+        max = 64,
         step = 1,
         disabled = function()
           return not db.enabled or keybindsDisabled()
@@ -688,12 +691,10 @@ function O:Skins_CooldownManager()
           F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
         end,
       }
-
-      self:AddSpacer(group)
     end
 
-    addViewerKeybindOptions(kbGroup, "Essential", "essential")
-    addViewerKeybindOptions(kbGroup, "Utility", "utility")
+    addViewerKeybindOptions(tab, "Essential", "essential")
+    addViewerKeybindOptions(tab, "Utility", "utility")
   end
 
   -- Tab: Overrides
