@@ -19,6 +19,7 @@ TXUI.Changelog["7.3.7"] = {
     "* Bug fixes",
     F.String.Era() .. F.String.Anniversary() .. F.String.Classic() .. "Incorrect class icon showing on Game Menu Skin",
     F.String.Retail() .. F.String.CDM() .. ": Fix essential anchoring being disabled if only one of the class/power bars is disabled",
+    F.String.Retail() .. "Disable " .. F.String.CDM() .. " when enabling classic action bar style",
 
     "* Profile updates",
     F.String.ElvUI() .. " Fonts: Update world/pvp (sub)zone texts",
@@ -30,6 +31,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.Retail() .. F.String.CDM() .. ": Add " .. F.String.Class("Frost Mage", "MAGE") .. " by default to Power Bar Overrides" .. F.String.Sublist(
       "ElvUI 15.09 now shows icicles as class bar, so we can hide power bar"
     ),
+    F.String.Retail() .. F.String.CDM() .. ": Enable all submodules by default" .. F.String.Sublist("Main module is still disabled by default"),
 
     "* Settings refactoring",
     F.String.Retail() .. F.String.CDM() .. ": Display only current class specs in the overrides tab" .. F.String.Sublist("Option to display all specs is available"),

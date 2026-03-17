@@ -57,8 +57,7 @@ function CM:DatabaseUpdate()
     if not self.db then return end
     if not self.db.enabled then return end
 
-    local isCDMEnabled = C_CVar.GetCVarBool("cooldownViewerEnabled")
-    if not isCDMEnabled then E:SetCVar("cooldownViewerEnabled", "1") end
+    E:SetCVar("cooldownViewerEnabled", "1")
 
     -- Apply bar overrides first (may affect what bars are available for anchoring)
     local hasClassBarOverride = self.db.classBarOverride and self.db.classBarOverride.enabled

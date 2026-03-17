@@ -284,44 +284,44 @@ P.addons = {
   -- Cooldown Manager
   cooldownManager = {
     enabled = false,
-    fading = false,
+    fading = true,
 
     -- If these are enabled by default, their previous width value does not get stored
-    dynamicBarsWidth = false,
+    dynamicBarsWidth = true,
     dynamicCastbarWidth = false,
     minDynamicWidth = F.Dpi(292),
 
     -- Anchoring
     anchors = {
       essential = {
-        enabled = false,
+        enabled = true,
         yOffset = -4,
       },
       utility = {
-        enabled = false,
+        enabled = true,
         yOffset = -4,
       },
       buff = {
-        enabled = false,
+        enabled = true,
         yOffset = 20,
       },
       buffBar = {
-        enabled = false,
+        enabled = true,
         yOffset = 80,
       },
     },
 
     -- Centering
     centering = {
-      essential = false,
-      utility = false,
-      buff = false,
-      buffBar = false,
+      essential = true,
+      utility = true,
+      buff = true,
+      buffBar = true,
     },
 
     -- Class Bar Override: disable ElvUI class bar for selected specs
     classBarOverride = {
-      enabled = false,
+      enabled = true,
       showAllSpecs = false,
       specs = { -- [specId] = true
         [I.Specs.Priest.Shadow] = true,
@@ -331,7 +331,7 @@ P.addons = {
 
     -- Power Bar Override: disable ElvUI power bar for selected specs
     powerBarOverride = {
-      enabled = false,
+      enabled = true,
       showAllSpecs = false,
       specs = { -- [specId] = true
         [I.Specs.Paladin.Retribution] = true,
@@ -349,7 +349,7 @@ P.addons = {
     -- Keybind overlays
     keybinds = {
       essential = {
-        enabled = false,
+        enabled = true,
         labelFont = I.Fonts.Primary,
         labelFontSize = 16,
         labelFontOutline = "OUTLINE",
@@ -359,7 +359,7 @@ P.addons = {
         yOffset = -2,
       },
       utility = {
-        enabled = false,
+        enabled = true,
         labelFont = I.Fonts.Primary,
         labelFontSize = 12,
         labelFontOutline = "OUTLINE",

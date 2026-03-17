@@ -14,13 +14,25 @@ function ST:BuildActionBarsProfile()
   local defaultPadding = 4
 
   if style == "Classic" then
+    if TXUI.IsRetail then E:SetCVar("cooldownViewerEnabled", "0") end
+
     -- ToxiUI specifics
     F.Table.Crush(pf.TXUI, {
       addons = {
+        cooldownManager = {
+          enabled = false,
+        },
+
         fadePersist = {
           mode = "ELVUI",
         },
       },
+    })
+
+    -- Restore power/class bar widths (may have been modified by CDM dynamic width sync)
+    F.Table.Crush(pf.unitframe.units.player, {
+      power = { detachedWidth = F.Dpi(292) },
+      classbar = { detachedWidth = F.Dpi(292) },
     })
 
     -- ActionBars
@@ -74,6 +86,10 @@ function ST:BuildActionBarsProfile()
       addons = {
         fadePersist = {
           mode = "MOUSEOVER",
+        },
+
+        cooldownManager = {
+          enabled = true,
         },
       },
     })
