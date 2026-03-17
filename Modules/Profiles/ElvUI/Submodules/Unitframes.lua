@@ -1,6 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
+local auraFilters = E.AuraDefaults
+
 local customTextTemplate = {
   -- Options
   enable = true,
@@ -91,7 +93,7 @@ local player = {
     }),
   },
 
-  debuffs = {
+  debuffs = F.Table.Join({
     anchorPoint = "TOPRIGHT",
     growthX = "LEFT",
     attachTo = "FRAME",
@@ -109,7 +111,7 @@ local player = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(41),
     height = F.Dpi(27),
-  },
+  }, auraFilters),
 
   fader = {
     enable = true,
@@ -214,7 +216,11 @@ local player = {
   aurabar = { enable = false },
   health = { text_format = "" },
   name = { text_format = "" },
-  buffs = { enable = false },
+  buffs = F.Table.Join({ enable = false }, auraFilters, {
+    isAuraBigDefensive = true,
+    isAuraExternalDefensive = true,
+    isAuraExternalDefensivePlayer = true,
+  }),
 }
 
 local function getTarget(horizontal)
@@ -279,7 +285,7 @@ local function getTarget(horizontal)
       }),
     },
 
-    buffs = {
+    buffs = F.Table.Join({
       anchorPoint = "TOPRIGHT",
       growthX = "LEFT",
       perrow = 7,
@@ -294,9 +300,9 @@ local function getTarget(horizontal)
       keepSizeRatio = false,
       sizeOverride = F.Dpi(41),
       height = F.Dpi(27),
-    },
+    }, auraFilters),
 
-    debuffs = {
+    debuffs = F.Table.Join({
       anchorPoint = "TOPLEFT",
       growthX = "RIGHT",
       attachTo = "FRAME",
@@ -314,11 +320,11 @@ local function getTarget(horizontal)
       keepSizeRatio = false,
       sizeOverride = F.Dpi(41),
       height = F.Dpi(27),
-
-      -- Filters (ElvUI Default)
+    }, auraFilters, {
+      isAuraPlayer = true,
       isAuraRaid = true,
       isAuraRaidPlayer = true,
-    },
+    }),
 
     -- New "Custom" tab introduced in ElvUI 14.00
     auras = {
@@ -511,7 +517,7 @@ local focus = {
     }),
   },
 
-  buffs = {
+  buffs = F.Table.Join({
     enable = false,
     anchorPoint = "TOPLEFT",
     maxDuration = 0,
@@ -525,14 +531,13 @@ local focus = {
     spacing = F.Dpi(2),
     xOffset = F.Dpi(4),
     yOffset = F.Dpi(30),
-
-    -- Filters (ElvUI Default)
+  }, auraFilters, {
     isAuraBigDefensive = true,
     isAuraExternalDefensive = true,
     isAuraExternalDefensivePlayer = true,
-  },
+  }),
 
-  debuffs = {
+  debuffs = F.Table.Join({
     durationPosition = "CENTER",
     maxDuration = 0,
     priority = "Blacklist,Personal,NonPersonal",
@@ -546,13 +551,12 @@ local focus = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
-
-    -- Filters (ElvUI Default)
+  }, auraFilters, {
     isAuraPlayer = true,
     isAuraRaid = true,
     isAuraBigDefensive = true,
     isAuraExternalDefensive = true,
-  },
+  }),
 
   -- UnitFrame Focus raidicon (Target Marker Icon)
   raidicon = {
@@ -658,7 +662,7 @@ local function getParty(horizontal)
       size = F.Dpi(12),
     },
 
-    buffs = {
+    buffs = F.Table.Join({
       enable = true,
       anchorPoint = horizontal and "BOTTOM" or "LEFT",
       growthX = "LEFT",
@@ -674,16 +678,15 @@ local function getParty(horizontal)
       keepSizeRatio = false,
       sizeOverride = F.Dpi(36),
       height = F.Dpi(24),
-
-      -- Filters (ElvUI Default)
+    }, auraFilters, {
       isAuraBigDefensive = true,
       isAuraBigDefensivePlayer = true,
       isAuraRaidInCombatPlayer = true,
       isAuraExternalDefensive = true,
       isAuraExternalDefensivePlayer = true,
-    },
+    }),
 
-    debuffs = {
+    debuffs = F.Table.Join({
       attachTo = "HEALTH",
       anchorPoint = horizontal and "TOP" or "RIGHT",
       perrow = horizontal and 4 or 5,
@@ -699,12 +702,12 @@ local function getParty(horizontal)
       keepSizeRatio = false,
       sizeOverride = F.Dpi(36),
       height = F.Dpi(24),
-
-      -- Filters (ElvUI Default)
+    }, auraFilters, {
+      useBlocklist = true,
       isAuraImportant = true,
       isAuraImportantPlayer = true,
       isAuraRaidPlayerDispellable = true,
-    },
+    }),
 
     healPrediction = {
       enable = true,
@@ -874,6 +877,7 @@ local function getRaid(horizontal)
       xOffset = F.Dpi(-4),
       yOffset = F.Dpi(4),
 
+      useBlocklist = true,
       isAuraImportant = true,
       isAuraImportantPlayer = true,
       isAuraRaidPlayerDispellable = true,
@@ -974,6 +978,11 @@ local arena = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraBigDefensive = true,
+    isAuraExternalDefensive = true,
+    isAuraExternalDefensivePlayer = true,
   },
 
   debuffs = {
@@ -986,6 +995,10 @@ local arena = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraCrowdControl = true,
+    isAuraPlayer = true,
   },
 
   pvpTrinket = {
@@ -1063,6 +1076,11 @@ local boss = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraImportant = true,
+    isAuraImportantPlayer = true,
+    isAuraRaidPlayerDispellable = true,
   },
 
   debuffs = {
@@ -1075,6 +1093,9 @@ local boss = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraPlayer = true,
   },
 
   castbar = {

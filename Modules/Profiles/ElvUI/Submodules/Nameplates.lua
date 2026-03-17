@@ -1,6 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
+local auraFilters = E.AuraDefaults
+
 local sharedAuras = {
   height = F.Dpi(20),
   keepSizeRatio = false,
@@ -103,9 +105,15 @@ local nameplates = {
   units = {
     ["ENEMY_NPC"] = {
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+        isAuraRaidPlayerDispellable = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraPlayer = true,
+      }),
       health = sharedHealth,
       level = {
         enable = true,
@@ -121,9 +129,17 @@ local nameplates = {
 
     ["FRIENDLY_NPC"] = {
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraExternalDefensive = true,
+        isAuraExternalDefensivePlayer = true,
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraRaid = true,
+        isAuraRaidPlayer = true,
+      }),
       health = sharedHealth,
       level = {
         enable = false,
@@ -140,9 +156,15 @@ local nameplates = {
 
     ["ENEMY_PLAYER"] = {
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraBigDefensive = true,
+        isAuraExternalDefensive = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraCrowdControl = true,
+        isAuraPlayer = true,
+      }),
       health = sharedHealth,
       level = {
         enable = false,
@@ -157,9 +179,16 @@ local nameplates = {
       nameOnly = true,
 
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraBigDefensive = true,
+        isAuraRaidInCombatPlayer = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+        isAuraRaidPlayerDispellable = true,
+      }),
       health = sharedHealth,
       level = {
         enable = false,

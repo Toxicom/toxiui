@@ -24,6 +24,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.ElvUI() .. " Fonts: Update world/pvp (sub)zone texts",
     F.String.ElvUI() .. " Fonts: Use correct settings for raid and tank unitframes",
     F.String.ElvUI() .. " Nameplates: Enable classification colors, only in instances",
+    F.String.ElvUI() .. " Unitframes & Nameplates: Update filters to match " .. F.String.ElvUI() .. " defaults",
 
     "* Documentation",
     F.String.Retail() .. F.String.CDM() .. ": Add " .. F.String.Class("Frost Mage", "MAGE") .. " by default to Power Bar Overrides" .. F.String.Sublist(
