@@ -14,6 +14,7 @@ TXUI.Changelog["7.3.7"] = {
     "* Enhancements",
     "Update diff display in Profile Updater",
     F.String.Retail() .. F.String.CDM() .. ": Hopefully improve code for when entering Edit Mode",
+    F.String.Retail() .. "Profile Updater: Do not display unitframe bar width updates if " .. F.String.CDM() .. " dynamic width is enabled",
 
     "* Bug fixes",
     F.String.Era() .. F.String.Anniversary() .. F.String.Classic() .. "Incorrect class icon showing on Game Menu Skin",

@@ -223,6 +223,23 @@ function PU:ComputeAllDiffs()
   for key, dbPath in pairs(SECTION_MAP) do
     local entries = {}
     computeTableDiff(E.db[dbPath], pf[dbPath], "", entries)
+
+    -- Filter paths managed by CooldownManager (CDM) dynamic width features so they
+    -- don't show as diffs while CDM is actively controlling those values.
+    if key == "unitframes" and TXUI.IsRetail then
+      local cdmDB = E.db.TXUI and E.db.TXUI.addons and E.db.TXUI.addons.cooldownManager
+      if cdmDB then
+        for i = #entries, 1, -1 do
+          local path = entries[i].path
+          if cdmDB.dynamicBarsWidth and (path == "units.player.power.detachedWidth" or path == "units.player.classbar.detachedWidth") then
+            tremove(entries, i)
+          elseif cdmDB.dynamicCastbarWidth and path == "units.player.castbar.width" then
+            tremove(entries, i)
+          end
+        end
+      end
+    end
+
     sort(entries, sortByPath)
     self.diffs[key] = { count = #entries, entries = entries }
   end
