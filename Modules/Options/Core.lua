@@ -76,18 +76,8 @@ O.options = {
     hidden = O.txUIDisabled,
     args = {},
   },
-  styles = {
-    order = 8,
-    type = "group",
-    group = "tab",
-    name = F.String.Menu.Styles(),
-    desc = "Choose between different " .. TXUI.Title .. " styles",
-    icon = I.Media.Icons.Styles,
-    hidden = O.txUIDisabled,
-    args = {},
-  },
   fonts = {
-    order = 9,
+    order = 8,
     type = "group",
     group = "tab",
     name = F.String.Menu.Fonts(),
@@ -97,7 +87,7 @@ O.options = {
     args = {},
   },
   misc = {
-    order = 10,
+    order = 9,
     type = "group",
     group = "tab",
     name = F.String.Menu.Plugins(),
@@ -107,7 +97,7 @@ O.options = {
     args = {},
   },
   performance = {
-    order = 11,
+    order = 10,
     type = "group",
     group = "tab",
     name = F.String.Menu.Performance(),
@@ -117,7 +107,7 @@ O.options = {
     args = {},
   },
   changelog = {
-    order = 12,
+    order = 11,
     type = "group",
     group = "select",
     name = F.String.Menu.Changelog(),
@@ -127,7 +117,7 @@ O.options = {
     args = {},
   },
   reset = {
-    order = 13,
+    order = 12,
     type = "group",
     group = "tab",
     name = F.String.Menu.Reset(),

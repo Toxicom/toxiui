@@ -158,16 +158,6 @@ F.AddMedia("installer", "WebPreview")
 F.AddMedia("installer", "TurboMode")
 
 -- -----
---   STYLE THUBMNAILS
--- -----
-
-F.AddMedia("style", "Classic")
-F.AddMedia("style", "New")
-F.AddMedia("style", "Old")
-F.AddMedia("style", "ClassIconsPreview")
-F.AddMedia("style", "SpecIconsPreview")
-
--- -----
 --   ARMORY BACKGROUNDS
 -- -----
 
