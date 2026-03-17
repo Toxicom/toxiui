@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local WB = TXUI:GetModule("WunderBar")
 local TI = WB:NewModule("Time")
+local DT = E:GetModule("DataTexts")
 
 local _G = _G
 local date = date
@@ -72,6 +73,13 @@ function TI:OnUpdate(t)
 end
 
 function TI:OnClick(...)
+  local button = select(2, ...)
+
+  if button == "MiddleButton" then
+    ReloadUI()
+    return
+  end
+
   local dtModule = WB:GetElvUIDataText("Time")
 
   if dtModule then
@@ -90,6 +98,12 @@ function TI:OnEnter()
     self:UpdateTooltip(dtModule)
     dtModule.onEnter()
   end
+
+  DT.tooltip:AddLine(" ")
+  DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Toggle Calendar")
+  DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Toggle Clock")
+  DT.tooltip:AddLine("|cffFFFFFFMiddle Click:|r Reload UI")
+  DT.tooltip:Show()
 end
 
 function TI:OnLeave()
