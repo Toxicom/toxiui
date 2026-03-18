@@ -67,11 +67,12 @@ function CM:DatabaseUpdate()
     -- Enable fading if enabled
     if self.db.fading then self:EnableFadingAfterUnitsLoaded() end
 
-    -- Enable dynamic bars width if enabled
-    if self.db.dynamicBarsWidth then self:EnableDynamicBarsWidth() end
-
-    -- Enable dynamic castbar width if enabled
-    if self.db.dynamicCastbarWidth then self:EnableDynamicCastbarWidth() end
+    -- Enable dynamic width features if enabled
+    local dw = self.db.dynamicWidth
+    if dw and dw.enabled then
+      if dw.powerClassBars then self:EnableDynamicBarsWidth() end
+      if dw.castBar then self:EnableDynamicCastbarWidth() end
+    end
 
     -- Enable anchoring if any anchor is enabled
     if self.db.anchors then

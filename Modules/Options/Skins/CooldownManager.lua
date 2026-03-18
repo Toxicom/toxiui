@@ -181,19 +181,38 @@ function O:Skins_CooldownManager()
     local dynamicGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Dynamic Bars Width",
     }, {
-      name = "This option syncs the width of the Player Power Bar and Class Bar " .. F.String.ToxiUI("(detached)") .. " with the Essential Cooldown Viewer width.\n\n",
+      name = "Sync the width of ElvUI player bars " .. F.String.ToxiUI("(detached)") .. " with the Essential Cooldown Viewer width.\n\n",
     }, I.Requirements.CooldownManager).args
+
+    local function dynamicDisabled()
+      return isDisabled() or not E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled
+    end
+
+    dynamicGroup.dynamicWidthEnabled = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Enable syncing ElvUI player bar widths with the Cooldown Manager.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled, dynamicGroup)
+      end,
+      disabled = isDisabled,
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
 
     dynamicGroup.dynamicBarsWidth = {
       order = self:GetOrder(),
       type = "toggle",
       desc = "Enabling this syncs the detached power/class bar width with the Cooldown Manager.",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.addons.cooldownManager.dynamicBarsWidth, dynamicGroup)
-      end,
-      disabled = isDisabled,
+      name = "Class/Power Bars",
+      disabled = dynamicDisabled,
       get = function(_)
-        return E.db.TXUI.addons.cooldownManager.dynamicBarsWidth
+        return E.db.TXUI.addons.cooldownManager.dynamicWidth.powerClassBars
       end,
       set = function(_, value)
         local cmDB = E.db.TXUI.addons.cooldownManager
@@ -215,7 +234,7 @@ function O:Skins_CooldownManager()
             if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
           end)
         end
-        cmDB.dynamicBarsWidth = value
+        cmDB.dynamicWidth.powerClassBars = value
         F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
@@ -225,9 +244,9 @@ function O:Skins_CooldownManager()
       type = "toggle",
       desc = "Enabling this syncs the player castbar width with the Cooldown Manager.",
       name = "Castbar",
-      disabled = isDisabled,
+      disabled = dynamicDisabled,
       get = function(_)
-        return E.db.TXUI.addons.cooldownManager.dynamicCastbarWidth
+        return E.db.TXUI.addons.cooldownManager.dynamicWidth.castBar
       end,
       set = function(_, value)
         local cmDB = E.db.TXUI.addons.cooldownManager
@@ -242,7 +261,7 @@ function O:Skins_CooldownManager()
             if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
           end)
         end
-        cmDB.dynamicCastbarWidth = value
+        cmDB.dynamicWidth.castBar = value
         F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
       end,
     }
@@ -256,14 +275,14 @@ function O:Skins_CooldownManager()
       max = 600,
       step = 1,
       disabled = function()
-        local cmDB = E.db.TXUI.addons.cooldownManager
-        return isDisabled() or (not cmDB.dynamicBarsWidth and not cmDB.dynamicCastbarWidth)
+        local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
+        return dynamicDisabled() or (not dw.powerClassBars and not dw.castBar)
       end,
       get = function(_)
-        return E.db.TXUI.addons.cooldownManager.minDynamicWidth
+        return E.db.TXUI.addons.cooldownManager.dynamicWidth.minWidth
       end,
       set = function(_, value)
-        E.db.TXUI.addons.cooldownManager.minDynamicWidth = value
+        E.db.TXUI.addons.cooldownManager.dynamicWidth.minWidth = value
         local cm = TXUI:GetModule("CooldownManager")
         if cm then cm:OnDynamicWidthChanged() end
       end,

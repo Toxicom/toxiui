@@ -231,9 +231,10 @@ function PU:ComputeAllDiffs()
       if cdmDB then
         for i = #entries, 1, -1 do
           local path = entries[i].path
-          if cdmDB.dynamicBarsWidth and (path == "units.player.power.detachedWidth" or path == "units.player.classbar.detachedWidth") then
+          local dw = cdmDB.dynamicWidth
+          if dw and dw.enabled and dw.powerClassBars and (path == "units.player.power.detachedWidth" or path == "units.player.classbar.detachedWidth") then
             tremove(entries, i)
-          elseif cdmDB.dynamicCastbarWidth and path == "units.player.castbar.width" then
+          elseif dw and dw.enabled and dw.castBar and path == "units.player.castbar.width" then
             tremove(entries, i)
           end
         end

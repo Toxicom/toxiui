@@ -286,10 +286,13 @@ P.addons = {
     enabled = false,
     fading = true,
 
-    -- If these are enabled by default, their previous width value does not get stored
-    dynamicBarsWidth = true,
-    dynamicCastbarWidth = false,
-    minDynamicWidth = F.Dpi(292),
+    dynamicWidth = {
+      enabled = true,
+      powerClassBars = true,
+      castBar = true,
+      buffBar = true,
+      minWidth = F.Dpi(292),
+    },
 
     -- Anchoring
     anchors = {

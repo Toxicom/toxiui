@@ -17,7 +17,8 @@ function CM:SyncBarsWidth()
   if width <= 100 then width = F.Dpi(292) end -- default width
 
   -- Apply minimum width if set
-  local minWidth = self.db.minDynamicWidth
+  local dw = self.db.dynamicWidth
+  local minWidth = dw and dw.minWidth
   if minWidth and minWidth > 0 then width = max(width, minWidth) end
 
   -- Skip if width hasn't changed
@@ -47,7 +48,8 @@ function CM:SyncCastbarWidth()
   if width <= 100 then width = F.Dpi(292) end
 
   -- Apply minimum width if set
-  local minWidth = self.db.minDynamicWidth
+  local dw = self.db.dynamicWidth
+  local minWidth = dw and dw.minWidth
   if minWidth and minWidth > 0 then width = max(width, minWidth) end
 
   if self.cachedCastbarWidth == width then return end
@@ -65,8 +67,10 @@ function CM:SyncCastbarWidth()
 end
 
 function CM:OnDynamicWidthChanged()
-  if self.db.dynamicBarsWidth then self:SyncBarsWidth() end
-  if self.db.dynamicCastbarWidth then self:SyncCastbarWidth() end
+  local dw = self.db and self.db.dynamicWidth
+  if not dw or not dw.enabled then return end
+  if dw.powerClassBars then self:SyncBarsWidth() end
+  if dw.castBar then self:SyncCastbarWidth() end
 end
 
 function CM:EnableDynamicBarsWidth()
@@ -84,7 +88,8 @@ function CM:DisableDynamicBarsWidth()
   self.cachedBarsWidth = nil
 
   -- Both features share the same OnSizeChanged hook; only unhook if castbar sync isn't also using it
-  if not (self.db and self.db.dynamicCastbarWidth) then
+  local dw = self.db and self.db.dynamicWidth
+  if not (dw and dw.castBar) then
     if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
   end
 end
@@ -103,7 +108,8 @@ function CM:DisableDynamicCastbarWidth()
   self.cachedCastbarWidth = nil
 
   -- Both features share the same OnSizeChanged hook; only unhook if bars width sync isn't also using it
-  if not (self.db and self.db.dynamicBarsWidth) then
+  local dw = self.db and self.db.dynamicWidth
+  if not (dw and dw.powerClassBars) then
     if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
   end
 end

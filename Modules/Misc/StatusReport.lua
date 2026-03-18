@@ -84,10 +84,12 @@ local function getSkinsData()
           return E.db.TXUI.addons.cooldownManager.fading
         end),
         boolLine("Bars Width", function()
-          return E.db.TXUI.addons.cooldownManager.dynamicBarsWidth
+          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
+          return dw and dw.enabled and dw.powerClassBars
         end),
         boolLine("Castbar Width", function()
-          return E.db.TXUI.addons.cooldownManager.dynamicCastbarWidth
+          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
+          return dw and dw.enabled and dw.castBar
         end),
         boolLine("Anchor Essential", function()
           return E.db.TXUI.addons.cooldownManager.anchors.essential.enabled
