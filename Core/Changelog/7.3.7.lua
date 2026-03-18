@@ -12,6 +12,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.Retail() .. "Option to enable Damage Meter reset on new instances",
     F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Option to select random hearthstone pool",
     F.String.Retail() .. "Add " .. F.String.ToxiUI("/em") .. " chat command to open Edit Mode",
+    F.String.Retail() .. F.String.CDM() .. ": Option to sync buff bars to player unitframe",
 
     "* Enhancements",
     "Update diff display in Profile Updater",

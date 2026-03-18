@@ -181,7 +181,7 @@ function O:Skins_CooldownManager()
     local dynamicGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Dynamic Bars Width",
     }, {
-      name = "Sync the width of ElvUI player bars " .. F.String.ToxiUI("(detached)") .. " with the Essential Cooldown Viewer width.\n\n",
+      name = "Options to sync ElvUI and CDM bar widths.\n\n",
     }, I.Requirements.CooldownManager).args
 
     local function dynamicDisabled()
@@ -208,7 +208,7 @@ function O:Skins_CooldownManager()
     dynamicGroup.dynamicBarsWidth = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this syncs the detached power/class bar width with the Cooldown Manager.",
+      desc = "Syncs the detached Power Bar and Class Bar width to match the Essential Cooldown Viewer width.",
       name = "Class/Power Bars",
       disabled = dynamicDisabled,
       get = function(_)
@@ -242,7 +242,7 @@ function O:Skins_CooldownManager()
     dynamicGroup.dynamicCastbarWidth = {
       order = self:GetOrder(),
       type = "toggle",
-      desc = "Enabling this syncs the player castbar width with the Cooldown Manager.",
+      desc = "Syncs the player Castbar width to match the Essential Cooldown Viewer width.",
       name = "Castbar",
       disabled = dynamicDisabled,
       get = function(_)
@@ -266,11 +266,26 @@ function O:Skins_CooldownManager()
       end,
     }
 
+    dynamicGroup.dynamicBuffBarWidth = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Syncs the Buff Bar Viewer width with the ElvUI Player Unitframe width.",
+      name = "Buff Bar",
+      disabled = dynamicDisabled,
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.dynamicWidth.buffBar
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.dynamicWidth.buffBar = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+
     dynamicGroup.minDynamicWidth = {
       order = self:GetOrder(),
       type = "range",
       name = "Minimum Width",
-      desc = "Minimum width applied when syncing. Prevents bars from becoming too narrow when few cooldowns are shown.",
+      desc = "Minimum width for Class/Power Bars and Castbar syncing. Prevents bars from becoming too narrow when few cooldowns are shown.",
       min = 200,
       max = 600,
       step = 1,

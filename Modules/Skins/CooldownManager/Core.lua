@@ -14,6 +14,12 @@ function CM:OnEditModeEnter()
   self._inEditMode = true
   self:RestoreOriginalParents()
   self:RestoreAnchors()
+  self:DisableDynamicWidthForEditMode()
+end
+
+function CM:OnEditModeExit()
+  self:OnCooldownManagerChanged()
+  self:EnableDynamicWidthAfterEditMode()
 end
 
 function CM:OnCooldownManagerChanged()
@@ -29,8 +35,7 @@ function CM:Disable()
   self:DisableBarOverrides()
   self:DisableCentering()
   self:DisableFading()
-  self:DisableDynamicBarsWidth()
-  self:DisableDynamicCastbarWidth()
+  self:DisableDynamicWidth()
   self:DisableAnchoring()
   self:DisableKeybinds()
 
@@ -72,6 +77,7 @@ function CM:DatabaseUpdate()
     if dw and dw.enabled then
       if dw.powerClassBars then self:EnableDynamicBarsWidth() end
       if dw.castBar then self:EnableDynamicCastbarWidth() end
+      if dw.buffBar then self:EnableDynamicBuffBarWidth() end
     end
 
     -- Enable anchoring if any anchor is enabled
@@ -96,7 +102,7 @@ function CM:DatabaseUpdate()
     if _G.EventRegistry then
       _G.EventRegistry:RegisterCallback("CooldownViewerSettings.OnDataChanged", self.OnCooldownManagerChanged, self)
       _G.EventRegistry:RegisterCallback("EditMode.Enter", self.OnEditModeEnter, self)
-      _G.EventRegistry:RegisterCallback("EditMode.Exit", self.OnCooldownManagerChanged, self)
+      _G.EventRegistry:RegisterCallback("EditMode.Exit", self.OnEditModeExit, self)
     end
   end)
 end
