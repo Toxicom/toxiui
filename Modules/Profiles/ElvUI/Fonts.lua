@@ -344,9 +344,7 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "[name:abbrev:medium]",
-          }),
+          name = nameplates.shared.name,
 
           questIcon = { font = F.FontOverride(I.Fonts.Primary) },
 
@@ -354,7 +352,6 @@ function PF:BuildFontsProfile()
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = F.FontSizeScaled(14),
-            format = "[tx:classification]",
           },
         },
 
@@ -364,13 +361,9 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "|cff85d92b[name]|r",
-          }),
+          name = nameplates.shared.name,
           questIcon = { font = F.FontOverride(I.Fonts.Primary) },
-          title = F.Table.Crush(nameplates.shared.title, {
-            format = "|cff85d92b[npctitle:brackets]|r",
-          }),
+          title = nameplates.shared.title,
         },
 
         ["ENEMY_PLAYER"] = {
@@ -379,9 +372,7 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "[classcolor][name]",
-          }),
+          name = nameplates.shared.name,
         },
 
         ["FRIENDLY_PLAYER"] = {
@@ -390,12 +381,8 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "[classcolor][name]",
-          }),
-          title = F.Table.Crush(nameplates.shared.title, {
-            format = "[classcolor][guild:brackets]",
-          }),
+          name = nameplates.shared.name,
+          title = nameplates.shared.title,
         },
 
         ["TARGET"] = {

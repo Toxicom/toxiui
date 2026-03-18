@@ -24,6 +24,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.Era() .. F.String.Anniversary() .. F.String.Classic() .. "Incorrect class icon showing on Game Menu Skin",
     F.String.Retail() .. F.String.CDM() .. ": Fix essential anchoring being disabled if only one of the class/power bars is disabled",
     F.String.Retail() .. "Disable " .. F.String.CDM() .. " when enabling classic action bar style",
+    "Fix nameplate text tags not being in the profile",
 
     "* Profile updates",
     F.String.ElvUI() .. " Fonts: Update world/pvp (sub)zone texts",

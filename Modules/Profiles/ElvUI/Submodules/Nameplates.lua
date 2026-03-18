@@ -120,9 +120,11 @@ local nameplates = {
         position = "TOPLEFT",
         xOffset = F.Dpi(-13),
         yOffset = F.Dpi(-10),
+        format = "[tx:classification]",
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "[name:abbrev:medium]",
       },
       raidTargetIndicator = sharedRaidTarget,
     },
@@ -146,10 +148,12 @@ local nameplates = {
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "|cff85d92b[name]|r",
       },
       title = {
         enable = true,
         yOffset = F.Dpi(-10),
+        format = "|cff85d92b[npctitle:brackets]|r",
       },
       raidTargetIndicator = sharedRaidTarget,
     },
@@ -171,6 +175,7 @@ local nameplates = {
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "[classcolor][name]",
       },
       raidTargetIndicator = sharedRaidTarget,
     },
@@ -195,10 +200,12 @@ local nameplates = {
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "[classcolor][name]",
       },
       raidTargetIndicator = sharedRaidTarget,
       title = {
         enable = true,
+        format = "[classcolor][guild:brackets]",
       },
     },
 
