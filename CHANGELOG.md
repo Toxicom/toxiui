@@ -1,6 +1,6 @@
-# ToxiUI v7.3.7-beta.4 - 2026-03-18
+# ToxiUI v7.3.7-beta.5 - 2026-03-18
 
-**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.3.6...v7.3.7-beta.4>
+**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.3.6...v7.3.7-beta.5>
 
 ## ‼️ Breaking Changes
 
@@ -28,6 +28,7 @@
 - [Classic] [TBC] [Mists] Incorrect class icon showing on Game Menu Skin
 - [Retail] **ToxiUI Cooldown Manager Skin**: Fix essential anchoring being disabled if only one of the class/power bars is disabled
 - [Retail] Disable **ToxiUI Cooldown Manager Skin** when enabling classic action bar style
+- Fix nameplate text tags not being in the profile
 
 ## 🧩 Profile Updates
 
@@ -53,6 +54,7 @@
 - Display **ToxiUI** badges in the Credits section
 - Allow font scale slider to go from -5 to 5
   - Previously it was -3 to 3
+- Add release dates to in-game changelogs from v7.0.0 upwards
 
 ## 🔧 Development Improvements
 
