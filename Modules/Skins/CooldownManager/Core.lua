@@ -77,7 +77,6 @@ function CM:DatabaseUpdate()
     if dw and dw.enabled then
       if dw.powerClassBars then self:EnableDynamicBarsWidth() end
       if dw.castBar then self:EnableDynamicCastbarWidth() end
-      if dw.buffBar then self:EnableDynamicBuffBarWidth() end
     end
 
     -- Enable anchoring if any anchor is enabled

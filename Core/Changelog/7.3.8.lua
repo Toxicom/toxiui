@@ -12,6 +12,7 @@ TXUI.Changelog["7.3.8"] = {
 
     "* Bug fixes",
     F.String.Retail() .. F.String.CDM() .. ": Disable dynamic castbar width by default" .. F.String.Sublist("Got enabled by accident"),
+    F.String.Retail() .. F.String.CDM() .. ": Remove buff bar dynamic width option" .. F.String.Sublist("Taint city, not worth it"),
 
     "* Profile updates",
 

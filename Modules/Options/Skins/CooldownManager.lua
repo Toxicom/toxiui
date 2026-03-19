@@ -266,21 +266,6 @@ function O:Skins_CooldownManager()
       end,
     }
 
-    dynamicGroup.dynamicBuffBarWidth = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Syncs the Buff Bar Viewer width with the ElvUI Player Unitframe width.",
-      name = "Buff Bar",
-      disabled = dynamicDisabled,
-      get = function(_)
-        return E.db.TXUI.addons.cooldownManager.dynamicWidth.buffBar
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.cooldownManager.dynamicWidth.buffBar = value
-        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
-      end,
-    }
-
     dynamicGroup.minDynamicWidth = {
       order = self:GetOrder(),
       type = "range",

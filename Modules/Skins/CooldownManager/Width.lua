@@ -73,36 +73,11 @@ function CM:OnDynamicWidthChanged()
   if dw.castBar then self:SyncCastbarWidth() end
 end
 
-function CM:SyncBuffBarWidth()
-  local playerDB = E.db.unitframe.units.player
-  if not playerDB or not playerDB.width then return end
-
-  local width = playerDB.width
-  if self.cachedBuffBarWidth == width then return end
-  self.cachedBuffBarWidth = width
-
-  local buffBarViewer = _G[self.frameNames.buffBar]
-  if buffBarViewer then
-    buffBarViewer.baseBarWidth = width
-    buffBarViewer.barWidthScale = 1
-  end
-end
-
-function CM:EnableDynamicBuffBarWidth()
-  if not self.Initialized then return end
-  self:SyncBuffBarWidth()
-end
-
-function CM:DisableDynamicBuffBarWidth()
-  if not self.Initialized then return end
-  self.cachedBuffBarWidth = nil
-end
 
 -- Disable all dynamic width features (full teardown, used by CM:Disable)
 function CM:DisableDynamicWidth()
   self:DisableDynamicBarsWidth()
   self:DisableDynamicCastbarWidth()
-  self:DisableDynamicBuffBarWidth()
 end
 
 -- Pause dynamic width syncing during Edit Mode without restoring saved ElvUI widths.
@@ -110,7 +85,6 @@ end
 function CM:DisableDynamicWidthForEditMode()
   self.cachedBarsWidth = nil
   self.cachedCastbarWidth = nil
-  self.cachedBuffBarWidth = nil
   if self.essentialViewer and self:IsHooked(self.essentialViewer, "OnSizeChanged") then self:Unhook(self.essentialViewer, "OnSizeChanged") end
 end
 
@@ -120,7 +94,6 @@ function CM:EnableDynamicWidthAfterEditMode()
   if not dw or not dw.enabled then return end
   if dw.powerClassBars then self:EnableDynamicBarsWidth() end
   if dw.castBar then self:EnableDynamicCastbarWidth() end
-  if dw.buffBar then self:EnableDynamicBuffBarWidth() end
   self:OnDynamicWidthChanged()
 end
 
