@@ -289,7 +289,7 @@ P.addons = {
     dynamicWidth = {
       enabled = true,
       powerClassBars = true,
-      castBar = true,
+      castBar = false,
       buffBar = true,
       minWidth = F.Dpi(292),
     },
