@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.3.7"] = {
   HOTFIX = true,
-  RELEASE_DATE = "Mar TBD, 2026",
+  RELEASE_DATE = "Mar 19, 2026",
   CHANGES = {
     "* Breaking changes",
     "Remove action bar styles" .. F.String.Sublist("Buggy code that never worked correctly") .. F.String.Sublist("With individual Profile Updater, no longer that useful"),

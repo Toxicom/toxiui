@@ -1,12 +1,14 @@
-# ToxiUI v7.3.7-beta.5 - 2026-03-18
+# ToxiUI v7.3.7 - 2026-03-19
 
-**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.3.6...v7.3.7-beta.5>
+**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.3.6...v7.3.7>
 
 ## ‼️ Breaking Changes
 
 - Remove action bar styles
   - Buggy code that never worked correctly
   - With individual Profile Updater, no longer that useful
+- Remove `ThemeThreatGlow` module
+  - Caused taint errors spamming in combat
 
 ## 🚀 New Features
 
@@ -14,6 +16,7 @@
 - [Retail] Option to enable Damage Meter reset on new instances
 - [Retail] **WunderBar** Hearthstone: Option to select random hearthstone pool
 - [Retail] Add `/em` chat command to open Edit Mode
+- [Retail] **ToxiUI Cooldown Manager Skin**: Option to sync buff bars to player unitframe
 
 ## ✨ Enhancements
 
@@ -39,6 +42,7 @@
 
 ## 📘 Documentation
 
+- Increase minimum required **ElvUI** version to `15.09`
 - [Retail] **ToxiUI Cooldown Manager Skin**: Add **Frost Mage** by default to Power Bar Overrides
   - ElvUI 15.09 now shows icicles as class bar, so we can hide power bar
 - [Retail] **ToxiUI Cooldown Manager Skin**: Enable all submodules by default
@@ -49,13 +53,14 @@
 - [Retail] **ToxiUI Cooldown Manager Skin**: Display only current class specs in the overrides tab
   - Option to display all specs is available
 - [Retail] **ToxiUI Cooldown Manager Skin**: Tidy up keybind settings
+- [Retail] **ToxiUI Cooldown Manager Skin**: Refactor dynamic width settings to accomodate new options
 - [Retail] Simplify the settings of Damage Meter skin
 - Add `Commands` tab in General **ToxiUI** settings
 - Display **ToxiUI** badges in the Credits section
-- Allow font scale slider to go from -5 to 5
-  - Previously it was -3 to 3
-- Add release dates to in-game changelogs from v7.0.0 upwards
+- Allow font scale slider to go from `-5` to `5`
+  - Previously it was `-3` to `3`
+- Add release dates to in-game changelogs from `v7.0.0` upwards
 
 ## 🔧 Development Improvements
 
-- Rename TitleRaid to TitleBold internally
+- Rename `TitleRaid` to `TitleBold` internally
