@@ -35,6 +35,7 @@ TXUI.Changelog["7.3.7"] = {
     F.String.ElvUI() .. " Unitframes & Nameplates: Update filters to match " .. F.String.ElvUI() .. " defaults",
 
     "* Documentation",
+    F.String.MinElv("15.09"),
     F.String.Retail() .. F.String.CDM() .. ": Add " .. F.String.Class("Frost Mage", "MAGE") .. " by default to Power Bar Overrides" .. F.String.Sublist(
       "ElvUI 15.09 now shows icicles as class bar, so we can hide power bar"
     ),
