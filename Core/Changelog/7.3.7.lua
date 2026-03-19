@@ -6,6 +6,7 @@ TXUI.Changelog["7.3.7"] = {
   CHANGES = {
     "* Breaking changes",
     "Remove action bar styles" .. F.String.Sublist("Buggy code that never worked correctly") .. F.String.Sublist("With individual Profile Updater, no longer that useful"),
+    "Remove " .. F.String.ToxiUI("ThemeThreatGlow") .. " module" .. F.String.Sublist("Caused taint errors spamming in combat"),
 
     "* New features",
     "Individual update option in Profile Updater",
