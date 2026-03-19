@@ -73,7 +73,6 @@ function CM:OnDynamicWidthChanged()
   if dw.castBar then self:SyncCastbarWidth() end
 end
 
-
 -- Disable all dynamic width features (full teardown, used by CM:Disable)
 function CM:DisableDynamicWidth()
   self:DisableDynamicBarsWidth()
