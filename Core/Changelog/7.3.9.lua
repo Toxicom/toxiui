@@ -9,6 +9,7 @@ TXUI.Changelog["7.3.9"] = {
     "* New features",
 
     "* Enhancements",
+    F.String.Retail() .. "Adjust which armory slots require enchants/sockets for Midnight",
 
     "* Bug fixes",
 

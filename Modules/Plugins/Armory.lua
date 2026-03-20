@@ -64,14 +64,14 @@ A.colors = {
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
-    needsEnchant = false,
+    needsEnchant = true,
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["NeckSlot"] = {
     id = 2,
     needsEnchant = false,
-    needsSocket = TXUI.IsRetail,
+    needsSocket = false,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
@@ -79,13 +79,13 @@ A.characterSlots = {
   },
   ["ShoulderSlot"] = {
     id = 3,
-    needsEnchant = false,
+    needsEnchant = true,
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["BackSlot"] = {
     id = 15,
-    needsEnchant = true,
+    needsEnchant = false,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
@@ -115,7 +115,7 @@ A.characterSlots = {
   },
   ["WristSlot"] = {
     id = 9,
-    needsEnchant = true,
+    needsEnchant = false,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
@@ -158,7 +158,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = TXUI.IsRetail,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Finger1Slot"] = {
@@ -167,7 +167,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = TXUI.IsRetail,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket0Slot"] = {
