@@ -3,7 +3,6 @@ local LP = TXUI:GetModule("LandingPage")
 local S = E:GetModule("Skins")
 
 local CreateFrame = CreateFrame
-local ipairs = ipairs
 
 -- Layout constants
 local FRAME_WIDTH = 760
