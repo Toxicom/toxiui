@@ -207,7 +207,10 @@ function O:General()
       "/tx wb",
       "Open WunderBar settings",
       "/tx wunderbar"
-    ) .. cmd("/tx badge", "Toggle chat badge visibility") .. cmd("/tx reset", "Reset the " .. TXUI.Title .. " profile") .. cmd("/tx debug", "Toggle debug mode (on / off)"),
+    ) .. cmd("/tx landing", "Open the Welcome landing page", "/tx lp") .. cmd("/tx landing update", "Open the Update landing page", "/tx lp u") .. cmd(
+      "/tx badge",
+      "Toggle chat badge visibility"
+    ) .. cmd("/tx reset", "Reset the " .. TXUI.Title .. " profile") .. cmd("/tx debug", "Toggle debug mode (on / off)"),
   })
 
   if TXUI.IsRetail then

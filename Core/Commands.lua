@@ -220,10 +220,18 @@ function TXUI:HandleChatCommand(msg)
     E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
   elseif (category == "update" or category == "u") and F.IsTXUIProfile() then
     TXUI:GetModule("ProfileUpdater"):Toggle()
+  elseif category == "landing" or category == "lp" then
+    local LP = TXUI:GetModule("LandingPage")
+    local arg1 = self:GetArgs(msg, 3, 4)
+    if arg1 == "update" or arg1 == "u" then
+      LP:ShowFrame("update")
+    else
+      LP:ShowFrame("fresh")
+    end
   elseif category == "debug" then
     self:DebugMode(self:GetArgs(msg, 5, 6))
   elseif F.IsTXUIProfile() then
-    self:LogInfo("Usage: /tx cl; changelog; install; i; update; u; settings; status; wb; debug")
+    self:LogInfo("Usage: /tx cl; changelog; install; i; update; u; landing; lp; settings; status; wb; debug")
   else
     self:LogInfo("You are not using a " .. TXUI.Title .. " profile. Please install " .. TXUI.Title .. " first.")
     self:LogInfo("Usage: /tx cl; changelog; install; i; settings")

@@ -1,0 +1,6 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+  <Script file='Core.lua' />
+  <Script file='Frame.lua' />
+  <Script file='Pages\FreshInstall.lua' />
+  <Script file='Pages\Update.lua' />
+</Ui>

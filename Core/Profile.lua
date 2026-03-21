@@ -15,6 +15,11 @@ P.changelog = {
   lastDBConversion = 0,
 }
 
+P.landingPage = {
+  seenFreshInstall = false,
+  seenUpdateVersion = 0,
+}
+
 P.disabledAddOns = {}
 
 P.performance = {
