@@ -126,7 +126,7 @@ function LP:GetFreshInstallPages()
         .. "\n"
         .. F.String.ToxiUI("Discord")
         .. "  - "
-        .. F.String.Silver("discord.gg/toxiui")
+        .. F.String.Silver("toxiui.com/discord")
         .. F.String.Silver(" (support, suggestions, community)")
         .. "\n"
         .. F.String.ToxiUI("Changelog")
