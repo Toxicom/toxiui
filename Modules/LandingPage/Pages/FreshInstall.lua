@@ -9,7 +9,7 @@ local LP = TXUI:GetModule("LandingPage")
 function LP:GetFreshInstallPages()
   local title = F.String.ToxiUI(TXUI.Title)
 
-  return {
+  local pages = {
     -- Page 1: Welcome
     {
       title = "Welcome",
@@ -141,4 +141,43 @@ function LP:GetFreshInstallPages()
         .. F.String.Silver("ElvUI Config > Profiles > Export Profile."),
     },
   }
+
+  -- Retail-only: Edit Mode page (inserted before Getting Help)
+  if TXUI.IsRetail then
+    table.insert(pages, #pages, {
+      title = "Edit Mode",
+      text = title
+        .. " does not touch Blizzard's "
+        .. F.String.Good("Edit Mode")
+        .. ". You will need to set it up yourself.\n\n"
+        .. "Press "
+        .. F.String.Good("ESC")
+        .. " and choose "
+        .. F.String.Good("Edit Mode")
+        .. " to open the layout editor. "
+        .. "From there you can position the default Blizzard frames, including the "
+        .. F.String.Good("Cooldown Manager")
+        .. ", wherever you like.\n\n"
+        .. F.String.ToxiUI("Cooldown Manager skin")
+        .. "  - "
+        .. title
+        .. " includes a skin for the default Blizzard Cooldown Manager, "
+        .. "but it is "
+        .. F.String.Warning("disabled by default")
+        .. ". Enable it at "
+        .. F.String.Silver("ToxiUI > Skins > Cooldown Manager")
+        .. " if you want to use the Blizzard CDM. "
+        .. "The skin will anchor the CDM automatically. "
+        .. "Use Edit Mode to adjust icon sizing, spacing, and how many icons are shown per row.\n\n"
+        .. F.String.ToxiUI("Example layouts")
+        .. "  - Screenshot references are on the "
+        .. F.String.Silver("toxiui.com")
+        .. " FAQ page. "
+        .. "Ready-made Wago imports are also available at "
+        .. F.String.Silver("wago.io/p/ToxiTV")
+        .. ".",
+    })
+  end
+
+  return pages
 end
