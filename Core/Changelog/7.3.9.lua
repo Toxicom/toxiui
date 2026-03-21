@@ -20,6 +20,7 @@ TXUI.Changelog["7.3.9"] = {
     F.String.ElvUI() .. " Unitframes: Update raid frames design",
 
     "* Documentation",
+    F.String.Retail() .. " Armory: Add missing socket warnings to helm/wrist/belt",
 
     "* Settings refactoring",
 

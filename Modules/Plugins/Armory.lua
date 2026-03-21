@@ -65,7 +65,7 @@ A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
     needsEnchant = true,
-    needsSocket = false,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.LEFT,
   },
   ["NeckSlot"] = {
@@ -119,7 +119,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = false,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.LEFT,
   },
   ["HandsSlot"] = {
@@ -131,7 +131,7 @@ A.characterSlots = {
   ["WaistSlot"] = {
     id = 6,
     needsEnchant = false,
-    needsSocket = false,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.RIGHT,
   },
   ["LegsSlot"] = {
@@ -548,10 +548,10 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
   if self.db.pageInfo.enchantTextEnabled and slotInfo.itemLevelColors and next(slotInfo.itemLevelColors) then
     if self.db.pageInfo.missingSocketText and slotOptions.needsSocket then
       if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
-        local missingGemSlots = 2 - #slotInfo.gems
+        local missingGemSlots = 1 - #slotInfo.gems
         if missingGemSlots > 0 then
-          local text = format("Add %d sockets", missingGemSlots)
-          local missingColor = { F.String.FastColorGradientHex(missingGemSlots / 2, A.colors.LIGHT_GREEN, A.colors.RED) }
+          local text = format("Add %d socket", missingGemSlots)
+          local missingColor = { F.String.FastColorGradientHex(missingGemSlots, A.colors.LIGHT_GREEN, A.colors.RED) }
           slotItem.enchantText:SetText(F.String.RGB(text, missingColor))
         end
       else
