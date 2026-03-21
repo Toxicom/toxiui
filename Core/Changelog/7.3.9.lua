@@ -17,6 +17,7 @@ TXUI.Changelog["7.3.9"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. " Unitframes: Update raid frames design",
 
     "* Documentation",
 

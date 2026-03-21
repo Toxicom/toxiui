@@ -82,7 +82,7 @@ function PF:BuildFontsProfile()
       },
       raid = {
         customTexts = customTextSize {
-          { "toxiui:name", I.Fonts.Primary, 16, "SHADOWOUTLINE" },
+          { "toxiui:name", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           { "toxiui:raid-group", I.Fonts.TitleBold, 12, "SHADOWOUTLINE" },
         },
         rdebuffs = {

@@ -788,14 +788,14 @@ end
 local function getRaid(horizontal)
   return {
     enable = true,
-    width = F.Dpi(120),
-    height = F.Dpi(50),
+    width = F.Dpi(100),
+    height = F.Dpi(30),
 
     groupBy = "GROUP",
     groupSpacing = 10,
     groupsPerRowCol = 1,
     growthDirection = horizontal and "DOWN_RIGHT" or "RIGHT_UP",
-    horizontalSpacing = F.Dpi(1),
+    horizontalSpacing = F.Dpi(4),
     numGroups = 8,
     raidWideSorting = false,
     startFromCenter = false,
@@ -803,20 +803,26 @@ local function getRaid(horizontal)
 
     customTexts = {
       ["toxiui:name"] = createCustomText({}, {
-        attachTextTo = "Frame",
-        text_format = "[tx:name:veryshort]",
-        justifyH = "CENTER",
-        xOffset = F.Dpi(0),
+        attachTextTo = "InfoPanel",
+        text_format = "[tx:name:short:split]",
+        justifyH = "LEFT",
+        xOffset = F.Dpi(18),
         yOffset = F.Dpi(0),
       }),
 
       ["toxiui:raid-group"] = createCustomText({}, {
-        attachTextTo = "Frame",
+        attachTextTo = "InfoPanel",
         text_format = "[group:raid]",
         justifyH = "RIGHT",
-        xOffset = -2,
-        yOffset = -10,
+        xOffset = 0,
+        yOffset = 0,
       }),
+    },
+
+    infoPanel = {
+      enable = true,
+      transparent = true,
+      height = F.Dpi(15),
     },
 
     healPrediction = {
@@ -846,11 +852,12 @@ local function getRaid(horizontal)
 
     roleIcon = {
       enable = true,
-      damager = false,
-      position = "BOTTOMLEFT",
-      size = F.Dpi(24),
+      damager = true,
+      attachTo = "InfoPanel",
+      position = "LEFT",
+      size = F.Dpi(14),
       xOffset = 0,
-      yOffset = 2,
+      yOffset = 0,
     },
 
     raidRoleIcons = {
@@ -864,7 +871,7 @@ local function getRaid(horizontal)
     power = { enable = false },
 
     buffs = {
-      enable = true,
+      enable = false,
       anchorPoint = "TOPLEFT",
       growthX = "RIGHT",
 
@@ -885,7 +892,7 @@ local function getRaid(horizontal)
     },
 
     debuffs = {
-      enable = true,
+      enable = false,
       anchorPoint = "BOTTOMRIGHT",
       growthX = "LEFT",
 
