@@ -138,7 +138,8 @@ function LP:GetFreshInstallPages()
         .. title
         .. "! Enjoy the experience.\n\n"
         .. F.String.Silver("Tip: Create an ElvUI profile backup before making major changes  - ")
-        .. F.String.Silver("ElvUI Config > Profiles > Export Profile."),
+        .. F.String.Good("/ec")
+        .. F.String.Silver(" > Profiles"),
     },
   }
 
