@@ -415,7 +415,14 @@ function F.String.FormatDiffValue(val)
   if t == "string" then return F.String.DiffChanged("\"" .. val .. "\"") end
   if t == "number" then return F.String.Color(tostring(val), I.Enum.Colors.WHITE) end
   if t == "boolean" then return val and F.String.Good("true") or F.String.Error("false") end
-  if t == "table" then return F.String.Muted("{table}") end
+  if t == "table" then
+    if F.Color.IsColorTable(val) then
+      local hex = format("%02x%02x%02x", floor(val.r * 255 + 0.5), floor(val.g * 255 + 0.5), floor(val.b * 255 + 0.5))
+      local alphaInt = floor((val.a ~= nil and val.a or 1) * 255 + 0.5)
+      return F.String.Color("•", hex) .. " " .. F.String.Silver("#" .. hex:upper() .. format("%02X", alphaInt))
+    end
+    return F.String.Muted("{table}")
+  end
   return tostring(val)
 end
 

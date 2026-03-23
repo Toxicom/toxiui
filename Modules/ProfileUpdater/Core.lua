@@ -14,6 +14,7 @@ local tonumber = tonumber
 local tremove = tremove
 local strsplit = strsplit
 local abs = math.abs
+local floor = math.floor
 local CreateFrame = CreateFrame
 local C_CVar = C_CVar
 local ReloadUI = ReloadUI
@@ -180,12 +181,27 @@ local function computeMoverDiff(current, new, results, reanchored)
   end
 end
 
+local function r8(x)
+  return floor(x * 255 + 0.5)
+end
+
+local function colorTablesEqual(cur, new)
+  if not F.Color.IsColorTable(cur) or not F.Color.IsColorTable(new) then return false end
+  if r8(cur.r) ~= r8(new.r) or r8(cur.g) ~= r8(new.g) or r8(cur.b) ~= r8(new.b) then return false end
+  if new.a ~= nil then
+    if r8(cur.a ~= nil and cur.a or 1) ~= r8(new.a) then return false end
+  end
+  return true
+end
+
 local function computeTableDiff(current, new, path, results)
   for k, newVal in pairs(new) do
     local fullPath = path ~= "" and (path .. "." .. tostring(k)) or tostring(k)
     local curVal = current and current[k]
 
-    if type(newVal) == "table" then
+    if F.Color.IsColorTable(newVal) then
+      if not colorTablesEqual(curVal, newVal) then tinsert(results, { path = fullPath, old = curVal, new = newVal }) end
+    elseif type(newVal) == "table" then
       if type(curVal) == "table" then
         computeTableDiff(curVal, newVal, fullPath, results)
       else

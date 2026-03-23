@@ -2,6 +2,10 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 F.Color = {}
 
+function F.Color.IsColorTable(t)
+  return type(t) == "table" and type(t.r) == "number" and type(t.g) == "number" and type(t.b) == "number"
+end
+
 function F.Color.EqualTo(aColor, bColor)
   return F.AlmostEqual(aColor.r, bColor.r) and F.AlmostEqual(aColor.g, bColor.g) and F.AlmostEqual(aColor.b, bColor.b) and F.AlmostEqual(aColor.a, bColor.a)
 end
