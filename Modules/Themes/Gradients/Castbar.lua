@@ -37,7 +37,6 @@ function GR:PostUpdateCastColor(frame, castFailed)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
   if not frame.__owner.unit and not frame.unit then return end
 
-  local eR, eG, eB = frame:GetStatusBarColor()
   local unit = frame.unit or frame.__owner.unit
   if unit == "vehicle" then unit = "player" end
 
@@ -45,10 +44,10 @@ function GR:PostUpdateCastColor(frame, castFailed)
   local custom = customColor and customColor.enable and customColor
   frame.classColorFallback = (custom and custom.useClassColor) or (not custom and self.uf.db.colors.castClassColor)
 
-  -- Cast duration is secret in Midnight, use fixed percentage
+  -- Cast duration and bar color are secret in Midnight — use fixed percentage and skip bar color comparison
   local valueChanged = frame.currentPercent == nil
   if valueChanged then frame.currentPercent = 1 end
 
   local colorFunc = F.Event.GenerateClosure(self.GetCastbarColor, self, frame, unit, castFailed)
-  self:SetGradientColors(frame, valueChanged, eR, eG, eB, false, colorFunc)
+  self:SetGradientColors(frame, valueChanged, nil, nil, nil, true, colorFunc)
 end

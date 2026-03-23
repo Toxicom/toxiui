@@ -12,6 +12,7 @@ TXUI.Changelog["7.4.0"] = {
     "Profile Updater: Display color differences as a single HEX unit instead of separate R G B units",
 
     "* Bug fixes",
+    "Gradient mode: Safer castbar coloring code",
 
     "* Profile updates",
 
