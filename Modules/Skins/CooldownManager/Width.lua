@@ -2,14 +2,14 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local CM = TXUI:GetModule("CooldownManager")
 
 local InCombatLockdown = InCombatLockdown
-local floor = math.floor
+local ceil = math.ceil
 local max = math.max
 
 function CM:SyncBarsWidth()
   if not self.essentialViewer then return end
   if InCombatLockdown() then return end
 
-  local width = floor(self.essentialViewer:GetWidth() + 0.5)
+  local width = ceil(self.essentialViewer:GetWidth())
   -- sometimes the width comes as fucking 1.003003002 etc. so make sure it's bigger than one button atleast
   if not width or width <= 30 then return end
 
@@ -43,7 +43,7 @@ function CM:SyncCastbarWidth()
   if not self.essentialViewer then return end
   if InCombatLockdown() then return end
 
-  local width = floor(self.essentialViewer:GetWidth() + 0.5)
+  local width = ceil(self.essentialViewer:GetWidth())
   if not width or width <= 30 then return end
   if width <= 100 then width = F.Dpi(292) end
 

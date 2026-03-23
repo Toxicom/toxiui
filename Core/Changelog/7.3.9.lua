@@ -13,6 +13,7 @@ TXUI.Changelog["7.3.9"] = {
 
     "* Enhancements",
     F.String.Retail() .. "Adjust which armory slots require enchants/sockets for Midnight",
+    F.String.Retail() .. F.String.CDM() .. ": Round up bar width to potentially have better pixel perfect alignment",
 
     "* Bug fixes",
 
