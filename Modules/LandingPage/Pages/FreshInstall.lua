@@ -100,7 +100,7 @@ function LP:GetFreshInstallPages()
         .. F.String.ToxiUI("Vehicle Bar")
         .. "  - Shows a clean, styled action bar when entering a vehicle, "
         .. "skyriding, or possessing a unit, then hides it automatically when done. "
-        .. F.String.Silver("ToxiUI > General > Vehicle Bar")
+        .. F.String.Silver("ToxiUI > Plugins > Vehicle Bar")
         .. ".\n\n"
         .. F.String.ToxiUI("Performance Mode")
         .. "  - Temporarily strips back heavy visual features for "
