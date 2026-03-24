@@ -24,6 +24,7 @@ TXUI.Changelog["7.4.0"] = {
 
     "* Bug fixes",
     "Gradient mode: Safer castbar coloring code",
+    F.String.Menu.WunderBar() .. " Flyouts: Grow flyouts right when the module is in a left slot",
 
     "* Profile updates",
     F.String.ElvUI() .. " Movers: Move raid frames",

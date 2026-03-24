@@ -11,7 +11,7 @@ local InCombatLockdown = InCombatLockdown
 local secureFlyOutFrame
 local secureFlyOutButtons = {}
 
-function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
+function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots, growRight)
   if secureFlyOutFrame and secureFlyOutFrame:IsShown() then
     secureFlyOutFrame:Hide()
     self.flyoutIsOpen = false
@@ -174,7 +174,8 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     if indexInColumn == 1 then
       -- First slot in the column
-      slot:SetPoint(dirDown and "TOPRIGHT" or "BOTTOMRIGHT", secureFlyOutFrame, dirDown and "TOPRIGHT" or "BOTTOMRIGHT", -columnOffset, self.dirMulti * padding)
+      local anchorCorner = (dirDown and "TOP" or "BOTTOM") .. (growRight and "LEFT" or "RIGHT")
+      slot:SetPoint(anchorCorner, secureFlyOutFrame, anchorCorner, growRight and columnOffset or -columnOffset, self.dirMulti * padding)
       prevSlots[currentColumn] = slot
     else
       -- Subsequent slots, positioned above the previous slot in the same column
@@ -299,9 +300,9 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   secureFlyOutFrame:ClearAllPoints()
 
   if dirUp then
-    secureFlyOutFrame:SetPoint("BOTTOMRIGHT", parent, "TOPRIGHT")
+    secureFlyOutFrame:SetPoint(growRight and "BOTTOMLEFT" or "BOTTOMRIGHT", parent, growRight and "TOPLEFT" or "TOPRIGHT")
   elseif dirDown then
-    secureFlyOutFrame:SetPoint("TOPRIGHT", parent, "BOTTOMRIGHT")
+    secureFlyOutFrame:SetPoint(growRight and "TOPLEFT" or "TOPRIGHT", parent, growRight and "BOTTOMLEFT" or "BOTTOMRIGHT")
   elseif dirLeft then
     secureFlyOutFrame:SetPoint("RIGHT", parent, "LEFT")
   elseif dirRight then

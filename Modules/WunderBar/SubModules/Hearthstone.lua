@@ -207,7 +207,7 @@ function HS:GetMagePortals()
     end
   end
 
-  WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, teleportList, portalList)
+  WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, teleportList, portalList, WB:GetGrowDirection(self.Module) == "RIGHT")
 end
 
 function HS:UpdateSelected()
@@ -265,7 +265,7 @@ function HS:UpdateSelected()
   elseif self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then
     self.secureFrame:SetAttribute("type2", "function")
     self.secureFrame:SetAttribute("_function2", function()
-      WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsAdditional)
+      WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsAdditional, nil, WB:GetGrowDirection(self.Module) == "RIGHT")
     end)
   end
 
@@ -274,12 +274,13 @@ function HS:UpdateSelected()
   if hasMythics or hasRaids then
     self.secureFrame:SetAttribute("shift-type1", "function")
     self.secureFrame:SetAttribute("shift-_function1", function()
+      local growRight = WB:GetGrowDirection(self.Module) == "RIGHT"
       if hasMythics and hasRaids then
-        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics, self.hsRaids)
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics, self.hsRaids, growRight)
       elseif hasMythics then
-        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics)
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics, nil, growRight)
       else
-        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsRaids)
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsRaids, nil, growRight)
       end
     end)
   end
