@@ -10,6 +10,8 @@ TXUI.Changelog["7.4.0"] = {
 
     "* Enhancements",
     "Profile Updater: Display color differences as a single HEX unit instead of separate R G B units",
+    F.String.Retail() .. F.String.CDM() .. ": Slightly stabler code due to using built-in Blizzard API instead of self made stuff",
+    "Gradient mode: Cache some function closures for potentially better performance",
 
     "* Bug fixes",
     "Gradient mode: Safer castbar coloring code",
