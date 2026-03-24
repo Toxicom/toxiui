@@ -51,7 +51,12 @@ function O:WunderBar_SubModules_Additional_Toggle(group)
       return E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] ~= false
     end,
     function(_, key, value)
-      E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = value and nil or false
+      if value then
+        E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = nil
+      else
+        E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = false
+      end
+      TXUI:GetModule("WunderBar"):UpdateBar()
     end
   )
 end
