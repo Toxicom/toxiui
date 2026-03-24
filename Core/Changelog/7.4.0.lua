@@ -19,6 +19,7 @@ TXUI.Changelog["7.4.0"] = {
     "* Profile updates",
     F.String.ElvUI() .. " Movers: Move raid frames",
     F.String.ElvUI() .. " Unitframes: Re-position and re-size private auras for raid frames",
+    F.String.ElvUI() .. " Unitframes: Re-position buffs and role icon for party frames",
 
     "* Documentation",
 

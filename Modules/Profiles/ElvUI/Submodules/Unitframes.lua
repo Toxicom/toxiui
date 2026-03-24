@@ -683,7 +683,7 @@ local function getParty(horizontal)
         numrows = horizontal and 2 or 1,
         spacing = 2,
         yOffset = horizontal and F.Dpi(-6) or 0,
-        xOffset = horizontal and 0 or F.Dpi(-40),
+        xOffset = horizontal and 0 or F.Dpi(-10),
 
         countPosition = "BOTTOM",
         countYOffset = F.Dpi(-5),
@@ -767,10 +767,10 @@ local function getParty(horizontal)
 
     roleIcon = {
       damager = not horizontal,
-      position = horizontal and "TOPLEFT" or "LEFT",
-      size = horizontal and F.Dpi(22) or F.Dpi(36),
-      xOffset = horizontal and F.Dpi(-12) or F.Dpi(-35),
-      yOffset = horizontal and F.Dpi(12) or F.Dpi(0),
+      position = "TOPLEFT",
+      size = horizontal and F.Dpi(22) or F.Dpi(24),
+      xOffset = horizontal and F.Dpi(-12) or F.Dpi(-24),
+      yOffset = horizontal and F.Dpi(12) or F.Dpi(30),
     },
 
     power = {
