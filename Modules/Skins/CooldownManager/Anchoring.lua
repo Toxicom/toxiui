@@ -28,30 +28,30 @@ function CM:SetAnchors()
   if anchors.essential.enabled and essential and essential:IsHorizontal() then
     local anchor = (powerBarAvailable and powerBar) or (classBarAvailable and classBar)
     if anchor then
-      essential:ClearAllPointsOverride()
-      essential:SetPointOverride("TOP", anchor, "BOTTOM", 0, anchors.essential.yOffset)
+      essential:ClearAllPoints()
+      essential:SetPoint("TOP", anchor, "BOTTOM", 0, anchors.essential.yOffset)
     end
   end
 
   -- Anchor UtilityCooldownViewer to bottom of EssentialCooldownViewer
   if anchors.utility.enabled and utility and essential and utility:IsHorizontal() then
-    utility:ClearAllPointsOverride()
-    utility:SetPointOverride("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset)
+    utility:ClearAllPoints()
+    utility:SetPoint("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset)
   end
 
   -- Anchor BuffIconCooldownViewer to top of class bar, fallback to power bar
   if anchors.buff.enabled and buff and buff:IsHorizontal() then
     local anchor = (classBarAvailable and classBar) or (powerBarAvailable and powerBar)
     if anchor then
-      buff:ClearAllPointsOverride()
-      buff:SetPointOverride("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset)
+      buff:ClearAllPoints()
+      buff:SetPoint("BOTTOM", anchor, "TOP", 0, anchors.buff.yOffset)
     end
   end
 
   -- Anchor BuffBarCooldownViewer to top of health bar
   if anchors.buffBar.enabled and buffBar and healthBar then
-    buffBar:ClearAllPointsOverride()
-    buffBar:SetPointOverride("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset)
+    buffBar:ClearAllPoints()
+    buffBar:SetPoint("BOTTOM", healthBar, "TOP", 0, anchors.buffBar.yOffset)
   end
 
   self._settingAnchors = false
@@ -63,7 +63,6 @@ function CM:RestoreAnchors()
   for frameName, anchor in pairs(self._savedAnchors) do
     local f = _G[frameName]
     if f then
-      f:ClearAllPointsOverride()
       f:ClearAllPoints()
       f:SetPoint(anchor[1], anchor[2], anchor[3], anchor[4], anchor[5])
     end
