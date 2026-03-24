@@ -181,7 +181,7 @@ function O:Skins_CooldownManager()
     local dynamicGroup = self:AddInlineRequirementsDesc(tab, {
       name = "Dynamic Bars Width",
     }, {
-      name = "Options to sync ElvUI and CDM bar widths.\n\n",
+      name = "Options to sync ElvUI bar widths with the Blizzard's Cooldown Manager.\n\n",
     }, I.Requirements.CooldownManager).args
 
     local function dynamicDisabled()
