@@ -74,6 +74,11 @@ function GR:UpdateStatusBarFrame(frame)
 end
 
 function GR:ConfigureStatusBarFrame(_, frame)
+  -- Reset cached per-frame state so it's rebuilt fresh (e.g. when test mode activates)
+  if frame.Health then
+    frame.Health._gradColorFunc = nil
+    frame.Health.unitDead = nil
+  end
   self:UpdateStatusBarFrame(frame)
 end
 
