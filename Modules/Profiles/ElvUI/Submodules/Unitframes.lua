@@ -786,7 +786,7 @@ local function getParty(horizontal)
 end
 
 local function getRaid(horizontal)
-  return {
+  local settings = {
     enable = true,
     width = F.Dpi(100),
     height = F.Dpi(30),
@@ -828,22 +828,6 @@ local function getRaid(horizontal)
     healPrediction = {
       enable = true,
       absorbStyle = "REVERSED",
-    },
-
-    rdebuffs = {
-      enable = true,
-      size = F.Dpi(24),
-      yOffset = F.Dpi(6),
-
-      duration = {
-        color = F.Table.HexToRGB("#fff0ea"),
-      },
-
-      stack = {
-        color = F.Table.HexToRGB("#ffe900"),
-        position = "BOTTOMRIGHT",
-        yOffset = F.Dpi(0),
-      },
     },
 
     readycheckIcon = {
@@ -909,7 +893,43 @@ local function getRaid(horizontal)
       isAuraImportantPlayer = true,
       isAuraRaidPlayerDispellable = true,
     },
+
+    privateAuras = {
+      enable = true,
+      duration = {
+        enable = true,
+        offsetY = 0,
+        point = "CENTER",
+      },
+      icon = {
+        size = F.Dpi(24),
+      },
+      parent = {
+        offsetY = F.Dpi(-24),
+        point = "TOP",
+      },
+    },
   }
+
+  if not TXUI.IsRetail then
+    settings.rdebuffs = {
+      enable = true,
+      size = F.Dpi(24),
+      yOffset = F.Dpi(6),
+
+      duration = {
+        color = F.Table.HexToRGB("#fff0ea"),
+      },
+
+      stack = {
+        color = F.Table.HexToRGB("#ffe900"),
+        position = "BOTTOMRIGHT",
+        yOffset = F.Dpi(0),
+      },
+    }
+  end
+
+  return settings
 end
 
 local tank = {

@@ -17,6 +17,8 @@ TXUI.Changelog["7.4.0"] = {
     "Gradient mode: Safer castbar coloring code",
 
     "* Profile updates",
+    F.String.ElvUI() .. " Movers: Move raid frames",
+    F.String.ElvUI() .. " Unitframes: Re-position and re-size private auras for raid frames",
 
     "* Documentation",
 
