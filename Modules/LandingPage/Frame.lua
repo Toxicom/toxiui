@@ -6,7 +6,7 @@ local CreateFrame = CreateFrame
 
 -- Layout constants
 local FRAME_WIDTH = 760
-local FRAME_HEIGHT = 520
+local FRAME_HEIGHT = 620
 local HEADER_HEIGHT = 76
 local FOOTER_HEIGHT = 52
 local PADDING = 20
@@ -59,7 +59,30 @@ function LP:SetupAnimations(frame)
     pageSubtitle:SetAlpha(0)
     contentArea.animIn:Play()
     contentArea.subtitleAnimIn:Play()
+    -- Image: fade in from 0 if the new page shows one
+    local img = frame.contentImage
+    if img:IsShown() then
+      img:SetAlpha(0)
+      img.animIn:Play()
+    end
   end)
+
+  -- ── Image out/in: mirrors content area timing ────────────────────────────────
+  local contentImage = frame.contentImage
+  contentImage.animOut = TXUI:CreateAnimationGroup(contentImage)
+  do
+    local fadeout = contentImage.animOut:CreateAnimation("fade")
+    fadeout:SetChange(0)
+    fadeout:SetDuration(0.13)
+    fadeout:SetEasing("in-quadratic")
+  end
+  contentImage.animIn = TXUI:CreateAnimationGroup(contentImage)
+  do
+    local fadein = contentImage.animIn:CreateAnimation("fade")
+    fadein:SetChange(1)
+    fadein:SetDuration(0.22)
+    fadein:SetEasing("out-cubic")
+  end
 
   -- ── Content in: fade content area to 1, 0.22s ease out ───────────────────────
   contentArea.animIn = TXUI:CreateAnimationGroup(contentArea)
@@ -148,9 +171,11 @@ function LP:BuildFrame()
   contentArea:SetPoint("TOPLEFT", frame, "TOPLEFT", PADDING, CONTENT_TOP)
   contentArea:SetSize(CONTENT_WIDTH, CONTENT_HEIGHT)
 
-  -- Optional image texture shown at the top of the content area
-  local contentImage = contentArea:CreateTexture(nil, "ARTWORK")
-  contentImage:SetPoint("TOP", contentArea, "TOP")
+  -- Full-bleed image flush against the header accent line, spanning the full frame width.
+  -- Parented to the frame (not contentArea) so it is independent of the content padding.
+  local contentImage = frame:CreateTexture(nil, "ARTWORK")
+  contentImage:SetPoint("TOPLEFT", frame, "TOPLEFT", 0, -HEADER_HEIGHT)
+  contentImage:SetPoint("TOPRIGHT", frame, "TOPRIGHT", 0, -HEADER_HEIGHT)
   contentImage:Hide()
 
   -- Main text block (repositioned depending on whether an image is shown)
@@ -243,6 +268,8 @@ function LP:CloseLandingPage()
   f.contentArea.animOut:Stop()
   f.contentArea.animIn:Stop()
   f.contentArea.subtitleAnimIn:Stop()
+  f.contentImage.animOut:Stop()
+  f.contentImage.animIn:Stop()
   -- Snap alpha to fully visible so the exit animates from a known baseline
   f:SetAlpha(1)
   f.animExit:Play()
@@ -261,15 +288,38 @@ function LP:ApplyPageContent()
   -- Subtitle
   f.pageSubtitle:SetText(page.title or "")
 
-  -- Reposition text depending on whether this page has an image
+  -- Resize frame and reposition content area depending on whether this page has an image
   f.contentText:ClearAllPoints()
+  f.contentArea:ClearAllPoints()
   if page.image then
+    local imgH = page.imageHeight or 200
     f.contentImage:SetTexture(page.image)
-    f.contentImage:SetSize(page.imageWidth or CONTENT_WIDTH, page.imageHeight or 200)
+    f.contentImage:SetHeight(imgH)
+    -- Cover crop: scale source to fill display area, then trim the overflow symmetrically.
+    -- Requires page.imageAspect = sourceWidth / sourceHeight. Falls back to stretch.
+    if page.imageAspect then
+      local displayAspect = FRAME_WIDTH / imgH
+      if page.imageAspect >= displayAspect then
+        -- Source is wider → fit height, crop left/right
+        local cropX = (imgH * page.imageAspect - FRAME_WIDTH) / (2 * imgH * page.imageAspect)
+        f.contentImage:SetTexCoord(cropX, 1 - cropX, 0, 1)
+      else
+        -- Source is taller → fit width, crop top/bottom
+        local cropY = (FRAME_WIDTH / page.imageAspect - imgH) / (2 * FRAME_WIDTH / page.imageAspect)
+        f.contentImage:SetTexCoord(0, 1, cropY, 1 - cropY)
+      end
+    else
+      f.contentImage:SetTexCoord(0, 1, 0, 1)
+    end
     f.contentImage:Show()
-    f.contentText:SetPoint("TOPLEFT", f.contentImage, "BOTTOMLEFT", 0, -10)
+    f.contentArea:SetPoint("TOPLEFT", f, "TOPLEFT", PADDING, -(HEADER_HEIGHT + imgH + PADDING))
+    f.contentArea:SetHeight(CONTENT_HEIGHT - imgH - PADDING)
+    f.contentText:SetPoint("TOP", f.contentArea, "TOP")
   else
+    f.contentImage:SetTexCoord(0, 1, 0, 1)
     f.contentImage:Hide()
+    f.contentArea:SetPoint("TOPLEFT", f, "TOPLEFT", PADDING, CONTENT_TOP)
+    f.contentArea:SetHeight(CONTENT_HEIGHT)
     f.contentText:SetPoint("TOP", f.contentArea, "TOP")
   end
 
@@ -316,6 +366,12 @@ function LP:ShowPage(index)
   -- Snap content to fully visible so the out-animation starts from a clean baseline
   contentArea:SetAlpha(1)
   contentArea.animOut:Play()
+  -- Image fades out in sync with content; animIn is triggered from animOut's OnFinished
+  local img = self.frame.contentImage
+  img.animIn:Stop()
+  img.animOut:Stop()
+  img:SetAlpha(1)
+  img.animOut:Play()
 end
 
 -- Show the landing page with `config.pages` (array of page tables) and an

@@ -2,10 +2,10 @@ local TXUI, F, _, I, V, P, G = unpack((select(2, ...)))
 local LP = TXUI:GetModule("LandingPage")
 
 -- Build the page list for the fresh-install welcome flow.
--- Add `image`, `imageWidth`, `imageHeight` to any page to show a screenshot.
+-- Add `image` and `imageHeight` to any page to show a full-bleed banner.
 -- Example:
---   image = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\LandingPage\\options.tga",
---   imageWidth = 720, imageHeight = 220,
+--   image = I.Media.Banners.CDM,
+--   imageHeight = 200,
 function LP:GetFreshInstallPages()
   local title = F.String.ToxiUI(TXUI.Title)
 
@@ -13,6 +13,7 @@ function LP:GetFreshInstallPages()
     -- Page 1: Welcome
     {
       title = "Welcome",
+      image = I.Media.Banners.CDM,
       text = title
         .. " is a pre-configured "
         .. F.String.ElvUI("ElvUI")
@@ -37,6 +38,7 @@ function LP:GetFreshInstallPages()
     -- Page 2: Accessing Settings
     {
       title = "Accessing Settings",
+      image = I.Media.Banners.Settings,
       text = "All settings live in the "
         .. title
         .. " options panel, accessible in several ways:\n\n"
@@ -61,6 +63,7 @@ function LP:GetFreshInstallPages()
     -- Page 3: Key Features
     {
       title = "What's Inside",
+      image = I.Media.Banners.DarkVsGradient,
       text = F.String.ToxiUI("Themes")
         .. "  - Gradient health bars and Dark Mode. "
         .. F.String.Silver("ToxiUI > Themes")
@@ -91,6 +94,7 @@ function LP:GetFreshInstallPages()
     -- Page 4: Hidden Gems
     {
       title = "Hidden Gems",
+      image = I.Media.Banners.VehicleBar,
       text = "A few less obvious features worth knowing about:\n\n"
         .. F.String.ToxiUI("Additional Scaling")
         .. "  - Independently scale Blizzard frames that ElvUI "
@@ -119,6 +123,8 @@ function LP:GetFreshInstallPages()
     -- Page 5: Getting Help
     {
       title = "Getting Help",
+      image = I.Media.Installer.DiscordBanner,
+      imageAspect = 2,
       text = "If you run into anything unexpected, here is where to go:\n\n"
         .. F.String.ToxiUI("Website")
         .. "  - "
@@ -147,6 +153,7 @@ function LP:GetFreshInstallPages()
   if TXUI.IsRetail then
     table.insert(pages, #pages, {
       title = "Edit Mode",
+      image = I.Media.Banners.EditMode,
       text = title
         .. " does not touch Blizzard's "
         .. F.String.Good("Edit Mode")

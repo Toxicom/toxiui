@@ -14,6 +14,7 @@ TXUI.Changelog["7.4.0"] = {
     F.String.Retail() .. F.String.CDM() .. ": Slightly stabler code due to using built-in Blizzard API instead of self made stuff",
     "Gradient Mode: Cache some function closures for potentially better performance",
     "Landing Page: Show profile updater button in update landing page",
+    "Landing Page: Display images for both landing pages",
 
     "* Bug fixes",
     "Gradient mode: Safer castbar coloring code",

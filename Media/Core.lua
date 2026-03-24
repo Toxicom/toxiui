@@ -158,6 +158,18 @@ F.AddMedia("installer", "WebPreview")
 F.AddMedia("installer", "TurboMode")
 
 -- -----
+--   BANNERS
+-- -----
+
+F.AddMedia("banner", "CDM")
+F.AddMedia("banner", "Settings")
+F.AddMedia("banner", "DarkVsGradient")
+F.AddMedia("banner", "VehicleBar")
+F.AddMedia("banner", "EditMode")
+F.AddMedia("banner", "Emote")
+F.AddMedia("banner", "Updater")
+
+-- -----
 --   ARMORY BACKGROUNDS
 -- -----
 

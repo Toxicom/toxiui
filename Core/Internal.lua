@@ -68,6 +68,7 @@ I.MediaKeys = {
   armory = "Armory",
   installer = "Installer",
   style = "Style",
+  banner = "Banners",
 }
 
 I.MediaPaths = {
@@ -82,6 +83,7 @@ I.MediaPaths = {
   armory = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Armory\]],
   installer = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Installer\]],
   style = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Styles\]],
+  banner = [[Interface\AddOns\ElvUI_ToxiUI\Media\Banners\]],
 }
 
 -- Media
@@ -98,6 +100,7 @@ I.Media = {
   Armory = {},
   Installer = {},
   Style = {},
+  Banners = {},
 }
 
 -- Profile names to be used

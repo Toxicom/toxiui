@@ -12,6 +12,7 @@ function LP:GetUpdatePages()
     -- Page 1: Updated successfully
     {
       title = "Updated to " .. versionString,
+      image = I.Media.Banners.Emote,
       text = title
         .. " has been updated to version "
         .. F.String.Good(versionString)
@@ -31,6 +32,7 @@ function LP:GetUpdatePages()
     -- Page 2: Profile Updater
     {
       title = "Meet the Profile Updater",
+      image = I.Media.Banners.Updater,
       text = "The "
         .. F.String.ToxiUI("Profile Updater")
         .. " is the recommended way to apply new "
