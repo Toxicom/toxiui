@@ -26,14 +26,16 @@ function GR:GetHealthColor(frame, unit)
     return "specialColorMap", "TAPPED"
   elseif isPlayer then
     return "classColorMap", select(2, UnitClass(unit))
-  elseif UnitReaction(unit, "player") then
+  else
     local reaction = UnitReaction(unit, "player")
-    if reaction > 4 then
-      return "reactionColorMap", "GOOD"
-    elseif reaction > 3 then
-      return "reactionColorMap", "NEUTRAL"
-    else
-      return "reactionColorMap", "BAD"
+    if reaction then
+      if reaction > 4 then
+        return "reactionColorMap", "GOOD"
+      elseif reaction > 3 then
+        return "reactionColorMap", "NEUTRAL"
+      else
+        return "reactionColorMap", "BAD"
+      end
     end
   end
 end
@@ -53,6 +55,6 @@ function GR:PostUpdateHealthColor(frame, unit, eR, eG, eB)
     frame.unitDead = unitDead
   end
 
-  local colorFunc = F.Event.GenerateClosure(self.GetHealthColor, self, frame, unit)
-  self:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorFunc)
+  if not frame._gradColorFunc then frame._gradColorFunc = F.Event.GenerateClosure(self.GetHealthColor, self, frame, unit) end
+  self:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, frame._gradColorFunc)
 end
