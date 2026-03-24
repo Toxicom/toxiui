@@ -11,7 +11,6 @@ CM.frameNames = {
 }
 
 function CM:OnEditModeEnter()
-  self._inEditMode = true
   self:RestoreOriginalParents()
   self:RestoreAnchors()
   self:DisableDynamicWidthForEditMode()

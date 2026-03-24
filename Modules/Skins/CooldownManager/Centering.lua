@@ -29,7 +29,6 @@ local function cacheViewerProps(viewerKey)
 
   viewerCache[viewerKey] = {
     viewer = viewer,
-    orientationSetting = viewer.orientationSetting,
     stride = viewer.stride,
     xSpacing = viewer.childXPadding or 4,
     ySpacing = viewer.childYPadding or 4,
@@ -40,18 +39,17 @@ end
 
 function CM:CenterViewer(viewerKey)
   if self._centeringIcons then return end
-  if self._inEditMode then return end
 
   local cache = viewerCache[viewerKey]
   if not cache then return end
-  if cache.orientationSetting == 1 then return end -- skip vertical viewers
 
   local viewer = cache.viewer
-  local children = { viewer:GetChildren() }
+  if viewer:IsEditing() then return end
+  if not viewer:IsHorizontal() then return end -- skip vertical viewers
 
   wipe(shownBuffer)
-  for _, child in ipairs(children) do
-    if child.Icon and child:IsShown() then shownBuffer[#shownBuffer + 1] = child end
+  for child in viewer.itemFramePool:EnumerateActive() do
+    if child:IsShown() then shownBuffer[#shownBuffer + 1] = child end
   end
 
   local count = #shownBuffer
@@ -101,16 +99,15 @@ end
 
 function CM:AlignBuffBarViewer()
   if self._centeringIcons then return end
-  if self._inEditMode then return end
 
   local cache = viewerCache["buffBar"]
   if not cache then return end
 
   local viewer = cache.viewer
-  local children = { viewer:GetChildren() }
+  if viewer:IsEditing() then return end
 
   wipe(shownBuffer)
-  for _, child in ipairs(children) do
+  for child in viewer.itemFramePool:EnumerateActive() do
     if child:IsShown() and child:GetHeight() > 1 then shownBuffer[#shownBuffer + 1] = child end
   end
 

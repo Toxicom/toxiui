@@ -9,7 +9,6 @@ function CM:SetAnchors()
   -- if InCombatLockdown() then return end
   if not self.db or not self.db.anchors then return end
 
-  self._inEditMode = false
   self._settingAnchors = true
 
   local anchors = self.db.anchors
@@ -26,7 +25,7 @@ function CM:SetAnchors()
   local classBarAvailable = classBar and classBar:IsShown() and E.db.unitframe.units.player.classbar.enable
 
   -- Anchor EssentialCooldownViewer to bottom of power bar, fallback to class bar
-  if anchors.essential.enabled and essential and essential.orientationSetting ~= 1 then
+  if anchors.essential.enabled and essential and essential:IsHorizontal() then
     local anchor = (powerBarAvailable and powerBar) or (classBarAvailable and classBar)
     if anchor then
       essential:ClearAllPointsOverride()
@@ -35,13 +34,13 @@ function CM:SetAnchors()
   end
 
   -- Anchor UtilityCooldownViewer to bottom of EssentialCooldownViewer
-  if anchors.utility.enabled and utility and essential and utility.orientationSetting ~= 1 then
+  if anchors.utility.enabled and utility and essential and utility:IsHorizontal() then
     utility:ClearAllPointsOverride()
     utility:SetPointOverride("TOP", essential, "BOTTOM", 0, anchors.utility.yOffset)
   end
 
   -- Anchor BuffIconCooldownViewer to top of class bar, fallback to power bar
-  if anchors.buff.enabled and buff and buff.orientationSetting ~= 1 then
+  if anchors.buff.enabled and buff and buff:IsHorizontal() then
     local anchor = (classBarAvailable and classBar) or (powerBarAvailable and powerBar)
     if anchor then
       buff:ClearAllPointsOverride()
@@ -60,7 +59,7 @@ end
 
 function CM:RestoreAnchors()
   if not self._savedAnchors then return end
-  -- _inEditMode = true guards the anchor lock, so SetPoint won't re-trigger SetAnchors
+  -- frame:IsEditing() guards the anchor lock during edit mode, so SetPoint won't re-trigger SetAnchors
   for frameName, anchor in pairs(self._savedAnchors) do
     local f = _G[frameName]
     if f then
@@ -76,7 +75,7 @@ function CM:HookAnchorLock(frame)
 
   self:SecureHook(frame, "SetPoint", function()
     if self._settingAnchors then return end
-    if self._inEditMode then return end
+    if frame:IsEditing() then return end
     -- if InCombatLockdown() then return end
 
     self:SetAnchors()
