@@ -163,6 +163,15 @@ function LP:BuildFrame()
   contentText:SetWordWrap(true)
   contentText:SetSpacing(4)
 
+  -- Optional action button anchored to the bottom-centre of the content area.
+  -- Shown only on pages that define a `button = { text, onClick }` field.
+  local contentBtn = CreateFrame("Button", nil, contentArea, "UIPanelButtonTemplate")
+  contentBtn:SetSize(160, BUTTON_HEIGHT)
+  contentBtn:SetPoint("BOTTOM", contentArea, "BOTTOM", 0, 0)
+  contentBtn:GetFontString():FontTemplate(F.GetFontPath(I.Fonts.Primary), 12, "NONE", true)
+  S:HandleButton(contentBtn)
+  contentBtn:Hide()
+
   -- Footer navigation bar
   local footer = CreateFrame("Frame", nil, frame)
   footer:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", PADDING, PADDING)
@@ -214,6 +223,7 @@ function LP:BuildFrame()
   frame.contentArea = contentArea
   frame.contentImage = contentImage
   frame.contentText = contentText
+  frame.contentBtn = contentBtn
   frame.prevBtn = prevBtn
   frame.nextBtn = nextBtn
   frame.pageIndicator = pageIndicator
@@ -264,6 +274,15 @@ function LP:ApplyPageContent()
   end
 
   f.contentText:SetText(page.text or "")
+
+  -- Optional action button
+  if page.button then
+    f.contentBtn:SetText(page.button.text)
+    f.contentBtn:SetScript("OnClick", page.button.onClick)
+    f.contentBtn:Show()
+  else
+    f.contentBtn:Hide()
+  end
 
   -- Navigation state
   local isLast = index == #pages

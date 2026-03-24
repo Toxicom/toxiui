@@ -45,6 +45,13 @@ function LP:GetUpdatePages()
         .. ".\n\n"
         .. "Only the sections you choose are touched. Everything else stays exactly as you left it.\n\n"
         .. F.String.Silver("Tip: check the Changelog first (/tx > Changelog) to see what changed before deciding what to apply."),
+      button = {
+        text = "Open Profile Updater",
+        onClick = function()
+          LP:CloseLandingPage()
+          TXUI:GetModule("ProfileUpdater"):Toggle()
+        end,
+      },
     },
   }
 end
