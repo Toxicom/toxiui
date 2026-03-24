@@ -89,6 +89,45 @@ local function acquireRow(pool, parent, contentWidth)
   return row
 end
 
+function PU:SetupAnimations(frame)
+  frame.animEnter = TXUI:CreateAnimationGroup(frame)
+  do
+    local fadein = frame.animEnter:CreateAnimation("fade")
+    fadein:SetChange(1)
+    fadein:SetDuration(0.32)
+    fadein:SetEasing("out-cubic")
+  end
+
+  frame.animExit = TXUI:CreateAnimationGroup(frame)
+  do
+    local fadeout = frame.animExit:CreateAnimation("fade")
+    fadeout:SetChange(0)
+    fadeout:SetDuration(0.22)
+    fadeout:SetEasing("in-cubic")
+  end
+  frame.animExit:SetScript("OnFinished", function()
+    frame:Hide()
+  end)
+end
+
+function PU:ShowFrame()
+  local f = self.frame
+  if not f then return end
+  if f.animExit:IsPlaying() then f.animExit:Stop() end
+  f:SetAlpha(0)
+  f:Show()
+  f:Raise()
+  f.animEnter:Play()
+end
+
+function PU:CloseFrame()
+  local f = self.frame
+  if not f or not f:IsShown() then return end
+  if f.animEnter:IsPlaying() then f.animEnter:Stop() end
+  f:SetAlpha(1)
+  f.animExit:Play()
+end
+
 function PU:BuildCheckboxLabelText(item)
   local labelText = item.label
   local diffData = self:GetDiffForItem(item.key)
@@ -448,7 +487,7 @@ function PU:CreateActionButtons(parent)
       TXUI:LogInfo("No profile sections selected.")
       return
     end
-    PU.frame:Hide()
+    PU:CloseFrame()
     PU:ShowConfirmationPopup()
   end)
 
@@ -490,6 +529,9 @@ function PU:CreateUpdaterFrame()
   frame:SetFrameStrata("HIGH")
   frame:CreateBackdrop("Transparent")
   frame:CreateCloseButton()
+  frame.CloseButton:SetScript("OnClick", function()
+    PU:CloseFrame()
+  end)
   frame:SetMovable(true)
   frame:Hide()
 
@@ -586,4 +628,5 @@ function PU:CreateUpdaterFrame()
 
   self.frame = frame
   self.checkboxes = checkboxes
+  self:SetupAnimations(frame)
 end

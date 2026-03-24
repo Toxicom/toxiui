@@ -10,8 +10,10 @@ TXUI.Changelog["7.4.0"] = {
 
     "* Enhancements",
     "Profile Updater: Display color differences as a single HEX unit instead of separate R G B units",
+    "Profile Updater: Add open & close animations",
     F.String.Retail() .. F.String.CDM() .. ": Slightly stabler code due to using built-in Blizzard API instead of self made stuff",
-    "Gradient mode: Cache some function closures for potentially better performance",
+    "Gradient Mode: Cache some function closures for potentially better performance",
+    "Landing Page: Show profile updater button in update landing page",
 
     "* Bug fixes",
     "Gradient mode: Safer castbar coloring code",

@@ -511,10 +511,9 @@ function PU:Toggle()
   end
 
   if self.frame:IsShown() then
-    self.frame:Hide()
+    self:CloseFrame()
   else
-    self.frame:Show()
-    self.frame:Raise()
+    self:ShowFrame()
   end
 end
 
