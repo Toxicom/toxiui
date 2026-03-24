@@ -19,11 +19,11 @@ function PF:ApplyMovers(pf, horizontal)
       AlertFrameMover = F.Position("LEFT", "LootFrameMover", "RIGHT", 240, -60),
 
       -- ActionBars
-      ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 50),
-      ElvAB_6 = F.Position("BOTTOMRIGHT", "ElvAB_1", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Close Left
-      ElvAB_5 = F.Position("BOTTOMLEFT", "ElvAB_1", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Close Right
-      ElvAB_3 = F.Position("BOTTOMRIGHT", "ElvAB_6", "BOTTOMLEFT", -defaultPadding * 4, 0), -- Far Left
-      ElvAB_4 = F.Position("BOTTOMLEFT", "ElvAB_5", "BOTTOMRIGHT", defaultPadding * 4, 0), -- Far Right
+      ElvAB_1 = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 100),
+      ElvAB_6 = F.Position("TOP", "ElvAB_1", "BOTTOM", 0, -defaultPadding), -- Close Left
+      ElvAB_5 = F.Position("TOP", "ElvAB_6", "BOTTOM", 0, -defaultPadding), -- Close Right
+      ElvAB_3 = F.Position("TOPRIGHT", "ElvAB_1", "TOPLEFT", -defaultPadding * 4, 0), -- Far Left
+      ElvAB_4 = F.Position("TOPLEFT", "ElvAB_1", "TOPRIGHT", defaultPadding * 4, 0), -- Far Right
 
       ElvAB_2 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -44, -480), -- Unused
       ElvAB_7 = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -88, -480), -- Unused

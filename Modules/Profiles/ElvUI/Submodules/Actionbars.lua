@@ -13,7 +13,8 @@ local actionbarTemplate = {
   buttons = 12,
   buttonSize = F.Dpi(36), -- Width
   buttonHeight = F.Dpi(24),
-  buttonsPerRow = 6,
+  buttonsPerRow = 12,
+  buttonSpacing = F.Dpi(4),
 
   hotkeytext = true,
   hotkeyTextPosition = "TOPRIGHT",
@@ -96,8 +97,6 @@ function PF:ApplyActionbars(pf)
   -- ActionBar Bars
   pf.actionbar.bar1 = createMainActionBar {
     enabled = true,
-    buttonSize = F.Dpi(36),
-    buttonHeight = F.Dpi(24),
   }
 
   pf.actionbar.bar2 = createMainActionBar {
