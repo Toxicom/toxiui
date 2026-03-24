@@ -65,9 +65,6 @@ local function getSkinsData()
         boolLine("Gradients", function()
           return E.db.TXUI.addons.damageMeter.gradients
         end),
-        boolLine("Header Fade", function()
-          return E.db.TXUI.addons.damageMeter.headerFade
-        end),
       },
     })
   end

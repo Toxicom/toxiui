@@ -388,6 +388,16 @@ function PF:BuildAdditionalPrivateProfile()
           },
         },
 
+        damageMeter = {
+          bar = {
+            texture = I.Textures.Primary,
+          },
+          headerBackdrop = "hide",
+          headerPart = "mouseover",
+          scrollBar = "mouseover",
+          windowBackdrop = "hide",
+        },
+
         -- Skins: Widgets
         widgets = {
           button = {

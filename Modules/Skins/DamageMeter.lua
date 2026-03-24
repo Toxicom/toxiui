@@ -111,75 +111,6 @@ local function ApplyGradient(content)
   F.Color.SetGradient(texture, gradientOrientation, normalColor, shiftColor)
 end
 
--- Animation duration for header fade
-local HEADER_FADE_DURATION = 0.3
-local HEADER_FADE_EASING = "out-quintic"
-
--- Setup fade animation for a single frame
-local function SetupFadeAnimation(frame)
-  if not frame or frame.txuiFadeAnim then return end
-
-  frame.txuiFadeAnim = TXUI:CreateAnimationGroup(frame):CreateAnimation("Fade")
-  frame.txuiFadeAnim:SetDuration(HEADER_FADE_DURATION)
-  frame.txuiFadeAnim:SetEasing(HEADER_FADE_EASING)
-end
-
--- Animate alpha on a single frame
-local function AnimateAlpha(frame, alpha)
-  if not frame or not frame.txuiFadeAnim then return end
-
-  -- Stop any running animation
-  if frame.txuiFadeAnim:IsPlaying() then frame.txuiFadeAnim:Stop() end
-
-  frame.txuiFadeAnim:SetChange(alpha)
-  frame.txuiFadeAnim:Play()
-end
-
--- Animate alpha on all header elements
-local function AnimateHeaderAlpha(window, alpha)
-  if window.DamageMeterTypeDropdown then AnimateAlpha(window.DamageMeterTypeDropdown, alpha) end
-  if window.SessionDropdown then AnimateAlpha(window.SessionDropdown, alpha) end
-  if window.SettingsDropdown then AnimateAlpha(window.SettingsDropdown, alpha) end
-end
-
--- Set alpha immediately on all header elements (no animation)
-local function SetHeaderAlpha(window, alpha)
-  if window.DamageMeterTypeDropdown then window.DamageMeterTypeDropdown:SetAlpha(alpha) end
-  if window.SessionDropdown then window.SessionDropdown:SetAlpha(alpha) end
-  if window.SettingsDropdown then window.SettingsDropdown:SetAlpha(alpha) end
-end
-
-local function SkinHeader(window)
-  if not window or not window.Header then return end
-  if not E.db.TXUI.addons.damageMeter.headerFade then return end
-  if window.txuiHeaderHooked then return end
-  window.txuiHeaderHooked = true
-
-  -- Make header backdrop transparent
-  window.Header:SetAlpha(0)
-
-  local db = E.db.TXUI.addons.damageMeter
-
-  -- Setup fade animations for each header element
-  SetupFadeAnimation(window.DamageMeterTypeDropdown)
-  SetupFadeAnimation(window.SessionDropdown)
-  SetupFadeAnimation(window.SettingsDropdown)
-
-  -- Set initial alpha to hidden (no animation on initial setup)
-  SetHeaderAlpha(window, db.headerFadeMinAlpha)
-
-  -- OnEnter: animate header to full alpha
-  window:HookScript("OnEnter", function()
-    AnimateHeaderAlpha(window, db.headerFadeMaxAlpha)
-  end)
-
-  -- OnLeave: animate header to low alpha (only if mouse truly left the window)
-  window:HookScript("OnLeave", function()
-    if window:IsMouseOver() then return end
-    AnimateHeaderAlpha(window, db.headerFadeMinAlpha)
-  end)
-end
-
 local function SkinMeter(content)
   if not content or not content.StatusBar then return end
 
@@ -257,8 +188,6 @@ local function HookLocalPlayerEntry(window)
 end
 
 local function HookSessionWindow(window)
-  SkinHeader(window)
-
   -- Hide sticky local player row
   if E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then HookLocalPlayerEntry(window) end
 

@@ -5,6 +5,12 @@ TXUI.Changelog["7.4.0"] = {
   RELEASE_DATE = "Mar TBD, 2026",
   CHANGES = {
     "* Breaking changes",
+    F.String.Retail()
+      .. "Damage Meter: Remove the option for header fade"
+      .. F.String.Sublist("This functionality exists in WindTools (and is most likely better), no reason to maintain it")
+      .. F.String.Sublist(
+        "The only downside is that settings for it are stored in the private profile, so you will have to re-apply this for every character, if you're using separate private profiles"
+      ),
 
     "* New features",
 
@@ -26,6 +32,8 @@ TXUI.Changelog["7.4.0"] = {
     F.String.ElvUI() .. " Unitframes: Re-position buffs and role icon for party frames",
     F.String.ElvUI() .. " Action Bars: Adjust buttons per row and button spacing",
     F.String.Retail() .. F.String.CDM() .. ": Update keybind frame level to avoid situations where it's behind power bar",
+    F.String.WindTools() .. ": Change Damage Meter texture to KMT47",
+    F.String.WindTools() .. ": Setup Damage Meter fading options",
 
     "* Documentation",
 

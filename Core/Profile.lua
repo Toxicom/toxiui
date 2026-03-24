@@ -383,9 +383,6 @@ P.addons = {
     enabled = true, -- Enabled by default
     icons = true, -- Enabled by default
     gradients = true, -- Enabled by default (works with any theme)
-    headerFade = true, -- Fade header on mouseover
-    headerFadeMinAlpha = 0, -- Alpha when not hovering
-    headerFadeMaxAlpha = 1, -- Alpha when hovering
     hideLocalPlayerEntry = true, -- Enabled by default
     resetOnNewInstance = false, -- Auto-reset meter on new instance
   },
