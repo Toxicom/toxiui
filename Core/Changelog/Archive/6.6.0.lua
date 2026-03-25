@@ -20,7 +20,7 @@ TXUI.Changelog["6.6.0"] = {
       .. F.String.Sublist("/details config -> Bars: General -> Icons -> Texture"),
     "Add Health Coloring to UnitFrames" --
       .. F.String.Sublist("Enabled by default")
-      .. F.String.Sublist("Only works in " .. F.String.GradientString() .. " mode")
+      .. F.String.Sublist("Only works in " .. F.String.GradientMode())
       .. F.String.Sublist("All information and options can be found under " .. F.String.Menu.Themes() .. " -> Gradient Mode -> Settings"),
     "Add " .. F.String.ToxiUI("Equipment Sets") .. " DataText from " .. F.String.ElvUI() .. " to WunderBar",
     "Add 2 new " .. F.String.Menu.Armory() .. " backgrounds featuring The War Within content",

@@ -121,15 +121,15 @@ function F.String.Scaling()
 end
 
 function F.String.CDM()
-  return TXUI.Title .. " " .. F.String.Class("Cooldown Manager Skin", "MONK")
+  return F.String.Class("Cooldown Manager", "MONK")
 end
 
 function F.String.ReforgedArmory()
   return F.String.Class("Reforged", "MONK") .. F.String.Class("Armory", "ROGUE")
 end
 
-function F.String.GradientString()
-  return F.String.FastGradient("Gradient", 0, 0.6, 1, 0, 0.9, 1)
+function F.String.GradientMode()
+  return F.String.FastGradient("Gradient Mode", 0.7, 0.2, 1, 0, 0.9, 1)
 end
 
 function F.String.Covenant(msg)

@@ -16,19 +16,19 @@ TXUI.Changelog["7.3.1"] = {
     "* Enhancements",
     "Set 0.65 UI scale for non-standard resolutions",
     "Update default " --
-      .. F.String.GradientString()
+      .. F.String.GradientMode()
       .. " color for "
       .. F.String.Class("Paladin", "PALADIN")
       .. F.String.Sublist("Old values:")
       .. F.String.Sublist("RIGHT: " .. F.String.Color("#F58CBA", "f58cba")),
     "Update default " --
-      .. F.String.GradientString()
+      .. F.String.GradientMode()
       .. " color for "
       .. F.String.Class("Mage", "MAGE")
       .. F.String.Sublist("Old values:")
       .. F.String.Sublist("RIGHT: " .. F.String.Color("#33C7FC", "33c7fc")),
     "Update default " --
-      .. F.String.GradientString()
+      .. F.String.GradientMode()
       .. " color for "
       .. F.String.Class("Demon Hunter", "DEMONHUNTER")
       .. F.String.Sublist("Old values:")
@@ -41,7 +41,7 @@ TXUI.Changelog["7.3.1"] = {
 
     "* Bug fixes",
     F.String.Retail() .. "Improve anchoring and keybinds logic of " .. F.String.CDM(),
-    F.String.Retail() .. F.String.Anniversary() .. "Fix error when disabling " .. F.String.GradientString() .. " mode",
+    F.String.Retail() .. F.String.Anniversary() .. "Fix error when disabling " .. F.String.GradientMode() .. " mode",
     F.String.Retail() .. "Fix an icon indexing issue with " .. F.String.CDM() .. F.String.Sublist("Credits to " .. F.String.Kryo()),
     F.String.Retail() .. "Allow anchoring to work in combat for " .. F.String.CDM() .. F.String.Sublist("This should potentially fix the issue of it randomly yeeting"),
 

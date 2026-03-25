@@ -21,20 +21,20 @@ TXUI.Changelog["7.3.2"] = {
 
     "* Enhancements",
     "Update "
-      .. F.String.GradientString()
+      .. F.String.GradientMode()
       .. " colors for classes except for "
       .. F.String.Class("Hunter", "HUNTER")
       .. ", "
       .. F.String.Class("Shaman", "SHAMAN")
       .. " and "
       .. F.String.Class("Rogue", "ROGUE"),
-    "Update " .. F.String.GradientString() .. " colors for " .. F.String.Class("Priest", "PRIEST") .. F.String.Sublist(
+    "Update " .. F.String.GradientMode() .. " colors for " .. F.String.Class("Priest", "PRIEST") .. F.String.Sublist(
       "Previous color had a blue tint to it which resulted in the backdrop being dark blue, which looked very wrong"
     ),
     "Add borders to the played graph bars for the Game Menu Skin",
     F.String.Retail() .. "Enable the Cooldown Manager in Blizzard settings if " .. F.String.CDM() .. " is enabled",
     F.String.Retail() .. "Display Essence on " .. F.String.ToxiUI("[tx:power]") .. " tag for " .. F.String.Class("Evokers", "EVOKER"),
-    F.String.Retail() .. "Reverse " .. F.String.GradientString() .. " direction for Damage Meter gradients",
+    F.String.Retail() .. "Reverse " .. F.String.GradientMode() .. " direction for Damage Meter gradients",
     F.String.Retail() .. "Hide mana text for feral & guardian druids in human form",
 
     "* Bug fixes",
@@ -66,6 +66,6 @@ TXUI.Changelog["7.3.2"] = {
 
     "* Settings refactoring",
     F.String.Retail() .. "Add notes to the " .. F.String.CDM() .. " for horizontal orientation",
-    "Sort " .. F.String.GradientString() .. " mode's classes in settings",
+    "Sort " .. F.String.GradientMode() .. " mode's classes in settings",
   },
 }

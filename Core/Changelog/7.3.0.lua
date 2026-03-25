@@ -6,20 +6,20 @@ TXUI.Changelog["7.3.0"] = {
   CHANGES = {
     "* New features",
     "Add player-only tags for " .. F.String.ToxiUI("[tx:classicon]"),
-    "Preview bars in " .. TXUI.Title .. " " .. F.String.GradientString() .. " mode settings",
+    "Preview bars in " .. TXUI.Title .. " " .. F.String.GradientMode() .. " settings",
     F.String.Retail() .. "Centered icons options for " .. F.String.CDM(),
 
     "* Enhancements",
     "Add disclaimer text to " .. TXUI.Title .. " Profile Updater",
     "Update default " --
-      .. F.String.GradientString()
+      .. F.String.GradientMode()
       .. " color for "
       .. F.String.Class("Priest", "PRIEST")
       .. F.String.Sublist("Old values:")
       .. F.String.Sublist("LEFT: " .. F.String.Color("#D1D1D1", "d1d1d1"))
       .. F.String.Sublist("RIGHT: " .. F.String.Color("#FFFFFF", "ffffff")),
     "Update default " --
-      .. F.String.GradientString()
+      .. F.String.GradientMode()
       .. " color for "
       .. F.String.Class("Demon Hunter", "DEMONHUNTER")
       .. F.String.Sublist("Old values:")
