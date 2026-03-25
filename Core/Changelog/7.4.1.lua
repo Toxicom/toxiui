@@ -11,6 +11,7 @@ TXUI.Changelog["7.4.1"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. F.String.CDM() .. " Keybinds: Lower strata to avoid overlap",
 
     "* Profile updates",
 

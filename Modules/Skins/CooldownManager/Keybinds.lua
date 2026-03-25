@@ -88,7 +88,7 @@ local function GetKeybind(icon)
 end
 
 local function StyleKeybind(keybind, db)
-  keybind:SetFrameStrata("HIGH")
+  keybind:SetFrameStrata("MEDIUM")
   keybind:SetFrameLevel(keybind:GetParent():GetFrameLevel() + 1)
   local text = keybind.text
   text:ClearAllPoints()
