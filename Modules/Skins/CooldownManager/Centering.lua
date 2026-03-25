@@ -121,6 +121,13 @@ function CM:AlignBuffBarViewer()
 
   local ySpacing = cache.ySpacing
 
+  -- The viewer auto-sizes to its content. Using two-point (BOTTOMLEFT+BOTTOMRIGHT) anchors on bars
+  -- creates a circular dependency: bars stretch to viewer width → viewer shrinks to bar width → 1px loop.
+  -- Fix: snapshot viewer width once and use a single anchor + explicit SetWidth on each bar.
+  -- Guard: if viewer is in its transient collapsed state (w<=1), bail and wait for the next event.
+  local barWidth = floor(viewer:GetWidth() + 0.5)
+  if barWidth <= 1 then return end
+
   self._centeringIcons = true
 
   for i = 0, count - 1 do
@@ -128,9 +135,9 @@ function CM:AlignBuffBarViewer()
     if bar then
       local yPos = i * (barHeight + ySpacing)
       bar:ClearAllPoints()
+      bar:SetWidth(barWidth)
       bar:SetHeight(barHeight)
       bar:SetPoint("BOTTOMLEFT", viewer, "BOTTOMLEFT", 0, yPos)
-      bar:SetPoint("BOTTOMRIGHT", viewer, "BOTTOMRIGHT", 0, yPos)
     end
   end
 

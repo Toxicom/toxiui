@@ -12,7 +12,8 @@ TXUI.Changelog["7.4.1"] = {
 
     "* Bug fixes",
     F.String.Retail() .. F.String.CDM() .. " Keybinds: Lower strata to avoid overlap",
-    F.String.GradientMode() .. ": Fix wrong colors",
+    F.String.Retail() .. F.String.CDM() .. " Centering: Buff bar width collapsing",
+    F.String.GradientMode() .. ": Wrong colors on group unitframes",
 
     "* Profile updates",
 
