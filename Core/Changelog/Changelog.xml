@@ -33,4 +33,5 @@
   <Script file='7.3.9.lua' />
   <Script file='7.4.0.lua' />
   <Script file='7.4.1.lua' />
+  <Script file='7.4.2.lua' />
 </Ui>
