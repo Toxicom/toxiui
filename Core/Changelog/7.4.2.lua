@@ -13,10 +13,12 @@ TXUI.Changelog["7.4.2"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. " Unitframes: Update horizontal party unitframes",
 
     "* Documentation",
 
     "* Settings refactoring",
+    "Update Vertical and Horizontal layout images in the installer",
 
     "* Development improvements",
   },

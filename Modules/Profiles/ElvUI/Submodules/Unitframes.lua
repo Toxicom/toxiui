@@ -618,8 +618,8 @@ local focus = {
 
 local function getParty(horizontal)
   return {
-    width = horizontal and F.Dpi(150) or F.Dpi(240),
-    height = horizontal and F.Dpi(72) or F.Dpi(36),
+    width = horizontal and F.Dpi(180) or F.Dpi(240),
+    height = horizontal and F.Dpi(60) or F.Dpi(36),
 
     visibility = "[@raid1,exists][@party1,noexists] hide;show",
 
@@ -631,10 +631,16 @@ local function getParty(horizontal)
     startFromCenter = true,
     verticalSpacing = horizontal and F.Dpi(6) or F.Dpi(48),
 
+    infoPanel = {
+      enable = horizontal,
+      transparent = true,
+    },
+
     customTexts = {
       ["toxiui:name"] = createCustomText({}, {
+        attachTextTo = horizontal and "InfoPanel" or "Frame",
         text_format = "[tx:name:abbrev:medium:split]",
-        xOffset = horizontal and F.Dpi(8) or F.Dpi(6),
+        xOffset = horizontal and F.Dpi(14) or F.Dpi(6),
         yOffset = horizontal and F.Dpi(0) or F.Dpi(32),
       }),
 
@@ -646,6 +652,7 @@ local function getParty(horizontal)
       }),
 
       ["toxiui:level"] = createCustomText({}, {
+        enable = not horizontal,
         justifyH = "LEFT",
         text_format = "[tx:level:difficulty]",
         xOffset = horizontal and F.Dpi(24) or F.Dpi(22),
@@ -661,7 +668,7 @@ local function getParty(horizontal)
       }),
 
       ["toxiui:class-icon"] = createCustomText({}, {
-        enable = not horizontal,
+        enable = true,
         justifyH = "LEFT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
@@ -766,16 +773,16 @@ local function getParty(horizontal)
     },
 
     roleIcon = {
-      damager = not horizontal,
-      position = "TOPLEFT",
-      size = horizontal and F.Dpi(22) or F.Dpi(24),
-      xOffset = horizontal and F.Dpi(-12) or F.Dpi(-24),
-      yOffset = horizontal and F.Dpi(12) or F.Dpi(30),
+      damager = true,
+      position = horizontal and "LEFT" or "TOPLEFT",
+      size = horizontal and F.Dpi(14) or F.Dpi(24),
+      xOffset = horizontal and F.Dpi(0) or F.Dpi(-24),
+      yOffset = horizontal and F.Dpi(0) or F.Dpi(30),
     },
 
     power = {
-      width = horizontal and "filled" or "spaced",
-      height = horizontal and F.Dpi(18) or F.Dpi(12),
+      width = horizontal and "inset" or "spaced",
+      height = horizontal and F.Dpi(10) or F.Dpi(12),
       text_format = "",
     },
 

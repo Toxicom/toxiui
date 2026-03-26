@@ -490,9 +490,9 @@ function PF:BuildFontsProfile()
           },
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL, {
             customTexts = customTextSize {
-              { "toxiui:name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
-              { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-              { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+              { "toxiui:name", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+              { "toxiui:health", I.Fonts.Primary, 28, "SHADOWOUTLINE" },
+              { "toxiui:power", I.Fonts.Primary, 16, "SHADOWOUTLINE" },
               { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
               { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             },
