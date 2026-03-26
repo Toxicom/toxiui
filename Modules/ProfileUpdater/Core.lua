@@ -428,12 +428,6 @@ function PU:ExecuteSelectedUpdates()
     if self.selectedItems[key] then crushFnc(E.db[dbPath], pf[dbPath]) end
   end
 
-  -- Movers need F.ProcessMovers first
-  if self.selectedItems.movers then
-    F.ProcessMovers(pf)
-    crushFnc(E.db.movers, pf.movers)
-  end
-
   -- Colors (separate from unitframes — BuildColorsProfile is authoritative)
   if self.selectedItems.colors then
     local colors = PF:BuildColorsProfile()
@@ -449,6 +443,12 @@ function PU:ExecuteSelectedUpdates()
   if self.selectedItems.global then PF:ElvUIProfileGlobal() end
   if self.selectedItems.additional then PF:ElvUIAdditional() end
   if self.selectedItems.additional_private then PF:ElvUIAdditionalPrivate() end
+
+  -- Movers need F.ProcessMovers first
+  if self.selectedItems.movers then
+    F.ProcessMovers(pf)
+    crushFnc(E.db.movers, pf.movers)
+  end
 
   -- Update version stamps only if all items are selected (full update = equivalent to installer)
   if self:GetSelectedCount() == self:GetTotalItemCount() then
