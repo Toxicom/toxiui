@@ -384,13 +384,6 @@ function PF:BuildFontsProfile()
           name = nameplates.shared.name,
           title = nameplates.shared.title,
         },
-
-        ["TARGET"] = {
-          arrow = "Arrow0",
-          arrowScale = 0.2,
-          arrowSpacing = 4,
-          glowStyle = "style4",
-        },
       },
     },
 
