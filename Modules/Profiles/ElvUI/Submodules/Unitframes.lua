@@ -774,6 +774,7 @@ local function getParty(horizontal)
 
     roleIcon = {
       damager = true,
+      attachTo = horizontal and "InfoPanel" or "Frame",
       position = horizontal and "LEFT" or "TOPLEFT",
       size = horizontal and F.Dpi(14) or F.Dpi(24),
       xOffset = horizontal and F.Dpi(0) or F.Dpi(-24),
@@ -844,7 +845,7 @@ local function getRaid(horizontal)
     roleIcon = {
       enable = true,
       damager = true,
-      attachTo = "InfoPanel",
+      attachTo = horizontal and "InfoPanel" or "Frame",
       position = "LEFT",
       size = F.Dpi(14),
       xOffset = 0,
