@@ -19,6 +19,7 @@ local SECTION_HEADER_HEIGHT = 30
 local PADDING = 15
 local BUTTON_WIDTH = 160
 local BUTTON_HEIGHT = 26
+local LAYOUT_BUTTON_WIDTH = 130
 local PANEL_GAP = 60
 local TITLE_HEIGHT = 45
 local DIFF_ROW_HEIGHT = 54
@@ -87,6 +88,14 @@ local function acquireRow(pool, parent, contentWidth)
 
   tinsert(pool, row)
   return row
+end
+
+-- Reset the diff panel view without touching reload state (used when switching layout)
+local function resetDiffView()
+  if PU.rowPool then releaseAllRows(PU.rowPool) end
+  if PU.diffPanelTitle then PU.diffPanelTitle:SetText(F.String.Muted("Hover over a section to preview changes")) end
+  PU.currentDiffKey = nil
+  PU.currentDiffLabel = nil
 end
 
 function PU:SetupAnimations(frame)
@@ -449,6 +458,60 @@ function PU:ShowReloadBanner()
   self.diffReloadBanner:Show()
 end
 
+function PU:RefreshLayoutButtons()
+  if not self.layoutBtnV or not self.layoutBtnH then return end
+  if E.db.TXUI.installer.layout == I.Enum.Layouts.VERTICAL then
+    self.layoutBtnV:SetText(F.String.Good("Vertical") .. F.String.Silver(" (active)"))
+    self.layoutBtnH:SetText("Horizontal")
+  else
+    self.layoutBtnV:SetText("Vertical")
+    self.layoutBtnH:SetText(F.String.Good("Horizontal") .. F.String.Silver(" (active)"))
+  end
+end
+
+function PU:CreateLayoutSwitcher(parent, yOffset)
+  local font = F.GetFontPath(I.Fonts.Primary)
+
+  local label = parent:CreateFontString(nil, "OVERLAY")
+  label:SetPoint("TOPLEFT", parent, "TOPLEFT", PADDING, yOffset - 6)
+  label:FontTemplate(font, 13, "NONE", true)
+  label:SetText("Layout:")
+
+  local btnV = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
+  btnV:SetSize(LAYOUT_BUTTON_WIDTH, BUTTON_HEIGHT)
+  btnV:SetPoint("LEFT", label, "RIGHT", 8, 6)
+  btnV:GetFontString():FontTemplate(font, 12, "OUTLINE", true)
+  S:HandleButton(btnV)
+
+  local btnH = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
+  btnH:SetSize(LAYOUT_BUTTON_WIDTH, BUTTON_HEIGHT)
+  btnH:SetPoint("LEFT", btnV, "RIGHT", 8, 0)
+  btnH:GetFontString():FontTemplate(font, 12, "OUTLINE", true)
+  S:HandleButton(btnH)
+
+  btnV:SetScript("OnClick", function()
+    if E.db.TXUI.installer.layout == I.Enum.Layouts.VERTICAL then return end
+    E.db.TXUI.installer.layout = I.Enum.Layouts.VERTICAL
+    PU:ComputeAllDiffs()
+    resetDiffView()
+    PU:UpdateCheckboxLabels()
+    PU:RefreshLayoutButtons()
+  end)
+
+  btnH:SetScript("OnClick", function()
+    if E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL then return end
+    E.db.TXUI.installer.layout = I.Enum.Layouts.HORIZONTAL
+    PU:ComputeAllDiffs()
+    resetDiffView()
+    PU:UpdateCheckboxLabels()
+    PU:RefreshLayoutButtons()
+  end)
+
+  self.layoutBtnV = btnV
+  self.layoutBtnH = btnH
+  self:RefreshLayoutButtons()
+end
+
 function PU:CreateActionButtons(parent)
   local font = F.GetFontPath(I.Fonts.Primary)
 
@@ -568,6 +631,11 @@ function PU:CreateUpdaterFrame()
       .. "It is recommended to create a backup your profile if you're afraid to lose any changes you've made.\n\n"
   )
   yOffset = yOffset - disclaimerText:GetStringHeight() - 15
+
+  -- Layout switcher
+  yOffset = yOffset - 5
+  self:CreateLayoutSwitcher(frame, yOffset)
+  yOffset = yOffset - (BUTTON_HEIGHT + 12)
 
   local checkboxes = {}
   local categories = self:GetCategories()

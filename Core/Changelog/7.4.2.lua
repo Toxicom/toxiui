@@ -7,6 +7,7 @@ TXUI.Changelog["7.4.2"] = {
     "* Breaking changes",
 
     "* New features",
+    "Add option to switch between vertical and horizontal layouts in the profile updater",
 
     "* Enhancements",
 

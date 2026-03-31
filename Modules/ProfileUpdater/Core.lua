@@ -508,6 +508,7 @@ function PU:Toggle()
     self:UpdateCheckboxLabels()
     self:UpdateCheckboxStates()
     self:UpdateApplyButton()
+    self:RefreshLayoutButtons()
   end
 
   if self.frame:IsShown() then
