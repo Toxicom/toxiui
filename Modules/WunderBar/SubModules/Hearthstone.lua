@@ -178,21 +178,6 @@ function HS:GetAdditionalHearthstones()
   return slots
 end
 
-function HS:GetCovenantStone(hs)
-  local covenant = F.GetCachedCovenant(true)
-
-  if hs.covenant ~= covenant then
-    for _, option in pairs(I.HearthstoneData) do
-      if option.known and (option.covenant and option.covenant == covenant) then
-        self:LogDebug("HS:GetCovenantStone > Replaced stone", hs.covenant, option.covenant)
-        return option
-      end
-    end
-  end
-
-  return hs
-end
-
 function HS:GetMagePortals()
   local teleportList = {}
   local portalList = {}
@@ -221,9 +206,6 @@ function HS:UpdateSelected()
   -- Check if any ids could be found
   if not self.hsPrimary.id then return self:LogDebug("HS:UpdateSelected > Primary ID could not be found") end
 
-  -- If covenant hearthstone is selected, be smart and replace it with current covenant
-  if self.hsPrimary.covenant then self.hsPrimary = self:GetCovenantStone(self.hsPrimary) end
-
   -- Fallback to default if spell is not known
   if not self.hsPrimary.known then self.hsPrimary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS] end
 
@@ -232,7 +214,7 @@ function HS:UpdateSelected()
     local pool = self.db.randomPrimaryHsPool
     local usePool = pool and not F.Table.IsEmpty(pool)
     for _, option in pairs(I.HearthstoneData) do
-      if option.known and not option.class and option.hearthstone and not option.covenant then
+      if option.known and not option.class and option.hearthstone then
         if not usePool or pool[option.id] == true then tinsert(idTable, option.id) end
       end
     end
@@ -505,9 +487,4 @@ function HS:OnInit()
   self.Initialized = true
 end
 
-WB:RegisterSubModule(
-  HS,
-  F.Table.Join({
-    "HEARTHSTONE_BOUND",
-  }, F.Table.If(TXUI.IsRetail, { "COVENANT_CHOSEN" }))
-)
+WB:RegisterSubModule(HS, { "HEARTHSTONE_BOUND" })

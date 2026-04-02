@@ -16,7 +16,7 @@ function O:WunderBar_SubModules_RandomPool_Toggle(group)
     function()
       local names = {}
       for _, option in pairs(I.HearthstoneData) do
-        if option.known and option.hearthstone and not option.class and not option.covenant then names[option.id] = option.name end
+        if option.known and option.hearthstone and not option.class then names[option.id] = option.name end
       end
       return names
     end,
@@ -176,7 +176,7 @@ function O:WunderBar_SubModules_Hearthstone()
   tab.hearthstoneGroup.inline = true
   tab.hearthstoneGroup.args.randomPrimaryHs = ACH:Toggle(
     "Randomize Primary Hearthstone",
-    "Enabling this will randomize the selected Hearthstone toy each time you reload your UI. It will not pick Dalaran or Garrison hearthstones, class teleports, covenant stones.",
+    "Enabling this will randomize the selected Hearthstone toy each time you reload your UI. It will not pick Dalaran or Garrison hearthstones or class teleports.",
     1,
     nil,
     nil,
