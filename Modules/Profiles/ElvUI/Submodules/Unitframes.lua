@@ -847,7 +847,7 @@ local function getRaid(horizontal)
     roleIcon = {
       enable = true,
       damager = true,
-      attachTo = horizontal and "InfoPanel" or "Frame",
+      attachTo = "InfoPanel",
       position = "LEFT",
       size = F.Dpi(14),
       xOffset = 0,
