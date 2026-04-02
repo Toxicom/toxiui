@@ -21,6 +21,7 @@ TXUI.Changelog["7.4.2"] = {
     F.String.ElvUI() .. " Unitframes: Update horizontal party unitframes",
 
     "* Documentation",
+    F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Add Preyseeker's, Corewarden's, and Lightcalled hearthstones",
 
     "* Settings refactoring",
     "Update Vertical and Horizontal layout images in the installer",
