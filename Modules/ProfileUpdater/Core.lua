@@ -240,25 +240,39 @@ function PU:ComputeAllDiffs()
     local entries = {}
     computeTableDiff(E.db[dbPath], pf[dbPath], "", entries)
 
-    -- Filter paths managed by CooldownManager (CDM) dynamic width features so they
-    -- don't show as diffs while CDM is actively controlling those values.
+    -- Separate paths managed by CooldownManager (CDM) so they display as read-only
+    -- instead of clickable diffs while CDM is actively controlling those values.
+    local cdmManaged = {}
     if key == "unitframes" and TXUI.IsRetail then
       local cdmDB = E.db.TXUI and E.db.TXUI.addons and E.db.TXUI.addons.cooldownManager
       if cdmDB then
+        local dw = cdmDB.dynamicWidth
+        local classbarDB = E.db.unitframe.units.player.classbar
+        local powerOverride = cdmDB.powerBarOverride
+        local classOverride = cdmDB.classBarOverride
+        local cdmManagedPaths = {
+          { path = "units.player.power.detachedWidth", condition = dw and dw.enabled and dw.powerClassBars },
+          { path = "units.player.classbar.detachedWidth", condition = dw and dw.enabled and dw.powerClassBars },
+          { path = "units.player.classbar.spacing", condition = dw and dw.enabled and dw.powerClassBars and classbarDB and classbarDB.fill == "spaced" },
+          { path = "units.player.castbar.width", condition = dw and dw.enabled and dw.castBar },
+          { path = "units.player.power.enable", condition = powerOverride and powerOverride.enabled },
+          { path = "units.player.classbar.enable", condition = classOverride and classOverride.enabled },
+        }
         for i = #entries, 1, -1 do
           local path = entries[i].path
-          local dw = cdmDB.dynamicWidth
-          if dw and dw.enabled and dw.powerClassBars and (path == "units.player.power.detachedWidth" or path == "units.player.classbar.detachedWidth") then
-            tremove(entries, i)
-          elseif dw and dw.enabled and dw.castBar and path == "units.player.castbar.width" then
-            tremove(entries, i)
+          for _, managed in ipairs(cdmManagedPaths) do
+            if managed.condition and path == managed.path then
+              tinsert(cdmManaged, tremove(entries, i))
+              break
+            end
           end
         end
       end
     end
 
     sort(entries, sortByPath)
-    self.diffs[key] = { count = #entries, entries = entries }
+    sort(cdmManaged, sortByPath)
+    self.diffs[key] = { count = #entries, entries = entries, cdmManaged = cdmManaged }
   end
 
   -- Movers (with re-anchor detection)

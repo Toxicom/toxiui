@@ -189,6 +189,8 @@ local player = {
     detachFromFrame = true,
     detachedWidth = F.Dpi(292),
     height = 10,
+    fill = "spaced",
+    spacing = 2,
   },
 
   castbar = {

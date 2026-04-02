@@ -178,115 +178,117 @@ function O:Skins_CooldownManager()
     self:AddSpacer(tab)
 
     -- Dynamic Bars Width
-    local dynamicGroup = self:AddInlineRequirementsDesc(tab, {
-      name = "Dynamic Bars Width",
-    }, {
-      name = "Options to sync ElvUI bar widths with the Blizzard's Cooldown Manager.\n\n",
-    }, I.Requirements.CooldownManager).args
+    do
+      local dynamicGroup = self:AddInlineRequirementsDesc(tab, {
+        name = "Dynamic Bars Width",
+      }, {
+        name = "Options to sync ElvUI bar widths with the Blizzard's Cooldown Manager.\n\n",
+      }, I.Requirements.CooldownManager).args
 
-    local function dynamicDisabled()
-      return isDisabled() or not E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled
-    end
+      local function dynamicDisabled()
+        return isDisabled() or not E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled
+      end
 
-    dynamicGroup.dynamicWidthEnabled = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Enable syncing ElvUI player bar widths with the Cooldown Manager.",
-      name = function()
-        return self:GetEnableName(E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled, dynamicGroup)
-      end,
-      disabled = isDisabled,
-      get = function(_)
-        return E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled = value
-        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
-      end,
-    }
+      dynamicGroup.dynamicWidthEnabled = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Enable syncing ElvUI player bar widths with the Cooldown Manager.",
+        name = function()
+          return self:GetEnableName(E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled, dynamicGroup)
+        end,
+        disabled = isDisabled,
+        get = function(_)
+          return E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled
+        end,
+        set = function(_, value)
+          E.db.TXUI.addons.cooldownManager.dynamicWidth.enabled = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
 
-    dynamicGroup.dynamicBarsWidth = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Syncs the detached Power Bar and Class Bar width to match the Essential Cooldown Viewer width.",
-      name = "Class/Power Bars",
-      disabled = dynamicDisabled,
-      get = function(_)
-        return E.db.TXUI.addons.cooldownManager.dynamicWidth.powerClassBars
-      end,
-      set = function(_, value)
-        local cmDB = E.db.TXUI.addons.cooldownManager
-        local playerDB = E.db.unitframe.units.player
-        if value and playerDB then
-          cmDB._savedBarsWidth = {
-            power = playerDB.power and playerDB.power.detachedWidth,
-            classbar = playerDB.classbar and playerDB.classbar.detachedWidth,
-          }
-        elseif not value and playerDB then
-          local saved = cmDB._savedBarsWidth
-          if saved then
-            if playerDB.power and saved.power then playerDB.power.detachedWidth = saved.power end
-            if playerDB.classbar and saved.classbar then playerDB.classbar.detachedWidth = saved.classbar end
+      dynamicGroup.dynamicBarsWidth = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Syncs the detached Power Bar and Class Bar width to match the Essential Cooldown Viewer width.\n\nWhen the Class Bar uses spaced fill, the spacing may also be adjusted slightly to ensure bars divide evenly.",
+        name = "Class/Power Bars",
+        disabled = dynamicDisabled,
+        get = function(_)
+          return E.db.TXUI.addons.cooldownManager.dynamicWidth.powerClassBars
+        end,
+        set = function(_, value)
+          local cmDB = E.db.TXUI.addons.cooldownManager
+          local playerDB = E.db.unitframe.units.player
+          if value and playerDB then
+            cmDB._savedBarsWidth = {
+              power = playerDB.power and playerDB.power.detachedWidth,
+              classbar = playerDB.classbar and playerDB.classbar.detachedWidth,
+            }
+          elseif not value and playerDB then
+            local saved = cmDB._savedBarsWidth
+            if saved then
+              if playerDB.power and saved.power then playerDB.power.detachedWidth = saved.power end
+              if playerDB.classbar and saved.classbar then playerDB.classbar.detachedWidth = saved.classbar end
+            end
+            cmDB._savedBarsWidth = nil
+            F.Event.ContinueOutOfCombat(function()
+              local uf = E:GetModule("UnitFrames")
+              if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+            end)
           end
-          cmDB._savedBarsWidth = nil
-          F.Event.ContinueOutOfCombat(function()
-            local uf = E:GetModule("UnitFrames")
-            if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
-          end)
-        end
-        cmDB.dynamicWidth.powerClassBars = value
-        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
-      end,
-    }
+          cmDB.dynamicWidth.powerClassBars = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
 
-    dynamicGroup.dynamicCastbarWidth = {
-      order = self:GetOrder(),
-      type = "toggle",
-      desc = "Syncs the player Castbar width to match the Essential Cooldown Viewer width.",
-      name = "Castbar",
-      disabled = dynamicDisabled,
-      get = function(_)
-        return E.db.TXUI.addons.cooldownManager.dynamicWidth.castBar
-      end,
-      set = function(_, value)
-        local cmDB = E.db.TXUI.addons.cooldownManager
-        local playerDB = E.db.unitframe.units.player
-        if value and playerDB and playerDB.castbar then
-          cmDB._savedCastbarWidth = playerDB.castbar.width
-        elseif not value and playerDB and playerDB.castbar then
-          if cmDB._savedCastbarWidth then playerDB.castbar.width = cmDB._savedCastbarWidth end
-          cmDB._savedCastbarWidth = nil
-          F.Event.ContinueOutOfCombat(function()
-            local uf = E:GetModule("UnitFrames")
-            if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
-          end)
-        end
-        cmDB.dynamicWidth.castBar = value
-        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
-      end,
-    }
+      dynamicGroup.dynamicCastbarWidth = {
+        order = self:GetOrder(),
+        type = "toggle",
+        desc = "Syncs the player Castbar width to match the Essential Cooldown Viewer width.",
+        name = "Castbar",
+        disabled = dynamicDisabled,
+        get = function(_)
+          return E.db.TXUI.addons.cooldownManager.dynamicWidth.castBar
+        end,
+        set = function(_, value)
+          local cmDB = E.db.TXUI.addons.cooldownManager
+          local playerDB = E.db.unitframe.units.player
+          if value and playerDB and playerDB.castbar then
+            cmDB._savedCastbarWidth = playerDB.castbar.width
+          elseif not value and playerDB and playerDB.castbar then
+            if cmDB._savedCastbarWidth then playerDB.castbar.width = cmDB._savedCastbarWidth end
+            cmDB._savedCastbarWidth = nil
+            F.Event.ContinueOutOfCombat(function()
+              local uf = E:GetModule("UnitFrames")
+              if uf and uf.CreateAndUpdateUF then uf:CreateAndUpdateUF("player") end
+            end)
+          end
+          cmDB.dynamicWidth.castBar = value
+          F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+        end,
+      }
 
-    dynamicGroup.minDynamicWidth = {
-      order = self:GetOrder(),
-      type = "range",
-      name = "Minimum Width",
-      desc = "Minimum width for Class/Power Bars and Castbar syncing. Prevents bars from becoming too narrow when few cooldowns are shown.",
-      min = 200,
-      max = 600,
-      step = 1,
-      disabled = function()
-        local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
-        return dynamicDisabled() or (not dw.powerClassBars and not dw.castBar)
-      end,
-      get = function(_)
-        return E.db.TXUI.addons.cooldownManager.dynamicWidth.minWidth
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.cooldownManager.dynamicWidth.minWidth = value
-        local cm = TXUI:GetModule("CooldownManager")
-        if cm then cm:OnDynamicWidthChanged() end
-      end,
-    }
+      dynamicGroup.minDynamicWidth = {
+        order = self:GetOrder(),
+        type = "range",
+        name = "Minimum Width",
+        desc = "Minimum width for Class/Power Bars and Castbar syncing. Prevents bars from becoming too narrow when few cooldowns are shown.",
+        min = 200,
+        max = 600,
+        step = 1,
+        disabled = function()
+          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
+          return dynamicDisabled() or (not dw.powerClassBars and not dw.castBar)
+        end,
+        get = function(_)
+          return E.db.TXUI.addons.cooldownManager.dynamicWidth.minWidth
+        end,
+        set = function(_, value)
+          E.db.TXUI.addons.cooldownManager.dynamicWidth.minWidth = value
+          local cm = TXUI:GetModule("CooldownManager")
+          if cm then cm:OnDynamicWidthChanged() end
+        end,
+      }
+    end
   end
 
   -- Tab: Anchoring

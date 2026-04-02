@@ -337,18 +337,34 @@ function PU:BuildInteractiveDiffRows(key)
   local contentWidth = self.diffContentWidth
 
   -- Places a diff entry row with GitHub-style - / + lines
-  local function placeDiffRow(entry, isReanchored)
+  local function placeDiffRow(entry, isReanchored, isCdmManaged)
     local row = acquireRow(self.rowPool, self.diffScrollChild, contentWidth)
     row:SetSize(contentWidth, DIFF_ROW_HEIGHT)
     row:SetPoint("TOPLEFT", self.diffScrollChild, "TOPLEFT", 0, -yOffset)
 
     if isReanchored then
-      row.pathLabel:SetText(F.String.Color(entry.path, "666666"))
-      row.valueLabel:SetText(F.String.Color("- ", "774444") .. F.String.Color(entry.oldParent or "?", "555555"))
-      row.newLabel:SetText(F.String.Color("+ ", "447744") .. F.String.Color(entry.newParent or "?", "555555"))
+      row.pathLabel:SetText(F.String.Silver(entry.path))
+      row.valueLabel:SetText(F.String.DiffRemoved("-") .. " " .. F.String.Muted(entry.oldParent or "?"))
+      row.newLabel:SetText(F.String.DiffAdded("+") .. " " .. F.String.Muted(entry.newParent or "?"))
       row.newLabel:Show()
       row:EnableMouse(false)
-      row:SetAlpha(0.5)
+      row:SetAlpha(0.65)
+    elseif isCdmManaged then
+      row.pathLabel:SetText(F.String.Silver(entry.path))
+      row.valueLabel:SetText(F.String.DiffRemoved("-") .. " " .. F.String.Muted(tostring(entry.old)))
+      row.newLabel:SetText(F.String.DiffAdded("+") .. " " .. F.String.Muted(tostring(entry.new)))
+      row.newLabel:Show()
+      row:EnableMouse(true)
+      row:SetAlpha(0.65)
+      row:SetScript("OnEnter", function(self_row)
+        GameTooltip:SetOwner(self_row, "ANCHOR_RIGHT")
+        GameTooltip:AddLine("Managed by " .. F.String.ToxiUI("ToxiUI"), 1, 1, 1)
+        GameTooltip:AddLine(F.String.Muted("This setting is updated dynamically and cannot be changed here."), nil, nil, nil, true)
+        GameTooltip:Show()
+      end)
+      row:SetScript("OnLeave", function()
+        GameTooltip_Hide()
+      end)
     else
       local capturedKey = key
       local capturedEntry = entry
@@ -404,7 +420,7 @@ function PU:BuildInteractiveDiffRows(key)
 
   if not diffData then
     placeMessageRow(F.String.Warning("Detailed preview not available for this section."))
-  elseif diffData.count == 0 and (not diffData.reanchored or #diffData.reanchored == 0) then
+  elseif diffData.count == 0 and (not diffData.reanchored or #diffData.reanchored == 0) and (not diffData.cdmManaged or #diffData.cdmManaged == 0) then
     placeMessageRow(F.String.Good("No changes detected."))
   else
     for _, entry in ipairs(diffData.entries) do
@@ -414,9 +430,18 @@ function PU:BuildInteractiveDiffRows(key)
     local reanchored = diffData.reanchored
     if reanchored and #reanchored > 0 then
       if diffData.count > 0 then yOffset = yOffset + 6 end
-      placeHeaderRow(F.String.Color("--- Re-anchored by ElvUI (" .. #reanchored .. ") — read-only ---", "444444"))
+      placeHeaderRow(F.String.Muted("--- Re-anchored by ") .. F.String.ElvUI("ElvUI") .. F.String.Muted(" (" .. #reanchored .. ") — read-only ---"))
       for _, entry in ipairs(reanchored) do
-        placeDiffRow(entry, true)
+        placeDiffRow(entry, true, false)
+      end
+    end
+
+    local cdmManaged = diffData.cdmManaged
+    if cdmManaged and #cdmManaged > 0 then
+      if diffData.count > 0 or (reanchored and #reanchored > 0) then yOffset = yOffset + 6 end
+      placeHeaderRow(F.String.Muted("--- Managed by ") .. F.String.ToxiUI("ToxiUI") .. F.String.Muted(" (" .. #cdmManaged .. ") — updated dynamically ---"))
+      for _, entry in ipairs(cdmManaged) do
+        placeDiffRow(entry, false, true)
       end
     end
   end

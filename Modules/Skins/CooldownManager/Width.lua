@@ -1,6 +1,7 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local CM = TXUI:GetModule("CooldownManager")
 
+local _G = _G
 local InCombatLockdown = InCombatLockdown
 local ceil = math.ceil
 local max = math.max
@@ -28,8 +29,33 @@ function CM:SyncBarsWidth()
   -- Update ElvUI player power and classbar detached width
   local playerDB = E.db.unitframe.units.player
   if playerDB then
-    if playerDB.power then playerDB.power.detachedWidth = width end
-    if playerDB.classbar then playerDB.classbar.detachedWidth = width end
+    if playerDB.power and playerDB.power.enable then playerDB.power.detachedWidth = width end
+    if playerDB.classbar and playerDB.classbar.enable then
+      -- For "spaced" fill, adjust spacing so bar widths divide evenly:
+      -- (width - (numBars-1) * spacing) must be divisible by numBars.
+      -- Search outward from original spacing, but cap at ±3 to avoid ugly large gaps.
+      -- If no clean solution exists within range, leave spacing unchanged.
+      if playerDB.classbar.fill == "spaced" then
+        local classBarFrame = _G["ElvUF_Player_ClassBar"]
+        local numBars = classBarFrame and classBarFrame.__max
+        if numBars and numBars > 1 then
+          local origSpacing = playerDB.classbar.spacing or 2
+          for delta = 0, 3 do
+            if (width - (numBars - 1) * (origSpacing + delta)) % numBars == 0 then
+              playerDB.classbar.spacing = origSpacing + delta
+              break
+            end
+            local sLow = origSpacing - delta
+            if sLow >= 1 and (width - (numBars - 1) * sLow) % numBars == 0 then
+              playerDB.classbar.spacing = sLow
+              break
+            end
+          end
+        end
+      end
+
+      playerDB.classbar.detachedWidth = width
+    end
 
     -- Update the unitframe to apply changes (must be out of combat to avoid taint)
     F.Event.ContinueOutOfCombat(function()
