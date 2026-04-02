@@ -17,6 +17,7 @@ TXUI.Changelog["7.4.2"] = {
 
     "* Bug fixes",
     "Remove duplicate nameplate object in fonts config",
+    F.String.Retail() .. "Add Skyreach as current season portal" .. F.String.Sublist("For some reason there are 2 skyreach portals"),
 
     "* Profile updates",
     F.String.ElvUI() .. " Unitframes: Update horizontal party unitframes",
