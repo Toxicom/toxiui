@@ -63,12 +63,6 @@ function PF:ApplyActionbars(pf)
     flyoutSize = F.Dpi(40),
     countTextYOffset = F.Dpi(0),
 
-    cooldown = {
-      checkSeconds = true,
-      hhmmThreshold = -1,
-      mmssThreshold = 180,
-    },
-
     extraActionButton = {
       scale = F.DpiRaw(1.25),
     },
