@@ -78,6 +78,10 @@ local nameplates = {
     },
   },
 
+  threat = {
+    skipGoodColor = true,
+  },
+
   enviromentConditions = {
     friendlyEnabled = false,
     friendly = {
