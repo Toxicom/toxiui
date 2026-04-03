@@ -22,7 +22,7 @@ TXUI.Changelog["7.4.2"] = {
     "* Profile updates",
     F.String.ElvUI() .. " Unitframes: Update horizontal party unitframes",
     F.String.ElvUI() .. " Unitframes: Set player class bar to spaced with spacing of 2",
-    F.String.ElvUI() .. " Nameplates: Enable 'Skip Good Color' so that classification colors do not get overriden",
+    F.String.ElvUI() .. " Nameplates: Enable 'Skip Good Color' so that classification colors do not get overriden" .. F.String.Sublist("Requires " .. F.String.ElvUI() .. " 15.11"),
 
     "* Documentation",
     F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Add Preyseeker's, Corewarden's, and Lightcalled hearthstones",
