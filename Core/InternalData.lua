@@ -385,6 +385,7 @@ I.Data.Contributor = {
         ["Inydae-Silvermoon"] = true,
         ["Rishah-Silvermoon"] = true,
         ["Liliyena-Silvermoon"] = true,
+        ["Miendra-Silvermoon"] = true,
       },
 
       [I.Enum.Flavor.CLASSIC] = {
