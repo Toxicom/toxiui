@@ -26,6 +26,7 @@ TXUI.Changelog["7.4.2"] = {
 
     "* Documentation",
     F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Add Preyseeker's, Corewarden's, and Lightcalled hearthstones",
+    F.String.Retail() .. F.String.Menu.WunderBar() .. " Hearthstone: Rename M+ portal labels to match Raider.IO",
     F.String.MinElv("15.11"),
 
     "* Settings refactoring",

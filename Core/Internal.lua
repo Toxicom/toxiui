@@ -539,8 +539,8 @@ I.HearthstoneData = {
   [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl4", ["label"] = "GD" }, -- Grimrail Depot
   [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "EB" }, -- The Everbloom
   [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "UBS" }, -- Upper Blackrock Spire
-  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SKY" }, -- Skyreach
-  [1254557] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SKY" }, -- Skyreach
+  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SR" }, -- Skyreach
+  [1254557] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SR" }, -- Skyreach
 
   -- Legion
   [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "NL" }, -- Neltharion's Lair
@@ -548,7 +548,7 @@ I.HearthstoneData = {
   [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DHT" }, -- Darkheart Thicket
   [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "HOV" }, -- Halls of Valor
   [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "COS" }, -- Court of Stars
-  [1254551] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SotV" }, -- Seat of the Triumvirate
+  [1254551] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SEAT" }, -- Seat of the Triumvirate
 
   -- Battle for Azeroth
   [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "WM" }, -- Waycrest Manor
