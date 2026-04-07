@@ -2,10 +2,8 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.4.2"] = {
   HOTFIX = true,
-  RELEASE_DATE = "",
+  RELEASE_DATE = "Apr 07, 2026",
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     "Add option to switch between vertical and horizontal layouts in the profile updater",
 
@@ -32,7 +30,5 @@ TXUI.Changelog["7.4.2"] = {
     "* Settings refactoring",
     "Update Vertical and Horizontal layout images in the installer",
     F.String.Menu.WunderBar() .. " Hearthstone: Re-organize module settings",
-
-    "* Development improvements",
   },
 }
