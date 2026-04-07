@@ -87,17 +87,20 @@ local function InvalidateGradientCache()
   fgMapShift = nil
 end
 
+local function ApplyGradientToTexture(texture, classFilename)
+  if not EnsureGradientCache() then return end
+  local normalColor = fgMapNormal[classFilename]
+  local shiftColor = fgMapShift[classFilename]
+  if not normalColor or not shiftColor then return end
+  F.Color.SetGradient(texture, gradientOrientation, normalColor, shiftColor)
+end
+
 -- Apply gradient colors to a bar texture using the content's class
 local function ApplyGradient(content)
   if not content then return end
 
   local classFilename = content.classFilename
   if not classFilename then return end
-  if not EnsureGradientCache() then return end
-
-  local normalColor = fgMapNormal[classFilename]
-  local shiftColor = fgMapShift[classFilename]
-  if not normalColor or not shiftColor then return end
 
   -- Cache texture reference on the content frame
   local texture = content.txuiBarTexture
@@ -108,7 +111,7 @@ local function ApplyGradient(content)
     content.txuiBarTexture = texture
   end
 
-  F.Color.SetGradient(texture, gradientOrientation, normalColor, shiftColor)
+  ApplyGradientToTexture(texture, classFilename)
 end
 
 local function SkinMeter(content)
@@ -126,14 +129,9 @@ local function SkinMeter(content)
         content.txuiBarTexture = barTexture
 
         hooksecurefunc(barTexture, "SetVertexColor", function()
+          if not E.db.TXUI.addons.damageMeter.gradients then return end
           if not content.classFilename then return end
-          if not EnsureGradientCache() then return end
-
-          local normalColor = fgMapNormal[content.classFilename]
-          local shiftColor = fgMapShift[content.classFilename]
-          if not normalColor or not shiftColor then return end
-
-          F.Color.SetGradient(barTexture, gradientOrientation, normalColor, shiftColor)
+          ApplyGradientToTexture(barTexture, content.classFilename)
         end)
       end
     end
