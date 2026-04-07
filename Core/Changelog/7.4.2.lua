@@ -30,6 +30,7 @@ TXUI.Changelog["7.4.2"] = {
 
     "* Settings refactoring",
     "Update Vertical and Horizontal layout images in the installer",
+    F.String.Menu.WunderBar() .. " Hearthstone: Re-organize module settings",
 
     "* Development improvements",
   },

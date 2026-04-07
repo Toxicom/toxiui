@@ -122,17 +122,19 @@ function O:WunderBar_SubModules_Hearthstone()
   tab.generalGroup = ACH:Group("General", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase", nil, self:GetOrder())
-  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", nil, self:GetOrder())
-  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, self:GetOrder(), {
+  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase", "Display the button label in uppercase.", self:GetOrder())
+  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", "Display an icon on the button instead of text only.", self:GetOrder())
+  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", "Adjust the size of the icon displayed on the button.", self:GetOrder(), {
     min = 1,
     max = 100,
     step = 1,
   }, nil, nil, nil, iconDisabled)
 
-  self:AddSpacer(tab.generalGroup.args)
+  -- Flyouts
+  tab.flyoutsGroup = ACH:Group("Flyouts", nil, 2)
+  tab.flyoutsGroup.inline = true
 
-  tab.generalGroup.args.seasonMythics = {
+  tab.flyoutsGroup.args.seasonMythics = {
     type = "toggle",
     name = "Seasonal M+ Teleports",
     desc = "Enabling this will show only the current season's teleports in the Flyout frame",
@@ -141,7 +143,7 @@ function O:WunderBar_SubModules_Hearthstone()
     width = 1.2,
   }
 
-  tab.generalGroup.args.seasonRaids = {
+  tab.flyoutsGroup.args.seasonRaids = {
     type = "toggle",
     name = "Seasonal Raid Teleports",
     desc = "Enabling this will show only the current expansion's raid teleports in the Flyout frame",
@@ -150,7 +152,7 @@ function O:WunderBar_SubModules_Hearthstone()
     width = 1.2,
   }
 
-  tab.generalGroup.args.showLabels = {
+  tab.flyoutsGroup.args.showLabels = {
     type = "toggle",
     name = "Show labels",
     desc = "Enabling this will show a label on the buttons.",
@@ -159,7 +161,7 @@ function O:WunderBar_SubModules_Hearthstone()
     width = 1.2,
   }
 
-  tab.generalGroup.args.showMageLabels = {
+  tab.flyoutsGroup.args.showMageLabels = {
     type = "toggle",
     name = "Show " .. F.String.Class("Mage", "MAGE") .. " labels",
     desc = "Enabling this will show a label of the Mage teleport & portal on the button.",
@@ -172,7 +174,7 @@ function O:WunderBar_SubModules_Hearthstone()
   }
 
   -- Hearthstones
-  tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 2)
+  tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 3)
   tab.hearthstoneGroup.inline = true
   tab.hearthstoneGroup.args.randomPrimaryHs = ACH:Toggle(
     "Randomize Primary Hearthstone",
