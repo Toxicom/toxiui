@@ -756,10 +756,10 @@ local function getParty(horizontal)
 
     raidRoleIcons = {
       enable = true,
-      scale = 2,
-      position = "TOPLEFT",
-      xOffset = F.Dpi(12),
-      yOffset = F.Dpi(25),
+      scale = horizontal and 1 or 2,
+      position = horizontal and "BOTTOMRIGHT" or "TOPLEFT",
+      xOffset = horizontal and F.Dpi(-4) or F.Dpi(12),
+      yOffset = horizontal and F.Dpi(2) or F.Dpi(25),
     },
 
     rdebuffs = {

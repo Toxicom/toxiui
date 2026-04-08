@@ -13,6 +13,7 @@ TXUI.Changelog["7.4.3"] = {
     "* Bug fixes",
 
     "* Profile updates",
+    F.String.ElvUI() .. " Unitframes: Update leader icon position for horizontal party unitframes",
 
     "* Documentation",
 
