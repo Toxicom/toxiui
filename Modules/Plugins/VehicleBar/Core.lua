@@ -117,6 +117,10 @@ function VB:Enable()
   -- Overwrite default bar visibility
   local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", "[bonusbar:5]")
 
+  self:Hook(self.ab, "UpdateButtonConfig", function()
+    self:UpdateButtonLock()
+  end)
+
   self:Hook(self.ab, "PositionAndSizeBar", function(_, barName)
     local bar = self.ab["handledBars"][barName]
     if E.db.actionbar[barName].enabled and (barName == "bar1") then

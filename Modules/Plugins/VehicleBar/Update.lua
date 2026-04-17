@@ -126,6 +126,13 @@ function VB:UpdateVigorBar()
   self:UpdateVigorSegments()
 end
 
+function VB:UpdateButtonLock()
+  if not self.bar or not self.bar.buttons then return end
+  for _, button in ipairs(self.bar.buttons) do
+    button:SetAttribute("buttonlock", self.ab.db.lockActionBars or nil)
+  end
+end
+
 function VB:UpdateKeybinds()
   for i, button in ipairs(self.bar.buttons) do
     -- Keybinds handling
@@ -298,4 +305,5 @@ function VB:UpdateBar()
   end
 
   self:UpdateKeybinds()
+  self:UpdateButtonLock()
 end

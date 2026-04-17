@@ -9,6 +9,7 @@ TXUI.Changelog["7.4.3"] = {
     "* New features",
 
     "* Enhancements",
+    "Vehicle Bar buttons will respect " .. F.String.ElvUI() .. "'s Pick Up Action Key" .. F.String.Sublist("SHIFT by default"),
 
     "* Bug fixes",
 
