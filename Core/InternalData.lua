@@ -213,63 +213,7 @@ I.Data.Contributor = {
   },
 
   -- EPIC => Purple Badge (epic supporter)
-  [I.Enum.ContributorType.EPIC] = {
-    ["Ande"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Illidan
-        ["Mojoheal-Illidan"] = true,
-        ["Mojosneak-Illidan"] = true,
-        ["Nohwei-Illidan"] = true,
-        ["Adolluh-Illidan"] = true,
-        ["Mojobegone-Illidan"] = true,
-        ["Totembegone-Illidan"] = true,
-        ["Andelul-Illidan"] = true,
-        ["Mojoshooter-Illidan"] = true,
-      },
-    },
-
-    ["evilknivel"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Mal'Ganis
-        ["Avadacadaver-Mal'Ganis"] = true,
-        ["Feartherapy-Mal'Ganis"] = true,
-        ["Baitnbite-Mal'Ganis"] = true,
-      },
-    },
-
-    ["Exodus"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- KirinTor
-        ["Adaar-KirinTor"] = true,
-
-        -- Mal'Ganis
-        ["Paradori-Mal'Ganis"] = true,
-        ["Pathogenesis-Mal'Ganis"] = true,
-        ["Tethren-Mal'Ganis"] = true,
-        ["Anagreth-Mal'Ganis"] = true,
-        ["Vekroz-Mal'Ganis"] = true,
-        ["Tethrake-Mal'Ganis"] = true,
-        ["Tethrakos-Mal'Ganis"] = true,
-        ["Mortur-Mal'Ganis"] = true,
-        ["Abuturlini-Mal'Ganis"] = true,
-        ["Inkwix-Mal'Ganis"] = true,
-        ["Agandour-Mal'Ganis"] = true,
-        ["Akili-Mal'Ganis"] = true,
-        ["Bruis-Mal'Ganis"] = true,
-        ["Tazgardo-Mal'Ganis"] = true,
-        ["Malted-Mal'Ganis"] = true,
-        ["Razzadil-Mal'Ganis"] = true,
-        ["Rhaas-Mal'Ganis"] = true,
-        ["Gargram-Mal'Ganis"] = true,
-
-        -- Proudmoore
-        ["Kilrend-Proudmoore"] = true,
-
-        -- Sargeras
-        ["Sendrack-Sargeras"] = true,
-      },
-    },
-  },
+  [I.Enum.ContributorType.EPIC] = {},
 
   -- RARE => Green Badge (rare supporter)
   [I.Enum.ContributorType.RARE] = {
@@ -280,61 +224,6 @@ I.Data.Contributor = {
         ["Varkaden-WyrmrestAccord"] = true,
         ["Sesoni-WyrmrestAccord"] = true,
         ["Ashenveil-WyrmrestAccord"] = true,
-      },
-    },
-
-    -- Joined Jul 15, 2024
-    ["Reat"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Sanguino
-        ["Reät-Sanguino"] = true,
-        ["Reatp-Sanguino"] = true,
-        ["Evoreat-Sanguino"] = true,
-        ["Rëat-Sanguino"] = true,
-
-        -- Silvermoon
-        ["Reatoker-Silvermoon"] = true,
-        ["Reät-Silvermoon"] = true,
-        ["Rëat-Silvermoon"] = true,
-        ["Reatonk-Silvermoon"] = true,
-        ["Reatuid-Silvermoon"] = true,
-        ["Reatsham-Silvermoon"] = true,
-        ["Reatp-Silvermoon"] = true,
-        ["Reatmix-Silvermoon"] = true,
-        ["Reatix-Silvermoon"] = true,
-
-        -- TarrenMill
-        ["Reatpal-TarrenMill"] = true,
-        ["Rëat-TarrenMill"] = true,
-      },
-    },
-
-    -- Joined Jul 19, 2024
-    ["mrkhaglund"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Al'Akir
-        ["Firaga-Al'Akir"] = true,
-        ["Thalric-Al'Akir"] = true,
-        ["Loahand-Al'Akir"] = true,
-        ["Leep-Al'Akir"] = true,
-        ["Vaiju-Al'Akir"] = true,
-        ["Xpzt-Al'Akir"] = true,
-        ["Saintbull-Al'Akir"] = true,
-        ["Mcgregor-Al'Akir"] = true,
-        ["Ishaka-Al'Akir"] = true,
-        ["Arcané-Al'Akir"] = true,
-
-        -- Darkspear
-        ["Deadshoot-Darkspear"] = true,
-        ["Thulsa-Darkspear"] = true,
-        ["Ortodoxx-Darkspear"] = true,
-        ["Erhja-Darkspear"] = true,
-        ["Türok-Darkspear"] = true,
-        ["Vildsint-Darkspear"] = true,
-
-        -- ShatteredHalls
-        ["Lupin-ShatteredHalls"] = true,
-        ["Torwald-ShatteredHalls"] = true,
       },
     },
 
