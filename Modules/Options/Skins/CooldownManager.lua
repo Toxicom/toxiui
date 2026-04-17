@@ -209,7 +209,7 @@ function O:Skins_CooldownManager()
       dynamicGroup.dynamicBarsWidth = {
         order = self:GetOrder(),
         type = "toggle",
-        desc = "Syncs the detached Power Bar and Class Bar width to match the Essential Cooldown Viewer width.\n\nWhen the Class Bar uses spaced fill, the spacing may also be adjusted slightly to ensure bars divide evenly.",
+        desc = "Syncs the detached Power Bar and Class Bar width to match the Essential Cooldown Viewer width.",
         name = "Class/Power Bars",
         disabled = dynamicDisabled,
         get = function(_)

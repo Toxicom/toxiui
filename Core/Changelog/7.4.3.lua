@@ -10,6 +10,7 @@ TXUI.Changelog["7.4.3"] = {
 
     "* Enhancements",
     "Vehicle Bar buttons will respect " .. F.String.ElvUI() .. "'s Pick Up Action Key" .. F.String.Sublist("SHIFT by default"),
+    F.String.Retail() .. F.String.CDM() .. ": Remove dynamic adjustment of class bar spacing",
 
     "* Bug fixes",
 
