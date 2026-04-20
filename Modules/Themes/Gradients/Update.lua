@@ -4,7 +4,7 @@ local GR = TXUI:GetModule("ThemesGradients")
 local CreateColor = CreateColor
 local type = type
 
-function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorFunc)
+function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorMap, colorEntry)
   -- Handle color table passed as first argument (ElvUI sometimes passes {r, g, b} instead of r, g, b)
   if type(eR) == "table" then
     eR, eG, eB = eR.r, eR.g, eR.b
@@ -21,7 +21,6 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
   end
 
   if colorChanged then
-    local colorMap, colorEntry = colorFunc()
     colorChanged = frame.colorEntry ~= colorEntry or frame.colorMap ~= colorMap
 
     if colorChanged then

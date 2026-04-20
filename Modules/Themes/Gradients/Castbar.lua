@@ -48,6 +48,6 @@ function GR:PostUpdateCastColor(frame, castFailed)
   local valueChanged = frame.currentPercent == nil
   if valueChanged then frame.currentPercent = 1 end
 
-  local colorFunc = F.Event.GenerateClosure(self.GetCastbarColor, self, frame, unit, castFailed)
-  self:SetGradientColors(frame, valueChanged, nil, nil, nil, true, colorFunc)
+  local colorMap, colorEntry = self:GetCastbarColor(frame, unit, castFailed)
+  self:SetGradientColors(frame, valueChanged, nil, nil, nil, true, colorMap, colorEntry)
 end

@@ -55,6 +55,6 @@ function GR:PostUpdateHealthColor(frame, unit, eR, eG, eB)
     frame.unitDead = unitDead
   end
 
-  local colorFunc = F.Event.GenerateClosure(self.GetHealthColor, self, frame, unit)
-  self:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorFunc)
+  local colorMap, colorEntry = self:GetHealthColor(frame, unit)
+  self:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorMap, colorEntry)
 end
