@@ -139,17 +139,26 @@ function M:Tags()
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")
 
+  local classColorPrefix = {}
+  for className, cs in pairs(ElvUF.colors.class) do
+    classColorPrefix[className] = "|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b)
+  end
+  local reactionColorPrefix = {}
+  for i, cr in ipairs(ElvUF.colors.reaction) do
+    reactionColorPrefix[i] = "|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b)
+  end
+
   local function FormatColorTag(str, unit)
     -- i don't fucking know, i don't see this string anywhere but otherwise get Lua errors
     if not str then return "Missing string, very bad!" end
 
     if UnitIsPlayer(unit) then
       local _, unitClass = UnitClass(unit)
-      local cs = ElvUF.colors.class[unitClass]
-      return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. str) or ("|cffcccccc" .. str)
+      local prefix = classColorPrefix[unitClass]
+      return prefix and (prefix .. str) or ("|cffcccccc" .. str)
     else
-      local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-      return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. str) or ("|cffcccccc" .. str)
+      local prefix = reactionColorPrefix[UnitReaction(unit, "player")]
+      return prefix and (prefix .. str) or ("|cffcccccc" .. str)
     end
   end
 
@@ -226,7 +235,7 @@ function M:Tags()
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
-    if TXUI.IsRetail then return format("%d", UnitHealthPercent(unit, true, ScaleTo100)) end
+    if TXUI.IsRetail then return UnitHealthPercent(unit, true, ScaleTo100) end
 
     local max = UnitHealthMax(unit)
     if max == 0 then
@@ -240,10 +249,8 @@ function M:Tags()
     local status = GetUnitStatus(unit)
     if status then return status end
 
-    local percentHealth = GetHealthPercentage(unit)
-    local percentHealthStr = tostring(percentHealth)
-
-    if percentSign then percentHealthStr = percentHealthStr .. "%" end
+    local pct = GetHealthPercentage(unit)
+    local percentHealthStr = percentSign and format("%d%%", pct) or format("%d", pct)
 
     -- Return different coloring for Dark Mode
     if dm.isEnabled then
@@ -305,9 +312,7 @@ function M:Tags()
         if max ~= 0 then return power end
       end
 
-      local powerStr = tostring(power)
-
-      if max ~= 0 then return FormatColorTag(powerStr, unit) end
+      if max ~= 0 then return FormatColorTag(power, unit) end
     end
   end)
 
