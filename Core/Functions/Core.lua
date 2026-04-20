@@ -454,16 +454,22 @@ end
 
 do
   local eventManagerFrame, eventManagerTable, eventManagerDelayed = CreateFrame("Frame"), {}, {}
+  local flushPending = false
 
-  eventManagerFrame:SetScript("OnUpdate", function()
+  local function flushDelayed()
+    flushPending = false
     for _, func in ipairs(eventManagerDelayed) do
       F.ProtectedCall(unpack(func))
     end
     eventManagerDelayed = {}
-  end)
+  end
 
   function F.EventManagerDelayed(func, ...)
     tinsert(eventManagerDelayed, { func, ... })
+    if not flushPending then
+      flushPending = true
+      E:Delay(0, flushDelayed)
+    end
   end
 
   eventManagerFrame:SetScript("OnEvent", function(_, event, ...)

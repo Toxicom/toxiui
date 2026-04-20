@@ -40,12 +40,9 @@ function VB:CreateVigorBar()
     end
   end)
 
-  -- OnUpdate for smooth recharge animation
-  vigorBar:SetScript("OnUpdate", function()
-    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then
-      -- Update vigor segments every frame for smooth animation
-      self:UpdateVigorSegments()
-    end
+  -- Ticker for smooth recharge animation (0.05s = 20fps, visually indistinguishable from per-frame)
+  vigorBar.vigorTicker = C_Timer.NewTicker(0.05, function()
+    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then self:UpdateVigorSegments() end
   end)
 
   -- Use C_Timer for speed text updates (more efficient than OnUpdate throttling)
