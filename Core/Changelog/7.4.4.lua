@@ -11,6 +11,7 @@ TXUI.Changelog["7.4.4"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    "SetFont() errors",
 
     "* Profile updates",
 

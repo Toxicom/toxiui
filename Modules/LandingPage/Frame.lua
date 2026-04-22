@@ -146,14 +146,14 @@ function LP:BuildFrame()
   -- Main title — anchored to the vertical centre of the header
   local headerTitle = frame:CreateFontString(nil, "OVERLAY")
   headerTitle:SetPoint("LEFT", frame, "TOPLEFT", PADDING, -(HEADER_HEIGHT / 2) + 8)
-  headerTitle:SetFont(F.GetFontPath(I.Fonts.Title), F.FontSizeScaled(24), "NONE")
+  headerTitle:SetFont(F.GetFontPath(I.Fonts.Title), F.FontSizeScaled(24), "")
   headerTitle:SetTextColor(1, 1, 1, 1)
   headerTitle:SetText(TXUI.Title)
 
   -- Page subtitle below the main title (updated per page)
   local pageSubtitle = frame:CreateFontString(nil, "OVERLAY")
   pageSubtitle:SetPoint("TOPLEFT", headerTitle, "BOTTOMLEFT", 0, -1)
-  pageSubtitle:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(11), "NONE")
+  pageSubtitle:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(11), "")
   pageSubtitle:SetTextColor(0.6, 0.6, 0.6, 1)
 
   -- Close button — created manually and raised above the TitleDragAreaTemplate
@@ -181,7 +181,7 @@ function LP:BuildFrame()
   -- Main text block (repositioned depending on whether an image is shown)
   local contentText = contentArea:CreateFontString(nil, "OVERLAY")
   contentText:SetWidth(CONTENT_WIDTH)
-  contentText:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(13), "NONE")
+  contentText:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(13), "")
   contentText:SetTextColor(1, 1, 1, 1)
   contentText:SetJustifyH("LEFT")
   contentText:SetJustifyV("TOP")
@@ -232,7 +232,7 @@ function LP:BuildFrame()
   -- "X of Y" page indicator in the centre of the footer
   local pageIndicator = footer:CreateFontString(nil, "OVERLAY")
   pageIndicator:SetPoint("CENTER", footer, "CENTER")
-  pageIndicator:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(11), "NONE")
+  pageIndicator:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(11), "")
   pageIndicator:SetTextColor(0.5, 0.5, 0.5, 1)
 
   -- Run onClose callback when the frame is hidden. Covers both the animated close

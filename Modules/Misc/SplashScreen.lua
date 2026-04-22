@@ -39,7 +39,7 @@ function SC:CreateFrame()
 
   backgroundFade.text = backgroundFade:CreateFontString(nil, "OVERLAY")
   backgroundFade.text:SetPoint("BOTTOMLEFT", backgroundFade, "BOTTOMLEFT", 25, 25)
-  backgroundFade.text:SetFont(F.GetFontPath(I.Fonts.Title), F.FontSizeScaled(64), "NONE")
+  backgroundFade.text:SetFont(F.GetFontPath(I.Fonts.Title), F.FontSizeScaled(64), "")
   backgroundFade.text:SetTextColor(1, 1, 1, 1)
   backgroundFade.text:SetText(" ")
 
