@@ -15,6 +15,7 @@ TXUI.Changelog["7.4.4"] = {
     "* Profile updates",
 
     "* Documentation",
+    F.String.Retail() .. "Update for patch 12.0.5",
 
     "* Settings refactoring",
 
