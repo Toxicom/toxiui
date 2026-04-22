@@ -1,6 +1,15 @@
-# ToxiUI v7.4.4 - 2026-04-20
+# ToxiUI v7.4.4 - 2026-04-22
 
 **Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.4.3...v7.4.4>
+
+## 🐛 Bug Fixes
+
+- SetFont() errors
+
+## 📘 Documentation
+
+- [Retail] Update for patch 12.0.5
+- Increase minimum required **ElvUI** version to `15.12`
 
 ## 🔧 Development Improvements
 

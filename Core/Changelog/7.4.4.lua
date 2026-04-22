@@ -2,24 +2,14 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.4.4"] = {
   HOTFIX = true,
-  RELEASE_DATE = "Mon TBD, 2026",
+  RELEASE_DATE = "Apr 22, 2026",
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
-    "* Enhancements",
-
     "* Bug fixes",
     "SetFont() errors",
-
-    "* Profile updates",
 
     "* Documentation",
     F.String.Retail() .. "Update for patch 12.0.5",
     F.String.MinElv("15.12"),
-
-    "* Settings refactoring",
 
     "* Development improvements",
     F.String.Menu.Performance() .. ": Gradient mode health/power/castbar color updates no longer allocate a closure per tick",
