@@ -11,6 +11,7 @@ TXUI.Changelog["7.4.5"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. "UnitSpeed is now secret in combat - do not display speed in vigor bar during combat",
 
     "* Profile updates",
 
