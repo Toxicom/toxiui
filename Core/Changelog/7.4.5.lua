@@ -18,6 +18,7 @@ TXUI.Changelog["7.4.5"] = {
     F.String.Details() .. ": Update broken profile" .. F.String.Sublist("Change textures to KMT47") .. F.String.Sublist("Re-add outline for fonts") .. F.String.Sublist(
       "Change font to ToxiUI"
     ),
+    F.String.WarpDeplete() .. ": Update textures to KMT47",
 
     "* Documentation",
     F.String.MinElv("15.13"),
