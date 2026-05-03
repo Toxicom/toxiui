@@ -4,7 +4,6 @@
   <Script file='DamageMeter.lua' />
   <Script file='WindTools.lua' />
 
-  <Include file='Details\Details.xml' />
   <Include file='CooldownManager\CooldownManager.xml' />
   <Include file='GameMenu\GameMenu.xml' />
 </Ui>

@@ -21,9 +21,6 @@ function TH:Toggle(theme, value)
     -- apply custom texture skinning to elvui
     F.Event.TriggerEvent("ThemesGradients.DatabaseUpdate")
 
-    -- apply custom texture skinning to details
-    F.Event.TriggerEvent("SkinsDetailsGradients.DatabaseUpdate")
-
     -- apply custom tags
     F.Event.TriggerEvent("Tags.DatabaseUpdate")
   end
@@ -48,9 +45,6 @@ function TH:Toggle(theme, value)
         -- apply transparency to elvui
         F.Event.TriggerEvent("ThemesDarkTransparency.DatabaseUpdate")
 
-        -- apply dark mode skinning to details
-        F.Event.TriggerEvent("SkinsDetailsDark.DatabaseUpdate")
-
         -- apply custom tags
         F.Event.TriggerEvent("Tags.DatabaseUpdate")
       end, true)
@@ -66,9 +60,6 @@ function TH:Toggle(theme, value)
 
     -- apply transparency to elvui
     F.Event.TriggerEvent("ThemesDarkTransparency.DatabaseUpdate")
-
-    -- apply dark mode skinning to details
-    F.Event.TriggerEvent("SkinsDetailsDark.DatabaseUpdate")
 
     -- apply custom tags
     F.Event.TriggerEvent("Tags.DatabaseUpdate")

@@ -146,18 +146,6 @@ I.Requirements = {
   ["RoleIcons"] = {
     I.Enum.Requirements.SL_DISABLED,
   },
-  ["DetailsGradientMode"] = {
-    I.Enum.Requirements.DARK_MODE_DISABLED,
-    I.Enum.Requirements.ELVUI_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE,
-  },
-  ["DetailsDarkMode"] = {
-    I.Enum.Requirements.GRADIENT_MODE_DISABLED,
-    I.Enum.Requirements.ELVUI_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE,
-  },
   ["Armory"] = {
     I.Enum.Requirements.ARMORY_DISABLED,
     I.Enum.Requirements.CHARACTER_SKIN_ENABLED,

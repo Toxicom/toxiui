@@ -5,6 +5,7 @@ TXUI.Changelog["7.4.5"] = {
   RELEASE_DATE = "",
   CHANGES = {
     "* Breaking changes",
+    "Remove " .. F.String.Details() .. " Gradient and Dark mode skinning",
 
     "* New features",
 

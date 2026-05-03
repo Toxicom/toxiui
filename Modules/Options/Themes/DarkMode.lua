@@ -13,7 +13,6 @@ function O:ToxiUI_Themes_DarkMode()
     set = function(info, value)
       E.db.TXUI.themes.darkMode[info[#info]] = value
       F.Event.TriggerEvent("ThemesDarkTransparency.SettingsUpdate")
-      F.Event.TriggerEvent("SkinsDetailsDark.SettingsUpdate")
     end,
     args = {},
   }

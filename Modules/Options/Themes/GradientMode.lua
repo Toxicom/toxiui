@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
+﻿local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 local ACH = LibStub("LibAceConfigHelper")
 
@@ -113,7 +113,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.classColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, class),
       }
 
@@ -144,7 +143,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.classColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, class),
       }
 
@@ -231,7 +229,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.reactionColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, reaction),
       }
 
@@ -262,7 +259,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.reactionColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, reaction),
       }
 
@@ -324,7 +320,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.powerColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, power),
       }
 
@@ -355,7 +350,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.powerColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, power),
       }
 
@@ -427,7 +421,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.specialColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, special),
       }
 
@@ -458,7 +451,6 @@ function O:ToxiUI_Themes_GradientMode()
         ),
         set = self:GetFontColorSetter("TXUI.themes.gradientMode.specialColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end, special),
       }
 
@@ -520,7 +512,6 @@ function O:ToxiUI_Themes_GradientMode()
           ),
           set = self:GetFontColorSetter("TXUI.themes.gradientMode.castColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
             F.Event.TriggerEvent("ThemesGradients.SettingsUpdate")
-            F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
           end, cast),
         }
 
@@ -551,7 +542,6 @@ function O:ToxiUI_Themes_GradientMode()
           ),
           set = self:GetFontColorSetter("TXUI.themes.gradientMode.castColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
             F.Event.TriggerEvent("ThemesGradients.SettingsUpdate")
-            F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
           end, cast),
         }
 
@@ -845,7 +835,6 @@ function O:ToxiUI_Themes_GradientMode()
           E.db.TXUI.themes.gradientMode[info[#info]] = value
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
           F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power", true)
-          F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
         end,
       }, {
         name = "This controls the strength of the background colors.\n\nLower value means a darker background, higher value means a lighter background.\n\n",
@@ -879,7 +868,6 @@ function O:ToxiUI_Themes_GradientMode()
         E.db.TXUI.themes.gradientMode.saturationBoost[info[#info]] = value
         F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
         F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power", true)
-        F.Event.TriggerEvent("SkinsDetailsGradients.SettingsUpdate")
       end,
     }, {
       name = "Boosts the saturation and darkens " .. gradientTitle .. " Colors|r\nFor people that like it a bit more extreme\n\n",
