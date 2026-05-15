@@ -155,9 +155,10 @@ end
 -- Hide the "sticky self row" (LocalPlayerEntry) that floats while scrolling
 local function HideLocalPlayerEntry(window)
   if not E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then return end
-  if not window or not window.LocalPlayerEntry then return end
+  local container = window.MinimizeContainer or window
+  if not container or not container.LocalPlayerEntry then return end
 
-  local entry = window.LocalPlayerEntry
+  local entry = container.LocalPlayerEntry
   entry:Hide()
   entry:SetAlpha(0)
   entry:EnableMouse(false)
