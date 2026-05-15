@@ -12,6 +12,7 @@ TXUI.Changelog["7.4.6"] = {
 
     "* Bug fixes",
     F.String.Retail() .. "Damage Meter: Fix the 'Hide Floating Player Entry' option",
+    F.String.Retail() .. "Armory: Safeguard stats in combat" .. F.String.Sublist("Funky fix, might still break"),
 
     "* Profile updates",
 
