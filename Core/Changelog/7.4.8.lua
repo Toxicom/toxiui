@@ -15,6 +15,9 @@ TXUI.Changelog["7.4.8"] = {
     "* Profile updates",
 
     "* Documentation",
+    F.String.Retail() .. "Update for 12.0.7",
+    "Update Liue and v0dKa names",
+    F.String.MinElv("15.17"),
 
     "* Settings refactoring",
 
