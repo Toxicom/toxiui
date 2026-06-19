@@ -277,6 +277,12 @@ I.Data.Contributor = {
         ["Miendra-Silvermoon"] = true,
       },
 
+      [I.Enum.Flavor.ANNIVERSARY] = {
+        -- Thunderstrike
+        ["Niato-Thunderstrike"] = true,
+        ["Liue-Thunderstrike"] = true,
+      },
+
       [I.Enum.Flavor.CLASSIC] = {
         -- Hoptallus
         ["Scilia-Hoptallus"] = true,
@@ -297,9 +303,10 @@ I.Data.Contributor = {
         ["Bakul-Antonidas"] = true,
 
         -- Eredar
-        ["Varlanis-Eredar"] = true,
+        ["Zulrak-Eredar"] = true,
         ["Panril-Eredar"] = true,
         ["Zantheas-Eredar"] = true,
+        ["Varlanis-Eredar"] = true,
         ["Glanus-Eredar"] = true,
       },
     },
