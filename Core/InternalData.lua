@@ -210,6 +210,22 @@ I.Data.Contributor = {
         ["Kryototem-Thrall"] = true,
       },
     },
+
+    ["BehkFox"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Stormrage
+        ["Loqenak-Stormrage"] = true,
+        ["Aarkhin-Stormrage"] = true,
+        ["Stldst-Stormrage"] = true,
+        ["Behknk-Stormrage"] = true,
+        ["Behkfox-Stormrage"] = true,
+        ["Strdst-Stormrage"] = true,
+        ["Zalreog-Stormrage"] = true,
+        ["Lavadust-Stormrage"] = true,
+        ["Behkwolf-Stormrage"] = true,
+        ["Shdwdst-Stormrage"] = true,
+      },
+    },
   },
 
   -- EPIC => Purple Badge (epic supporter)

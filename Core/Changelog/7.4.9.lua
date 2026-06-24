@@ -15,6 +15,7 @@ TXUI.Changelog["7.4.9"] = {
     "* Profile updates",
 
     "* Documentation",
+    "Add BehkFox to contributors",
 
     "* Settings refactoring",
 
