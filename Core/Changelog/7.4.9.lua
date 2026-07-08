@@ -16,6 +16,7 @@ TXUI.Changelog["7.4.9"] = {
 
     "* Documentation",
     "Add BehkFox to contributors",
+    "Update for TBC 2.5.6",
 
     "* Settings refactoring",
 

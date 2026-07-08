@@ -6,8 +6,8 @@
 ## OptionalDeps: Details
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
-## Interface: 20505
-## X-Interface: 20505
+## Interface: 20506
+## X-Interface: 20506
 ## X-Flavor: Anniversary
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
