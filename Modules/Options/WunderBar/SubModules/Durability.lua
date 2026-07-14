@@ -51,10 +51,21 @@ function O:WunderBar_SubModules_Durability()
   tab.generalGroup.args.showItemLevel = ACH:Toggle("Show Item Level", nil, 4)
   tab.generalGroup.args.itemLevelShort = ACH:Toggle("Short Item Level", nil, 5, nil, nil, nil, nil, nil, itemLevelDisabled)
 
+  -- Auction House Mount
+  tab.auctionGroup = ACH:Group("Auction House Mount", nil, 2)
+  tab.auctionGroup.inline = true
+  tab.auctionGroup.args.description = ACH:Description("Select which mount will be summoned when middle-clicking the module.\n\n", 1)
+  tab.auctionGroup.args.auctionMount = ACH:Select("Select Mount", nil, 2, getMounts)
+  tab.auctionGroup.args.auctionMount.width = 2
+  tab.auctionGroup.args.auctionMount.disabled = function()
+    return not (C_MountJournal and C_MountJournal.GetMountInfoByID) or F.Table.IsEmpty(getMounts())
+  end
+  tab.auctionGroup.args.auctionMount.sortByValue = true
+
   -- Repair Mount
-  tab.mountGroup = ACH:Group("Repair Mount", nil, 2)
+  tab.mountGroup = ACH:Group("Repair Mount", nil, 3)
   tab.mountGroup.inline = true
-  tab.mountGroup.args.description = ACH:Description("Select which repair mount will be summoned when right-clicking the module.\n\n", 1)
+  tab.mountGroup.args.description = ACH:Description("Select which mount will be summoned when right-clicking the module.\n\n", 1)
   tab.mountGroup.args.repairMount = ACH:Select("Select Mount", nil, 2, getMounts)
   tab.mountGroup.args.repairMount.width = 2
   tab.mountGroup.args.repairMount.disabled = function()
@@ -63,14 +74,14 @@ function O:WunderBar_SubModules_Durability()
   tab.mountGroup.args.repairMount.sortByValue = true
 
   -- Colors
-  tab.colorGroup = ACH:Group("Colors", nil, 3)
+  tab.colorGroup = ACH:Group("Colors", nil, 4)
   tab.colorGroup.inline = true
   tab.colorGroup.args.iconColor = ACH:Toggle("Color Icon", nil, 1, nil, nil, nil, nil, nil, iconDisabled)
   tab.colorGroup.args.textColor = ACH:Toggle("Color Text", nil, 2)
   tab.colorGroup.args.textColorFadeFromNormal = ACH:Toggle("Text Color as Base", nil, 3)
 
   -- Animations
-  tab.animateGroup = ACH:Group("Animations", nil, 4)
+  tab.animateGroup = ACH:Group("Animations", nil, 5)
   tab.animateGroup.inline = true
 
   tab.animateGroup.args.animateLow = ACH:Toggle("Animate Low", nil, 1)
