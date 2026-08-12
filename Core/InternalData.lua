@@ -143,23 +143,51 @@ I.Data.Contributor = {
     [I.Enum.Developers.JAKE] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Arathor
-        ["Getafix-Arathor"] = true,
-        ["Kari-Arathor"] = true,
+        ["Raif-Arathor"] = true,
         ["Kiasi-Arathor"] = true,
-        ["Lexza-Arathor"] = true,
+        ["Raichi-Arathor"] = true,
         ["Rai-Arathor"] = true,
-        ["Raifel-Arathor"] = true,
+        ["Kari-Arathor"] = true,
         ["Raih-Arathor"] = true,
-        ["Raivas-Arathor"] = true,
+        ["Raifel-Arathor"] = true,
+        ["Kuya-Arathor"] = true,
+        ["Getafix-Arathor"] = true,
+        ["Toasti-Arathor"] = true,
+        ["Kuyo-Arathor"] = true,
+        ["Lexza-Arathor"] = true,
 
-        -- Daggerspine
-        ["Aurrius-Daggerspine"] = true,
-        ["Raovasbank-Daggerspine"] = true,
-      },
+        -- Ragnaros
+        ["Slashslashsl-Ragnaros"] = true,
+        ["Aurrius-Ragnaros"] = true,
+        ["Stabbystabst-Ragnaros"] = true,
+        ["Hellooias-Ragnaros"] = true,
+        ["Raovas-Ragnaros"] = true,
+        ["Aercis-Ragnaros"] = true,
 
-      [I.Enum.Flavor.CLASSIC] = {
-        -- Giantstalker
-        ["Lexza-Giantstalker"] = true,
+        -- Ravencrest
+        ["Azryx-Ravencrest"] = true,
+        ["Ariz-Ravencrest"] = true,
+        ["Raishi-Ravencrest"] = true,
+        ["Raifel-Ravencrest"] = true,
+        ["Rainok-Ravencrest"] = true,
+        ["Aercis-Ravencrest"] = true,
+        ["Raitha-Ravencrest"] = true,
+        ["Baahboi-Ravencrest"] = true,
+        ["Raire-Ravencrest"] = true,
+        ["Raim-Ravencrest"] = true,
+        ["Moorai-Ravencrest"] = true,
+        ["Raihi-Ravencrest"] = true,
+        ["Aahhyrsdy-Ravencrest"] = true,
+        ["Auru-Ravencrest"] = true,
+        ["Tib-Ravencrest"] = true,
+        ["Lejlighed-Ravencrest"] = true,
+        ["Raish-Ravencrest"] = true,
+        ["Tibs-Ravencrest"] = true,
+        ["Raitra-Ravencrest"] = true,
+
+        -- Silvermoon
+        ["Vaeliris-Silvermoon"] = true,
+        ["Tibs-Silvermoon"] = true,
       },
     },
   },
