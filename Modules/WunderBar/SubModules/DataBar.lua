@@ -17,14 +17,16 @@ local GetQuestLogRewardXP = GetQuestLogRewardXP
 local GetQuestLogTitle = GetQuestLogTitle
 local GetWatchedFactionInfo = GetWatchedFactionInfo
 local GetXPExhaustion = GetXPExhaustion
-local IsPlayerAtEffectiveMaxLevel = GameRulesUtil and GameRulesUtil.IsPlayerAtEffectiveMaxLevel
-local IsXPUserDisabledFunction = (C_PlayerInfo and C_PlayerInfo.IsXPUserDisabled) or IsXPUserDisabled
+local IsPlayerAtEffectiveMaxLevel = (GameRulesUtil and GameRulesUtil.IsPlayerAtEffectiveMaxLevel) or IsPlayerAtEffectiveMaxLevel
+local IsXPUserDisabledFunction = nil
 local min = math.min
 local SelectQuestLogEntry = SelectQuestLogEntry
 local UnitXP = UnitXP
 local UnitXPMax = UnitXPMax
 
 local MAX_REPUTATION_REACTION = _G.MAX_REPUTATION_REACTION
+
+if not TXUI.IsClassicEra and not TXUI.IsAnniversary then IsXPUserDisabledFunction = IsXPUserDisabled end
 
 -- Vars
 DB.const = {
