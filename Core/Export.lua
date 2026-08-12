@@ -1,12 +1,18 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
+local CompressString = C_EncodingUtil.CompressString
+local DecodeBase64 = C_EncodingUtil.DecodeBase64
+local DecompressString = C_EncodingUtil.DecompressString
+local DeserializeCBOR = C_EncodingUtil.DeserializeCBOR
 local EnableAddOn = (C_AddOns and C_AddOns.EnableAddOn) or EnableAddOn
+local EncodeBase64 = C_EncodingUtil.EncodeBase64
 local format = string.format
 local ipairs = ipairs
 local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
 local LoadAddOn = (C_AddOns and C_AddOns.LoadAddOn) or LoadAddOn
 local pairs = pairs
 local ReloadUI = ReloadUI
+local SerializeCBOR = C_EncodingUtil.SerializeCBOR
 local sort = table.sort
 local strrep = strrep
 local strsplit = strsplit
@@ -14,6 +20,9 @@ local tconcat = table.concat
 local tinsert = table.insert
 local tostring = tostring
 local type = type
+
+local COMPRESS = Enum.CompressionMethod.Deflate or 0
+local OPTIMIZE = Enum.CompressionLevel.Default or 0
 
 local function createExportFrame(profileExport, needsReload, btnFunc)
   if not IsAddOnLoaded("ElvUI_Options") then
@@ -80,12 +89,9 @@ local function exportNames()
 
   exportTable["__META_FLAVOR__"] = TXUI.Flavor
 
-  local distributor = E:GetModule("Distributor")
-  local libDeflate = E.Libs.Deflate
-
-  local serialData = distributor:Serialize(exportTable)
-  local compressedData = libDeflate:CompressDeflate(serialData, libDeflate.compressLevel)
-  local encodedData = libDeflate:EncodeForPrint(compressedData)
+  local serialData = SerializeCBOR(exportTable)
+  local compressedData = CompressString(serialData, COMPRESS, OPTIMIZE)
+  local encodedData = EncodeBase64(compressedData)
 
   -- Set export to window
   createExportFrame(encodedData)
@@ -179,9 +185,6 @@ local function generateLuaServerTable(tbl, level, out, flavor)
 end
 
 local function exportImportNames()
-  local distributor = E:GetModule("Distributor")
-  local libDeflate = E.Libs.Deflate
-
   local frame
   frame = createExportFrame("", false, function()
     local dataString = frame.box:GetText()
@@ -191,18 +194,16 @@ local function exportImportNames()
       frame:SetTitle(F.String.Error(msg))
     end
 
-    local decodedData = libDeflate:DecodeForPrint(dataString)
-    local decompressedData, decompressedMessage = libDeflate:DecompressDeflate(decodedData)
+    local decodedData = DecodeBase64(dataString)
+    if not decodedData then return showError("Error decoding data") end
 
-    if not decompressedData then return showError("Error decompressing data", decompressedMessage) end
+    local decompressedData = DecompressString(decodedData, COMPRESS)
+    if not decompressedData then return showError("Error decompressing data") end
 
-    local deserializedData = E:SplitString(decompressedData, "^^::")
-    deserializedData = format("%s%s", deserializedData, "^^")
+    local nameData = DeserializeCBOR(decompressedData)
 
-    local success, nameData = distributor:Deserialize(deserializedData)
-
-    if not success or not nameData then
-      showError("Error deserializing", nameData, decompressedData)
+    if not nameData then
+      showError("Error deserializing", decompressedData)
       return
     end
 
