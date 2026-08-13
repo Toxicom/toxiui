@@ -47,7 +47,7 @@ function TXUI:HandleDevProfiles(arg1)
     E:UpdateDB()
     TXUI:GetModule("Profiles"):ElvUIFont()
     TXUI:GetModule("Profiles"):ElvUIFontPrivates()
-    E:StaggeredUpdateAll()
+    E:UpdateAll()
   else -- if wrong parameter given
     printUsage()
   end
@@ -86,7 +86,7 @@ function TXUI:HandleDevCommand(category, arg1)
   elseif category == "chat" then
     self:LogInfo("Resetting chat & applying new chat Profile ...")
     TXUI:GetModule("Profiles"):ElvUIChat()
-    E:StaggeredUpdateAll()
+    E:UpdateAll()
   elseif (category == "export") and F.IsDeveloper() then
     self:HandleDevExports(arg1)
   elseif (category == "splash") and F.IsDeveloper() then

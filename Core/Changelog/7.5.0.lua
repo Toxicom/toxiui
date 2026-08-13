@@ -11,6 +11,7 @@ TXUI.Changelog["7.5.0"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    "Replace old usage of E:UpdateAll()",
 
     "* Profile updates",
 

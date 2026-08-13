@@ -342,7 +342,7 @@ do
 
     function F.Event.ContinueAfterElvUIUpdate(callback)
       F.Event.ContinueAfter(function()
-        return not (elvUpdating or elvUFUpdating or E.staggerUpdateRunning)
+        return not (elvUpdating or elvUFUpdating)
       end, callback)
     end
   end

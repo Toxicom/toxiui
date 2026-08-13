@@ -35,7 +35,7 @@ function PF:ElvUIProfileMovers(callback)
 
   F.Event.RunNextFrame(function()
     F.Event.ContinueAfterElvUIUpdate(function()
-      E:StaggeredUpdateAll()
+      E:UpdateAll()
       if callback then F.Event.ContinueAfterElvUIUpdate(callback) end
     end)
   end, 0.2)
@@ -45,7 +45,7 @@ function PF:ExecuteElvUIUpdate(callback, noMovers)
   -- Update ElvUI
   F.Event.RunNextFrame(function()
     F.Event.ContinueAfterElvUIUpdate(function()
-      E:StaggeredUpdateAll()
+      E:UpdateAll()
 
       if not noMovers then
         F.Event.ContinueAfterElvUIUpdate(F.Event.GenerateClosure(self.ElvUIProfileMovers, self, callback))
