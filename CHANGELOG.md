@@ -1,7 +1,3 @@
-# ToxiUI v7.5.1 - 2026-08-13
+# ToxiUI v7.5.2 - 2026-08-13
 
-**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.5.0...v7.5.1>
-
-## 🐛 Bug Fixes
-
-- Even more secret protection for gradients
+**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.5.1...v7.5.2>
