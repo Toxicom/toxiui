@@ -1203,6 +1203,7 @@ P.wunderbar = {
       iconColor = false,
       iconFontSize = 18,
 
+      auctionMount = 460,
       repairMount = 460,
 
       textColor = true,
