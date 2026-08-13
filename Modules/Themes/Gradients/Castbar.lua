@@ -11,15 +11,23 @@ function GR:GetCastbarColor(frame, unit, castFailed)
   if unit == "vehicle" then unit = "player" end
 
   local notInterruptible = E:NotSecretValue(frame.notInterruptible) and frame.notInterruptible
+  local isPlayer = unit and UnitIsPlayer(unit)
+  local canAttack = unit and unit ~= "player" and UnitCanAttack("player", unit)
   local useClassColor, colorEntry
 
   if castFailed then
     colorEntry = "INTERRUPTED"
-  elseif notInterruptible and unit and (UnitIsPlayer(unit) or (unit ~= "player" and UnitCanAttack("player", unit))) then
+  elseif notInterruptible and unit
+    and ((E:NotSecretValue(isPlayer) and isPlayer) or (E:NotSecretValue(canAttack) and canAttack)) then
     colorEntry = "NOINTERRUPT"
-  elseif frame.classColorFallback and (unit and UnitIsPlayer(unit)) then
-    colorEntry = select(2, UnitClass(unit))
-    useClassColor = true
+  elseif frame.classColorFallback and unit and E:NotSecretValue(isPlayer) and isPlayer then
+    local classToken = select(2, UnitClass(unit))
+    if E:NotSecretValue(classToken) then
+      colorEntry = classToken
+      useClassColor = true
+    else
+      colorEntry = "DEFAULT"
+    end
   else
     colorEntry = "DEFAULT"
   end

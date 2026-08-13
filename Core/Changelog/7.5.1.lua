@@ -11,6 +11,7 @@ TXUI.Changelog["7.5.1"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    "Even more secret protection for gradients",
 
     "* Profile updates",
 
