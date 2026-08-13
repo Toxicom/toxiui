@@ -17,8 +17,7 @@ function GR:GetCastbarColor(frame, unit, castFailed)
 
   if castFailed then
     colorEntry = "INTERRUPTED"
-  elseif notInterruptible and unit
-    and ((E:NotSecretValue(isPlayer) and isPlayer) or (E:NotSecretValue(canAttack) and canAttack)) then
+  elseif notInterruptible and unit and ((E:NotSecretValue(isPlayer) and isPlayer) or (E:NotSecretValue(canAttack) and canAttack)) then
     colorEntry = "NOINTERRUPT"
   elseif frame.classColorFallback and unit and E:NotSecretValue(isPlayer) and isPlayer then
     local classToken = select(2, UnitClass(unit))

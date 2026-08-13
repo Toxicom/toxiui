@@ -18,8 +18,7 @@ function GR:GetHealthColor(frame, unit)
   -- guard every boolean test since Lua errors on truthy-testing a secret value directly
   local unitIsPlayer = UnitIsPlayer(unit)
   local treatAsPlayer = TXUI.IsRetail and UnitTreatAsPlayerForDisplay(unit)
-  local isPlayer = (E:NotSecretValue(unitIsPlayer) and unitIsPlayer)
-    or (E:NotSecretValue(treatAsPlayer) and treatAsPlayer)
+  local isPlayer = (E:NotSecretValue(unitIsPlayer) and unitIsPlayer) or (E:NotSecretValue(treatAsPlayer) and treatAsPlayer)
 
   local isConnected = UnitIsConnected(unit)
   local isDeadOrGhost = UnitIsDeadOrGhost(unit)
@@ -32,19 +31,13 @@ function GR:GetHealthColor(frame, unit)
     return "specialColorMap", "DISCONNECTED"
   elseif frame.unitDead == true then
     return "specialColorMap", "DEAD"
-  elseif isPlayer
-    and E:NotSecretValue(isDeadOrGhost) and not isDeadOrGhost
-    and E:NotSecretValue(isCharmed) and isCharmed
-    and E:NotSecretValue(isEnemy) and isEnemy then
+  elseif isPlayer and E:NotSecretValue(isDeadOrGhost) and not isDeadOrGhost and E:NotSecretValue(isCharmed) and isCharmed and E:NotSecretValue(isEnemy) and isEnemy then
     return "reactionColorMap", "BAD"
-  elseif E:NotSecretValue(playerControlled) and not playerControlled
-    and E:NotSecretValue(tapDenied) and tapDenied then
+  elseif E:NotSecretValue(playerControlled) and not playerControlled and E:NotSecretValue(tapDenied) and tapDenied then
     return "specialColorMap", "TAPPED"
   elseif isPlayer then
     local classToken = select(2, UnitClass(unit))
-    if E:NotSecretValue(classToken) then
-      return "classColorMap", classToken
-    end
+    if E:NotSecretValue(classToken) then return "classColorMap", classToken end
   else
     local reaction = UnitReaction(unit, "player")
     if E:NotSecretValue(reaction) and reaction then
