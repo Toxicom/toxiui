@@ -545,9 +545,11 @@ I.HearthstoneData = {
   [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "FH" }, -- Freehold
   [467555] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "ML" }, -- The MOTHERLODE!!
   [467553] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "ML" }, -- The MOTHERLODE!!
+  [1286828] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "TOS" }, -- Temple of Sethraliss
   -- One for Horde and one for Alliance
   [464256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
   [445418] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
+  [1286831] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "KR" }, -- King's Rest
 
   -- Shadowlands
   [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "NW" }, -- Necrotic Wake
@@ -567,7 +569,7 @@ I.HearthstoneData = {
 
   -- Dragonflight
   [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "ULD" }, -- Uldaman: Legacy of Tyr
-  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "RLP" }, -- Ruby Life Pools
+  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "RLP" }, -- Ruby Life Pools
   [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "NO" }, -- Nokhud Offensive
   [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "BH" }, -- Brackenhide Hollow
   [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "AA" }, -- Algeth'ar Academy
@@ -594,6 +596,11 @@ I.HearthstoneData = {
   [1254400] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "WS" }, -- Windrunner Spire
   [1254563] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "NPX" }, -- Nexus-Point Xenas
   [1254559] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "MC" }, -- Maisara Caverns
+  [1286804] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "VSA" }, -- Voidscar Arena
+  [1286812] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "AOF" }, -- Altar of Fangs
+  [1286801] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "BV" }, -- Blinding Vale
+  [1286807] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "DON" }, -- Den of Nalorakk
+  [1286809] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "MR" }, -- Murder Row
 
   --                --
   -- Raid Teleports --
