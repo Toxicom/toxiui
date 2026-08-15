@@ -45,7 +45,7 @@ TXUI.IsAnniversary = TXUI.MetaFlavor == "Anniversary"
 
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
-TXUI.RetailSeason = "mid1"
+TXUI.RetailSeason = "mid2"
 
 -- Current expansion for Retail, eg.: tww
 -- see Internal.lua for Raid Hearthstones
