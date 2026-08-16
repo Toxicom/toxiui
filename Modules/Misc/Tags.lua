@@ -375,7 +375,7 @@ function M:Tags()
         if playerOnly and not UnitIsPlayer(unit) then return end
 
         local _, class = UnitClass(unit)
-        if not E:NotSecretValue(class) or not class then return end
+        if E:IsSecretValue(class) or not class then return end
 
         if UnitIsPlayer(unit) and usingSpecIcons then
           local specId = nil
