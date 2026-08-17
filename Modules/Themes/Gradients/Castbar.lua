@@ -42,9 +42,9 @@ end
 
 function GR:PostUpdateCastColor(frame, castFailed)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
-  if not frame.__owner.unit and not frame.unit then return end
+  if not frame.__owner.unit and not frame.__unit then return end
 
-  local unit = frame.unit or frame.__owner.unit
+  local unit = frame.__unit or frame.__owner.unit
   if unit == "vehicle" then unit = "player" end
 
   local customColor = frame.db and frame.db.castbar and frame.db.castbar.customColor
