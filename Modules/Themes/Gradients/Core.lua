@@ -39,7 +39,7 @@ function GR:UpdateStatusBarFrame(frame)
     -- Hook if needed
     if not self:IsHooked(frame.Health, "PostUpdateColor") then
       self:RawHook(frame.Health, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdateHealthColor, self))
-      self:AddFrameToSettingsUpdate("Health", frame.Health, F.Event.GenerateClosure(self.PostUpdateHealthColor, self, frame.Health, frame.unit))
+      self:AddFrameToSettingsUpdate("Health", frame.Health, F.Event.GenerateClosure(self.PostUpdateHealthColor, self, frame.Health, frame.__unit))
     end
   end
 
@@ -68,7 +68,7 @@ function GR:UpdateStatusBarFrame(frame)
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
       self:RawHook(frame.Power, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdatePowerColor, self))
-      self:AddFrameToSettingsUpdate("Power", frame.Power, F.Event.GenerateClosure(self.PostUpdatePowerColor, self, frame.Power, frame.unit))
+      self:AddFrameToSettingsUpdate("Power", frame.Power, F.Event.GenerateClosure(self.PostUpdatePowerColor, self, frame.Power, frame.__unit))
     end
   end
 end

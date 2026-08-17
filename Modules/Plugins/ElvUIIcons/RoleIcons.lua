@@ -39,7 +39,7 @@ function RI:SetRoleIcon(frame, event)
   end
 
   -- Get role from unit
-  local role = UnitGroupRolesAssigned(frame.unit)
+  local role = UnitGroupRolesAssigned(frame.__unit)
 
   -- Get random role if no roles are assigned and we are in test mode
   if frame.isForced and (role == "NONE") then
@@ -51,7 +51,7 @@ function RI:SetRoleIcon(frame, event)
   local shouldHide = ((event == "PLAYER_REGEN_DISABLED" and roleDB.combatHide and true) or false)
 
   -- Only apply changes if player is connected (or in test mode)
-  if (frame.isForced or UnitIsConnected(frame.unit)) and ((role == "DAMAGER" and roleDB.damager) or (role == "HEALER" and roleDB.healer) or (role == "TANK" and roleDB.tank)) then
+  if (frame.isForced or UnitIsConnected(frame.__unit)) and ((role == "DAMAGER" and roleDB.damager) or (role == "HEALER" and roleDB.healer) or (role == "TANK" and roleDB.tank)) then
     -- Get role icon
     local roleTexture = I.ElvUIIcons.Role[self.db.theme][unitType] and I.ElvUIIcons.Role[self.db.theme][unitType][role]
 

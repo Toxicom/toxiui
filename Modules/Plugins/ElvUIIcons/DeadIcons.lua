@@ -14,8 +14,8 @@ function DI.ElementUpdate(frame, _, unit)
   local element = frame.Dead
   if not element then return end
 
-  if unit and unit ~= frame.unit then return end
-  if not unit then unit = frame.unit end
+  if unit and unit ~= frame.__unit then return end
+  if not unit then unit = frame.__unit end
 
   local isDead = frame.isForced or UnitIsDead(unit) or UnitIsGhost(unit)
 

@@ -13,8 +13,8 @@ function OI.ElementUpdate(frame, _, unit)
   local element = frame.TXOffline
   if not element then return end
 
-  if unit and unit ~= frame.unit then return end
-  if not unit then unit = frame.unit end
+  if unit and unit ~= frame.__unit then return end
+  if not unit then unit = frame.__unit end
 
   local isOffline = frame.isForced or (not UnitIsConnected(unit))
 
