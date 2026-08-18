@@ -168,7 +168,7 @@ function HS:GetAdditionalHearthstones()
           spellID = data.id,
           type = data.type,
           name = data.name,
-          icon = GetItemIcon(data.id),
+          icon = data.type == "spell" and GetSpellTexture(data.id) or GetItemIcon(data.id),
           label = data.label,
         })
       end
@@ -176,21 +176,6 @@ function HS:GetAdditionalHearthstones()
   end
 
   return slots
-end
-
-function HS:GetCovenantStone(hs)
-  local covenant = F.GetCachedCovenant(true)
-
-  if hs.covenant ~= covenant then
-    for _, option in pairs(I.HearthstoneData) do
-      if option.known and (option.covenant and option.covenant == covenant) then
-        self:LogDebug("HS:GetCovenantStone > Replaced stone", hs.covenant, option.covenant)
-        return option
-      end
-    end
-  end
-
-  return hs
 end
 
 function HS:GetMagePortals()
@@ -207,7 +192,7 @@ function HS:GetMagePortals()
     end
   end
 
-  WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, teleportList, portalList)
+  WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, teleportList, portalList, WB:GetGrowDirection(self.Module) == "RIGHT")
 end
 
 function HS:UpdateSelected()
@@ -221,18 +206,16 @@ function HS:UpdateSelected()
   -- Check if any ids could be found
   if not self.hsPrimary.id then return self:LogDebug("HS:UpdateSelected > Primary ID could not be found") end
 
-  -- If covenant hearthstone is selected, be smart and replace it with current covenant
-  if self.hsPrimary.covenant then self.hsPrimary = self:GetCovenantStone(self.hsPrimary) end
-
   -- Fallback to default if spell is not known
   if not self.hsPrimary.known then self.hsPrimary = I.HearthstoneData[P.wunderbar.subModules.Hearthstone.primaryHS] end
 
   if self.db.randomPrimaryHs then
     local idTable = {}
-    local covenantHsIds = { [180290] = true, [184353] = true, [183716] = true, [182773] = true }
+    local pool = self.db.randomPrimaryHsPool
+    local usePool = pool and not F.Table.IsEmpty(pool)
     for _, option in pairs(I.HearthstoneData) do
-      if option.known then
-        if not option.class and option.hearthstone and not covenantHsIds[option.id] then tinsert(idTable, option.id) end
+      if option.known and not option.class and option.hearthstone then
+        if not usePool or pool[option.id] == true then tinsert(idTable, option.id) end
       end
     end
 
@@ -264,7 +247,7 @@ function HS:UpdateSelected()
   elseif self.hsAdditional and not F.Table.IsEmpty(self.hsAdditional) then
     self.secureFrame:SetAttribute("type2", "function")
     self.secureFrame:SetAttribute("_function2", function()
-      WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsAdditional)
+      WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsAdditional, nil, WB:GetGrowDirection(self.Module) == "RIGHT")
     end)
   end
 
@@ -273,12 +256,13 @@ function HS:UpdateSelected()
   if hasMythics or hasRaids then
     self.secureFrame:SetAttribute("shift-type1", "function")
     self.secureFrame:SetAttribute("shift-_function1", function()
+      local growRight = WB:GetGrowDirection(self.Module) == "RIGHT"
       if hasMythics and hasRaids then
-        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics, self.hsRaids)
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics, self.hsRaids, growRight)
       elseif hasMythics then
-        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics)
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsMythics, nil, growRight)
       else
-        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsRaids)
+        WB:ShowSecureFlyOut(self.frame, self.flyoutDirection, self.hsRaids, nil, growRight)
       end
     end)
   end
@@ -503,9 +487,4 @@ function HS:OnInit()
   self.Initialized = true
 end
 
-WB:RegisterSubModule(
-  HS,
-  F.Table.Join({
-    "HEARTHSTONE_BOUND",
-  }, F.Table.If(TXUI.IsRetail, { "COVENANT_CHOSEN" }))
-)
+WB:RegisterSubModule(HS, { "HEARTHSTONE_BOUND" })

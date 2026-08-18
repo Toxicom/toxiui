@@ -134,8 +134,19 @@ function M:Tags()
   local iconsDb = E.db.TXUI.wunderbar.subModules["SpecSwitch"].icons
   local iconTheme = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiClasses"
   local iconPath = self:GetClassIconPath(iconTheme)
+  local usingSpecIcons = match(iconTheme, "ToxiSpec")
+  local classIconPath = usingSpecIcons and self:GetClassIconPath("ToxiClasses") or iconPath
 
   local dm = TXUI:GetModule("ThemesDarkTransparency")
+
+  local classColorPrefix = {}
+  for className, cs in pairs(ElvUF.colors.class) do
+    classColorPrefix[className] = "|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b)
+  end
+  local reactionColorPrefix = {}
+  for i, cr in ipairs(ElvUF.colors.reaction) do
+    reactionColorPrefix[i] = "|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b)
+  end
 
   local function FormatColorTag(str, unit)
     -- i don't fucking know, i don't see this string anywhere but otherwise get Lua errors
@@ -143,11 +154,11 @@ function M:Tags()
 
     if UnitIsPlayer(unit) then
       local _, unitClass = UnitClass(unit)
-      local cs = ElvUF.colors.class[unitClass]
-      return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. str) or ("|cffcccccc" .. str)
+      local prefix = classColorPrefix[unitClass]
+      return prefix and (prefix .. str) or ("|cffcccccc" .. str)
     else
-      local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-      return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. str) or ("|cffcccccc" .. str)
+      local prefix = reactionColorPrefix[UnitReaction(unit, "player")]
+      return prefix and (prefix .. str) or ("|cffcccccc" .. str)
     end
   end
 
@@ -224,7 +235,7 @@ function M:Tags()
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
-    if TXUI.IsRetail then return format("%d", UnitHealthPercent(unit, true, ScaleTo100)) end
+    if TXUI.IsRetail then return UnitHealthPercent(unit, true, ScaleTo100) end
 
     local max = UnitHealthMax(unit)
     if max == 0 then
@@ -238,10 +249,8 @@ function M:Tags()
     local status = GetUnitStatus(unit)
     if status then return status end
 
-    local percentHealth = GetHealthPercentage(unit)
-    local percentHealthStr = tostring(percentHealth)
-
-    if percentSign then percentHealthStr = percentHealthStr .. "%" end
+    local pct = GetHealthPercentage(unit)
+    local percentHealthStr = percentSign and format("%d%%", pct) or format("%d", pct)
 
     -- Return different coloring for Dark Mode
     if dm.isEnabled then
@@ -303,9 +312,7 @@ function M:Tags()
         if max ~= 0 then return power end
       end
 
-      local powerStr = tostring(power)
-
-      if max ~= 0 then return FormatColorTag(powerStr, unit) end
+      if max ~= 0 then return FormatColorTag(power, unit) end
     end
   end)
 
@@ -330,7 +337,7 @@ function M:Tags()
     [I.Specs.Shaman.Restoration] = true,
   }
 
-  E:AddTag("tx:power", POWER_EVENTS, function(unit)
+  local function powerTagFunc(unit)
     local power = UnitPower(unit)
     local powerType = UnitPowerType(unit)
 
@@ -347,10 +354,15 @@ function M:Tags()
     else
       return power
     end
-  end)
+  end
 
-  local usingSpecIcons = TXUI.IsRetail and match(iconTheme, "ToxiSpec")
-  local classIconPath = usingSpecIcons and self:GetClassIconPath("ToxiClasses") or iconPath
+  E:AddTag("tx:power", POWER_EVENTS, powerTagFunc)
+
+  E:AddTag("tx:power:classbar", POWER_EVENTS, function(unit)
+    local playerDB = E.db.unitframe and E.db.unitframe.units and E.db.unitframe.units.player
+    if not playerDB or playerDB.power.enable then return end
+    return powerTagFunc(unit)
+  end)
 
   -- Class Icon Tags (normal and reversed/mirrored, with optional :player filter)
   for _, reverse in ipairs { false, true } do
@@ -363,7 +375,7 @@ function M:Tags()
         if playerOnly and not UnitIsPlayer(unit) then return end
 
         local _, class = UnitClass(unit)
-        if not class then return end
+        if E:IsSecretValue(class) or not class then return end
 
         if UnitIsPlayer(unit) and usingSpecIcons then
           local specId = nil
@@ -552,6 +564,7 @@ function M:Tags()
       TagNames.POWER,
       "Displays current Power of unit. Also adds " .. TXUI.Title .. " colors." .. (TXUI.IsRetail and " Smart display per-specialization." or "")
     )
+    E:AddTagInfo("tx:power:classbar", TagNames.POWER, "Same as [tx:power] but only displays when the Player Power Bar is disabled.")
   end
 
   -- Requires ElvUI 13.67 or later

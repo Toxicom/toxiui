@@ -13,7 +13,7 @@ F.AddMedia("font", "ToxiUIIcons.ttf", I.Fonts.Icons, nil, allLocaleBits)
 F.AddMedia("font", "ToxiUI.ttf", I.Fonts.Primary, nil, supportedBits)
 F.AddMedia("font", "BigNoodleToo.ttf", I.Fonts.Title, nil, supportedBits)
 F.AddMedia("font", "Montserrat-Medium.ttf", "- M 500", nil, supportedBits)
-F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleRaid, nil, supportedBits)
+F.AddMedia("font", "Montserrat-Bold.ttf", I.Fonts.TitleBold, nil, supportedBits)
 F.AddMedia("font", "Montserrat-Black.ttf", I.Fonts.TitleBlack, nil, supportedBits)
 
 -- -----
@@ -158,14 +158,16 @@ F.AddMedia("installer", "WebPreview")
 F.AddMedia("installer", "TurboMode")
 
 -- -----
---   STYLE THUBMNAILS
+--   BANNERS
 -- -----
 
-F.AddMedia("style", "Classic")
-F.AddMedia("style", "New")
-F.AddMedia("style", "Old")
-F.AddMedia("style", "ClassIconsPreview")
-F.AddMedia("style", "SpecIconsPreview")
+F.AddMedia("banner", "CDM")
+F.AddMedia("banner", "Settings")
+F.AddMedia("banner", "DarkVsGradient")
+F.AddMedia("banner", "VehicleBar")
+F.AddMedia("banner", "EditMode")
+F.AddMedia("banner", "Emote")
+F.AddMedia("banner", "Updater")
 
 -- -----
 --   ARMORY BACKGROUNDS

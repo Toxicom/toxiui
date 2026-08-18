@@ -13,15 +13,15 @@ function PF:BuildWarpDepleteProfile()
     barPadding = 4,
 
     bar1Font = F.FontOverride(I.Fonts.Primary),
-    bar1Texture = "- Tx Left",
+    bar1Texture = I.Textures.Primary,
     bar1TextureColor = "ff00e5f6",
 
     bar2Font = F.FontOverride(I.Fonts.Primary),
-    bar2Texture = "- Tx Left",
+    bar2Texture = I.Textures.Primary,
     bar2TextureColor = "ff00e5f6",
 
     bar3Font = F.FontOverride(I.Fonts.Primary),
-    bar3Texture = "- Tx Left",
+    bar3Texture = I.Textures.Primary,
     bar3TextureColor = "ff00e5f6",
 
     -- Objective text color
@@ -35,9 +35,9 @@ function PF:BuildWarpDepleteProfile()
 
     -- Forces
     forcesFont = F.FontOverride(I.Fonts.Primary),
-    forcesTexture = "- Tx Left",
+    forcesTexture = I.Textures.Primary,
     forcesTextureColor = "ffbc9f23",
-    forcesOverlayTexture = "- Tx Left",
+    forcesOverlayTexture = I.Textures.Primary,
 
     -- Frame
     frameX = F.Dpi(-5),

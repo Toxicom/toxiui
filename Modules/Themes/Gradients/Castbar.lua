@@ -6,51 +6,27 @@ local UnitCanAttack = UnitCanAttack
 local UnitClass = UnitClass
 local UnitIsPlayer = UnitIsPlayer
 
-function GR:GetCastbarColor(frame, unit, castFailed, duration, maxDuration)
+function GR:GetCastbarColor(frame, unit, castFailed)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
   if unit == "vehicle" then unit = "player" end
 
-  local interruptCD
-  local canInterruptInTime = false
-  local hasInterruptCD = false
-  -- notInterruptible is secret in Midnight, cannot check it at all
-  local canInterrupt = true
-  local channeling = frame.channeling
-
-  if unit and (self.db.interruptCDEnabled or self.db.interruptSoonEnabled) then
-    hasInterruptCD = false
-
-    if canInterrupt and (unit ~= "player") and (UnitCanAttack("player", unit)) then
-      interruptCD = F.CanInterrupt()
-      if interruptCD > 0 then hasInterruptCD = true end
-    end
-  end
-
-  if self.db.interruptSoonEnabled and hasInterruptCD and unit then
-    interruptCD = interruptCD or F.CanInterrupt()
-
-    if interruptCD > 0 then
-      if channeling then
-        canInterruptInTime = (interruptCD + 0.3) < duration
-      else
-        canInterruptInTime = (interruptCD + 0.3) < (maxDuration - duration)
-      end
-    end
-  end
-
+  local notInterruptible = E:NotSecretValue(frame.notInterruptible) and frame.notInterruptible
+  local isPlayer = unit and UnitIsPlayer(unit)
+  local canAttack = unit and unit ~= "player" and UnitCanAttack("player", unit)
   local useClassColor, colorEntry
 
   if castFailed then
     colorEntry = "INTERRUPTED"
-  elseif hasInterruptCD and canInterruptInTime then
-    colorEntry = "INTERRUPTSOON"
-  elseif hasInterruptCD and not canInterruptInTime then
-    colorEntry = "INTERRUPTCD"
-  elseif not canInterrupt and unit and (UnitIsPlayer(unit) or (unit ~= "player" and UnitCanAttack("player", unit))) then
+  elseif notInterruptible and unit and ((E:NotSecretValue(isPlayer) and isPlayer) or (E:NotSecretValue(canAttack) and canAttack)) then
     colorEntry = "NOINTERRUPT"
-  elseif frame.classColorFallback and (unit and UnitIsPlayer(unit)) then
-    colorEntry = select(2, UnitClass(unit))
-    useClassColor = true
+  elseif frame.classColorFallback and unit and E:NotSecretValue(isPlayer) and isPlayer then
+    local classToken = select(2, UnitClass(unit))
+    if E:NotSecretValue(classToken) then
+      colorEntry = classToken
+      useClassColor = true
+    else
+      colorEntry = "DEFAULT"
+    end
   else
     colorEntry = "DEFAULT"
   end
@@ -66,20 +42,19 @@ end
 
 function GR:PostUpdateCastColor(frame, castFailed)
   if not self.isEnabled or not self.db or not self.db.enabled then return end
-  if not frame.__owner.unit and not frame.unit then return end
+  if not frame.__owner.unit and not frame.__unit then return end
 
-  local eR, eG, eB = frame:GetStatusBarColor()
-  local unit = frame.unit or frame.__owner.unit
+  local unit = frame.__unit or frame.__owner.unit
   if unit == "vehicle" then unit = "player" end
 
   local customColor = frame.db and frame.db.castbar and frame.db.castbar.customColor
   local custom = customColor and customColor.enable and customColor
   frame.classColorFallback = (custom and custom.useClassColor) or (not custom and self.uf.db.colors.castClassColor)
 
-  -- Cast duration is secret in Midnight, use fixed percentage
+  -- Cast duration and bar color are secret in Midnight — use fixed percentage and skip bar color comparison
   local valueChanged = frame.currentPercent == nil
   if valueChanged then frame.currentPercent = 1 end
 
-  local colorFunc = F.Event.GenerateClosure(self.GetCastbarColor, self, frame, unit, castFailed, 0, 1)
-  self:SetGradientColors(frame, valueChanged, eR, eG, eB, (self.db.interruptCDEnabled or self.db.interruptSoonEnabled), colorFunc)
+  local colorMap, colorEntry = self:GetCastbarColor(frame, unit, castFailed)
+  self:SetGradientColors(frame, valueChanged, nil, nil, nil, true, colorMap, colorEntry)
 end

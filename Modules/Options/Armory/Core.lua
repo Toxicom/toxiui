@@ -1069,7 +1069,7 @@ function O:Armory()
           local socketItem = nil
 
           if C_Item and C_Item.GetItemInfo then
-            local itemName = C_Item.GetItemInfo(213777)
+            local itemName = C_Item.GetItemInfo(263897) -- Radiant Jewelbinder
             if itemName then socketItem = itemName end
           end
 

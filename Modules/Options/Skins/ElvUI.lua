@@ -27,7 +27,7 @@ function O:Skins_ElvUI()
   do
     -- ElvUI Theme
     local elvuiTheme = self:AddInlineRequirementsDesc(options, {
-      name = TXUI.Title .. " " .. F.String.ElvUI("ElvUI") .. " Skin",
+      name = "Shadows & Grain Background",
       get = function(info)
         return E.db.TXUI.addons.elvUITheme[info[#info]]
       end,
@@ -39,7 +39,7 @@ function O:Skins_ElvUI()
     }, {
       name = "This module applies a grain background and shadows to all "
         .. F.String.ElvUI()
-        .. " elements.\n\n"
+        .. " elements.\n"
         .. F.String.Warning("Warning: ")
         .. "This feature may increase your load times due to all the frames it has to skin. It can also negatively impact performance of the gameplay.\nTherefore it is disabled by default and not recommended - use at your own caution.\n\n",
     }, I.Requirements.ElvUITheme)
@@ -406,11 +406,11 @@ function O:Skins_ElvUI()
     local smoothBarsGroup = self:AddInlineDesc(options, {
       name = "Smooth Bars " .. E.NewSign,
     }, {
-      name = "Quick toggles to enable or disable smooth bar animations for health and power bars across different unit frames.\n\n"
+      name = "Quick toggles to enable or disable smooth bar animations for health and power bars across different unit frames.\n"
         .. F.String.ToxiUI("Information: ")
-        .. "These settings directly modify ElvUI's UnitFrame database settings. It is NOT a custom feature for smooth bars.\n\n"
+        .. "These settings directly modify ElvUI's UnitFrame database settings. It is NOT a custom feature for smooth bars.\n"
         .. F.String.Warning("Warning: ")
-        .. "These changes may impact performance on lower-end systems when enabled for multiple unit frames simultaneously.\n\n",
+        .. "These changes may impact performance on lower-end systems when enabled for multiple unit frames simultaneously.\n",
     }).args
 
     -- All Units Toggle Header

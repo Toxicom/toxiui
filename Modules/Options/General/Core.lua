@@ -6,10 +6,10 @@ function O:General()
   -- Reset order for new page
   self:ResetOrder()
 
-  local options = self.options.general.args
+  local pageOptions = self.options.general.args
 
   -- Welcome Description
-  options["generalWelcome"] = {
+  pageOptions["generalWelcome"] = {
     order = self:GetOrder(),
     inline = true,
     type = "group",
@@ -36,16 +36,15 @@ function O:General()
   }
 
   -- Spacer
-  self:AddSpacer(options)
+  self:AddSpacer(pageOptions)
 
-  -- Welcome Description
-  options["generalInstall"] = {
+  -- Installation guide
+  pageOptions["generalInstall"] = {
     order = self:GetOrder(),
     inline = true,
     type = "group",
     name = "Installation guide",
     args = {
-      -- Welcome Description
       ["generalInstallDesc"] = {
         order = self:GetOrder(),
         type = "description",
@@ -93,10 +92,19 @@ function O:General()
   }
 
   -- Spacer
-  self:AddSpacer(options)
+  self:AddSpacer(pageOptions)
+
+  -- ==================
+  -- Credits Tab
+  -- ==================
+  local creditsTab = self:AddGroup(pageOptions, { name = "Credits" }).args
 
   -- Credits
   local credits = ""
+
+  local legendaryBadge = E:TextureString(I.Media.ChatIcons.Legendary, ":12:30") .. " "
+  local epicBadge = E:TextureString(I.Media.ChatIcons.Epic, ":12:30") .. " "
+  local rareBadge = E:TextureString(I.Media.ChatIcons.Rare, ":12:30") .. " "
 
   -- Credits helpers
   local addToCredits = function(color, name)
@@ -108,43 +116,37 @@ function O:General()
   end
 
   -- Add Contributors to credit
-  credits = credits .. F.String.ToxiUI("Legendary Supporter\n\n")
+  credits = credits .. legendaryBadge .. F.String.ToxiUI("Legendary Supporter\n\n")
 
   if next(I.Data.Contributor[I.Enum.ContributorType.LEGENDARY]) ~= nil then
-    -- The table has entries
     for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.LEGENDARY]) do
       addToCredits(I.Enum.Colors.LEGENDARY, name)
     end
   else
-    -- The table is empty
     addToCredits("ffffff", "No " .. F.String.Legendary("Legendary") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. F.String.ToxiUI("\n\nEpic Supporter\n\n")
+  credits = credits .. "\n\n" .. epicBadge .. F.String.ToxiUI("Epic Supporter\n\n")
 
   if next(I.Data.Contributor[I.Enum.ContributorType.EPIC]) ~= nil then
-    -- The table has entries
     for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.EPIC]) do
       addToCredits(I.Enum.Colors.EPIC, name)
     end
   else
-    -- The table is empty
     addToCredits("ffffff", "No " .. F.String.Epic("Epic") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. F.String.ToxiUI("\n\nRare Supporter\n\n")
+  credits = credits .. "\n\n" .. rareBadge .. F.String.ToxiUI("Rare Supporter\n\n")
 
   if next(I.Data.Contributor[I.Enum.ContributorType.RARE]) ~= nil then
-    -- The table has entries
     for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.RARE]) do
       addToCredits(I.Enum.Colors.RARE, name)
     end
   else
-    -- The table is empty
     addToCredits("ffffff", "No " .. F.String.Rare("Rare") .. " Supporters at the moment :(")
   end
 
-  credits = credits .. F.String.ToxiUI("\n\nBeta Testers\n\n")
+  credits = credits .. "\n\n" .. legendaryBadge .. F.String.ToxiUI("Beta Testers\n\n")
 
   for name, _ in pairs(I.Data.Contributor[I.Enum.ContributorType.BETA]) do
     addToCredits(I.Enum.Colors.BETA, name)
@@ -152,7 +154,6 @@ function O:General()
 
   credits = credits .. F.String.ToxiUI("\n\nOthers\n\n")
 
-  -- Add to credit
   addToCredits("f2d705", "Hekili")
   addToCredits("a96dad", "Rhapsody")
   addToCredits("0070de", "Jake")
@@ -165,17 +166,58 @@ function O:General()
   addToCredits("ffffff", F.String.Eltreum())
   addToCredits("4beb2c", "Luckyone")
 
-  local creditsGroup = self:AddInlineDesc(options, {
+  local creditSection = self:AddInlineDesc(creditsTab, {
     name = "Credits",
   }, {
     name = "Special thanks goes to these " .. F.String.ToxiUI("amazing people") .. " for their help or inspiration!" .. F.String.Error(" <3\n\n"),
   }).args
 
-  creditsGroup.credits = {
+  creditSection.credits = {
     order = self:GetOrder(),
     type = "description",
     name = credits,
   }
+
+  -- ==================
+  -- Commands Tab
+  -- ==================
+  local commandsTab = self:AddGroup(pageOptions, { name = "Commands " .. E.NewSign }).args
+
+  local function cmd(slash, desc, shortcut)
+    local line = F.String.ToxiUI(slash) .. " — " .. desc
+    if shortcut then line = line .. " " .. F.String.Silver("(shortcut: " .. shortcut .. ")") end
+    return line .. "\n"
+  end
+
+  local aliasText = F.String.ToxiUI("/tx")
+    .. ", "
+    .. F.String.ToxiUI("/toxi")
+    .. ", "
+    .. F.String.ToxiUI("/txui")
+    .. " and "
+    .. F.String.ToxiUI("/toxiui")
+    .. " all do the same thing — use whichever you prefer.\n\n"
+
+  self:AddInlineDesc(commandsTab, { name = "General" }, {
+    name = aliasText .. cmd("/tx", "Open " .. TXUI.Title .. " settings") .. cmd("/tx changelog", "Open the changelog", "/tx cl") .. cmd(
+      "/tx install",
+      "Run the installer",
+      "/tx i"
+    ) .. cmd("/tx update", "Open the Profile Updater", "/tx u") .. cmd("/tx status", "Open the Status Report", "/tx info") .. cmd(
+      "/tx wb",
+      "Open WunderBar settings",
+      "/tx wunderbar"
+    ) .. cmd("/tx landing", "Open the Welcome landing page", "/tx lp") .. cmd("/tx landing update", "Open the Update landing page", "/tx lp u") .. cmd(
+      "/tx badge",
+      "Toggle chat badge visibility"
+    ) .. cmd("/tx reset", "Reset the " .. TXUI.Title .. " profile") .. cmd("/tx debug", "Toggle debug mode (on / off)"),
+  })
+
+  if TXUI.IsRetail then
+    self:AddInlineDesc(commandsTab, { name = "Retail" }, {
+      name = cmd("/cd", "Open Cooldown Manager settings", "/cdm, /wa") .. cmd("/em", "Open Edit Mode"),
+    })
+  end
 end
 
 O:AddCallback("General")

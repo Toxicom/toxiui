@@ -7,5 +7,6 @@
   <Script file='Event.lua' />
   <Script file='Log.lua' />
   <Script file='String.lua' />
+  <Script file='Branding.lua' />
   <Script file='Table.lua' />
 </Ui>

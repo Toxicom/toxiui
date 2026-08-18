@@ -114,11 +114,19 @@ function DB:OnClick(...)
     if dtModule then dtModule.onClick(...) end
   end
 
+  if key == "MiddleButton" and (C_MountJournal and C_MountJournal.GetMountInfoByID) then
+    local auctionMountID = self.db.auctionMount
+    if auctionMountID then
+      local _, _, _, _, isUsable = C_MountJournal.GetMountInfoByID(auctionMountID)
+      if isUsable then C_MountJournal.SummonByID(auctionMountID) end
+    end
+  end
+
   if key == "RightButton" and (C_MountJournal and C_MountJournal.GetMountInfoByID) then
-    local mountID = self.db.repairMount
-    if mountID then
-      local _, _, _, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
-      if isUsable then C_MountJournal.SummonByID(mountID) end
+    local repairMountID = self.db.repairMount
+    if repairMountID then
+      local _, _, _, _, isUsable = C_MountJournal.GetMountInfoByID(repairMountID)
+      if isUsable then C_MountJournal.SummonByID(repairMountID) end
     end
   end
 end
@@ -162,9 +170,17 @@ function DB:OnEnter()
   DT.tooltip:AddLine(" ")
   DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Open Character Frame")
   if C_MountJournal and C_MountJournal.GetMountInfoByID then
-    local mountID = self.db.repairMount
-    if mountID then
-      local name, _, icon, _, isUsable = C_MountJournal.GetMountInfoByID(mountID)
+    local auctionMountID = self.db.auctionMount
+    local repairMountID = self.db.repairMount
+
+    if auctionMountID then
+      local name, _, icon, _, isUsable = C_MountJournal.GetMountInfoByID(auctionMountID)
+      local iconStr = icon and format("|T%s:16:16:0:0:50:50:4:46:4:46|t", icon) or ""
+      if name and isUsable then DT.tooltip:AddLine("|cffFFFFFFMiddle Click:|r Summon " .. iconStr .. name) end
+    end
+
+    if repairMountID then
+      local name, _, icon, _, isUsable = C_MountJournal.GetMountInfoByID(repairMountID)
       local iconStr = icon and format("|T%s:16:16:0:0:50:50:4:46:4:46|t", icon) or ""
       if name and isUsable then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Summon " .. iconStr .. name) end
     end

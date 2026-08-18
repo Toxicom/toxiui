@@ -9,12 +9,8 @@ local COVENANT_COLORS = COVENANT_COLORS
 local CreateFrame = CreateFrame
 local CreateFromMixins = CreateFromMixins
 local error = error
-local FindSpellOverrideByID = FindSpellOverrideByID
 local format = string.format
 local GetItemCount = GetItemCount
-local GetSpecialization = GetSpecialization
-local GetSpecializationInfo = GetSpecializationInfo
-local GetSpellCooldown = (C_Spell and C_Spell.GetSpellCooldown) or GetSpellCooldown
 local GetTime = GetTime
 local gmatch = string.gmatch
 local gsub = string.gsub
@@ -40,7 +36,6 @@ local tinsert = table.insert
 local tonumber = tonumber
 local tremove = tremove
 local type = type
-local UnitLevel = UnitLevel
 local unpack = unpack
 local xpcall = xpcall
 
@@ -459,16 +454,22 @@ end
 
 do
   local eventManagerFrame, eventManagerTable, eventManagerDelayed = CreateFrame("Frame"), {}, {}
+  local flushPending = false
 
-  eventManagerFrame:SetScript("OnUpdate", function()
+  local function flushDelayed()
+    flushPending = false
     for _, func in ipairs(eventManagerDelayed) do
       F.ProtectedCall(unpack(func))
     end
     eventManagerDelayed = {}
-  end)
+  end
 
   function F.EventManagerDelayed(func, ...)
     tinsert(eventManagerDelayed, { func, ... })
+    if not flushPending then
+      flushPending = true
+      E:Delay(0, flushDelayed)
+    end
   end
 
   eventManagerFrame:SetScript("OnEvent", function(_, event, ...)
@@ -845,65 +846,6 @@ function F.CacheHearthstoneData()
   end
 end
 
-function F.CheckInterruptConditions(condition)
-  if condition.class and condition.class ~= E.myclass then return end
-  if condition.level and condition.level > UnitLevel("player") then return end
-  if condition.specIds and not tcontains(condition.specIds, GetSpecializationInfo(GetSpecialization())) then return end
-  return true
-end
-
-function F.CheckInterruptSpellsEvaluation()
-  for _, entry in ipairs(I.InterruptSpellMap) do
-    entry.active = IsSpellKnownOrOverridesKnown(entry.id) and F.CheckInterruptConditions(entry.conditions)
-  end
-end
-
-function F.CanInterruptEvaluation()
-  local interruptCD = nil
-
-  local spellIDs = {}
-  for _, entry in ipairs(I.InterruptSpellMap) do
-    if entry.active then tinsert(spellIDs, entry.id) end
-  end
-
-  for _, interruptSpellId in ipairs(spellIDs) do
-    if E.myclass ~= "WARLOCK" then
-      local cdStart, cdDur
-      if TXUI.IsRetail then
-        local cd = GetSpellCooldown(interruptSpellId)
-        cdStart, cdDur = cd.startTime, cd.duration
-      else
-        cdStart, cdDur = GetSpellCooldown(interruptSpellId)
-      end
-
-      local tmpInterruptCD = (cdStart > 0 and cdDur - (GetTime() - cdStart)) or 0
-      if not interruptCD or (tmpInterruptCD < interruptCD) then interruptCD = tmpInterruptCD end
-    elseif FindSpellOverrideByID(119898) then -- Check if WL has the command ability
-      local cdStart, cdDur
-      if TXUI.IsRetail then
-        local cd = GetSpellCooldown(interruptSpellId)
-        cdStart, cdDur = cd.startTime, cd.duration
-      else
-        cdStart, cdDur = GetSpellCooldown(interruptSpellId)
-      end
-      local tmpInterruptCD = (cdStart > 0 and cdDur - (GetTime() - cdStart)) or 0
-      if (tmpInterruptCD > 0) and (not interruptCD or (tmpInterruptCD < interruptCD)) then interruptCD = tmpInterruptCD end
-    end
-  end
-
-  if interruptCD and interruptCD > 0 then return interruptCD end
-  return 0
-end
-
-do
-  local cachedCD = 0
-  F.CanInterrupt = function()
-    local cdDur = F.CanInterruptThrottled()
-    if cdDur ~= nil then cachedCD = cdDur end
-    return cachedCD
-  end
-end
-
 function F.ProcessMovers(dbRef)
   -- Disable screen restrictions
   E:SetMoversClampedToScreen(false)
@@ -1019,6 +961,3 @@ function F.CalculateUltrawideOffset()
     return 0
   end
 end
-
-F.CheckInterruptSpells = F.CreateThrottleWrapper("CheckInterruptSpells", 2, F.CheckInterruptSpellsEvaluation)
-F.CanInterruptThrottled = F.CreateThrottleWrapper("CanInterrupt", 0.2, F.CanInterruptEvaluation)

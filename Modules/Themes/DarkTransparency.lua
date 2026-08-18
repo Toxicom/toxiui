@@ -127,7 +127,7 @@ function DT:UpdateStatusBarFrame(frame)
     end
 
     self:RawHook(frame.Health, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdateColor, self))
-    self:AddFrameToSettingsUpdate(frame.Health, F.Event.GenerateClosure(self.PostUpdateColor, self, frame.Health, frame.unit))
+    self:AddFrameToSettingsUpdate(frame.Health, F.Event.GenerateClosure(self.PostUpdateColor, self, frame.Health, frame.__unit))
   end
 end
 

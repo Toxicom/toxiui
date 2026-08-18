@@ -10,6 +10,17 @@ CM.frameNames = {
   buffBar = "BuffBarCooldownViewer",
 }
 
+function CM:OnEditModeEnter()
+  self:RestoreOriginalParents()
+  self:RestoreAnchors()
+  self:DisableDynamicWidthForEditMode()
+end
+
+function CM:OnEditModeExit()
+  self:OnCooldownManagerChanged()
+  self:EnableDynamicWidthAfterEditMode()
+end
+
 function CM:OnCooldownManagerChanged()
   self:SetAnchors()
   self:SetParent()
@@ -20,10 +31,10 @@ function CM:Disable()
   if not self.Initialized then return end
 
   self:UnhookAll()
+  self:DisableBarOverrides()
   self:DisableCentering()
   self:DisableFading()
-  self:DisableDynamicBarsWidth()
-  self:DisableDynamicCastbarWidth()
+  self:DisableDynamicWidth()
   self:DisableAnchoring()
   self:DisableKeybinds()
 
@@ -32,6 +43,7 @@ function CM:Disable()
 
   if _G.EventRegistry then
     _G.EventRegistry:UnregisterCallback("CooldownViewerSettings.OnDataChanged", self)
+    _G.EventRegistry:UnregisterCallback("EditMode.Enter", self)
     _G.EventRegistry:UnregisterCallback("EditMode.Exit", self)
   end
 end
@@ -49,17 +61,22 @@ function CM:DatabaseUpdate()
     if not self.db then return end
     if not self.db.enabled then return end
 
-    local isCDMEnabled = C_CVar.GetCVarBool("cooldownViewerEnabled")
-    if not isCDMEnabled then C_CVar.SetCVar("cooldownViewerEnabled", "1") end
+    E:SetCVar("cooldownViewerEnabled", "1")
+
+    -- Apply bar overrides first (may affect what bars are available for anchoring)
+    local hasClassBarOverride = self.db.classBarOverride and self.db.classBarOverride.enabled
+    local hasPowerBarOverride = self.db.powerBarOverride and self.db.powerBarOverride.enabled
+    if hasClassBarOverride or hasPowerBarOverride then self:EnableBarOverrides() end
 
     -- Enable fading if enabled
     if self.db.fading then self:EnableFadingAfterUnitsLoaded() end
 
-    -- Enable dynamic bars width if enabled
-    if self.db.dynamicBarsWidth then self:EnableDynamicBarsWidth() end
-
-    -- Enable dynamic castbar width if enabled
-    if self.db.dynamicCastbarWidth then self:EnableDynamicCastbarWidth() end
+    -- Enable dynamic width features if enabled
+    local dw = self.db.dynamicWidth
+    if dw and dw.enabled then
+      if dw.powerClassBars then self:EnableDynamicBarsWidth() end
+      if dw.castBar then self:EnableDynamicCastbarWidth() end
+    end
 
     -- Enable anchoring if any anchor is enabled
     if self.db.anchors then
@@ -70,7 +87,7 @@ function CM:DatabaseUpdate()
     -- Enable centering if any viewer has it enabled
     if self.db.centering then
       local c = self.db.centering
-      if c.essential or c.utility or c.buff then self:EnableCentering() end
+      if c.essential or c.utility or c.buff or c.buffBar then self:EnableCentering() end
     end
 
     -- Enable keybind overlays if any viewer has keybinds enabled
@@ -82,7 +99,8 @@ function CM:DatabaseUpdate()
     -- Re-apply all features on settings change or edit mode exit since they reset frames
     if _G.EventRegistry then
       _G.EventRegistry:RegisterCallback("CooldownViewerSettings.OnDataChanged", self.OnCooldownManagerChanged, self)
-      _G.EventRegistry:RegisterCallback("EditMode.Exit", self.OnCooldownManagerChanged, self)
+      _G.EventRegistry:RegisterCallback("EditMode.Enter", self.OnEditModeEnter, self)
+      _G.EventRegistry:RegisterCallback("EditMode.Exit", self.OnEditModeExit, self)
     end
   end)
 end

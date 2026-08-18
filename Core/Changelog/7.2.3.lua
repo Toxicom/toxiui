@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.2.3"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Feb 5, 2026",
   CHANGES = {
     "* New features",
     F.String.ToxiUI("[tx:classicon:reverse]") .. " tag",

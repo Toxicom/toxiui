@@ -1,6 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
+local auraFilters = E.AuraDefaults
+
 local customTextTemplate = {
   -- Options
   enable = true,
@@ -74,6 +76,14 @@ local player = {
       justifyH = "CENTER",
     }),
 
+    ["toxiui:power-classbar"] = createCustomText({}, {
+      attachTextTo = "ClassPower",
+      text_format = "[tx:power:classbar]",
+      xOffset = 0,
+      yOffset = 10,
+      justifyH = "CENTER",
+    }),
+
     ["toxiui:class-icon"] = createCustomText({}, {
       justifyH = "LEFT",
       attachTextTo = "Health",
@@ -83,7 +93,7 @@ local player = {
     }),
   },
 
-  debuffs = {
+  debuffs = F.Table.Join({
     anchorPoint = "TOPRIGHT",
     growthX = "LEFT",
     attachTo = "FRAME",
@@ -101,7 +111,7 @@ local player = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(41),
     height = F.Dpi(27),
-  },
+  }, auraFilters),
 
   fader = {
     enable = true,
@@ -179,6 +189,8 @@ local player = {
     detachFromFrame = true,
     detachedWidth = F.Dpi(292),
     height = 10,
+    fill = "spaced",
+    spacing = 2,
   },
 
   castbar = {
@@ -206,7 +218,11 @@ local player = {
   aurabar = { enable = false },
   health = { text_format = "" },
   name = { text_format = "" },
-  buffs = { enable = false },
+  buffs = F.Table.Join({ enable = false }, auraFilters, {
+    isAuraBigDefensive = true,
+    isAuraExternalDefensive = true,
+    isAuraExternalDefensivePlayer = true,
+  }),
 }
 
 local function getTarget(horizontal)
@@ -271,7 +287,7 @@ local function getTarget(horizontal)
       }),
     },
 
-    buffs = {
+    buffs = F.Table.Join({
       anchorPoint = "TOPRIGHT",
       growthX = "LEFT",
       perrow = 7,
@@ -286,31 +302,35 @@ local function getTarget(horizontal)
       keepSizeRatio = false,
       sizeOverride = F.Dpi(41),
       height = F.Dpi(27),
-    },
+    }, auraFilters),
 
-    debuffs = {
-      anchorPoint = "TOPLEFT",
-      growthX = "RIGHT",
-      attachTo = "FRAME",
-      durationPosition = "CENTER",
-      maxDuration = 0,
-      perrow = 7,
-      priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
-      spacing = 2,
-      xOffset = 0,
-      yOffset = F.Dpi(30),
+    debuffs = F.Table.Join(
+      {
+        anchorPoint = "TOPLEFT",
+        growthX = "RIGHT",
+        attachTo = "FRAME",
+        durationPosition = "CENTER",
+        maxDuration = 0,
+        perrow = 7,
+        priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
+        spacing = 2,
+        xOffset = 0,
+        yOffset = F.Dpi(30),
 
-      countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-7),
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-7),
 
-      keepSizeRatio = false,
-      sizeOverride = F.Dpi(41),
-      height = F.Dpi(27),
-
-      -- Filters (ElvUI Default)
-      isAuraRaid = true,
-      isAuraRaidPlayer = true,
-    },
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(41),
+        height = F.Dpi(27),
+      },
+      auraFilters,
+      {
+        isAuraPlayer = true,
+        isAuraRaid = true,
+        isAuraRaidPlayer = true,
+      }
+    ),
 
     -- New "Custom" tab introduced in ElvUI 14.00
     auras = {
@@ -503,48 +523,54 @@ local focus = {
     }),
   },
 
-  buffs = {
-    enable = false,
-    anchorPoint = "TOPLEFT",
-    maxDuration = 0,
-    perrow = 5,
-    priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,NonPersonal",
-    sizeOverride = F.Dpi(29),
+  buffs = F.Table.Join(
+    {
+      enable = false,
+      anchorPoint = "TOPLEFT",
+      maxDuration = 0,
+      perrow = 5,
+      priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,NonPersonal",
+      sizeOverride = F.Dpi(29),
 
-    countPosition = "BOTTOM",
-    countYOffset = F.Dpi(-7),
+      countPosition = "BOTTOM",
+      countYOffset = F.Dpi(-7),
 
-    spacing = F.Dpi(2),
-    xOffset = F.Dpi(4),
-    yOffset = F.Dpi(30),
+      spacing = F.Dpi(2),
+      xOffset = F.Dpi(4),
+      yOffset = F.Dpi(30),
+    },
+    auraFilters,
+    {
+      isAuraBigDefensive = true,
+      isAuraExternalDefensive = true,
+      isAuraExternalDefensivePlayer = true,
+    }
+  ),
 
-    -- Filters (ElvUI Default)
-    isAuraBigDefensive = true,
-    isAuraExternalDefensive = true,
-    isAuraExternalDefensivePlayer = true,
-  },
+  debuffs = F.Table.Join(
+    {
+      durationPosition = "CENTER",
+      maxDuration = 0,
+      priority = "Blacklist,Personal,NonPersonal",
+      spacing = F.Dpi(0),
+      xOffset = F.Dpi(-4),
+      yOffset = F.Dpi(30),
 
-  debuffs = {
-    durationPosition = "CENTER",
-    maxDuration = 0,
-    priority = "Blacklist,Personal,NonPersonal",
-    spacing = F.Dpi(0),
-    xOffset = F.Dpi(-4),
-    yOffset = F.Dpi(30),
+      countPosition = "BOTTOM",
+      countYOffset = F.Dpi(-7),
 
-    countPosition = "BOTTOM",
-    countYOffset = F.Dpi(-7),
-
-    keepSizeRatio = false,
-    sizeOverride = F.Dpi(29),
-    height = F.Dpi(19),
-
-    -- Filters (ElvUI Default)
-    isAuraPlayer = true,
-    isAuraRaid = true,
-    isAuraBigDefensive = true,
-    isAuraExternalDefensive = true,
-  },
+      keepSizeRatio = false,
+      sizeOverride = F.Dpi(29),
+      height = F.Dpi(19),
+    },
+    auraFilters,
+    {
+      isAuraPlayer = true,
+      isAuraRaid = true,
+      isAuraBigDefensive = true,
+      isAuraExternalDefensive = true,
+    }
+  ),
 
   -- UnitFrame Focus raidicon (Target Marker Icon)
   raidicon = {
@@ -594,8 +620,8 @@ local focus = {
 
 local function getParty(horizontal)
   return {
-    width = horizontal and F.Dpi(150) or F.Dpi(240),
-    height = horizontal and F.Dpi(72) or F.Dpi(36),
+    width = horizontal and F.Dpi(180) or F.Dpi(240),
+    height = horizontal and F.Dpi(60) or F.Dpi(36),
 
     visibility = "[@raid1,exists][@party1,noexists] hide;show",
 
@@ -607,10 +633,16 @@ local function getParty(horizontal)
     startFromCenter = true,
     verticalSpacing = horizontal and F.Dpi(6) or F.Dpi(48),
 
+    infoPanel = {
+      enable = horizontal,
+      transparent = true,
+    },
+
     customTexts = {
       ["toxiui:name"] = createCustomText({}, {
+        attachTextTo = horizontal and "InfoPanel" or "Frame",
         text_format = "[tx:name:abbrev:medium:split]",
-        xOffset = horizontal and F.Dpi(8) or F.Dpi(6),
+        xOffset = horizontal and F.Dpi(14) or F.Dpi(6),
         yOffset = horizontal and F.Dpi(0) or F.Dpi(32),
       }),
 
@@ -622,6 +654,7 @@ local function getParty(horizontal)
       }),
 
       ["toxiui:level"] = createCustomText({}, {
+        enable = not horizontal,
         justifyH = "LEFT",
         text_format = "[tx:level:difficulty]",
         xOffset = horizontal and F.Dpi(24) or F.Dpi(22),
@@ -637,7 +670,7 @@ local function getParty(horizontal)
       }),
 
       ["toxiui:class-icon"] = createCustomText({}, {
-        enable = not horizontal,
+        enable = true,
         justifyH = "LEFT",
         attachTextTo = "Health",
         text_format = "[tx:classicon]",
@@ -650,53 +683,60 @@ local function getParty(horizontal)
       size = F.Dpi(12),
     },
 
-    buffs = {
-      enable = true,
-      anchorPoint = horizontal and "BOTTOM" or "LEFT",
-      growthX = "LEFT",
-      perrow = horizontal and 4 or 5,
-      numrows = horizontal and 2 or 1,
-      spacing = 2,
-      yOffset = horizontal and F.Dpi(-6) or 0,
-      xOffset = horizontal and 0 or F.Dpi(-40),
+    buffs = F.Table.Join(
+      {
+        enable = true,
+        anchorPoint = horizontal and "BOTTOM" or "LEFT",
+        growthX = "LEFT",
+        perrow = horizontal and 4 or 5,
+        numrows = horizontal and 2 or 1,
+        spacing = 2,
+        yOffset = horizontal and F.Dpi(-6) or 0,
+        xOffset = horizontal and 0 or F.Dpi(-10),
 
-      countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-5),
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-5),
 
-      keepSizeRatio = false,
-      sizeOverride = F.Dpi(36),
-      height = F.Dpi(24),
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(36),
+        height = F.Dpi(24),
+      },
+      auraFilters,
+      {
+        isAuraBigDefensive = true,
+        isAuraBigDefensivePlayer = true,
+        isAuraRaidInCombatPlayer = true,
+        isAuraExternalDefensive = true,
+        isAuraExternalDefensivePlayer = true,
+      }
+    ),
 
-      -- Filters (ElvUI Default)
-      isAuraBigDefensive = true,
-      isAuraBigDefensivePlayer = true,
-      isAuraRaidInCombatPlayer = true,
-      isAuraExternalDefensive = true,
-      isAuraExternalDefensivePlayer = true,
-    },
+    debuffs = F.Table.Join(
+      {
+        attachTo = "HEALTH",
+        anchorPoint = horizontal and "TOP" or "RIGHT",
+        perrow = horizontal and 4 or 5,
+        numrows = horizontal and 2 or 1,
+        priority = "Blacklist,Dispellable,Boss,RaidDebuffs,CCDebuffs,Whitelist",
+        spacing = 2,
+        yOffset = horizontal and F.Dpi(22) or 0,
+        xOffset = horizontal and 0 or 10,
 
-    debuffs = {
-      attachTo = "HEALTH",
-      anchorPoint = horizontal and "TOP" or "RIGHT",
-      perrow = horizontal and 4 or 5,
-      numrows = horizontal and 2 or 1,
-      priority = "Blacklist,Dispellable,Boss,RaidDebuffs,CCDebuffs,Whitelist",
-      spacing = 2,
-      yOffset = horizontal and F.Dpi(22) or 0,
-      xOffset = horizontal and 0 or 10,
+        countPosition = "BOTTOM",
+        countYOffset = F.Dpi(-5),
 
-      countPosition = "BOTTOM",
-      countYOffset = F.Dpi(-5),
-
-      keepSizeRatio = false,
-      sizeOverride = F.Dpi(36),
-      height = F.Dpi(24),
-
-      -- Filters (ElvUI Default)
-      isAuraImportant = true,
-      isAuraImportantPlayer = true,
-      isAuraRaidPlayerDispellable = true,
-    },
+        keepSizeRatio = false,
+        sizeOverride = F.Dpi(36),
+        height = F.Dpi(24),
+      },
+      auraFilters,
+      {
+        useBlocklist = true,
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+        isAuraRaidPlayerDispellable = true,
+      }
+    ),
 
     healPrediction = {
       enable = true,
@@ -716,10 +756,10 @@ local function getParty(horizontal)
 
     raidRoleIcons = {
       enable = true,
-      scale = 2,
-      position = "TOPLEFT",
-      xOffset = F.Dpi(12),
-      yOffset = F.Dpi(25),
+      scale = horizontal and 1 or 2,
+      position = horizontal and "BOTTOMRIGHT" or "TOPLEFT",
+      xOffset = horizontal and F.Dpi(-4) or F.Dpi(12),
+      yOffset = horizontal and F.Dpi(2) or F.Dpi(25),
     },
 
     rdebuffs = {
@@ -735,16 +775,17 @@ local function getParty(horizontal)
     },
 
     roleIcon = {
-      damager = not horizontal,
-      position = horizontal and "TOPLEFT" or "LEFT",
-      size = horizontal and F.Dpi(22) or F.Dpi(36),
-      xOffset = horizontal and F.Dpi(-12) or F.Dpi(-35),
-      yOffset = horizontal and F.Dpi(12) or F.Dpi(0),
+      damager = true,
+      attachTo = horizontal and "InfoPanel" or "Frame",
+      position = horizontal and "LEFT" or "TOPLEFT",
+      size = horizontal and F.Dpi(14) or F.Dpi(24),
+      xOffset = horizontal and F.Dpi(0) or F.Dpi(-24),
+      yOffset = horizontal and F.Dpi(0) or F.Dpi(30),
     },
 
     power = {
-      width = horizontal and "filled" or "spaced",
-      height = horizontal and F.Dpi(18) or F.Dpi(12),
+      width = horizontal and "inset" or "spaced",
+      height = horizontal and F.Dpi(10) or F.Dpi(12),
       text_format = "",
     },
 
@@ -755,16 +796,16 @@ local function getParty(horizontal)
 end
 
 local function getRaid(horizontal)
-  return {
+  local settings = {
     enable = true,
-    width = F.Dpi(120),
-    height = F.Dpi(50),
+    width = F.Dpi(100),
+    height = F.Dpi(30),
 
     groupBy = "GROUP",
     groupSpacing = 10,
     groupsPerRowCol = 1,
     growthDirection = horizontal and "DOWN_RIGHT" or "RIGHT_UP",
-    horizontalSpacing = F.Dpi(1),
+    horizontalSpacing = F.Dpi(4),
     numGroups = 8,
     raidWideSorting = false,
     startFromCenter = false,
@@ -772,41 +813,31 @@ local function getRaid(horizontal)
 
     customTexts = {
       ["toxiui:name"] = createCustomText({}, {
-        attachTextTo = "Frame",
-        text_format = "[tx:name:veryshort]",
-        justifyH = "CENTER",
-        xOffset = F.Dpi(0),
+        attachTextTo = "InfoPanel",
+        text_format = "[tx:name:short:split]",
+        justifyH = "LEFT",
+        xOffset = F.Dpi(18),
         yOffset = F.Dpi(0),
       }),
 
       ["toxiui:raid-group"] = createCustomText({}, {
-        attachTextTo = "Frame",
+        attachTextTo = "InfoPanel",
         text_format = "[group:raid]",
         justifyH = "RIGHT",
-        xOffset = -2,
-        yOffset = -10,
+        xOffset = 0,
+        yOffset = 0,
       }),
+    },
+
+    infoPanel = {
+      enable = true,
+      transparent = true,
+      height = F.Dpi(15),
     },
 
     healPrediction = {
       enable = true,
       absorbStyle = "REVERSED",
-    },
-
-    rdebuffs = {
-      enable = true,
-      size = F.Dpi(24),
-      yOffset = F.Dpi(6),
-
-      duration = {
-        color = F.Table.HexToRGB("#fff0ea"),
-      },
-
-      stack = {
-        color = F.Table.HexToRGB("#ffe900"),
-        position = "BOTTOMRIGHT",
-        yOffset = F.Dpi(0),
-      },
     },
 
     readycheckIcon = {
@@ -815,11 +846,12 @@ local function getRaid(horizontal)
 
     roleIcon = {
       enable = true,
-      damager = false,
-      position = "BOTTOMLEFT",
-      size = F.Dpi(24),
+      damager = true,
+      attachTo = "InfoPanel",
+      position = "LEFT",
+      size = F.Dpi(14),
       xOffset = 0,
-      yOffset = 2,
+      yOffset = 0,
     },
 
     raidRoleIcons = {
@@ -833,7 +865,7 @@ local function getRaid(horizontal)
     power = { enable = false },
 
     buffs = {
-      enable = true,
+      enable = false,
       anchorPoint = "TOPLEFT",
       growthX = "RIGHT",
 
@@ -854,7 +886,7 @@ local function getRaid(horizontal)
     },
 
     debuffs = {
-      enable = true,
+      enable = false,
       anchorPoint = "BOTTOMRIGHT",
       growthX = "LEFT",
 
@@ -866,11 +898,48 @@ local function getRaid(horizontal)
       xOffset = F.Dpi(-4),
       yOffset = F.Dpi(4),
 
+      useBlocklist = true,
       isAuraImportant = true,
       isAuraImportantPlayer = true,
       isAuraRaidPlayerDispellable = true,
     },
+
+    privateAuras = {
+      enable = true,
+      duration = {
+        enable = true,
+        offsetY = 0,
+        point = "CENTER",
+      },
+      icon = {
+        size = F.Dpi(24),
+      },
+      parent = {
+        offsetY = F.Dpi(-24),
+        point = "TOP",
+      },
+    },
   }
+
+  if not TXUI.IsRetail then
+    settings.rdebuffs = {
+      enable = true,
+      size = F.Dpi(24),
+      yOffset = F.Dpi(6),
+
+      duration = {
+        color = F.Table.HexToRGB("#fff0ea"),
+      },
+
+      stack = {
+        color = F.Table.HexToRGB("#ffe900"),
+        position = "BOTTOMRIGHT",
+        yOffset = F.Dpi(0),
+      },
+    }
+  end
+
+  return settings
 end
 
 local tank = {
@@ -966,6 +1035,11 @@ local arena = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraBigDefensive = true,
+    isAuraExternalDefensive = true,
+    isAuraExternalDefensivePlayer = true,
   },
 
   debuffs = {
@@ -978,6 +1052,10 @@ local arena = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraCrowdControl = true,
+    isAuraPlayer = true,
   },
 
   pvpTrinket = {
@@ -1055,6 +1133,11 @@ local boss = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraImportant = true,
+    isAuraImportantPlayer = true,
+    isAuraRaidPlayerDispellable = true,
   },
 
   debuffs = {
@@ -1067,6 +1150,9 @@ local boss = {
     keepSizeRatio = false,
     sizeOverride = F.Dpi(29),
     height = F.Dpi(19),
+
+    -- Filters (ElvUI Default)
+    isAuraPlayer = true,
   },
 
   castbar = {

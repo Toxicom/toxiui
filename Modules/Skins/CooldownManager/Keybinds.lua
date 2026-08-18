@@ -88,6 +88,8 @@ local function GetKeybind(icon)
 end
 
 local function StyleKeybind(keybind, db)
+  keybind:SetFrameStrata("MEDIUM")
+  keybind:SetFrameLevel(keybind:GetParent():GetFrameLevel() + 1)
   local text = keybind.text
   text:ClearAllPoints()
   text:SetPoint(db.anchor, keybind:GetParent(), db.anchor, db.xOffset, db.yOffset)
@@ -107,9 +109,8 @@ function CM:RefreshViewerKeybinds(settingKey, bindingMap)
 
   local viewerDB = kdb[settingKey]
   bindingMap = bindingMap or self:ScanElvUIBindings()
-  local children = { viewer:GetChildren() }
 
-  for _, child in ipairs(children) do
+  for child in viewer.itemFramePool:EnumerateActive() do
     if child.Icon and child.cooldownID then
       local info = C_CooldownViewer.GetCooldownViewerCooldownInfo(child.cooldownID)
       local text
@@ -182,8 +183,8 @@ function CM:EnableKeybinds()
     for _, key in ipairs(keybindKeys) do
       local viewer = _G[self.frameNames[key]]
       if viewer then
-        for _, child in ipairs { viewer:GetChildren() } do
-          if child.Icon and child.cooldownID then
+        for child in viewer.itemFramePool:EnumerateActive() do
+          if child.cooldownID then
             ready = true
             break
           end

@@ -1,6 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local PF = TXUI:GetModule("Profiles")
 
+local auraFilters = E.AuraDefaults
+
 local sharedAuras = {
   height = F.Dpi(20),
   keepSizeRatio = false,
@@ -32,6 +34,8 @@ local sharedCastbar = {
   textYOffset = F.Dpi(-2),
   timeYOffset = F.Dpi(-2),
   yOffset = F.Dpi(8),
+  width = F.Dpi(150),
+  height = F.Dpi(8),
 }
 
 local sharedDebuffs = {
@@ -53,6 +57,9 @@ local sharedHealth = {
   },
   width = F.Dpi(150),
   height = F.Dpi(10),
+
+  useClassificationColor = true,
+  useClassificationColorInInstance = true,
 }
 
 local sharedRaidTarget = {
@@ -71,7 +78,12 @@ local nameplates = {
     },
   },
 
+  threat = {
+    skipGoodColor = true,
+  },
+
   enviromentConditions = {
+    friendlyEnabled = false,
     friendly = {
       arena = true,
       party = true, -- dungeons
@@ -81,62 +93,93 @@ local nameplates = {
       scenario = true,
       raid = false,
     },
-    friendlyEnabled = true,
+
     stackingEnabled = true,
     stackingNameplates = {
+      arena = true,
+      party = true, -- dungeons
       resting = true,
+      world = true,
+      pvp = true, -- battlegrounds
+      scenario = true,
+      raid = true,
     },
   },
 
   units = {
     ["ENEMY_NPC"] = {
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+        isAuraRaidPlayerDispellable = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraPlayer = true,
+      }),
       health = sharedHealth,
       level = {
         enable = true,
         position = "TOPLEFT",
         xOffset = F.Dpi(-13),
         yOffset = F.Dpi(-10),
+        format = "[tx:classification]",
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "[name:abbrev:medium]",
       },
       raidTargetIndicator = sharedRaidTarget,
     },
 
     ["FRIENDLY_NPC"] = {
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraExternalDefensive = true,
+        isAuraExternalDefensivePlayer = true,
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraRaid = true,
+        isAuraRaidPlayer = true,
+      }),
       health = sharedHealth,
       level = {
         enable = false,
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "|cff85d92b[name]|r",
       },
       title = {
         enable = true,
         yOffset = F.Dpi(-10),
+        format = "|cff85d92b[npctitle:brackets]|r",
       },
       raidTargetIndicator = sharedRaidTarget,
     },
 
     ["ENEMY_PLAYER"] = {
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraBigDefensive = true,
+        isAuraExternalDefensive = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraCrowdControl = true,
+        isAuraPlayer = true,
+      }),
       health = sharedHealth,
       level = {
         enable = false,
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "[classcolor][name]",
       },
       raidTargetIndicator = sharedRaidTarget,
     },
@@ -145,19 +188,28 @@ local nameplates = {
       nameOnly = true,
 
       auras = sharedAuras,
-      buffs = sharedBuffs,
+      buffs = F.Table.Join(sharedBuffs, auraFilters, {
+        isAuraBigDefensive = true,
+        isAuraRaidInCombatPlayer = true,
+      }),
       castbar = sharedCastbar,
-      debuffs = sharedDebuffs,
+      debuffs = F.Table.Join(sharedDebuffs, auraFilters, {
+        isAuraImportant = true,
+        isAuraImportantPlayer = true,
+        isAuraRaidPlayerDispellable = true,
+      }),
       health = sharedHealth,
       level = {
         enable = false,
       },
       name = {
         yOffset = F.Dpi(-10),
+        format = "[classcolor][name]",
       },
       raidTargetIndicator = sharedRaidTarget,
       title = {
         enable = true,
+        format = "[classcolor][guild:brackets]",
       },
     },
 

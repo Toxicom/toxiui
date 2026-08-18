@@ -149,10 +149,70 @@ M.BlizzardToSpecID = {
   [132341] = I.Specs.Warrior.Protection,
 }
 
+local iconStyleDefs = {
+  ToxiClasses = { "class", "stylized" },
+  UggColored = { "class", "ugg", "colored" },
+  UggColoredStroke = { "class", "ugg", "colored", "stroke" },
+  UggWhiteStroke = { "class", "ugg", "white", "stroke" },
+  ToxiSpecStylized = { "spec", "stylized" },
+  ToxiSpecWhite = { "spec", "white" },
+  ToxiSpecWhiteStroke = { "spec", "white", "stroke" },
+  ToxiSpecColored = { "spec", "colored" },
+  ToxiSpecColoredStroke = { "spec", "colored", "stroke" },
+}
+
+local tokenFormatters = {
+  stylized = function()
+    return F.String.ToxiUI("Stylized")
+  end,
+  ugg = function()
+    return F.String.Ugg()
+  end,
+  colored = function()
+    return F.String.Class("Colored")
+  end,
+  stroke = function()
+    return F.String.Silver("Stroke")
+  end,
+  white = function()
+    return "White"
+  end,
+}
+
+local function FormatIconStyleLabel(def)
+  local parts = { def[1]:upper() .. " -" }
+  for i = 2, #def do
+    local fn = tokenFormatters[def[i]]
+    parts[#parts + 1] = fn and fn() or def[i]
+  end
+  return table.concat(parts, " ")
+end
+
+function M:GetClassIconStyleValues()
+  local result = {}
+  for key, def in pairs(iconStyleDefs) do
+    if def[1] == "class" then result[key] = FormatIconStyleLabel(def) end
+  end
+  return result
+end
+
+function M:GetSpecIconStyleValues()
+  local result = {}
+  for key, def in pairs(iconStyleDefs) do
+    if def[1] == "spec" then result[key] = FormatIconStyleLabel(def) end
+  end
+  return result
+end
+
 function M:GetClassIconPath(theme)
   if not theme or theme == "" then theme = "ToxiClasses" end
 
   return [[|TInterface\AddOns\ElvUI_ToxiUI\Media\Textures\Icons\]] .. theme .. [[:32:32:0:0:512:512:%s|t]]
+end
+
+function M:GetEffectiveClassIconTheme(theme)
+  if not theme or theme:match("ToxiSpec") then return "ToxiClasses" end
+  return theme
 end
 
 function M:ReverseIconCoords(coords)
@@ -163,26 +223,28 @@ end
 function M:GenerateSpecIcon(dbPath)
   local specIcon
   local iconPath = self:GetClassIconPath(dbPath or "ToxiSpecStylized")
+  local classIconPath = self:GetClassIconPath(self:GetEffectiveClassIconTheme(dbPath))
   local iconsFont = F.GetFontPath(I.Fonts.Icons)
+  local isSpecTheme = iconPath ~= classIconPath
 
   if TXUI.IsRetail then
     local _, classId = UnitClassBase("player")
     local specIndex = GetSpecialization()
     local id = GetSpecializationInfoForClassID(classId, specIndex)
 
-    if id and id ~= 0 and M.SpecIcons[id] then
+    if isSpecTheme and id and id ~= 0 and M.SpecIcons[id] then
       specIcon = format(iconPath, M.SpecIcons[id])
     else
-      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+      specIcon = format(classIconPath, M.ClassIcons[E.myclass])
     end
   elseif TXUI.IsClassic then
     local specIndex = C_SpecializationInfo.GetSpecialization()
     local specId = C_SpecializationInfo.GetSpecializationInfo(specIndex)
 
-    if specId and M.SpecIcons[specId] then
+    if isSpecTheme and specId and M.SpecIcons[specId] then
       specIcon = format(iconPath, M.SpecIcons[specId])
     else
-      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+      specIcon = format(classIconPath, M.ClassIcons[E.myclass])
     end
   else
     local spec
@@ -190,10 +252,10 @@ function M:GenerateSpecIcon(dbPath)
 
     if talents then spec = SS:GetWrathCacheForSpec(talents) end
 
-    if spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
+    if isSpecTheme and spec and spec.id and spec.id ~= 0 and M.SpecIcons[spec.id] then
       specIcon = format(iconPath, M.SpecIcons[spec.id])
     else
-      specIcon = format(self:GetClassIconPath("ToxiClasses"), M.ClassIcons[E.myclass])
+      specIcon = format(classIconPath, M.ClassIcons[E.myclass])
     end
   end
 

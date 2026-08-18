@@ -26,7 +26,7 @@ I.MaxLevelTable = {
 I.Fonts = {
   Primary = "- ToxiUI",
   Title = "- Big Noodle Titling", -- - Big Noodle Titling
-  TitleRaid = "- M 700", -- - Montserrat Bold
+  TitleBold = "- M 700", -- - Montserrat Bold
   TitleBlack = "- M 900", -- - Montserrat Black
   Icons = "- ToxiUI Icons",
 }
@@ -38,21 +38,21 @@ I.Textures = {
 I.FontNames = {
   [I.Fonts.Primary] = "Primary",
   [I.Fonts.Title] = "Title",
-  [I.Fonts.TitleRaid] = "Title Raid",
+  [I.Fonts.TitleBold] = "Title Bold",
   [I.Fonts.TitleBlack] = "Title Black",
 }
 
 I.FontDescription = {
   [I.Fonts.Primary] = "Used in the majority of the UI.",
   [I.Fonts.Title] = "Used mostly for names.",
-  [I.Fonts.TitleRaid] = "Currently only used in BigWigs, Details & Raid Frames Group number.",
+  [I.Fonts.TitleBold] = "Used for headers and titles, e.g. AFK screen, Game Menu, zone text, and Raid Frames group number.",
   [I.Fonts.TitleBlack] = "Very bold font used in a couple places, like map coordinates.",
 }
 
 I.FontOrder = {
   I.Fonts.Primary,
   I.Fonts.Title,
-  I.Fonts.TitleRaid,
+  I.Fonts.TitleBold,
   I.Fonts.TitleBlack,
 }
 
@@ -68,6 +68,7 @@ I.MediaKeys = {
   armory = "Armory",
   installer = "Installer",
   style = "Style",
+  banner = "Banners",
 }
 
 I.MediaPaths = {
@@ -82,6 +83,7 @@ I.MediaPaths = {
   armory = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Armory\]],
   installer = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Installer\]],
   style = [[Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Styles\]],
+  banner = [[Interface\AddOns\ElvUI_ToxiUI\Media\Banners\]],
 }
 
 -- Media
@@ -98,6 +100,7 @@ I.Media = {
   Armory = {},
   Installer = {},
   Style = {},
+  Banners = {},
 }
 
 -- Profile names to be used
@@ -142,18 +145,6 @@ I.Requirements = {
   ["HideFrames"] = {},
   ["RoleIcons"] = {
     I.Enum.Requirements.SL_DISABLED,
-  },
-  ["DetailsGradientMode"] = {
-    I.Enum.Requirements.DARK_MODE_DISABLED,
-    I.Enum.Requirements.ELVUI_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE,
-  },
-  ["DetailsDarkMode"] = {
-    I.Enum.Requirements.GRADIENT_MODE_DISABLED,
-    I.Enum.Requirements.ELVUI_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_NOT_SKINNED,
-    I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE,
   },
   ["Armory"] = {
     I.Enum.Requirements.ARMORY_DISABLED,
@@ -421,6 +412,7 @@ I.HearthstoneData = {
   [168862] = { ["type"] = "item", ["hearthstone"] = false, ["label"] = "FMW" }, -- G.E.A.R. Tracking Beacon
   [265225] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "MOLE" }, -- Mole Machine
   [312372] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "CAMP" }, -- Return to Camp
+  [1238686] = { ["type"] = "spell", ["hearthstone"] = false, ["label"] = "ROOT" }, -- Rootwalking
 
   -- Alternate Hearthstones --
   [54452] = { ["type"] = "toy", ["hearthstone"] = true }, -- Ethereal Portal
@@ -455,6 +447,9 @@ I.HearthstoneData = {
   [245970] = { ["type"] = "toy", ["hearthstone"] = true }, -- P.O.S.T. Master's Express Hearthstone
   [263489] = { ["type"] = "toy", ["hearthstone"] = true }, -- Naaru's Enfold
   [235016] = { ["type"] = "toy", ["hearthstone"] = true }, -- Redeployment Module
+  [257736] = { ["type"] = "toy", ["hearthstone"] = true }, -- Lightcalled Hearthstone
+  [263933] = { ["type"] = "toy", ["hearthstone"] = true }, -- Preyseeker's Hearthstone
+  [265100] = { ["type"] = "toy", ["hearthstone"] = true }, -- Corewarden's Hearthstone
 
   -- Engineering Items/Toys --
   [18984] = { ["type"] = "toy", ["hearthstone"] = false, ["label"] = "EVR" }, -- Dimensional Ripper - Everlook
@@ -528,12 +523,12 @@ I.HearthstoneData = {
   [159895] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "BSM" }, -- Bloodmaul Slag Mines
   [159896] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "ID" }, -- Iron Docks
   [159897] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "AUCH" }, -- Auchindoun
-  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "SKY" }, -- Skyreach
   [159899] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df1", ["label"] = "SBG" }, -- Shadowmoon Burial Grounds
   [159900] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "sl4", ["label"] = "GD" }, -- Grimrail Depot
   [159901] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "EB" }, -- The Everbloom
   [159902] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "wod", ["label"] = "UBS" }, -- Upper Blackrock Spire
-  [1254557] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SKY" }, -- Skyreach
+  [159898] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SR" }, -- Skyreach
+  [1254557] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SR" }, -- Skyreach
 
   -- Legion
   [410078] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "NL" }, -- Neltharion's Lair
@@ -541,7 +536,7 @@ I.HearthstoneData = {
   [424163] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "DHT" }, -- Darkheart Thicket
   [393764] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "HOV" }, -- Halls of Valor
   [393766] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "COS" }, -- Court of Stars
-  [1254551] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SotV" }, -- Seat of the Triumvirate
+  [1254551] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "SEAT" }, -- Seat of the Triumvirate
 
   -- Battle for Azeroth
   [424167] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df3", ["label"] = "WM" }, -- Waycrest Manor
@@ -550,9 +545,11 @@ I.HearthstoneData = {
   [410071] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df", ["label"] = "FH" }, -- Freehold
   [467555] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "ML" }, -- The MOTHERLODE!!
   [467553] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww2", ["label"] = "ML" }, -- The MOTHERLODE!!
+  [1286828] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "TOS" }, -- Temple of Sethraliss
   -- One for Horde and one for Alliance
   [464256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
   [445418] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "SIEGE" }, -- Siege of Boralus
+  [1286831] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "KR" }, -- King's Rest
 
   -- Shadowlands
   [354462] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "tww1", ["label"] = "NW" }, -- Necrotic Wake
@@ -572,7 +569,7 @@ I.HearthstoneData = {
 
   -- Dragonflight
   [393222] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "ULD" }, -- Uldaman: Legacy of Tyr
-  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "RLP" }, -- Ruby Life Pools
+  [393256] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "RLP" }, -- Ruby Life Pools
   [393262] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "NO" }, -- Nokhud Offensive
   [393267] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "df4", ["label"] = "BH" }, -- Brackenhide Hollow
   [393273] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "AA" }, -- Algeth'ar Academy
@@ -599,6 +596,11 @@ I.HearthstoneData = {
   [1254400] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "WS" }, -- Windrunner Spire
   [1254563] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "NPX" }, -- Nexus-Point Xenas
   [1254559] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid1", ["label"] = "MC" }, -- Maisara Caverns
+  [1286804] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "VSA" }, -- Voidscar Arena
+  [1286812] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "AOF" }, -- Altar of Fangs
+  [1286801] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "BV" }, -- Blinding Vale
+  [1286807] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "DON" }, -- Den of Nalorakk
+  [1286809] = { ["type"] = "spell", ["hearthstone"] = false, ["mythic"] = true, ["season"] = "mid2", ["label"] = "MR" }, -- Murder Row
 
   --                --
   -- Raid Teleports --
@@ -834,31 +836,3 @@ I.HearthstoneData_Anniversary = {
   [49361] = { ["type"] = "spell", ["hearthstone"] = false, ["portal"] = true, label = "STON" }, -- Portal: Stonard - Horde
   [49358] = { ["type"] = "spell", ["hearthstone"] = false, ["teleport"] = true, label = "STON" }, -- Teleport: Stonard - Horde
 }
-
--- Data for which class or spec has which interrupt spell
-I.InterruptSpellMap = {
-  { id = 1766, conditions = { class = "ROGUE", level = 6 } }, -- Rogue, Kick
-  { id = 2139, conditions = { class = "MAGE", level = 7 } }, -- Mage, Counterspell
-  { id = 6552, conditions = { class = "WARRIOR", level = 7 } }, -- Warr, Pummel
-  { id = 15487, conditions = { specIds = { 258 } } }, -- Shadow Priest, Silence i kill u
-  { id = 19647, conditions = { specIds = { 265, 267 }, level = 29 } }, -- Aff&Destro Lock, Spell Lock
-  { id = 31935, conditions = { specIds = { 66 } } }, -- Prot Paladin, Avenger's Shield
-  { id = 47528, conditions = { class = "DEATHKNIGHT" } }, -- DK, Mind Freeze
-  { id = 57994, conditions = { class = "SHAMAN" } }, -- Sha, Wind Shear
-  { id = 78675, conditions = { specIds = { 102 } } }, -- Balance Druid, Solar Beeeeeam
-  { id = 89766, conditions = { specIds = { 266 }, level = 29 } }, -- Demo Lock, Axe Toss
-  { id = 96231, conditions = { class = "PALADIN" } }, -- Paladin, Rebuke
-  { id = 106839, conditions = { class = "DRUID" } }, -- Druid, Skull Bash
-  { id = 116705, conditions = { class = "MONK" } }, -- Monk, Spear Hand Strike
-  { id = 147362, conditions = { specIds = { 253, 254 } } }, -- BM/MM Hunter-Counter Shot
-  { id = 183752, conditions = { class = "DEMONHUNTER", level = 20 } }, -- DH, Disrupt
-  { id = 187707, conditions = { specIds = { 255 } } }, -- SV-lol Hunter Muzzle
-  { id = 351338, conditions = { class = "EVOKER" } }, -- Evoker Quell
-}
-
---[[
-  Data for which class or spec has which interrupt spell. This is currently only used in Mists and Vanilla,
-  as the interrupt logic iirc doesn't work properly in Mists and The API doesn't allow us to do it in the same way in Vanilla
-]]
-
-I.InterruptSpellMap_Empty = {}

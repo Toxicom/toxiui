@@ -54,6 +54,8 @@ jobs:
         id: vars
         run: |
           echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+          PREV_TAG=$(git tag --sort=-version:refname | sed -n '2p')
+          echo "prev_tag=${PREV_TAG}" >> $GITHUB_ENV
       - name: Announce it!
         uses: sarisia/actions-status-discord@f268209d088ace9f9666322b04d60e013fef212d
         if: success()
@@ -70,8 +72,9 @@ jobs:
 
             ${{ steps.changelog.outputs.content }}
 
+            :notepad_spiral: Full changelog: <https://github.com/Toxicom/toxiui/compare/${{ env.prev_tag }}...${{ env.tag }}>
             :information_source: Now also available on CurseForge and Wago beta channels!
-            :floppy_disk: Or download directly from https://github.com/Toxicom/toxiui/releases/${{ env.tag }}
+            :floppy_disk: Or download directly from <https://github.com/Toxicom/toxiui/releases/tag/${{ env.tag }}>
       - name: Upload release file to Discord
         uses: sinshutu/upload-to-discord@c04454f4fbfd38079cbcd6f68492bd5d427556ce
         if: success()

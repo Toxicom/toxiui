@@ -47,7 +47,7 @@ function TXUI:HandleDevProfiles(arg1)
     E:UpdateDB()
     TXUI:GetModule("Profiles"):ElvUIFont()
     TXUI:GetModule("Profiles"):ElvUIFontPrivates()
-    E:StaggeredUpdateAll()
+    E:UpdateAll()
   else -- if wrong parameter given
     printUsage()
   end
@@ -86,7 +86,7 @@ function TXUI:HandleDevCommand(category, arg1)
   elseif category == "chat" then
     self:LogInfo("Resetting chat & applying new chat Profile ...")
     TXUI:GetModule("Profiles"):ElvUIChat()
-    E:StaggeredUpdateAll()
+    E:UpdateAll()
   elseif (category == "export") and F.IsDeveloper() then
     self:HandleDevExports(arg1)
   elseif (category == "splash") and F.IsDeveloper() then
@@ -220,10 +220,18 @@ function TXUI:HandleChatCommand(msg)
     E:GetModule("PluginInstaller"):Queue(TXUI:GetModule("Installer"):Dialog())
   elseif (category == "update" or category == "u") and F.IsTXUIProfile() then
     TXUI:GetModule("ProfileUpdater"):Toggle()
+  elseif category == "landing" or category == "lp" then
+    local LP = TXUI:GetModule("LandingPage")
+    local arg1 = self:GetArgs(msg, 3, 4)
+    if arg1 == "update" or arg1 == "u" then
+      LP:ShowFrame("update")
+    else
+      LP:ShowFrame("fresh")
+    end
   elseif category == "debug" then
     self:DebugMode(self:GetArgs(msg, 5, 6))
   elseif F.IsTXUIProfile() then
-    self:LogInfo("Usage: /tx cl; changelog; install; i; update; u; settings; status; wb; debug")
+    self:LogInfo("Usage: /tx cl; changelog; install; i; update; u; landing; lp; settings; status; wb; debug")
   else
     self:LogInfo("You are not using a " .. TXUI.Title .. " profile. Please install " .. TXUI.Title .. " first.")
     self:LogInfo("Usage: /tx cl; changelog; install; i; settings")
@@ -233,9 +241,13 @@ end
 function TXUI:HandleCDMCommand()
   local settings = _G.CooldownViewerSettings
   if not settings then return end
-  if InCombatLockdown() then return end
+  -- if InCombatLockdown() then return end
 
   settings:SetShown(not settings:IsShown())
+end
+
+function TXUI:HandleEditModeCommand()
+  if EditModeManagerFrame:CanEnterEditMode() then ShowUIPanel(EditModeManagerFrame) end
 end
 
 function TXUI:LoadCommands()
@@ -248,5 +260,6 @@ function TXUI:LoadCommands()
     self:RegisterChatCommand("cd", "HandleCDMCommand")
     self:RegisterChatCommand("cdm", "HandleCDMCommand")
     self:RegisterChatCommand("wa", "HandleCDMCommand")
+    self:RegisterChatCommand("em", "HandleEditModeCommand")
   end
 end

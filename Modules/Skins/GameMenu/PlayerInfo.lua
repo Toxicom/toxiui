@@ -48,7 +48,7 @@ function GM:UpdatePlayerInfo()
   if not self.backgroundFade or not self.backgroundFade.guildText then return end
 
   local guildName = GetGuildInfo("player")
-  local specIcon, iconsFont = Misc:GenerateSpecIcon(self.db.specIconStyle)
+  local specIcon, iconsFont = Misc:GenerateSpecIcon(E.db.TXUI.elvUIIcons.classIcons.theme)
 
   self.backgroundFade.specIcon:SetFont(iconsFont, F.FontSizeScaled(self.db.specIconSize), "")
   self.backgroundFade.specIcon:SetTextColor(1, 1, 1, 1)

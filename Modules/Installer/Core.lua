@@ -141,7 +141,7 @@ function IS:Complete(noReload)
   E.db.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
   E.private.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
 
-  if not noReload and not E.staggerUpdateRunning then ReloadUI() end
+  if not noReload then ReloadUI() end
 end
 
 -- Profile Check

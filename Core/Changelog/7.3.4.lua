@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.3.4"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Mar 1, 2026",
   CHANGES = {
     "* New features",
     F.String.Menu.WunderBar() .. ": Option to adjust group spacing for flyouts",

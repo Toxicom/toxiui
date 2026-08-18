@@ -126,7 +126,7 @@ function AFK:SetAFK(_, status)
 
   if status and not self.elvUIAfk.isAFK then
     local guildName = GetGuildInfo("player")
-    local specIcon, iconsFont = M:GenerateSpecIcon()
+    local specIcon, iconsFont = M:GenerateSpecIcon(E.db.TXUI.elvUIIcons.classIcons.theme)
 
     self.elvUIAfk.isAFK = true
 
@@ -379,7 +379,7 @@ function AFK:Initialize()
 
   -- Get font
   self.primaryFont = F.GetFontPath(I.Fonts.Primary)
-  self.titleFont = F.GetFontPath(I.Fonts.TitleRaid)
+  self.titleFont = F.GetFontPath(I.Fonts.TitleBold)
 
   -- We are done, hooray!
   self.Initialized = true

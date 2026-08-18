@@ -14,26 +14,40 @@ local UnitReaction = UnitReaction
 local UnitTreatAsPlayerForDisplay = UnitTreatAsPlayerForDisplay
 
 function GR:GetHealthColor(frame, unit)
-  local isPlayer = UnitIsPlayer(unit) or (TXUI.IsRetail and UnitTreatAsPlayerForDisplay(unit))
+  -- Some UnitIs*/UnitReaction results can be secret depending on unit/context (e.g. targettarget);
+  -- guard every boolean test since Lua errors on truthy-testing a secret value directly
+  local unitIsPlayer = UnitIsPlayer(unit)
+  local treatAsPlayer = TXUI.IsRetail and UnitTreatAsPlayerForDisplay(unit)
+  local isPlayer = (E:NotSecretValue(unitIsPlayer) and unitIsPlayer) or (E:NotSecretValue(treatAsPlayer) and treatAsPlayer)
 
-  if isPlayer and not UnitIsConnected(unit) then
+  local isConnected = UnitIsConnected(unit)
+  local isDeadOrGhost = UnitIsDeadOrGhost(unit)
+  local isCharmed = UnitIsCharmed(unit)
+  local isEnemy = UnitIsEnemy("player", unit)
+  local playerControlled = UnitPlayerControlled(unit)
+  local tapDenied = UnitIsTapDenied(unit)
+
+  if isPlayer and E:NotSecretValue(isConnected) and not isConnected then
     return "specialColorMap", "DISCONNECTED"
   elseif frame.unitDead == true then
     return "specialColorMap", "DEAD"
-  elseif isPlayer and (not UnitIsDeadOrGhost(unit)) and (UnitIsCharmed(unit)) and UnitIsEnemy("player", unit) then
+  elseif isPlayer and E:NotSecretValue(isDeadOrGhost) and not isDeadOrGhost and E:NotSecretValue(isCharmed) and isCharmed and E:NotSecretValue(isEnemy) and isEnemy then
     return "reactionColorMap", "BAD"
-  elseif not UnitPlayerControlled(unit) and UnitIsTapDenied(unit) then
+  elseif E:NotSecretValue(playerControlled) and not playerControlled and E:NotSecretValue(tapDenied) and tapDenied then
     return "specialColorMap", "TAPPED"
   elseif isPlayer then
-    return "classColorMap", select(2, UnitClass(unit))
-  elseif UnitReaction(unit, "player") then
+    local classToken = select(2, UnitClass(unit))
+    if E:NotSecretValue(classToken) then return "classColorMap", classToken end
+  else
     local reaction = UnitReaction(unit, "player")
-    if reaction > 4 then
-      return "reactionColorMap", "GOOD"
-    elseif reaction > 3 then
-      return "reactionColorMap", "NEUTRAL"
-    else
-      return "reactionColorMap", "BAD"
+    if E:NotSecretValue(reaction) and reaction then
+      if reaction > 4 then
+        return "reactionColorMap", "GOOD"
+      elseif reaction > 3 then
+        return "reactionColorMap", "NEUTRAL"
+      else
+        return "reactionColorMap", "BAD"
+      end
     end
   end
 end
@@ -53,6 +67,6 @@ function GR:PostUpdateHealthColor(frame, unit, eR, eG, eB)
     frame.unitDead = unitDead
   end
 
-  local colorFunc = F.Event.GenerateClosure(self.GetHealthColor, self, frame, unit)
-  self:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorFunc)
+  local colorMap, colorEntry = self:GetHealthColor(frame, unit)
+  self:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, colorMap, colorEntry)
 end

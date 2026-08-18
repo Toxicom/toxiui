@@ -12,7 +12,7 @@ function GM:Enable()
 
   -- Cache fonts for section files
   self.primaryFont = F.GetFontPath(I.Fonts.Primary)
-  self.titleFont = F.GetFontPath(I.Fonts.TitleRaid)
+  self.titleFont = F.GetFontPath(I.Fonts.TitleBold)
 
   -- Background fade frame
   local backgroundFade = CreateFrame("Frame", nil, E.UIParent)

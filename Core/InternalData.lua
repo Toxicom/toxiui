@@ -143,23 +143,51 @@ I.Data.Contributor = {
     [I.Enum.Developers.JAKE] = {
       [I.Enum.Flavor.RETAIL] = {
         -- Arathor
-        ["Getafix-Arathor"] = true,
-        ["Kari-Arathor"] = true,
+        ["Raif-Arathor"] = true,
         ["Kiasi-Arathor"] = true,
-        ["Lexza-Arathor"] = true,
+        ["Raichi-Arathor"] = true,
         ["Rai-Arathor"] = true,
-        ["Raifel-Arathor"] = true,
+        ["Kari-Arathor"] = true,
         ["Raih-Arathor"] = true,
-        ["Raivas-Arathor"] = true,
+        ["Raifel-Arathor"] = true,
+        ["Kuya-Arathor"] = true,
+        ["Getafix-Arathor"] = true,
+        ["Toasti-Arathor"] = true,
+        ["Kuyo-Arathor"] = true,
+        ["Lexza-Arathor"] = true,
 
-        -- Daggerspine
-        ["Aurrius-Daggerspine"] = true,
-        ["Raovasbank-Daggerspine"] = true,
-      },
+        -- Ragnaros
+        ["Slashslashsl-Ragnaros"] = true,
+        ["Aurrius-Ragnaros"] = true,
+        ["Stabbystabst-Ragnaros"] = true,
+        ["Hellooias-Ragnaros"] = true,
+        ["Raovas-Ragnaros"] = true,
+        ["Aercis-Ragnaros"] = true,
 
-      [I.Enum.Flavor.CLASSIC] = {
-        -- Giantstalker
-        ["Lexza-Giantstalker"] = true,
+        -- Ravencrest
+        ["Azryx-Ravencrest"] = true,
+        ["Ariz-Ravencrest"] = true,
+        ["Raishi-Ravencrest"] = true,
+        ["Raifel-Ravencrest"] = true,
+        ["Rainok-Ravencrest"] = true,
+        ["Aercis-Ravencrest"] = true,
+        ["Raitha-Ravencrest"] = true,
+        ["Baahboi-Ravencrest"] = true,
+        ["Raire-Ravencrest"] = true,
+        ["Raim-Ravencrest"] = true,
+        ["Moorai-Ravencrest"] = true,
+        ["Raihi-Ravencrest"] = true,
+        ["Aahhyrsdy-Ravencrest"] = true,
+        ["Auru-Ravencrest"] = true,
+        ["Tib-Ravencrest"] = true,
+        ["Lejlighed-Ravencrest"] = true,
+        ["Raish-Ravencrest"] = true,
+        ["Tibs-Ravencrest"] = true,
+        ["Raitra-Ravencrest"] = true,
+
+        -- Silvermoon
+        ["Vaeliris-Silvermoon"] = true,
+        ["Tibs-Silvermoon"] = true,
       },
     },
   },
@@ -210,66 +238,26 @@ I.Data.Contributor = {
         ["Kryototem-Thrall"] = true,
       },
     },
+
+    ["BehkFox"] = {
+      [I.Enum.Flavor.RETAIL] = {
+        -- Stormrage
+        ["Loqenak-Stormrage"] = true,
+        ["Aarkhin-Stormrage"] = true,
+        ["Stldst-Stormrage"] = true,
+        ["Behknk-Stormrage"] = true,
+        ["Behkfox-Stormrage"] = true,
+        ["Strdst-Stormrage"] = true,
+        ["Zalreog-Stormrage"] = true,
+        ["Lavadust-Stormrage"] = true,
+        ["Behkwolf-Stormrage"] = true,
+        ["Shdwdst-Stormrage"] = true,
+      },
+    },
   },
 
   -- EPIC => Purple Badge (epic supporter)
-  [I.Enum.ContributorType.EPIC] = {
-    ["Ande"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Illidan
-        ["Mojoheal-Illidan"] = true,
-        ["Mojosneak-Illidan"] = true,
-        ["Nohwei-Illidan"] = true,
-        ["Adolluh-Illidan"] = true,
-        ["Mojobegone-Illidan"] = true,
-        ["Totembegone-Illidan"] = true,
-        ["Andelul-Illidan"] = true,
-        ["Mojoshooter-Illidan"] = true,
-      },
-    },
-
-    ["evilknivel"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Mal'Ganis
-        ["Avadacadaver-Mal'Ganis"] = true,
-        ["Feartherapy-Mal'Ganis"] = true,
-        ["Baitnbite-Mal'Ganis"] = true,
-      },
-    },
-
-    ["Exodus"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- KirinTor
-        ["Adaar-KirinTor"] = true,
-
-        -- Mal'Ganis
-        ["Paradori-Mal'Ganis"] = true,
-        ["Pathogenesis-Mal'Ganis"] = true,
-        ["Tethren-Mal'Ganis"] = true,
-        ["Anagreth-Mal'Ganis"] = true,
-        ["Vekroz-Mal'Ganis"] = true,
-        ["Tethrake-Mal'Ganis"] = true,
-        ["Tethrakos-Mal'Ganis"] = true,
-        ["Mortur-Mal'Ganis"] = true,
-        ["Abuturlini-Mal'Ganis"] = true,
-        ["Inkwix-Mal'Ganis"] = true,
-        ["Agandour-Mal'Ganis"] = true,
-        ["Akili-Mal'Ganis"] = true,
-        ["Bruis-Mal'Ganis"] = true,
-        ["Tazgardo-Mal'Ganis"] = true,
-        ["Malted-Mal'Ganis"] = true,
-        ["Razzadil-Mal'Ganis"] = true,
-        ["Rhaas-Mal'Ganis"] = true,
-        ["Gargram-Mal'Ganis"] = true,
-
-        -- Proudmoore
-        ["Kilrend-Proudmoore"] = true,
-
-        -- Sargeras
-        ["Sendrack-Sargeras"] = true,
-      },
-    },
-  },
+  [I.Enum.ContributorType.EPIC] = {},
 
   -- RARE => Green Badge (rare supporter)
   [I.Enum.ContributorType.RARE] = {
@@ -280,61 +268,6 @@ I.Data.Contributor = {
         ["Varkaden-WyrmrestAccord"] = true,
         ["Sesoni-WyrmrestAccord"] = true,
         ["Ashenveil-WyrmrestAccord"] = true,
-      },
-    },
-
-    -- Joined Jul 15, 2024
-    ["Reat"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Sanguino
-        ["Reät-Sanguino"] = true,
-        ["Reatp-Sanguino"] = true,
-        ["Evoreat-Sanguino"] = true,
-        ["Rëat-Sanguino"] = true,
-
-        -- Silvermoon
-        ["Reatoker-Silvermoon"] = true,
-        ["Reät-Silvermoon"] = true,
-        ["Rëat-Silvermoon"] = true,
-        ["Reatonk-Silvermoon"] = true,
-        ["Reatuid-Silvermoon"] = true,
-        ["Reatsham-Silvermoon"] = true,
-        ["Reatp-Silvermoon"] = true,
-        ["Reatmix-Silvermoon"] = true,
-        ["Reatix-Silvermoon"] = true,
-
-        -- TarrenMill
-        ["Reatpal-TarrenMill"] = true,
-        ["Rëat-TarrenMill"] = true,
-      },
-    },
-
-    -- Joined Jul 19, 2024
-    ["mrkhaglund"] = {
-      [I.Enum.Flavor.RETAIL] = {
-        -- Al'Akir
-        ["Firaga-Al'Akir"] = true,
-        ["Thalric-Al'Akir"] = true,
-        ["Loahand-Al'Akir"] = true,
-        ["Leep-Al'Akir"] = true,
-        ["Vaiju-Al'Akir"] = true,
-        ["Xpzt-Al'Akir"] = true,
-        ["Saintbull-Al'Akir"] = true,
-        ["Mcgregor-Al'Akir"] = true,
-        ["Ishaka-Al'Akir"] = true,
-        ["Arcané-Al'Akir"] = true,
-
-        -- Darkspear
-        ["Deadshoot-Darkspear"] = true,
-        ["Thulsa-Darkspear"] = true,
-        ["Ortodoxx-Darkspear"] = true,
-        ["Erhja-Darkspear"] = true,
-        ["Türok-Darkspear"] = true,
-        ["Vildsint-Darkspear"] = true,
-
-        -- ShatteredHalls
-        ["Lupin-ShatteredHalls"] = true,
-        ["Torwald-ShatteredHalls"] = true,
       },
     },
 
@@ -385,6 +318,13 @@ I.Data.Contributor = {
         ["Inydae-Silvermoon"] = true,
         ["Rishah-Silvermoon"] = true,
         ["Liliyena-Silvermoon"] = true,
+        ["Miendra-Silvermoon"] = true,
+      },
+
+      [I.Enum.Flavor.ANNIVERSARY] = {
+        -- Thunderstrike
+        ["Niato-Thunderstrike"] = true,
+        ["Liue-Thunderstrike"] = true,
       },
 
       [I.Enum.Flavor.CLASSIC] = {
@@ -407,9 +347,10 @@ I.Data.Contributor = {
         ["Bakul-Antonidas"] = true,
 
         -- Eredar
-        ["Varlanis-Eredar"] = true,
+        ["Zulrak-Eredar"] = true,
         ["Panril-Eredar"] = true,
         ["Zantheas-Eredar"] = true,
+        ["Varlanis-Eredar"] = true,
         ["Glanus-Eredar"] = true,
       },
     },

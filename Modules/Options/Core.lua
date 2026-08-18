@@ -76,18 +76,8 @@ O.options = {
     hidden = O.txUIDisabled,
     args = {},
   },
-  styles = {
-    order = 8,
-    type = "group",
-    group = "tab",
-    name = F.String.Menu.Styles(),
-    desc = "Choose between different " .. TXUI.Title .. " styles",
-    icon = I.Media.Icons.Styles,
-    hidden = O.txUIDisabled,
-    args = {},
-  },
   fonts = {
-    order = 9,
+    order = 8,
     type = "group",
     group = "tab",
     name = F.String.Menu.Fonts(),
@@ -97,7 +87,7 @@ O.options = {
     args = {},
   },
   misc = {
-    order = 10,
+    order = 9,
     type = "group",
     group = "tab",
     name = F.String.Menu.Plugins(),
@@ -107,7 +97,7 @@ O.options = {
     args = {},
   },
   performance = {
-    order = 11,
+    order = 10,
     type = "group",
     group = "tab",
     name = F.String.Menu.Performance(),
@@ -117,7 +107,7 @@ O.options = {
     args = {},
   },
   changelog = {
-    order = 12,
+    order = 11,
     type = "group",
     group = "select",
     name = F.String.Menu.Changelog(),
@@ -127,7 +117,7 @@ O.options = {
     args = {},
   },
   reset = {
-    order = 13,
+    order = 12,
     type = "group",
     group = "tab",
     name = F.String.Menu.Reset(),
@@ -383,7 +373,7 @@ function O:OptionsCallback()
         type = "description",
         name = "",
         image = function()
-          return I.Media.Logos.Logo, F.Dpi(256), F.Dpi(128)
+          return I.Media.Logos.Logo, 128, 64
         end,
       },
     },

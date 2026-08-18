@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.0.4"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Oct 8, 2025",
   CHANGES = {
     "* New features",
     "Add " .. F.String.Error("Turbo Mode") .. " to the installer." .. F.String.Sublist(

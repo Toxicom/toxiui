@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.2.8"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Feb 13, 2026",
   CHANGES = {
     "* Breaking changes",
     "Remove " .. F.String.OmniCD(),

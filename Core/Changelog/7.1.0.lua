@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.1.0"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Jan 14, 2026",
   CHANGES = {
     "* New features",
     "Support for The Burning Crusade Anniversary" --

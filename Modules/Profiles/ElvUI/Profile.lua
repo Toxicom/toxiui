@@ -69,7 +69,7 @@ function PF:BuildColorsProfile()
     healPrediction = {
       absorbs = F.Table.HexToRGB("#ff00f180"),
       overabsorbs = F.Table.HexToRGB("#ff00c180"),
-      maxOverflow = 1,
+      maxOverflow = 0,
     },
 
     -- UnitFrame Colors MouseOver Glow

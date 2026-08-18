@@ -152,6 +152,27 @@ function TXUI:DBConvert()
     end
   end
 
+  -- CooldownManager: flat dynamicWidth keys moved to nested table
+  if TXUI.IsRetail then
+    local cdmDB = db.addons and db.addons.cooldownManager
+    if cdmDB and (cdmDB.dynamicBarsWidth ~= nil or cdmDB.dynamicCastbarWidth ~= nil or cdmDB.minDynamicWidth ~= nil) then
+      if not cdmDB.dynamicWidth then cdmDB.dynamicWidth = {} end
+      if cdmDB.dynamicBarsWidth ~= nil then
+        cdmDB.dynamicWidth.powerClassBars = cdmDB.dynamicBarsWidth
+        cdmDB.dynamicBarsWidth = nil
+      end
+      if cdmDB.dynamicCastbarWidth ~= nil then
+        cdmDB.dynamicWidth.castBar = cdmDB.dynamicCastbarWidth
+        cdmDB.dynamicCastbarWidth = nil
+      end
+      if cdmDB.minDynamicWidth ~= nil then
+        cdmDB.dynamicWidth.minWidth = cdmDB.minDynamicWidth
+        cdmDB.minDynamicWidth = nil
+      end
+      self:LogDebug("DBConvert > Converted CooldownManager dynamicWidth keys to nested table")
+    end
+  end
+
   -- Print debug message
   self:LogDebug("DBConvert > DB Upgrade finished")
 

@@ -55,6 +55,12 @@ function VB:UpdateSpeedText()
 
   local isGliding, _, forwardSpeed = C_PlayerInfo.GetGlidingInfo()
   local base = isGliding and forwardSpeed or GetUnitSpeed("player")
+
+  if not E:NotSecretValue(base) then
+    self.vigorBar.speedText:SetText(F.String.Muted("N/A"))
+    return
+  end
+
   local movespeed = Round(base / BASE_MOVEMENT_SPEED * 100)
 
   self.vigorBar.speedText:SetText(self:ColorSpeedText(format("%d%%", movespeed)))
@@ -124,6 +130,13 @@ function VB:UpdateVigorBar()
 
   -- Update segment display
   self:UpdateVigorSegments()
+end
+
+function VB:UpdateButtonLock()
+  if not self.bar or not self.bar.buttons then return end
+  for _, button in ipairs(self.bar.buttons) do
+    button:SetAttribute("buttonlock", self.ab.db.lockActionBars or nil)
+  end
 end
 
 function VB:UpdateKeybinds()
@@ -298,4 +311,5 @@ function VB:UpdateBar()
   end
 
   self:UpdateKeybinds()
+  self:UpdateButtonLock()
 end

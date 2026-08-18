@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.1.2"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Jan 15, 2026",
   CHANGES = {
     "* Bug fixes",
     "Remove duplicate event registration for gradient updates",

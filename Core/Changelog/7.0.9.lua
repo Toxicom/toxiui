@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.0.9"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Jan 5, 2026",
   CHANGES = {
     "* New features",
     "Bring back Skyriding Bar for "

@@ -218,24 +218,6 @@ function O:Skins_ElvUI()
       return not E.db.TXUI.addons.gameMenuSkin.enabled or not E.db.TXUI.addons.gameMenuSkin.showInfo
     end
 
-    iconGroup.specIconStyle = {
-      order = self:GetOrder(),
-      type = "select",
-      name = "Spec Icon Style",
-      desc = "Choose between showing a class colored icon of your specialization, or a stylized specialization icon.",
-      width = 1.5,
-      values = {
-        ToxiSpecStylized = TXUI.Title .. " Stylized",
-      },
-      get = function()
-        return E.db.TXUI.addons.gameMenuSkin.specIconStyle
-      end,
-      set = function(_, value)
-        E.db.TXUI.addons.gameMenuSkin.specIconStyle = value
-      end,
-      disabled = optionsDisabled,
-    }
-
     iconGroup.specIconSize = {
       order = self:GetOrder(),
       type = "range",

@@ -24,7 +24,7 @@ function PF:BuildFontsProfile()
     shared = {
       auras = { countFont = F.FontOverride(I.Fonts.TitleBlack), countFontSize = F.FontSizeScaled(12) },
       buffs = {
-        countFont = F.FontOverride(I.Fonts.Primary),
+        countFont = F.FontOverride(I.Fonts.TitleBlack),
         countFontSize = F.FontSizeScaled(12),
       },
       castbar = {
@@ -82,8 +82,8 @@ function PF:BuildFontsProfile()
       },
       raid = {
         customTexts = customTextSize {
-          { "toxiui:name", I.Fonts.Primary, 16, I.Fonts.Primary, "SHADOWOUTLINE" },
-          { "toxiui:raid-group", I.Fonts.TitleRaid, 12, "SHADOWOUTLINE" },
+          { "toxiui:name", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
+          { "toxiui:raid-group", I.Fonts.TitleBold, 12, "SHADOWOUTLINE" },
         },
         rdebuffs = {
           font = F.FontOverride(I.Fonts.Primary),
@@ -99,7 +99,7 @@ function PF:BuildFontsProfile()
       },
       tankAssist = {
         customTexts = customTextSize {
-          { "toxiui:name", F.FontOverride(I.Fonts.Primary), 16, F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE") },
+          { "toxiui:name", I.Fonts.Primary, 16, "SHADOWOUTLINE" },
         },
       },
     },
@@ -111,6 +111,21 @@ function PF:BuildFontsProfile()
       font = F.FontOverride(I.Fonts.Primary),
       fontSize = F.FontSizeScaled(14, 13),
       fontStyle = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+
+      cooldownManager = {
+        -- Count font is overriden by WindTools
+        countFont = F.FontOverride(I.Fonts.TitleBlack),
+        countFontSize = F.FontSizeScaled(9),
+        countFontOutline = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOWOUTLINE"),
+
+        durationFont = F.FontOverride(I.Fonts.Primary),
+        durationFontSize = F.FontSizeScaled(14),
+        durationFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+
+        nameFont = F.FontOverride(I.Fonts.Primary),
+        nameFontSize = F.FontSizeScaled(14),
+        nameFontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+      },
 
       fonts = {
         cooldown = {
@@ -133,14 +148,16 @@ function PF:BuildFontsProfile()
 
         pvpsubzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBold),
+          size = F.FontSizeScaled(24),
+          outline = F.FontStyleOverride(I.Fonts.TitleBold, "SHADOW"),
         },
 
         pvpzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBold),
+          size = F.FontSizeScaled(26),
+          outline = F.FontStyleOverride(I.Fonts.TitleBold, "SHADOW"),
         },
 
         objective = {
@@ -169,14 +186,16 @@ function PF:BuildFontsProfile()
 
         worldsubzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBold),
+          size = F.FontSizeScaled(32),
+          outline = F.FontStyleOverride(I.Fonts.TitleBold, "SHADOW"),
         },
 
         worldzone = {
           enable = true,
-          font = F.FontOverride(I.Fonts.Primary),
-          outline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          font = F.FontOverride(I.Fonts.TitleBlack),
+          size = F.FontSizeScaled(48),
+          outline = F.FontStyleOverride(I.Fonts.TitleBlack, "SHADOW"),
         },
       },
 
@@ -286,7 +305,7 @@ function PF:BuildFontsProfile()
       end
 
       -- Overrides
-      cd.cdmanager.fontSize = F.FontSizeScaled(20)
+      cd.cdmanager.fontSize = F.FontSizeScaled(18)
       cd.nameplates.fontSize = F.FontSizeScaled(12)
 
       return cd
@@ -325,15 +344,14 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "[name:abbrev:medium]",
-          }),
+          name = nameplates.shared.name,
+
+          questIcon = { font = F.FontOverride(I.Fonts.Primary) },
 
           level = {
             font = F.FontOverride(I.Fonts.Primary),
             fontOutline = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
             fontSize = F.FontSizeScaled(14),
-            format = "[tx:classification]",
           },
         },
 
@@ -343,12 +361,9 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "|cff85d92b[name]|r",
-          }),
-          title = F.Table.Crush(nameplates.shared.title, {
-            format = "|cff85d92b[npctitle:brackets]|r",
-          }),
+          name = nameplates.shared.name,
+          questIcon = { font = F.FontOverride(I.Fonts.Primary) },
+          title = nameplates.shared.title,
         },
 
         ["ENEMY_PLAYER"] = {
@@ -357,9 +372,7 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "[classcolor][name]",
-          }),
+          name = nameplates.shared.name,
         },
 
         ["FRIENDLY_PLAYER"] = {
@@ -368,19 +381,8 @@ function PF:BuildFontsProfile()
           castbar = nameplates.shared.castbar,
           debuffs = nameplates.shared.debuffs,
           health = nameplates.shared.health,
-          name = F.Table.Crush(nameplates.shared.name, {
-            format = "[classcolor][name]",
-          }),
-          title = F.Table.Crush(nameplates.shared.title, {
-            format = "[classcolor][guild:brackets]",
-          }),
-        },
-
-        ["TARGET"] = {
-          arrow = "Arrow0",
-          arrowScale = 0.2,
-          arrowSpacing = 4,
-          glowStyle = "style4",
+          name = nameplates.shared.name,
+          title = nameplates.shared.title,
         },
       },
     },
@@ -399,6 +401,7 @@ function PF:BuildFontsProfile()
             { "toxiui:health-small", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
             { "toxiui:power", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" },
+            { "toxiui:power-classbar", I.Fonts.TitleBlack, 24, "SHADOWOUTLINE" },
             { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
           },
 
@@ -480,9 +483,9 @@ function PF:BuildFontsProfile()
           },
           F.Table.If(E.db.TXUI.installer.layout == I.Enum.Layouts.HORIZONTAL, {
             customTexts = customTextSize {
-              { "toxiui:name", I.Fonts.Title, 26, "SHADOWOUTLINE" },
-              { "toxiui:health", I.Fonts.Primary, 36, "SHADOWOUTLINE" },
-              { "toxiui:power", I.Fonts.Primary, 20, "SHADOWOUTLINE" },
+              { "toxiui:name", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
+              { "toxiui:health", I.Fonts.Primary, 28, "SHADOWOUTLINE" },
+              { "toxiui:power", I.Fonts.Primary, 16, "SHADOWOUTLINE" },
               { "toxiui:level", I.Fonts.Primary, 14, "SHADOWOUTLINE" },
               { "toxiui:class-icon", I.Fonts.Primary, 12, "SHADOWOUTLINE" },
             },
@@ -676,20 +679,20 @@ function PF:BuildFontPrivatesProfile()
       quest = {
         objectiveTracker = {
           header = {
-            name = F.FontOverride(I.Fonts.Title),
-            size = F.FontSizeScaled(24),
-            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
-          },
-
-          title = {
             name = F.FontOverride(I.Fonts.Primary),
             size = F.FontSizeScaled(16),
             style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
 
+          title = {
+            name = F.FontOverride(I.Fonts.Primary),
+            size = F.FontSizeScaled(12),
+            style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
+          },
+
           info = {
             name = F.FontOverride(I.Fonts.Primary),
-            size = F.FontSizeScaled(14),
+            size = F.FontSizeScaled(12),
             style = F.FontStyleOverride(I.Fonts.Primary, "SHADOWOUTLINE"),
           },
         },

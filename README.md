@@ -99,17 +99,6 @@ The `stable` branch should be updated only every big (non-beta) release, so that
 
 ⛔️ Please do not push code to the `stable` or `development` branches and only use Pull Requests.
 
-### Commit messages
-
-![Emoji Log Extension](https://i.imgur.com/wfC95MH.png)
-
-We use a [VSCode](https://code.visualstudio.com/) extension called **Emoji Log** for commit messages.
-This is so that [#📦git-feed](https://discord.com/channels/769550106948141086/797585103278571551) is readable and easy to understand.
-
-ℹ️ Commits including `TEST:` will be exluded from the changelog in #build-releases
-
-🔗 https://marketplace.visualstudio.com/items?itemName=ahmadawais.emoji-log-vscode
-
 ### Code formatting
 
 Please install the stylua extension and setup to format on save
@@ -139,7 +128,13 @@ _Prefix: `/tx` `/txui` `/toxi` `/toxiui`_
 `/tx export names` - Export a list of all character names where ElvUI was active<br>
 `/tx reset` - Resets all TXUI Settings _(not the ElvUI profile itself, tho a re-install is needed to gain access to TXUI features back)_<br>
 `/tx status` - Shows the Diagnostic Popup _(alias of /tx info)_<br>
-`/tx install` - Shows the Installer Dialog for TXUI
+`/tx install` - Shows the Installer Dialog for TXUI<br>
+`/tx update` - Opens the Profile Updater _(alias of /tx u)_
+
+### Retail Only
+
+`/cd` - Toggle Cooldown Manager settings window _(aliases: `/cdm`, `/wa`)_<br>
+`/em` - Open Edit Mode
 
 ### Dev Section (or beta builds)
 

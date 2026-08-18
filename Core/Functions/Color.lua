@@ -2,6 +2,10 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 F.Color = {}
 
+function F.Color.IsColorTable(t)
+  return type(t) == "table" and type(t.r) == "number" and type(t.g) == "number" and type(t.b) == "number"
+end
+
 function F.Color.EqualTo(aColor, bColor)
   return F.AlmostEqual(aColor.r, bColor.r) and F.AlmostEqual(aColor.g, bColor.g) and F.AlmostEqual(aColor.b, bColor.b) and F.AlmostEqual(aColor.a, bColor.a)
 end
@@ -51,12 +55,10 @@ function F.Color.UpdateGradient(obj, perc, minColor, maxColor)
   if not maxColor.r or not maxColor.g or not maxColor.b then return end
 
   if perc >= 1 then
-    local r, g, b = maxColor:GetRGBA()
-    obj:SetRGBA(r, g, b, 1)
+    obj:SetRGBA(maxColor.r, maxColor.g, maxColor.b, 1)
     return
   elseif perc <= 0 then
-    local r, g, b = minColor:GetRGBA()
-    obj:SetRGBA(r, g, b, 1)
+    obj:SetRGBA(minColor.r, minColor.g, minColor.b, 1)
     return
   end
 

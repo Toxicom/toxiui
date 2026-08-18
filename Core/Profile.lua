@@ -15,6 +15,11 @@ P.changelog = {
   lastDBConversion = 0,
 }
 
+P.landingPage = {
+  seenFreshInstall = false,
+  seenUpdateVersion = 0,
+}
+
 P.disabledAddOns = {}
 
 P.performance = {
@@ -31,21 +36,21 @@ P.general = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleBlack] = "DEFAULT",
-    [I.Fonts.TitleRaid] = "DEFAULT",
+    [I.Fonts.TitleBold] = "DEFAULT",
   },
 
   fontStyleOverride = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleBlack] = "DEFAULT",
-    [I.Fonts.TitleRaid] = "DEFAULT",
+    [I.Fonts.TitleBold] = "DEFAULT",
   },
 
   fontShadowOverride = {
     [I.Fonts.Primary] = "DEFAULT",
     [I.Fonts.Title] = "DEFAULT",
     [I.Fonts.TitleBlack] = "DEFAULT",
-    [I.Fonts.TitleRaid] = "DEFAULT",
+    [I.Fonts.TitleBold] = "DEFAULT",
   },
 }
 
@@ -91,9 +96,6 @@ P.themes = {
       focus = I.Enum.GradientMode.Direction.RIGHT,
     },
 
-    interruptCDEnabled = false,
-    interruptSoonEnabled = false,
-
     saturationBoost = {
       enabled = false,
       shiftLight = 0.7,
@@ -120,15 +122,11 @@ P.themes = {
         DEFAULT = F.Table.HexToRGB("#ffbf00"), -- cast def.
         NOINTERRUPT = F.Table.HexToRGB("#8f8c8c"), -- cast non.
         INTERRUPTED = F.Table.HexToRGB("#d94040"), -- cast was stopped
-        INTERRUPTCD = F.Table.HexToRGB("#8591b0"), -- interrupt is on cd, and will not come off cd during cast
-        INTERRUPTSOON = F.Table.HexToRGB("#de7000"), -- interrupt is on cd, but will be ready inside the cast
       },
       [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
         DEFAULT = F.Table.HexToRGB("#ffad00"), -- cast def.
         NOINTERRUPT = F.Table.HexToRGB("#737070"), -- cast non.
         INTERRUPTED = F.Table.HexToRGB("#991f1f"), -- cast was stopped
-        INTERRUPTCD = F.Table.HexToRGB("#4f5c7a"), -- interrupt is on cd, and will not come off cd during cast
-        INTERRUPTSOON = F.Table.HexToRGB("#8f4700"), -- interrupt is on cd, but will be ready inside the cast
       },
     },
 
@@ -278,7 +276,6 @@ P.addons = {
     showMythicScore = TXUI.IsRetail,
     mythicHistoryLimit = 4,
 
-    specIconStyle = "ToxiSpecStylized",
     specIconSize = 20,
   },
 
@@ -292,44 +289,74 @@ P.addons = {
   -- Cooldown Manager
   cooldownManager = {
     enabled = false,
-    fading = false,
+    fading = true,
 
-    -- If these are enabled by default, their previous width value does not get stored
-    dynamicBarsWidth = false,
-    dynamicCastbarWidth = false,
-    minDynamicWidth = F.Dpi(292),
+    dynamicWidth = {
+      enabled = true,
+      powerClassBars = true,
+      castBar = false,
+      minWidth = F.Dpi(292),
+    },
 
     -- Anchoring
     anchors = {
       essential = {
-        enabled = false,
+        enabled = true,
         yOffset = -4,
       },
       utility = {
-        enabled = false,
+        enabled = true,
         yOffset = -4,
       },
       buff = {
-        enabled = false,
+        enabled = true,
         yOffset = 20,
       },
       buffBar = {
-        enabled = false,
+        enabled = true,
         yOffset = 80,
       },
     },
 
     -- Centering
     centering = {
-      essential = false,
-      utility = false,
-      buff = false,
+      essential = true,
+      utility = true,
+      buff = true,
+      buffBar = true,
+    },
+
+    -- Class Bar Override: disable ElvUI class bar for selected specs
+    classBarOverride = {
+      enabled = true,
+      showAllSpecs = false,
+      specs = { -- [specId] = true
+        [I.Specs.Priest.Shadow] = true,
+        [I.Specs.Shaman.Elemental] = true,
+      },
+    },
+
+    -- Power Bar Override: disable ElvUI power bar for selected specs
+    powerBarOverride = {
+      enabled = true,
+      showAllSpecs = false,
+      specs = { -- [specId] = true
+        [I.Specs.Paladin.Retribution] = true,
+        [I.Specs.Paladin.Protection] = true,
+        [I.Specs.Warlock.Affliction] = true,
+        [I.Specs.Warlock.Demonology] = true,
+        [I.Specs.Warlock.Destruction] = true,
+        [I.Specs.Shaman.Enhancement] = true,
+        [I.Specs.Evoker.Devastation] = true,
+        [I.Specs.Evoker.Augmentation] = true,
+        [I.Specs.Mage.Frost] = true,
+      },
     },
 
     -- Keybind overlays
     keybinds = {
       essential = {
-        enabled = false,
+        enabled = true,
         labelFont = I.Fonts.Primary,
         labelFontSize = 16,
         labelFontOutline = "OUTLINE",
@@ -339,7 +366,7 @@ P.addons = {
         yOffset = -2,
       },
       utility = {
-        enabled = false,
+        enabled = true,
         labelFont = I.Fonts.Primary,
         labelFontSize = 12,
         labelFontOutline = "OUTLINE",
@@ -355,12 +382,9 @@ P.addons = {
   damageMeter = {
     enabled = true, -- Enabled by default
     icons = true, -- Enabled by default
-    iconStyle = "ToxiSpecStylized", -- Icon style for spec/class icons
     gradients = true, -- Enabled by default (works with any theme)
-    headerFade = true, -- Fade header on mouseover
-    headerFadeMinAlpha = 0, -- Alpha when not hovering
-    headerFadeMaxAlpha = 1, -- Alpha when hovering
     hideLocalPlayerEntry = true, -- Enabled by default
+    resetOnNewInstance = false, -- Auto-reset meter on new instance
   },
 }
 
@@ -611,7 +635,7 @@ P.armory = {
     iconFontColor = "TXUI",
     iconFontCustomColor = F.Table.HexToRGB("#ffffffff"),
 
-    headerFont = I.Fonts.TitleRaid,
+    headerFont = I.Fonts.TitleBold,
     headerFontSize = 14,
     headerFontShadow = false,
     headerFontOutline = "OUTLINE",
@@ -779,7 +803,7 @@ P.armory = {
 
   nameTextOffsetX = 0,
   nameTextOffsetY = 0,
-  nameTextFont = I.Fonts.TitleRaid,
+  nameTextFont = I.Fonts.TitleBold,
   nameTextFontSize = 18,
   nameTextFontShadow = false,
   nameTextFontOutline = "OUTLINE",
@@ -788,7 +812,7 @@ P.armory = {
 
   titleTextOffsetX = 5,
   titleTextOffsetY = -2,
-  titleTextFont = I.Fonts.TitleRaid,
+  titleTextFont = I.Fonts.TitleBold,
   titleTextFontSize = 10,
   titleTextFontShadow = false,
   titleTextFontOutline = "OUTLINE",
@@ -1128,7 +1152,7 @@ P.wunderbar = {
         [3345] = true, -- Hero
         [3343] = true, -- Champion
         [3341] = true, -- Veteran
-        [2815] = true, -- Resonance Crystals
+        [3316] = true, -- Voidlight Marl
         [3028] = true, -- Restored Coffer Key
       }, -- Format: [currencyID] = true,
 
@@ -1169,7 +1193,8 @@ P.wunderbar = {
       textColor = true,
       textColorFadeToNormal = true,
 
-      randomPrimaryHs = TXUI.IsRetail and true or false,
+      randomPrimaryHs = false,
+      randomPrimaryHsPool = {},
       primaryHS = 6948,
       additionalHS = {},
     },
@@ -1178,6 +1203,7 @@ P.wunderbar = {
       iconColor = false,
       iconFontSize = 18,
 
+      auctionMount = 460,
       repairMount = 460,
 
       textColor = true,

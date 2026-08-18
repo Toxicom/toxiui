@@ -70,13 +70,8 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       if E.private.actionbar.enable ~= true then return requirement end
     elseif requirement == I.Enum.Requirements.AB_BUDDY_DISABLED then
       if F.IsAddOnEnabled("ElvUI_ActionBarBuddy") then return requirement end
-    elseif requirement == I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE then
-      local profileName = F.IsAddOnEnabled("Details") and Details and Details.GetCurrentProfileName and Details.GetCurrentProfileName()
-      if not profileName or (profileName ~= I.ProfileNames.Default and profileName ~= I.ProfileNames.Dev) then return requirement end
     elseif requirement == I.Enum.Requirements.ELVUI_BAGS_ENABLED then
       if E.private.bags.enable ~= true then return requirement end
-    elseif requirement == I.Enum.Requirements.DETAILS_NOT_SKINNED then
-      if F.GetDBFromPath("mui.skins.addonSkins.enable", E.private) or F.GetDBFromPath("ElvUI_EltreumUI.skins.details") then return requirement end
     elseif requirement == I.Enum.Requirements.ELVUI_NOT_SKINNED then
       local statusBarDB = F.GetDBFromPath("sle.unitframe.statusbarTextures")
       if statusBarDB ~= nil then

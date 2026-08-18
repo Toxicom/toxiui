@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.2.1"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Jan 26, 2026",
   CHANGES = {
     "* New features",
     "Return " .. TXUI.Title .. " WA Anchor for non-Retail versions",

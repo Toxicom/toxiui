@@ -36,6 +36,15 @@ function CM:SetParent()
   end
 end
 
+function CM:RestoreOriginalParents()
+  if not self._originalParents then return end
+  for frameName, parent in pairs(self._originalParents) do
+    local frame = _G[frameName]
+    if frame and parent then frame:SetParent(parent) end
+  end
+  self:SetCooldownFramesVisibility(true)
+end
+
 function CM:DisableFading()
   if not self._originalParents then return end
 

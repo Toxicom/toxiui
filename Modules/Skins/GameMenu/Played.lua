@@ -102,7 +102,7 @@ function GM:BuildPlayedGraph()
     local iconFS = barFrame:CreateFontString(nil, "OVERLAY")
     iconFS:SetPoint("RIGHT", barFrame, "LEFT", -4, 0)
     iconFS:SetFont(F.GetFontPath(I.Fonts.Primary), F.FontSizeScaled(barHeight + 2), "")
-    local iconTheme = "ToxiClasses"
+    local iconTheme = Misc:GetEffectiveClassIconTheme(E.db.TXUI.elvUIIcons.classIcons.theme)
     local iconMarkup = string.format(Misc:GetClassIconPath(iconTheme), Misc.ClassIcons[item.class] or Misc.ClassIcons[E.myclass])
     iconMarkup = iconMarkup:gsub("32:32", tostring(barHeight + 2) .. ":" .. tostring(barHeight + 2))
     iconFS:SetText(iconMarkup)

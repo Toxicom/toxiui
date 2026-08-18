@@ -65,9 +65,6 @@ local function getSkinsData()
         boolLine("Gradients", function()
           return E.db.TXUI.addons.damageMeter.gradients
         end),
-        boolLine("Header Fade", function()
-          return E.db.TXUI.addons.damageMeter.headerFade
-        end),
       },
     })
   end
@@ -84,10 +81,12 @@ local function getSkinsData()
           return E.db.TXUI.addons.cooldownManager.fading
         end),
         boolLine("Bars Width", function()
-          return E.db.TXUI.addons.cooldownManager.dynamicBarsWidth
+          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
+          return dw and dw.enabled and dw.powerClassBars
         end),
         boolLine("Castbar Width", function()
-          return E.db.TXUI.addons.cooldownManager.dynamicCastbarWidth
+          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
+          return dw and dw.enabled and dw.castBar
         end),
         boolLine("Anchor Essential", function()
           return E.db.TXUI.addons.cooldownManager.anchors.essential.enabled
@@ -110,10 +109,19 @@ local function getSkinsData()
         boolLine("Center Buff", function()
           return E.db.TXUI.addons.cooldownManager.centering.buff
         end),
-        boolLine("Keybinds Essential", function()
+        boolLine("Center Buff Bar", function()
+          return E.db.TXUI.addons.cooldownManager.centering.buffBar
+        end),
+        boolLine("Class Bar Ovrd", function()
+          return E.db.TXUI.addons.cooldownManager.classBarOverride.enabled
+        end),
+        boolLine("Power Bar Ovrd", function()
+          return E.db.TXUI.addons.cooldownManager.powerBarOverride.enabled
+        end),
+        boolLine("Keybinds Ess.", function()
           return E.db.TXUI.addons.cooldownManager.keybinds.essential.enabled
         end),
-        boolLine("Keybinds Utility", function()
+        boolLine("Keybinds Util.", function()
           return E.db.TXUI.addons.cooldownManager.keybinds.utility.enabled
         end),
       },

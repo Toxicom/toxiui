@@ -19,6 +19,6 @@ function GR:PostUpdatePowerColor(frame, unit, eR, eG, eB)
   local valueChanged = frame.currentPercent == nil
   if valueChanged then frame.currentPercent = 1 end
 
-  local colorFunc = F.Event.GenerateClosure(self.GetPowerColor, self, frame, unit)
-  self:SetGradientColors(frame, valueChanged, eR, eG, eB, false, colorFunc)
+  local colorMap, colorEntry = self:GetPowerColor(frame, unit)
+  self:SetGradientColors(frame, valueChanged, eR, eG, eB, false, colorMap, colorEntry)
 end

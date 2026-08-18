@@ -41,9 +41,9 @@ function RAI:ChangeRaidIcon()
     if raid and (db.mainAssist.enabled or db.mainTank.enabled) then
       if db.leader.theme then
         raid:SetTexCoord(0, 1, 0, 1)
-        if GetPartyAssignment("MAINTANK", frame.unit) and db.mainTank.enabled then
+        if GetPartyAssignment("MAINTANK", frame.__unit) and db.mainTank.enabled then
           raid:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.MainTank[self.db.mainTank.theme]))
-        elseif GetPartyAssignment("MAINASSIST", frame.unit) and db.mainAssist.enabled then
+        elseif GetPartyAssignment("MAINASSIST", frame.__unit) and db.mainAssist.enabled then
           raid:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.MainAssist[self.db.mainAssist.theme]))
         end
       end

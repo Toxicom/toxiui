@@ -241,11 +241,21 @@ function PF:BuildAdditionalPrivateProfile()
 
           header = {
             classColor = true,
+            uppercase = true,
           },
 
           titleColor = {
+            classColor = true,
             customColorNormal = F.Table.HexToRGB("#ffc730"),
             customColorHighlight = F.Table.HexToRGB("#ffd36b"),
+          },
+
+          title = {
+            uppercase = true,
+          },
+
+          infoColor = {
+            classColor = false,
           },
         },
       },
@@ -376,6 +386,16 @@ function PF:BuildAdditionalPrivateProfile()
           utility = {
             iconHeightRatio = 0.7,
           },
+        },
+
+        damageMeter = {
+          bar = {
+            texture = I.Textures.Primary,
+          },
+          headerBackdrop = "hide",
+          headerPart = "mouseover",
+          scrollBar = "mouseover",
+          windowBackdrop = "hide",
         },
 
         -- Skins: Widgets

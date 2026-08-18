@@ -16,10 +16,8 @@ I.Strings.Requirements = {
   [I.Enum.Requirements.CHARACTER_SKIN_ENABLED] = "You can't enable this option because you have ElvUI's Character Frame Skin disabled",
   [I.Enum.Requirements.WT_ENABLED] = "NO_STRING_NEEDED",
   [I.Enum.Requirements.OLD_FADE_PERSIST_DISABLED] = "ElvUI_GlobalFadePersist is currently installed and enabled. To use this option, please disable ElvUI_GlobalFadePersist, as it interferes with ToxiUI's global fade persist.",
-  [I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE] = "This option is disabled because Details is not loaded or your Details profile is not ToxiUI. Please run the ToxiUI installer and apply the Details profile to unlock this option.",
   [I.Enum.Requirements.ELVUI_BAGS_ENABLED] = "You can't enable this option because ElvUI's Bag module is currently turned off. Please enable it to unlock this option.",
   [I.Enum.Requirements.ELVUI_NOT_SKINNED] = "You can't enable this option because a similar module for UnitFrames is currently turned on. Please disable it to unlock this option.",
-  [I.Enum.Requirements.DETAILS_NOT_SKINNED] = "You can't enable this option because a similar module for Details is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.OTHER_THEMES_DISABLED] = "You can't enable this option because a similar module for ElvUI is currently turned on. Please disable it to unlock this option.",
   [I.Enum.Requirements.ELVUI_ACTIONBARS_ENABLED] = "You can't use this module because ElvUI's ActionBars module is currently turned off. Please enable it to unlock this option.",
   [I.Enum.Requirements.AB_BUDDY_DISABLED] = "You can't use this module because ElvUI_ActionBarBuddy is enabled. Please disable it to unlock this option.",
@@ -38,9 +36,7 @@ I.Strings.RequirementsDebug = {
   [I.Enum.Requirements.DARK_MODE_DISABLED] = "DM Enabled",
   [I.Enum.Requirements.GRADIENT_MODE_ENABLED] = "GM Disabled",
   [I.Enum.Requirements.GRADIENT_MODE_DISABLED] = "GM Enabled",
-  [I.Enum.Requirements.DETAILS_LOADED_AND_TXPROFILE] = "ToxiUI Details not found",
   [I.Enum.Requirements.ELVUI_NOT_SKINNED] = "ElvUI Skin Conflict",
-  [I.Enum.Requirements.DETAILS_NOT_SKINNED] = "Details Skin Conflict",
   [I.Enum.Requirements.OTHER_THEMES_DISABLED] = "Other Theme Active",
   [I.Enum.Requirements.ELVUI_ACTIONBARS_ENABLED] = "ElvUI ABs Disabled",
   [I.Enum.Requirements.AB_BUDDY_DISABLED] = "ABBuddy Enabled",
@@ -73,7 +69,7 @@ I.Strings.Colors = {
   [I.Enum.Colors.WT] = "54e5ff", -- #54e5ff
   [I.Enum.Colors.ELVUI] = "1784d1", -- #1784d1
   [I.Enum.Colors.ERROR] = "ef5350", -- #ef5350
-  [I.Enum.Colors.GOOD] = "66bb6a", -- #66bb6a
+  [I.Enum.Colors.GOOD] = "66ff66", -- #66ff66
   [I.Enum.Colors.WARNING] = "f5b041", -- #f5b041
   [I.Enum.Colors.WHITE] = "ffffff", -- #ffffff
   [I.Enum.Colors.LUXTHOS] = "03fc9c", -- #03fc9c
@@ -85,6 +81,12 @@ I.Strings.Colors = {
   [I.Enum.Colors.EPIC] = "a335ee", -- #a335ee
   [I.Enum.Colors.RARE] = "0070dd", -- #0070dd
   [I.Enum.Colors.BETA] = "1eff00", -- #1eff00
+
+  [I.Enum.Colors.MUTED] = "888888", -- #888888
+
+  [I.Enum.Colors.DIFF_CHANGED] = "ffd100", -- #ffd100
+  [I.Enum.Colors.DIFF_REMOVED] = "ff8080", -- #ff8080
+  [I.Enum.Colors.DIFF_ADDED] = "88ff88", -- #88ff88
 }
 
 I.Strings.Branding = {

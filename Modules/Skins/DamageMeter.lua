@@ -87,17 +87,20 @@ local function InvalidateGradientCache()
   fgMapShift = nil
 end
 
+local function ApplyGradientToTexture(texture, classFilename)
+  if not EnsureGradientCache() then return end
+  local normalColor = fgMapNormal[classFilename]
+  local shiftColor = fgMapShift[classFilename]
+  if not normalColor or not shiftColor then return end
+  F.Color.SetGradient(texture, gradientOrientation, normalColor, shiftColor)
+end
+
 -- Apply gradient colors to a bar texture using the content's class
 local function ApplyGradient(content)
   if not content then return end
 
   local classFilename = content.classFilename
   if not classFilename then return end
-  if not EnsureGradientCache() then return end
-
-  local normalColor = fgMapNormal[classFilename]
-  local shiftColor = fgMapShift[classFilename]
-  if not normalColor or not shiftColor then return end
 
   -- Cache texture reference on the content frame
   local texture = content.txuiBarTexture
@@ -108,76 +111,7 @@ local function ApplyGradient(content)
     content.txuiBarTexture = texture
   end
 
-  F.Color.SetGradient(texture, gradientOrientation, normalColor, shiftColor)
-end
-
--- Animation duration for header fade
-local HEADER_FADE_DURATION = 0.3
-local HEADER_FADE_EASING = "out-quintic"
-
--- Setup fade animation for a single frame
-local function SetupFadeAnimation(frame)
-  if not frame or frame.txuiFadeAnim then return end
-
-  frame.txuiFadeAnim = TXUI:CreateAnimationGroup(frame):CreateAnimation("Fade")
-  frame.txuiFadeAnim:SetDuration(HEADER_FADE_DURATION)
-  frame.txuiFadeAnim:SetEasing(HEADER_FADE_EASING)
-end
-
--- Animate alpha on a single frame
-local function AnimateAlpha(frame, alpha)
-  if not frame or not frame.txuiFadeAnim then return end
-
-  -- Stop any running animation
-  if frame.txuiFadeAnim:IsPlaying() then frame.txuiFadeAnim:Stop() end
-
-  frame.txuiFadeAnim:SetChange(alpha)
-  frame.txuiFadeAnim:Play()
-end
-
--- Animate alpha on all header elements
-local function AnimateHeaderAlpha(window, alpha)
-  if window.DamageMeterTypeDropdown then AnimateAlpha(window.DamageMeterTypeDropdown, alpha) end
-  if window.SessionDropdown then AnimateAlpha(window.SessionDropdown, alpha) end
-  if window.SettingsDropdown then AnimateAlpha(window.SettingsDropdown, alpha) end
-end
-
--- Set alpha immediately on all header elements (no animation)
-local function SetHeaderAlpha(window, alpha)
-  if window.DamageMeterTypeDropdown then window.DamageMeterTypeDropdown:SetAlpha(alpha) end
-  if window.SessionDropdown then window.SessionDropdown:SetAlpha(alpha) end
-  if window.SettingsDropdown then window.SettingsDropdown:SetAlpha(alpha) end
-end
-
-local function SkinHeader(window)
-  if not window or not window.Header then return end
-  if not E.db.TXUI.addons.damageMeter.headerFade then return end
-  if window.txuiHeaderHooked then return end
-  window.txuiHeaderHooked = true
-
-  -- Make header backdrop transparent
-  window.Header:SetAlpha(0)
-
-  local db = E.db.TXUI.addons.damageMeter
-
-  -- Setup fade animations for each header element
-  SetupFadeAnimation(window.DamageMeterTypeDropdown)
-  SetupFadeAnimation(window.SessionDropdown)
-  SetupFadeAnimation(window.SettingsDropdown)
-
-  -- Set initial alpha to hidden (no animation on initial setup)
-  SetHeaderAlpha(window, db.headerFadeMinAlpha)
-
-  -- OnEnter: animate header to full alpha
-  window:HookScript("OnEnter", function()
-    AnimateHeaderAlpha(window, db.headerFadeMaxAlpha)
-  end)
-
-  -- OnLeave: animate header to low alpha (only if mouse truly left the window)
-  window:HookScript("OnLeave", function()
-    if window:IsMouseOver() then return end
-    AnimateHeaderAlpha(window, db.headerFadeMinAlpha)
-  end)
+  ApplyGradientToTexture(texture, classFilename)
 end
 
 local function SkinMeter(content)
@@ -195,14 +129,9 @@ local function SkinMeter(content)
         content.txuiBarTexture = barTexture
 
         hooksecurefunc(barTexture, "SetVertexColor", function()
+          if not E.db.TXUI.addons.damageMeter.gradients then return end
           if not content.classFilename then return end
-          if not EnsureGradientCache() then return end
-
-          local normalColor = fgMapNormal[content.classFilename]
-          local shiftColor = fgMapShift[content.classFilename]
-          if not normalColor or not shiftColor then return end
-
-          F.Color.SetGradient(barTexture, gradientOrientation, normalColor, shiftColor)
+          ApplyGradientToTexture(barTexture, content.classFilename)
         end)
       end
     end
@@ -226,9 +155,10 @@ end
 -- Hide the "sticky self row" (LocalPlayerEntry) that floats while scrolling
 local function HideLocalPlayerEntry(window)
   if not E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then return end
-  if not window or not window.LocalPlayerEntry then return end
+  local container = window.MinimizeContainer or window
+  if not container or not container.LocalPlayerEntry then return end
 
-  local entry = window.LocalPlayerEntry
+  local entry = container.LocalPlayerEntry
   entry:Hide()
   entry:SetAlpha(0)
   entry:EnableMouse(false)
@@ -257,8 +187,6 @@ local function HookLocalPlayerEntry(window)
 end
 
 local function HookSessionWindow(window)
-  SkinHeader(window)
-
   -- Hide sticky local player row
   if E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then HookLocalPlayerEntry(window) end
 
@@ -283,9 +211,9 @@ function DM:Initialize()
     -- Get modules now that everything is loaded
     M = TXUI:GetModule("Misc")
 
-    local iconStyle = E.db.TXUI.addons.damageMeter.iconStyle or "ToxiSpecStylized"
+    local iconStyle = E.db.TXUI.elvUIIcons.classIcons.theme or "ToxiSpecStylized"
     TEXTURE_SPEC = "Interface\\AddOns\\ElvUI_ToxiUI\\Media\\Textures\\Icons\\" .. iconStyle
-    hasSpecIcons = iconStyle == "ToxiSpecStylized"
+    hasSpecIcons = iconStyle:match("ToxiSpec")
 
     -- Re-apply gradients when gradient settings change
     if E.db.TXUI.addons.damageMeter.gradients then
@@ -316,9 +244,12 @@ function DM:Initialize()
       -- Enable and show the damage meter
       local isDamageMeterEnabled = C_CVar.GetCVarBool("damageMeterEnabled")
       if not isDamageMeterEnabled then
-        C_CVar.SetCVar("damageMeterEnabled", "1")
+        E:SetCVar("damageMeterEnabled", "1")
         _G.DamageMeter:Show()
       end
+
+      -- Sync reset-on-new-instance CVar with option
+      E:SetCVar("damageMeterResetOnNewInstance", E.db.TXUI.addons.damageMeter.resetOnNewInstance and "1" or "0")
     end)
   end)
 

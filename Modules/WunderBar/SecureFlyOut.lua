@@ -11,7 +11,7 @@ local InCombatLockdown = InCombatLockdown
 local secureFlyOutFrame
 local secureFlyOutButtons = {}
 
-function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
+function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots, growRight)
   if secureFlyOutFrame and secureFlyOutFrame:IsShown() then
     secureFlyOutFrame:Hide()
     self.flyoutIsOpen = false
@@ -174,7 +174,8 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
     if indexInColumn == 1 then
       -- First slot in the column
-      slot:SetPoint(dirDown and "TOPRIGHT" or "BOTTOMRIGHT", secureFlyOutFrame, dirDown and "TOPRIGHT" or "BOTTOMRIGHT", -columnOffset, self.dirMulti * padding)
+      local anchorCorner = (dirDown and "TOP" or "BOTTOM") .. (growRight and "LEFT" or "RIGHT")
+      slot:SetPoint(anchorCorner, secureFlyOutFrame, anchorCorner, growRight and columnOffset or -columnOffset, self.dirMulti * padding)
       prevSlots[currentColumn] = slot
     else
       -- Subsequent slots, positioned above the previous slot in the same column
@@ -217,7 +218,10 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     disabledTexture:SetDesaturated(true)
 
     -- Reset cooldown state from any previous use of this pooled button
-    slot:SetScript("OnUpdate", nil)
+    if slot.cdTicker then
+      slot.cdTicker:Cancel()
+      slot.cdTicker = nil
+    end
     if slot.cooldown then slot.cooldown:SetCooldown(0, 0) end
     if slot.cdText then slot.cdText:SetText("") end
 
@@ -240,28 +244,28 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
 
       slot.cdText:SetFont(labelFont, flyoutDb.labelFontSize, "OUTLINE")
 
-      -- Hook OnUpdate script to update cooldown
+      -- Ticker to update cooldown text (0.5s is sufficient since text is floor'd to seconds)
       if info.type == "spell" then
-        slot:SetScript("OnUpdate", function(btn)
+        slot.cdTicker = C_Timer.NewTicker(0.5, function()
           local start, duration = E:GetSpellCooldown(info.spellID)
           if start and duration and duration > 0 then
             local remaining = math.floor((start + duration) - GetTime())
             slot.cdText:SetText(F.String.FormatTimeClass(remaining))
-            btn.cooldown:SetCooldown(start, duration)
+            slot.cooldown:SetCooldown(start, duration)
           else
-            btn.cooldown:SetCooldown(0, 0)
+            slot.cooldown:SetCooldown(0, 0)
             slot.cdText:SetText("")
           end
         end)
       elseif GetItemCooldown then
-        slot:SetScript("OnUpdate", function(btn)
+        slot.cdTicker = C_Timer.NewTicker(0.5, function()
           local start, duration = GetItemCooldown(info.spellID)
           if start and duration and duration > 0 then
             local remaining = math.floor((start + duration) - GetTime())
             slot.cdText:SetText(F.String.FormatTimeClass(remaining))
-            btn.cooldown:SetCooldown(start, duration)
+            slot.cooldown:SetCooldown(start, duration)
           else
-            btn.cooldown:SetCooldown(0, 0)
+            slot.cooldown:SetCooldown(0, 0)
             slot.cdText:SetText("")
           end
         end)
@@ -282,10 +286,15 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
     numSlots = numSlots + 1
   end
 
-  -- Hide unused buttons
+  -- Hide unused buttons and cancel their cooldown tickers
   local unusedButtonIndex = numSlots + 1
   while secureFlyOutButtons[unusedButtonIndex] do
-    secureFlyOutButtons[unusedButtonIndex]:Hide()
+    local unusedSlot = secureFlyOutButtons[unusedButtonIndex]
+    if unusedSlot.cdTicker then
+      unusedSlot.cdTicker:Cancel()
+      unusedSlot.cdTicker = nil
+    end
+    unusedSlot:Hide()
     unusedButtonIndex = unusedButtonIndex + 1
   end
 
@@ -299,9 +308,9 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots)
   secureFlyOutFrame:ClearAllPoints()
 
   if dirUp then
-    secureFlyOutFrame:SetPoint("BOTTOMRIGHT", parent, "TOPRIGHT")
+    secureFlyOutFrame:SetPoint(growRight and "BOTTOMLEFT" or "BOTTOMRIGHT", parent, growRight and "TOPLEFT" or "TOPRIGHT")
   elseif dirDown then
-    secureFlyOutFrame:SetPoint("TOPRIGHT", parent, "BOTTOMRIGHT")
+    secureFlyOutFrame:SetPoint(growRight and "TOPLEFT" or "TOPRIGHT", parent, growRight and "BOTTOMLEFT" or "BOTTOMRIGHT")
   elseif dirLeft then
     secureFlyOutFrame:SetPoint("RIGHT", parent, "LEFT")
   elseif dirRight then

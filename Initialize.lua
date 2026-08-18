@@ -45,7 +45,7 @@ TXUI.IsAnniversary = TXUI.MetaFlavor == "Anniversary"
 
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
-TXUI.RetailSeason = "mid1"
+TXUI.RetailSeason = "mid2"
 
 -- Current expansion for Retail, eg.: tww
 -- see Internal.lua for Raid Hearthstones
@@ -128,20 +128,11 @@ function TXUI:Initialize()
   E.private.install_complete = E.version
 
   -- Set the correct tables for Flavor
-  if self.IsClassic then
-    I.HearthstoneData = I.HearthstoneData_Classic
-    I.InterruptSpellMap = I.InterruptSpellMap_Empty
-  end
+  if self.IsClassic then I.HearthstoneData = I.HearthstoneData_Classic end
 
-  if self.IsClassicEra then
-    I.HearthstoneData = I.HearthstoneData_ClassicEra
-    I.InterruptSpellMap = I.InterruptSpellMap_Empty
-  end
+  if self.IsClassicEra then I.HearthstoneData = I.HearthstoneData_ClassicEra end
 
-  if self.IsAnniversary then
-    I.HearthstoneData = I.HearthstoneData_Anniversary
-    I.InterruptSpellMap = I.InterruptSpellMap_Empty
-  end
+  if self.IsAnniversary then I.HearthstoneData = I.HearthstoneData_Anniversary end
 
   -- Lets go!
   self:InitializeModules()

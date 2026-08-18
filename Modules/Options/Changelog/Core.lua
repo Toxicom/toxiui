@@ -5,6 +5,7 @@ local CL = TXUI:GetModule("Changelog")
 local ipairs = ipairs
 local sub = string.sub
 local type = type
+local upper = string.upper
 
 function O:FormatChangelog(options, version, changelogIndex, changelog, returnText)
   -- Get the changes from the last changelog
@@ -12,7 +13,7 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
 
   if (changelog.HOTFIX == true) and not changelogGeneralData then changelogGeneralData = { "* General", I.Strings.ChangelogText[I.Enum.ChangelogType.HOTFIX] } end
 
-  local function generateSectionLog(section, title)
+  local function generateSectionLog(section)
     if (type(section) ~= "table") or (#section == 0) then return "" end
     local isUsingToxiUIFont = E.db.general.font == "- ToxiUI"
 
@@ -33,18 +34,14 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
       local specialCase = specialCases[line]
 
       if specialCase then
-        local formattedLine = F.String.ConvertGlyph(specialCase.glyph) .. " " .. line:sub(3)
-        if not isUsingToxiUIFont then formattedLine = line:sub(3) end
+        local formattedLine = F.String.ConvertGlyph(specialCase.glyph) .. " " .. upper(line:sub(3))
+        if not isUsingToxiUIFont then formattedLine = upper(line:sub(3)) end
         text = text .. "\n\n" .. F.String.Trim(F.String.GradientClass(formattedLine, specialCase.class)) .. "\n\n"
       elseif sub(line, 1, 2) == "* " then
-        if title then
-          text = text .. "• " .. F.String.Trim(line:sub(3)) .. "\n"
-        else
-          line = "• " .. line:sub(3)
-          text = text .. "\n" .. F.String.Trim(F.String.ToxiUI(line)) .. "\n\n"
-        end
+        line = "• " .. line:sub(3)
+        text = text .. "\n" .. F.String.Trim(F.String.ToxiUI(line)) .. "\n\n"
       else
-        text = text .. "- " .. F.String.Trim(line) .. "\n"
+        text = text .. "• " .. F.String.Trim(line) .. "\n"
       end
     end
 
@@ -55,25 +52,24 @@ function O:FormatChangelog(options, version, changelogIndex, changelog, returnTe
 
   if returnText then return generatedText end
 
-  if changelog.DYNAMIC then
-    local dynamicSection = changelog.DYNAMIC()
-    if dynamicSection ~= nil and #dynamicSection > 0 then generatedText = generatedText .. generateSectionLog(dynamicSection, "Additional") end
-  end
-
   -- Get a pretty version number
   local versionString = CL:FormattedVersion(version)
+
+  -- Append release date if present
+  local releaseDateSuffix = ""
+  if changelog.RELEASE_DATE and changelog.RELEASE_DATE ~= "" then releaseDateSuffix = " " .. F.String.Silver(changelog.RELEASE_DATE) end
 
   -- Version header
   local header = {
     order = self:GetOrder(),
     type = "header",
-    name = F.String.ToxiUI(versionString),
+    name = F.String.ToxiUI(versionString) .. releaseDateSuffix,
   }
 
   -- Big header on first changelog
   if (changelogIndex == 0) or (changelogIndex == 9999) then
     header["type"] = "description"
-    header["name"] = (changelogIndex == 0) and "Latest Version " .. header["name"] or header["name"]
+    header["name"] = (changelogIndex == 0) and "Latest Version " .. F.String.ToxiUI(versionString) .. " —" .. releaseDateSuffix or header["name"]
     header["fontSize"] = "large"
   end
 

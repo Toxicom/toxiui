@@ -39,7 +39,7 @@ function GR:UpdateStatusBarFrame(frame)
     -- Hook if needed
     if not self:IsHooked(frame.Health, "PostUpdateColor") then
       self:RawHook(frame.Health, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdateHealthColor, self))
-      self:AddFrameToSettingsUpdate("Health", frame.Health, F.Event.GenerateClosure(self.PostUpdateHealthColor, self, frame.Health, frame.unit))
+      self:AddFrameToSettingsUpdate("Health", frame.Health, F.Event.GenerateClosure(self.PostUpdateHealthColor, self, frame.Health, frame.__unit))
     end
   end
 
@@ -68,12 +68,17 @@ function GR:UpdateStatusBarFrame(frame)
     -- Hook if needed
     if not self:IsHooked(frame.Power, "PostUpdateColor") then
       self:RawHook(frame.Power, "PostUpdateColor", F.Event.GenerateClosure(self.PostUpdatePowerColor, self))
-      self:AddFrameToSettingsUpdate("Power", frame.Power, F.Event.GenerateClosure(self.PostUpdatePowerColor, self, frame.Power, frame.unit))
+      self:AddFrameToSettingsUpdate("Power", frame.Power, F.Event.GenerateClosure(self.PostUpdatePowerColor, self, frame.Power, frame.__unit))
     end
   end
 end
 
 function GR:ConfigureStatusBarFrame(_, frame)
+  -- Reset cached per-frame state so it's rebuilt fresh (e.g. when test mode activates)
+  if frame.Health then
+    frame.Health._gradColorFunc = nil
+    frame.Health.unitDead = nil
+  end
   self:UpdateStatusBarFrame(frame)
 end
 
@@ -116,8 +121,6 @@ function GR:Disable()
 
   self:UnhookAll()
   self.uf:Update_AllFrames()
-
-  F.EventManagerUnregisterAll(self.interruptNamespace)
 end
 
 function GR:Enable()
@@ -136,17 +139,6 @@ function GR:Enable()
   -- Hook functions for update functions
   self:SecureHook(self.uf, "Update_StatusBars", "UpdateStatusBars")
   self:SecureHook(self.uf, "Update_StatusBar", "UpdateStatusBar")
-
-  -- Register Interrupt handler
-  if TXUI.IsRetail then F.EventManagerRegister(self.interruptNamespace, "PLAYER_SPECIALIZATION_CHANGED", F.CheckInterruptSpells) end
-
-  F.EventManagerRegister(self.interruptNamespace, "PLAYER_ENTERING_WORLD", F.CheckInterruptSpells)
-  F.EventManagerRegister(self.interruptNamespace, "PLAYER_LEVEL_CHANGED", F.CheckInterruptSpells)
-  if TXUI.IsAnniversary or TXUI.IsRetail then
-    F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_SKILL_LINE", F.CheckInterruptSpells)
-  else
-    F.EventManagerRegister(self.interruptNamespace, "LEARNED_SPELL_IN_TAB", F.CheckInterruptSpells)
-  end
 
   -- Update!
   self.uf:Update_AllFrames()
@@ -188,9 +180,6 @@ function GR:Initialize()
   -- Force Update Cache
   self.updateCache = {}
   self.settingsEvents = {}
-
-  -- Set namespace var
-  self.interruptNamespace = "GR_INTERRUPT"
 
   -- Register for updates
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))

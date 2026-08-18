@@ -11,9 +11,10 @@ local sort = sort
 local type = type
 local tostring = tostring
 local tonumber = tonumber
-local tconcat = table.concat
+local tremove = tremove
 local strsplit = strsplit
 local abs = math.abs
+local floor = math.floor
 local CreateFrame = CreateFrame
 local C_CVar = C_CVar
 local ReloadUI = ReloadUI
@@ -22,6 +23,10 @@ local InCombatLockdown = InCombatLockdown
 local CANCEL = CANCEL
 
 local POSITION_TOLERANCE = 2 -- pixels
+
+local function sortByPath(a, b)
+  return a.path < b.path
+end
 
 -- Category and item definitions for the checklist
 local CATEGORIES = {
@@ -83,17 +88,26 @@ local SECTION_MAP = {
 
 PU.selectedItems = {}
 PU.diffs = {}
+PU.pendingReload = false
 
 -- Diff utilities
 
-local function formatValue(val)
-  if val == nil then return "|cff888888(none)|r" end
-  local valType = type(val)
-  if valType == "string" then return "|cffffd100\"" .. val .. "\"|r" end
-  if valType == "number" then return "|cffffffff" .. tostring(val) .. "|r" end
-  if valType == "boolean" then return val and "|cff66ff66true|r" or "|cffff6666false|r" end
-  if valType == "table" then return "|cff888888{table}|r" end
-  return tostring(val)
+local function setValueAtPath(tbl, path, value)
+  local parts = {}
+  for part in path:gmatch("[^%.]+") do
+    tinsert(parts, part)
+  end
+  if #parts == 0 then return end
+  local node = tbl
+  for i = 1, #parts - 1 do
+    local k = tonumber(parts[i]) or parts[i]
+    if type(node) ~= "table" then return end
+    node = node[k]
+    if node == nil then return end
+  end
+  if type(node) ~= "table" then return end
+  local lastKey = tonumber(parts[#parts]) or parts[#parts]
+  node[lastKey] = value
 end
 
 local function parseMoverString(str)
@@ -167,12 +181,27 @@ local function computeMoverDiff(current, new, results, reanchored)
   end
 end
 
+local function r8(x)
+  return floor(x * 255 + 0.5)
+end
+
+local function colorTablesEqual(cur, new)
+  if not F.Color.IsColorTable(cur) or not F.Color.IsColorTable(new) then return false end
+  if r8(cur.r) ~= r8(new.r) or r8(cur.g) ~= r8(new.g) or r8(cur.b) ~= r8(new.b) then return false end
+  if new.a ~= nil then
+    if r8(cur.a ~= nil and cur.a or 1) ~= r8(new.a) then return false end
+  end
+  return true
+end
+
 local function computeTableDiff(current, new, path, results)
   for k, newVal in pairs(new) do
     local fullPath = path ~= "" and (path .. "." .. tostring(k)) or tostring(k)
     local curVal = current and current[k]
 
-    if type(newVal) == "table" then
+    if F.Color.IsColorTable(newVal) then
+      if not colorTablesEqual(curVal, newVal) then tinsert(results, { path = fullPath, old = curVal, new = newVal }) end
+    elseif type(newVal) == "table" then
       if type(curVal) == "table" then
         computeTableDiff(curVal, newVal, fullPath, results)
       else
@@ -186,6 +215,21 @@ local function computeTableDiff(current, new, path, results)
   end
 end
 
+-- Flat diff: iterates top-level keys of profile, recursing into sub-tables via computeTableDiff.
+-- skipKey: optional key to skip (e.g. "movers" for additional profile).
+-- tablesOnly: when true, only diffs table values (skips scalar mismatches).
+local function computeFlatDiff(source, profile, results, skipKey, tablesOnly)
+  for k, v in pairs(profile) do
+    if k ~= skipKey then
+      if type(v) == "table" and type(source[k]) == "table" then
+        computeTableDiff(source[k], v, k, results)
+      elseif not tablesOnly and source[k] ~= v then
+        tinsert(results, { path = k, old = source[k], new = v })
+      end
+    end
+  end
+end
+
 function PU:ComputeAllDiffs()
   wipe(self.diffs)
 
@@ -195,22 +239,48 @@ function PU:ComputeAllDiffs()
   for key, dbPath in pairs(SECTION_MAP) do
     local entries = {}
     computeTableDiff(E.db[dbPath], pf[dbPath], "", entries)
-    sort(entries, function(a, b)
-      return a.path < b.path
-    end)
-    self.diffs[key] = { count = #entries, entries = entries }
+
+    -- Separate paths managed by CooldownManager (CDM) so they display as read-only
+    -- instead of clickable diffs while CDM is actively controlling those values.
+    local cdmManaged = {}
+    if key == "unitframes" and TXUI.IsRetail then
+      local cdmDB = E.db.TXUI and E.db.TXUI.addons and E.db.TXUI.addons.cooldownManager
+      if cdmDB then
+        local dw = cdmDB.dynamicWidth
+        local classbarDB = E.db.unitframe.units.player.classbar
+        local powerOverride = cdmDB.powerBarOverride
+        local classOverride = cdmDB.classBarOverride
+        local cdmManagedPaths = {
+          { path = "units.player.power.detachedWidth", condition = dw and dw.enabled and dw.powerClassBars },
+          { path = "units.player.classbar.detachedWidth", condition = dw and dw.enabled and dw.powerClassBars },
+          { path = "units.player.classbar.spacing", condition = dw and dw.enabled and dw.powerClassBars and classbarDB and classbarDB.fill == "spaced" },
+          { path = "units.player.castbar.width", condition = dw and dw.enabled and dw.castBar },
+          { path = "units.player.power.enable", condition = powerOverride and powerOverride.enabled },
+          { path = "units.player.classbar.enable", condition = classOverride and classOverride.enabled },
+        }
+        for i = #entries, 1, -1 do
+          local path = entries[i].path
+          for _, managed in ipairs(cdmManagedPaths) do
+            if managed.condition and path == managed.path then
+              tinsert(cdmManaged, tremove(entries, i))
+              break
+            end
+          end
+        end
+      end
+    end
+
+    sort(entries, sortByPath)
+    sort(cdmManaged, sortByPath)
+    self.diffs[key] = { count = #entries, entries = entries, cdmManaged = cdmManaged }
   end
 
   -- Movers (with re-anchor detection)
   local moverEntries = {}
   local moverReanchored = {}
   computeMoverDiff(E.db.movers, pf.movers, moverEntries, moverReanchored)
-  sort(moverEntries, function(a, b)
-    return a.path < b.path
-  end)
-  sort(moverReanchored, function(a, b)
-    return a.path < b.path
-  end)
+  sort(moverEntries, sortByPath)
+  sort(moverReanchored, sortByPath)
   self.diffs.movers = { count = #moverEntries, entries = moverEntries, reanchored = moverReanchored }
 
   -- Colors (from BuildColorsProfile, authoritative source)
@@ -218,9 +288,7 @@ function PU:ComputeAllDiffs()
   local colorEntries = {}
   computeTableDiff(E.db.unitframe.colors, colors.unitframe.colors, "unitframe.colors", colorEntries)
   computeTableDiff(E.db.nameplates.colors, colors.nameplates.colors, "nameplates.colors", colorEntries)
-  sort(colorEntries, function(a, b)
-    return a.path < b.path
-  end)
+  sort(colorEntries, sortByPath)
   self.diffs.colors = { count = #colorEntries, entries = colorEntries }
 
   -- CVars (GetCVarInfo returns strings, so convert expected to string for comparison)
@@ -230,93 +298,43 @@ function PU:ComputeAllDiffs()
     local current = C_CVar.GetCVarInfo(name)
     if current ~= nil and tostring(current) ~= tostring(expected) then tinsert(cvarsEntries, { path = name, old = current, new = expected }) end
   end
-  sort(cvarsEntries, function(a, b)
-    return a.path < b.path
-  end)
+  sort(cvarsEntries, sortByPath)
   self.diffs["cvars"] = { count = #cvarsEntries, entries = cvarsEntries }
 
   -- Private profile
-  local privatePf = PF:BuildPrivateProfile()
   local privateEntries = {}
-  for k, v in pairs(privatePf) do
-    if type(v) == "table" and type(E.private[k]) == "table" then
-      computeTableDiff(E.private[k], v, k, privateEntries)
-    elseif E.private[k] ~= v then
-      tinsert(privateEntries, { path = k, old = E.private[k], new = v })
-    end
-  end
-  sort(privateEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.private, PF:BuildPrivateProfile(), privateEntries)
+  sort(privateEntries, sortByPath)
   self.diffs["private"] = { count = #privateEntries, entries = privateEntries }
 
   -- Global profile
-  local globalPf = PF:BuildGlobalProfile()
   local globalEntries = {}
-  for k, v in pairs(globalPf) do
-    if type(v) == "table" and type(E.global[k]) == "table" then
-      computeTableDiff(E.global[k], v, k, globalEntries)
-    elseif E.global[k] ~= v then
-      tinsert(globalEntries, { path = k, old = E.global[k], new = v })
-    end
-  end
-  sort(globalEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.global, PF:BuildGlobalProfile(), globalEntries)
+  sort(globalEntries, sortByPath)
   self.diffs["global"] = { count = #globalEntries, entries = globalEntries }
 
-  -- Additional AddOns (WindTools public)
-  local additionalPf = PF:BuildAdditionalProfile()
+  -- Additional AddOns (WindTools public) — movers handled separately above
   local additionalEntries = {}
-  for k, v in pairs(additionalPf) do
-    if k ~= "movers" then -- movers handled separately
-      if type(v) == "table" and type(E.db[k]) == "table" then
-        computeTableDiff(E.db[k], v, k, additionalEntries)
-      elseif E.db[k] ~= v then
-        tinsert(additionalEntries, { path = k, old = E.db[k], new = v })
-      end
-    end
-  end
-  sort(additionalEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.db, PF:BuildAdditionalProfile(), additionalEntries, "movers")
+  sort(additionalEntries, sortByPath)
   self.diffs["additional"] = { count = #additionalEntries, entries = additionalEntries }
 
   -- Additional Private (WindTools private)
-  local additionalPrivatePf = PF:BuildAdditionalPrivateProfile()
   local additionalPrivateEntries = {}
-  for k, v in pairs(additionalPrivatePf) do
-    if type(v) == "table" and type(E.private[k]) == "table" then
-      computeTableDiff(E.private[k], v, k, additionalPrivateEntries)
-    elseif E.private[k] ~= v then
-      tinsert(additionalPrivateEntries, { path = k, old = E.private[k], new = v })
-    end
-  end
-  sort(additionalPrivateEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.private, PF:BuildAdditionalPrivateProfile(), additionalPrivateEntries)
+  sort(additionalPrivateEntries, sortByPath)
   self.diffs["additional_private"] = { count = #additionalPrivateEntries, entries = additionalPrivateEntries }
 
   -- Fonts (public)
-  local fontsPf = PF:BuildFontsProfile()
   local fontsEntries = {}
-  for k, v in pairs(fontsPf) do
-    if type(v) == "table" and type(E.db[k]) == "table" then computeTableDiff(E.db[k], v, k, fontsEntries) end
-  end
-  sort(fontsEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.db, PF:BuildFontsProfile(), fontsEntries, nil, true)
+  sort(fontsEntries, sortByPath)
   self.diffs["fonts"] = { count = #fontsEntries, entries = fontsEntries }
 
   -- Font Privates
-  local fontPrivatesPf = PF:BuildFontPrivatesProfile()
   local fontPrivatesEntries = {}
-  for k, v in pairs(fontPrivatesPf) do
-    if type(v) == "table" and type(E.private[k]) == "table" then computeTableDiff(E.private[k], v, k, fontPrivatesEntries) end
-  end
-  sort(fontPrivatesEntries, function(a, b)
-    return a.path < b.path
-  end)
+  computeFlatDiff(E.private, PF:BuildFontPrivatesProfile(), fontPrivatesEntries, nil, true)
+  sort(fontPrivatesEntries, sortByPath)
   self.diffs["font_privates"] = { count = #fontPrivatesEntries, entries = fontPrivatesEntries }
 end
 
@@ -324,39 +342,39 @@ function PU:GetDiffForItem(key)
   return self.diffs[key]
 end
 
-function PU:BuildDiffText(key)
-  local diffData = self.diffs[key]
-  if not diffData then return nil end
+function PU:ApplyDiffEntry(sectionKey, entry)
+  local path = entry.path
+  local newVal = entry.new
 
-  local hasChanges = diffData.count > 0
-  local reanchored = diffData.reanchored
-  local hasReanchored = reanchored and #reanchored > 0
-
-  if not hasChanges and not hasReanchored then return "|cff66ff66No changes detected.|r" end
-
-  local lines = {}
-
-  -- Real changes
-  for _, entry in ipairs(diffData.entries) do
-    tinsert(lines, "|cffa0a0a0" .. entry.path .. "|r")
-    tinsert(lines, "  " .. formatValue(entry.old) .. " |cffffff00->|r " .. formatValue(entry.new))
+  if SECTION_MAP[sectionKey] then
+    setValueAtPath(E.db[SECTION_MAP[sectionKey]], path, newVal)
+  elseif sectionKey == "movers" then
+    E.db.movers[path] = newVal
+  elseif sectionKey == "cvars" then
+    E:SetCVar(path, tostring(newVal))
+  elseif sectionKey == "colors" or sectionKey == "additional" or sectionKey == "fonts" then
+    setValueAtPath(E.db, path, newVal)
+  elseif sectionKey == "private" or sectionKey == "additional_private" or sectionKey == "font_privates" then
+    setValueAtPath(E.private, path, newVal)
+  elseif sectionKey == "global" then
+    setValueAtPath(E.global, path, newVal)
   end
 
-  -- Re-anchored movers (false positives from ElvUI parent resolution)
-  if hasReanchored then
-    if hasChanges then tinsert(lines, "") end
-    tinsert(lines, "|cff888888--- Re-anchored by ElvUI (" .. #reanchored .. ") ---|r")
-    tinsert(lines, "|cff888888These movers originally were anchored to a different frame but ElvUI resolved their parent frame.|r")
-    tinsert(lines, "|cff888888Because of that, we cannot be certain if the user moved them from their original position.|r")
-    tinsert(lines, "|cff888888They will be re-applied with the original anchor on update.|r")
-    tinsert(lines, "")
-    for _, entry in ipairs(reanchored) do
-      tinsert(lines, "|cff555555" .. entry.path .. "|r")
-      tinsert(lines, "  |cff555555" .. (entry.oldParent or "?") .. " -> " .. (entry.newParent or "?") .. "|r")
+  -- Remove the entry from diff data so the row disappears
+  local diffData = self.diffs[sectionKey]
+  if diffData then
+    local entries = diffData.entries
+    for i = #entries, 1, -1 do
+      if entries[i] == entry then
+        tremove(entries, i)
+        diffData.count = diffData.count - 1
+        break
+      end
     end
   end
 
-  return tconcat(lines, "\n")
+  self.pendingReload = true
+  self.appliedCount = (self.appliedCount or 0) + 1
 end
 
 -- Selection state
@@ -424,12 +442,6 @@ function PU:ExecuteSelectedUpdates()
     if self.selectedItems[key] then crushFnc(E.db[dbPath], pf[dbPath]) end
   end
 
-  -- Movers need F.ProcessMovers first
-  if self.selectedItems.movers then
-    F.ProcessMovers(pf)
-    crushFnc(E.db.movers, pf.movers)
-  end
-
   -- Colors (separate from unitframes — BuildColorsProfile is authoritative)
   if self.selectedItems.colors then
     local colors = PF:BuildColorsProfile()
@@ -445,6 +457,12 @@ function PU:ExecuteSelectedUpdates()
   if self.selectedItems.global then PF:ElvUIProfileGlobal() end
   if self.selectedItems.additional then PF:ElvUIAdditional() end
   if self.selectedItems.additional_private then PF:ElvUIAdditionalPrivate() end
+
+  -- Movers need F.ProcessMovers first
+  if self.selectedItems.movers then
+    F.ProcessMovers(pf)
+    crushFnc(E.db.movers, pf.movers)
+  end
 
   -- Update version stamps only if all items are selected (full update = equivalent to installer)
   if self:GetSelectedCount() == self:GetTotalItemCount() then
@@ -500,16 +518,17 @@ function PU:Toggle()
   else
     self:InitializeSelection()
     self:ComputeAllDiffs()
+    self:ClearDiffRows()
     self:UpdateCheckboxLabels()
     self:UpdateCheckboxStates()
     self:UpdateApplyButton()
+    self:RefreshLayoutButtons()
   end
 
   if self.frame:IsShown() then
-    self.frame:Hide()
+    self:CloseFrame()
   else
-    self.frame:Show()
-    self.frame:Raise()
+    self:ShowFrame()
   end
 end
 

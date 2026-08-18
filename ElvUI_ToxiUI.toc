@@ -1,17 +1,17 @@
 ## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r
 ## Notes: Minimalistic ElvUI Edit by |cff18a8ffToxi|r
 ## Author: Toxi (Toxi#21206)
-## Version: 7.3.5
+## Version: 7.5.2
 ## RequiredDeps: ElvUI
 ## OptionalDeps: Details
 ## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
 ## DefaultState: Enabled
-## Interface: 120001
-## X-Interface: 1200001
+## Interface: 120100
+## X-Interface: 120100
 ## X-Flavor: Retail
 ## X-WoWI-ID: 25770
 ## X-Curse-Project-ID: 676447
-## X-ElvUIVersion: 15.07
+## X-ElvUIVersion: 15.22
 ## X-Wago-ID: XrNk5lKa
 ## X-GitHash: @project-version@
 ## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick

@@ -64,14 +64,14 @@ A.colors = {
 A.characterSlots = {
   ["HeadSlot"] = {
     id = 1,
-    needsEnchant = false,
-    needsSocket = false,
+    needsEnchant = true,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.LEFT,
   },
   ["NeckSlot"] = {
     id = 2,
     needsEnchant = false,
-    needsSocket = TXUI.IsRetail,
+    needsSocket = false,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
@@ -79,13 +79,13 @@ A.characterSlots = {
   },
   ["ShoulderSlot"] = {
     id = 3,
-    needsEnchant = false,
+    needsEnchant = true,
     needsSocket = false,
     direction = A.enumDirection.LEFT,
   },
   ["BackSlot"] = {
     id = 15,
-    needsEnchant = true,
+    needsEnchant = false,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
@@ -115,11 +115,11 @@ A.characterSlots = {
   },
   ["WristSlot"] = {
     id = 9,
-    needsEnchant = true,
+    needsEnchant = false,
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = false,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.LEFT,
   },
   ["HandsSlot"] = {
@@ -131,7 +131,7 @@ A.characterSlots = {
   ["WaistSlot"] = {
     id = 6,
     needsEnchant = false,
-    needsSocket = false,
+    needsSocket = TXUI.IsRetail,
     direction = A.enumDirection.RIGHT,
   },
   ["LegsSlot"] = {
@@ -158,7 +158,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = TXUI.IsRetail,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Finger1Slot"] = {
@@ -167,7 +167,7 @@ A.characterSlots = {
     warningCondition = {
       level = I.MaxLevelTable[TXUI.MetaFlavor],
     },
-    needsSocket = TXUI.IsRetail,
+    needsSocket = false,
     direction = A.enumDirection.RIGHT,
   },
   ["Trinket0Slot"] = {
@@ -548,10 +548,10 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
   if self.db.pageInfo.enchantTextEnabled and slotInfo.itemLevelColors and next(slotInfo.itemLevelColors) then
     if self.db.pageInfo.missingSocketText and slotOptions.needsSocket then
       if not slotOptions.warningCondition or (self:CheckMessageCondition(slotOptions)) then
-        local missingGemSlots = 2 - #slotInfo.gems
+        local missingGemSlots = 1 - #slotInfo.gems
         if missingGemSlots > 0 then
-          local text = format("Add %d sockets", missingGemSlots)
-          local missingColor = { F.String.FastColorGradientHex(missingGemSlots / 2, A.colors.LIGHT_GREEN, A.colors.RED) }
+          local text = format("Add %d socket", missingGemSlots)
+          local missingColor = { F.String.FastColorGradientHex(missingGemSlots, A.colors.LIGHT_GREEN, A.colors.RED) }
           slotItem.enchantText:SetText(F.String.RGB(text, missingColor))
         end
       else
@@ -891,6 +891,7 @@ end
 
 function A:UpdateCharacterStats()
   if not self.frame:IsShown() then return end
+  if InCombatLockdown() then return end
 
   local characterStatsPane = _G.CharacterStatsPane
   local titlePane = _G.PaperDollFrame.TitleManagerPane
@@ -1029,7 +1030,11 @@ function A:UpdateCharacterStats()
         statFrame.onEnterFunc = nil
         statFrame.UpdateTooltip = nil
 
-        _G.PAPERDOLL_STATINFO[stat.stat].updateFunc(statFrame, "player")
+        local ok = pcall(_G.PAPERDOLL_STATINFO[stat.stat].updateFunc, statFrame, "player")
+        if not ok then
+          if statFrame.Value then statFrame.Value:SetText(F.String.Muted("N/A")) end
+          statFrame.numericValue = nil
+        end
 
         -- Mode 1/2 - Validate hideAt value in Smart Mode/Always Show if not empty mode
         if (hideAt ~= nil) and ((statMode == 1) or (statMode == 2)) then showStat = (stat.hideAt ~= statFrame.numericValue) end
@@ -1085,6 +1090,12 @@ function A:UpdateAttackSpeed(statFrame, unit)
   statFrame.tooltip2 = format(_G.STAT_ATTACK_SPEED_BASE_TOOLTIP, BreakUpLargeNumbers(meleeHaste))
 
   statFrame:Show()
+end
+
+function A:SafePaperDollUpdateStats(...)
+  if InCombatLockdown() then return end
+  pcall(self.hooks[_G]["PaperDollFrame_UpdateStats"], ...)
+  self:UpdateCharacterStats()
 end
 
 function A:ApplyCustomStatCategories()
@@ -1424,6 +1435,8 @@ function A:HandleEvent(event, unit)
     self:UpdateTitle()
   elseif event == "PLAYER_AVG_ITEM_LEVEL_UPDATE" then
     self:UpdateItemLevel()
+  elseif event == "PLAYER_REGEN_ENABLED" then
+    self:UpdateCharacterStats()
   end
 end
 
@@ -1438,6 +1451,7 @@ function A:Disable()
   F.Event.UnregisterFrameEventAndCallback("PLAYER_PVP_RANK_CHANGED", self)
   F.Event.UnregisterFrameEventAndCallback("PLAYER_AVG_ITEM_LEVEL_UPDATE", self)
   F.Event.UnregisterFrameEventAndCallback("PLAYER_TALENT_UPDATE", self)
+  F.Event.UnregisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self)
 end
 
 function A:Enable()
@@ -1454,13 +1468,14 @@ function A:Enable()
   self:SecureHook(m, "CreateSlotStrings", F.Event.GenerateClosure(self.UpdatePageInfo, self))
   self:SecureHook(m, "UpdateInspectPageFonts", F.Event.GenerateClosure(self.UpdatePageInfo, self))
   self:SecureHook(m, "ToggleItemLevelInfo", F.Event.GenerateClosure(self.ElvOptionsCheck, self))
-  self:SecureHook(_G, "PaperDollFrame_UpdateStats", F.Event.GenerateClosure(self.UpdateCharacterStats, self))
+  self:RawHook(_G, "PaperDollFrame_UpdateStats", "SafePaperDollUpdateStats", true)
 
   -- Register Events
   F.Event.RegisterFrameEventAndCallback("UNIT_NAME_UPDATE", self.HandleEvent, self, "UNIT_NAME_UPDATE")
   F.Event.RegisterFrameEventAndCallback("PLAYER_PVP_RANK_CHANGED", self.HandleEvent, self, "PLAYER_PVP_RANK_CHANGED")
   F.Event.RegisterFrameEventAndCallback("PLAYER_AVG_ITEM_LEVEL_UPDATE", self.HandleEvent, self, "PLAYER_AVG_ITEM_LEVEL_UPDATE")
   F.Event.RegisterFrameEventAndCallback("PLAYER_TALENT_UPDATE", self.HandleEvent, self, "PLAYER_TALENT_UPDATE")
+  F.Event.RegisterFrameEventAndCallback("PLAYER_REGEN_ENABLED", self.HandleEvent, self, "PLAYER_REGEN_ENABLED")
 
   -- Hook Blizzard OnShow
   self:SecureHookScript(self.frame, "OnShow", "OpenCharacterArmory")

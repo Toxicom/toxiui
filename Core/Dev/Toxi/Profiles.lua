@@ -4,17 +4,12 @@ local T = TXUI:GetModule("Dev"):GetModule("Toxi")
 -- Looks like this file is not important ...
 --@do-not-package@
 
-local SetCVar = SetCVar
 local splitUnitframes = { "player", "focus", "targettarget", "pet" }
 local splitAbbrevUnitframes = { "party", "target" }
 
 function T:SetupCvars()
-  -- if E.TimerunningID and UnitLevel("player") < 80 then
-  -- return
-  -- else
   -- CVars
-  SetCVar("autoLootDefault", 1)
-  -- end
+  E:SetCVar("autoLootDefault", 1)
 end
 
 function T:SetupProfile()
@@ -43,6 +38,7 @@ function T:SetupProfile()
   if TXUI.IsRetail and F.IsAddOnEnabled("ElvUI_WindTools") then
     E.db.WT.item.inspect.enable = false -- clashes with narcissus talent inspect
     E.db.WT.quest.turnIn.enable = true
+    E.db.WT.combat.raidMarkers.enable = false
   end
 end
 

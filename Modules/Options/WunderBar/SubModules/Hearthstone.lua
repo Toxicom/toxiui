@@ -8,6 +8,29 @@ local LOCALIZED_CLASS_NAMES_MALE = _G.LOCALIZED_CLASS_NAMES_MALE
 local pairs = pairs
 local UnitSex = UnitSex
 
+function O:WunderBar_SubModules_RandomPool_Toggle(group)
+  group["randomPool"] = ACH:MultiSelect(
+    "Random Pool",
+    "Select which hearthstones can be randomly chosen. Leave all unchecked to use all available hearthstones.",
+    2,
+    function()
+      local names = {}
+      for _, option in pairs(I.HearthstoneData) do
+        if option.known and option.hearthstone and not option.class then names[option.id] = option.name end
+      end
+      return names
+    end,
+    nil,
+    nil,
+    function(_, key)
+      return E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHsPool[key] == true
+    end,
+    function(_, key, value)
+      E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHsPool[key] = value and true or nil
+    end
+  )
+end
+
 function O:WunderBar_SubModules_Additional_Toggle(group)
   group["toggles"] = ACH:MultiSelect(
     " ",
@@ -28,7 +51,12 @@ function O:WunderBar_SubModules_Additional_Toggle(group)
       return E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] ~= false
     end,
     function(_, key, value)
-      E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = value and nil or false
+      if value then
+        E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = nil
+      else
+        E.db.TXUI.wunderbar.subModules["Hearthstone"].additionalHS[key] = false
+      end
+      TXUI:GetModule("WunderBar"):UpdateBar()
     end
   )
 end
@@ -94,17 +122,19 @@ function O:WunderBar_SubModules_Hearthstone()
   tab.generalGroup = ACH:Group("General", nil, 1)
   tab.generalGroup.inline = true
 
-  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase", nil, self:GetOrder())
-  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", nil, self:GetOrder())
-  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", nil, self:GetOrder(), {
+  tab.generalGroup.args.useUppercase = ACH:Toggle("Uppercase", "Display the button label in uppercase.", self:GetOrder())
+  tab.generalGroup.args.showIcon = ACH:Toggle("Show Icon", "Display an icon on the button instead of text only.", self:GetOrder())
+  tab.generalGroup.args.iconFontSize = ACH:Range("Icon Size", "Adjust the size of the icon displayed on the button.", self:GetOrder(), {
     min = 1,
     max = 100,
     step = 1,
   }, nil, nil, nil, iconDisabled)
 
-  self:AddSpacer(tab.generalGroup.args)
+  -- Flyouts
+  tab.flyoutsGroup = ACH:Group("Flyouts", nil, 2)
+  tab.flyoutsGroup.inline = true
 
-  tab.generalGroup.args.seasonMythics = {
+  tab.flyoutsGroup.args.seasonMythics = {
     type = "toggle",
     name = "Seasonal M+ Teleports",
     desc = "Enabling this will show only the current season's teleports in the Flyout frame",
@@ -113,7 +143,7 @@ function O:WunderBar_SubModules_Hearthstone()
     width = 1.2,
   }
 
-  tab.generalGroup.args.seasonRaids = {
+  tab.flyoutsGroup.args.seasonRaids = {
     type = "toggle",
     name = "Seasonal Raid Teleports",
     desc = "Enabling this will show only the current expansion's raid teleports in the Flyout frame",
@@ -122,7 +152,7 @@ function O:WunderBar_SubModules_Hearthstone()
     width = 1.2,
   }
 
-  tab.generalGroup.args.showLabels = {
+  tab.flyoutsGroup.args.showLabels = {
     type = "toggle",
     name = "Show labels",
     desc = "Enabling this will show a label on the buttons.",
@@ -131,7 +161,7 @@ function O:WunderBar_SubModules_Hearthstone()
     width = 1.2,
   }
 
-  tab.generalGroup.args.showMageLabels = {
+  tab.flyoutsGroup.args.showMageLabels = {
     type = "toggle",
     name = "Show " .. F.String.Class("Mage", "MAGE") .. " labels",
     desc = "Enabling this will show a label of the Mage teleport & portal on the button.",
@@ -144,11 +174,11 @@ function O:WunderBar_SubModules_Hearthstone()
   }
 
   -- Hearthstones
-  tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 2)
+  tab.hearthstoneGroup = ACH:Group("Hearthstones", nil, 3)
   tab.hearthstoneGroup.inline = true
   tab.hearthstoneGroup.args.randomPrimaryHs = ACH:Toggle(
     "Randomize Primary Hearthstone",
-    "Enabling this will randomize the selected Hearthstone toy each time you reload your UI. It will not pick Dalaran or Garrison hearthstones, class teleports, covenant stones.",
+    "Enabling this will randomize the selected Hearthstone toy each time you reload your UI. It will not pick Dalaran or Garrison hearthstones or class teleports.",
     1,
     nil,
     nil,
@@ -166,6 +196,13 @@ function O:WunderBar_SubModules_Hearthstone()
 
   -- Sort hearthstone selects by value
   tab.hearthstoneGroup.args.primaryHS.sortByValue = true
+
+  self:WunderBar_SubModules_RandomPool_Toggle(tab.hearthstoneGroup.args)
+  tab.hearthstoneGroup.args.randomPool.order = 3
+  tab.hearthstoneGroup.args.randomPool.sortByValue = true
+  tab.hearthstoneGroup.args.randomPool.hidden = function()
+    return not E.db.TXUI.wunderbar.subModules["Hearthstone"].randomPrimaryHs
+  end
 
   -- Cooldowns
   tab.cooldownGroup = ACH:Group("Cooldown Text Group", nil, 2)

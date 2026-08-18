@@ -2,6 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.0.0"] = {
   HOTFIX = true,
+  RELEASE_DATE = "Aug 28, 2025",
   CHANGES = {
     "* Bug fixes",
     "Update " .. F.String.Menu.WunderBar() .. " Durability Module's logic for Mists of Pandaria Classic",
