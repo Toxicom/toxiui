@@ -106,6 +106,7 @@ function F.Round(n, q)
 end
 
 function F.AlmostEqual(a, b)
+  if E:IsSecretValue(a) or E:IsSecretValue(b) then return false end
   if not a or not b then return false end
 
   return abs(a - b) <= 0.001

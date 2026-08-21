@@ -10,6 +10,12 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
     eR, eG, eB = eR.r, eR.g, eR.b
   end
 
+  -- Color components can be secret depending on unit/context (e.g. health-derived smooth colors);
+  -- treat as "no color provided" since secret values can't be used in arithmetic/comparisons
+  if eR ~= nil and (E:IsSecretValue(eR) or E:IsSecretValue(eG) or E:IsSecretValue(eB)) then
+    eR, eG, eB = nil, nil, nil
+  end
+
   if frame.currentColor == nil then
     frame.currentColor = eB ~= nil and CreateColor(eR, eG, eB, 1) or CreateColor(0, 0, 0, 1)
     colorChanged = true

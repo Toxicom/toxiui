@@ -248,6 +248,11 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots, gr
       if info.type == "spell" then
         slot.cdTicker = C_Timer.NewTicker(0.5, function()
           local start, duration = E:GetSpellCooldown(info.spellID)
+          -- start/duration can be secret (e.g. spells on GCD); can't compare/math on those, treat as no cooldown
+          if E:IsSecretValue(start) or E:IsSecretValue(duration) then
+            start, duration = nil, nil
+          end
+
           if start and duration and duration > 0 then
             local remaining = math.floor((start + duration) - GetTime())
             slot.cdText:SetText(F.String.FormatTimeClass(remaining))

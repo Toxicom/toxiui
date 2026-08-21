@@ -45,7 +45,8 @@ function HS:GetCooldownForItem(itemInfo)
   if not itemInfo or not itemInfo.id then return self:LogDebug("HS:GetCooldownForItem > Item could not be found in DB") end
 
   local gcd = GetSpellCooldown(61304)
-  local gcdDur = gcd and gcd.duration or 1500
+  local gcdDur = 1500
+  if gcd and not E:IsSecretValue(gcd.duration) then gcdDur = gcd.duration end
   if gcdDur == nil then return self:LogDebug("HS:GetCooldownForItem > GetSpellCooldown returned nil for gcd") end
 
   local startTime, duration
@@ -59,11 +60,10 @@ function HS:GetCooldownForItem(itemInfo)
 
   if startTime == nil or duration == nil then return self:LogDebug("HS:GetCooldownForItem > GetItemCooldown returned nil for item") end
 
-  -- startTime can be a "secret" tainted value in combat, arithmetic on it will error
-  local ok, cooldownTime = pcall(function()
-    return startTime + duration - GetTime()
-  end)
-  if not ok then return false, "In Combat" end
+  -- startTime/duration can be secret (tainted combat context) - arithmetic on them errors, treat as "in combat"
+  if E:IsSecretValue(startTime) or E:IsSecretValue(duration) then return false, "In Combat" end
+
+  local cooldownTime = startTime + duration - GetTime()
   local ready = (duration - gcdDur <= 0) or cooldownTime <= 0
 
   if not ready then
