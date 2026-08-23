@@ -11,6 +11,7 @@ TXUI.Changelog["7.5.4"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. "Potentially fix Armory's nil string error",
 
     "* Profile updates",
 

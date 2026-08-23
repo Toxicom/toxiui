@@ -809,9 +809,9 @@ function A:UpdateCharacterStat(frame, showGradient)
   if frame.Label then
     F.SetFontFromDB(self.db.stats, "label", frame.Label, false)
 
-    local labelString = F.String.StripColor(frame.Label:GetText())
+    local labelString = F.String.StripColor(frame.Label:GetText()) or ""
 
-    if self.db.stats.abbreviateLabels then labelString = E:ShortenString(E.TagFunctions.Abbrev(labelString), 12) end
+    if self.db.stats.abbreviateLabels and labelString ~= "" then labelString = E:ShortenString(E.TagFunctions.Abbrev(labelString), 12) end
 
     if self.db.stats.showIcons and self.db.stats.mode[frame.stringId] then
       if not frame.Icon then
