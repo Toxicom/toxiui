@@ -15,7 +15,7 @@ TXUI.Changelog["7.5.4"] = {
     "* Profile updates",
 
     "* Documentation",
-    F.String.MinElv("15.24"),
+    F.String.MinElv("15.25"),
 
     "* Settings refactoring",
 
