@@ -300,7 +300,6 @@ function PF:BuildAdditionalPrivateProfile()
           covenantPreview = false,
           covenantRenown = false,
           covenantSanctum = false,
-          damageMeter = false,
           debugTools = false,
           delves = false,
           dressingRoom = false,
@@ -389,11 +388,12 @@ function PF:BuildAdditionalPrivateProfile()
         },
 
         damageMeter = {
+          enable = true,
           bar = {
             texture = I.Textures.Primary,
           },
           headerBackdrop = "hide",
-          headerPart = "mouseover",
+          headerPart = "always",
           scrollBar = "mouseover",
           windowBackdrop = "hide",
         },

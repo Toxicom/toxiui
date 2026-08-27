@@ -16,11 +16,38 @@ function O:Skins_DamageMeter()
   self:AddInlineDesc(options, {
     name = "Description",
   }, {
-    name = TXUI.Title .. " provides custom skinning for the " .. F.String.ToxiUI("Blizzard Damage Meter") .. " which can be configured here.\n\n",
+    name = TXUI.Title
+      .. " provides custom skinning for the "
+      .. F.String.ToxiUI("Blizzard Damage Meter")
+      .. " which can be configured here.\n\nHeader fade, window backdrop, and bar texture are configured in "
+      .. F.String.WindTools()
+      .. ".\n\n",
   })
 
   -- Spacer
   self:AddSpacer(options)
+
+  if F.IsAddOnEnabled("ElvUI_WindTools") then
+    local navGroup = self:AddInlineGroup(options, { name = "Related Settings" }).args
+
+    navGroup.navDesc = {
+      order = self:GetOrder(),
+      type = "description",
+      name = F.String.WindTools() .. " Skin - Header fade, window backdrop, scrollbar, and bar texture for the Blizzard Damage Meter.\n\n",
+    }
+
+    navGroup.windtoolsSkin = {
+      order = self:GetOrder(),
+      type = "execute",
+      name = F.String.WindTools() .. " Skin",
+      desc = "Open the " .. F.String.WindTools() .. " Skins > Damage Meter settings.",
+      func = function()
+        E:ToggleOptions("WindTools,skins,damageMeter")
+      end,
+    }
+
+    self:AddSpacer(options)
+  end
 
   -- General
   do

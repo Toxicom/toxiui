@@ -153,12 +153,27 @@ local function HookScrollBox(scrollBox)
 end
 
 -- Hide the "sticky self row" (LocalPlayerEntry) that floats while scrolling
+local function GetSessionLocalPlayerEntry(window)
+  if not window then return nil end
+  if window.GetLocalPlayerEntry then return window:GetLocalPlayerEntry() end
+
+  local container = window.MinimizeContainer or window
+  return container and container.LocalPlayerEntry
+end
+
+local function GetSessionSourceWindow(window)
+  if not window then return nil end
+  if window.GetSourceWindow then return window:GetSourceWindow() end
+
+  return window.SourceWindow
+end
+
 local function HideLocalPlayerEntry(window)
   if not E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then return end
-  local container = window.MinimizeContainer or window
-  if not container or not container.LocalPlayerEntry then return end
 
-  local entry = container.LocalPlayerEntry
+  local entry = GetSessionLocalPlayerEntry(window)
+  if not entry then return end
+
   entry:Hide()
   entry:SetAlpha(0)
   entry:EnableMouse(false)
@@ -187,15 +202,18 @@ local function HookLocalPlayerEntry(window)
 end
 
 local function HookSessionWindow(window)
+  if not window then return end
+
   -- Hide sticky local player row
   if E.db.TXUI.addons.damageMeter.hideLocalPlayerEntry then HookLocalPlayerEntry(window) end
 
-  local ScrollBox = window.GetScrollBox and window:GetScrollBox()
-  if ScrollBox then HookScrollBox(ScrollBox) end
+  local scrollBox = window.GetScrollBox and window:GetScrollBox()
+  if scrollBox then HookScrollBox(scrollBox) end
 
-  -- Source window (spell breakdown) has its own ScrollBox
-  if window.SourceWindow then
-    local sourceScrollBox = window.SourceWindow.GetScrollBox and window.SourceWindow:GetScrollBox()
+  -- Source window (spell breakdown) is under MinimizeContainer; use GetSourceWindow()
+  local sourceWindow = GetSessionSourceWindow(window)
+  if sourceWindow then
+    local sourceScrollBox = sourceWindow.GetScrollBox and sourceWindow:GetScrollBox()
     if sourceScrollBox then HookScrollBox(sourceScrollBox) end
   end
 end
@@ -222,8 +240,14 @@ function DM:Initialize()
         InvalidateGradientCache()
         F.Color.GenerateCache()
         _G.DamageMeter:ForEachSessionWindow(function(window)
-          local ScrollBox = window.GetScrollBox and window:GetScrollBox()
-          if ScrollBox and ScrollBox.ForEachFrame then ScrollBox:ForEachFrame(ApplyGradient) end
+          local scrollBox = window.GetScrollBox and window:GetScrollBox()
+          if scrollBox and scrollBox.ForEachFrame then scrollBox:ForEachFrame(ApplyGradient) end
+
+          local sourceWindow = GetSessionSourceWindow(window)
+          if sourceWindow then
+            local sourceScrollBox = sourceWindow.GetScrollBox and sourceWindow:GetScrollBox()
+            if sourceScrollBox and sourceScrollBox.ForEachFrame then sourceScrollBox:ForEachFrame(ApplyGradient) end
+          end
         end)
       end
 
