@@ -393,7 +393,7 @@ function PF:BuildAdditionalPrivateProfile()
             texture = I.Textures.Primary,
           },
           headerBackdrop = "hide",
-          headerPart = "always",
+          headerPart = "mouseover",
           scrollBar = "mouseover",
           windowBackdrop = "hide",
         },
