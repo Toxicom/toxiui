@@ -11,6 +11,7 @@ TXUI.Changelog["7.5.5"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. "Fixed error on health bar backdrop/color updates due to secrets in Dark Mode",
 
     "* Profile updates",
 
