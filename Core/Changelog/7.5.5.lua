@@ -13,6 +13,10 @@ TXUI.Changelog["7.5.5"] = {
 
     "* Bug fixes",
     F.String.Retail() .. "Fixed error on health bar backdrop/color updates due to secrets in Dark Mode",
+    F.String.Retail() --
+      .. "Damage Meter: Follow the new Blizzard session window layout"
+      .. F.String.Sublist("Spell breakdown and floating player entry now use GetSourceWindow / GetLocalPlayerEntry")
+      .. F.String.Sublist("Credits to DakJaniels"),
 
     "* Profile updates",
 
