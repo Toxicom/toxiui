@@ -9,6 +9,7 @@ TXUI.Changelog["7.5.5"] = {
     "* New features",
 
     "* Enhancements",
+    F.String.Retail() .. "Added a max length setting to truncate long loadout names in " .. F.String.Menu.WunderBar(),
 
     "* Bug fixes",
     F.String.Retail() .. "Fixed error on health bar backdrop/color updates due to secrets in Dark Mode",
@@ -16,6 +17,7 @@ TXUI.Changelog["7.5.5"] = {
     "* Profile updates",
 
     "* Documentation",
+    F.String.MinElv("15.25"),
 
     "* Settings refactoring",
 
