@@ -24,14 +24,25 @@ function DT:PostUpdateColor(health, unit, r, g, b)
   local frame = health:GetParent()
   local elvUIColors = E.db.unitframe.colors
 
+  -- Apply same fix here that we did for the gradients.lua
+  if b ~= nil and (E:IsSecretValue(r) or E:IsSecretValue(g) or E:IsSecretValue(b)) then
+    r, g, b = nil, nil, nil
+  end
+
   -- fallback for bg if custom settings arent used
   if not b then
     r, g, b = elvUIColors.health.r, elvUIColors.health.g, elvUIColors.health.b
   end
 
   -- Charmed player should have hostile color
+  -- Some UnitIs* seem to be secret depending on context; guard every boolean
   if unit then
-    if (not UnitIsDeadOrGhost(unit)) and UnitIsConnected(unit) and UnitIsCharmed(unit) and UnitIsEnemy("player", unit) then
+    local isDeadOrGhost = UnitIsDeadOrGhost(unit)
+    local isConnected = UnitIsConnected(unit)
+    local isCharmed = UnitIsCharmed(unit)
+    local isEnemy = UnitIsEnemy("player", unit)
+
+    if E:NotSecretValue(isDeadOrGhost) and not isDeadOrGhost and E:NotSecretValue(isConnected) and isConnected and E:NotSecretValue(isCharmed) and isCharmed and E:NotSecretValue(isEnemy) and isEnemy then
       local color = frame.colors.reaction[HOSTILE_REACTION]
       if color then health:SetStatusBarColor(color[1], color[2], color[3]) end
     end
@@ -52,19 +63,21 @@ function DT:PostUpdateColor(health, unit, r, g, b)
     health.bg.multiplier = (elvUIColors.healthMultiplier > 0 and elvUIColors.healthMultiplier) or 0.35
 
     -- Custom Dead backdrop
-    if elvUIColors.useDeadBackdrop and (unit and UnitIsDeadOrGhost(unit)) then
+    local isDead = unit and UnitIsDeadOrGhost(unit)
+    if elvUIColors.useDeadBackdrop and E:NotSecretValue(isDead) and isDead then
       health.backdrop:SetBackdropColor(elvUIColors.health_backdrop_dead.r, elvUIColors.health_backdrop_dead.g, elvUIColors.health_backdrop_dead.b, self.transparencyAlpha)
     elseif elvUIColors.customhealthbackdrop then -- Custom Health Backdrop if not dead
       health.backdrop:SetBackdropColor(elvUIColors.health_backdrop.r, elvUIColors.health_backdrop.g, elvUIColors.health_backdrop.b, self.transparencyAlpha)
     elseif elvUIColors.classbackdrop and unit then
       local classColor
+      local isPlayerUnit = UnitIsPlayer(unit)
 
-      if UnitIsPlayer(unit) then
+      if E:NotSecretValue(isPlayerUnit) and isPlayerUnit then
         local unitClass = select(2, UnitClass(unit))
-        classColor = frame.colors.class[unitClass]
+        if E:NotSecretValue(unitClass) then classColor = frame.colors.class[unitClass] end
       else
         local reaction = UnitReaction(unit, "player")
-        if reaction then classColor = frame.colors.reaction[reaction] end
+        if E:NotSecretValue(reaction) and reaction then classColor = frame.colors.reaction[reaction] end
       end
 
       if classColor then

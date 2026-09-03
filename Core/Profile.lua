@@ -1226,6 +1226,7 @@ P.wunderbar = {
         showSpec2 = false, -- loot spec
 
         showLoadout = true, -- Retail only, show current selected talent loadout
+        loadoutMaxLength = 20, -- Retail only, truncate the loadout name to this many characters
 
         iconFontSize = 18,
 

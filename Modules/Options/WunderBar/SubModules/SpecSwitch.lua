@@ -48,6 +48,16 @@ function O:WunderBar_SubModules_SpecSwitch()
   tab.generalGroup.args.showSpec2 = ACH:Toggle("Show " .. (TXUI.IsRetail and "Loot Spec" or "Secondary Spec"), nil, 7)
   tab.generalGroup.args.showLoadout = ACH:Toggle("Show Loadout Name", nil, 8, nil, nil, nil, nil, nil, not TXUI.IsRetail)
 
+  local loadoutDisabled = function()
+    return not TXUI.IsRetail or not E.db.TXUI.wunderbar.subModules[dbEntry].general.showLoadout
+  end
+
+  tab.generalGroup.args.loadoutMaxLength = ACH:Range("Loadout Name Max Length", nil, 9, {
+    min = 5,
+    max = 50,
+    step = 1,
+  }, nil, nil, nil, loadoutDisabled)
+
   -- Info Text
   tab.infoGroup = ACH:Group("Info Text Group", nil, 2)
   tab.infoGroup.inline = true
