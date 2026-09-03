@@ -42,7 +42,16 @@ function DT:PostUpdateColor(health, unit, r, g, b)
     local isCharmed = UnitIsCharmed(unit)
     local isEnemy = UnitIsEnemy("player", unit)
 
-    if E:NotSecretValue(isDeadOrGhost) and not isDeadOrGhost and E:NotSecretValue(isConnected) and isConnected and E:NotSecretValue(isCharmed) and isCharmed and E:NotSecretValue(isEnemy) and isEnemy then
+    if
+      E:NotSecretValue(isDeadOrGhost)
+      and not isDeadOrGhost
+      and E:NotSecretValue(isConnected)
+      and isConnected
+      and E:NotSecretValue(isCharmed)
+      and isCharmed
+      and E:NotSecretValue(isEnemy)
+      and isEnemy
+    then
       local color = frame.colors.reaction[HOSTILE_REACTION]
       if color then health:SetStatusBarColor(color[1], color[2], color[3]) end
     end
