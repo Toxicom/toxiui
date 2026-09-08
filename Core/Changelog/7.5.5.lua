@@ -2,12 +2,8 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.5.5"] = {
   HOTFIX = true,
-  RELEASE_DATE = "",
+  RELEASE_DATE = "Sep 08, 2026",
   CHANGES = {
-    "* Breaking changes",
-
-    "* New features",
-
     "* Enhancements",
     F.String.Retail() .. "Added a max length setting to truncate long loadout names in " .. F.String.Menu.WunderBar(),
 
@@ -18,13 +14,7 @@ TXUI.Changelog["7.5.5"] = {
       .. F.String.Sublist("Spell breakdown and floating player entry now use GetSourceWindow / GetLocalPlayerEntry")
       .. F.String.Sublist("Credits to DakJaniels"),
 
-    "* Profile updates",
-
     "* Documentation",
     F.String.MinElv("15.26"),
-
-    "* Settings refactoring",
-
-    "* Development improvements",
   },
 }
