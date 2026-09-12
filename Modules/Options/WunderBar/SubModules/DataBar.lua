@@ -31,10 +31,14 @@ function O:WunderBar_SubModules_DataBar()
     step = 1,
   }, nil, nil, nil, iconDisabled)
 
-  tab.generalGroup.args.mode = ACH:Select("Mode", nil, 3, {
+  local modes = {
     ["auto"] = "Smart (Experience under Max Level)",
     ["rep"] = "Reputation",
-  }, nil, "double")
+  }
+
+  if TXUI.IsRetail then modes["housing"] = "Housing" end
+
+  tab.generalGroup.args.mode = ACH:Select("Mode", nil, 3, modes, nil, "double")
 
   -- Bar Group
   tab.barGroup = ACH:Group("Bar", nil, 2)
