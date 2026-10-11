@@ -237,7 +237,7 @@ function M:GenerateSpecIcon(dbPath)
     else
       specIcon = format(classIconPath, M.ClassIcons[E.myclass])
     end
-  elseif TXUI.IsClassic then
+  elseif TXUI.IsClassic or TXUI.IsCamelot then
     local specIndex = C_SpecializationInfo.GetSpecialization()
     local specId = C_SpecializationInfo.GetSpecializationInfo(specIndex)
 

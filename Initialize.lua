@@ -34,14 +34,24 @@ TXUI.GitHash = GetAddOnMetadata(addonName, "X-GitHash")
 TXUI.DevRelease = false
 TXUI.DevTag = ""
 TXUI.DelayedWorldEntered = false
-TXUI.MetaFlavor = GetAddOnMetadata(addonName, "X-Flavor")
 TXUI.ClientBuildVersion = select(4, GetBuildInfo())
 TXUI.Version = GetAddOnMetadata(addonName, "Version")
 
-TXUI.IsRetail = TXUI.MetaFlavor == "Retail"
-TXUI.IsClassic = TXUI.MetaFlavor == "Classic"
-TXUI.IsClassicEra = TXUI.MetaFlavor == "ClassicEra"
-TXUI.IsAnniversary = TXUI.MetaFlavor == "Anniversary"
+-- Read flavours by project ID, instead of reference in .toc
+TXUI.IsClassicEra = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+TXUI.IsAnniversary = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+TXUI.IsClassic = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
+TXUI.IsCamelot = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
+TXUI.IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+
+TXUI.MetaFlavor = (TXUI.IsClassicEra and "ClassicEra")
+  or (TXUI.IsAnniversary and "Anniversary")
+  or (TXUI.IsClassic and "Classic")
+  or (TXUI.IsCamelot and "Camelot")
+  or (TXUI.IsRetail and "Retail")
+  or nil
+
+TXUI.IsModern = TXUI.IsRetail or TXUI.IsCamelot
 
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
@@ -71,6 +81,7 @@ function TXUI:Initialize()
     ["Classic"] = I.Enum.Flavor.CLASSIC,
     ["ClassicEra"] = I.Enum.Flavor.CLASSIC_ERA,
     ["Anniversary"] = I.Enum.Flavor.ANNIVERSARY,
+    ["Camelot"] = I.Enum.Flavor.CAMELOT,
   }
 
   self.Flavor = flavorMap[self.MetaFlavor] or I.Enum.Flavor.RETAIL
@@ -121,8 +132,8 @@ function TXUI:Initialize()
     return
   end
 
-  -- Check for non Mists, non Retail, non Vanilla, and non TBC
-  if not self.IsRetail and not self.IsClassic and not self.IsClassicEra and not self.IsAnniversary then return end
+  -- Check for non Mists, non Retail, non Vanilla, non TBC, and non Forever
+  if not self.IsRetail and not self.IsClassic and not self.IsClassicEra and not self.IsAnniversary and not self.IsCamelot then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
@@ -133,6 +144,8 @@ function TXUI:Initialize()
   if self.IsClassicEra then I.HearthstoneData = I.HearthstoneData_ClassicEra end
 
   if self.IsAnniversary then I.HearthstoneData = I.HearthstoneData_Anniversary end
+
+  if self.IsCamelot then I.HearthstoneData = I.HearthstoneData_ClassicEra end
 
   -- Lets go!
   self:InitializeModules()

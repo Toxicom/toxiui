@@ -17,7 +17,7 @@ function GR:GetHealthColor(frame, unit)
   -- Some UnitIs*/UnitReaction results can be secret depending on unit/context (e.g. targettarget);
   -- guard every boolean test since Lua errors on truthy-testing a secret value directly
   local unitIsPlayer = UnitIsPlayer(unit)
-  local treatAsPlayer = TXUI.IsRetail and UnitTreatAsPlayerForDisplay(unit)
+  local treatAsPlayer = UnitTreatAsPlayerForDisplay and UnitTreatAsPlayerForDisplay(unit)
   local isPlayer = (E:NotSecretValue(unitIsPlayer) and unitIsPlayer) or (E:NotSecretValue(treatAsPlayer) and treatAsPlayer)
 
   local isConnected = UnitIsConnected(unit)
