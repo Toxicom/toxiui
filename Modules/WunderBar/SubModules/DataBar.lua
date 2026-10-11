@@ -357,7 +357,7 @@ end
 function DB:GetCompletedPercentage()
   local totalCompletedXP = 0
 
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     for i = 1, C_QuestLog_GetNumQuestLogEntries() do
       local questInfo = C_QuestLog_GetInfo(i)
       if questInfo and not questInfo.isHidden and questInfo.isOnMap and C_QuestLog_GetQuestWatchType(questInfo.questID) and C_QuestLog_ReadyForTurnIn(questInfo.questID) then

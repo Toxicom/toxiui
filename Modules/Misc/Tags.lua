@@ -235,7 +235,7 @@ function M:Tags()
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
-    if TXUI.IsRetail then return UnitHealthPercent(unit, true, ScaleTo100) end
+    if UnitHealthPercent and ScaleTo100 then return UnitHealthPercent(unit, true, ScaleTo100) end
 
     local max = UnitHealthMax(unit)
     if max == 0 then
@@ -296,7 +296,7 @@ function M:Tags()
 
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
-    if TXUI.IsRetail then
+    if UnitPowerPercent and ScaleTo100 then
       local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
       if not dm.isEnabled then

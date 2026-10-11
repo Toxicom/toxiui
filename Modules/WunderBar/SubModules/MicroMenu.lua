@@ -99,6 +99,8 @@ MM.rightButtonText = "|cffFFFFFFRight Click:|r "
 local function ToggleGroupFinder()
   if TXUI.IsRetail then
     _G.ToggleLFDParentFrame()
+  elseif TXUI.IsCamelot then
+    _G.LFGVanilla_ToggleFrame()
   else
     _G.PVEFrame_ToggleFrame()
   end
@@ -315,6 +317,8 @@ MM.microMenu = {
         if not InCombatLockdown() then
           if TXUI.IsClassicEra or TXUI.IsAnniversary then
             ToggleCharacter("HonorFrame")
+          elseif TXUI.IsCamelot then
+            ToggleCharacter("PVPRankFrame")
           else
             TogglePVPUI()
           end
