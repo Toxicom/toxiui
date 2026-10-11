@@ -1,4 +1,4 @@
-## Interface: 11508, 16001, 20506, 50504, 120100
+## Interface: 11509, 16001, 20506, 50504, 120100
 ## Version: 7.5.6
 ## Author: Toxi (Toxi#21206)
 ## RequiredDeps: ElvUI
