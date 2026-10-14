@@ -4,19 +4,6 @@ local CM = TXUI:GetModule("CooldownManager")
 local _G = _G
 local pairs = pairs
 
-function CM:SetCooldownFramesVisibility(enabled)
-  for _, frameName in pairs(self.frameNames) do
-    local frame = _G[frameName]
-    if frame then
-      if enabled then
-        frame:Show()
-      else
-        frame:Hide()
-      end
-    end
-  end
-end
-
 function CM:SetParent()
   if not self.Initialized then return end
   if not self.db or not self.db.fading then return end
@@ -42,7 +29,6 @@ function CM:RestoreOriginalParents()
     local frame = _G[frameName]
     if frame and parent then frame:SetParent(parent) end
   end
-  self:SetCooldownFramesVisibility(true)
 end
 
 function CM:DisableFading()
@@ -53,9 +39,6 @@ function CM:DisableFading()
     if frame and parent then frame:SetParent(parent) end
   end
   self._originalParents = nil
-
-  -- Ensure all frames are visible after restoring parent
-  self:SetCooldownFramesVisibility(true)
 end
 
 function CM:EnableFading()
@@ -80,20 +63,10 @@ function CM:EnableFading()
   F.Event.RegisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self.SetParent, self)
   F.Event.RegisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self.SetParent, self)
 
-  -- Hook SetAlpha to also toggle visibility when fading.
-  -- Use state tracking + C_Timer.After(0) to avoid calling Show() inside Blizzard's animation
-  -- callback, which triggers OnShow -> RefreshLayout -> duplicate layoutIndex crash (Blizzard bug).
-  self._cooldownFramesVisible = true
-  if not self:IsHooked(playerFrame, "SetAlpha") then
-    self:SecureHook(playerFrame, "SetAlpha", function(_, alpha)
-      local shouldShow = alpha > 0.1
-      if shouldShow == self._cooldownFramesVisible then return end
-      self._cooldownFramesVisible = shouldShow
-      C_Timer.After(0, function()
-        self:SetCooldownFramesVisibility(shouldShow)
-      end)
-    end)
-  end
+  -- Fading is handled purely by inheriting the player frame's alpha.
+  -- Never Show()/Hide() the viewers from here: OnShow runs Blizzard's RefreshLayout/RefreshData
+  -- in our tainted context, which taints viewer item fields (isActive, allowAvailableAlert, ...)
+  -- and causes secret value errors later in untainted Blizzard code paths.
 end
 
 function CM:EnableFadingAfterUnitsLoaded()
