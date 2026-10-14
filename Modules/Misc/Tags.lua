@@ -5,7 +5,9 @@ local UF = E:GetModule("UnitFrames")
 local ElvUF = E.oUF
 
 local AbbreviateNumbers = AbbreviateNumbers
+local C_ClassColor_GetClassColor = C_ClassColor and C_ClassColor.GetClassColor
 local floor = math.floor
+local GenerateTextColorCode = C_ColorUtil and C_ColorUtil.GenerateTextColorCode
 local format = string.format
 local strfind = strfind
 local GetCreatureDifficultyColor = GetCreatureDifficultyColor
@@ -70,6 +72,12 @@ local HEALTH_EVENTS = "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_C
 local POWER_EVENTS = "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER"
 local LEVEL_EVENTS = "UNIT_LEVEL PLAYER_LEVEL_UP"
 
+-- Helper: Class color prefix, secret class tokens can't index tables so resolve them via the C API
+local function GetSecretClassColorPrefix(class)
+  local cs = C_ClassColor_GetClassColor and GenerateTextColorCode and C_ClassColor_GetClassColor(class)
+  return cs and ("|c" .. GenerateTextColorCode(cs))
+end
+
 -- Helper: Get unit status (dead/ghost/offline)
 local function GetUnitStatus(unit)
   if not UnitIsFeignDeath(unit) and UnitIsDead(unit) then return L["Dead"] end
@@ -118,7 +126,12 @@ function M:SplitAndColorName(name, unit, strMatch, class)
   -- Define the color function for class or reaction coloring
   local function colorFunc(text)
     if UnitIsPlayer(unit) then
-      local cs = ElvUF.colors.class[class]
+      if E:IsSecretValue(class) then
+        local prefix = GetSecretClassColorPrefix(class)
+        return prefix and (prefix .. text) or ("|cffcccccc" .. text)
+      end
+
+      local cs = class and ElvUF.colors.class[class]
       return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. text) or ("|cffcccccc" .. text)
     else
       local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
@@ -154,7 +167,12 @@ function M:Tags()
 
     if UnitIsPlayer(unit) then
       local _, unitClass = UnitClass(unit)
-      local prefix = classColorPrefix[unitClass]
+      local prefix
+      if E:IsSecretValue(unitClass) then
+        prefix = GetSecretClassColorPrefix(unitClass)
+      elseif unitClass then
+        prefix = classColorPrefix[unitClass]
+      end
       return prefix and (prefix .. str) or ("|cffcccccc" .. str)
     else
       local prefix = reactionColorPrefix[UnitReaction(unit, "player")]
