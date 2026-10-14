@@ -559,6 +559,8 @@ P.vehicleBar = {
   showKeybinds = true,
   showMacro = true,
 
+  hideWhileSkyriding = false,
+
   position = "BOTTOM,ElvUIParent,BOTTOM,0,210",
 
   vigorBar = {

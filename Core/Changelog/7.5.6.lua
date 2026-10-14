@@ -9,6 +9,7 @@ TXUI.Changelog["7.5.6"] = {
     "* New features",
 
     "* Enhancements",
+    F.String.Retail() .. "VehicleBar: Added option to hide the Vehicle Bar while Skyriding",
 
     "* Bug fixes",
     F.String.Retail() .. "Fixed Hearthstone data error caused by removed item API globals",

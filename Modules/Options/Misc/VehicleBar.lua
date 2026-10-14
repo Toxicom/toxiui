@@ -57,6 +57,27 @@ function O:Plugins_VehicleBar()
     optionsDisabled = function()
       return isVehicleBarDisabled() or self:GetEnabledState(E.db.TXUI.vehicleBar.enabled, generalGroup) ~= self.enabledState.YES
     end
+
+    -- Hide while Skyriding
+    generalGroup.hideWhileSkyriding = {
+      order = self:GetOrder(),
+      type = "toggle",
+      name = "Hide while Skyriding " .. E.NewSign,
+      desc = "Don't show the Vehicle Bar while Skyriding, your regular Action Bar 1 will be used instead.\n\n"
+        .. F.String.Warning("Note: ")
+        .. "The Vigor Bar is attached to the Vehicle Bar and will be hidden as well.",
+      hidden = function()
+        return not TXUI.IsRetail
+      end,
+      disabled = optionsDisabled,
+      get = function(_)
+        return E.db.TXUI.vehicleBar.hideWhileSkyriding
+      end,
+      set = function(_, value)
+        E.db.TXUI.vehicleBar.hideWhileSkyriding = value
+        E:StaticPopup_Show("CONFIG_RL")
+      end,
+    }
   end
 
   self:AddSpacer(options)

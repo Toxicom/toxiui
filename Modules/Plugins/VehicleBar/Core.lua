@@ -117,8 +117,11 @@ function VB:Enable()
   -- Update or create bar
   self:UpdateBar()
 
+  -- [bonusbar:5] is the skyriding bar, leave it out so bar1 handles skyriding as usual
+  local skyridingCondition = self.db.hideWhileSkyriding and "" or "[bonusbar:5]"
+
   -- Overwrite default bar visibility
-  local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", "[bonusbar:5]")
+  local visibility = format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s hide;", skyridingCondition)
 
   self:Hook(self.ab, "UpdateButtonConfig", function()
     self:UpdateButtonLock()
@@ -136,7 +139,7 @@ function VB:Enable()
   UnregisterStateDriver(self.bar, "visibility")
   UnregisterStateDriver(self.ab["handledBars"]["bar1"], "visibility")
 
-  RegisterStateDriver(self.bar, "visibility", format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s show; hide", "[bonusbar:5]"))
+  RegisterStateDriver(self.bar, "visibility", format("[petbattle] hide; [vehicleui][overridebar][shapeshift][possessbar]%s show; hide", skyridingCondition))
   RegisterStateDriver(self.ab["handledBars"]["bar1"], "visibility", visibility .. E.db.actionbar["bar1"].visibility)
 
   -- Register Events
