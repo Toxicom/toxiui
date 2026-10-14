@@ -265,6 +265,10 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots, gr
       elseif GetItemCooldown then
         slot.cdTicker = C_Timer.NewTicker(0.5, function()
           local start, duration = GetItemCooldown(info.spellID)
+          if E:IsSecretValue(start) or E:IsSecretValue(duration) then
+            start, duration = nil, nil
+          end
+
           if start and duration and duration > 0 then
             local remaining = math.floor((start + duration) - GetTime())
             slot.cdText:SetText(F.String.FormatTimeClass(remaining))

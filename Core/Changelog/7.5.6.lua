@@ -15,6 +15,7 @@ TXUI.Changelog["7.5.6"] = {
     F.String.ElvUI() .. " Unitframes: Fixed " .. TXUI.Title .. " Raid Leader icon being reset to the default icon",
     F.String.Retail() .. "Fixed name tag error spam in Delves due to secret class values",
     "Fixed Dead Icons error when a party frame has no unit",
+    F.String.Retail() .. "Fixed potential secret value error on " .. F.String.Menu.WunderBar() .. " flyout item cooldowns",
 
     "* Profile updates",
 
