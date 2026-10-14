@@ -148,6 +148,10 @@ function AFK:SetAFK(_, status)
     self.frame.chat:RegisterEvent("CHAT_MSG_BN_WHISPER")
     self.frame.chat:RegisterEvent("CHAT_MSG_GUILD")
 
+    -- ElvUI only positions the model holder in its own AFK:SetAnimation, which we bypass by hooking SetAFK
+    self.frame.bottom.modelHolder:ClearAllPoints()
+    self.frame.bottom.modelHolder:SetPoint("BOTTOMRIGHT", self.frame.bottom, "BOTTOMRIGHT", -200, 220)
+
     self.frame.bottom.model:SetUnit("player")
     self.frame.bottom.model:SetScript("OnAnimFinished", function()
       self:PlayIdleAnimation()
@@ -192,6 +196,10 @@ function AFK:SetAFK(_, status)
 end
 
 function AFK:SetupFrames()
+  -- Enable() runs on every settings change, only create our elements once
+  if self.framesSetup then return end
+  self.framesSetup = true
+
   -- Vars
   local padding = 20
   self.frame = self.elvUIAfk.AFKMode
