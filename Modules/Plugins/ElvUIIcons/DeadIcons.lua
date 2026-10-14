@@ -16,6 +16,7 @@ function DI.ElementUpdate(frame, _, unit)
 
   if unit and unit ~= frame.__unit then return end
   if not unit then unit = frame.__unit end
+  if not unit and not frame.isForced then return element:Hide() end
 
   local isDead = frame.isForced or UnitIsDead(unit) or UnitIsGhost(unit)
 
