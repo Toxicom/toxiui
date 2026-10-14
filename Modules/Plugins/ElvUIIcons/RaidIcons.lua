@@ -3,6 +3,15 @@ local RAI = TXUI:NewModule("RaidIcons", "AceHook-3.0")
 
 local GetPartyAssignment = _G.GetPartyAssignment
 
+-- oUF's LeaderIndicator resets its texture on every update and ElvUI doesn't give it a PostUpdate
+function RAI:UpdateLeaderIcon()
+  local db = E.db and E.db.TXUI and E.db.TXUI.elvUIIcons and E.db.TXUI.elvUIIcons.raidIcons
+  if not (db and db.leader.enabled and db.leader.theme) then return end
+
+  self:SetTexCoord(0, 1, 0, 1)
+  self:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[db.leader.theme]))
+end
+
 function RAI:ChangeRaidIcon()
   local db = E.db and E.db.TXUI and E.db.TXUI.elvUIIcons and E.db.TXUI.elvUIIcons.raidIcons
   if db then
@@ -17,11 +26,9 @@ function RAI:ChangeRaidIcon()
     local master = frame.MasterLooterIndicator
     local raid = frame.RaidRoleIndicator
 
-    if leader and db.leader.enabled then
-      if db.leader.theme then
-        leader:SetTexCoord(0, 1, 0, 1)
-        leader:SetTexture(F.GetMedia(I.Media.StateIcons, I.ElvUIIcons.Leader[self.db.leader.theme]))
-      end
+    if leader then
+      if not leader.PostUpdate then leader.PostUpdate = RAI.UpdateLeaderIcon end
+      RAI.UpdateLeaderIcon(leader)
     end
 
     if assistant and db.assist.enabled then

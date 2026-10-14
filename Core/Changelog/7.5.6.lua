@@ -11,6 +11,8 @@ TXUI.Changelog["7.5.6"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    F.String.Retail() .. "Fixed Hearthstone data error caused by removed item API globals",
+    F.String.ElvUI() .. " Unitframes: Fixed " .. TXUI.Title .. " Raid Leader icon being reset to the default icon",
 
     "* Profile updates",
 
