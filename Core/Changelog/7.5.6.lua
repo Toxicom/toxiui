@@ -2,14 +2,10 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.5.6"] = {
   HOTFIX = true,
-  RELEASE_DATE = "",
+  RELEASE_DATE = "Oct 14, 2026",
   CHANGES = {
-    "* Breaking changes",
-
     "* New features",
     F.String.Retail() .. "VehicleBar: Added option to hide the Vehicle Bar while Skyriding",
-
-    "* Enhancements",
 
     "* Bug fixes",
     F.String.Retail() .. "Fixed Hearthstone data error caused by removed item API globals",
@@ -20,12 +16,7 @@ TXUI.Changelog["7.5.6"] = {
     F.String.Retail() .. "Cooldown Manager: Fixed random secret value errors caused by fading toggling viewer visibility",
     "AFK Mode: Fixed player model not showing and texts overlapping after changing settings",
 
-    "* Profile updates",
-
     "* Documentation",
-
-    "* Settings refactoring",
-
-    "* Development improvements",
+    F.String.Retail() .. "Update for patch 12.1.5",
   },
 }
