@@ -11,6 +11,7 @@ TXUI.Changelog["7.5.7"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",
 
     "* Profile updates",
 

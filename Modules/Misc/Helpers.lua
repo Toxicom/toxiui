@@ -1,4 +1,4 @@
-local TXUI, F, E, I, V, L, P, G = unpack((select(2, ...)))
+local TXUI, F, E, I = unpack((select(2, ...)))
 local M = TXUI:GetModule("Misc")
 local SS = TXUI:GetModule("WunderBar"):GetModule("SpecSwitch")
 
