@@ -14,6 +14,7 @@ local GetItemCount = (C_Item and C_Item.GetItemCount) or GetItemCount
 local GetTime = GetTime
 local gmatch = string.gmatch
 local gsub = string.gsub
+local hooksecurefunc = hooksecurefunc
 local ipairs = ipairs
 local IsAddOnLoaded = C_AddOns.IsAddOnLoaded
 local IsSpellKnownOrOverridesKnown = IsSpellKnownOrOverridesKnown
@@ -661,6 +662,14 @@ function F.AddMedia(mediaType, mediaFile, lsmName, lsmType, lsmMask)
   end
 end
 
+local function SyncSoftShadowStrata(frame)
+  local softShadow = frame.txSoftShadow
+  if softShadow then
+    softShadow:SetFrameLevel(frame:GetFrameLevel())
+    softShadow:SetFrameStrata(frame:GetFrameStrata())
+  end
+end
+
 function F.CreateSoftShadow(frame, shadowSize, shadowAlpha)
   local edgeSize = E.twoPixelsPlease and 2 or 1
   shadowSize = shadowSize or 3
@@ -669,6 +678,13 @@ function F.CreateSoftShadow(frame, shadowSize, shadowAlpha)
   local softShadow = frame.txSoftShadow or CreateFrame("Frame", nil, frame, "BackdropTemplate")
   softShadow:SetFrameLevel(frame:GetFrameLevel())
   softShadow:SetFrameStrata(frame:GetFrameStrata())
+
+  -- Keep the shadow on the frame's level/strata, hooked per frame instead of on every widget metatable
+  if not frame.txSoftShadowHooked and frame.SetFrameLevel and frame.SetFrameStrata then
+    frame.txSoftShadowHooked = true
+    hooksecurefunc(frame, "SetFrameLevel", SyncSoftShadowStrata)
+    hooksecurefunc(frame, "SetFrameStrata", SyncSoftShadowStrata)
+  end
 
   local ok = pcall(softShadow.SetOutside, softShadow, frame, (shadowSize - edgeSize) or edgeSize, (shadowSize - edgeSize) or edgeSize)
   if not ok then

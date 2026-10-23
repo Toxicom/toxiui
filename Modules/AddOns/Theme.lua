@@ -10,13 +10,6 @@ local pairs = pairs
 
 T.onEnabledCallbacks = {}
 
-function T:UpdateTemplateStrata(frame)
-  if frame.txSoftShadow then
-    frame.txSoftShadow:SetFrameLevel(frame:GetFrameLevel())
-    frame.txSoftShadow:SetFrameStrata(frame:GetFrameStrata())
-  end
-end
-
 function T:SetTemplate(frame, template, glossTex, ignoreUpdates, _, isUnitFrameElement, isNamePlateElement)
   template = template or frame.template or "Default"
   glossTex = glossTex or frame.glossTex or nil
@@ -89,11 +82,7 @@ function T:API(object)
     self:SecureHook(mt, "SetTemplate", "SetTemplate") -- self:LogDebug("Hooked type", object:GetObjectType())
   end
 
-  -- Hook FrameLevel
-  if mt.SetFrameLevel and (not self:IsHooked(mt, "SetFrameLevel")) then self:SecureHook(mt, "SetFrameLevel", "UpdateTemplateStrata") end
-
-  -- Hook FrameStrata
-  if mt.SetFrameStrata and (not self:IsHooked(mt, "SetFrameStrata")) then self:SecureHook(mt, "SetFrameStrata", "UpdateTemplateStrata") end
+  -- Shadow frame level/strata syncing is hooked per shadowed frame in F.CreateSoftShadow
 end
 
 function T:ForceRefresh()
