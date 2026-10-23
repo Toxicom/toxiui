@@ -87,8 +87,31 @@ do
   local InsertEventAttribute = "insert-secure-event"
   local callbackType = F.Enum { "CLOSURE", "FUNCTION" }
   local callbackTables = {}
+  -- Copies of callbackTables iterated by TriggerEvent, so callbacks can (un)register while being dispatched.
+  -- Snapshots are never mutated, only dropped when their event's callbacks change
+  local callbackSnapshots = {}
   for _, value in pairs(callbackType) do
     callbackTables[value] = {}
+    callbackSnapshots[value] = {}
+  end
+
+  local function InvalidateSnapshots(event)
+    for _, snapshots in pairs(callbackSnapshots) do
+      snapshots[event] = nil
+    end
+  end
+
+  local function GetSnapshot(callType, event)
+    local snapshots = callbackSnapshots[callType]
+    local snapshot = snapshots[event]
+    if snapshot then return snapshot end
+
+    local callbacks = callbackTables[callType][event]
+    if not callbacks or next(callbacks) == nil then return end
+
+    snapshot = F.Table.Join({}, callbacks)
+    snapshots[event] = snapshot
+    return snapshot
   end
 
   local eventFrame = CreateFrame("Frame")
@@ -133,6 +156,7 @@ do
     end
 
     F.Event.SecureInsertEvent(event)
+    InvalidateSnapshots(event)
 
     for _, callbackTable in pairs(callbackTables) do
       local callbacks = callbackTable[event]
@@ -151,26 +175,22 @@ do
     return owner
   end
 
+  local function CallbackRegistryExecuteClosurePair(_, closure, ...)
+    securecallfunction(closure, ...)
+  end
+
+  local function CallbackRegistryExecuteOwnerPair(owner, func, ...)
+    securecallfunction(func, owner, ...)
+  end
+
   function F.Event.TriggerEvent(event, ...)
     if type(event) ~= "string" then return TXUI:ThrowError("TriggerEvent 'event' requires string type.", event) end
 
-    local closures = F.Event.GetCallbacksByEvent(callbackType.CLOSURE, event)
-    if closures then
-      local function CallbackRegistryExecuteClosurePair(_, closure, ...)
-        securecallfunction(closure, ...)
-      end
+    local closures = GetSnapshot(callbackType.CLOSURE, event)
+    if closures then secureexecuterange(closures, CallbackRegistryExecuteClosurePair, ...) end
 
-      secureexecuterange(F.Table.Join({}, closures), CallbackRegistryExecuteClosurePair, ...)
-    end
-
-    local funcs = F.Event.GetCallbacksByEvent(callbackType.FUNCTION, event)
-    if funcs then
-      local function CallbackRegistryExecuteOwnerPair(owner, func, ...)
-        securecallfunction(func, owner, ...)
-      end
-
-      secureexecuterange(F.Table.Join({}, funcs), CallbackRegistryExecuteOwnerPair, ...)
-    end
+    local funcs = GetSnapshot(callbackType.FUNCTION, event)
+    if funcs then secureexecuterange(funcs, CallbackRegistryExecuteOwnerPair, ...) end
   end
 
   function F.Event.OnAttributeChanged(_, frameEvent, value)
@@ -231,6 +251,8 @@ do
     elseif owner == nil then
       TXUI:ThrowError("UnregisterCallback 'owner' is required", owner)
     end
+
+    InvalidateSnapshots(event)
 
     for _, callbackTable in pairs(callbackTables) do
       local callbacks = callbackTable[event]

@@ -10,6 +10,7 @@ TXUI.Changelog["7.5.7"] = {
 
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",
+    "Reduced memory churn of the internal event system by reusing callback lists between events",
 
     "* Bug fixes",
     "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",
