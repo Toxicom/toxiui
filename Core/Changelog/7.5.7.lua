@@ -18,6 +18,7 @@ TXUI.Changelog["7.5.7"] = {
     "Minimap Coordinates: Fixed coordinates not updating when moving along only one axis",
     "Fixed Dead & Offline Icons still reacting to setting changes after being disabled",
     F.String.Menu.WunderBar() .. " Hearthstone: Fixed a potential error when a teleport spell has no cooldown info",
+    F.String.GradientMode() .. " & Dark Mode: Fixed color setting changes refreshing group frames with a stale unit",
 
     "* Profile updates",
     F.String.ElvUI() .. " Unitframes: Keep Player & Pet frames visible in Mythic+ like every other instance difficulty",
