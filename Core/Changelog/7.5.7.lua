@@ -11,6 +11,9 @@ TXUI.Changelog["7.5.7"] = {
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",
     "Reduced memory churn of the internal event system by reusing callback lists between events",
+    F.String.Menu.WunderBar() .. ": " .. F.String.ElvUI() .. " stat datatexts (Haste, Crit, Speed, etc.) now only update on your own aura & stat changes" .. F.String.Sublist(
+      "Previously they updated on aura changes of every raid member and nameplate"
+    ),
 
     "* Bug fixes",
     "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",

@@ -8,6 +8,7 @@ local ipairs = ipairs
 local max = math.max
 local min = math.min
 local pairs = pairs
+local pcall = pcall
 local tinsert = table.insert
 
 function WB:GetGrowDirection(module, inverse)
@@ -281,7 +282,19 @@ function WB:UpdatePanelSubModules()
       if subModule.OnEvent then
         if moduleData.events then
           for _, event in pairs(moduleData.events) do
-            F.Event.RegisterFrameEventAndCallback(event, updateProxy, subModule, event)
+            -- Unit events only matter for the player (same as ElvUI), don't receive them for every raid member/nameplate
+            if DT.UnitEvents[event] then
+              if not subModule.unitEventFrame then
+                subModule.unitEventFrame = CreateFrame("Frame")
+                subModule.unitEventFrame:SetScript("OnEvent", function(_, unitEvent, ...)
+                  updateProxy(subModule, unitEvent, ...)
+                end)
+              end
+
+              pcall(subModule.unitEventFrame.RegisterUnitEvent, subModule.unitEventFrame, event, "player")
+            else
+              F.Event.RegisterFrameEventAndCallback(event, updateProxy, subModule, event)
+            end
           end
         end
       end
@@ -319,9 +332,11 @@ function WB:DisableAllModules()
       if module.subModule.OnEvent then
         if module.subModule.Data.events then
           for _, event in pairs(module.subModule.Data.events) do
-            F.Event.UnregisterFrameEventAndCallback(event, module.subModule)
+            if not DT.UnitEvents[event] then F.Event.UnregisterFrameEventAndCallback(event, module.subModule) end
           end
         end
+
+        if module.subModule.unitEventFrame then module.subModule.unitEventFrame:UnregisterAllEvents() end
       end
 
       module.subModule.SubModuleHolder:Hide()
