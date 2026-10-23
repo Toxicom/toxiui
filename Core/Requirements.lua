@@ -44,9 +44,7 @@ function TXUI:CheckRequirements(requirements, skipProfile)
       if F.IsAddOnEnabled("ElvUI_SLE") and E.private.sle and E.private.sle.professions and E.private.sle.professions.deconButton.enable then return requirement end
     elseif requirement == I.Enum.Requirements.ARMORY_DISABLED then
       if F.IsAddOnEnabled("ElvUI_SLE") then
-        if F.GetDBFromPath("sle.armory.character.enable") or F.GetDBFromPath("sle.armory.inspect.enable") or F.GetDBFromPath("sle.armory.stats.enable") then
-          return requirement
-        end
+        if F.GetDBFromPath("sle.armory.character.enable") or F.GetDBFromPath("sle.armory.inspect.enable") or F.GetDBFromPath("sle.armory.stats.enable") then return requirement end
       end
 
       if F.IsAddOnEnabled("ElvUI_EltreumUI") then
