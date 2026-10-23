@@ -13,29 +13,41 @@ local UnitPlayerControlled = UnitPlayerControlled
 local UnitReaction = UnitReaction
 local UnitTreatAsPlayerForDisplay = UnitTreatAsPlayerForDisplay
 
+-- Runs on every health tick, so unit API calls are only made when the branch needs them
 function GR:GetHealthColor(frame, unit)
   -- Some UnitIs*/UnitReaction results can be secret depending on unit/context (e.g. targettarget);
   -- guard every boolean test since Lua errors on truthy-testing a secret value directly
-  local unitIsPlayer = UnitIsPlayer(unit)
-  local treatAsPlayer = TXUI.IsRetail and UnitTreatAsPlayerForDisplay(unit)
-  local isPlayer = (E:NotSecretValue(unitIsPlayer) and unitIsPlayer) or (E:NotSecretValue(treatAsPlayer) and treatAsPlayer)
+  local isPlayer = UnitIsPlayer(unit)
+  isPlayer = E:NotSecretValue(isPlayer) and isPlayer
 
-  local isConnected = UnitIsConnected(unit)
-  local isDeadOrGhost = UnitIsDeadOrGhost(unit)
-  local isCharmed = UnitIsCharmed(unit)
-  local isEnemy = UnitIsEnemy("player", unit)
+  if not isPlayer and TXUI.IsRetail then
+    local treatAsPlayer = UnitTreatAsPlayerForDisplay(unit)
+    isPlayer = E:NotSecretValue(treatAsPlayer) and treatAsPlayer
+  end
+
+  if isPlayer then
+    local isConnected = UnitIsConnected(unit)
+    if E:NotSecretValue(isConnected) and not isConnected then return "specialColorMap", "DISCONNECTED" end
+  end
+
+  -- frame.unitDead is set from UnitIsDeadOrGhost right before this is called
+  if frame.unitDead == true then return "specialColorMap", "DEAD" end
+
+  if isPlayer then
+    local isCharmed = UnitIsCharmed(unit)
+    if E:NotSecretValue(isCharmed) and isCharmed then
+      local isEnemy = UnitIsEnemy("player", unit)
+      if E:NotSecretValue(isEnemy) and isEnemy then return "reactionColorMap", "BAD" end
+    end
+  end
+
   local playerControlled = UnitPlayerControlled(unit)
-  local tapDenied = UnitIsTapDenied(unit)
+  if E:NotSecretValue(playerControlled) and not playerControlled then
+    local tapDenied = UnitIsTapDenied(unit)
+    if E:NotSecretValue(tapDenied) and tapDenied then return "specialColorMap", "TAPPED" end
+  end
 
-  if isPlayer and E:NotSecretValue(isConnected) and not isConnected then
-    return "specialColorMap", "DISCONNECTED"
-  elseif frame.unitDead == true then
-    return "specialColorMap", "DEAD"
-  elseif isPlayer and E:NotSecretValue(isDeadOrGhost) and not isDeadOrGhost and E:NotSecretValue(isCharmed) and isCharmed and E:NotSecretValue(isEnemy) and isEnemy then
-    return "reactionColorMap", "BAD"
-  elseif E:NotSecretValue(playerControlled) and not playerControlled and E:NotSecretValue(tapDenied) and tapDenied then
-    return "specialColorMap", "TAPPED"
-  elseif isPlayer then
+  if isPlayer then
     local classToken = select(2, UnitClass(unit))
     if E:NotSecretValue(classToken) then return "classColorMap", classToken end
   else
@@ -61,7 +73,8 @@ function GR:PostUpdateHealthColor(frame, unit, eR, eG, eB)
   if valueChanged then frame.currentPercent = 1 end
 
   local colorChanged = false
-  local unitDead = unit and UnitIsDeadOrGhost(unit)
+  local unitDead = UnitIsDeadOrGhost(unit)
+  if E:IsSecretValue(unitDead) then unitDead = nil end
   if unitDead ~= frame.unitDead then
     colorChanged = true
     frame.unitDead = unitDead

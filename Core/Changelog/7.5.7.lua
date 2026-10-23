@@ -9,6 +9,7 @@ TXUI.Changelog["7.5.7"] = {
     "* New features",
 
     "* Enhancements",
+    F.String.GradientMode() .. ": Fewer unit API calls per health update",
 
     "* Bug fixes",
     "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",
