@@ -14,6 +14,7 @@ TXUI.Changelog["7.5.7"] = {
     F.String.ElvUI() .. " Theme: Shadows now follow their frame's level & strata through per-frame hooks" .. F.String.Sublist(
       "Previously every frame level/strata change of every frame in the game went through " .. TXUI.Title
     ),
+    F.String.ToxiUI("[tx:name]") .. " & " .. F.String.ToxiUI("[tx:health:percent:nosign]") .. " tags no longer update on every frame when you change targets",
     F.String.Menu.WunderBar() .. ": " .. F.String.ElvUI() .. " stat datatexts (Haste, Crit, Speed, etc.) now only update on your own aura & stat changes" .. F.String.Sublist(
       "Previously they updated on aura changes of every raid member and nameplate"
     ),

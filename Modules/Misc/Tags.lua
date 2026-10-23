@@ -67,7 +67,7 @@ function M:TagsUpdate()
 end
 
 -- Event strings
-local NAME_EVENTS = "UNIT_NAME_UPDATE PLAYER_TARGET_CHANGED UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT"
+local NAME_EVENTS = "UNIT_NAME_UPDATE UNIT_FACTION INSTANCE_ENCOUNTER_ENGAGE_UNIT"
 local HEALTH_EVENTS = "UNIT_HEALTH UNIT_MAXHEALTH UNIT_CONNECTION PLAYER_FLAGS_CHANGED"
 local POWER_EVENTS = "UNIT_DISPLAYPOWER UNIT_POWER_FREQUENT UNIT_MAXPOWER"
 local LEVEL_EVENTS = "UNIT_LEVEL PLAYER_LEVEL_UP"
@@ -91,7 +91,7 @@ local function GetLevelString(level)
   return tostring(level)
 end
 
-function M:ReplaceAndColorRest(name, strMatch, colorFunc)
+function M:ReplaceAndColorRest(name, strMatch, colorPrefix)
   if strMatch and strMatch ~= "" then
     -- Convert both strings to lowercase for case-insensitive matching
     local lowerName = name:lower()
@@ -107,10 +107,7 @@ function M:ReplaceAndColorRest(name, strMatch, colorFunc)
       local nameAfter = name:sub(endPos + 1)
 
       -- Color the rest of the string
-      local coloredNameBefore = colorFunc(nameBefore)
-      local coloredNameAfter = colorFunc(nameAfter)
-
-      return coloredNameBefore .. whiteMatch .. coloredNameAfter
+      return colorPrefix .. nameBefore .. whiteMatch .. colorPrefix .. nameAfter
     end
   end
 
@@ -119,28 +116,26 @@ function M:ReplaceAndColorRest(name, strMatch, colorFunc)
   local splitPoint = floor(utf8len(name) / 2) + spaceCount
   local nameHighlight = utf8sub(name, 1, splitPoint)
   local nameRest = utf8sub(name, splitPoint + 1)
-  return nameHighlight .. colorFunc(nameRest)
+  return nameHighlight .. colorPrefix .. nameRest
 end
 
 function M:SplitAndColorName(name, unit, strMatch, class)
-  -- Define the color function for class or reaction coloring
-  local function colorFunc(text)
-    if UnitIsPlayer(unit) then
-      if E:IsSecretValue(class) then
-        local prefix = GetSecretClassColorPrefix(class)
-        return prefix and (prefix .. text) or ("|cffcccccc" .. text)
-      end
-
-      local cs = class and ElvUF.colors.class[class]
-      return cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b) .. text) or ("|cffcccccc" .. text)
+  -- Resolve the class or reaction color prefix once per call
+  local colorPrefix
+  if UnitIsPlayer(unit) then
+    if E:IsSecretValue(class) then
+      colorPrefix = GetSecretClassColorPrefix(class)
     else
-      local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
-      return cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b) .. text) or ("|cffcccccc" .. text)
+      local cs = class and ElvUF.colors.class[class]
+      colorPrefix = cs and ("|cff" .. F.String.FastRGB(cs.r, cs.g, cs.b))
     end
+  else
+    local cr = ElvUF.colors.reaction[UnitReaction(unit, "player")]
+    colorPrefix = cr and ("|cff" .. F.String.FastRGB(cr.r, cr.g, cr.b))
   end
 
   -- Replace and color the non-matched part or split and color if no match
-  return self:ReplaceAndColorRest(name, strMatch, colorFunc)
+  return self:ReplaceAndColorRest(name, strMatch, colorPrefix or "|cffcccccc")
 end
 
 function M:Tags()
@@ -279,7 +274,7 @@ function M:Tags()
     end
   end
 
-  E:AddTag("tx:health:percent:nosign", "UNIT_HEALTH PLAYER_TARGET_CHANGED UNIT_FACTION UNIT_MAXHEALTH", function(unit)
+  E:AddTag("tx:health:percent:nosign", "UNIT_HEALTH UNIT_FACTION UNIT_MAXHEALTH", function(unit)
     return ColorHealthTag(unit)
   end)
 
