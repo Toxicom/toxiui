@@ -55,7 +55,9 @@ function HS:GetCooldownForItem(itemInfo)
     startTime, duration = GetItemCooldownFunction(itemInfo.id)
   elseif itemInfo.type == "spell" then
     local cd = GetSpellCooldown(itemInfo.id)
-    startTime, duration = cd.startTime, cd.duration
+    if cd then
+      startTime, duration = cd.startTime, cd.duration
+    end
   end
 
   if startTime == nil or duration == nil then return self:LogDebug("HS:GetCooldownForItem > GetItemCooldown returned nil for item") end
