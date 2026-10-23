@@ -23,13 +23,16 @@ function MC:UpdateCoords(_, elapsed)
   if self.elapsed < 0.33 then return end
 
   if mapInfo.x and mapInfo.y then
-    if not F.AlmostEqual(mapInfo.x, self.mapInfoX) and not F.AlmostEqual(mapInfo.y, self.mapInfoY) then
+    if not F.AlmostEqual(mapInfo.x, self.mapInfoX) or not F.AlmostEqual(mapInfo.y, self.mapInfoY) then
       self.mapInfoX = mapInfo.x
       self.mapInfoY = mapInfo.y
 
       self.coordsHolder.playerCoords:SetText(format(self.displayFormat, mapInfo.xText, mapInfo.yText))
     end
-  else
+  elseif self.mapInfoX ~= false then
+    self.mapInfoX = false
+    self.mapInfoY = false
+
     self.coordsHolder.playerCoords:SetText("N/A")
   end
 
