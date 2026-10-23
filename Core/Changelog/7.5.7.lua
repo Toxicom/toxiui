@@ -15,6 +15,7 @@ TXUI.Changelog["7.5.7"] = {
     F.String.Classic() .. "Fixed Objective Frame position not being applied by the profile",
     "Armory: Fixed conflict detection with Shadow & Light Inspect/Stats and Eltruism Classic Armory",
     "Minimap Coordinates: Fixed coordinates not updating when moving along only one axis",
+    "Fixed Dead & Offline Icons still reacting to setting changes after being disabled",
 
     "* Profile updates",
     F.String.ElvUI() .. " Unitframes: Keep Player & Pet frames visible in Mythic+ like every other instance difficulty",

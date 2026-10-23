@@ -48,7 +48,7 @@ function OI.ElementDisable(frame)
   local element = frame.TXOffline
   if not element then return end
 
-  F.Event.UnregisterCallback("OfflineIcons.SettingsUpdate", element)
+  F.Event.UnregisterCallback("OfflineIcons.SettingsUpdate", frame)
 
   frame:UnregisterEvent("UNIT_FLAGS", OI.ElementUpdate)
   frame:UnregisterEvent("UNIT_CONNECTION", OI.ElementUpdate)

@@ -47,7 +47,7 @@ function DI.ElementDisable(frame)
   local element = frame.Dead
   if not element then return end
 
-  F.Event.UnregisterCallback("DeadIcons.SettingsUpdate", element)
+  F.Event.UnregisterCallback("DeadIcons.SettingsUpdate", frame)
 
   frame:UnregisterEvent("UNIT_HEALTH", DI.ElementUpdate)
   element:Hide()
