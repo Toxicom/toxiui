@@ -121,6 +121,7 @@ local player = {
       dungeonNormal = true,
       dungeonHeroic = true,
       dungeonMythic = true,
+      dungeonMythicKeystone = true,
 
       raidNormal = true,
       raidHeroic = true,
@@ -422,6 +423,7 @@ local pet = {
       dungeonNormal = true,
       dungeonHeroic = true,
       dungeonMythic = true,
+      dungeonMythicKeystone = true,
 
       raidNormal = true,
       raidHeroic = true,

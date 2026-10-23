@@ -16,6 +16,7 @@ TXUI.Changelog["7.5.7"] = {
     "Armory: Fixed conflict detection with Shadow & Light Inspect/Stats and Eltruism Classic Armory",
 
     "* Profile updates",
+    F.String.ElvUI() .. " Unitframes: Keep Player & Pet frames visible in Mythic+ like every other instance difficulty",
 
     "* Documentation",
 
