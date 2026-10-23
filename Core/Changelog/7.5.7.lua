@@ -12,6 +12,7 @@ TXUI.Changelog["7.5.7"] = {
 
     "* Bug fixes",
     "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",
+    F.String.Classic() .. "Fixed Objective Frame position not being applied by the profile",
 
     "* Profile updates",
 

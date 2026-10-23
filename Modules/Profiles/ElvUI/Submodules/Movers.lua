@@ -146,7 +146,7 @@ function PF:ApplyMovers(pf, horizontal)
     F.Table.If(not TXUI.IsRetail and horizontal, {
       ToxiUIWAAnchorMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, WAAnchorY[2]),
     }),
-    F.Table.If(TXUI.IsMists, {
+    F.Table.If(TXUI.IsClassic, {
       ObjectiveFrameMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -80, -320),
     })
   )
