@@ -62,7 +62,7 @@ function O:Plugins_VehicleBar()
     generalGroup.hideWhileSkyriding = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Hide while Skyriding " .. E.NewSign,
+      name = "Hide while Skyriding",
       desc = "Don't show the Vehicle Bar while Skyriding, your regular Action Bar 1 will be used instead.\n\n"
         .. F.String.Warning("Note: ")
         .. "The Vigor Bar is attached to the Vehicle Bar and will be hidden as well.",
@@ -144,7 +144,7 @@ function O:Plugins_VehicleBar()
   do
     -- Vigor Group
     local vigorGroup = self:AddInlineRequirementsDesc(options, {
-      name = "Skyriding Bar " .. E.NewSign,
+      name = "Skyriding Bar",
       hidden = function()
         return optionsDisabled() or not TXUI.IsRetail
       end,

@@ -62,7 +62,7 @@ function O:WunderBar_SubModules_MicroMenu()
 
   tab.generalGroup.args.additionalTooltips = ACH:Toggle("Additional Tooltips", nil, 4)
   tab.generalGroup.args.newbieToolips = ACH:Toggle("Newbie Tooltips", nil, 5, nil, nil, nil, nil, nil, tooltipsDisabled)
-  tab.generalGroup.args.characterStats = ACH:Toggle("Character Stats", "Show your stats in the Character button tooltip.", 6, nil, nil, nil, nil, nil, function()
+  tab.generalGroup.args.characterStats = ACH:Toggle("Character Stats " .. E.NewSign, "Show your stats in the Character button tooltip.", 6, nil, nil, nil, nil, nil, function()
     return tooltipsDisabled() or not TXUI.IsRetail
   end)
 

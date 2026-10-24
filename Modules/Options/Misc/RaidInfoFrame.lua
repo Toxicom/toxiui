@@ -79,7 +79,7 @@ function O:Plugins_RaidInfoFrame()
     customizationGroup.showDifficulty = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Show Difficulty " .. E.NewSign,
+      name = "Show Difficulty",
       desc = "Show the raid difficulty indicator (M, HC, NM, LFR) on the left side.",
       get = function()
         return E.db.TXUI.misc.raidInfo.showDifficulty
@@ -94,7 +94,7 @@ function O:Plugins_RaidInfoFrame()
     customizationGroup.showTotal = {
       order = self:GetOrder(),
       type = "toggle",
-      name = "Show Total " .. E.NewSign,
+      name = "Show Total",
       desc = "Show the total player count on the right side.",
       get = function()
         return E.db.TXUI.misc.raidInfo.showTotal

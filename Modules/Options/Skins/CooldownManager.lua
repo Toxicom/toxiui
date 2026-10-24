@@ -8,7 +8,7 @@ function O:Skins_CooldownManager()
     order = self:GetOrder(),
     type = "group",
     childGroups = "tab",
-    name = "Cooldown Manager " .. E.NewSign,
+    name = "Cooldown Manager",
     args = {},
   }
 
@@ -179,7 +179,7 @@ function O:Skins_CooldownManager()
 
     -- Buff Bar Gradient
     local gradientGroup = self:AddInlineRequirementsDesc(tab, {
-      name = "Buff Bar Gradient",
+      name = "Buff Bar Gradient " .. E.NewSign,
     }, {
       name = "Colors the Buff Bar viewer bars with your " .. F.String.GradientMode() .. " class colors.\n\n",
     }, I.Requirements.CooldownManager).args

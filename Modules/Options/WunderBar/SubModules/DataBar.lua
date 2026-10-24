@@ -32,7 +32,7 @@ function O:WunderBar_SubModules_DataBar()
   }, nil, nil, nil, iconDisabled)
 
   tab.generalGroup.args.mode = ACH:Select(
-    "Mode",
+    "Mode" .. (TXUI.IsRetail and (" " .. E.NewSign) or ""),
     TXUI.IsRetail and "Smart shows Experience under Max Level, then House Favor while on your plot, then your watched Reputation, then House Favor if you own a house." or nil,
     3,
     F.Table.Join({

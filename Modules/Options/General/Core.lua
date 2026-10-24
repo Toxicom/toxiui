@@ -181,7 +181,7 @@ function O:General()
   -- ==================
   -- Commands Tab
   -- ==================
-  local commandsTab = self:AddGroup(pageOptions, { name = "Commands " .. E.NewSign }).args
+  local commandsTab = self:AddGroup(pageOptions, { name = "Commands" }).args
 
   local function cmd(slash, desc, shortcut)
     local line = F.String.ToxiUI(slash) .. " — " .. desc

@@ -7,7 +7,7 @@ function O:Skins_ClassIcons()
   self.options.skins.args["classIcons"] = {
     order = self:GetOrder(),
     type = "group",
-    name = F.String.Class("Class") .. " & " .. F.String.Class("Spec") .. " Icons " .. E.NewSign,
+    name = F.String.Class("Class") .. " & " .. F.String.Class("Spec") .. " Icons",
     args = {},
   }
 
@@ -40,7 +40,7 @@ function O:Skins_ClassIcons()
 
   do
     local styleGroup = self:AddInlineDesc(options, {
-      name = "Icon Style " .. E.NewSign,
+      name = "Icon Style",
     }, {
       name = "Change the style for all "
         .. TXUI.Title
@@ -90,7 +90,7 @@ function O:Skins_ClassIcons()
     local classSpecOrder = I.ClassSpecOrder
 
     local previewGroup = self:AddInlineDesc(options, {
-      name = "Preview " .. E.NewSign,
+      name = "Preview",
     }, {
       name = "Live preview of the currently selected icon style.\n\n",
     }).args

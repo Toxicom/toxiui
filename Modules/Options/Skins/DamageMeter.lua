@@ -6,7 +6,7 @@ function O:Skins_DamageMeter()
   self.options.skins.args["damageMeterGroup"] = {
     order = self:GetOrder(),
     type = "group",
-    name = "Damage Meter " .. E.NewSign,
+    name = "Damage Meter",
     args = {},
   }
 
