@@ -27,6 +27,7 @@ TXUI.Changelog["7.5.7"] = {
     "Animations: Reuse colors for the RGB animation instead of creating new ones every frame",
 
     "* Bug fixes",
+    "Additional Scaling: Fixed load-on-demand frames (Collections, Auction House, Inspect, Professions, etc.) not being scaled until the slider was changed",
     "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",
     F.String.Classic() .. "Fixed Objective Frame position not being applied by the profile",
     "Armory: Fixed conflict detection with Shadow & Light Inspect/Stats and Eltruism Classic Armory",

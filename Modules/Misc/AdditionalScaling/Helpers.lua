@@ -19,7 +19,7 @@ function M:AddCallbackForAddon(addonName, func)
 end
 
 function M:ADDON_LOADED(_, addonName)
-  if not E.initialized or not TXUI:HasRequirements(I.Requirements.AdditionalScaling) then return end
+  if not E.Initialized or not TXUI:HasRequirements(I.Requirements.AdditionalScaling) then return end
 
   local object = M.addonsToLoad[addonName]
   if object then M:CallLoadedAddon(addonName, object) end
