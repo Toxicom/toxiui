@@ -164,6 +164,14 @@ function WB:ShowSecureFlyOut(parent, direction, primarySlots, secondarySlots, gr
         self.flyoutIsOpen = false
       end)
 
+      -- Cooldown tickers are recreated on every open, stop them once the flyout closes
+      slot:HookScript("OnHide", function(hiddenSlot)
+        if hiddenSlot.cdTicker then
+          hiddenSlot.cdTicker:Cancel()
+          hiddenSlot.cdTicker = nil
+        end
+      end)
+
       F.CreateSoftShadow(slot, 4)
       secureFlyOutButtons[i] = slot
     end
