@@ -46,6 +46,7 @@ function WB:ConstructElvUIDataText(construct, dataText)
   end
 
   construct.OnWunderBarUpdate = function(module)
+    module.lastProcessedText = nil
     module:UpdateColor()
     module:UpdateFonts()
     module:UpdateElements()
@@ -83,9 +84,15 @@ function WB:ConstructElvUIDataText(construct, dataText)
   construct.UpdateText = function(module)
     if module.text then
       local text = module.text:GetText()
+
+      -- onUpdate runs every 0.1s, skip when the datatext didn't write anything new since our last SetText
+      if E:NotSecretValue(text) and text == module.lastProcessedText then return end
+
       text = F.String.StripTexture(module.db.textColor and text or F.String.StripColor(text))
 
       if text and text ~= "" then module.text:SetText(module.db.useUppercase and F.String.Uppercase(text) or text) end
+
+      module.lastProcessedText = module.text:GetText()
     end
   end
 

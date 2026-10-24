@@ -49,7 +49,10 @@ function DB:GetValues(curValue, minValue, maxValue)
   end
 end
 
-function DB:OnEvent(event)
+function DB:OnEvent(event, messageType)
+  -- Only faction combat text can change reputation, same filter as ElvUI
+  if event == "COMBAT_TEXT_UPDATE" and E:NotSecretValue(messageType) and messageType ~= "FACTION" then return end
+
   -- If smart mode changes, force update
   if self:UpdateSmartMode() then event = "ELVUI_FORCE_UPDATE" end
 
@@ -157,7 +160,7 @@ function DB:OnEvent(event)
   then
     self.updateExpNextOutOfCombat = true
 
-    F.Event.ContinueOutOfCombat(function()
+    local updateExp = function()
       self.updateExpNextOutOfCombat = false
 
       if (not TXUI.IsClassicEra and not TXUI.IsAnniversary and IsXPUserDisabledFunction()) or (IsPlayerAtEffectiveMaxLevel()) then
@@ -183,7 +186,15 @@ function DB:OnEvent(event)
 
       self:UpdateTooltip()
       self:UpdateBar()
-    end)
+    end
+
+    -- QUEST_LOG_UPDATE fires in bursts while questing and the completed XP scan walks the whole quest log,
+    -- so coalesce those into one update. The flag above drops further events until it runs
+    if event == "QUEST_LOG_UPDATE" then
+      E:Delay(0.5, F.Event.ContinueOutOfCombat, updateExp)
+    else
+      F.Event.ContinueOutOfCombat(updateExp)
+    end
   end
 end
 

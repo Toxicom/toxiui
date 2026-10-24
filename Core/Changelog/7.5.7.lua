@@ -21,6 +21,8 @@ TXUI.Changelog["7.5.7"] = {
     F.String.Menu.WunderBar() .. ": " .. F.String.ElvUI() .. " stat datatexts (Haste, Crit, Speed, etc.) now only update on your own aura & stat changes" .. F.String.Sublist(
       "Previously they updated on aura changes of every raid member and nameplate"
     ),
+    F.String.Menu.WunderBar() .. ": " .. F.String.ElvUI() .. " datatexts skip text processing when their text hasn't changed",
+    F.String.Menu.WunderBar() .. " DataBar: Coalesce quest log updates and ignore non-reputation combat text",
 
     "* Bug fixes",
     "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",
