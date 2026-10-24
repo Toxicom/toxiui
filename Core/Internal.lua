@@ -104,11 +104,8 @@ I.Media = {
 }
 
 -- Profile names to be used
--- This only affects BigWigs
 I.ProfileNames = {
   ["Default"] = "ToxiUI", -- Details
-  [I.Enum.Layouts.VERTICAL] = "ToxiUI-Vertical", -- BigWigs
-  [I.Enum.Layouts.HORIZONTAL] = "ToxiUI-Horizontal", -- BigWigs
   ["Dev"] = "ToxiUI-Dev",
 }
 

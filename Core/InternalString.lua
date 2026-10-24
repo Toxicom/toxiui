@@ -63,7 +63,6 @@ I.Strings.Colors = {
   [I.Enum.Colors.TXUI] = "18a8ff", -- #18a8ff
   [I.Enum.Colors.PLATER] = "ff66a1", -- #ff66a1
   [I.Enum.Colors.DETAILS] = "f7f552", -- #f7f552
-  [I.Enum.Colors.BIGWIGS] = "c94b28", -- #c94b28
   [I.Enum.Colors.NSCT] = "12e659", -- #12e659
   [I.Enum.Colors.WDP] = "e600cb", -- "#e600cb"
   [I.Enum.Colors.WT] = "54e5ff", -- #54e5ff

@@ -41,7 +41,6 @@ I.Enum.Colors = F.Enum {
   "TXUI", -- AddOnColor
   "PLATER",
   "DETAILS",
-  "BIGWIGS",
   "NSCT",
   "WDP",
   "WT",

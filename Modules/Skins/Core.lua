@@ -4,8 +4,6 @@ local S = TXUI:GetModule("Skins")
 function S:Enable()
   if self.isEnabled or not self.Initialized then return end
   self.isEnabled = true
-
-  F.Event.ContinueOnAddOnLoaded("ElvUI_WindTools", F.Event.GenerateClosure(self.ElvUI_WindTools, self))
 end
 
 function S:DatabaseUpdate()

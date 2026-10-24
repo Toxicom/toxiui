@@ -13,7 +13,7 @@ local GetNumAddOns = (C_AddOns and C_AddOns.GetNumAddOns) or GetNumAddOns
 function TXUI:HandleDevProfiles(arg1)
   -- Command help
   local printUsage = function()
-    self:LogInfo("Usage: /tx profile dps; healer; private; bw; dbm; plater; details")
+    self:LogInfo("Usage: /tx profile dps; healer; private; details; font")
   end
 
   -- If no parameter was given
@@ -39,9 +39,6 @@ function TXUI:HandleDevProfiles(arg1)
   elseif arg1 == "details" then
     self:LogInfo("Applying Details Profile ...")
     TXUI:GetModule("Profiles"):Details()
-  elseif arg1 == "bw" then
-    self:LogInfo("Applying BigWigs Profile ...")
-    TXUI:GetModule("Profiles"):BigWigs()
   elseif arg1 == "font" then
     self:LogInfo("Applying Fonts Profile ...")
     E:UpdateDB()

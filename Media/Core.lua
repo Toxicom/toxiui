@@ -149,7 +149,6 @@ F.AddMedia("logo", "Youtube")
 
 F.AddMedia("installer", "DetailsOne")
 F.AddMedia("installer", "DetailsTwo")
-F.AddMedia("installer", "BigWigs")
 F.AddMedia("installer", "WarpDeplete")
 F.AddMedia("installer", "Vertical")
 F.AddMedia("installer", "Horizontal")

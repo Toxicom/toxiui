@@ -5,6 +5,7 @@ TXUI.Changelog["7.5.7"] = {
   RELEASE_DATE = "",
   CHANGES = {
     "* Breaking changes",
+    "Removed BigWigs support" .. F.String.Sublist("The BigWigs profile, " .. F.String.ToxiUI("/tx profile bw") .. " command and the BigWigs pull timer skin are gone"),
 
     "* New features",
 

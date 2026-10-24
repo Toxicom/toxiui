@@ -15,7 +15,6 @@ local Pages = {
   Profile = 2,
   Core = 3,
   Details = 4,
-  -- BigWigs = 5,
   Additional = 5,
   Complete = 6,
 }
@@ -121,8 +120,6 @@ function IS:Dialog()
       AddImageScripts { I.Media.Installer.Vertical, I.Media.Installer.Horizontal }
     elseif page == Pages.Details then
       AddImageScripts { I.Media.Installer.DetailsOne, I.Media.Installer.DetailsTwo }
-    elseif page == Pages.BigWigs then
-      AddImageScripts { I.Media.Installer.BigWigs }
     elseif page == Pages.Complete then
       AddImageScripts { "skip", I.Media.Installer.DiscordBanner, I.Media.Installer.WebPreview }
     end
@@ -365,42 +362,6 @@ function IS:Dialog()
         end
       end,
 
-      -- Boss Mod Page
-      -- [Pages.BigWigs] = function()
-      --   SetupCustomInstaller(Pages.BigWigs)
-      --   if F.IsAddOnEnabled("BigWigs") then
-      --     installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
-
-      --     installFrame.Desc1:SetText(
-      --       "BigWigs is a boss encounter AddOn. It consists of many individual encounter scripts, or boss modules; mini AddOns that are designed to trigger alert messages, timer bars, sounds, and so forth, for one specific raid encounter."
-      --     )
-      --     installFrame.Desc2:SetText("Importance: " .. F.String.Good("Low"))
-
-      --     installFrame.Option1:Show()
-      --     installFrame.Option1:SetText("BigWigs")
-      --     installFrame.Option1:SetScript("OnClick", function()
-      --       PF:BigWigs()
-      --       self:ShowStepComplete(F.String.ToxiUI("BigWigs") .. " profile installed.")
-      --       installFrame.Next:Click()
-      --     end)
-      --   elseif F.IsAddOnEnabled("DBM-Core") then
-      --     installFrame.SubTitle:SetText(F.String.ToxiUI("Deadly Boss Mods"))
-
-      --     installFrame.Desc1:SetText(F.String.Error("Important: ") .. "Deadly Boss Mods is no longer supported. We recommend migrating to " .. F.String.ToxiUI("BigWigs") .. ".")
-
-      --     installFrame.Option1:Show()
-      --     installFrame.Option1:SetText("Skip this step")
-      --     installFrame.Option1:SetScript("OnClick", function()
-      --       installFrame.Next:Click()
-      --     end)
-      --   else
-      --     installFrame.SubTitle:SetText(F.String.ToxiUI("BigWigs"))
-
-      --     installFrame.Desc1:SetText(F.String.Warning("Oops, looks like you don't have " .. F.String.ToxiUI("BigWigs") .. " installed!"))
-      --     installFrame.Desc2:SetText("If you're a new player, we recommend installing " .. F.String.ToxiUI("BigWigs") .. "!")
-      --   end
-      -- end,
-
       [Pages.Additional] = function()
         SetupCustomInstaller(Pages.Additional)
 
@@ -487,7 +448,6 @@ function IS:Dialog()
       [Pages.Profile] = "Profile - " .. Pages.Profile,
       [Pages.Core] = "Core Settings - " .. Pages.Core,
       [Pages.Details] = "Details - " .. Pages.Details,
-      -- [Pages.BigWigs] = "BigWigs - " .. Pages.BigWigs,
       [Pages.Additional] = "Add. AddOns - " .. Pages.Additional,
       [Pages.Complete] = "Complete - " .. Pages.Complete,
     },

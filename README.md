@@ -39,7 +39,6 @@
 
 ## Additional supported AddOns:
 
-- [BigWigs](https://www.curseforge.com/wow/addons/big-wigs)
 - [WarpDeplete (Retail only)](https://www.curseforge.com/wow/addons/warpdeplete)
 - [Ratio Minimap Auras](https://www.curseforge.com/wow/addons/elvui-ratiominimapauras)
 

@@ -44,11 +44,6 @@ function F.String.Details(msg)
   return F.String.Color(msg, I.Enum.Colors.DETAILS)
 end
 
-function F.String.BigWigs(msg)
-  if not msg or msg == "" then return F.String.Color("BigWigs", I.Enum.Colors.BIGWIGS) end
-  return F.String.Color(msg, I.Enum.Colors.BIGWIGS)
-end
-
 function F.String.NameplateSCT(msg)
   if not msg or msg == "" then return F.String.Color("NameplateSCT", I.Enum.Colors.NSCT) end
   return F.String.Color(msg, I.Enum.Colors.NSCT)
