@@ -78,13 +78,6 @@ local function GetSecretClassColorPrefix(class)
   return cs and ("|c" .. GenerateTextColorCode(cs))
 end
 
--- Helper: Get unit status (dead/ghost/offline)
-local function GetUnitStatus(unit)
-  if not UnitIsFeignDeath(unit) and UnitIsDead(unit) then return L["Dead"] end
-  if UnitIsGhost(unit) then return L["Ghost"] end
-  if not UnitIsConnected(unit) then return L["Offline"] end
-end
-
 -- Helper: Convert level to string with "??" fallback
 local function GetLevelString(level)
   if level == -1 or not level or level == "" then return "??" end
@@ -259,9 +252,6 @@ function M:Tags()
   end
 
   local function ColorHealthTag(unit, percentSign)
-    local status = GetUnitStatus(unit)
-    if status then return status end
-
     local pct = GetHealthPercentage(unit)
     local percentHealthStr = percentSign and format("%d%%", pct) or format("%d", pct)
 
@@ -279,9 +269,6 @@ function M:Tags()
   end)
 
   E:AddTag("tx:health:current:shortvalue", HEALTH_EVENTS, function(unit)
-    local status = GetUnitStatus(unit)
-    if status then return status end
-
     local health = UnitHealth(unit)
     local healthStr = AbbreviateNumbers(health, E.Abbreviate.short)
 
@@ -291,9 +278,6 @@ function M:Tags()
   end)
 
   E:AddTag("tx:health:current:shortvalue:absorb", HEALTH_EVENTS .. " UNIT_ABSORB_AMOUNT_CHANGED", function(unit)
-    local status = GetUnitStatus(unit)
-    if status then return status end
-
     local health = UnitHealth(unit)
     local healthStr = AbbreviateNumbers(health, E.Abbreviate.short)
 
