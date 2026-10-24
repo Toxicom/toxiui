@@ -28,6 +28,11 @@ TXUI.Changelog["7.5.7"] = {
     "Fixed Dead & Offline Icons still reacting to setting changes after being disabled",
     F.String.Menu.WunderBar() .. " Hearthstone: Fixed a potential error when a teleport spell has no cooldown info",
     F.String.Retail() .. "Fixed potential secret value errors in name tags, Vehicle Bar vigor segments, Role Icons, Raid Info Frame and Armory stats",
+    F.String.Retail()
+      .. F.String.CDM()
+      .. ": Fixed icon centering no longer following buffs appearing mid-combat after changing any "
+      .. F.String.CDM()
+      .. " setting until a reload",
     F.String.GradientMode() .. " & Dark Mode: Fixed color setting changes refreshing group frames with a stale unit",
 
     "* Profile updates",

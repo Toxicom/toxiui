@@ -18,6 +18,10 @@ local shownBuffer = {}
 -- Cached viewer frames and layout properties (populated on enable, refreshed on settings change)
 local viewerCache = {}
 
+-- Bumped on every EnableCentering. UnhookAll in Disable deactivates the per-icon hooks,
+-- so icons hooked in an older generation have to be hooked again
+local hookGeneration = 0
+
 local function sortByLayoutIndex(a, b)
   return (a.layoutIndex or 0) < (b.layoutIndex or 0)
 end
@@ -27,14 +31,28 @@ local function cacheViewerProps(viewerKey)
   local viewer = viewerName and _G[viewerName]
   if not viewer then return nil end
 
-  viewerCache[viewerKey] = {
-    viewer = viewer,
-    stride = viewer.stride,
-    xSpacing = viewer.childXPadding or 4,
-    ySpacing = viewer.childYPadding or 4,
-  }
+  local cache = viewerCache[viewerKey]
+  if not cache then
+    cache = {}
+    viewerCache[viewerKey] = cache
+  end
 
-  return viewerCache[viewerKey]
+  cache.viewer = viewer
+  cache.stride = viewer.stride
+  cache.xSpacing = viewer.childXPadding or 4
+  cache.ySpacing = viewer.childYPadding or 4
+
+  return cache
+end
+
+-- Pool frames are never removed from the viewer, so only rescan children when their count changed
+local function NeedsChildHooks(viewer, genKey, countKey)
+  local numChildren = viewer:GetNumChildren()
+  if viewer[genKey] == hookGeneration and viewer[countKey] == numChildren then return false end
+
+  viewer[genKey] = hookGeneration
+  viewer[countKey] = numChildren
+  return true
 end
 
 function CM:CenterViewer(viewerKey)
@@ -154,10 +172,12 @@ function CM:CenterAllViewers()
 end
 
 function CM:HookBuffBarVisibility(viewer)
+  if not NeedsChildHooks(viewer, "_txBuffBarHookGen", "_txBuffBarChildCount") then return end
+
   local children = { viewer:GetChildren() }
   for _, child in ipairs(children) do
-    if not child._txBuffBarHooked then
-      child._txBuffBarHooked = true
+    if child._txBuffBarHooked ~= hookGeneration then
+      child._txBuffBarHooked = hookGeneration
       self:SecureHookScript(child, "OnShow", function()
         if self.centeringActive and self.db.centering.buffBar then self:AlignBuffBarViewer() end
       end)
@@ -169,10 +189,12 @@ function CM:HookBuffBarVisibility(viewer)
 end
 
 function CM:HookIconVisibility(viewer, viewerKey)
+  if not NeedsChildHooks(viewer, "_txCenterHookGen", "_txCenterChildCount") then return end
+
   local children = { viewer:GetChildren() }
   for _, child in ipairs(children) do
-    if child.Icon and not child._txCenterHooked then
-      child._txCenterHooked = true
+    if child.Icon and child._txCenterHooked ~= hookGeneration then
+      child._txCenterHooked = hookGeneration
       self:SecureHookScript(child, "OnShow", function()
         if self.centeringActive and self.db.centering[viewerKey] then self:CenterViewer(viewerKey) end
       end)
@@ -186,6 +208,7 @@ end
 function CM:EnableCentering()
   if not self.Initialized then return end
   self.centeringActive = true
+  hookGeneration = hookGeneration + 1
 
   for _, key in ipairs(centeringKeys) do
     if self.db.centering[key] then
