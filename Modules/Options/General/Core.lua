@@ -8,6 +8,16 @@ function O:General()
 
   local pageOptions = self.options.general.args
 
+  -- Logo, only on the General page so the other pages get the vertical space
+  pageOptions["generalLogo"] = {
+    order = self:GetOrder(),
+    type = "description",
+    name = "",
+    image = function()
+      return I.Media.Logos.Logo, 128, 64
+    end,
+  }
+
   -- Welcome Description
   pageOptions["generalWelcome"] = {
     order = self:GetOrder(),

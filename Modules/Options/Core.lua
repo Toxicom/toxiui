@@ -369,16 +369,7 @@ function O:OptionsCallback()
     type = "group",
     childGroups = "tree",
     name = TXUI.Title .. " " .. (TXUI.DevRelease and TXUI.DevTag or ""),
-    args = {
-      logo = {
-        order = 1,
-        type = "description",
-        name = "",
-        image = function()
-          return I.Media.Logos.Logo, 128, 64
-        end,
-      },
-    },
+    args = {},
   }
 
   -- Fill the options table
