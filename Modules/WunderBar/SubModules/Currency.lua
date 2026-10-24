@@ -141,11 +141,11 @@ function CR:RightClick()
 end
 
 local currencyColorTable = {
-  [3347] = { color = _G.LEGENDARY_ORANGE_COLOR:GenerateHexColor(), weight = 10 }, -- Myth
-  [3345] = { color = _G.EPIC_PURPLE_COLOR:GenerateHexColor(), weight = 9 }, --       Hero
-  [3343] = { color = _G.RARE_BLUE_COLOR:GenerateHexColor(), weight = 8 }, --         Champion
-  [3341] = { color = _G.UNCOMMON_GREEN_COLOR:GenerateHexColor(), weight = 7 }, --    Veteran
-  [3383] = { color = _G.HEIRLOOM_BLUE_COLOR:GenerateHexColor(), weight = 6 }, --     Adventurer
+  [3446] = { color = _G.LEGENDARY_ORANGE_COLOR:GenerateHexColor(), weight = 10 }, -- Myth
+  [3445] = { color = _G.EPIC_PURPLE_COLOR:GenerateHexColor(), weight = 9 }, --       Hero
+  [3444] = { color = _G.RARE_BLUE_COLOR:GenerateHexColor(), weight = 8 }, --         Champion
+  [3443] = { color = _G.UNCOMMON_GREEN_COLOR:GenerateHexColor(), weight = 7 }, --    Veteran
+  [3442] = { color = _G.HEIRLOOM_BLUE_COLOR:GenerateHexColor(), weight = 6 }, --     Adventurer
   [3028] = { color = _G.ARTIFACT_GOLD_COLOR:GenerateHexColor(), weight = 5 }, --     Restored Coffer Key
 }
 

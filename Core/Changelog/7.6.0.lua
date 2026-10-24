@@ -73,6 +73,7 @@ TXUI.Changelog["7.6.0"] = {
     F.String.ElvUI() .. " Unitframes: Keep Player & Pet frames visible in Mythic+ like every other instance difficulty",
 
     "* Documentation",
+    F.String.Retail() .. "Update currencies for Midnight Season 2",
 
     "* Settings refactoring",
     F.String.GradientMode() .. ": More compact color settings, two columns and fewer tabs" .. F.String.Sublist(

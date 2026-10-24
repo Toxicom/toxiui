@@ -1204,11 +1204,11 @@ P.wunderbar = {
 
       displayedCurrency = "GOLD", -- NEEDS to be GOLD
       enabledCurrencies = {
-        [3383] = true, -- Adventurer
-        [3347] = true, -- Myth
-        [3345] = true, -- Hero
-        [3343] = true, -- Champion
-        [3341] = true, -- Veteran
+        [3442] = true, -- Adventurer
+        [3446] = true, -- Myth
+        [3445] = true, -- Hero
+        [3444] = true, -- Champion
+        [3443] = true, -- Veteran
         [3316] = true, -- Voidlight Marl
         [3028] = true, -- Restored Coffer Key
       }, -- Format: [currencyID] = true,

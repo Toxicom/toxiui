@@ -63,6 +63,10 @@
   - Removed aura filter settings that ElvUI no longer uses since its Midnight aura rework
 - ElvUI Unitframes: Keep Player & Pet frames visible in Mythic+ like every other instance difficulty
 
+## 📘 Documentation
+
+- [Retail] Update currencies for Midnight Season 2
+
 ## ♻️ Settings Refactoring
 
 - Gradient Mode: More compact color settings, two columns and fewer tabs
