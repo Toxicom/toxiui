@@ -373,6 +373,7 @@ MM.microMenu = {
     end,
     tooltips = {
       BINDING_NAME_TOGGLEHOUSINGDASHBOARD and MM.leftButtonText .. "Toggle " .. BINDING_NAME_TOGGLEHOUSINGDASHBOARD or "",
+      MM.rightButtonText .. "Teleport Home (or return from a visit)",
     },
   },
   ["txui"] = {
@@ -927,6 +928,9 @@ function MM:OnInit()
 
   -- Of we go
   self:CreateButtons()
+
+  -- Right click on the housing button teleports home
+  if self.frameNames["housing"] then WB:RegisterHouseTeleportButton(self.frameNames["housing"], 2) end
   self:OnWunderBarUpdate()
 
   -- We are done, hooray!

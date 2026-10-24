@@ -8,7 +8,6 @@ local abs = math.abs
 local C_Housing = C_Housing
 local C_HousingCatalog = C_HousingCatalog
 local C_HousingDecor = C_HousingDecor
-local C_HousingNeighborhood = C_HousingNeighborhood
 local C_NeighborhoodInitiative = C_NeighborhoodInitiative
 local C_QuestLog_GetInfo = C_QuestLog.GetInfo
 local C_QuestLog_GetNumQuestLogEntries = C_QuestLog.GetNumQuestLogEntries
@@ -57,8 +56,7 @@ local houseUpdateEvents = {
   ["HOUSE_PLOT_ENTERED"] = true,
   ["HOUSE_PLOT_EXITED"] = true,
   ["HOUSING_SERVICES_AVAILABILITY_UPDATED"] = true,
-  ["PLAYER_HOUSE_LIST_UPDATED"] = true,
-  ["TRACKED_HOUSE_CHANGED"] = true,
+  ["WUNDERBAR_HOUSES_UPDATED"] = true,
   ["ZONE_CHANGED_NEW_AREA"] = true,
 }
 
@@ -267,12 +265,11 @@ function DB:UpdateHousingData(event, arg1, arg2)
     if self.houseInfo then
       C_Housing.GetCurrentHouseLevelFavor(self.houseInfo.houseGUID) -- responds with HOUSE_LEVEL_FAVOR_UPDATED
     else
-      C_Housing.GetPlayerOwnedHouses() -- responds with PLAYER_HOUSE_LIST_UPDATED
+      -- The list might have arrived while the bar was hidden, SelectHouse requests the favor
+      self:SelectHouse()
+      if not self.houseInfo then WB:RequestOwnedHouses() end -- responds with WunderBar.HousesUpdated
     end
-  elseif event == "PLAYER_HOUSE_LIST_UPDATED" then
-    self.houseList = arg1
-    self:SelectHouse()
-  elseif event == "TRACKED_HOUSE_CHANGED" then
+  elseif event == "WUNDERBAR_HOUSES_UPDATED" then
     self:SelectHouse()
   elseif event == "HOUSE_LEVEL_FAVOR_UPDATED" then
     -- Fires for every owned house at once, e.g. on decor acquisition bonuses
@@ -293,15 +290,7 @@ function DB:UpdateHousingData(event, arg1, arg2)
 end
 
 function DB:SelectHouse()
-  if not self.houseList then return end
-
-  -- Prefer the house Blizzard's favor bar tracks, otherwise the first one we own
-  local trackedGUID = C_Housing.GetTrackedHouseGuid()
-  local selected
-
-  for _, houseInfo in ipairs(self.houseList) do
-    if houseInfo.houseGUID and ((houseInfo.houseGUID == trackedGUID) or not selected) then selected = houseInfo end
-  end
+  local selected = WB:GetOwnedHouse()
 
   -- Favor data belongs to the previous house
   if (selected and selected.houseGUID) ~= (self.houseInfo and self.houseInfo.houseGUID) then self.data.houseLevel = 0 end
@@ -326,11 +315,7 @@ function DB:SetHouseLevelFavor(level, favor)
 end
 
 function DB:CanReturnHome()
-  -- Same as Blizzard's dashboard teleport button: offer the way back while visiting our own neighborhood
-  if not self.houseInfo or not C_HousingNeighborhood.CanReturnAfterVisitingHouse() then return false end
-
-  local neighborhoodGUID = C_Housing.GetCurrentNeighborhoodGUID()
-  return (neighborhoodGUID ~= nil) and (neighborhoodGUID == self.houseInfo.neighborhoodGUID)
+  return WB:CanReturnHome(self.houseInfo)
 end
 
 function DB:UpdateSecureOverlay()
@@ -340,20 +325,7 @@ function DB:UpdateSecureOverlay()
   -- Secure frames can only be shown, hidden or changed out of combat
   F.Event.ContinueOutOfCombat(function()
     self.updateOverlayNextOutOfCombat = false
-
-    local overlay = self.secureOverlay
-    local houseInfo = self.houseInfo
-
-    if (self.mode ~= DB.const.mode.house) or self.noData or not houseInfo then
-      overlay:Hide()
-      return
-    end
-
-    overlay:SetAttribute("type2", self:CanReturnHome() and "returnhome" or "teleporthome")
-    overlay:SetAttribute("house-neighborhood-guid", houseInfo.neighborhoodGUID)
-    overlay:SetAttribute("house-guid", houseInfo.houseGUID)
-    overlay:SetAttribute("house-plot-id", houseInfo.plotID)
-    overlay:Show()
+    self.secureOverlay:SetShown((self.mode == DB.const.mode.house) and not self.noData and (self.houseInfo ~= nil))
   end)
 end
 
@@ -815,6 +787,9 @@ function DB:CreateBar()
     secureOverlay:SetAttribute("shift-_function1", onLeftClick)
     secureOverlay:Hide()
 
+    -- Right click teleports home, the WunderBar housing utility keeps the action up to date
+    WB:RegisterHouseTeleportButton(secureOverlay, 2)
+
     self.secureOverlay = secureOverlay
   end
 
@@ -892,6 +867,13 @@ function DB:OnInit()
     housePercent = 0,
   }
 
+  -- Owned house list is kept by the WunderBar housing utility
+  if TXUI.IsRetail then
+    F.Event.RegisterCallback("WunderBar.HousesUpdated", function()
+      if self.Module and WB.isVisible then self:OnEvent("WUNDERBAR_HOUSES_UPDATED") end
+    end, self)
+  end
+
   self:CreateBar()
   self:UpdateSmartMode(true)
   self:OnWunderBarUpdate()
@@ -923,9 +905,7 @@ WB:RegisterSubModule(
       "HOUSE_PLOT_EXITED",
       "HOUSING_SERVICES_AVAILABILITY_UPDATED",
       "NEIGHBORHOOD_INITIATIVE_UPDATED",
-      "PLAYER_HOUSE_LIST_UPDATED",
       "RECEIVED_HOUSE_LEVEL_REWARDS",
-      "TRACKED_HOUSE_CHANGED",
     })
   )
 )

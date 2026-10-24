@@ -2,6 +2,7 @@
   <Script file='Core.lua' />
   <Script file='Animation.lua' />
   <Script file='Functions.lua' />
+  <Script file='Housing.lua' />
   <Script file='Modules.lua' />
   <Script file='ElvUI.lua' />
   <Script file='LDB.lua' />
