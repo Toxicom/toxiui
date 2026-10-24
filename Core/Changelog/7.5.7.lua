@@ -40,6 +40,7 @@ TXUI.Changelog["7.5.7"] = {
       .. F.String.CDM()
       .. " setting until a reload",
     F.String.GradientMode() .. " & Dark Mode: Fixed color setting changes refreshing group frames with a stale unit",
+    "Fixed old profile conversions modifying the default Saturation Boost settings and possibly skipping custom text renames",
 
     "* Profile updates",
     F.String.ElvUI() .. " Unitframes: Keep Player & Pet frames visible in Mythic+ like every other instance difficulty",

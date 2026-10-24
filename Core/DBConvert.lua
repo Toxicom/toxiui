@@ -68,8 +68,8 @@ function TXUI:DBConvert()
   if db.themes.gradientMode.saturationBoost == false or db.themes.gradientMode.saturationBoost == true then
     -- Store old value
     local value = db.themes.gradientMode.saturationBoost
-    -- Set new value from defaults
-    db.themes.gradientMode.saturationBoost = P.themes.gradientMode.saturationBoost
+    -- Set new value from a copy of the defaults, so setting the old value below doesn't change the defaults table
+    db.themes.gradientMode.saturationBoost = E:CopyTable({}, P.themes.gradientMode.saturationBoost)
     -- Set old value
     db.themes.gradientMode.saturationBoost.enabled = value
     self:LogDebug("DBConvert > Converted Saturation Boost to new format")
@@ -92,17 +92,21 @@ function TXUI:DBConvert()
     }
 
     for _, unitTable in pairs(E.db.unitframe.units) do
+      -- Collect first, adding keys to a table while iterating it with pairs is undefined
+      local renames = {}
       for key, value in pairs(unitTable.customTexts) do
         -- Check if the key exists in the newNames mapping
-        if newNames[key] then
-          -- Add the value to the new key in the table
-          unitTable.customTexts[newNames[key]] = value
-          -- Remove the old key
-          unitTable.customTexts[key] = nil
+        if newNames[key] then renames[key] = value end
+      end
 
-          -- Confirm that we've converted a key
-          converted = true
-        end
+      for key, value in pairs(renames) do
+        -- Add the value to the new key in the table
+        unitTable.customTexts[newNames[key]] = value
+        -- Remove the old key
+        unitTable.customTexts[key] = nil
+
+        -- Confirm that we've converted a key
+        converted = true
       end
     end
 
@@ -126,17 +130,21 @@ function TXUI:DBConvert()
     }
 
     for _, unitTable in pairs(E.db.unitframe.units) do
+      -- Collect first, adding keys to a table while iterating it with pairs is undefined
+      local renames = {}
       for key, value in pairs(unitTable.customTexts) do
         -- Check if the key exists in the newNames mapping
-        if newNames[key] then
-          -- Add the value to the new key in the table
-          unitTable.customTexts[newNames[key]] = value
-          -- Remove the old key
-          unitTable.customTexts[key] = nil
+        if newNames[key] then renames[key] = value end
+      end
 
-          -- Confirm that we've converted a key
-          converted = true
-        end
+      for key, value in pairs(renames) do
+        -- Add the value to the new key in the table
+        unitTable.customTexts[newNames[key]] = value
+        -- Remove the old key
+        unitTable.customTexts[key] = nil
+
+        -- Confirm that we've converted a key
+        converted = true
       end
     end
 
