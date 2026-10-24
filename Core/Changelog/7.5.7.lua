@@ -26,6 +26,7 @@ TXUI.Changelog["7.5.7"] = {
     "Minimap Coordinates: Fixed coordinates not updating when moving along only one axis",
     "Fixed Dead & Offline Icons still reacting to setting changes after being disabled",
     F.String.Menu.WunderBar() .. " Hearthstone: Fixed a potential error when a teleport spell has no cooldown info",
+    F.String.Retail() .. "Fixed potential secret value errors in name tags, Vehicle Bar vigor segments, Role Icons, Raid Info Frame and Armory stats",
     F.String.GradientMode() .. " & Dark Mode: Fixed color setting changes refreshing group frames with a stale unit",
 
     "* Profile updates",

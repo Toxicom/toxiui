@@ -1037,7 +1037,8 @@ function A:UpdateCharacterStats()
         end
 
         -- Mode 1/2 - Validate hideAt value in Smart Mode/Always Show if not empty mode
-        if (hideAt ~= nil) and ((statMode == 1) or (statMode == 2)) then showStat = (stat.hideAt ~= statFrame.numericValue) end
+        -- Stat values can be secret when unit stats are restricted, keep those visible
+        if (hideAt ~= nil) and ((statMode == 1) or (statMode == 2)) then showStat = E:IsSecretValue(statFrame.numericValue) or (stat.hideAt ~= statFrame.numericValue) end
 
         if showStat then
           if numStatInCat == 0 then

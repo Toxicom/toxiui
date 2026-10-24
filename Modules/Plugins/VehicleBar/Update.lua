@@ -18,11 +18,22 @@ function VB:UpdateVigorSegments()
   local currentCharges = chargeInfo.currentCharges
   local maxCharges = chargeInfo.maxCharges
 
+  -- Charge info can be secret while cooldowns are restricted, skip until it's readable again
+  if E:IsSecretValue(currentCharges) or E:IsSecretValue(maxCharges) then return end
+
   -- Calculate fractional charge progress
   local fractionalCharge = 0
-  if currentCharges < maxCharges and chargeInfo.cooldownStartTime and chargeInfo.cooldownDuration then
-    local elapsed = GetTime() - chargeInfo.cooldownStartTime
-    fractionalCharge = elapsed / chargeInfo.cooldownDuration
+  local cooldownStartTime, cooldownDuration = chargeInfo.cooldownStartTime, chargeInfo.cooldownDuration
+  if
+    currentCharges < maxCharges
+    and E:NotSecretValue(cooldownStartTime)
+    and E:NotSecretValue(cooldownDuration)
+    and cooldownStartTime
+    and cooldownDuration
+    and cooldownDuration > 0
+  then
+    local elapsed = GetTime() - cooldownStartTime
+    fractionalCharge = elapsed / cooldownDuration
   end
 
   local grayColor = 0.5 -- Gray color for recharging segments

@@ -158,7 +158,7 @@ function M:Tags()
 
   local function FormatColorTag(str, unit)
     -- i don't fucking know, i don't see this string anywhere but otherwise get Lua errors
-    if not str then return "Missing string, very bad!" end
+    if E:NotSecretValue(str) and not str then return "Missing string, very bad!" end
 
     if UnitIsPlayer(unit) then
       local _, unitClass = UnitClass(unit)
@@ -178,7 +178,7 @@ function M:Tags()
   -- Name tags
   E:AddTag("tx:name", NAME_EVENTS, function(unit)
     local name = UnitName(unit)
-    if not name then return "missing name wtf" end
+    if E:NotSecretValue(name) and not name then return "missing name wtf" end
 
     if not dm.isEnabled then return name end
 
@@ -192,7 +192,7 @@ function M:Tags()
       local name = UnitName(unit)
       if E:NotSecretValue(name) and name then name = E:ShortenString(name, length) end
 
-      if not name then return end
+      if E:NotSecretValue(name) and not name then return end
 
       if not dm.isEnabled then return name end
 
@@ -206,7 +206,7 @@ function M:Tags()
 
       if E:NotSecretValue(name) and name then name = E:ShortenString(name, length) end
 
-      if not name then return end
+      if E:NotSecretValue(name) and not name then return end
 
       if not dm.isEnabled then return name end
 
@@ -215,7 +215,7 @@ function M:Tags()
 
     E:AddTag(format("tx:name:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
       local name = UnitName(unit)
-      if not name then return end
+      if E:NotSecretValue(name) and not name then return end
 
       local _, unitClass = UnitClass(unit)
 
@@ -230,7 +230,7 @@ function M:Tags()
 
     E:AddTag(format("tx:name:abbrev:%s:split", textFormat), NAME_EVENTS, function(unit, _, strMatch)
       local name = UnitName(unit)
-      if not name then return end
+      if E:NotSecretValue(name) and not name then return end
 
       local _, unitClass = UnitClass(unit)
 

@@ -14,7 +14,7 @@ function VB:OnShowEvent()
 
   if self.vigorBar and self:IsVigorAvailable() then
     local widgetInfo = self:GetSpellChargeInfo()
-    if self.vigorBar.segments and widgetInfo then
+    if self.vigorBar.segments and widgetInfo and E:NotSecretValue(widgetInfo.maxCharges) then
       -- Check if we have the correct amount of segments. If not, recreate the segments.
       if #self.vigorBar.segments < widgetInfo.maxCharges then
         -- Clear existing segments

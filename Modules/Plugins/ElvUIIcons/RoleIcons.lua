@@ -41,6 +41,9 @@ function RI:SetRoleIcon(frame, event)
   -- Get role from unit
   local role = UnitGroupRolesAssigned(frame.__unit)
 
+  -- Role is secret when unit identity is restricted, hide the icon like oUF does
+  if E:IsSecretValue(role) then role = nil end
+
   -- Get random role if no roles are assigned and we are in test mode
   if frame.isForced and (role == "NONE") then
     local rnd = random(1, 3)

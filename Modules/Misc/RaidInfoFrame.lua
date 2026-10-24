@@ -322,7 +322,9 @@ function RIF:Update()
       local unit = "raid" .. i
       if UnitExists(unit) then
         local role = UnitGroupRolesAssigned(unit)
-        if role == "TANK" then
+        if E:IsSecretValue(role) then
+          role = nil
+        elseif role == "TANK" then
           tank = tank + 1
         elseif role == "HEALER" then
           heal = heal + 1

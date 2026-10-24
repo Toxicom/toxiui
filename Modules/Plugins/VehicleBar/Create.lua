@@ -60,7 +60,7 @@ end
 function VB:CreateVigorSegments()
   local segments = {}
   local chargeInfo = self:GetSpellChargeInfo()
-  if not chargeInfo then return end
+  if not chargeInfo or E:IsSecretValue(chargeInfo.maxCharges) then return end
 
   local maxCharges = chargeInfo.maxCharges
   local height = self.vdb.height or 10
