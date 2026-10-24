@@ -5,6 +5,23 @@ local COVENANT_COLORS = COVENANT_COLORS
 -- Addon and community branding strings, all exposed via F.String.*
 -- Depends on F.String utilities from String.lua (load after)
 
+-- Mythic+ rarity colors (Blizzard's keystone level / dungeon score color curves)
+
+function F.String.KeystoneLevel(msg, level)
+  local color = C_ChallengeMode and level and C_ChallengeMode.GetKeystoneLevelRarityColor(level)
+  return color and color:WrapTextInColorCode(msg) or msg
+end
+
+function F.String.DungeonScore(msg, score)
+  local color = C_ChallengeMode and score and C_ChallengeMode.GetDungeonScoreRarityColor(score)
+  return color and color:WrapTextInColorCode(msg) or msg
+end
+
+function F.String.DungeonMapScore(msg, score)
+  local color = C_ChallengeMode and score and C_ChallengeMode.GetSpecificDungeonOverallScoreRarityColor(score)
+  return color and color:WrapTextInColorCode(msg) or msg
+end
+
 -- Client tags
 
 function F.String.Retail()

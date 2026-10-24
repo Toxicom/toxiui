@@ -118,10 +118,8 @@ function GM:UpdateMythic()
 
     if keystoneMapID and keystoneMapID > 0 then
       local dungeonName = C_ChallengeMode.GetMapUIInfo(keystoneMapID) or "Unknown"
-      local colorObj = C_ChallengeMode.GetKeystoneLevelRarityColor(keystoneLevel)
       local levelText = "+" .. keystoneLevel
-      local levelColored = levelText
-      if colorObj and colorObj.GenerateHexColor then levelColored = F.String.Color(levelText, colorObj:GenerateHexColor()) end
+      local levelColored = F.String.KeystoneLevel(levelText, keystoneLevel)
       self.mythic.keystone:SetText(prefix .. F.String.ToxiUI(dungeonName .. " (" .. levelColored .. ")"))
     else
       self.mythic.keystone:SetText(prefix .. F.String.ToxiUI("N/A"))
@@ -135,8 +133,7 @@ function GM:UpdateMythic()
       local prefix = "M+ Score: "
       local score = info.currentSeasonScore
       if score > 0 then
-        local color = C_ChallengeMode.GetDungeonScoreRarityColor(score)
-        self.mythic.score:SetText(prefix .. F.String.Color(score, color:GenerateHexColor()))
+        self.mythic.score:SetText(prefix .. F.String.DungeonScore(score, score))
       else
         self.mythic.score:SetText(prefix .. F.String.ToxiUI("N/A"))
       end
@@ -155,10 +152,8 @@ function GM:UpdateMythic()
           if i == 1 then self.mythic.latestRuns:SetText(F.String.GradientClass("Latest runs")) end
 
           local dungeonName = C_ChallengeMode.GetMapUIInfo(historyRun.mapChallengeModeID) or "Unknown"
-          local colorObj = C_ChallengeMode.GetKeystoneLevelRarityColor(historyRun.level)
           local levelText = "+" .. historyRun.level
-          local levelColored = levelText
-          if colorObj and colorObj.GenerateHexColor then levelColored = F.String.Color(levelText, colorObj:GenerateHexColor()) end
+          local levelColored = F.String.KeystoneLevel(levelText, historyRun.level)
           local output = ("%s (%s)"):format(dungeonName, levelColored)
           historyFrame:SetText(historyRun.completed and F.String.Good(output) or F.String.Error(output))
         else
