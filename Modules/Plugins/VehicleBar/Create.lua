@@ -30,24 +30,20 @@ function VB:CreateVigorBar()
 
   vigorBar:Hide()
 
-  -- Register for spell charge updates
   vigorBar:UnregisterAllEvents()
-  vigorBar:RegisterEvent("SPELL_UPDATE_CHARGES")
   vigorBar:SetScript("OnEvent", function(_, event)
-    if event == "SPELL_UPDATE_CHARGES" and self:IsVigorAvailable() and self.vigorBar then
+    if event == "SPELL_UPDATE_CHARGES" then
       -- Only update segment values, don't recreate
       self:UpdateVigorSegments()
     end
   end)
 
-  -- Ticker for smooth recharge animation (0.05s = 20fps, visually indistinguishable from per-frame)
-  vigorBar.vigorTicker = C_Timer.NewTicker(0.05, function()
-    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then self:UpdateVigorSegments() end
+  -- Charge events and tickers only run while the bar is visible
+  vigorBar:SetScript("OnShow", function()
+    self:StartVigorUpdates()
   end)
-
-  -- Use C_Timer for speed text updates (more efficient than OnUpdate throttling)
-  vigorBar.speedTextTicker = C_Timer.NewTicker(self.vdb.speedTextUpdateRate, function()
-    if self:IsVigorAvailable() and self.vigorBar and self.vigorBar:IsShown() then self:UpdateSpeedText() end
+  vigorBar:SetScript("OnHide", function()
+    self:StopVigorUpdates()
   end)
 
   self.vigorBar = vigorBar
@@ -55,6 +51,46 @@ function VB:CreateVigorBar()
 
   self:CreateVigorSegments()
   if not F.Table.IsEmpty(self.vigorBar.segments) then self:UpdateVigorSegments() end
+end
+
+function VB:StartVigorUpdates()
+  local vigorBar = self.vigorBar
+  if not vigorBar then return end
+
+  self:StopVigorUpdates()
+
+  -- Register for spell charge updates
+  vigorBar:RegisterEvent("SPELL_UPDATE_CHARGES")
+
+  -- Ticker for smooth recharge animation (0.05s = 20fps, visually indistinguishable from per-frame)
+  vigorBar.vigorTicker = C_Timer.NewTicker(0.05, function()
+    self:UpdateVigorSegments()
+  end)
+
+  -- Use C_Timer for speed text updates (more efficient than OnUpdate throttling)
+  vigorBar.speedTextTicker = C_Timer.NewTicker(self.vdb.speedTextUpdateRate, function()
+    self:UpdateSpeedText()
+  end)
+
+  self:UpdateVigorSegments()
+  self:UpdateSpeedText()
+end
+
+function VB:StopVigorUpdates()
+  local vigorBar = self.vigorBar
+  if not vigorBar then return end
+
+  vigorBar:UnregisterEvent("SPELL_UPDATE_CHARGES")
+
+  if vigorBar.vigorTicker then
+    vigorBar.vigorTicker:Cancel()
+    vigorBar.vigorTicker = nil
+  end
+
+  if vigorBar.speedTextTicker then
+    vigorBar.speedTextTicker:Cancel()
+    vigorBar.speedTextTicker = nil
+  end
 end
 
 function VB:CreateVigorSegments()
