@@ -112,6 +112,9 @@ local function getSkinsData()
         boolLine("Center Buff Bar", function()
           return E.db.TXUI.addons.cooldownManager.centering.buffBar
         end),
+        boolLine("Buff Bar Grad.", function()
+          return E.db.TXUI.addons.cooldownManager.buffBarGradient and E.db.TXUI.themes.gradientMode.enabled
+        end),
         boolLine("Class Bar Ovrd", function()
           return E.db.TXUI.addons.cooldownManager.classBarOverride.enabled
         end),
