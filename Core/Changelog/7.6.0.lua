@@ -1,8 +1,8 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
-TXUI.Changelog["7.5.7"] = {
+TXUI.Changelog["7.6.0"] = {
   HOTFIX = true,
-  RELEASE_DATE = "",
+  RELEASE_DATE = "Mon TBD, 2026",
   CHANGES = {
     "* Breaking changes",
     "Removed BigWigs support" .. F.String.Sublist("The BigWigs profile, " .. F.String.ToxiUI("/tx profile bw") .. " command and the BigWigs pull timer skin are gone"),
