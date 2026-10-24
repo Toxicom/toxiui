@@ -11,6 +11,14 @@ TXUI.Changelog["7.5.7"] = {
     F.String.Retail() .. F.String.Menu.WunderBar() .. " MicroMenu: Show your character stats in the Character button tooltip" .. F.String.Sublist(
       "Item level, primary stat, secondary stats and tertiary stats you have"
     ) .. F.String.Sublist("Can be toggled in MicroMenu settings"),
+    F.String.Retail()
+      .. "New "
+      .. F.String.Menu.WunderBar()
+      .. " module: Weekly"
+      .. F.String.Sublist("Shows your keystone, Mythic+ rating or Great Vault progress")
+      .. F.String.Sublist("Tooltip with Great Vault rewards, this week's runs, coffer keys and dungeon scores")
+      .. F.String.Sublist("Left click toggles the Great Vault, Shift-Left links your keystone")
+      .. F.String.Sublist("Right click teleports to your keystone's dungeon, Shift-Right opens the season teleports"),
 
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",

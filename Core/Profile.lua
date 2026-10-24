@@ -1172,6 +1172,16 @@ P.wunderbar = {
       iconColor = false,
       iconFontSize = 18,
     },
+    Weekly = {
+      showIcon = true,
+      useUppercase = true,
+      textMode = "KEY", -- KEY, RATING, VAULT
+      showDungeonScores = true,
+
+      icon = F.String.ConvertGlyph(59715),
+      iconColor = false,
+      iconFontSize = 18,
+    },
     Hearthstone = {
       showIcon = true,
 

@@ -14,5 +14,6 @@ function O:WunderBar_SubModules()
   self:WunderBar_SubModules_System()
   self:WunderBar_SubModules_Time()
   self:WunderBar_SubModules_Volume()
+  if TXUI.IsRetail then self:WunderBar_SubModules_Weekly() end
   self:WunderBar_SubModules_ElvUILDB()
 end

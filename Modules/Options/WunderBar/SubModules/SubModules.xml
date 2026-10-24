@@ -12,5 +12,6 @@
   <Script file='System.lua' />
   <Script file='Time.lua' />
   <Script file='Volume.lua' />
+  <Script file='Weekly.lua' />
   <Script file='ElvUILDB.lua' />
 </Ui>
