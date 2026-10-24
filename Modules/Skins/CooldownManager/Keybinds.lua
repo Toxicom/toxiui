@@ -55,6 +55,17 @@ function CM:ScanElvUIBindings()
   return result
 end
 
+-- RefreshData fires often (combat, cooldown changes), so the action bar scan is cached
+-- and only dropped when bindings or action bar contents change
+function CM:GetBindingMap()
+  if not self.bindingMap then self.bindingMap = self:ScanElvUIBindings() end
+  return self.bindingMap
+end
+
+function CM:InvalidateBindingMap()
+  self.bindingMap = nil
+end
+
 function CM:ResolveSpellBinding(spellID, bindingMap)
   if not spellID or spellID == 0 then return nil end
 
@@ -87,9 +98,14 @@ local function GetKeybind(icon)
   return keybind
 end
 
-local function StyleKeybind(keybind, db)
+local function StyleKeybind(keybind, db, styleGeneration)
   keybind:SetFrameStrata("MEDIUM")
   keybind:SetFrameLevel(keybind:GetParent():GetFrameLevel() + 1)
+
+  -- Font & position only change with settings, which re-enable the module and bump the generation
+  if keybind.styleGeneration == styleGeneration then return end
+  keybind.styleGeneration = styleGeneration
+
   local text = keybind.text
   text:ClearAllPoints()
   text:SetPoint(db.anchor, keybind:GetParent(), db.anchor, db.xOffset, db.yOffset)
@@ -108,7 +124,7 @@ function CM:RefreshViewerKeybinds(settingKey, bindingMap)
   end
 
   local viewerDB = kdb[settingKey]
-  bindingMap = bindingMap or self:ScanElvUIBindings()
+  bindingMap = bindingMap or self:GetBindingMap()
 
   for child in viewer.itemFramePool:EnumerateActive() do
     if child.Icon and child.cooldownID then
@@ -122,7 +138,7 @@ function CM:RefreshViewerKeybinds(settingKey, bindingMap)
 
       if text then
         local keybind = GetKeybind(child)
-        StyleKeybind(keybind, viewerDB)
+        StyleKeybind(keybind, viewerDB, self.keybindStyleGeneration)
         keybind.text:SetText(text)
         keybind:Show()
       elseif child.txKeybind then
@@ -133,7 +149,8 @@ function CM:RefreshViewerKeybinds(settingKey, bindingMap)
 end
 
 function CM:RefreshAllKeybinds()
-  local bindingMap = self:ScanElvUIBindings()
+  self:InvalidateBindingMap()
+  local bindingMap = self:GetBindingMap()
   for _, key in ipairs(keybindKeys) do
     self:RefreshViewerKeybinds(key, bindingMap)
   end
@@ -142,6 +159,8 @@ end
 do
   local delayCallback
   function CM:OnKeybindEvent()
+    self:InvalidateBindingMap()
+
     if not delayCallback then delayCallback = function()
       if self.keybindsActive then self:RefreshAllKeybinds() end
     end end
@@ -154,7 +173,12 @@ end
 function CM:EnableKeybinds()
   if self.keybindsActive or not E.private.actionbar.enable then return end
   self.keybindsActive = true
+  self.keybindStyleGeneration = (self.keybindStyleGeneration or 0) + 1
+  self:InvalidateBindingMap()
 
+  -- Slot/macro changes only drop the cache, the next RefreshData rescans
+  F.Event.RegisterFrameEventAndCallback("ACTIONBAR_SLOT_CHANGED", self.InvalidateBindingMap, self)
+  F.Event.RegisterFrameEventAndCallback("UPDATE_MACROS", self.InvalidateBindingMap, self)
   F.Event.RegisterFrameEventAndCallback("UPDATE_BINDINGS", self.OnKeybindEvent, self)
   F.Event.RegisterFrameEventAndCallback("PLAYER_SPECIALIZATION_CHANGED", self.OnKeybindEvent, self)
   F.Event.RegisterFrameEventAndCallback("PLAYER_TALENT_UPDATE", self.OnKeybindEvent, self)
@@ -206,7 +230,10 @@ end
 function CM:DisableKeybinds()
   if not self.keybindsActive then return end
   self.keybindsActive = false
+  self:InvalidateBindingMap()
 
+  F.Event.UnregisterFrameEventAndCallback("ACTIONBAR_SLOT_CHANGED", self)
+  F.Event.UnregisterFrameEventAndCallback("UPDATE_MACROS", self)
   F.Event.UnregisterFrameEventAndCallback("UPDATE_BINDINGS", self)
   F.Event.UnregisterFrameEventAndCallback("PLAYER_SPECIALIZATION_CHANGED", self)
   F.Event.UnregisterFrameEventAndCallback("PLAYER_TALENT_UPDATE", self)
