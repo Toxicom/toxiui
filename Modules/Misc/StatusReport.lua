@@ -7,6 +7,7 @@ local M = TXUI:GetModule("Misc")
 
 local wipe, sort, format = wipe, sort, string.format
 local next, pairs, ipairs, tinsert = next, pairs, ipairs, tinsert
+local tconcat = table.concat
 
 local CreateFrame = CreateFrame
 local GetAddOnMetadata = (C_AddOns and C_AddOns.GetAddOnMetadata) or GetAddOnMetadata
@@ -46,6 +47,21 @@ local function reqLine(label, requirementsKey, dbValue)
   }
 end
 
+-- Helper: compact feature group, enabled parts highlighted and disabled parts dimmed
+-- tagsFn returns { { "Tag", isEnabled }, ... }, keep tags short, the value column fits ~15 characters
+local function tagsLine(label, tagsFn)
+  return {
+    label,
+    function()
+      local parts = {}
+      for _, tag in ipairs(tagsFn()) do
+        parts[#parts + 1] = tag[2] and F.String.Good(tag[1]) or F.String.Muted(tag[1])
+      end
+      return tconcat(parts, " ")
+    end,
+  }
+end
+
 -- Skin section definitions for the left side panel
 -- Same format as getSections(): { header, lines } with false/nil entries filtered
 local function getSkinsData()
@@ -80,52 +96,33 @@ local function getSkinsData()
         boolLine("Fading", function()
           return E.db.TXUI.addons.cooldownManager.fading
         end),
-        boolLine("Bars Width", function()
-          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
-          return dw and dw.enabled and dw.powerClassBars
-        end),
-        boolLine("Castbar Width", function()
-          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
-          return dw and dw.enabled and dw.castBar
-        end),
-        boolLine("Anchor Essential", function()
-          return E.db.TXUI.addons.cooldownManager.anchors.essential.enabled
-        end),
-        boolLine("Anchor Utility", function()
-          return E.db.TXUI.addons.cooldownManager.anchors.utility.enabled
-        end),
-        boolLine("Anchor Buff", function()
-          return E.db.TXUI.addons.cooldownManager.anchors.buff.enabled
-        end),
-        boolLine("Anchor Buff Bar", function()
-          return E.db.TXUI.addons.cooldownManager.anchors.buffBar.enabled
-        end),
-        boolLine("Center Essential", function()
-          return E.db.TXUI.addons.cooldownManager.centering.essential
-        end),
-        boolLine("Center Utility", function()
-          return E.db.TXUI.addons.cooldownManager.centering.utility
-        end),
-        boolLine("Center Buff", function()
-          return E.db.TXUI.addons.cooldownManager.centering.buff
-        end),
-        boolLine("Center Buff Bar", function()
-          return E.db.TXUI.addons.cooldownManager.centering.buffBar
-        end),
         boolLine("Buff Bar Grad.", function()
           return E.db.TXUI.addons.cooldownManager.buffBarGradient and E.db.TXUI.themes.gradientMode.enabled
         end),
-        boolLine("Class Bar Ovrd", function()
-          return E.db.TXUI.addons.cooldownManager.classBarOverride.enabled
+        tagsLine("Dynamic Width", function()
+          local dw = E.db.TXUI.addons.cooldownManager.dynamicWidth
+          return { { "Bars", dw.enabled and dw.powerClassBars }, { "Castbar", dw.enabled and dw.castBar } }
         end),
-        boolLine("Power Bar Ovrd", function()
-          return E.db.TXUI.addons.cooldownManager.powerBarOverride.enabled
+        tagsLine("Anchoring", function()
+          local anchors = E.db.TXUI.addons.cooldownManager.anchors
+          return {
+            { "Ess", anchors.essential.enabled },
+            { "Util", anchors.utility.enabled },
+            { "Buff", anchors.buff.enabled },
+            { "Bar", anchors.buffBar.enabled },
+          }
         end),
-        boolLine("Keybinds Ess.", function()
-          return E.db.TXUI.addons.cooldownManager.keybinds.essential.enabled
+        tagsLine("Centering", function()
+          local centering = E.db.TXUI.addons.cooldownManager.centering
+          return { { "Ess", centering.essential }, { "Util", centering.utility }, { "Buff", centering.buff }, { "Bar", centering.buffBar } }
         end),
-        boolLine("Keybinds Util.", function()
-          return E.db.TXUI.addons.cooldownManager.keybinds.utility.enabled
+        tagsLine("Keybinds", function()
+          local keybinds = E.db.TXUI.addons.cooldownManager.keybinds
+          return { { "Ess", keybinds.essential.enabled }, { "Util", keybinds.utility.enabled } }
+        end),
+        tagsLine("Overrides", function()
+          local cm = E.db.TXUI.addons.cooldownManager
+          return { { "Class", cm.classBarOverride.enabled }, { "Power", cm.powerBarOverride.enabled } }
         end),
       },
     })
