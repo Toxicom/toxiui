@@ -1130,7 +1130,17 @@ Update["colorcycle"] = function(self, elapsed, i)
 
     if runUpdate then
       local r, g, b = self.CurrentR / 255, self.CurrentG / 255, self.CurrentB / 255
-      Set[self.ColorType](self.Parent, "VERTICAL", CreateColor(r, g, b, self.StartA), CreateColor(r, g, b, self.EndA))
+
+      -- Runs every frame, reuse the color objects
+      if not self.RGBStartColor then
+        self.RGBStartColor = CreateColor(r, g, b, self.StartA)
+        self.RGBEndColor = CreateColor(r, g, b, self.EndA)
+      else
+        self.RGBStartColor:SetRGBA(r, g, b, self.StartA)
+        self.RGBEndColor:SetRGBA(r, g, b, self.EndA)
+      end
+
+      Set[self.ColorType](self.Parent, "VERTICAL", self.RGBStartColor, self.RGBEndColor)
     end
   end
 end

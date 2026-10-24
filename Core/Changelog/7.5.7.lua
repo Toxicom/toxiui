@@ -24,6 +24,7 @@ TXUI.Changelog["7.5.7"] = {
     F.String.Menu.WunderBar() .. ": " .. F.String.ElvUI() .. " datatexts skip text processing when their text hasn't changed",
     F.String.Menu.WunderBar() .. " DataBar: Coalesce quest log updates and ignore non-reputation combat text",
     F.String.Menu.WunderBar() .. " Flyouts: Stop cooldown timers when the flyout closes",
+    "Animations: Reuse colors for the RGB animation instead of creating new ones every frame",
 
     "* Bug fixes",
     "Fixed " .. F.String.ToxiUI("[tx:health]") .. " tags never showing Dead, Ghost or Offline status",
