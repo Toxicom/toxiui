@@ -538,6 +538,74 @@ function MM:ToxiUITooltip(button)
   DT.tooltip:Show()
 end
 
+-- Character stats shown in the Character button tooltip
+do
+  local CR_VERSATILITY_DAMAGE_DONE = CR_VERSATILITY_DAMAGE_DONE
+  local GetAverageItemLevel = GetAverageItemLevel
+  local GetAvoidance = GetAvoidance
+  local GetCombatRatingBonus = GetCombatRatingBonus
+  local GetCritChance = GetCritChance
+  local GetHaste = GetHaste
+  local GetLifesteal = GetLifesteal
+  local GetMasteryEffect = GetMasteryEffect
+  local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization
+  local GetSpeed = GetSpeed
+  local GetVersatilityBonus = GetVersatilityBonus
+  local UnitStat = UnitStat
+
+  -- All of these can be secret while unit stats are restricted
+  local function FormatPercent(value)
+    if E:IsSecretValue(value) or not value then return "--" end
+    return format("%.2f%%", value)
+  end
+
+  local function AddStatLine(label, value, r, g, b)
+    DT.tooltip:AddDoubleLine(label, value, 1, 1, 1, r, g, b)
+  end
+
+  function MM:AddCharacterStats()
+    if not TXUI.IsRetail then return end
+
+    local classColor = E:ClassColor(E.myclass, true)
+    local r, g, b = classColor.r, classColor.g, classColor.b
+
+    DT.tooltip:AddLine(" ")
+
+    local avgItemLevel, avgItemLevelEquipped = GetAverageItemLevel()
+    if E:NotSecretValue(avgItemLevel) and E:NotSecretValue(avgItemLevelEquipped) and avgItemLevelEquipped then
+      local itemLevelText = format("%.1f", avgItemLevelEquipped)
+      if avgItemLevel - avgItemLevelEquipped >= 0.1 then itemLevelText = itemLevelText .. F.String.Silver(format(" / %.1f", avgItemLevel)) end
+      AddStatLine(STAT_AVERAGE_ITEM_LEVEL, itemLevelText, r, g, b)
+    end
+
+    local specCache = DT.SPECIALIZATION_CACHE and DT.SPECIALIZATION_CACHE[GetSpecialization()]
+    local primaryStat = specCache and specCache.statID
+    if primaryStat then
+      local value = UnitStat("player", primaryStat)
+      AddStatLine(_G["SPELL_STAT" .. primaryStat .. "_NAME"], E:NotSecretValue(value) and BreakUpLargeNumbers(value) or "--", r, g, b)
+    end
+
+    AddStatLine(STAT_CRITICAL_STRIKE, FormatPercent(GetCritChance()), r, g, b)
+    AddStatLine(STAT_HASTE, FormatPercent(GetHaste()), r, g, b)
+    AddStatLine(STAT_MASTERY, FormatPercent((GetMasteryEffect())), r, g, b)
+
+    local versRating = GetCombatRatingBonus(CR_VERSATILITY_DAMAGE_DONE)
+    local versBonus = GetVersatilityBonus(CR_VERSATILITY_DAMAGE_DONE)
+    local versatility = E:NotSecretValue(versRating) and E:NotSecretValue(versBonus) and (versRating + versBonus) or nil
+    AddStatLine(STAT_VERSATILITY, FormatPercent(versatility), r, g, b)
+
+    -- Tertiary stats only when the character actually has some
+    for _, tertiary in ipairs {
+      { STAT_LIFESTEAL, GetLifesteal() },
+      { STAT_AVOIDANCE, GetAvoidance() },
+      { STAT_SPEED, GetSpeed() },
+    } do
+      local value = tertiary[2]
+      if E:NotSecretValue(value) and value and value > 0 then AddStatLine(tertiary[1], FormatPercent(value), r, g, b) end
+    end
+  end
+end
+
 function MM:ButtonEnter(button)
   WB:SetFontAccentColor(button.icon)
 
@@ -588,6 +656,8 @@ function MM:ButtonEnter(button)
 
         DT.tooltip:AddLine(tip, nil, nil, nil, true)
       end
+
+      if button.id == "char" and self.db.general.characterStats then self:AddCharacterStats() end
     end
 
     DT.tooltip:AddLine(" ")

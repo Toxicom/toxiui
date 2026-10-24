@@ -1356,6 +1356,7 @@ P.wunderbar = {
 
         additionalTooltips = true,
         newbieToolips = true,
+        characterStats = true,
         onlyFriendsWoW = false,
         onlyFriendsWoWRetail = false,
       },

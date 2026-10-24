@@ -8,6 +8,9 @@ TXUI.Changelog["7.5.7"] = {
     "Removed BigWigs support" .. F.String.Sublist("The BigWigs profile, " .. F.String.ToxiUI("/tx profile bw") .. " command and the BigWigs pull timer skin are gone"),
 
     "* New features",
+    F.String.Retail() .. F.String.Menu.WunderBar() .. " MicroMenu: Show your character stats in the Character button tooltip" .. F.String.Sublist(
+      "Item level, primary stat, secondary stats and tertiary stats you have"
+    ) .. F.String.Sublist("Can be toggled in MicroMenu settings"),
 
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",
