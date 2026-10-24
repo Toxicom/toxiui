@@ -19,6 +19,11 @@ TXUI.Changelog["7.5.7"] = {
       .. F.String.Sublist("Tooltip with Great Vault rewards, this week's runs, coffer keys and dungeon scores")
       .. F.String.Sublist("Left click toggles the Great Vault, Shift-Left links your keystone")
       .. F.String.Sublist("Right click teleports to your keystone's dungeon, Shift-Right opens the season teleports"),
+    F.String.Retail() .. F.String.Menu.WunderBar() .. " DataBar: New House Favor mode" .. F.String.Sublist(
+      "Tooltip with house level, favor, next level unlocks, neighborhood endeavor, decor storage and teleport cooldown"
+    ) .. F.String.Sublist("Left click toggles the Housing Dashboard, Right click teleports home, Shift-Left toggles the House Editor at home") .. F.String.Sublist(
+      "Auto mode now shows house favor while you're at your house or plot"
+    ),
 
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",

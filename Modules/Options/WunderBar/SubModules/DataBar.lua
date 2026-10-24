@@ -31,10 +31,17 @@ function O:WunderBar_SubModules_DataBar()
     step = 1,
   }, nil, nil, nil, iconDisabled)
 
-  tab.generalGroup.args.mode = ACH:Select("Mode", nil, 3, {
-    ["auto"] = "Smart (Experience under Max Level)",
-    ["rep"] = "Reputation",
-  }, nil, "double")
+  tab.generalGroup.args.mode = ACH:Select(
+    "Mode",
+    TXUI.IsRetail and "Smart shows Experience under Max Level, then House Favor while on your plot, then your watched Reputation, then House Favor if you own a house." or nil,
+    3,
+    F.Table.Join({
+      ["auto"] = "Smart (Experience under Max Level)",
+      ["rep"] = "Reputation",
+    }, F.Table.If(TXUI.IsRetail, { ["house"] = "House Favor" })),
+    nil,
+    "double"
+  )
 
   -- Bar Group
   tab.barGroup = ACH:Group("Bar", nil, 2)
