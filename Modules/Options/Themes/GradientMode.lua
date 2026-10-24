@@ -67,497 +67,132 @@ function O:ToxiUI_Themes_GradientMode()
     }
   end
 
-  -- Colors
-  do
-    -- Tab
-    local tab = self:AddGroup(options, {
-      name = "Class Colors",
-    }).args
-
-    -- Colors Group
-    local colorGroup = self:AddInlineDesc(tab, {
-      name = "Class Colors",
-    }, {
-      name = TXUI.Title
-        .. " Gradient theme "
-        .. F.String.Class("shifts", "MONK")
-        .. " from one color to another. You can change the "
-        .. F.String.Class("shifts", "MONK")
-        .. " below.\n\n",
-    }).args
-
-    -- Get correct classname table
-    local classNames = LOCALIZED_CLASS_NAMES_MALE
-    if UnitSex("player") == 3 then classNames = LOCALIZED_CLASS_NAMES_FEMALE end
-
-    local function generateClassOptions(class)
-      -- Class Name
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 120,
-        name = F.String.Class(classNames[class], class),
-      })
-
-      -- Shift Color
-      colorGroup[class .. "shift"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.classColorMap." .. I.Enum.GradientMode.Color.SHIFT,
-          P.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT],
-          class
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.classColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-        end, class),
-      }
-
-      -- Spacer for arrow & arrow
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 30,
-        name = "",
-      })
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 30,
-        name = F.String.Class(">", "MONK"),
-      })
-
-      -- Normal Color
-      colorGroup[class .. "normal"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.classColorMap." .. I.Enum.GradientMode.Color.NORMAL,
-          P.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.NORMAL],
-          class
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.classColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-        end, class),
-      }
-
-      -- Gradient Preview
-      colorGroup[class .. "preview"] = {
-        order = self:GetOrder(),
-        type = "description",
-        name = "classColorMap:" .. class,
-        dialogControl = "TXUIGradientPreview",
-        width = 1,
-        customWidth = 120,
-      }
-
-      -- Spacer
-      self:AddTinySpacer(colorGroup)
-    end
-
-    -- Class Colors (alphabetical by localized name)
-    local sortedClasses = {}
-    for class, _ in pairs(P.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-      if classNames[class] ~= nil then sortedClasses[#sortedClasses + 1] = class end
-    end
-    table.sort(sortedClasses, function(a, b)
-      return classNames[a] < classNames[b]
-    end)
-    for _, class in ipairs(sortedClasses) do
-      generateClassOptions(class)
-    end
+  -- Shared description for every color group
+  local shiftsDesc = function(what)
+    return "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of " .. what .. ".\n\n"
   end
 
-  -- Reaction Colors
+  -- Units
   do
-    local name = "NPC Colors"
-
-    -- Tab
     local tab = self:AddGroup(options, {
-      name = name,
+      name = "Units",
     }).args
 
-    -- Colors Group
-    local colorGroup = self:AddInlineDesc(tab, {
-      name = name,
-    }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of NPC colors.\n\n",
-    }).args
+    -- Class Colors
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "Class Colors",
+      }, {
+        name = TXUI.Title
+          .. " Gradient theme "
+          .. F.String.Class("shifts", "MONK")
+          .. " from one color to another. You can change the "
+          .. F.String.Class("shifts", "MONK")
+          .. " below.\n\n",
+      }).args
 
-    -- Reaction Colors
-    for reaction, _ in pairs(P.themes.gradientMode.reactionColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-      -- Get correct color index for blizzard colors
-      local colorIndex = 1
-      if reaction == "GOOD" then
-        colorIndex = 5
-      elseif reaction == "NEUTRAL" then
-        colorIndex = 4
+      -- Get correct classname table
+      local classNames = LOCALIZED_CLASS_NAMES_MALE
+      if UnitSex("player") == 3 then classNames = LOCALIZED_CLASS_NAMES_FEMALE end
+
+      local rows = {}
+      for class, _ in pairs(P.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.SHIFT]) do
+        if classNames[class] ~= nil then rows[#rows + 1] = { key = class, label = F.String.Class(classNames[class], class), sort = classNames[class] } end
       end
 
-      -- Reaction Name
-      local npcColorName = "Neutral"
-      if reaction == "GOOD" then
-        npcColorName = "Friendly"
-      elseif reaction == "BAD" then
-        npcColorName = "Enemy"
-      end
-
-      -- Reaction Name
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 120,
-        name = F.String.RGB(npcColorName, FACTION_BAR_COLORS[colorIndex]),
-      })
-
-      -- Shift Color
-      colorGroup[reaction .. "shift"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.reactionColorMap." .. I.Enum.GradientMode.Color.SHIFT,
-          P.themes.gradientMode.reactionColorMap[I.Enum.GradientMode.Color.SHIFT],
-          reaction
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.reactionColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-        end, reaction),
-      }
-
-      -- Spacer for arrow & arrow
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 30,
-        name = "",
-      })
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 30,
-        name = F.String.Class(">", "MONK"),
-      })
-
-      -- Normal Color
-      colorGroup[reaction .. "normal"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.reactionColorMap." .. I.Enum.GradientMode.Color.NORMAL,
-          P.themes.gradientMode.reactionColorMap[I.Enum.GradientMode.Color.NORMAL],
-          reaction
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.reactionColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-        end, reaction),
-      }
-
-      -- Gradient Preview
-      colorGroup[reaction .. "preview"] = {
-        order = self:GetOrder(),
-        type = "description",
-        name = "reactionColorMap:" .. reaction,
-        dialogControl = "TXUIGradientPreview",
-        width = 1,
-        customWidth = 120,
-      }
-
-      -- Spacer
-      self:AddTinySpacer(colorGroup)
-    end
-  end
-
-  -- Power Colors
-  do
-    local name = "Power Colors"
-
-    -- Tab
-    local tab = self:AddGroup(options, {
-      name = name,
-    }).args
-
-    -- Power Color Group
-    local colorGroup = self:AddInlineDesc(tab, {
-      name = name,
-    }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of Power colors.\n\n",
-    }).args
-
-    -- Power Colors
-    local function generatePowerColors(power)
-      local colorIndex = power
-      if colorIndex == "ALT_POWER" then colorIndex = "MANA" end
-
-      -- Class Name
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 120,
-        name = F.String.RGB(F.String.LowercaseEnum(power), { F.CalculateMultiplierColorArray(1.35, PowerBarColor[colorIndex]) }),
-      })
-
-      -- Shift Color
-      colorGroup[power .. "shift"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.powerColorMap." .. I.Enum.GradientMode.Color.SHIFT,
-          P.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT],
-          power
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.powerColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power")
-        end, power),
-      }
-
-      -- Spacer for arrow & arrow
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 30,
-        name = "",
-      })
-      self:AddInlineSoloDesc(colorGroup, {
-        width = 1,
-        customWidth = 30,
-        name = F.String.Class(">", "MONK"),
-      })
-
-      -- Normal Color
-      colorGroup[power .. "normal"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.powerColorMap." .. I.Enum.GradientMode.Color.NORMAL,
-          P.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.NORMAL],
-          power
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.powerColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Power")
-        end, power),
-      }
-
-      -- Gradient Preview
-      colorGroup[power .. "preview"] = {
-        order = self:GetOrder(),
-        type = "description",
-        name = "powerColorMap:" .. power,
-        dialogControl = "TXUIGradientPreview",
-        width = 1,
-        customWidth = 120,
-      }
-
-      -- Spacer
-      self:AddTinySpacer(colorGroup)
-    end
-
-    local wrathExcluded = {
-      ["PAIN"] = true,
-      ["FURY"] = true,
-      ["LUNAR_POWER"] = true,
-      ["INSANITY"] = true,
-      ["MAELSTROM"] = true,
-    }
-
-    for power, _ in pairs(P.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-      if TXUI.IsRetail or (TXUI.IsClassic and wrathExcluded[power] == nil) then generatePowerColors(power) end
-    end
-  end
-
-  -- Other Colors
-  do
-    -- Tab
-    local tab = self:AddGroup(options, {
-      name = "Other Colors",
-    }).args
-
-    -- State Group
-    local stateGroup = self:AddInlineDesc(tab, {
-      name = "State Colors",
-    }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of State colors.\n\n",
-    }).args
-
-    -- State Colors
-    for special, _ in pairs(P.themes.gradientMode.specialColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-      local nameColor = P.themes.gradientMode.specialColorMap[I.Enum.GradientMode.Color.NORMAL][special]
-      if special == "DEAD" then nameColor = F.Table.HexToRGB("#ffffff") end
-
-      -- State Description
-      self:AddInlineSoloDesc(stateGroup, {
-        width = 1,
-        customWidth = 120,
-        name = F.String.RGB(F.String.LowercaseEnum(special), nameColor),
-      })
-
-      -- Shift Color
-      stateGroup[special .. "shift"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.specialColorMap." .. I.Enum.GradientMode.Color.SHIFT,
-          P.themes.gradientMode.specialColorMap[I.Enum.GradientMode.Color.SHIFT],
-          special
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.specialColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-        end, special),
-      }
-
-      -- Spacer for arrow & arrow
-      self:AddInlineSoloDesc(stateGroup, {
-        width = 1,
-        customWidth = 30,
-        name = "",
-      })
-      self:AddInlineSoloDesc(stateGroup, {
-        width = 1,
-        customWidth = 30,
-        name = F.String.Class(">", "MONK"),
-      })
-
-      -- Normal Color
-      stateGroup[special .. "normal"] = {
-        order = self:GetOrder(),
-        type = "color",
-        name = "",
-        hasAlpha = false,
-        width = 1,
-        customWidth = 30,
-        get = self:GetFontColorGetter(
-          "TXUI.themes.gradientMode.specialColorMap." .. I.Enum.GradientMode.Color.NORMAL,
-          P.themes.gradientMode.specialColorMap[I.Enum.GradientMode.Color.NORMAL],
-          special
-        ),
-        set = self:GetFontColorSetter("TXUI.themes.gradientMode.specialColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
-          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Health")
-        end, special),
-      }
-
-      -- Gradient Preview
-      stateGroup[special .. "preview"] = {
-        order = self:GetOrder(),
-        type = "description",
-        name = "specialColorMap:" .. special,
-        dialogControl = "TXUIGradientPreview",
-        width = 1,
-        customWidth = 120,
-      }
-
-      -- Spacer
-      self:AddTinySpacer(stateGroup)
+      self:AddGradientColorRows(colorGroup, "classColorMap", rows, "ThemesGradients.SettingsUpdate.Health")
     end
 
     self:AddSpacer(tab)
 
-    -- Cast Group
-    local castGroup = self:AddInlineDesc(tab, {
-      name = "Castbar Colors",
-    }, {
-      name = "Here you can change the " .. F.String.Class("gradient shifts", "MONK") .. " of Castbar colors.\n\n",
+    -- NPC Colors
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "NPC Colors",
+      }, {
+        name = shiftsDesc("NPC colors"),
+      }).args
+
+      -- Blizzard faction bar colors for the labels
+      self:AddGradientColorRows(colorGroup, "reactionColorMap", {
+        { key = "GOOD", label = F.String.RGB("Friendly", FACTION_BAR_COLORS[5]), sort = 1 },
+        { key = "NEUTRAL", label = F.String.RGB("Neutral", FACTION_BAR_COLORS[4]), sort = 2 },
+        { key = "BAD", label = F.String.RGB("Enemy", FACTION_BAR_COLORS[1]), sort = 3 },
+      }, "ThemesGradients.SettingsUpdate.Health")
+    end
+
+    self:AddSpacer(tab)
+
+    -- State Colors
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "State Colors",
+      }, {
+        name = shiftsDesc("State colors"),
+      }).args
+
+      local rows = {}
+      for special, _ in pairs(P.themes.gradientMode.specialColorMap[I.Enum.GradientMode.Color.SHIFT]) do
+        local nameColor = P.themes.gradientMode.specialColorMap[I.Enum.GradientMode.Color.NORMAL][special]
+        if special == "DEAD" then nameColor = F.Table.HexToRGB("#ffffff") end
+
+        local label = F.String.LowercaseEnum(special)
+        rows[#rows + 1] = { key = special, label = F.String.RGB(label, nameColor), sort = label }
+      end
+
+      self:AddGradientColorRows(colorGroup, "specialColorMap", rows, "ThemesGradients.SettingsUpdate.Health")
+    end
+  end
+
+  -- Bars
+  do
+    local tab = self:AddGroup(options, {
+      name = "Bars",
     }).args
 
-    -- Cast Colors
-    for cast, _ in pairs(P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-      if (cast == "NOINTERRUPT") or (cast == "DEFAULT") then
-        -- Name
-        local settingsName
-        if cast == "NOINTERRUPT" then
-          settingsName = "Non-interruptible"
-        elseif cast == "DEFAULT" then
-          settingsName = "Regular"
-        else
-          settingsName = F.String.LowercaseEnum(cast)
+    -- Power Colors
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "Power Colors",
+      }, {
+        name = shiftsDesc("Power colors"),
+      }).args
+
+      local wrathExcluded = {
+        ["PAIN"] = true,
+        ["FURY"] = true,
+        ["LUNAR_POWER"] = true,
+        ["INSANITY"] = true,
+        ["MAELSTROM"] = true,
+      }
+
+      local rows = {}
+      for power, _ in pairs(P.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT]) do
+        if TXUI.IsRetail or (TXUI.IsClassic and wrathExcluded[power] == nil) then
+          local colorIndex = (power == "ALT_POWER") and "MANA" or power
+          local label = F.String.LowercaseEnum(power)
+          rows[#rows + 1] = { key = power, label = F.String.RGB(label, { F.CalculateMultiplierColorArray(1.35, PowerBarColor[colorIndex]) }), sort = label }
         end
-
-        -- Cast Description
-        self:AddInlineSoloDesc(castGroup, {
-          width = 1,
-          customWidth = 120,
-          name = F.String.RGB(settingsName, P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.NORMAL][cast]),
-        })
-
-        -- Shift Color
-        castGroup[cast .. "shift"] = {
-          order = self:GetOrder(),
-          type = "color",
-          name = "",
-          hasAlpha = false,
-          width = 1,
-          customWidth = 30,
-          get = self:GetFontColorGetter(
-            "TXUI.themes.gradientMode.castColorMap." .. I.Enum.GradientMode.Color.SHIFT,
-            P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.SHIFT],
-            cast
-          ),
-          set = self:GetFontColorSetter("TXUI.themes.gradientMode.castColorMap." .. I.Enum.GradientMode.Color.SHIFT, function()
-            F.Event.TriggerEvent("ThemesGradients.SettingsUpdate")
-          end, cast),
-        }
-
-        -- Spacer for arrow & arrow
-        self:AddInlineSoloDesc(castGroup, {
-          width = 1,
-          customWidth = 30,
-          name = "",
-        })
-        self:AddInlineSoloDesc(castGroup, {
-          width = 1,
-          customWidth = 30,
-          name = F.String.Class(">", "MONK"),
-        })
-
-        -- Normal Color
-        castGroup[cast .. "normal"] = {
-          order = self:GetOrder(),
-          type = "color",
-          name = "",
-          hasAlpha = false,
-          width = 1,
-          customWidth = 30,
-          get = self:GetFontColorGetter(
-            "TXUI.themes.gradientMode.castColorMap." .. I.Enum.GradientMode.Color.NORMAL,
-            P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.NORMAL],
-            cast
-          ),
-          set = self:GetFontColorSetter("TXUI.themes.gradientMode.castColorMap." .. I.Enum.GradientMode.Color.NORMAL, function()
-            F.Event.TriggerEvent("ThemesGradients.SettingsUpdate")
-          end, cast),
-        }
-
-        -- Gradient Preview
-        castGroup[cast .. "preview"] = {
-          order = self:GetOrder(),
-          type = "description",
-          name = "castColorMap:" .. cast,
-          dialogControl = "TXUIGradientPreview",
-          width = 1,
-          customWidth = 120,
-        }
-
-        -- Spacer
-        self:AddTinySpacer(castGroup)
       end
+
+      self:AddGradientColorRows(colorGroup, "powerColorMap", rows, "ThemesGradients.SettingsUpdate.Power")
+    end
+
+    self:AddSpacer(tab)
+
+    -- Castbar Colors
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "Castbar Colors",
+      }, {
+        name = shiftsDesc("Castbar colors"),
+      }).args
+
+      local castNormal = P.themes.gradientMode.castColorMap[I.Enum.GradientMode.Color.NORMAL]
+      self:AddGradientColorRows(colorGroup, "castColorMap", {
+        { key = "DEFAULT", label = F.String.RGB("Regular", castNormal.DEFAULT), sort = 1 },
+        { key = "NOINTERRUPT", label = F.String.RGB("Non-interruptible", castNormal.NOINTERRUPT), sort = 2 },
+      }, "ThemesGradients.SettingsUpdate")
     end
   end
 

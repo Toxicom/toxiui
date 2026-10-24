@@ -4,8 +4,10 @@ local LSM = E.Libs.LSM
 
 local _G = _G
 local format = string.format
+local ipairs = ipairs
 local next = next
 local pairs = pairs
+local sort = table.sort
 local tinsert = table.insert
 local type = type
 local xpcall = xpcall
@@ -319,6 +321,63 @@ function O:AddInlineRequirementsDesc(options, othersGroup, othersDesc, requireme
 
   inlineGroup["args"]["fancyInlineDesc" .. orderIdx] = group
   return inlineGroup
+end
+
+-- Gradient Mode color rows in a grid: label, shift color > normal color, live preview
+-- rows = { { key = "MAGE", label = "Mage", sort = "Mage" }, ... }, sorted by `sort` (numbers or strings, not mixed)
+-- event is triggered after either color of a row changed
+function O:AddGradientColorRows(group, colorMapName, rows, event, columns)
+  columns = columns or 2
+
+  sort(rows, function(a, b)
+    return a.sort < b.sort
+  end)
+
+  local defaults = P.themes.gradientMode[colorMapName]
+  local onChange = function()
+    F.Event.TriggerEvent(event)
+  end
+
+  local function addColor(row, colorType, suffix)
+    local dbPath = "TXUI.themes.gradientMode." .. colorMapName .. "." .. colorType
+
+    group[row.key .. suffix] = {
+      order = self:GetOrder(),
+      type = "color",
+      name = "",
+      hasAlpha = false,
+      width = 1,
+      customWidth = 30,
+      get = self:GetFontColorGetter(dbPath, defaults[colorType], row.key),
+      set = self:GetFontColorSetter(dbPath, onChange, row.key),
+    }
+  end
+
+  for index, row in ipairs(rows) do
+    self:AddInlineSoloDesc(group, { width = 1, customWidth = 120, name = row.label })
+
+    addColor(row, I.Enum.GradientMode.Color.SHIFT, "shift")
+    -- Descriptions can't be centered, so a small spacer pushes the arrow into the middle of the swatches
+    self:AddInlineSoloDesc(group, { width = 1, customWidth = 11, name = "" })
+    self:AddInlineSoloDesc(group, { width = 1, customWidth = 19, name = F.String.Class(">", "MONK") })
+    addColor(row, I.Enum.GradientMode.Color.NORMAL, "normal")
+
+    group[row.key .. "preview"] = {
+      order = self:GetOrder(),
+      type = "description",
+      name = colorMapName .. ":" .. row.key,
+      dialogControl = "TXUIGradientPreview",
+      width = 1,
+      customWidth = 120,
+    }
+
+    -- Line break after a full row of columns, gap between columns otherwise
+    if (index % columns == 0) or (index == #rows) then
+      self:AddTinySpacer(group)
+    else
+      self:AddInlineSoloDesc(group, { width = 1, customWidth = 60, name = "" })
+    end
+  end
 end
 
 function O:AddSpacer(options, big)

@@ -72,6 +72,10 @@ TXUI.Changelog["7.5.7"] = {
     "* Documentation",
 
     "* Settings refactoring",
+    F.String.GradientMode() .. ": More compact color settings, two columns and fewer tabs" .. F.String.Sublist(
+      "The preview bar now shows the colors with Saturation Boost applied"
+    ),
+    "The " .. TXUI.Title .. " logo in the options is now only shown on the General page",
 
     "* Development improvements",
   },

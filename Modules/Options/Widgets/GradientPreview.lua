@@ -3,17 +3,19 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local AceGUI = E.Libs.AceGUI or LibStub("AceGUI-3.0")
 
 local Type = "TXUIGradientPreview"
-local Version = 2
+local Version = 3
 
+-- Reads the gradient color cache, so the preview matches what the bars show (saturation boost included)
 local function ApplyGradient(widget)
   local colorMapName = widget._colorMapName
   local colorKey = widget._colorKey
   if not colorMapName or not colorKey then return end
 
-  local db = E.db.TXUI and E.db.TXUI.themes and E.db.TXUI.themes.gradientMode
-  if not db then return end
-
-  local colorMap = db[colorMapName]
+  local colorMap = F.Color.GetMap(colorMapName)
+  if not colorMap then
+    F.Color.GenerateCache()
+    colorMap = F.Color.GetMap(colorMapName)
+  end
   if not colorMap then return end
 
   local shiftColor = colorMap[I.Enum.GradientMode.Color.SHIFT] and colorMap[I.Enum.GradientMode.Color.SHIFT][colorKey]
@@ -22,7 +24,7 @@ local function ApplyGradient(widget)
   if not shiftColor or not normalColor then return end
 
   widget.texture:SetColorTexture(1, 1, 1, 1)
-  widget.texture:SetGradient("HORIZONTAL", CreateColor(shiftColor.r, shiftColor.g, shiftColor.b, 1), CreateColor(normalColor.r, normalColor.g, normalColor.b, 1))
+  widget.texture:SetGradient("HORIZONTAL", shiftColor, normalColor)
 end
 
 -- Track all active widgets so event callbacks can refresh them
@@ -34,6 +36,11 @@ local function RegisterEvents()
   eventsRegistered = true
 
   local function RefreshAll()
+    if not next(activeWidgets) then return end
+
+    -- Regenerate once here, the gradient module might not have rebuilt the cache yet
+    F.Color.GenerateCache()
+
     for widget in pairs(activeWidgets) do
       ApplyGradient(widget)
     end
