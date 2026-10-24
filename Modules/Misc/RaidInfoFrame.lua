@@ -321,15 +321,16 @@ function RIF:Update()
     for i = 1, total do
       local unit = "raid" .. i
       if UnitExists(unit) then
+        -- Role is secret when unit identity is restricted, skip it from the counts
         local role = UnitGroupRolesAssigned(unit)
-        if E:IsSecretValue(role) then
-          role = nil
-        elseif role == "TANK" then
-          tank = tank + 1
-        elseif role == "HEALER" then
-          heal = heal + 1
-        elseif role == "DAMAGER" then
-          dps = dps + 1
+        if E:NotSecretValue(role) then
+          if role == "TANK" then
+            tank = tank + 1
+          elseif role == "HEALER" then
+            heal = heal + 1
+          elseif role == "DAMAGER" then
+            dps = dps + 1
+          end
         end
       end
     end
