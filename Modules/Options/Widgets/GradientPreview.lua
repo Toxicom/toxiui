@@ -48,6 +48,7 @@ local function RegisterEvents()
 
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.Health", RefreshAll, "TXUIGradientPreview.Health")
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.Power", RefreshAll, "TXUIGradientPreview.Power")
+  F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.ClassResources", RefreshAll, "TXUIGradientPreview.ClassResources")
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate", RefreshAll, "TXUIGradientPreview.Settings")
   F.Event.RegisterCallback("ThemesGradients.DatabaseUpdate", RefreshAll, "TXUIGradientPreview.Database")
 end

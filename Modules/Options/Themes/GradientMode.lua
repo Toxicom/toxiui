@@ -194,6 +194,81 @@ function O:ToxiUI_Themes_GradientMode()
         { key = "NOINTERRUPT", label = F.String.RGB("Non-interruptible", castNormal.NOINTERRUPT), sort = 2 },
       }, "ThemesGradients.SettingsUpdate")
     end
+
+    self:AddSpacer(tab)
+
+    -- Class Resources
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "Class Resources " .. E.NewSign,
+      }, {
+        name = shiftsDesc("your class bar"),
+      }).args
+
+      colorGroup.classResources = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = function()
+          return self:GetEnableName(E.db.TXUI.themes.gradientMode.classResources)
+        end,
+        desc = "Color the pips of your class bar (combo points, holy power, runes, ...) with gradients.",
+        get = function()
+          return E.db.TXUI.themes.gradientMode.classResources
+        end,
+        set = function(_, value)
+          E.db.TXUI.themes.gradientMode.classResources = value
+          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.ClassResources")
+        end,
+      }
+
+      self:AddTinySpacer(colorGroup)
+
+      -- Resources per client, in class bar order
+      local resources = {
+        { key = "COMBO_POINT_1", label = "Combo Point 1" },
+        { key = "COMBO_POINT_2", label = "Combo Point 2" },
+        { key = "COMBO_POINT_3", label = "Combo Point 3" },
+        { key = "COMBO_POINT_4", label = "Combo Point 4" },
+        { key = "COMBO_POINT_5", label = "Combo Point 5" },
+        { key = "COMBO_POINT_6", label = "Combo Point 6", retail = true },
+        { key = "COMBO_POINT_7", label = "Combo Point 7", retail = true },
+        { key = "COMBO_POINT_CHARGED", label = "Charged Point", retail = true },
+        { key = "HOLY_POWER", label = "Holy Power", classic = true },
+        { key = "CHI", label = "Chi", classic = true },
+        { key = "SOUL_SHARDS", label = "Soul Shards", classic = true },
+        { key = "SHADOW_ORBS", label = "Shadow Orbs", classic = true, retail = false },
+        { key = "ARCANE_CHARGES", label = "Arcane Charges", retail = true },
+        { key = "FROST_ICICLES", label = "Icicles", retail = true },
+        { key = "FIRE_BLAST", label = "Fire Blast", retail = true },
+        { key = "ESSENCE", label = "Essence", retail = true },
+        { key = "SOUL_FRAGMENTS", label = "Soul Fragments", retail = true },
+        { key = "SPEAR_TIP", label = "Tip of the Spear", retail = true },
+        { key = "RUNE_BLOOD", label = "Blood Runes", classic = true },
+        { key = "RUNE_FROST", label = "Frost Runes", classic = true },
+        { key = "RUNE_UNHOLY", label = "Unholy Runes", classic = true },
+        { key = "RUNE_DEATH", label = "Death Runes", classic = true, retail = false },
+      }
+
+      local resourceNormal = P.themes.gradientMode.classResourceMap[I.Enum.GradientMode.Color.NORMAL]
+      local rows = {}
+      for index, resource in ipairs(resources) do
+        -- retail = true: Retail only, classic = true: Retail & Mists, retail = false: Mists only, neither: every client
+        local available
+        if resource.retail == false then
+          available = TXUI.IsClassic
+        elseif resource.classic then
+          available = TXUI.IsRetail or TXUI.IsClassic
+        elseif resource.retail then
+          available = TXUI.IsRetail
+        else
+          available = true
+        end
+
+        if available then rows[#rows + 1] = { key = resource.key, label = F.String.RGB(resource.label, resourceNormal[resource.key]), sort = index } end
+      end
+
+      self:AddGradientColorRows(colorGroup, "classResourceMap", rows, "ThemesGradients.SettingsUpdate.ClassResources")
+    end
   end
 
   -- Fade Direction

@@ -68,6 +68,7 @@ P.themes = {
   },
   gradientMode = {
     enabled = true, -- Enabled by default
+    classResources = true, -- Gradients on the player class bar
 
     textures = {
       health = I.Textures.Primary,
@@ -157,6 +158,59 @@ P.themes = {
         LUNAR_POWER = F.Table.HexToRGB("#9c54ff"), -- astral
         INSANITY = F.Table.HexToRGB("#9629bd"), -- insanity
         MAELSTROM = F.Table.HexToRGB("#0096ff"), -- maelstrom
+      },
+    },
+
+    -- Player class bar pips, combo points follow ElvUI's default red to green progression
+    classResourceMap = {
+      [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
+        COMBO_POINT_1 = F.Table.HexToRGB("#863737"),
+        COMBO_POINT_2 = F.Table.HexToRGB("#8b6437"),
+        COMBO_POINT_3 = F.Table.HexToRGB("#919137"),
+        COMBO_POINT_4 = F.Table.HexToRGB("#648b37"),
+        COMBO_POINT_5 = F.Table.HexToRGB("#4d8837"),
+        COMBO_POINT_6 = F.Table.HexToRGB("#378637"),
+        COMBO_POINT_7 = F.Table.HexToRGB("#409161"),
+        COMBO_POINT_CHARGED = F.Table.HexToRGB("#1d72b3"),
+        HOLY_POWER = F.Table.HexToRGB("#d4a017"),
+        CHI = F.Table.HexToRGB("#00a37a"),
+        SOUL_SHARDS = F.Table.HexToRGB("#6a1fb8"),
+        ARCANE_CHARGES = F.Table.HexToRGB("#2a5bd9"),
+        ESSENCE = F.Table.HexToRGB("#12a19a"),
+        SHADOW_ORBS = F.Table.HexToRGB("#5b0ab8"),
+        SOUL_FRAGMENTS = F.Table.HexToRGB("#4b1fd6"),
+        SPEAR_TIP = F.Table.HexToRGB("#008f8f"),
+        FROST_ICICLES = F.Table.HexToRGB("#0077cc"),
+        FIRE_BLAST = F.Table.HexToRGB("#c43b00"),
+        RUNE_BLOOD = F.Table.HexToRGB("#8a0a26"),
+        RUNE_FROST = F.Table.HexToRGB("#005f99"),
+        RUNE_UNHOLY = F.Table.HexToRGB("#04733a"),
+        RUNE_DEATH = F.Table.HexToRGB("#5a2a8f"),
+      },
+
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
+        COMBO_POINT_1 = F.Table.HexToRGB("#bf4f4f"),
+        COMBO_POINT_2 = F.Table.HexToRGB("#c78f4f"),
+        COMBO_POINT_3 = F.Table.HexToRGB("#cfcf4f"),
+        COMBO_POINT_4 = F.Table.HexToRGB("#8fc74f"),
+        COMBO_POINT_5 = F.Table.HexToRGB("#6ec24f"),
+        COMBO_POINT_6 = F.Table.HexToRGB("#4fbf4f"),
+        COMBO_POINT_7 = F.Table.HexToRGB("#5ccf8a"),
+        COMBO_POINT_CHARGED = F.Table.HexToRGB("#29a3ff"),
+        HOLY_POWER = F.Table.HexToRGB("#ffe36b"),
+        CHI = F.Table.HexToRGB("#2dffb3"),
+        SOUL_SHARDS = F.Table.HexToRGB("#b061ff"),
+        ARCANE_CHARGES = F.Table.HexToRGB("#5fa3ff"),
+        ESSENCE = F.Table.HexToRGB("#3cf2d8"),
+        SHADOW_ORBS = F.Table.HexToRGB("#a050ff"),
+        SOUL_FRAGMENTS = F.Table.HexToRGB("#8f5bff"),
+        SPEAR_TIP = F.Table.HexToRGB("#2ee6e6"),
+        FROST_ICICLES = F.Table.HexToRGB("#6fd6ff"),
+        FIRE_BLAST = F.Table.HexToRGB("#ff8a2b"),
+        RUNE_BLOOD = F.Table.HexToRGB("#e51a46"),
+        RUNE_FROST = F.Table.HexToRGB("#00acff"),
+        RUNE_UNHOLY = F.Table.HexToRGB("#09d858"),
+        RUNE_DEATH = F.Table.HexToRGB("#a35bff"),
       },
     },
 

@@ -113,6 +113,9 @@ function GR:SettingsUpdate()
   for frame in pairs(self.settingsEvents) do
     self:UpdateFadeDirection(frame)
   end
+
+  -- Class bar pips are colored outside of the registered frames
+  self:RefreshClassResources()
 end
 
 function GR:TexturesUpdate()
@@ -124,6 +127,7 @@ function GR:Disable()
   if not self:IsHooked(self.uf, "Configure_HealthBar") then return end
 
   self:UnhookAll()
+  self:RefreshClassResources()
   self.uf:Update_AllFrames()
 end
 
@@ -143,6 +147,9 @@ function GR:Enable()
   -- Hook functions for update functions
   self:SecureHook(self.uf, "Update_StatusBars", "UpdateStatusBars")
   self:SecureHook(self.uf, "Update_StatusBar", "UpdateStatusBar")
+
+  -- Class bar pips (ClassPower.lua)
+  self:EnableClassResources()
 
   -- Update!
   self.uf:Update_AllFrames()
@@ -191,6 +198,7 @@ function GR:Initialize()
   F.Event.RegisterCallback("ThemesGradients.DatabaseUpdate", self.DatabaseUpdate, self)
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate", self.SettingsUpdate, self)
   F.Event.RegisterCallback("ThemesGradients.TexturesUpdate", self.TexturesUpdate, self)
+  F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.ClassResources", self.ClassResourcesSettingsUpdate, self)
 
   -- We are done, hooray!
   self.Initialized = true

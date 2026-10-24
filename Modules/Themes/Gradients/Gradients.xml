@@ -5,4 +5,5 @@
   <Script file='Castbar.lua' />
   <Script file='Health.lua' />
   <Script file='Power.lua' />
+  <Script file='ClassPower.lua' />
 </Ui>

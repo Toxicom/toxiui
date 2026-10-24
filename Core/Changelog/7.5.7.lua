@@ -28,6 +28,9 @@ TXUI.Changelog["7.5.7"] = {
     F.String.Retail() .. F.String.CDM() .. ": Color Buff Bar viewer bars with your " .. F.String.GradientMode() .. " class colors" .. F.String.Sublist(
       "Can be toggled in the " .. F.String.CDM() .. " settings, requires " .. F.String.GradientMode()
     ),
+    F.String.GradientMode() .. ": Gradients for your class bar (combo points, holy power, chi, runes, essence and more)" .. F.String.Sublist(
+      "Every resource has its own customizable colors in the Bars tab, combo points default to " .. F.String.ElvUI() .. "'s colors"
+    ),
 
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",
