@@ -16,6 +16,11 @@ local createCustomText = function(db, ...)
   return F.Table.Join(db or {}, customTextTemplate, ...)
 end
 
+-- Aura priority strings only exist on Classic clients, Retail uses ElvUI's default filterLists
+local classicAuraPriority = function(priority)
+  if not TXUI.IsRetail then return priority end
+end
+
 local general = {
   smoothbars = true,
   maxAllowedGroups = false,
@@ -98,7 +103,7 @@ local player = {
     durationPosition = "CENTER",
     maxDuration = 0,
     perrow = 7,
-    priority = "Blacklist,Boss,CCDebuffs,RaidDebuffs,CastByUnit,CastByNPC,Personal",
+    priority = classicAuraPriority("Blacklist,Boss,CCDebuffs,RaidDebuffs,CastByUnit,CastByNPC,Personal"),
     spacing = F.Dpi(2),
     xOffset = 0,
     yOffset = F.Dpi(30),
@@ -286,7 +291,7 @@ local function getTarget(horizontal)
       anchorPoint = "TOPRIGHT",
       growthX = "LEFT",
       perrow = 7,
-      priority = "Blacklist,Personal,Boss,NonPersonal,CastByUnit",
+      priority = classicAuraPriority("Blacklist,Personal,Boss,NonPersonal,CastByUnit"),
       spacing = F.Dpi(2),
       xOffset = 0,
       yOffset = F.Dpi(72),
@@ -306,7 +311,7 @@ local function getTarget(horizontal)
       durationPosition = "CENTER",
       maxDuration = 0,
       perrow = 7,
-      priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs",
+      priority = classicAuraPriority("Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,CCDebuffs"),
       spacing = 2,
       xOffset = 0,
       yOffset = F.Dpi(30),
@@ -516,7 +521,7 @@ local focus = {
     anchorPoint = "TOPLEFT",
     maxDuration = 0,
     perrow = 5,
-    priority = "Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,NonPersonal",
+    priority = classicAuraPriority("Blacklist,Personal,PlayerBuffs,Whitelist,blockNoDuration,NonPersonal"),
     sizeOverride = F.Dpi(29),
 
     countPosition = "BOTTOM",
@@ -530,7 +535,7 @@ local focus = {
   debuffs = {
     durationPosition = "CENTER",
     maxDuration = 0,
-    priority = "Blacklist,Personal,NonPersonal",
+    priority = classicAuraPriority("Blacklist,Personal,NonPersonal"),
     spacing = F.Dpi(0),
     xOffset = F.Dpi(-4),
     yOffset = F.Dpi(30),
@@ -654,7 +659,7 @@ local function getParty(horizontal)
       size = F.Dpi(12),
     },
 
-    buffs = F.Table.Join({
+    buffs = {
       enable = true,
       anchorPoint = horizontal and "BOTTOM" or "LEFT",
       growthX = "LEFT",
@@ -670,20 +675,14 @@ local function getParty(horizontal)
       keepSizeRatio = false,
       sizeOverride = F.Dpi(36),
       height = F.Dpi(24),
-    }, {
-      isAuraBigDefensive = true,
-      isAuraBigDefensivePlayer = true,
-      isAuraRaidInCombatPlayer = true,
-      isAuraExternalDefensive = true,
-      isAuraExternalDefensivePlayer = true,
-    }),
+    },
 
-    debuffs = F.Table.Join({
+    debuffs = {
       attachTo = "HEALTH",
       anchorPoint = horizontal and "TOP" or "RIGHT",
       perrow = horizontal and 4 or 5,
       numrows = horizontal and 2 or 1,
-      priority = "Blacklist,Dispellable,Boss,RaidDebuffs,CCDebuffs,Whitelist",
+      priority = classicAuraPriority("Blacklist,Dispellable,Boss,RaidDebuffs,CCDebuffs,Whitelist"),
       spacing = 2,
       yOffset = horizontal and F.Dpi(22) or 0,
       xOffset = horizontal and 0 or 10,
@@ -694,12 +693,7 @@ local function getParty(horizontal)
       keepSizeRatio = false,
       sizeOverride = F.Dpi(36),
       height = F.Dpi(24),
-    }, {
-      useBlocklist = true,
-      isAuraImportant = true,
-      isAuraImportantPlayer = true,
-      isAuraRaidPlayerDispellable = true,
-    }),
+    },
 
     healPrediction = {
       enable = true,
@@ -853,27 +847,6 @@ local function getRaid(horizontal)
       perrow = 6,
       xOffset = F.Dpi(-4),
       yOffset = F.Dpi(4),
-
-      useBlocklist = true,
-      isAuraImportant = true,
-      isAuraImportantPlayer = true,
-      isAuraRaidPlayerDispellable = true,
-    },
-
-    privateAuras = {
-      enable = true,
-      duration = {
-        enable = true,
-        offsetY = 0,
-        point = "CENTER",
-      },
-      icon = {
-        size = F.Dpi(24),
-      },
-      parent = {
-        offsetY = F.Dpi(-24),
-        point = "TOP",
-      },
     },
   }
 
@@ -983,7 +956,7 @@ local arena = {
   },
 
   buffs = {
-    priority = "Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI",
+    priority = classicAuraPriority("Blacklist,CastByUnit,Dispellable,Whitelist,RaidBuffsElvUI"),
 
     countPosition = "BOTTOM",
     countYOffset = F.Dpi(-7),
@@ -995,7 +968,7 @@ local arena = {
 
   debuffs = {
     desaturate = true,
-    priority = "Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist",
+    priority = classicAuraPriority("Blacklist,Boss,Personal,RaidDebuffs,CastByUnit,Whitelist"),
 
     countPosition = "BOTTOM",
     countYOffset = F.Dpi(-7),

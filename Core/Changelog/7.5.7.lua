@@ -44,6 +44,9 @@ TXUI.Changelog["7.5.7"] = {
     "Fixed old profile conversions modifying the default Saturation Boost settings and possibly skipping custom text renames",
 
     "* Profile updates",
+    F.String.Retail() .. F.String.ElvUI() .. " Unitframes: Use " .. F.String.ElvUI() .. "'s default aura filters" .. F.String.Sublist(
+      "Removed aura filter settings that " .. F.String.ElvUI() .. " no longer uses since its Midnight aura rework"
+    ),
     F.String.ElvUI() .. " Unitframes: Keep Player & Pet frames visible in Mythic+ like every other instance difficulty",
 
     "* Documentation",
