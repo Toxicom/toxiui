@@ -290,6 +290,7 @@ P.addons = {
   cooldownManager = {
     enabled = false,
     fading = true,
+    buffBarGradient = true,
 
     dynamicWidth = {
       enabled = true,

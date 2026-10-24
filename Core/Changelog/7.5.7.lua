@@ -25,6 +25,9 @@ TXUI.Changelog["7.5.7"] = {
       "Auto mode now shows house favor while you're at your house or plot"
     ),
     F.String.Retail() .. F.String.Menu.WunderBar() .. " MicroMenu: Right click the Housing button to teleport home, or return from a visit",
+    F.String.Retail() .. F.String.CDM() .. ": Color Buff Bar viewer bars with your " .. F.String.GradientMode() .. " class colors" .. F.String.Sublist(
+      "Can be toggled in the " .. F.String.CDM() .. " settings, requires " .. F.String.GradientMode()
+    ),
 
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",

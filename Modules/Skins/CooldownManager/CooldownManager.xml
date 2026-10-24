@@ -6,4 +6,5 @@
   <Script file='Width.lua' />
   <Script file='Centering.lua' />
   <Script file='Keybinds.lua' />
+  <Script file='Gradient.lua' />
 </Ui>

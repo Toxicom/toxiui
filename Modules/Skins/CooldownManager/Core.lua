@@ -37,6 +37,7 @@ function CM:Disable()
   self:DisableDynamicWidth()
   self:DisableAnchoring()
   self:DisableKeybinds()
+  self:DisableBuffBarGradient()
 
   F.Event.UnregisterFrameEventAndCallback("PLAYER_ENTERING_WORLD", self)
   F.Event.UnregisterFrameEventAndCallback("ZONE_CHANGED_NEW_AREA", self)
@@ -96,6 +97,9 @@ function CM:DatabaseUpdate()
       if (kb.essential and kb.essential.enabled) or (kb.utility and kb.utility.enabled) then self:EnableKeybinds() end
     end
 
+    -- Gradient Mode class colors on Buff Bar viewer bars
+    if self.db.buffBarGradient and E.db.TXUI.themes.gradientMode.enabled then self:EnableBuffBarGradient() end
+
     -- Re-apply all features on settings change or edit mode exit since they reset frames
     if _G.EventRegistry then
       _G.EventRegistry:RegisterCallback("CooldownViewerSettings.OnDataChanged", self.OnCooldownManagerChanged, self)
@@ -115,6 +119,7 @@ function CM:Initialize()
   F.Event.RegisterOnceCallback("TXUI.InitializedSafe", F.Event.GenerateClosure(self.DatabaseUpdate, self))
   F.Event.RegisterCallback("TXUI.DatabaseUpdate", self.DatabaseUpdate, self)
   F.Event.RegisterCallback("CooldownManager.DatabaseUpdate", self.DatabaseUpdate, self)
+  F.Event.RegisterCallback("ThemesGradients.DatabaseUpdate", self.DatabaseUpdate, self)
 
   -- We are done, hooray!
   self.Initialized = true

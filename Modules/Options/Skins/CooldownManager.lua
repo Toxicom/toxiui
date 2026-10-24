@@ -177,6 +177,35 @@ function O:Skins_CooldownManager()
     -- Spacer
     self:AddSpacer(tab)
 
+    -- Buff Bar Gradient
+    local gradientGroup = self:AddInlineRequirementsDesc(tab, {
+      name = "Buff Bar Gradient",
+    }, {
+      name = "Colors the Buff Bar viewer bars with your " .. F.String.GradientMode() .. " class colors.\n\n",
+    }, I.Requirements.CooldownManager).args
+
+    gradientGroup.buffBarGradient = {
+      order = self:GetOrder(),
+      type = "toggle",
+      desc = "Requires " .. F.String.GradientMode() .. " to be enabled. Turning it off restores the previous colors after a reload.",
+      name = function()
+        return self:GetEnableName(E.db.TXUI.addons.cooldownManager.buffBarGradient, gradientGroup)
+      end,
+      disabled = function()
+        return isDisabled() or not E.db.TXUI.themes.gradientMode.enabled
+      end,
+      get = function(_)
+        return E.db.TXUI.addons.cooldownManager.buffBarGradient
+      end,
+      set = function(_, value)
+        E.db.TXUI.addons.cooldownManager.buffBarGradient = value
+        F.Event.TriggerEvent("CooldownManager.DatabaseUpdate")
+      end,
+    }
+
+    -- Spacer
+    self:AddSpacer(tab)
+
     -- Dynamic Bars Width
     do
       local dynamicGroup = self:AddInlineRequirementsDesc(tab, {
