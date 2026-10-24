@@ -11,6 +11,7 @@ TXUI.Changelog["7.5.7"] = {
     "* Enhancements",
     F.String.GradientMode() .. ": Fewer unit API calls per health update",
     "Reduced memory churn of the internal event system by reusing callback lists between events",
+    "Options pages & changelogs are now built when the " .. F.String.ElvUI() .. " config is first opened instead of on every login",
     F.String.ElvUI() .. " Theme: Shadows now follow their frame's level & strata through per-frame hooks" .. F.String.Sublist(
       "Previously every frame level/strata change of every frame in the game went through " .. TXUI.Title
     ),

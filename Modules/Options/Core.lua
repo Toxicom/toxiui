@@ -359,6 +359,8 @@ function O:OptionsCallback()
   -- Well, something went wrong, like really wrong
   if not self.Initialized then return end
 
+  self:BuildOptions()
+
   -- Add name at the top of elvui
   E.Options.name = E.Options.name .. " + " .. TXUI.Title .. format(" |cff99ff33%s|r", TXUI:GetModule("Changelog"):FormattedVersion())
 
@@ -396,11 +398,8 @@ function O:OptionsCallback()
   end
 end
 
--- Initialization
-function O:Initialize()
-  -- Don't init second time
-  if self.Initialized then return end
-
+-- Builds all registered option pages, deferred until ElvUI_Options loads so logins don't pay for it
+function O:BuildOptions()
   -- Call registered submodules
   for index, func in next, self.callOnInit do
     xpcall(func, errorhandler, self)
@@ -409,6 +408,12 @@ function O:Initialize()
 
   -- Removing settings tab when not installed
   if not F.IsTXUIProfile() then self.options.settings = nil end
+end
+
+-- Initialization
+function O:Initialize()
+  -- Don't init second time
+  if self.Initialized then return end
 
   -- We are done, hooray!
   self.Initialized = true
