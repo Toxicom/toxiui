@@ -129,6 +129,9 @@ function WK:GetVaultProgress()
 end
 
 function WK:GetBarText()
+  -- Unclaimed rewards (e.g. right after the weekly reset) win over every mode until they're picked up
+  if C_WeeklyRewards.HasAvailableRewards() then return F.String.Good(self:FormatBarText("Vault Ready")) end
+
   local mode = self.db.textMode
 
   if mode == "VAULT" then
@@ -354,9 +357,9 @@ function WK:OnEvent(event)
 
   if self.keystone.mapID ~= previousMap or self.keystone.level ~= previousLevel then self:UpdateSecureAttributes() end
 
-  -- Flash once when new vault rewards became available
+  -- Flash once when vault rewards are waiting, also on login after the weekly reset
   local hasRewards = C_WeeklyRewards.HasAvailableRewards()
-  if hasRewards and not self.hadRewards and event ~= "ELVUI_FORCE_UPDATE" then
+  if hasRewards and not self.hadRewards then
     WB:FlashFontOnEvent(self.weeklyText)
     WB:FlashFontOnEvent(self.weeklyIcon, true)
   end

@@ -16,6 +16,7 @@ TXUI.Changelog["7.6.0"] = {
       .. F.String.Menu.WunderBar()
       .. " module: Weekly"
       .. F.String.Sublist("Shows your keystone, Mythic+ rating or Great Vault progress")
+      .. F.String.Sublist("Shows Vault Ready while last week's Great Vault rewards are waiting to be claimed")
       .. F.String.Sublist("Tooltip with Great Vault rewards, this week's runs, coffer keys and dungeon scores")
       .. F.String.Sublist("Left click toggles the Great Vault, Shift-Left links your keystone")
       .. F.String.Sublist("Right click teleports to your keystone's dungeon, Shift-Right opens the season teleports"),
