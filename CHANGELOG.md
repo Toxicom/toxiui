@@ -1,6 +1,6 @@
-# ToxiUI v7.6.0-beta.1 - 2026-10-25
+# ToxiUI v7.6.0-beta.2 - 2026-10-29
 
-**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.5.6...v7.6.0-beta.1>
+**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.5.6...v7.6.0-beta.2>
 
 ## ‼️ Breaking Changes
 
@@ -14,6 +14,7 @@
   - Can be toggled in MicroMenu settings
 - [Retail] New **WunderBar** module: Weekly
   - Shows your keystone, Mythic+ rating or Great Vault progress
+  - Shows Vault Ready while last week's Great Vault rewards are waiting to be claimed
   - Tooltip with Great Vault rewards, this week's runs, coffer keys and dungeon scores
   - Left click toggles the Great Vault, Shift-Left links your keystone
   - Right click teleports to your keystone's dungeon, Shift-Right opens the season teleports
