@@ -156,7 +156,8 @@ function GM:BuildPlayedGraph()
       GameTooltip:AddLine(" ")
 
       for _, char in ipairs(chars) do
-        local nameRealm = F.String.Class(char.name, item.class) .. "|cff888888-" .. char.realm .. "|r"
+        -- Forever realm names are internal server names, the "First Last" name is enough
+        local nameRealm = F.String.Class(char.name, item.class) .. (TXUI.IsForever and "" or F.String.Muted("-" .. char.realm))
         GameTooltip:AddDoubleLine(nameRealm, GM.FormatPlayed(char.seconds, false), 1, 1, 1, 0.8, 0.8, 0.8)
       end
 

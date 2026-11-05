@@ -12,6 +12,11 @@ TXUI.Changelog["7.6.1"] = {
 
     "* Bug fixes",
     F.String.Era() .. F.String.Anniversary() .. F.String.Forever() .. F.String.GradientMode() .. ": Power colors were missing from the settings",
+    F.String.Forever()
+      .. "Support for first & last character names"
+      .. F.String.Sublist(
+        "Gold, played time, the " .. F.String.ToxiUI("AFK") .. " screen & " .. F.String.ToxiUI("Game Menu") .. " now use your full name and no longer show internal realm names"
+      ),
 
     "* Profile updates",
 
