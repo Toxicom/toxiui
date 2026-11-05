@@ -115,7 +115,7 @@ end
 function PR:ProfessionOpen(prof)
   local skillLine, name, _, _, _, extraSpellId = self:GetProfessionInfo(prof)
 
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     local currBaseProfessionInfo = C_TradeSkillUI.GetBaseProfessionInfo()
     local isShown = _G["ProfessionsFrame"] and _G["ProfessionsFrame"]:IsShown()
 
@@ -160,7 +160,7 @@ function PR:OnWunderBarUpdate()
 end
 
 function PR:GetProfessions()
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     return GetProfessions()
   else
     local professions = {
@@ -262,7 +262,7 @@ end
 function PR:GetProfessionInfo(prof)
   if not prof then return end
 
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     local skillName, texture, skillRank, skillMaxRank, _, _, skillLine = GetProfessionInfo(prof)
     return skillLine, skillName, skillRank, skillMaxRank, texture
   else

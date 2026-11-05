@@ -151,4 +151,4 @@ function O:Skins_DamageMeter()
   end
 end
 
-if TXUI.IsRetail then O:AddCallback("Skins_DamageMeter") end
+if TXUI.IsModern then O:AddCallback("Skins_DamageMeter") end

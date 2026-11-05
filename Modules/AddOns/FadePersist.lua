@@ -124,7 +124,7 @@ function FP:Enable()
   end)
 
   -- Hook Spellbook
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     F.Event.ContinueOnAddOnLoaded("Blizzard_PlayerSpells", function()
       if not TXUI:HasRequirements(I.Requirements.FadePersist) or not (self.db and self.db.enabled) then return end
 

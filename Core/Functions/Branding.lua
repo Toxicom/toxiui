@@ -40,6 +40,10 @@ function F.String.Era()
   return F.String.Color("[Classic]", "ffcc00") .. " "
 end
 
+function F.String.Forever()
+  return F.String.Color("[Forever]", "e6cc80") .. " "
+end
+
 -- Addons
 
 function F.String.ToxiUI(msg)

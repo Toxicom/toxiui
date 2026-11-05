@@ -149,8 +149,8 @@ function LP:GetFreshInstallPages()
     },
   }
 
-  -- Retail-only: Edit Mode page (inserted before Getting Help)
-  if TXUI.IsRetail then
+  -- Retail & Forever: Edit Mode page (inserted before Getting Help)
+  if TXUI.IsModern then
     table.insert(pages, #pages, {
       title = "Edit Mode",
       image = I.Media.Banners.EditMode,

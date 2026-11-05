@@ -89,8 +89,8 @@ function PF:ApplyMovers(pf, horizontal)
       VOICECHAT = F.Position("TOPLEFT", "DebuffsMover", "BOTTOMLEFT", 0, -defaultPadding),
       QueueStatusMover = F.Position("BOTTOMRIGHT", "MinimapMover", "BOTTOMRIGHT", -defaultPadding * 2, defaultPadding * 2),
     },
-    F.Table.If(TXUI.IsRetail, {
-      -- Bars Retail Only
+    F.Table.If(TXUI.IsModern, {
+      -- Bars Retail & Forever
       AltPowerBarMover = F.Position("BOTTOM", "ElvUIParent", "BOTTOM", 0, 220),
       AzeriteBarMover = F.Position("TOP", "ElvUIParent", "TOP", 420, -390),
       HonorBarMover = F.Position("TOPRIGHT", "ElvUIParent", "TOPRIGHT", -670, -510),

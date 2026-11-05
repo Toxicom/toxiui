@@ -67,8 +67,8 @@ end
 local function getSkinsData()
   local sections = {}
 
-  -- Damage Meter (Retail only)
-  if TXUI.IsRetail then
+  -- Damage Meter (Retail & Forever)
+  if TXUI.IsModern then
     tinsert(sections, {
       header = "Damage Meter",
       lines = {
@@ -85,8 +85,8 @@ local function getSkinsData()
     })
   end
 
-  -- Cooldown Manager (Retail only)
-  if TXUI.IsRetail then
+  -- Cooldown Manager (Retail & Forever)
+  if TXUI.IsModern then
     tinsert(sections, {
       header = "Cooldown Manager",
       lines = {

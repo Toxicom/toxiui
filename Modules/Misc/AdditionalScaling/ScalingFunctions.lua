@@ -38,7 +38,7 @@ function M:ScaleCatalyst()
 end
 
 function M:ScaleProfessions()
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     E:Delay(0.01, function()
       local isHooked = M.hookedFrames["profession"] == true
       if not isHooked then
@@ -64,7 +64,7 @@ function M:ScaleClassTrainer()
 end
 
 function M:ScaleAuctionHouse()
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     M:SetElementScale("auctionHouse", "AuctionHouseFrame")
   else
     M:SetElementScale("auctionHouse", "AuctionFrame")
@@ -75,7 +75,7 @@ function M:ScaleRetailSpellbook()
   -- Don't scale PlayerSpellsFrame during combat to avoid taint
   if InCombatLockdown() then return end
 
-  if TXUI.IsRetail and not IsRetailTalentsWindowHooked then
+  if TXUI.IsModern and not IsRetailTalentsWindowHooked then
     M:HookRetailTalentsWindow()
   else
     M:SetElementScale("spellbook", "PlayerSpellsFrame")

@@ -14,13 +14,16 @@ local GetCVarBool = GetCVarBool
 local GetLastSelectedSavedConfigID = TXUI.IsRetail and C_ClassTalents.GetLastSelectedSavedConfigID or nil
 local GetLootSpecialization = GetLootSpecialization
 local GetNumSpecializationsForClassID = GetNumSpecializationsForClassID
+local GetNumSpecGroups = GetNumSpecGroups or C_SpecializationInfo.GetNumSpecGroups
+local GetNumSpecializations = GetNumSpecializations or C_SpecializationInfo.GetNumSpecializations
 local GetNumTalentGroups = GetNumTalentGroups
 local GetSpecialization = GetSpecialization
 local GetSpecializationInfoForClassID = GetSpecializationInfoForClassID
 local GetTalentTabInfo = C_SpecializationInfo and C_SpecializationInfo.GetSpecializationInfo or GetTalentTabInfo
 local InCombatLockdown = InCombatLockdown
 local ipairs = ipairs
-local SetActiveTalentGroup = SetActiveTalentGroup
+local PlayerSpellsUtil = PlayerSpellsUtil
+local SetActiveTalentGroup = SetActiveTalentGroup or C_SpecializationInfo.SetActiveSpecGroup
 local strjoin = strjoin
 local ToggleTalentFrame = ToggleTalentFrame
 local UnitClassBase = UnitClassBase
@@ -32,6 +35,9 @@ local TALENTS = TALENTS
 
 local activeString = strjoin("", "|cff00FF00", ACTIVE_PETS, "|r")
 local inactiveString = strjoin("", "|cffFF0000", FACTION_INACTIVE, "|r")
+
+-- Mists & Forever: specializations with a primary & secondary spec group
+local hasSpecGroups = TXUI.IsClassic or TXUI.IsForever
 
 function SS:GetLoadoutName()
   if TXUI.IsRetail then
@@ -118,17 +124,28 @@ function SS:SpecEnter(text, icon)
       )
     end
 
-    DT.tooltip:AddLine(" ")
-    DT.tooltip:AddLine(TALENTS, 0.69, 0.31, 0.31)
-
-    displayString = "%s |cffFFFFFF%s:|r %s"
+    -- Talent points per tree only exist for Vanilla & TBC, Mists & Forever specs don't have them
+    local hasPoints = false
     for _, info in ipairs(self.specCache) do
-      DT.tooltip:AddLine(format(displayString, addTexture(info.icon), info.name, info.points))
+      if info.points then
+        hasPoints = true
+        break
+      end
+    end
+
+    if hasPoints then
+      DT.tooltip:AddLine(" ")
+      DT.tooltip:AddLine(TALENTS, 0.69, 0.31, 0.31)
+
+      displayString = "%s |cffFFFFFF%s:|r %s"
+      for _, info in ipairs(self.specCache) do
+        if info.points then DT.tooltip:AddLine(format(displayString, addTexture(info.icon), info.name, info.points)) end
+      end
     end
 
     DT.tooltip:AddLine(" ")
     DT.tooltip:AddLine("|cffFFFFFFLeft Click:|r Show Talent UI")
-    if TXUI.IsRetail or (TXUI.IsClassic and GetNumSpecGroups(true) == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
+    if TXUI.IsRetail or (hasSpecGroups and GetNumSpecGroups(true) == 2) then DT.tooltip:AddLine("|cffFFFFFFRight Click:|r Change Talent Specialization") end
     DT.tooltip:Show()
   end
 end
@@ -144,7 +161,7 @@ function SS:SpecClick(frame, button, ...)
   local hasDualSpec
   local activeGroup
 
-  if TXUI.IsClassic then
+  if hasSpecGroups then
     hasDualSpec = GetNumSpecGroups(true) == 2
     activeGroup = C_SpecializationInfo.GetActiveSpecGroup()
   end
@@ -154,8 +171,12 @@ function SS:SpecClick(frame, button, ...)
     dtModule.onClick(frame, button, ...)
   else
     if button == "LeftButton" then
-      ToggleTalentFrame()
-    elseif TXUI.IsClassic then
+      if PlayerSpellsUtil then
+        if not InCombatLockdown() then PlayerSpellsUtil.ToggleClassTalentFrame() end
+      else
+        ToggleTalentFrame()
+      end
+    elseif hasSpecGroups then
       if not hasDualSpec then return end
       SetActiveTalentGroup(activeGroup == 1 and 2 or 1)
     else
@@ -531,11 +552,11 @@ function SS:OnInit()
       local id, name = GetSpecializationInfoForClassID(classId, i)
       if id then self.specCache[i] = { id = id, name = name } end
     end
-  elseif TXUI.IsClassic then
+  elseif hasSpecGroups then
     self.numSpecs = GetNumSpecializations()
     for i = 1, self.numSpecs do
-      local id, name = GetTalentTabInfo(i)
-      if id and name then self.specCache[i] = { id = id, name = name } end
+      local id, name, _, icon = GetTalentTabInfo(i)
+      if id and name then self.specCache[i] = { id = id, name = name, icon = icon } end
     end
   end
 
@@ -567,6 +588,7 @@ WB:RegisterSubModule(
       "TRAIT_CONFIG_UPDATED",
       "TRAIT_TREE_CHANGED",
     }),
-    F.Table.If(TXUI.IsClassic, { "TALENT_GROUP_ROLE_CHANGED", "PLAYER_LOOT_SPEC_UPDATED" })
+    F.Table.If(TXUI.IsClassic, { "TALENT_GROUP_ROLE_CHANGED", "PLAYER_LOOT_SPEC_UPDATED" }),
+    F.Table.If(TXUI.IsForever, { "PLAYER_SPECIALIZATION_CHANGED" })
   )
 )

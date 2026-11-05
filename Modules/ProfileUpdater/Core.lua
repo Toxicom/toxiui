@@ -243,7 +243,7 @@ function PU:ComputeAllDiffs()
     -- Separate paths managed by CooldownManager (CDM) so they display as read-only
     -- instead of clickable diffs while CDM is actively controlling those values.
     local cdmManaged = {}
-    if key == "unitframes" and TXUI.IsRetail then
+    if key == "unitframes" and TXUI.IsModern then
       local cdmDB = E.db.TXUI and E.db.TXUI.addons and E.db.TXUI.addons.cooldownManager
       if cdmDB then
         local dw = cdmDB.dynamicWidth

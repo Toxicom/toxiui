@@ -5,7 +5,6 @@ local PF = TXUI:GetModule("Profiles")
 local _G = _G
 local ipairs = ipairs
 local PlaySound = PlaySound
-local ReloadUI = ReloadUI
 local strtrim = strtrim
 
 local CANCEL = CANCEL
@@ -141,7 +140,12 @@ function IS:Complete(noReload)
   E.db.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
   E.private.TXUI.changelog.releaseVersion = TXUI.ReleaseVersion
 
-  if not noReload then ReloadUI() end
+  if noReload then return end
+
+  -- Calling ReloadUI from here gets blocked (installer OnHide / combat), so ask for it with a popup instead
+  F.Event.ContinueOutOfCombat(function()
+    E:StaticPopup_Show("TXUI_INSTALL_RELOAD")
+  end)
 end
 
 -- Profile Check

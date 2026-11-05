@@ -528,7 +528,7 @@ function CR:OnInit()
   self:CreateElvUIDB()
 
   -- Create Token Ticker
-  if not TXUI.IsClassicEra and not TXUI.IsAnniversary then
+  if (TXUI.IsRetail or TXUI.IsClassic) and C_WowTokenPublic_UpdateMarketPrice then
     self.tokenCallback = F.Event.GenerateClosure(C_WowTokenPublic_UpdateMarketPrice)
     self.tokenTicker = C_Timer_NewTicker(60, self.tokenCallback)
     self.tokenCallback()

@@ -125,4 +125,4 @@ function CM:Initialize()
   self.Initialized = true
 end
 
-if TXUI.IsRetail then TXUI:RegisterModule(CM:GetName()) end
+if TXUI.IsModern then TXUI:RegisterModule(CM:GetName()) end

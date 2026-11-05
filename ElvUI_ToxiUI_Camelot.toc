@@ -1,0 +1,24 @@
+## Title: |cff1784d1ElvUI|r |cffffffffToxi|r|cff18a8ffUI|r |cffe6cc80Forever|r
+## Notes: Minimalistic ElvUI Edit by |cff18a8ffToxi|r
+## Author: Toxi (Toxi#21206)
+## Version: 7.6.0
+## RequiredDeps: ElvUI
+## OptionalDeps: Details
+## IconTexture: Interface\AddOns\ElvUI_ToxiUI\Media\Backgrounds\Logos\LogoSmall.tga
+## DefaultState: Enabled
+## Interface: 16001
+## X-Interface: 16001
+## X-Flavor: Forever
+## X-WoWI-ID: 25770
+## X-Curse-Project-ID: 676447
+## X-ElvUIVersion: 15.26
+## X-Wago-ID: XrNk5lKa
+## X-GitHash: @project-version@
+## AddonCompartmentFunc: ToxiUI_OnAddonCompartmentClick
+## Group: ElvUI
+
+
+Initialize.lua
+Core\Core.xml
+Media\Media.xml
+Modules\Modules.xml

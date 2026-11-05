@@ -75,7 +75,7 @@ end
 
 function F.String.RandomClassColor(msg)
   local classNames
-  if TXUI.IsClassicEra then
+  if TXUI.IsClassicEra or TXUI.IsForever then
     classNames = I.Strings.Classes.CLASSIC_ERA
   elseif TXUI.IsAnniversary then
     classNames = I.Strings.Classes.ANNIVERSARY

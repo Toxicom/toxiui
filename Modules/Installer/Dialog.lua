@@ -320,10 +320,10 @@ function IS:Dialog()
         SetupCustomInstaller(Pages.Details)
         installFrame.SubTitle:SetText(F.String.ToxiUI("Details"))
 
-        local RETAIL_DETAILS_MESSAGE = F.String.Error(
-          "For Retail, we no longer recommend using "
+        local DAMAGE_METER_DETAILS_MESSAGE = F.String.Error(
+          "We no longer recommend using "
             .. F.String.Details()
-            .. " as both "
+            .. ", as both "
             .. F.String.ElvUI()
             .. " and "
             .. TXUI.Title
@@ -336,8 +336,8 @@ function IS:Dialog()
           installFrame.Desc1:SetText(
             "Details is a versatile AddOn that offers a wide array of data, encompassing metrics for damage, healing, and various other performance indicators."
           )
-          installFrame.Desc2:SetText(TXUI.IsRetail and RETAIL_DETAILS_MESSAGE or "This is an optional AddOn requirement, but we highly recommend you install it.")
-          if not TXUI.IsRetail then installFrame.Desc3:SetText("Importance: " .. F.String.Error("High")) end
+          installFrame.Desc2:SetText(TXUI.IsModern and DAMAGE_METER_DETAILS_MESSAGE or "This is an optional AddOn requirement, but we highly recommend you install it.")
+          if not TXUI.IsModern then installFrame.Desc3:SetText("Importance: " .. F.String.Error("High")) end
 
           installFrame.Option1:Show()
           installFrame.Option1:SetText("One Window")
@@ -357,8 +357,8 @@ function IS:Dialog()
             installFrame.Next:Click()
           end)
         else
-          installFrame.Desc1:SetText(TXUI.IsRetail and RETAIL_DETAILS_MESSAGE or F.String.Warning("Oops, looks like you don't have Details installed!"))
-          if not TXUI.IsRetail then installFrame.Desc2:SetText("Please install Details and restart the installer!") end
+          installFrame.Desc1:SetText(TXUI.IsModern and DAMAGE_METER_DETAILS_MESSAGE or F.String.Warning("Oops, looks like you don't have Details installed!"))
+          if not TXUI.IsModern then installFrame.Desc2:SetText("Please install Details and restart the installer!") end
         end
       end,
 

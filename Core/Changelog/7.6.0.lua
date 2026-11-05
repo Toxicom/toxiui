@@ -8,6 +8,9 @@ TXUI.Changelog["7.6.0"] = {
     "Removed BigWigs support" .. F.String.Sublist("The BigWigs profile, " .. F.String.ToxiUI("/tx profile bw") .. " command and the BigWigs pull timer skin are gone"),
 
     "* New features",
+    F.String.Forever() .. "Support for World of Warcraft: Forever" .. F.String.Sublist(
+      "Includes the " .. F.String.CDM() .. " and Blizzard Damage Meter skins, " .. F.String.Menu.WunderBar() .. " and the " .. TXUI.Title .. " profile"
+    ),
     F.String.Retail() .. F.String.Menu.WunderBar() .. " MicroMenu: Show your character stats in the Character button tooltip" .. F.String.Sublist(
       "Item level, primary stat, secondary stats and tertiary stats you have"
     ) .. F.String.Sublist("Can be toggled in MicroMenu settings"),
@@ -52,6 +55,7 @@ TXUI.Changelog["7.6.0"] = {
     "Animations: Reuse colors for the RGB animation instead of creating new ones every frame",
 
     "* Bug fixes",
+    "Installer: Fixed the UI reload at the end of the installation being blocked by the game" .. F.String.Sublist("You now get a popup with a Reload UI button instead"),
     "Additional Scaling: Fixed load-on-demand frames (Collections, Auction House, Inspect, Professions, etc.) not being scaled until the slider was changed",
     F.String.Classic() .. "Fixed Objective Frame position not being applied by the profile",
     "Armory: Fixed conflict detection with Shadow & Light Inspect/Stats and Eltruism Classic Armory",

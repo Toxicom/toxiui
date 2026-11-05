@@ -21,6 +21,7 @@ I.MaxLevelTable = {
   ["Classic"] = 90,
   ["ClassicEra"] = 60,
   ["Anniversary"] = 70,
+  ["Forever"] = 60,
 }
 
 I.Fonts = {

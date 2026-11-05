@@ -27,7 +27,7 @@ local createActionBar = function(...)
   if not tbl.visibility then
     if TXUI.IsRetail then
       tbl.visibility = "[vehicleui][petbattle][overridebar] hide; show"
-    elseif TXUI.IsClassic then
+    elseif TXUI.IsClassic or TXUI.IsForever then
       tbl.visibility = "[vehicleui][overridebar] hide; show"
     else
       tbl.visibility = "[overridebar] hide; show"
@@ -155,7 +155,7 @@ function PF:ApplyActionbars(pf)
   if TXUI.IsRetail then
     pf.actionbar.barPet.visibility = "[petbattle] hide; [novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui][petbattle] hide; show"
-  elseif TXUI.IsClassic then
+  elseif TXUI.IsClassic or TXUI.IsForever then
     pf.actionbar.barPet.visibility = "[novehicleui,pet,nooverridebar,nopossessbar] show; hide"
     pf.actionbar.stanceBar.visibility = "[vehicleui] hide; show"
   else

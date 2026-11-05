@@ -1,8 +1,20 @@
 local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
+local ReloadUI = ReloadUI
+
+local RELOADUI = RELOADUI
 local YES, NO = YES, NO
 
 function TXUI:LoadStaticPopups()
+  -- ReloadUI is blocked unless it runs directly from a click, so the reload has to come from this button
+  E.PopupDialogs.TXUI_INSTALL_RELOAD = {
+    text = TXUI.Title .. " installation is complete!\n\nReload your UI to apply all settings.",
+    button1 = RELOADUI,
+    OnAccept = ReloadUI,
+    hideOnEscape = false,
+    whileDead = 1,
+  }
+
   E.PopupDialogs.TXUI_RESET_TXUI_PROFILE = {
     text = "Are you sure you want to reset "
       .. TXUI.Title

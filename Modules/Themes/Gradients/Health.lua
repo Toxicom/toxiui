@@ -20,7 +20,7 @@ function GR:GetHealthColor(frame, unit)
   local isPlayer = UnitIsPlayer(unit)
   isPlayer = E:NotSecretValue(isPlayer) and isPlayer
 
-  if not isPlayer and TXUI.IsRetail then
+  if not isPlayer and TXUI.IsModern then
     local treatAsPlayer = UnitTreatAsPlayerForDisplay(unit)
     isPlayer = E:NotSecretValue(treatAsPlayer) and treatAsPlayer
   end

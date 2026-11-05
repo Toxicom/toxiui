@@ -57,7 +57,7 @@ function O:Skins_ClassIcons()
       values = function()
         local tbl = M:GetClassIconStyleValues()
 
-        if TXUI.IsRetail or TXUI.IsClassic then F.Table.Crush(tbl, M:GetSpecIconStyleValues()) end
+        if TXUI.IsRetail or TXUI.IsClassic or TXUI.IsForever then F.Table.Crush(tbl, M:GetSpecIconStyleValues()) end
 
         return tbl
       end,

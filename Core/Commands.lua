@@ -253,7 +253,7 @@ function TXUI:LoadCommands()
   self:RegisterChatCommand("toxi", "HandleChatCommand")
   self:RegisterChatCommand("toxiui", "HandleChatCommand")
 
-  if TXUI.IsRetail then
+  if TXUI.IsModern then
     self:RegisterChatCommand("cd", "HandleCDMCommand")
     self:RegisterChatCommand("cdm", "HandleCDMCommand")
     self:RegisterChatCommand("wa", "HandleCDMCommand")

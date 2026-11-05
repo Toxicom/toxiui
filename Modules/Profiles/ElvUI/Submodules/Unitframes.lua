@@ -16,9 +16,9 @@ local createCustomText = function(db, ...)
   return F.Table.Join(db or {}, customTextTemplate, ...)
 end
 
--- Aura priority strings only exist on Classic clients, Retail uses ElvUI's default filterLists
+-- Aura priority strings only exist on Classic clients, Retail & Forever use ElvUI's default filterLists
 local classicAuraPriority = function(priority)
-  if not TXUI.IsRetail then return priority end
+  if not TXUI.IsModern then return priority end
 end
 
 local general = {
@@ -66,7 +66,7 @@ local player = {
 
     ["toxiui:health-small"] = createCustomText({}, {
       justifyH = "RIGHT",
-      text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
+      text_format = TXUI.IsModern and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
       xOffset = F.Dpi(-12),
       yOffset = F.Dpi(-18),
     }),
@@ -244,7 +244,7 @@ local function getTarget(horizontal)
 
       ["toxiui:health-small"] = createCustomText({}, {
         justifyH = "LEFT",
-        text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
+        text_format = TXUI.IsModern and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
         xOffset = F.Dpi(12),
         yOffset = F.Dpi(-18),
       }),
@@ -398,7 +398,7 @@ local pet = {
     }),
 
     ["toxiui:pet-happiness"] = createCustomText({}, {
-      text_format = (TXUI.IsClassicEra or TXUI.IsAnniversary) and "[happiness:discord]" or "",
+      text_format = (TXUI.IsClassicEra or TXUI.IsAnniversary or TXUI.IsForever) and "[happiness:discord]" or "",
       xOffset = -25,
       yOffset = 0,
       justifyH = "LEFT",
@@ -495,7 +495,7 @@ local focus = {
 
     ["toxiui:health-small"] = createCustomText({}, {
       justifyH = "LEFT",
-      text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
+      text_format = TXUI.IsModern and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
       xOffset = F.Dpi(12),
       yOffset = F.Dpi(-18),
     }),
@@ -850,7 +850,7 @@ local function getRaid(horizontal)
     },
   }
 
-  if not TXUI.IsRetail then
+  if not TXUI.IsModern then
     settings.rdebuffs = {
       enable = true,
       size = F.Dpi(24),
@@ -1023,7 +1023,7 @@ local boss = {
     }),
 
     ["toxiui:health-small"] = createCustomText({}, {
-      text_format = TXUI.IsRetail and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
+      text_format = TXUI.IsModern and "[tx:health:current:shortvalue:absorb]" or "[tx:health:current:shortvalue]",
       xOffset = F.Dpi(6),
       yOffset = F.Dpi(-18),
     }),
@@ -1118,17 +1118,17 @@ function PF:ApplyUnitframes(pf, colors, IsHorizontalLayout)
   local raidBase = getRaid(IsHorizontalLayout)
 
   F.Table.Crush(pf.unitframe.units.raid1, raidBase, {
-    customName = TXUI.IsRetail and "1 to 20" or "1 to 10",
-    visibility = TXUI.IsRetail and "[@raid1,noexists][@raid21,exists] hide;show" or "[@raid1,noexists][@raid11,exists] hide;show",
+    customName = TXUI.IsModern and "1 to 20" or "1 to 10",
+    visibility = TXUI.IsModern and "[@raid1,noexists][@raid21,exists] hide;show" or "[@raid1,noexists][@raid11,exists] hide;show",
   })
 
   F.Table.Crush(pf.unitframe.units.raid2, raidBase, {
-    customName = TXUI.IsRetail and "21 to 30" or "11 to 25",
-    visibility = TXUI.IsRetail and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
+    customName = TXUI.IsModern and "21 to 30" or "11 to 25",
+    visibility = TXUI.IsModern and "[@raid21,noexists][@raid31,exists] hide;show" or "[@raid11,noexists][@raid26,exists] hide;show",
   })
 
   F.Table.Crush(pf.unitframe.units.raid3, raidBase, {
-    customName = TXUI.IsRetail and "31+" or "26+",
-    visibility = TXUI.IsRetail and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
+    customName = TXUI.IsModern and "31+" or "26+",
+    visibility = TXUI.IsModern and "[@raid31,noexists] hide;show" or "[@raid26,noexists] hide;show",
   })
 end

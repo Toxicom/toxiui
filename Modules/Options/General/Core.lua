@@ -223,8 +223,8 @@ function O:General()
     ) .. cmd("/tx reset", "Reset the " .. TXUI.Title .. " profile") .. cmd("/tx debug", "Toggle debug mode (on / off)"),
   })
 
-  if TXUI.IsRetail then
-    self:AddInlineDesc(commandsTab, { name = "Retail" }, {
+  if TXUI.IsModern then
+    self:AddInlineDesc(commandsTab, { name = "Retail & Forever" }, {
       name = cmd("/cd", "Open Cooldown Manager settings", "/cdm, /wa") .. cmd("/em", "Open Edit Mode"),
     })
   end

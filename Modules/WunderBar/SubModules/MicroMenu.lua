@@ -99,6 +99,8 @@ MM.rightButtonText = "|cffFFFFFFRight Click:|r "
 local function ToggleGroupFinder()
   if TXUI.IsRetail then
     _G.ToggleLFDParentFrame()
+  elseif TXUI.IsForever then
+    _G.ToggleGroupFinderFrame()
   else
     _G.PVEFrame_ToggleFrame()
   end
@@ -108,7 +110,7 @@ local lfgLevelRequirement = TXUI.IsClassic and 15 or 10
 
 MM.microMenu = {
   ["ach"] = {
-    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary,
+    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary and not TXUI.IsForever,
     name = ACHIEVEMENTS,
     macro = {
       LeftButton = SLASH_ACHIEVEMENTUI1,
@@ -158,7 +160,7 @@ MM.microMenu = {
   },
   ["journal"] = {
     name = ADVENTURE_JOURNAL,
-    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary,
+    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary and not TXUI.IsForever,
     macro = {
       LeftButton = "/click EJMicroButton",
       RightButton = TXUI.IsRetail and "/run WeeklyRewards_LoadUI(); if WeeklyRewardsFrame:IsShown() then WeeklyRewardsFrame:Hide() else WeeklyRewardsFrame:Show() end" or nil,
@@ -218,7 +220,7 @@ MM.microMenu = {
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLELFGPARENT },
   },
   ["guild"] = {
-    name = TXUI.IsRetail and GUILD_AND_COMMUNITIES or "Guild",
+    name = TXUI.IsModern and GUILD_AND_COMMUNITIES or "Guild",
     info = true,
     keyBind = "TOGGLEGUILDTAB",
     tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLEGUILDTAB, MM.rightButtonText .. "Quick Menu" },
@@ -277,11 +279,13 @@ MM.microMenu = {
       end,
 
       -- On Vanilla & Mists of Pandaria the professions are part of the spellbook
-      RightButton = TXUI.IsRetail and _G.ProfessionMicroButton.OnClick or E.noop,
+      RightButton = (TXUI.IsRetail and _G.ProfessionMicroButton.OnClick) or (TXUI.IsForever and function()
+        if not InCombatLockdown() then _G.ToggleProfessionsBook() end
+      end) or E.noop,
     },
     keyBind = "TOGGLESPELLBOOK",
     newbieTooltip = NEWBIE_TOOLTIP_SPELLBOOK,
-    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLESPELLBOOK, TXUI.IsRetail and MM.rightButtonText .. BINDING_NAME_TOGGLEPROFESSIONBOOK or nil },
+    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLESPELLBOOK, TXUI.IsModern and MM.rightButtonText .. BINDING_NAME_TOGGLEPROFESSIONBOOK or nil },
   },
   ["talent"] = {
     name = TALENTS_BUTTON,
@@ -315,6 +319,9 @@ MM.microMenu = {
         if not InCombatLockdown() then
           if TXUI.IsClassicEra or TXUI.IsAnniversary then
             ToggleCharacter("HonorFrame")
+          elseif TXUI.IsForever then
+            -- Forever shows the PvP rank inside its own character frame, let Blizzard's button open it
+            _G.PVPMicroButton:Click()
           else
             TogglePVPUI()
           end

@@ -241,7 +241,7 @@ function M:Tags()
 
   -- ToxiUI: Health Tags
   local function GetHealthPercentage(unit)
-    if TXUI.IsRetail then return UnitHealthPercent(unit, true, ScaleTo100) end
+    if TXUI.IsModern then return UnitHealthPercent(unit, true, ScaleTo100) end
 
     local max = UnitHealthMax(unit)
     if max == 0 then
@@ -289,11 +289,11 @@ function M:Tags()
     if not dm.isEnabled then return ret end
 
     return FormatColorTag(ret, unit)
-  end, not TXUI.IsRetail)
+  end, not TXUI.IsModern)
 
   -- Power Percent No Sign Tag
   E:AddTag("tx:power:percent:nosign", POWER_EVENTS, function(unit)
-    if TXUI.IsRetail then
+    if TXUI.IsModern then
       local power = format("%d", UnitPowerPercent(unit, nil, true, ScaleTo100))
 
       if not dm.isEnabled then
@@ -540,7 +540,7 @@ function M:Tags()
   do
     E:AddTagInfo("tx:health:percent:nosign", TagNames.HEALTH, "Displays percentage HP of unit without decimals or the % sign. Also adds " .. TXUI.Title .. " colors.")
     E:AddTagInfo("tx:health:current:shortvalue", TagNames.HEALTH, "Shortvalue of the unit's current health (e.g. 81k instead of 81200). Also adds " .. TXUI.Title .. " colors.")
-    if TXUI.IsRetail then
+    if TXUI.IsModern then
       E:AddTagInfo(
         "tx:health:current:shortvalue:absorb",
         TagNames.HEALTH,

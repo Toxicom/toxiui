@@ -67,7 +67,7 @@ function DB:OnEvent(event)
         if perc < totalDurability then totalDurability = perc end
 
         -- Add repair costs for tooltip
-        if TXUI.IsRetail and E.ScanTooltip:GetTooltipData() then
+        if TXUI.IsModern and E.ScanTooltip:GetTooltipData() then
           E.ScanTooltip:SetInventoryItem("player", index)
           E.ScanTooltip:Show()
 
@@ -80,7 +80,7 @@ function DB:OnEvent(event)
         totalRepairCost = totalRepairCost + repairCost
 
         -- Get item level if enabled (for Wrath we use UpdateAverageItemLevel)
-        if TXUI.IsRetail and self.db.showItemLevel then
+        if TXUI.IsModern and self.db.showItemLevel then
           local slotInfo = E:GetGearSlotInfo("player", index)
 
           if slotInfo == "tooSoon" then
@@ -259,7 +259,7 @@ function DB:UpdateFonts()
 end
 
 function DB:UpdateAverageItemLevel()
-  if TXUI.IsRetail or TXUI.IsClassic then
+  if TXUI.IsModern or TXUI.IsClassic then
     local avgItemLevel, avgItemLevelEquipped = GetAverageItemLevel()
 
     if avgItemLevel ~= self.avgItemLevel or avgItemLevelEquipped ~= self.avgItemLevelEquipped then
@@ -395,5 +395,5 @@ WB:RegisterSubModule(
   F.Table.Join({
     "UPDATE_INVENTORY_DURABILITY",
     "MERCHANT_SHOW",
-  }, F.Table.If(TXUI.IsRetail, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(TXUI.IsClassic, { "PLAYER_EQUIPMENT_CHANGED" }))
+  }, F.Table.If(TXUI.IsModern, { "PLAYER_AVG_ITEM_LEVEL_UPDATE" }), F.Table.If(TXUI.IsClassic, { "PLAYER_EQUIPMENT_CHANGED" }))
 )

@@ -34,14 +34,27 @@ TXUI.GitHash = GetAddOnMetadata(addonName, "X-GitHash")
 TXUI.DevRelease = false
 TXUI.DevTag = ""
 TXUI.DelayedWorldEntered = false
-TXUI.MetaFlavor = GetAddOnMetadata(addonName, "X-Flavor")
 TXUI.ClientBuildVersion = select(4, GetBuildInfo())
 TXUI.Version = GetAddOnMetadata(addonName, "Version")
 
-TXUI.IsRetail = TXUI.MetaFlavor == "Retail"
-TXUI.IsClassic = TXUI.MetaFlavor == "Classic"
-TXUI.IsClassicEra = TXUI.MetaFlavor == "ClassicEra"
-TXUI.IsAnniversary = TXUI.MetaFlavor == "Anniversary"
+-- Detect the flavor from the running client instead of the TOC's X-Flavor,
+-- so a client falling back to the wrong TOC can't pretend to be another flavor
+TXUI.IsRetail = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE
+TXUI.IsClassic = WOW_PROJECT_ID == WOW_PROJECT_MISTS_CLASSIC
+TXUI.IsClassicEra = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+TXUI.IsAnniversary = WOW_PROJECT_ID == WOW_PROJECT_BURNING_CRUSADE_CLASSIC
+TXUI.IsForever = WOW_PROJECT_ID == WOW_PROJECT_CAMELOT
+
+-- Forever runs on the Retail client (same UI frames & APIs) with Vanilla content.
+-- Use IsModern for client/UI checks, IsRetail for Retail-only content (talent loadouts, M+, housing, ...)
+TXUI.IsModern = TXUI.IsRetail or TXUI.IsForever
+
+TXUI.MetaFlavor = (TXUI.IsRetail and "Retail")
+  or (TXUI.IsClassic and "Classic")
+  or (TXUI.IsClassicEra and "ClassicEra")
+  or (TXUI.IsAnniversary and "Anniversary")
+  or (TXUI.IsForever and "Forever")
+  or GetAddOnMetadata(addonName, "X-Flavor")
 
 -- M+ season for Retail, eg.: df3
 -- see Internal.lua for M+ Hearthstones
@@ -71,6 +84,7 @@ function TXUI:Initialize()
     ["Classic"] = I.Enum.Flavor.CLASSIC,
     ["ClassicEra"] = I.Enum.Flavor.CLASSIC_ERA,
     ["Anniversary"] = I.Enum.Flavor.ANNIVERSARY,
+    ["Forever"] = I.Enum.Flavor.FOREVER,
   }
 
   self.Flavor = flavorMap[self.MetaFlavor] or I.Enum.Flavor.RETAIL
@@ -121,8 +135,8 @@ function TXUI:Initialize()
     return
   end
 
-  -- Check for non Mists, non Retail, non Vanilla, and non TBC
-  if not self.IsRetail and not self.IsClassic and not self.IsClassicEra and not self.IsAnniversary then return end
+  -- Check for non Mists, non Retail, non Vanilla, non TBC, and non Forever
+  if not self.IsRetail and not self.IsClassic and not self.IsClassicEra and not self.IsAnniversary and not self.IsForever then return end
 
   -- Force ElvUI Setup to hide
   E.private.install_complete = E.version
@@ -133,6 +147,8 @@ function TXUI:Initialize()
   if self.IsClassicEra then I.HearthstoneData = I.HearthstoneData_ClassicEra end
 
   if self.IsAnniversary then I.HearthstoneData = I.HearthstoneData_Anniversary end
+
+  if self.IsForever then I.HearthstoneData = I.HearthstoneData_ClassicEra end
 
   -- Lets go!
   self:InitializeModules()

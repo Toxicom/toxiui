@@ -910,4 +910,4 @@ function O:Skins_CooldownManager()
   end
 end
 
-if TXUI.IsRetail then O:AddCallback("Skins_CooldownManager") end
+if TXUI.IsModern then O:AddCallback("Skins_CooldownManager") end

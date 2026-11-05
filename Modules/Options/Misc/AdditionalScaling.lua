@@ -444,7 +444,7 @@ function O:Plugins_AdditionalScaling()
       type = "range",
       name = "Talents",
       disabled = function()
-        return TXUI.IsRetail
+        return TXUI.IsModern
       end,
       get = function(_)
         return E.db.TXUI.misc.scaling.talents.scale
