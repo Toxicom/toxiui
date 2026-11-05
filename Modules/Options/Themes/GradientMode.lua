@@ -158,7 +158,8 @@ function O:ToxiUI_Themes_GradientMode()
         name = shiftsDesc("Power colors"),
       }).args
 
-      local wrathExcluded = {
+      -- Power types that only exist on Retail
+      local retailOnly = {
         ["PAIN"] = true,
         ["FURY"] = true,
         ["LUNAR_POWER"] = true,
@@ -166,9 +167,23 @@ function O:ToxiUI_Themes_GradientMode()
         ["MAELSTROM"] = true,
       }
 
+      -- Power types that only exist on Retail & Mists (Death Knights)
+      local wrathPlus = {
+        ["RUNIC_POWER"] = true,
+      }
+
       local rows = {}
       for power, _ in pairs(P.themes.gradientMode.powerColorMap[I.Enum.GradientMode.Color.SHIFT]) do
-        if TXUI.IsRetail or (TXUI.IsClassic and wrathExcluded[power] == nil) then
+        local available
+        if retailOnly[power] then
+          available = TXUI.IsRetail
+        elseif wrathPlus[power] then
+          available = TXUI.IsRetail or TXUI.IsClassic
+        else
+          available = true
+        end
+
+        if available then
           local colorIndex = (power == "ALT_POWER") and "MANA" or power
           local label = F.String.LowercaseEnum(power)
           rows[#rows + 1] = { key = power, label = F.String.RGB(label, { F.CalculateMultiplierColorArray(1.35, PowerBarColor[colorIndex]) }), sort = label }
