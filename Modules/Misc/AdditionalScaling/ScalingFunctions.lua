@@ -17,7 +17,14 @@ function M:SetElementScale(dbName, blizzName)
 
   local blizzElement = _G[blizzName]
   if blizzElement then
-    blizzElement:SetScale(option.scale)
+    -- Protected frames (e.g. CollectionsJournal) can't be scaled in combat, the addon can get loaded by a keybind mid-fight
+    if InCombatLockdown() and blizzElement:IsProtected() then
+      F.Event.ContinueOutOfCombat(function()
+        blizzElement:SetScale(option.scale)
+      end)
+    else
+      blizzElement:SetScale(option.scale)
+    end
   else
     TXUI:LogDebug("AdditionalScaling > blizzElement " .. F.String.ToxiUI(blizzName) .. " not found, skipping scaling!")
   end

@@ -11,6 +11,7 @@ TXUI.Changelog["7.6.1"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    "Additional Scaling: Fixed an error when opening the Collections window in combat",
     F.String.Era() .. F.String.Anniversary() .. F.String.Forever() .. F.String.GradientMode() .. ": Power colors were missing from the settings",
     F.String.Forever()
       .. "Support for first & last character names"
