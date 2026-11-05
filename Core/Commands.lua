@@ -155,7 +155,7 @@ function TXUI:DebugMode(msg)
       for i = 1, GetNumAddOns() do
         local name = GetAddOnInfo(i)
         if not AddOns[name] and F.IsAddOnEnabled(name) then
-          DisableAddOn(name, E.myname)
+          DisableAddOn(name, E.myguid)
           db.disabledAddOns[name] = i
         end
       end
@@ -173,7 +173,7 @@ function TXUI:DebugMode(msg)
 
       if next(db.disabledAddOns) then
         for name in pairs(db.disabledAddOns) do
-          EnableAddOn(name, E.myname)
+          EnableAddOn(name, E.myguid)
         end
 
         wipe(db.disabledAddOns)

@@ -541,7 +541,13 @@ do
   local isKnownPlayer
 
   function F.BuildMyRealmName()
-    myRealmName = E.myname .. "-" .. E:ShortenRealm(E.myrealm)
+    if TXUI.IsForever then
+      -- Forever has no realms, the realm slot holds the character's last name ("First Last")
+      local firstName, lastName = UnitNameUnmodified("player")
+      myRealmName = (lastName and lastName ~= "") and (firstName .. " " .. lastName) or firstName
+    else
+      myRealmName = E.myname .. "-" .. E:ShortenRealm(E.myrealm)
+    end
   end
 
   function F.BuildRoleCache()

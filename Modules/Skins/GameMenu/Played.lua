@@ -2,6 +2,9 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local GM = TXUI:GetModule("GameMenu")
 local Misc = TXUI:GetModule("Misc")
 
+-- Forever characters share first names, key them by "First Last" there
+local myName = E.mynameFull or E.myname
+
 local CreateFrame = CreateFrame
 local GameTooltip = GameTooltip
 local m = GM.Spacing
@@ -187,12 +190,12 @@ function GM:OnTimePlayed(_, totalTimePlayed, levelTimePlayed)
   E.global.TXUI = E.global.TXUI or {}
   E.global.TXUI.playedSeconds = E.global.TXUI.playedSeconds or {}
   E.global.TXUI.playedSeconds[E.myrealm] = E.global.TXUI.playedSeconds[E.myrealm] or {}
-  E.global.TXUI.playedSeconds[E.myrealm][E.myname] = totalTimePlayed
+  E.global.TXUI.playedSeconds[E.myrealm][myName] = totalTimePlayed
 
   -- Ensure class mapping exists
   E.global.TXUI.classMap = E.global.TXUI.classMap or {}
   E.global.TXUI.classMap[E.myrealm] = E.global.TXUI.classMap[E.myrealm] or {}
-  E.global.TXUI.classMap[E.myrealm][E.myname] = E.myclass
+  E.global.TXUI.classMap[E.myrealm][myName] = E.myclass
 
   -- Only handle once per login request
   self:UnregisterEvent("TIME_PLAYED_MSG")
@@ -217,9 +220,9 @@ function GM:OnPlayerEnteringWorld(_, isLogin)
   if isLogin then
     local now = time()
     self.sessionStartEpoch = now
-    E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname] = now
+    E.global.TXUI.sessionStartEpoch[E.myrealm][myName] = now
   else
-    local saved = E.global.TXUI.sessionStartEpoch[E.myrealm][E.myname]
+    local saved = E.global.TXUI.sessionStartEpoch[E.myrealm][myName]
     if saved and saved > 0 then self.sessionStartEpoch = saved end
   end
 end

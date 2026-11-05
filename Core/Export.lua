@@ -78,7 +78,11 @@ local function exportNames()
 
   for namerealm, _ in pairs(elvDB.profileKeys) do
     local name, realm = strsplit(" - ", namerealm, 2)
-    if name and realm then
+    if TXUI.IsForever then
+      -- Forever profile keys are "First Last" without a realm
+      exportTable[namerealm] = true
+      tinsert(printNames, namerealm)
+    elseif name and realm then
       local exportName = format("%s-%s", name, E:ShortenRealm(realm))
       exportTable[exportName] = true
       tinsert(printNames, exportName)

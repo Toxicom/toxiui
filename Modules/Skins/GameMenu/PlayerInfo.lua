@@ -19,7 +19,7 @@ function GM:CreatePlayerInfo()
   parent.nameText:SetPoint("TOP", parent.logo, "BOTTOM", 0, m(-8))
   parent.nameText:SetFont(self.titleFont, F.FontSizeScaled(28), "OUTLINE")
   parent.nameText:SetTextColor(1, 1, 1, 1)
-  parent.nameText:SetText(F.String.GradientClass(E.myname))
+  parent.nameText:SetText(F.String.GradientClass(E.mynameFull or E.myname)) -- "First Last" on Forever
 
   -- Player Guild
   parent.guildText = parent:CreateFontString(nil, "OVERLAY")

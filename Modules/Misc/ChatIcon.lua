@@ -15,8 +15,8 @@ function M:ChatIcon_DevIconCallback(sender)
 
   -- Strip colors
   local cleanName = F.String.StripColor(sender)
-  -- Add realm name if the name has none
-  if not find(cleanName, "-", 1, true) then
+  -- Add realm name if the name has none, Forever has no realms ("First Last")
+  if not TXUI.IsForever and not find(cleanName, "-", 1, true) then
     if not shortRealmName then shortRealmName = E:ShortenRealm(E.myrealm) end
     cleanName = cleanName .. "-" .. shortRealmName
   end

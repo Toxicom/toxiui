@@ -271,7 +271,7 @@ function AFK:SetupFrames()
   self.frame.bottom.nameText:SetPoint("TOP", self.frame.bottom.logoText, "BOTTOM", 0, -30)
   self.frame.bottom.nameText:SetFont(self.titleFont, F.FontSizeScaled(28), "OUTLINE")
   self.frame.bottom.nameText:SetTextColor(1, 1, 1, 1)
-  self.frame.bottom.nameText:SetText(F.String.GradientClass(E.myname))
+  self.frame.bottom.nameText:SetText(F.String.GradientClass(E.mynameFull or E.myname)) -- "First Last" on Forever
 
   -- Player Guild
   self.frame.bottom.guildText = self.frame.bottom:CreateFontString(nil, "OVERLAY")

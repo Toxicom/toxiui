@@ -2,6 +2,11 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 local O = TXUI:GetModule("Options")
 local GM = TXUI:GetModule("GameMenu")
 
+-- Forever has no realms, characters are already "First Last"
+local function displayName(name, realm)
+  return TXUI.IsForever and name or (name .. "-" .. realm)
+end
+
 function O:Skins_ElvUI()
   -- Create Tab
   self.options.skins.args["gameMenuSkinGroup"] = {
@@ -95,7 +100,7 @@ function O:Skins_ElvUI()
           if seconds and seconds > 0 then
             local key = realm .. "\t" .. name
             local classToken = classes[realm] and classes[realm][name]
-            list[key] = F.String.Class(name .. "-" .. realm, classToken) .. F.String.Silver(" (" .. GM.FormatPlayed(seconds, false) .. ")")
+            list[key] = F.String.Class(displayName(name, realm), classToken) .. F.String.Silver(" (" .. GM.FormatPlayed(seconds, false) .. ")")
           end
         end
       end
@@ -198,7 +203,7 @@ function O:Skins_ElvUI()
         if not value then return end
         local realm, name = value:match("^(.+)\t(.+)$")
         if not realm or not name then return end
-        E:StaticPopup_Show("TXUI_DELETE_PLAYED_CHARACTER", name .. "-" .. realm, nil, { realm = realm, name = name })
+        E:StaticPopup_Show("TXUI_DELETE_PLAYED_CHARACTER", displayName(name, realm), nil, { realm = realm, name = name })
       end,
       disabled = optionsDisabled,
     }

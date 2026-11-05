@@ -4,6 +4,9 @@ local CR = WB:NewModule("Currency", "AceHook-3.0")
 local DT = E:GetModule("DataTexts")
 local HS = WB:GetModule("Hearthstone")
 
+-- ElvUI keys gold by "First Last" on Forever, plain name everywhere else
+local myName = E.mynameFull or E.myname
+
 local _G = _G
 local BreakUpLargeNumbers = BreakUpLargeNumbers
 local C_Bank_FetchDepositedMoney = C_Bank and C_Bank.FetchDepositedMoney
@@ -51,7 +54,7 @@ function CR:OnEvent(event)
     or (event == "TRADE_MONEY_CHANGED")
   then
     local totalGold = GetMoney()
-    local oldGold = _G.ElvDB.gold[E.myrealm][E.myname] or totalGold
+    local oldGold = _G.ElvDB.gold[E.myrealm][myName] or totalGold
 
     local goldChange = totalGold - oldGold
     if oldGold > totalGold then
@@ -69,7 +72,7 @@ function CR:OnEvent(event)
     end
 
     if totalGold ~= self.totalGold or (self.db.showBagSpace and freeBagSpace ~= self.freeBagSpace) then
-      _G.ElvDB.gold[E.myrealm][E.myname] = totalGold
+      _G.ElvDB.gold[E.myrealm][myName] = totalGold
 
       self.totalGold = totalGold
       self.freeBagSpace = freeBagSpace
@@ -99,7 +102,7 @@ function CR:DeleteCharacter(realm, name)
   _G.ElvDB.class[realm][name] = nil
   _G.ElvDB.faction[realm][name] = nil
 
-  if name == E.myname and realm == E.myrealm then self:OnEvent("ELVUI_FORCE_UPDATE") end
+  if name == myName and realm == E.myrealm then self:OnEvent("ELVUI_FORCE_UPDATE") end
 end
 
 function CR:LeftClick()
@@ -221,7 +224,7 @@ function CR:UpdateTooltip()
     if g.faction ~= "" and g.faction ~= "Neutral" then nameLine = format("|TInterface/FriendsFrame/PlusManz-%s:14|t ", g.faction) end
 
     local toonName = format("%s%s%s", nameLine, g.name, (g.realm and g.realm ~= E.myrealm and " - " .. g.realm) or "")
-    DT.tooltip:AddDoubleLine((g.name == E.myname and toonName .. " |TInterface/COMMON/Indicator-Green:14|t") or toonName, g.amountText, g.r, g.g, g.b, 1, 1, 1)
+    DT.tooltip:AddDoubleLine((g.name == myName and toonName .. " |TInterface/COMMON/Indicator-Green:14|t") or toonName, g.amountText, g.r, g.g, g.b, 1, 1, 1)
   end
 
   DT.tooltip:AddLine(" ")
@@ -496,11 +499,11 @@ function CR:CreateElvUIDB()
 
   _G.ElvDB.class = _G.ElvDB.class or {}
   _G.ElvDB.class[E.myrealm] = _G.ElvDB.class[E.myrealm] or {}
-  _G.ElvDB.class[E.myrealm][E.myname] = E.myclass
+  _G.ElvDB.class[E.myrealm][myName] = E.myclass
 
   _G.ElvDB.faction = _G.ElvDB.faction or {}
   _G.ElvDB.faction[E.myrealm] = _G.ElvDB.faction[E.myrealm] or {}
-  _G.ElvDB.faction[E.myrealm][E.myname] = E.myfaction
+  _G.ElvDB.faction[E.myrealm][myName] = E.myfaction
 
   _G.ElvDB.serverID = _G.ElvDB.serverID or {}
   _G.ElvDB.serverID[E.serverID] = _G.ElvDB.serverID[E.serverID] or {}

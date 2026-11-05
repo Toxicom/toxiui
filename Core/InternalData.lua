@@ -100,6 +100,11 @@ I.Data.Contributor = {
         ["Toxilock-CrusaderStrike"] = true,
         ["Toxisin-CrusaderStrike"] = true,
       },
+
+      -- Forever has no realms, characters are keyed by "First Last"
+      [I.Enum.Flavor.FOREVER] = {
+        ["Toxi Mage"] = true,
+      },
     },
 
     [I.Enum.Developers.RYADA] = {
