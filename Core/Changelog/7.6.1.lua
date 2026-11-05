@@ -7,6 +7,7 @@ TXUI.Changelog["7.6.1"] = {
     "* Breaking changes",
 
     "* New features",
+    F.String.Forever() .. F.String.Menu.Armory() .. " support" .. F.String.Sublist("Styles the Forever character sheet, its stats list and the ranged slot"),
 
     "* Enhancements",
 

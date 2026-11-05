@@ -14,8 +14,9 @@ local GetCurrentTitle = GetCurrentTitle
 local GetInventoryItemID = GetInventoryItemID
 local GetItemInfo = (C_Item and C_Item.GetItemInfo) or GetItemInfo
 local GetMeleeHaste = GetMeleeHaste
-local GetSpecialization = GetSpecialization
-local GetSpecializationInfo = GetSpecializationInfo
+-- Forever only ships the C_SpecializationInfo versions, the globals are deprecated fallbacks there
+local GetSpecialization = (TXUI.IsForever and C_SpecializationInfo.GetSpecialization) or GetSpecialization
+local GetSpecializationInfo = (TXUI.IsForever and C_SpecializationInfo.GetSpecializationInfo) or GetSpecializationInfo
 local GetSpecializationRole = GetSpecializationRole
 
 local GetTitleName = GetTitleName
@@ -108,7 +109,7 @@ A.characterSlots = {
     direction = A.enumDirection.LEFT,
   },
   ["TabardSlot"] = {
-    id = 18,
+    id = 19,
     needsEnchant = false,
     needsSocket = false,
     direction = A.enumDirection.LEFT,
@@ -202,6 +203,31 @@ A.characterSlots = {
     direction = A.enumDirection.LEFT,
   },
 }
+
+-- Forever has a third weapon slot and Vanilla enchant rules
+if TXUI.IsForever then
+  local maxLevel = { level = I.MaxLevelTable[TXUI.MetaFlavor] }
+  local slots = A.characterSlots
+
+  -- Weapons sit in one row (MainHand, SecondaryHand, Ranged), the middle one has no room for a gradient
+  slots["SecondaryHandSlot"].direction = A.enumDirection.BOTTOM
+  slots["RangedSlot"] = {
+    id = 18,
+    needsEnchant = false,
+    needsSocket = false,
+    direction = A.enumDirection.LEFT,
+  }
+
+  -- Rings can't be enchanted, head & shoulder enchants only matter at max level
+  slots["Finger0Slot"].needsEnchant = false
+  slots["Finger1Slot"].needsEnchant = false
+  slots["HeadSlot"].warningCondition = maxLevel
+  slots["ShoulderSlot"].warningCondition = maxLevel
+  slots["WristSlot"].needsEnchant = true
+  slots["HandsSlot"].needsEnchant = true
+  slots["HandsSlot"].warningCondition = maxLevel
+  slots["BackSlot"].needsEnchant = true
+end
 
 function A:GetPrimaryTalentIndex()
   local primaryTalentTreeIdx = 0
@@ -370,6 +396,20 @@ function A:UpdateItemLevel()
 
   F.SetFontFromDB(self.db.stats, "itemLevel", self.frame.ItemLevelText)
 
+  if TXUI.IsForever then
+    -- ElvUI parents this to the stats pane item level frame, which Forever keeps hidden
+    if self.frame.ItemLevelText:GetParent() ~= self.frameHolder then
+      self.frame.ItemLevelText:SetParent(self.frameHolder)
+      self.frame.ItemLevelText:ClearAllPoints()
+      self.frame.ItemLevelText:SetPoint("BOTTOM", self.frameModel, "BOTTOM", 0, 8)
+    end
+
+    if UnitLevel("player") < (MIN_PLAYER_LEVEL_FOR_ITEM_LEVEL_DISPLAY or 0) then
+      self.frame.ItemLevelText:SetText("")
+      return
+    end
+  end
+
   local itemLevelText
 
   local avgItemLevel, avgItemLevelEquipped = GetAverageItemLevel()
@@ -383,12 +423,14 @@ function A:UpdateItemLevel()
   end
 
   if self:UseFontGradient(self.db.stats, "itemLevel") then
-    local epicComplete = select(13, GetAchievementInfo(A.Achievements.Epic[TXUI.MetaFlavor]))
+    -- Forever has no achievements, it always gets the green gradient
+    local epicId, rareId = A.Achievements.Epic[TXUI.MetaFlavor], A.Achievements.Rare[TXUI.MetaFlavor]
+    local epicComplete = epicId and select(13, GetAchievementInfo(epicId))
 
     if epicComplete then
       self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.78, 0.13, 0.57, 0.42, 0.08, 0.82))
     else
-      local rareComplete = select(13, GetAchievementInfo(A.Achievements.Rare[TXUI.MetaFlavor]))
+      local rareComplete = rareId and select(13, GetAchievementInfo(rareId))
 
       if rareComplete then
         self.frame.ItemLevelText:SetText(F.String.FastGradient(itemLevelText, 0.01, 0.78, 0.98, 0, 0.38, 0.90))
@@ -429,13 +471,14 @@ function A:UpdateTitle()
   if not currentClass or not playerLevel then return end
 
   local classColorNormal = E.db.TXUI.themes.gradientMode.classColorMap[I.Enum.GradientMode.Color.NORMAL][currentClass]
+  local playerName = E.mynameFull or E.myname -- "First Last" on Forever
 
   if self:UseFontGradient(self.db, "nameText") then
-    self.nameText:SetText(F.String.FastGradient(E.myname, 0, 0.6, 1, 0, 0.9, 1))
+    self.nameText:SetText(F.String.FastGradient(playerName, 0, 0.6, 1, 0, 0.9, 1))
   elseif self:UseFontClassGradient(self.db, "nameText") then
-    self.nameText:SetText(F.String.GradientClass(E.myname))
+    self.nameText:SetText(F.String.GradientClass(playerName))
   else
-    self.nameText:SetText(E.myname)
+    self.nameText:SetText(playerName)
     F.SetFontColorFromDB(self.db, "nameText", self.nameText)
   end
 
@@ -471,8 +514,14 @@ function A:UpdateTitle()
     F.SetFontColorFromDB(self.db, "classText", self.classText)
   end
 
+  -- The model sits closer to the top of the frame on Forever, keep the texts in the title bar & above the model
+  local nameOffsetY, levelOffsetY = 59, 30
+  if TXUI.IsForever then
+    nameOffsetY, levelOffsetY = 44, 15
+  end
+
   self.nameText:ClearAllPoints()
-  self.nameText:SetPoint("TOP", self.frameModel, self.db.nameTextOffsetX, 59 + self.db.nameTextOffsetY)
+  self.nameText:SetPoint("TOP", self.frameModel, self.db.nameTextOffsetX, nameOffsetY + self.db.nameTextOffsetY)
   self.nameText:SetJustifyH("CENTER")
   self.nameText:SetJustifyV("BOTTOM")
 
@@ -492,7 +541,7 @@ function A:UpdateTitle()
   local centerOffset = (totalWidth / 2) - anchorWidth
 
   self.specIcon:ClearAllPoints()
-  self.specIcon:SetPoint("TOP", self.frameModel, centerOffset, 30)
+  self.specIcon:SetPoint("TOP", self.frameModel, centerOffset, levelOffsetY)
   self.specIcon:SetJustifyH("CENTER")
   self.specIcon:SetJustifyV("BOTTOM")
 
@@ -512,22 +561,32 @@ function A:UpdateTitle()
   self.classText:SetJustifyV("BOTTOM")
 end
 
+local enchantAbbrevs
 function A:EnchantAbbreviate(str)
-  local abbrevs = {
-    -- Primary
-    [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_STRENGTH .. "_NAME"]] = "Str.",
-    [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_AGILITY .. "_NAME"]] = "Agi.",
-    [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_INTELLECT .. "_NAME"]] = "Int.",
-    [_G["SPELL_STAT" .. _G.LE_UNIT_STAT_STAMINA .. "_NAME"]] = "Stam.",
-    -- Secondary
-    [_G["STAT_VERSATILITY"]] = "Vers.",
-    [_G["STAT_CRITICAL_STRIKE"]] = "Crit.",
-    -- Tertiary
-    [_G["STAT_AVOIDANCE"]] = "Avoid.",
-  }
+  if not enchantAbbrevs then
+    enchantAbbrevs = {}
+
+    -- Not every client has every global string (Forever has no Versatility/Avoidance), skip missing ones
+    local strings = {
+      -- Primary
+      { _G["SPELL_STAT" .. _G.LE_UNIT_STAT_STRENGTH .. "_NAME"], "Str." },
+      { _G["SPELL_STAT" .. _G.LE_UNIT_STAT_AGILITY .. "_NAME"], "Agi." },
+      { _G["SPELL_STAT" .. _G.LE_UNIT_STAT_INTELLECT .. "_NAME"], "Int." },
+      { _G["SPELL_STAT" .. _G.LE_UNIT_STAT_STAMINA .. "_NAME"], "Stam." },
+      -- Secondary
+      { _G["STAT_VERSATILITY"], "Vers." },
+      { _G["STAT_CRITICAL_STRIKE"], "Crit." },
+      -- Tertiary
+      { _G["STAT_AVOIDANCE"], "Avoid." },
+    }
+
+    for _, entry in ipairs(strings) do
+      if entry[1] then enchantAbbrevs[entry[1]] = entry[2] end
+    end
+  end
 
   local short = F.String.Abbreviate(str)
-  for stat, abbrev in pairs(abbrevs) do
+  for stat, abbrev in pairs(enchantAbbrevs) do
     short = short:gsub(stat, abbrev)
   end
 
@@ -586,8 +645,9 @@ function A:UpdatePageStrings(_, slotId, _, slotItem, slotInfo, which)
   -- Hide Gradient
   if slotItem.TXGradient then slotItem.TXGradient:Hide() end
 
-  -- If we got an item color, show gradient and set color
-  if slotInfo.itemLevelColors and next(slotInfo.itemLevelColors) then
+  -- If we got an item color, show gradient and set color, slots without a side direction have no room for one
+  local hasGradientSide = (slotOptions.direction == self.enumDirection.LEFT) or (slotOptions.direction == self.enumDirection.RIGHT)
+  if hasGradientSide and slotInfo.itemLevelColors and next(slotInfo.itemLevelColors) then
     local r, g, b = unpack(slotInfo.itemLevelColors)
 
     -- Create Gradient if it doesen't exist
@@ -664,10 +724,10 @@ function A:UpdatePageInfo(_, _, which)
   if (which ~= nil) and (which ~= "Character") then return end
 
   for slot, options in pairs(self.characterSlots) do
-    if (options.id ~= 4) and (options.id ~= 18) then
+    if (slot ~= "ShirtSlot") and (slot ~= "TabardSlot") then
       local slotFrame = _G["Character" .. slot]
 
-      if self.db.pageInfo.moveSockets then
+      if self.db.pageInfo.moveSockets and slotFrame.textureSlot1 then
         local slotWidth, slotHeight = slotFrame:GetWidth(), slotFrame:GetHeight()
 
         for i = 1, 3 do
@@ -706,7 +766,8 @@ function A:UpdatePageInfo(_, _, which)
   self:UpdateItemLevel()
 end
 
-function A:UpdateCategoryHeader(frame, animationSlot)
+-- static: rows are recycled by a ScrollBox (Forever), skip animations and keep dividers stretched between their anchors
+function A:UpdateCategoryHeader(frame, animationSlot, static)
   if frame.StripTextures then frame:StripTextures() end
   if frame.backdrop then frame.backdrop:Kill() end
   if frame.Background then frame.Background:Kill() end
@@ -762,10 +823,6 @@ function A:UpdateCategoryHeader(frame, animationSlot)
     F.Color.SetGradientRGB(rightDivider, "HORIZONTAL", fontColor.r, fontColor.g, fontColor.b, fontColor.a, fontColor.r, fontColor.g, fontColor.b, 0)
   end
 
-  -- Setup Animations
-  self:SetupGrowAnimation(leftDivider, animationSlot)
-  self:SetupGrowAnimation(rightDivider, animationSlot)
-
   -- Anchor to calculate size
   leftDivider:ClearAllPoints()
   leftDivider:SetPoint("LEFT", frame, "LEFT", 3, 0)
@@ -773,6 +830,16 @@ function A:UpdateCategoryHeader(frame, animationSlot)
   rightDivider:ClearAllPoints()
   rightDivider:SetPoint("RIGHT", frame, "RIGHT", -3, 0)
   rightDivider:SetPoint("LEFT", frame.Title, "RIGHT", 3, 0)
+
+  if static then
+    frame.Title.TXLeftDivider = leftDivider
+    frame.Title.TXRightDivider = rightDivider
+    return
+  end
+
+  -- Setup Animations
+  self:SetupGrowAnimation(leftDivider, animationSlot)
+  self:SetupGrowAnimation(rightDivider, animationSlot)
 
   -- Vars
   local leftDividerWidth = leftDivider:GetWidth()
@@ -796,7 +863,13 @@ end
 
 function A:CleanupCharacterStat(frame)
   -- Kill Blizzard and ElvUI Stuff
-  if frame.Background then frame.Background:Kill() end
+  if TXUI.IsForever then
+    -- Recycled ScrollBox rows, Blizzard calls Background:SetShown on every init and ElvUI mirrors it on .shade
+    if frame.Background then frame.Background:SetAlpha(0) end
+    if frame.shade then frame.shade:SetAlpha(0) end
+  elseif frame.Background then
+    frame.Background:Kill()
+  end
   if frame.leftGrad then frame.leftGrad:Kill() end
   if frame.rightGrad then frame.rightGrad:Kill() end
 end
@@ -809,24 +882,28 @@ function A:UpdateCharacterStat(frame, showGradient)
   if frame.Label then
     F.SetFontFromDB(self.db.stats, "label", frame.Label, false)
 
-    local labelString = F.String.StripColor(frame.Label:GetText()) or ""
+    -- Recycled rows can be styled again without a new label, don't abbreviate our own output twice
+    local currentLabel = frame.Label:GetText()
+    local labelString = (currentLabel and currentLabel == frame.TXLabelText and frame.TXLabelSource) or F.String.StripColor(currentLabel) or ""
+    frame.TXLabelSource = labelString
 
     if self.db.stats.abbreviateLabels and labelString ~= "" then labelString = E:ShortenString(E.TagFunctions.Abbrev(labelString), 12) end
 
-    if self.db.stats.showIcons and self.db.stats.mode[frame.stringId] then
-      if not frame.Icon then
-        frame.Icon = frame:CreateFontString(nil, "OVERLAY")
-        frame.Icon:SetPoint("RIGHT", frame.Label, "LEFT", 0, 0)
-        frame.Icon:SetTextColor(1, 1, 1, 1)
+    -- Blizzard's ScrollBox rows have their own .Icon texture (resistances), keep ours separate
+    if self.db.stats.showIcons and frame.stringId and self.db.stats.mode[frame.stringId] then
+      if not frame.TXIcon then
+        frame.TXIcon = frame:CreateFontString(nil, "OVERLAY")
+        frame.TXIcon:SetPoint("RIGHT", frame.Label, "LEFT", 0, 0)
+        frame.TXIcon:SetTextColor(1, 1, 1, 1)
       end
 
       local icon = self.db.stats.mode[frame.stringId].icon or ""
 
-      F.SetFontFromDB(self.db.stats, "icon", frame.Icon, false)
-      frame.Icon:SetText(icon)
-      F.SetFontColorFromDB(self.db.stats, "icon", frame.Icon)
+      F.SetFontFromDB(self.db.stats, "icon", frame.TXIcon, false)
+      frame.TXIcon:SetText(icon)
+      F.SetFontColorFromDB(self.db.stats, "icon", frame.TXIcon)
     else
-      if frame.Icon then frame.Icon:SetText("") end
+      if frame.TXIcon then frame.TXIcon:SetText("") end
     end
 
     if self:UseFontGradient(self.db.stats, "label") then
@@ -837,6 +914,8 @@ function A:UpdateCharacterStat(frame, showGradient)
       frame.Label:SetText(labelString)
       F.SetFontColorFromDB(self.db.stats, "label", frame.Label)
     end
+
+    frame.TXLabelText = frame.Label:GetText()
   end
 
   local currentClass = E.myclass
@@ -889,8 +968,46 @@ function A:UpdateCharacterStat(frame, showGradient)
   end
 end
 
+-- Forever draws stats in a ScrollBox, styling happens in StyleForeverStats whenever it updates
+local foreverStatPanes = { "CharacterStatsPaneScrollBox", "CharacterStatsPanePetScrollBox" }
+
+function A:StyleForeverStatsFrame(child)
+  if child.Title then
+    self:UpdateCategoryHeader(child, nil, true)
+  else
+    local elementData = child.GetElementData and child:GetElementData()
+    child.stringId = elementData and elementData.name
+
+    -- Blizzard's label sits 11px in, make room for our icons so they don't hang over the pane edge
+    -- Resistance rows anchor their label to their own icon texture, leave those alone
+    if child.Label and not child.Icon then
+      child.Label:ClearAllPoints()
+      child.Label:SetPoint("LEFT", child, "LEFT", self.db.stats.showIcons and 26 or 11, 0)
+    end
+
+    self:UpdateCharacterStat(child, elementData and elementData.statIndex and ((elementData.statIndex % 2) == 0))
+  end
+end
+
+function A:StyleForeverStats(scrollBox)
+  if not self.isEnabled then return end
+  if not self.styleForeverStatsFrame then self.styleForeverStatsFrame = F.Event.GenerateClosure(self.StyleForeverStatsFrame, self) end
+
+  scrollBox:ForEachFrame(self.styleForeverStatsFrame)
+end
+
 function A:UpdateCharacterStats()
   if not self.frame:IsShown() then return end
+
+  if TXUI.IsForever then
+    -- Never call Blizzard's UpdateStats from here (taint), just restyle what the ScrollBoxes currently show
+    for _, paneName in ipairs(foreverStatPanes) do
+      local pane = _G[paneName]
+      if pane and pane.ScrollBox then self:StyleForeverStats(pane.ScrollBox) end
+    end
+    return
+  end
+
   if InCombatLockdown() then return end
 
   local characterStatsPane = _G.CharacterStatsPane
@@ -1091,6 +1208,9 @@ function A:UpdateAttackSpeed(statFrame, unit)
   statFrame.tooltip2 = format(_G.STAT_ATTACK_SPEED_BASE_TOOLTIP, BreakUpLargeNumbers(meleeHaste))
 
   statFrame:Show()
+
+  -- Blizzard's version returns the value, callers compare it against hideAt
+  return speed
 end
 
 function A:SafePaperDollUpdateStats(...)
@@ -1100,6 +1220,10 @@ function A:SafePaperDollUpdateStats(...)
 end
 
 function A:ApplyCustomStatCategories()
+  -- Forever builds its stats ScrollBox from PAPERDOLL_STATCATEGORIES inside secure CharacterFrame:OnShow,
+  -- any addon value or function in there taints it (player health/power are secret values on Forever)
+  if TXUI.IsForever then return end
+
   _G.PAPERDOLL_STATCATEGORIES = {
     [1] = {
       categoryFrame = "AttributesCategory",
@@ -1380,14 +1504,42 @@ function A:CreateElements()
   local specIcon = self.frameHolder:CreateFontString(nil, "OVERLAY")
   local classText = self.frameHolder:CreateFontString(nil, "OVERLAY")
 
-  local frameHeight, frameWidth = self.frame:GetSize()
-  local cutOffPercentage = (1 - (frameHeight / frameWidth))
-
   background:SetInside(self.frame)
-  background:SetFrameLevel(self.frameModel:GetFrameLevel() - 1)
+
+  if TXUI.IsForever then
+    -- The art covers the whole frame there, keep it below both panes (the model scene sits above the right pane)
+    -- PaperDollFrame only shows on the character tab, so the art still hides on Reputation/Skills/etc.
+    background:SetParent(_G.PaperDollFrame)
+    background:SetFrameStrata(self.frame:GetFrameStrata())
+    background:SetFrameLevel(self.frame:GetFrameLevel())
+  else
+    background:SetFrameLevel(self.frameModel:GetFrameLevel() - 1)
+  end
   background.Texture = background:CreateTexture(nil, "BACKGROUND")
   background.Texture:SetInside()
-  background.Texture:SetTexCoord(0, 1, cutOffPercentage, 1)
+
+  -- Fit the square art to the frame, the size can still be 0 before the first layout
+  local function updateBackgroundCrop(frame)
+    local width, height = frame:GetSize()
+    if not width or not height or width <= 0 or height <= 0 then return end
+
+    if TXUI.IsForever then
+      -- Fill without stretching, the frame is landscape with the right pane open and portrait when collapsed
+      if width >= height then
+        frame.Texture:SetTexCoord(0, 1, 1 - (height / width), 1)
+      else
+        local side = (1 - (width / height)) / 2
+        frame.Texture:SetTexCoord(side, 1 - side, 0, 1)
+      end
+    else
+      local cutOffPercentage = math.min(math.max(1 - (width / height), 0), 1)
+      frame.Texture:SetTexCoord(0, 1, cutOffPercentage, 1)
+    end
+  end
+
+  -- Forever resizes when the right pane is toggled, Retail keeps the crop from the initial size like it always did
+  if TXUI.IsForever then background:SetScript("OnSizeChanged", updateBackgroundCrop) end
+  updateBackgroundCrop(background)
 
   self.frame.TXBackground = background
 
@@ -1443,8 +1595,9 @@ end
 
 function A:Disable()
   if not self.Initialized then return end
-  if not self:IsHooked(_G, "PaperDollFrame_UpdateStats") then return end
+  if not self.isEnabled then return end
 
+  self.isEnabled = false
   self:CancelAllTimers()
   self:UnhookAll()
 
@@ -1457,8 +1610,9 @@ end
 
 function A:Enable()
   if not self.Initialized then return end
-  if self:IsHooked(_G, "PaperDollFrame_UpdateStats") then return end
+  if self.isEnabled then return end
 
+  self.isEnabled = true
   self:CreateElements()
 
   -- Hook ElvUI Overrides
@@ -1469,7 +1623,16 @@ function A:Enable()
   self:SecureHook(m, "CreateSlotStrings", F.Event.GenerateClosure(self.UpdatePageInfo, self))
   self:SecureHook(m, "UpdateInspectPageFonts", F.Event.GenerateClosure(self.UpdatePageInfo, self))
   self:SecureHook(m, "ToggleItemLevelInfo", F.Event.GenerateClosure(self.ElvOptionsCheck, self))
-  self:RawHook(_G, "PaperDollFrame_UpdateStats", "SafePaperDollUpdateStats", true)
+
+  if TXUI.IsForever then
+    -- Blizzard keeps updating the ScrollBox itself (also in combat), we restyle whatever it shows
+    for _, paneName in ipairs(foreverStatPanes) do
+      local pane = _G[paneName]
+      if pane and pane.ScrollBox then self:SecureHook(pane.ScrollBox, "Update", "StyleForeverStats") end
+    end
+  else
+    self:RawHook(_G, "PaperDollFrame_UpdateStats", "SafePaperDollUpdateStats", true)
+  end
 
   -- Register Events
   F.Event.RegisterFrameEventAndCallback("UNIT_NAME_UPDATE", self.HandleEvent, self, "UNIT_NAME_UPDATE")
@@ -1481,8 +1644,8 @@ function A:Enable()
   -- Hook Blizzard OnShow
   self:SecureHookScript(self.frame, "OnShow", "OpenCharacterArmory")
 
-  -- Hook broken blizzard function
-  self:RawHook(_G, "PaperDollFrame_SetAttackSpeed", "UpdateAttackSpeed", true)
+  -- Hook broken blizzard function, Forever's works and doesn't list attack speed by default
+  if not TXUI.IsForever then self:RawHook(_G, "PaperDollFrame_SetAttackSpeed", "UpdateAttackSpeed", true) end
 
   -- Apply our custom stat categories
   self:ApplyCustomStatCategories()
@@ -1522,4 +1685,4 @@ function A:Initialize()
   self.Initialized = true
 end
 
-if TXUI.IsRetail then TXUI:RegisterModule(A:GetName()) end
+if TXUI.IsRetail or TXUI.IsForever then TXUI:RegisterModule(A:GetName()) end

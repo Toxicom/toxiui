@@ -1242,7 +1242,7 @@ function O:Armory()
   end
 
   -- Stats
-  if TXUI.IsRetail then
+  if TXUI.IsRetail or TXUI.IsForever then
     -- Tab
     local tab = self:AddGroup(options, {
       name = "Attributes",
@@ -1601,10 +1601,9 @@ function O:Armory()
       }
     end
 
-    self:AddSpacer(tab)
-
-    -- Stats Mode
-    do
+    -- Stats Mode, Forever's stats come from Blizzard's secure ScrollBox and can't be filtered without taint
+    if not TXUI.IsForever then
+      self:AddSpacer(tab)
       -- Stats Mode Group
       local statsGroup = self:AddInlineGroup(tab, {
         name = "Attribute Visibility",
@@ -1646,7 +1645,7 @@ function O:Armory_OnlyRetailMessage()
   local group = self:AddInlineDesc(options, {
     name = "Description",
   }, {
-    name = "Unfortunately this feature is available only for the Retail version of "
+    name = "Unfortunately this feature is only for the Retail & Forever versions of "
       .. TXUI.Title
       .. ".\n\n"
       .. "For "
@@ -1669,7 +1668,7 @@ function O:Armory_OnlyRetailMessage()
   }
 end
 
-if TXUI.IsRetail then
+if TXUI.IsRetail or TXUI.IsForever then
   O:AddCallback("Armory")
 else
   O:AddCallback("Armory_OnlyRetailMessage")

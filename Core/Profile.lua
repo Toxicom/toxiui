@@ -719,7 +719,44 @@ P.armory = {
 
     -- Sets the mode for stats
     -- 0 (Hide), 1 (Smart/Blizzard), 2 (Always Show if not 0), 3 (Always Show)
-    mode = {
+    -- Forever can't filter Blizzard's stats ScrollBox without tainting it, only the icons are used there
+    mode = TXUI.IsForever and {
+      -- General
+      HEALTH = { icon = F.String.ConvertGlyph(59731) },
+      POWER = { icon = F.String.ConvertGlyph(59648) },
+      MOVESPEED = { icon = F.String.ConvertGlyph(59732) },
+
+      -- Primary Attributes
+      STRENGTH = { icon = F.String.ConvertGlyph(59728) },
+      AGILITY = { icon = F.String.ConvertGlyph(59729) },
+      STAMINA = { icon = F.String.ConvertGlyph(59731) },
+      INTELLECT = { icon = F.String.ConvertGlyph(59730) },
+      SPIRIT = { icon = F.String.ConvertGlyph(59739) },
+
+      -- Weapons
+      MAINHAND_DAMAGE = { icon = F.String.ConvertGlyph(59699) },
+      OFFHAND_DAMAGE = { icon = F.String.ConvertGlyph(59699) },
+      RANGED_DAMAGE = { icon = F.String.ConvertGlyph(59658) },
+      ATTACK_AP = { icon = F.String.ConvertGlyph(59712) },
+      RANGED_ATTACK_AP = { icon = F.String.ConvertGlyph(59658) },
+
+      -- Modifiers
+      HITCHANCE = { icon = F.String.ConvertGlyph(59707) },
+      CRITCHANCE = { icon = F.String.ConvertGlyph(59733) },
+      HASTE = { icon = F.String.ConvertGlyph(59734) },
+      EXPERTISE = { icon = F.String.ConvertGlyph(59702) },
+      ARMORPEN = { icon = F.String.ConvertGlyph(59727) },
+      SPELLPOWER = { icon = F.String.ConvertGlyph(59730) },
+      SPELLHEALING = { icon = F.String.ConvertGlyph(59694) },
+      SPELLPENETRATION = { icon = F.String.ConvertGlyph(59670) },
+
+      -- Defense
+      DEFENSE = { icon = F.String.ConvertGlyph(59701) },
+      DODGE = { icon = F.String.ConvertGlyph(59740) },
+      BLOCK = { icon = F.String.ConvertGlyph(59683) },
+      PARRY = { icon = F.String.ConvertGlyph(59712) },
+      ARMOR = { icon = F.String.ConvertGlyph(59737) },
+    } or {
       -- Attributes Category
       STRENGTH = {
         mode = 1,
