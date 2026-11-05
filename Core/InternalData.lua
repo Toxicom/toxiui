@@ -104,6 +104,7 @@ I.Data.Contributor = {
       -- Forever has no realms, characters are keyed by "First Last"
       [I.Enum.Flavor.FOREVER] = {
         ["Toxi Mage"] = true,
+        ["Toxi Priest"] = true,
       },
     },
 
