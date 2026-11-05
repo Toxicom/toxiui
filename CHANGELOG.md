@@ -1,6 +1,6 @@
-# ToxiUI v7.6.0-beta.2 - 2026-10-29
+# ToxiUI v7.6.0 - 2026-11-05
 
-**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.5.6...v7.6.0-beta.2>
+**Full Changelog**: <https://github.com/Toxicom/toxiui/compare/v7.5.6...v7.6.0>
 
 ## ‼️ Breaking Changes
 
@@ -9,6 +9,8 @@
 
 ## 🚀 New Features
 
+- [Forever] Support for World of Warcraft: Forever
+  - Includes the Cooldown Manager and Blizzard Damage Meter skins, **WunderBar** and the ToxiUI profile
 - [Retail] **WunderBar** MicroMenu: Show your character stats in the Character button tooltip
   - Item level, primary stat, secondary stats and tertiary stats you have
   - Can be toggled in MicroMenu settings
@@ -47,6 +49,8 @@
 
 ## 🐛 Bug Fixes
 
+- Installer: Fixed the UI reload at the end of the installation being blocked by the game
+  - You now get a popup with a Reload UI button instead
 - Additional Scaling: Fixed load-on-demand frames (Collections, Auction House, Inspect, Professions, etc.) not being scaled until the slider was changed
 - [Mists] Fixed Objective Frame position not being applied by the profile
 - Armory: Fixed conflict detection with Shadow & Light Inspect/Stats and Eltruism Classic Armory

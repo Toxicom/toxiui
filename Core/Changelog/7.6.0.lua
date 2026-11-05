@@ -2,7 +2,7 @@ local TXUI, F, E, I, V, P, G = unpack((select(2, ...)))
 
 TXUI.Changelog["7.6.0"] = {
   HOTFIX = true,
-  RELEASE_DATE = "Mon TBD, 2026",
+  RELEASE_DATE = "Nov 05, 2026",
   CHANGES = {
     "* Breaking changes",
     "Removed BigWigs support" .. F.String.Sublist("The BigWigs profile, " .. F.String.ToxiUI("/tx profile bw") .. " command and the BigWigs pull timer skin are gone"),
@@ -85,7 +85,5 @@ TXUI.Changelog["7.6.0"] = {
       "The preview bar now shows the colors with Saturation Boost applied"
     ),
     "The " .. TXUI.Title .. " logo in the options is now only shown on the General page",
-
-    "* Development improvements",
   },
 }
