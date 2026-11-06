@@ -9,6 +9,7 @@ TXUI.Changelog["7.6.2"] = {
     "* New features",
 
     "* Enhancements",
+    "Random tips: Added a lot of new tips and refreshed outdated ones" .. F.String.Sublist("Some tips are only shown on clients where the feature exists"),
 
     "* Bug fixes",
 
