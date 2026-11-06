@@ -26,14 +26,14 @@ function GR:SetGradientColors(frame, valueChanged, eR, eG, eB, colorChanged, col
     if colorChanged then frame.currentColor:SetRGBA(eR, eG, eB, 1) end
   end
 
-  if colorChanged then
-    colorChanged = frame.colorEntry ~= colorEntry or frame.colorMap ~= colorMap
+  -- Compare the gradient color on every update, not only when ElvUI's color changed: ElvUI often paints every unit
+  -- the same flat color, while ours can change on its own (e.g. follower NPCs only report a class once their data loads)
+  colorChanged = frame.colorEntry ~= colorEntry or frame.colorMap ~= colorMap
 
-    if colorChanged then
-      frame.colorMap = colorMap
-      frame.colorEntry = colorEntry
-      if eB ~= nil then frame.currentColor:SetRGBA(eR, eG, eB, 1) end
-    end
+  if colorChanged then
+    frame.colorMap = colorMap
+    frame.colorEntry = colorEntry
+    if eB ~= nil then frame.currentColor:SetRGBA(eR, eG, eB, 1) end
   end
 
   if colorChanged or frame.normalColor == nil then

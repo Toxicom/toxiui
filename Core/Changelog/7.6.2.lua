@@ -16,6 +16,7 @@ TXUI.Changelog["7.6.2"] = {
     "Random tips: Added a lot of new tips and refreshed outdated ones" .. F.String.Sublist("Some tips are only shown on clients where the feature exists"),
 
     "* Bug fixes",
+    F.String.GradientMode() .. ": Follower dungeon NPCs now get their class colors right away instead of after a " .. F.String.ToxiUI("/reload"),
 
     "* Profile updates",
 

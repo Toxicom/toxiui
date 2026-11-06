@@ -6,6 +6,7 @@ local UnitClass = UnitClass
 local UnitIsCharmed = UnitIsCharmed
 local UnitIsConnected = UnitIsConnected
 local UnitIsDeadOrGhost = UnitIsDeadOrGhost
+local UnitInPartyIsAI = UnitInPartyIsAI
 local UnitIsEnemy = UnitIsEnemy
 local UnitIsPlayer = UnitIsPlayer
 local UnitIsTapDenied = UnitIsTapDenied
@@ -23,6 +24,12 @@ function GR:GetHealthColor(frame, unit)
   if not isPlayer and TXUI.IsModern then
     local treatAsPlayer = UnitTreatAsPlayerForDisplay(unit)
     isPlayer = E:NotSecretValue(treatAsPlayer) and treatAsPlayer
+  end
+
+  -- Follower dungeon NPCs (same check oUF uses for class colors)
+  if not isPlayer and UnitInPartyIsAI then
+    local isAI = UnitInPartyIsAI(unit)
+    isPlayer = E:NotSecretValue(isAI) and isAI
   end
 
   if isPlayer then
