@@ -73,7 +73,16 @@ do
     local db = F.GetDBFromPath("TXUI.themes.gradientMode")
     if not db then return end
 
-    for _, colorKey in pairs { "reactionColorMap", "castColorMap", "powerColorMap", "specialColorMap", "classColorMap", "classResourceMap" } do
+    for _, colorKey in pairs {
+      "reactionColorMap",
+      "castColorMap",
+      "powerColorMap",
+      "specialColorMap",
+      "classColorMap",
+      "classResourceMap",
+      "threatColorMap",
+      "classificationColorMap",
+    } do
       local colorMap = db[colorKey]
       if colorMap then
         for _, colorType in pairs { I.Enum.GradientMode.Color.NORMAL, I.Enum.GradientMode.Color.SHIFT } do

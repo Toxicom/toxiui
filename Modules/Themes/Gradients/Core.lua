@@ -116,6 +116,9 @@ function GR:SettingsUpdate()
 
   -- Class bar pips are colored outside of the registered frames
   self:RefreshClassResources()
+
+  -- Nameplates share the unit color maps (Nameplates.lua)
+  self:QueueNameplateRefresh()
 end
 
 function GR:TexturesUpdate()
@@ -125,6 +128,9 @@ end
 function GR:Disable()
   if not self.Initialized then return end
   if not self:IsHooked(self.uf, "Configure_HealthBar") then return end
+
+  -- Before UnhookAll, restores ElvUI's flat nameplate colors (Nameplates.lua)
+  self:DisableNameplates()
 
   self:UnhookAll()
   self:RefreshClassResources()
@@ -153,6 +159,9 @@ function GR:Enable()
 
   -- Update!
   self.uf:Update_AllFrames()
+
+  -- Nameplate health (Nameplates.lua)
+  self:EnableNameplates()
 end
 
 function GR:DatabaseUpdate()
@@ -199,6 +208,7 @@ function GR:Initialize()
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate", self.SettingsUpdate, self)
   F.Event.RegisterCallback("ThemesGradients.TexturesUpdate", self.TexturesUpdate, self)
   F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.ClassResources", self.ClassResourcesSettingsUpdate, self)
+  F.Event.RegisterCallback("ThemesGradients.SettingsUpdate.Nameplates", self.NameplatesSettingsUpdate, self)
 
   -- We are done, hooray!
   self.Initialized = true

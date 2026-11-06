@@ -286,6 +286,122 @@ function O:ToxiUI_Themes_GradientMode()
     end
   end
 
+  -- Nameplates
+  do
+    local tab = self:AddGroup(options, {
+      name = "Nameplates " .. E.NewSign,
+    }).args
+
+    -- General
+    do
+      local generalGroup = self:AddInlineDesc(tab, {
+        name = "Nameplates",
+      }, {
+        name = "Color the health of "
+          .. F.String.ElvUI()
+          .. " nameplates with gradients.\n\n"
+          .. "Class, NPC and State colors are shared with your UnitFrames, threat and classification colors can be changed below.\n\n"
+          .. "Colors without a gradient (e.g. smooth health colors) stay the same as in "
+          .. F.String.ElvUI()
+          .. ".\n\n",
+      }).args
+
+      generalGroup.nameplates = {
+        order = self:GetOrder(),
+        type = "toggle",
+        name = function()
+          return self:GetEnableName(E.db.TXUI.themes.gradientMode.nameplates)
+        end,
+        desc = "Color the health of " .. F.String.ElvUI() .. " nameplates with gradients.",
+        disabled = function()
+          return not E.private.nameplates.enable
+        end,
+        get = function()
+          return E.db.TXUI.themes.gradientMode.nameplates
+        end,
+        set = function(_, value)
+          E.db.TXUI.themes.gradientMode.nameplates = value
+          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Nameplates")
+        end,
+      }
+
+      generalGroup.fadeDirection = {
+        order = self:GetOrder(),
+        type = "select",
+        name = "Fade Direction",
+        desc = "Control the gradient fade direction for nameplates.",
+        values = {
+          [I.Enum.GradientMode.Direction.LEFT] = "Left",
+          [I.Enum.GradientMode.Direction.RIGHT] = "Right",
+        },
+        disabled = function()
+          return not E.private.nameplates.enable or not E.db.TXUI.themes.gradientMode.nameplates
+        end,
+        get = function()
+          return E.db.TXUI.themes.gradientMode.fadeDirection.nameplate
+        end,
+        set = function(_, value)
+          E.db.TXUI.themes.gradientMode.fadeDirection.nameplate = value
+          F.Event.TriggerEvent("ThemesGradients.SettingsUpdate.Nameplates")
+        end,
+      }
+    end
+
+    self:AddSpacer(tab)
+
+    -- Threat Colors
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "Threat Colors",
+      }, {
+        name = shiftsDesc("nameplate threat colors") .. "Used when " .. F.String.ElvUI() .. " nameplate threat coloring is enabled.\n\n",
+      }).args
+
+      local threatNormal = P.themes.gradientMode.threatColorMap[I.Enum.GradientMode.Color.NORMAL]
+      local rows = {}
+      for index, threat in ipairs {
+        { key = "GOOD", label = "Good" },
+        { key = "BAD", label = "Bad" },
+        { key = "GOOD_TRANSITION", label = "Good Transition" },
+        { key = "BAD_TRANSITION", label = "Bad Transition" },
+        { key = "OFFTANK", label = "Off Tank" },
+        { key = "OFFTANK_GOOD_TRANSITION", label = "Off Tank Good" },
+        { key = "OFFTANK_BAD_TRANSITION", label = "Off Tank Bad" },
+        { key = "SOLO", label = "Solo" },
+      } do
+        rows[#rows + 1] = { key = threat.key, label = F.String.RGB(threat.label, threatNormal[threat.key]), sort = index }
+      end
+
+      self:AddGradientColorRows(colorGroup, "threatColorMap", rows, "ThemesGradients.SettingsUpdate.Nameplates")
+    end
+
+    self:AddSpacer(tab)
+
+    -- Classification Colors
+    do
+      local colorGroup = self:AddInlineDesc(tab, {
+        name = "Classification Colors",
+      }, {
+        name = shiftsDesc("nameplate classification colors") .. "Used when " .. F.String.ElvUI() .. " nameplate classification coloring is enabled.\n\n",
+      }).args
+
+      local classificationNormal = P.themes.gradientMode.classificationColorMap[I.Enum.GradientMode.Color.NORMAL]
+      local rows = {}
+      for index, classification in ipairs {
+        { key = "WORLDBOSS", label = "World Boss" },
+        { key = "RAREELITE", label = "Rare Elite" },
+        { key = "RARE", label = "Rare" },
+        { key = "ELITE_BOSS", label = "Elite Boss" },
+        { key = "ELITE_MINI", label = "Elite Mini" },
+        { key = "CASTER", label = "Caster" },
+      } do
+        rows[#rows + 1] = { key = classification.key, label = F.String.RGB(classification.label, classificationNormal[classification.key]), sort = index }
+      end
+
+      self:AddGradientColorRows(colorGroup, "classificationColorMap", rows, "ThemesGradients.SettingsUpdate.Nameplates")
+    end
+  end
+
   -- Fade Direction
   do
     local name = "Fade Direction"

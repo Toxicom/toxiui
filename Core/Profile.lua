@@ -69,6 +69,7 @@ P.themes = {
   gradientMode = {
     enabled = true, -- Enabled by default
     classResources = true, -- Gradients on the player class bar
+    nameplates = true, -- Gradients on ElvUI nameplate health
 
     textures = {
       health = I.Textures.Primary,
@@ -95,6 +96,8 @@ P.themes = {
       arena = I.Enum.GradientMode.Direction.RIGHT,
       boss = I.Enum.GradientMode.Direction.RIGHT,
       focus = I.Enum.GradientMode.Direction.RIGHT,
+
+      nameplate = I.Enum.GradientMode.Direction.RIGHT,
     },
 
     saturationBoost = {
@@ -224,6 +227,50 @@ P.themes = {
         DISCONNECTED = F.Table.HexToRGB("#e85747"), -- disconnect
         TAPPED = F.Table.HexToRGB("#7d828f"), -- tapped
         DEAD = F.Table.HexToRGB("#61000e"), -- dead
+      },
+    },
+
+    -- Nameplate threat colors, keys match ElvUI's nameplates.colors.threat
+    threatColorMap = {
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
+        GOOD = F.Table.HexToRGB("#4be04b"),
+        BAD = F.Table.HexToRGB("#ff4545"),
+        GOOD_TRANSITION = F.Table.HexToRGB("#ffe14d"),
+        BAD_TRANSITION = F.Table.HexToRGB("#ffa04d"),
+        OFFTANK = F.Table.HexToRGB("#d65cd6"),
+        OFFTANK_GOOD_TRANSITION = F.Table.HexToRGB("#4d7fe0"),
+        OFFTANK_BAD_TRANSITION = F.Table.HexToRGB("#7f4de0"),
+        SOLO = F.Table.HexToRGB("#4be0a6"),
+      },
+      [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
+        GOOD = F.Table.HexToRGB("#1f9e1f"),
+        BAD = F.Table.HexToRGB("#b31d1d"),
+        GOOD_TRANSITION = F.Table.HexToRGB("#d9a300"),
+        BAD_TRANSITION = F.Table.HexToRGB("#cc5c00"),
+        OFFTANK = F.Table.HexToRGB("#8f1f8f"),
+        OFFTANK_GOOD_TRANSITION = F.Table.HexToRGB("#1f3f8f"),
+        OFFTANK_BAD_TRANSITION = F.Table.HexToRGB("#421f8f"),
+        SOLO = F.Table.HexToRGB("#1f9e6b"),
+      },
+    },
+
+    -- Nameplate classification colors, keys match ElvUI's nameplates.colors.classification
+    classificationColorMap = {
+      [I.Enum.GradientMode.Color.NORMAL] = { -- RIGHT
+        WORLDBOSS = F.Table.HexToRGB("#e6c400"),
+        RAREELITE = F.Table.HexToRGB("#00d6b0"),
+        RARE = F.Table.HexToRGB("#5cd11a"),
+        ELITE_BOSS = F.Table.HexToRGB("#e65cbf"),
+        ELITE_MINI = F.Table.HexToRGB("#8f5cd6"),
+        CASTER = F.Table.HexToRGB("#1a9ae0"),
+      },
+      [I.Enum.GradientMode.Color.SHIFT] = { -- LEFT
+        WORLDBOSS = F.Table.HexToRGB("#a37a00"),
+        RAREELITE = F.Table.HexToRGB("#008a6e"),
+        RARE = F.Table.HexToRGB("#2e7d00"),
+        ELITE_BOSS = F.Table.HexToRGB("#a1237a"),
+        ELITE_MINI = F.Table.HexToRGB("#55248f"),
+        CASTER = F.Table.HexToRGB("#005c8f"),
       },
     },
 
