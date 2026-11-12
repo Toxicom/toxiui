@@ -7,6 +7,9 @@ TXUI.Changelog["7.6.3"] = {
     "* Breaking changes",
 
     "* New features",
+    F.String.Forever() .. F.String.Menu.WunderBar() .. ": Achievements button in the MicroMenu now opens the Legacy system" .. F.String.Sublist(
+      "Credits to bifferz for initial PR"
+    ),
 
     "* Enhancements",
 

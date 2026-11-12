@@ -39,7 +39,6 @@ local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
-local ToggleLegacySystemUI = _G.ToggleLegacySystemUI
 local UIErrorsFrame = UIErrorsFrame
 local UnitLevel = UnitLevel
 
@@ -59,7 +58,6 @@ local BINDING_NAME_TOGGLESOCIAL = BINDING_NAME_TOGGLESOCIAL
 local BINDING_NAME_TOGGLESPELLBOOK = BINDING_NAME_TOGGLESPELLBOOK
 local BINDING_NAME_TOGGLETALENTS = BINDING_NAME_TOGGLETALENTS
 local BINDING_NAME_TOGGLEHOUSINGDASHBOARD = BINDING_NAME_TOGGLEHOUSINGDASHBOARD
-local BINDING_NAME_TOGGLELEGACYSYSTEM = BINDING_NAME_TOGGLELEGACYSYSTEM
 local BLIZZARD_STORE = BLIZZARD_STORE
 local BNET_CLIENT_WOW = BNET_CLIENT_WOW
 local CHARACTER_BUTTON = CHARACTER_BUTTON
@@ -70,7 +68,6 @@ local ERR_HOUSING_ACTION_UNAVAILABLE = ERR_HOUSING_ACTION_UNAVAILABLE
 local ERR_NOT_IN_COMBAT = ERR_NOT_IN_COMBAT
 local GUILD_AND_COMMUNITIES = GUILD_AND_COMMUNITIES
 local HELP_BUTTON = HELP_BUTTON
-local LEGACY_BUTTON = LEGACY_BUTTON
 local HOUSING_MICRO_BUTTON = HOUSING_MICRO_BUTTON
 local HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP = HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP
 local MAINMENU_BUTTON = MAINMENU_BUTTON
@@ -81,7 +78,6 @@ local NEWBIE_TOOLTIP_HOUSING = NEWBIE_TOOLTIP_HOUSING
 local NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL = NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL
 local NEWBIE_TOOLTIP_HELP = NEWBIE_TOOLTIP_HELP
 local NEWBIE_TOOLTIP_LFGPARENT = NEWBIE_TOOLTIP_LFGPARENT
-local NEWBIE_TOOLTIP_LEGACY = "Open Legacy System to view your Legacy Achievements, place your Legacy points, and more."
 local NEWBIE_TOOLTIP_MAINMENU = NEWBIE_TOOLTIP_MAINMENU
 local NEWBIE_TOOLTIP_MOUNTS_AND_PETS = NEWBIE_TOOLTIP_MOUNTS_AND_PETS
 local NEWBIE_TOOLTIP_PVP = NEWBIE_TOOLTIP_PVP
@@ -110,28 +106,11 @@ local function ToggleGroupFinder()
   end
 end
 
-local function ToggleLegacySystem()
-  if not InCombatLockdown() then
-    ToggleLegacySystemUI()
-  else
-    UIErrorsFrame:AddMessage(E.InfoColor .. ERR_NOT_IN_COMBAT)
-  end
-end
-
 local lfgLevelRequirement = TXUI.IsClassic and 15 or 10
 
 MM.microMenu = {
-  ["ach"] = TXUI.IsForever and {
-    available = true,
-    name = LEGACY_BUTTON or "Legacy",
-    click = {
-      LeftButton = ToggleLegacySystem,
-    },
-    keyBind = "TOGGLELEGACYSYSTEM",
-    newbieTooltip = NEWBIE_TOOLTIP_LEGACY,
-    tooltips = { MM.leftButtonText .. BINDING_NAME_TOGGLELEGACYSYSTEM },
-  } or {
-    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary,
+  ["ach"] = {
+    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary and not TXUI.IsForever,
     name = ACHIEVEMENTS,
     macro = {
       LeftButton = SLASH_ACHIEVEMENTUI1,
@@ -423,6 +402,22 @@ MM.microMenu = {
     },
   },
 }
+
+-- Forever has no achievements, the slot opens the Legacy system instead.
+-- Text comes from Blizzard's own LegacyMicroButton so it stays localized,
+-- and clicking it through a secure macro needs no combat check.
+local legacyButton = TXUI.IsForever and _G.LegacyMicroButton
+if legacyButton then
+  MM.microMenu["ach"] = {
+    name = _G.LEGACY_BUTTON,
+    macro = {
+      LeftButton = "/click LegacyMicroButton",
+    },
+    keyBind = "TOGGLELEGACYSYSTEM",
+    newbieTooltip = legacyButton.newbieText,
+    tooltips = { MM.leftButtonText .. (_G.BINDING_NAME_TOGGLELEGACYSYSTEM or _G.LEGACY_BUTTON) },
+  }
+end
 
 MM.microMenuOrder = {
   "menu",
