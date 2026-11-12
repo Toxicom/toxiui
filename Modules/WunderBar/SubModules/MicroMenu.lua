@@ -39,6 +39,7 @@ local ToggleCollectionsJournal = _G.ToggleCollectionsJournal
 local ToggleFriendsFrame = ToggleFriendsFrame
 local ToggleGuildFrame = ToggleGuildFrame
 local TogglePVPUI = TXUI.IsRetail and TogglePVPUI or TogglePVPFrame
+local ToggleLegacySystemUI = _G.ToggleLegacySystemUI
 local UIErrorsFrame = UIErrorsFrame
 local UnitLevel = UnitLevel
 
@@ -68,6 +69,7 @@ local ERR_HOUSING_ACTION_UNAVAILABLE = ERR_HOUSING_ACTION_UNAVAILABLE
 local ERR_NOT_IN_COMBAT = ERR_NOT_IN_COMBAT
 local GUILD_AND_COMMUNITIES = GUILD_AND_COMMUNITIES
 local HELP_BUTTON = HELP_BUTTON
+local LEGACY_BUTTON = LEGACY_BUTTON
 local HOUSING_MICRO_BUTTON = HOUSING_MICRO_BUTTON
 local HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP = HOUSING_MICROBUTTON_NPE_RESTRICTED_TOOLTIP
 local MAINMENU_BUTTON = MAINMENU_BUTTON
@@ -78,6 +80,7 @@ local NEWBIE_TOOLTIP_HOUSING = NEWBIE_TOOLTIP_HOUSING
 local NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL = NEWBIE_TOOLTIP_ENCOUNTER_JOURNAL
 local NEWBIE_TOOLTIP_HELP = NEWBIE_TOOLTIP_HELP
 local NEWBIE_TOOLTIP_LFGPARENT = NEWBIE_TOOLTIP_LFGPARENT
+local NEWBIE_TOOLTIP_LEGACY = "Open Legacy System to view your Legacy Achievements, place your Legacy points, and more."
 local NEWBIE_TOOLTIP_MAINMENU = NEWBIE_TOOLTIP_MAINMENU
 local NEWBIE_TOOLTIP_MOUNTS_AND_PETS = NEWBIE_TOOLTIP_MOUNTS_AND_PETS
 local NEWBIE_TOOLTIP_PVP = NEWBIE_TOOLTIP_PVP
@@ -106,11 +109,28 @@ local function ToggleGroupFinder()
   end
 end
 
+local function ToggleLegacySystem()
+  if not InCombatLockdown() then
+    ToggleLegacySystemUI()
+  else
+    UIErrorsFrame:AddMessage(E.InfoColor .. ERR_NOT_IN_COMBAT)
+  end
+end
+
 local lfgLevelRequirement = TXUI.IsClassic and 15 or 10
 
 MM.microMenu = {
-  ["ach"] = {
-    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary and not TXUI.IsForever,
+  ["ach"] = TXUI.IsForever and {
+    available = true,
+    name = LEGACY_BUTTON or "Legacy",
+    click = {
+      LeftButton = ToggleLegacySystem,
+    },
+    keyBind = "TOGGLELEGACYSYSTEM",
+    newbieTooltip = NEWBIE_TOOLTIP_LEGACY,
+    tooltips = { MM.leftButtonText .. "Toggle Legacy System" },
+  } or {
+    available = not TXUI.IsClassicEra and not TXUI.IsAnniversary,
     name = ACHIEVEMENTS,
     macro = {
       LeftButton = SLASH_ACHIEVEMENTUI1,
