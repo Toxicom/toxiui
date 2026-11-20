@@ -122,9 +122,10 @@ export async function handleCommand(interaction, env) {
 async function register(env, userId, displayName, tier, code) {
   if (!tier) {
     return [
-      "Badges are for **Patreon supporters**. If you're subscribed, make sure your Patreon account is linked to Discord",
+      "In-game badges start at the **Rare** tier (Rare, Epic and Legendary) on Patreon: https://patreon.com/toxiui",
+      "Already subscribed at one of those tiers? Make sure your Patreon account is linked to Discord",
       "(Patreon → Settings → Connected apps) so you get your supporter role, then try again.",
-    ].join(" ");
+    ].join("\n");
   }
 
   let decoded;

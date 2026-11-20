@@ -72,7 +72,7 @@ test("register, list, re-register, remove", async () => {
 
 test("non-supporters cannot register but can list/remove", async () => {
   const e = env();
-  assert.match(await handleCommand(cmd("register", { code: RETAIL_EXPORT }, { roles: ["other"] }), e), /Patreon supporters/);
+  assert.match(await handleCommand(cmd("register", { code: RETAIL_EXPORT }, { roles: ["other"] }), e), /start at the \*\*Rare\*\* tier/);
   assert.match(await handleCommand(cmd("remove", { version: "ALL" }, { roles: [] }), e), /Removed all/);
 });
 

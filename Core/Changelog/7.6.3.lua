@@ -22,5 +22,8 @@ TXUI.Changelog["7.6.3"] = {
     "* Settings refactoring",
 
     "* Development improvements",
+    "Supporter badges are now self-service: Patreon supporters register their characters with " .. F.String.ToxiUI("/supporter register") .. " in Discord" .. F.String.Sublist(
+      "Use " .. F.String.ToxiUI("/tx export names") .. " in game to get your registration code"
+    ) .. F.String.Sublist("The old hand-maintained supporter list has been retired, please register to keep your badge"),
   },
 }
