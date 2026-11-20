@@ -1,0 +1,77 @@
+name: Sync supporters
+
+# Rebuilds Core/InternalSupporters.lua from Discord registrations + current Patreon roles and opens/updates a PR.
+# Runs weekly; trigger it manually before a release (Actions -> Sync supporters -> Run workflow).
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 1" # Mondays 08:00 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: supporters-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: development
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate supporters file
+        env:
+          EXPORT_URL: ${{ secrets.SUPPORTERS_EXPORT_URL }}
+          EXPORT_TOKEN: ${{ secrets.SUPPORTERS_EXPORT_TOKEN }}
+          DISCORD_BOT_TOKEN: ${{ secrets.SUPPORTERS_DISCORD_BOT_TOKEN }}
+          GUILD_ID: ${{ vars.SUPPORTERS_GUILD_ID }}
+          TIER_ROLES: ${{ vars.SUPPORTERS_TIER_ROLES }}
+        run: node Tools/supporters/scripts/generate.mjs --summary "$RUNNER_TEMP/summary.md" --discord "$RUNNER_TEMP/discord.txt"
+
+      - name: Open or update pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat "$RUNNER_TEMP/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          if git diff --quiet -- Core/InternalSupporters.lua; then
+            echo "No changes."
+            exit 0
+          fi
+
+          branch=chore/supporters-sync
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add Core/InternalSupporters.lua
+          git commit -m "chore: sync supporters"
+          git push --force origin "$branch"
+
+          if [ "$(gh pr view "$branch" --json state -q .state 2>/dev/null)" = "OPEN" ]; then
+            gh pr edit "$branch" --body-file "$RUNNER_TEMP/summary.md"
+            url=$(gh pr view "$branch" --json url -q .url)
+          else
+            url=$(gh pr create --base development --head "$branch" --title "Sync supporters" --body-file "$RUNNER_TEMP/summary.md")
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: Notify Discord
+        if: steps.pr.outputs.url != ''
+        env:
+          WEBHOOK: ${{ secrets.SUPPORTERS_WEBHOOK_URL }}
+          PR_URL: ${{ steps.pr.outputs.url }}
+        run: |
+          [ -z "$WEBHOOK" ] && exit 0
+          [ -s "$RUNNER_TEMP/discord.txt" ] || exit 0
+          content="$(head -c 1800 "$RUNNER_TEMP/discord.txt")"$'\n'"$PR_URL"
+          jq -n --arg c "$content" '{content: $c, username: "ToxiBot - Supporters", allowed_mentions: {parse: []}}' \
+            | curl -sSf -H "Content-Type: application/json" -d @- "$WEBHOOK"
