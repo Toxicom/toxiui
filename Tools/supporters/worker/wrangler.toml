@@ -1,0 +1,21 @@
+name = "toxiui-supporters"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Right-click the server / roles in Discord (Developer Mode on) -> Copy ID
+GUILD_ID = "769550106948141086"
+TIER_ROLES = '{"LEGENDARY":"800407579922661377","EPIC":"812008385767538728","RARE":"800407280084451358"}'
+
+# Secrets (set with `npx wrangler secret put <NAME>`, never commit them):
+#   DISCORD_PUBLIC_KEY  Discord Developer Portal -> your app -> General Information -> Public Key
+#   EXPORT_TOKEN        Any long random string; the GitHub workflow uses it to read /export
+
+[[d1_databases]]
+binding = "DB"
+database_name = "toxiui-supporters"
+database_id = "5a34f916-0365-41c7-a8cf-9ee4e163d697"
+
+# Keep request logs in the dashboard (Workers -> toxiui-supporters -> Observability), free tier included
+[observability]
+enabled = true

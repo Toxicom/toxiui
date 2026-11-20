@@ -1,3 +1,7 @@
 .vscode
 **/Personal.ttf
 **/*.png
+node_modules
+.wrangler
+.env
+.dev.vars

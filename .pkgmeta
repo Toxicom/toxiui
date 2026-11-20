@@ -16,6 +16,7 @@ ignore:
   - .luarc.json
   - .stylua.toml
   - Assets/*
+  - Tools/*
   - README.md
   - **/*.png
   - Core/Changelog/_template.lua

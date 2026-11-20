@@ -1,0 +1,13 @@
+{
+  "name": "toxiui-supporters",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute toxiui-supporters --remote --file=schema.sql",
+    "test": "node --test \"../test/*.test.mjs\""
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

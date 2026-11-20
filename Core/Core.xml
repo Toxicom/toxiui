@@ -8,6 +8,7 @@
   <Script file='InternalSpecs.lua' />
   <Script file='InternalString.lua' />
   <Script file='InternalData.lua' />
+  <Script file='InternalSupporters.lua' />
   <Script file='Internal.lua' />
   <Script file='Profile.lua' />
   <Script file='Private.lua' />
