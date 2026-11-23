@@ -7,6 +7,7 @@ local BreakUpLargeNumbers = BreakUpLargeNumbers
 local C_PaperDollInfo = _G.C_PaperDollInfo
 local CreateFrame = CreateFrame
 local EFFECTIVE_LEVEL_FORMAT = _G.EFFECTIVE_LEVEL_FORMAT
+local floor = math.floor
 local format = string.format
 local GetAchievementInfo = GetAchievementInfo
 local GetAverageItemLevel = GetAverageItemLevel
@@ -498,9 +499,16 @@ function A:UpdateTitle()
   end
   self.levelText:SetText(playerLevel)
 
-  local fontIcon = P.wunderbar.subModules.SpecSwitch.icons[primaryTalentTreeIdx] or P.wunderbar.subModules.SpecSwitch.icons[0]
+  local specIcons = P.wunderbar.subModules.SpecSwitch.icons
+  local fontIcon = specIcons[primaryTalentTreeIdx]
 
-  if self:UseFontGradient(self.db, "specIcon") then
+  -- Forever has one class-wide spec per class (e.g. Priest = 1487) with no spec glyph, show the class icon instead
+  local classIcon = not fontIcon and TXUI.IsForever and TXUI:GetModule("Misc"):GetPlayerClassIconTexture(self.db.specIconFontSize)
+  fontIcon = fontIcon or specIcons[0]
+
+  if classIcon then
+    self.specIcon:SetText(classIcon)
+  elseif self:UseFontGradient(self.db, "specIcon") then
     self.specIcon:SetText(F.String.RGB(fontIcon, classColorNormal))
   else
     self.specIcon:SetText(fontIcon)
@@ -540,13 +548,16 @@ function A:UpdateTitle()
   local anchorWidth = totalWidth - (leftWidth + (iconWidth / 2))
   local centerOffset = (totalWidth / 2) - anchorWidth
 
+  -- A texture icon (Forever class icon) sits higher than a glyph, move it down & the texts anchored to it back up
+  local iconShiftY = classIcon and floor(self.db.specIconFontSize * 0.25 + 0.5) or 0
+
   self.specIcon:ClearAllPoints()
-  self.specIcon:SetPoint("TOP", self.frameModel, centerOffset, levelOffsetY)
+  self.specIcon:SetPoint("TOP", self.frameModel, centerOffset, levelOffsetY - iconShiftY)
   self.specIcon:SetJustifyH("CENTER")
   self.specIcon:SetJustifyV("BOTTOM")
 
   self.levelText:ClearAllPoints()
-  self.levelText:SetPoint("RIGHT", self.specIcon, "LEFT", (-iconPadding + self.db.levelTextOffsetX), self.db.levelTextOffsetY)
+  self.levelText:SetPoint("RIGHT", self.specIcon, "LEFT", (-iconPadding + self.db.levelTextOffsetX), self.db.levelTextOffsetY + iconShiftY)
   self.levelText:SetJustifyH("LEFT")
   self.levelText:SetJustifyV("BOTTOM")
 
@@ -556,7 +567,7 @@ function A:UpdateTitle()
   self.levelTitleText:SetJustifyV("BOTTOM")
 
   self.classText:ClearAllPoints()
-  self.classText:SetPoint("LEFT", self.specIcon, "RIGHT", (iconPadding + self.db.classTextOffsetX), self.db.classTextOffsetY)
+  self.classText:SetPoint("LEFT", self.specIcon, "RIGHT", (iconPadding + self.db.classTextOffsetX), self.db.classTextOffsetY + iconShiftY)
   self.classText:SetJustifyH("RIGHT")
   self.classText:SetJustifyV("BOTTOM")
 end

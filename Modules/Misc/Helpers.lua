@@ -3,6 +3,7 @@ local M = TXUI:GetModule("Misc")
 local SS = TXUI:GetModule("WunderBar"):GetModule("SpecSwitch")
 
 local format = string.format
+local gsub = string.gsub
 local C_SpecializationInfo = C_SpecializationInfo
 
 function M:GetCoordinates(col, row)
@@ -213,6 +214,18 @@ end
 function M:GetEffectiveClassIconTheme(theme)
   if not theme or theme:match("ToxiSpec") then return "ToxiClasses" end
   return theme
+end
+
+-- Player class icon markup at the given size, using the "Class & Spec Icons" theme (spec themes fall back to ToxiClasses).
+-- Used where a spec glyph is expected but none exists, e.g. Forever's class-wide specs (Priest = 1487)
+function M:GetPlayerClassIconTexture(size)
+  local coords = self.ClassIcons[E.myclass]
+  if not coords then return end
+
+  local classIcons = E.db.TXUI.elvUIIcons and E.db.TXUI.elvUIIcons.classIcons
+  local theme = self:GetEffectiveClassIconTheme(classIcons and classIcons.theme)
+
+  return format(gsub(self:GetClassIconPath(theme), "32:32", size .. ":" .. size), coords)
 end
 
 function M:ReverseIconCoords(coords)

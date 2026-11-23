@@ -8,7 +8,6 @@ local C_SpecializationInfo = C_SpecializationInfo
 local C_Traits_GetConfigInfo = C_Traits.GetConfigInfo
 local CreateFrame = CreateFrame
 local format = string.format
-local gsub = string.gsub
 local GetActiveSpecGroup = C_SpecializationInfo.GetActiveSpecGroup
 local GetCurrentSpecID = TXUI.IsRetail and PlayerUtil.GetCurrentSpecID or nil
 local GetCVarBool = GetCVarBool
@@ -402,19 +401,6 @@ function SS:UpdateInfoText()
   end
 end
 
--- Class icon texture markup, using the "Class & Spec Icons" theme (spec themes fall back to ToxiClasses)
-function SS:GetClassIconTexture()
-  local M = TXUI:GetModule("Misc")
-  local coords = M.ClassIcons and M.ClassIcons[E.myclass]
-  if not coords then return end
-
-  local classIcons = E.db.TXUI.elvUIIcons and E.db.TXUI.elvUIIcons.classIcons
-  local theme = M:GetEffectiveClassIconTheme(classIcons and classIcons.theme)
-  local size = self.db.general.iconFontSize
-
-  return format(gsub(M:GetClassIconPath(theme), "32:32", size .. ":" .. size), coords)
-end
-
 function SS:UpdateElement(spec, frame, icon, text, isSecondary)
   local info = self.specCache[spec]
   local loadoutName = SS:GetLoadoutName()
@@ -437,7 +423,7 @@ function SS:UpdateElement(spec, frame, icon, text, isSecondary)
       local iconTexture = self.db.icons[info.background or info.id or spec]
 
       -- Forever has one class-wide spec per class (e.g. Priest = 1487) with no spec glyph, show the class icon instead
-      if not iconTexture and TXUI.IsForever then iconTexture = self:GetClassIconTexture() end
+      if not iconTexture and TXUI.IsForever then iconTexture = TXUI:GetModule("Misc"):GetPlayerClassIconTexture(self.db.general.iconFontSize) end
 
       if not iconTexture then
         iconTexture = self.db.icons[0]
