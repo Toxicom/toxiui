@@ -16,11 +16,12 @@
 
 ![Features](https://media.forgecdn.net/attachments/description/676447/description_241dfa18-3e41-4400-99a9-cc1eedeb24d9.png)
 
-- Three themes to choose from: Gradient Mode, Dark Mode & default
+- Three themes to choose from: Gradient Mode, Dark Mode and Standard
 - Beautiful Armory packed with information
+- Custom-built Profile Updater to keep up with the changes
+- Install & update landing pages for information and ease-of-access
 - Elegant WunderBar to have all the important information at your fingertips
 - Unique hand-made specialization icons
-- Custom text tags
 - Game Menu Skin to personalize your gameplay and provide useful information
 - Enhanced custom installer
 - Active Discord community
@@ -34,26 +35,23 @@
 
 ## Recommended AddOns:
 
-- [Details! Damage Meter](https://www.curseforge.com/wow/addons/details)
 - [ElvUI WindTools](https://www.curseforge.com/wow/addons/elvui-windtools) _(Retail only)_
 
 ## Additional supported AddOns:
 
-- [WarpDeplete (Retail only)](https://www.curseforge.com/wow/addons/warpdeplete)
-- [Ratio Minimap Auras](https://www.curseforge.com/wow/addons/elvui-ratiominimapauras)
+- [WarpDeplete](https://www.curseforge.com/wow/addons/warpdeplete) _(Retail only)_
 
 ![Installation](https://media.forgecdn.net/attachments/description/676447/description_eef9d427-56cd-4167-a38e-59f260b92ac1.png)
+
+For detailed instructions, check out our installation guide on the [ToxiUI website](https://toxiui.com)!
 
 - Make a backup of your WTF folder _(it is recommended to install ToxiUI on a clean profile)_
 - Install the required addons
 - Enter game & make sure that all of the AddOns are loaded correctly
 - Once you load up your character, the ToxiUI installer will pop-up
+  - If ElvUI installer pops up first, simply `/reload`, you don't need to go through its installation process!
 - Simply **follow** the installers **instructions very closely**
 - If you have any problems or issues at any step, please visit our discord server for support!
-
-[![Installation video guide](https://img.youtube.com/vi/C0YpDaEHvWU/maxresdefault.jpg)](https://www.youtube.com/watch?v=C0YpDaEHvWU)
-
-###### Click the image above to see the video
 
 ## ![Credits](https://media.forgecdn.net/attachments/description/676447/description_d643a212-3ccc-47e5-b892-363771a6ac65.png)
 
@@ -121,33 +119,32 @@ Please install the stylua extension and setup to format on save
 _Prefix: `/tx` `/txui` `/toxi` `/toxiui`_
 
 `/tx` - ElvUI TXUI Options Dialog _(alias of /tx settings)_<br>
-`/tx changelog` - ElvUI TXUI Options showing ONLY the changelog<br>
-`/tx wb` - ElvUI TXUI Options showing ONLY WunderBar<br>
+`/tx changelog` - ElvUI TXUI Options showing ONLY the changelog _(alias of /tx cl)_<br>
+`/tx wb` - ElvUI TXUI Options showing ONLY WunderBar _(alias of /tx wunderbar)_<br>
 `/tx badge` - Disable chat badges _(only possible if you actually have a chat badge)_<br>
 `/tx export names` - Export a list of all character names where ElvUI was active<br>
 `/tx reset` - Resets all TXUI Settings _(not the ElvUI profile itself, tho a re-install is needed to gain access to TXUI features back)_<br>
 `/tx status` - Shows the Diagnostic Popup _(alias of /tx info)_<br>
-`/tx install` - Shows the Installer Dialog for TXUI<br>
-`/tx update` - Opens the Profile Updater _(alias of /tx u)_
+`/tx install` - Shows the Installer Dialog for TXUI _(alias of /tx i)_<br>
+`/tx update` - Opens the Profile Updater _(alias of /tx u)_<br>
+`/tx landing [update]` - Shows the fresh install landing page, or the update one with `update` _(alias of /tx lp [u])_<br>
+`/tx debug on|off` - Disables all non-essential AddOns & enables Lua errors for troubleshooting, `off` restores them
 
-### Retail Only
+### Retail & Forever Only
 
 `/cd` - Toggle Cooldown Manager settings window _(aliases: `/cdm`, `/wa`)_<br>
 `/em` - Open Edit Mode
 
 ### Dev Section (or beta builds)
 
-`/tx dev profile [dps|healer]` - Install the ElvUI Profile without confirmation<br>
+`/tx dev profile [dps|healer|private|details|font]` - Install the ElvUI Profile, Privates, Details or Fonts without confirmation<br>
 `/tx dev cvar` - Sets the default ElvUI Cvars _(+ personal change)_<br>
 `/tx dev chat` - Install a custom chat config<br>
 `/tx dev wb` - Enables the wunderbar debug mode<br>
-`/tx dev splash` - Shows the Splashscreen for 15 Seconds<br>
-`/tx dev dpi` - Gives you a scaled pixel perfect number (Magic Config Number -> Actual Number)
+`/tx dev dpi <number>` - Gives you a scaled pixel perfect number (Magic Config Number -> Actual Number)
 
 ### Devs Only
 
 `/tx dev toggle` - Toggles Developer mode, which activates overrides<br>
-
-### Exports
-
+`/tx dev splash` - Shows the Splashscreen for 15 Seconds<br>
 `/tx dev export names` - Triggers the import of badge names (decode)
