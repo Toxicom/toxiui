@@ -446,6 +446,9 @@ function O:OptionsCallback()
       set = info.set,
     }
   end
+
+  -- Lock ElvUI options that ToxiUI overrides (ElvUIOverrides.lua)
+  xpcall(self.LockElvUIOverrides, errorhandler, self)
 end
 
 -- Builds all registered option pages, deferred until ElvUI_Options loads so logins don't pay for it
