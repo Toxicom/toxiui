@@ -10,6 +10,7 @@
   <Script file='SplashScreen.lua' />
   <Script file='StatusReport.lua' />
   <Script file='Tags.lua' />
+  <Script file='TextWidth.lua' />
   <Script file='Performance.lua' />
   <Script file='WeakAuraAnchor.lua' />
 </Ui>

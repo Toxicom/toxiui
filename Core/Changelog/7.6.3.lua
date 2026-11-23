@@ -10,6 +10,12 @@ TXUI.Changelog["7.6.3"] = {
     F.String.Forever() .. F.String.Menu.WunderBar() .. ": Achievements button in the MicroMenu now opens the Legacy system" .. F.String.Sublist(
       "Credits to bifferz for initial PR"
     ),
+    F.String.ElvUI()
+      .. ": New "
+      .. F.String.ToxiUI("Max Width")
+      .. " option for Unit Frame Custom Texts and Nameplate names, long text gets cut off with '...'"
+      .. F.String.Sublist("Works on secret names in instances, which can't be shortened by tags")
+      .. F.String.Sublist("Found next to the other text settings in " .. F.String.ElvUI() .. " options"),
 
     "* Enhancements",
 

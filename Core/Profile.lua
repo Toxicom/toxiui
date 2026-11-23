@@ -596,6 +596,28 @@ P.misc = {
   },
 }
 
+-- Max width for unit frame Custom Texts & nameplate Name text, 0 = no limit (Modules/Misc/TextWidth.lua)
+-- Cuts off secret names that tags can't abbreviate. Set in ElvUI's own options (Custom Texts / Nameplates > Name)
+P.textWidth = {
+  -- [unit] = { [customTextName] = width }
+  unitframes = {
+    target = { ["toxiui:name"] = 225 },
+    targettarget = { ["toxiui:name"] = 120 },
+    focus = { ["toxiui:name"] = 225 },
+    boss = { ["toxiui:name"] = 160 },
+    arena = { ["toxiui:name"] = 160 },
+  },
+
+  -- [nameplate frameType] = width
+  nameplates = {
+    PLAYER = 125,
+    FRIENDLY_PLAYER = 125,
+    ENEMY_PLAYER = 125,
+    FRIENDLY_NPC = 125,
+    ENEMY_NPC = 125,
+  },
+}
+
 -- ElvUI Icons
 P.elvUIIcons = {
   roleIcons = {

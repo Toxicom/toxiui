@@ -449,6 +449,9 @@ function O:OptionsCallback()
 
   -- Lock ElvUI options that ToxiUI overrides (ElvUIOverrides.lua)
   xpcall(self.LockElvUIOverrides, errorhandler, self)
+
+  -- Max Width sliders in ElvUI's Nameplate Name & Custom Text options (ElvUITextWidth.lua)
+  xpcall(self.AddElvUITextWidthOptions, errorhandler, self)
 end
 
 -- Builds all registered option pages, deferred until ElvUI_Options loads so logins don't pay for it
