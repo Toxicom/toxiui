@@ -105,6 +105,7 @@ I.Data.Contributor = {
       [I.Enum.Flavor.FOREVER] = {
         ["Toxi Mage"] = true,
         ["Toxi Priest"] = true,
+        ["Toxi Rogue"] = true,
       },
     },
 
