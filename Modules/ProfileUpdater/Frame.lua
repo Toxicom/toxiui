@@ -48,7 +48,7 @@ local function acquireRow(pool, parent, contentWidth)
     end
   end
 
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
   local row = CreateFrame("Button", nil, parent)
   row:SetHeight(DIFF_ROW_HEIGHT)
   row:SetWidth(contentWidth)
@@ -169,7 +169,7 @@ function PU:CreateSectionHeader(parent, text, yOffset)
   headerFrame:SetSize(LEFT_PANEL_WIDTH - PADDING, SECTION_HEADER_HEIGHT)
   headerFrame:SetPoint("TOPLEFT", parent, "TOPLEFT", PADDING, yOffset)
 
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
   local headerText = headerFrame:CreateFontString(nil, "ARTWORK")
   headerText:SetPoint("TOP")
   headerText:SetPoint("BOTTOM")
@@ -231,7 +231,7 @@ function PU:CreateCheckboxRow(parent, item, xOffset, yOffset)
     PU:UpdateApplyButton()
   end)
 
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
   local label = cb:CreateFontString(nil, "OVERLAY")
   label:SetPoint("LEFT", cb, "RIGHT", 4, 0)
   label:FontTemplate(font, 14, "OUTLINE", true)
@@ -259,7 +259,7 @@ function PU:CreateCheckboxRow(parent, item, xOffset, yOffset)
 end
 
 function PU:CreateDiffPanel(parent)
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
   local diffPanelLeft = LEFT_PANEL_WIDTH + PANEL_GAP
   local rightPanelWidth = FRAME_WIDTH - diffPanelLeft - PADDING
 
@@ -495,7 +495,7 @@ function PU:RefreshLayoutButtons()
 end
 
 function PU:CreateLayoutSwitcher(parent, yOffset)
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
 
   local label = parent:CreateFontString(nil, "OVERLAY")
   label:SetPoint("TOPLEFT", parent, "TOPLEFT", PADDING, yOffset - 6)
@@ -538,7 +538,7 @@ function PU:CreateLayoutSwitcher(parent, yOffset)
 end
 
 function PU:CreateActionButtons(parent)
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
 
   local selectAll = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
   selectAll:SetSize(BUTTON_WIDTH, BUTTON_HEIGHT)
@@ -627,7 +627,7 @@ function PU:CreateUpdaterFrame()
   titleDrag:SetPoint("TOPLEFT", frame, "TOPLEFT")
   titleDrag:SetPoint("BOTTOMRIGHT", frame, "TOPRIGHT", 0, -TITLE_HEIGHT)
 
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
   local title = frame:CreateFontString(nil, "OVERLAY")
   title:SetPoint("TOP", frame, "TOP", 0, -PADDING)
   title:FontTemplate(font, 20, "NONE", true)

@@ -369,6 +369,18 @@ function F.GetFontPath(font)
   return lsmFont
 end
 
+-- LSM font name (with font override applied), for ElvUI's FontTemplate which fetches the font from LSM by name.
+-- Passing a file path from F.GetFontPath to FontTemplate makes LSM fall back to its default font.
+function F.GetFontName(font)
+  font = font or I.General.DefaultFont
+
+  local override = F.FontOverride(font)
+  if LSM:IsValid("font", override) then return override end
+  if LSM:IsValid("font", font) then return font end
+
+  return I.General.DefaultFont
+end
+
 function F.SetFontFromDB(db, prefix, fs, color, fontOverwrite, useScaling)
   local useDB = (db and prefix) and true or false
   local font = (useDB and db[prefix .. "Font"]) or I.General.DefaultFont

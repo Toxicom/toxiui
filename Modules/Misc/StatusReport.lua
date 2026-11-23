@@ -333,7 +333,7 @@ function M:StatusReportCreateContent(num, width, parent, anchorTo, content)
   content:SetSize(width, (num * 20) + ((num - 1) * 5)) -- 20 height and 5 spacing
   content:SetPoint("TOP", anchorTo, "BOTTOM")
 
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
   for i = 1, num do
     if not content["Line" .. i] then
       local line = CreateFrame("Frame", nil, content)
@@ -411,7 +411,7 @@ function M:StatusReportCreateSection(width, height, headerWidth, headerHeight, p
   header:SetPoint("TOP", section)
   section.Header = header
 
-  local font = F.GetFontPath(I.Fonts.Primary)
+  local font = F.GetFontName(I.Fonts.Primary)
   local text = section.Header:CreateFontString(nil, "ARTWORK")
   text:SetPoint("TOP")
   text:SetPoint("BOTTOM")
