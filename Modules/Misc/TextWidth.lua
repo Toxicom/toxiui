@@ -87,6 +87,13 @@ function TW:UpdateUnitFrame(unit)
 end
 
 -- Nameplates: Name text
+-- Only enemy plates get a max width, other names aren't secret so they're never limited
+-- (also ignores widths saved for other plates by older versions)
+local limitedNameplates = {
+  ENEMY_PLAYER = true,
+  ENEMY_NPC = true,
+}
+
 local function GetJustify(position)
   if not position then return "CENTER" end
   if find(position, "LEFT") then return "LEFT" end
@@ -99,14 +106,16 @@ function TW:UpdateNameplateTags(np, nameplate)
   if not name then return end
 
   local width = 0
-  if self:IsActive() then
+  local frameType = nameplate.frameType
+  if frameType and limitedNameplates[frameType] and self:IsActive() then
     local nameplates = self.db.nameplates
-    width = nameplates and nameplate.frameType and nameplates[nameplate.frameType] or 0
+    width = nameplates and nameplates[frameType] or 0
   end
 
   if width > 0 then
     local db = np:PlateDB(nameplate)
-    ApplyWidth(name, width, GetJustify(db.name and db.name.position))
+    -- Name only mode forces the Name to the plate's CENTER (NP:DisablePlate), ignoring the position setting
+    ApplyWidth(name, width, db.nameOnly and "CENTER" or GetJustify(db.name and db.name.position))
   else
     ApplyWidth(name, 0)
   end

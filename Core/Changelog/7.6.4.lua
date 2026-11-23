@@ -11,6 +11,7 @@ TXUI.Changelog["7.6.4"] = {
     "* Enhancements",
 
     "* Bug fixes",
+    "Friendly Nameplates no longer have a max width as their names aren't secret",
 
     "* Profile updates",
 

@@ -608,12 +608,9 @@ P.textWidth = {
     arena = { ["toxiui:name"] = 160 },
   },
 
-  -- [nameplate frameType] = width
+  -- [nameplate frameType] = width. Only enemy plates are limited (see Modules/Misc/TextWidth.lua)
   nameplates = {
-    PLAYER = 125,
-    FRIENDLY_PLAYER = 125,
     ENEMY_PLAYER = 125,
-    FRIENDLY_NPC = 125,
     ENEMY_NPC = 125,
   },
 }

@@ -22,10 +22,7 @@ local SLIDER_KEY = "txuiMaxWidth"
 local hookedInputs = setmetatable({}, { __mode = "k" })
 
 local nameplateGroups = {
-  playerGroup = "PLAYER",
-  friendlyPlayerGroup = "FRIENDLY_PLAYER",
   enemyPlayerGroup = "ENEMY_PLAYER",
-  friendlyNPCGroup = "FRIENDLY_NPC",
   enemyNPCGroup = "ENEMY_NPC",
 }
 
